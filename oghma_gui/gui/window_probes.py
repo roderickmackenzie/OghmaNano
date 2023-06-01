@@ -24,25 +24,21 @@
 #   SOFTWARE.
 #
 
-## @package sunsvoc
-#  An editor for simple simulations
+## @package window_probes
+#  Probe editor
 #
 
 import i18n
 _ = i18n.language.gettext
-from jvexperiment_tab import jvexperiment_tab
+
+#window
 from experiment import experiment
 
-class window_ce(experiment):
 
+class window_probes(experiment):
 
-	def __init__(self,data=None):
-		experiment.__init__(self,"jvexperiment_tab",window_save_name="ceexperiment_editor", window_title=_("Charge extraction experiment window"),json_search_path="json_root().sims.ce")
+	def __init__(self):
+		experiment.__init__(self,window_save_name="window_probes", window_title=_("Probes"),name_of_tab_class="tab_probes",json_search_path="json_root().dump.probes",icon="map_pin")
 
-		self.notebook.currentChanged.connect(self.switch_page)
-		self.switch_page()
-
-	def switch_page(self):
-		self.notebook.currentWidget()
 
 

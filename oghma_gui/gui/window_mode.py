@@ -24,25 +24,27 @@
 #   SOFTWARE.
 #
 
-## @package sunsvoc
-#  An editor for simple simulations
+## @package window_mode
+#  The mode simulation editor
 #
 
 import i18n
 _ = i18n.language.gettext
-from jvexperiment_tab import jvexperiment_tab
+from tab_mode import tab_mode
 from experiment import experiment
 
-class window_ce(experiment):
+class window_mode(experiment):
 
 
 	def __init__(self,data=None):
-		experiment.__init__(self,"jvexperiment_tab",window_save_name="ceexperiment_editor", window_title=_("Charge extraction experiment window"),json_search_path="json_root().sims.ce")
+		experiment.__init__(self,"tab_mode",window_save_name="window_mode", window_title=_("mode Editor"),json_search_path="json_root().sims.mode",icon="mode")
+
 
 		self.notebook.currentChanged.connect(self.switch_page)
 		self.switch_page()
 
 	def switch_page(self):
 		self.notebook.currentWidget()
+		#self.tb_lasers.update(tab.data)
 
 

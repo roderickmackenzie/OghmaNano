@@ -1,40 +1,43 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package window_json_ro_viewer
 #  Read only viewer for json files
 #
 
 
-import os
 from tab import tab_class
 from icon_lib import icon_get
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget
-from PyQt5.QtGui import QPainter,QIcon
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget
+from PySide2.QtGui import QPainter,QIcon
 
 #python modules
-import webbrowser
 
 from help import help_window
 from help import QAction_help
@@ -42,7 +45,6 @@ from help import QAction_help
 from QWidgetSavePos import QWidgetSavePos
 from inp import inp
 from json_base import json_base
-
 class window_json_ro_viewer(QWidgetSavePos):
 
 	def __init__(self,file_name,icon="json_file",title=_("Simulation information")):
@@ -50,7 +52,7 @@ class window_json_ro_viewer(QWidgetSavePos):
 		self.setFixedSize(900, 600)
 		self.setWindowIcon(icon_get(icon))
 
-		self.setWindowTitle(title+" (www.gpvdm.com)") 
+		self.setWindowTitle2(title) 
 		
 		self.main_vbox = QVBoxLayout()
 
