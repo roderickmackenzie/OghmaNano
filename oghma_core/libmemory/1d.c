@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -26,7 +24,7 @@
 // 
 
 /** @file 1d_long_double.c
-@brief 1d long double routines
+@brief 1d gdouble routines
 */
 
 #include <stdio.h>
@@ -47,7 +45,7 @@ void malloc_1d(void * (*var),int zlen, int item_size)
 
 	if (*var!=NULL)
 	{
-		printf("Warning allocating onto non NULL pointer\n");
+		printf("Warning malloc_1d allocating onto non NULL pointer\n");
 		getchar();
 	}
 
@@ -63,7 +61,7 @@ void malloc_1d(void * (*var),int zlen, int item_size)
 
 
 
-void free_1d( void * (*in_var), int item_size)
+void free_1d( void * (*in_var))
 {
 
 	void *var=*in_var;
@@ -78,20 +76,20 @@ void free_1d( void * (*in_var), int item_size)
 
 }
 
-void cpy_1d(void * (*out), void * (*in), int zlen, int item_size)
+
+void cpy_1d(void * (*out), void * (*in), int zlen, int item_size, int alloc)
 {
+	if (alloc==TRUE)
+	{
+		free_1d(out);
+		malloc_1d(out, zlen, item_size);
+	}
 
 	if ((zlen>0)&&(*in!=NULL))
 	{
 		memcpy((*out), (*in), zlen * item_size);
 	}
-}
-
-void cpy_1d_alloc(void * (*out), void * (*in), int zlen, int item_size)
-{
-	free_1d(out, item_size);
-	malloc_1d(out, zlen, item_size);
-	cpy_1d(out, in, zlen, item_size);
 
 }
+
 
