@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -34,13 +32,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "util.h"
-
-	#define _GNU_SOURCE
-	#include <dlfcn.h>
-
-#include "inp.h"
-#include "light_interface.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include "device.h"
 #include "dump_ctrl.h"
 #include "config.h"
@@ -48,46 +40,55 @@
 #include "lang.h"
 #include "log.h"
 #include "newton_interface.h"
+#include <g_io.h>
 
-static int unused __attribute__((unused));
-
-
-void newton_init(struct simulation *sim,struct device *dev,char *solver_name)
+void newton_load_dll(struct simulation *sim,char *solver_name)
 {
-//printf_log(sim,_("Solver initialization\n"));
-char lib_path[1000];
+	//printf_log(sim,_("Solver initialization\n"));
+	char lib_path[PATH_MAX];
 
-find_dll(sim, lib_path,solver_name);
+	find_dll(sim, lib_path,solver_name);
 
-
-char *error;
-
-	dev->dll_solver_handle = dlopen(lib_path, RTLD_LAZY);
-
-	if (!dev->dll_solver_handle)
+	if (sim->dll_solver_handle!=NULL)
 	{
-		ewe(sim,"%s\n", dlerror());
+		return;
 	}
 
-	dev->dll_solve_cur = dlsym(dev->dll_solver_handle, "dll_solve_cur");
-	if ((error = dlerror()) != NULL)
+	sim->dll_solver_handle = g_dlopen(lib_path);
+	if (sim->dll_solver_handle==NULL)
 	{
-		ewe(sim, "%s\n", error);
+		ewe(sim,"%s %s\n",_("dll not loaded"),lib_path);
 	}
 
-	dev->dll_solver_realloc = dlsym(dev->dll_solver_handle, "dll_solver_realloc");
-	if ((error = dlerror()) != NULL)
+	if (sim->dll_solve_cur!=NULL)
 	{
-		ewe(sim, "%s\n", error);
+		ewe(sim,_("dll_solve_cur not NULL\n"));
+	}
+	sim->dll_solve_cur = g_dlsym(sim->dll_solver_handle, "dll_solve_cur");
+	if (sim->dll_solve_cur==NULL)
+	{
+		ewe(sim,_("dll function dll_solve_cur not found\n"));
 	}
 
-	dev->dll_solver_free_memory = dlsym(dev->dll_solver_handle, "dll_solver_free_memory");
-	if ((error = dlerror()) != NULL)
+	if (sim->dll_solver_realloc!=NULL)
 	{
-		ewe(sim, "%s\n", error);
+		ewe(sim,_("dll_solver_realloc not NULL\n"));
+	}
+	sim->dll_solver_realloc = g_dlsym(sim->dll_solver_handle, "dll_solver_realloc");
+	if (sim->dll_solver_realloc==NULL)
+	{
+		ewe(sim,_("dll function dll_solver_realloc not found\n"));
 	}
 
-
+	if (sim->dll_solver_free_memory!=NULL)
+	{
+		ewe(sim,_("dll_solver_free_memory not NULL\n"));
+	}
+	sim->dll_solver_free_memory = g_dlsym(sim->dll_solver_handle, "dll_solver_free_memory");
+	if (sim->dll_solver_free_memory==NULL)
+	{
+		ewe(sim,_("dll function dll_solver_free_memory not found\n"));
+	}
 
 }
 
@@ -99,27 +100,27 @@ void newton_set_min_ittr(struct device *dev,int ittr)
 
 void solver_realloc(struct simulation *sim,struct device * dev)
 {
-	if (dev->dll_solver_realloc!=NULL)
+	if (sim->dll_solver_realloc!=NULL)
 	{
-		(*dev->dll_solver_realloc)(sim,dev);
+		(*sim->dll_solver_realloc)(sim,dev);
 	}
 }
 
 void solver_free_memory(struct simulation *sim,struct device * dev)
 {
-	if (dev->dll_solver_free_memory!=NULL)
+	if (sim->dll_solver_free_memory!=NULL)
 	{
-		(*dev->dll_solver_free_memory)(sim,dev);
+		(*sim->dll_solver_free_memory)(sim,dev);
 	}
 }
 
-void newton_interface_free(struct simulation *sim,struct device * dev)
+void newton_interface_free(struct simulation *sim)
 {
-	if (dev->dll_solver_handle!=NULL)
+	if (sim->dll_solver_handle!=NULL)
 	{
-		dlclose(dev->dll_solver_handle);
+		g_dlclose(sim->dll_solver_handle);
 	}
-	dev->dll_solver_free_memory=NULL;
-	dev->dll_solver_realloc=NULL;
-	dev->dll_solve_cur=NULL;
+	sim->dll_solver_free_memory=NULL;
+	sim->dll_solver_realloc=NULL;
+	sim->dll_solve_cur=NULL;
 }

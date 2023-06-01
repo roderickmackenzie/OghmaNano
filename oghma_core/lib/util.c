@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -37,106 +35,27 @@
 #include <stdarg.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <dirent.h>
 #include <fcntl.h>
 #include "util.h"
 #include "log.h"
-#include <gpvdm_const.h>
+#include <oghma_const.h>
 #include <lang.h>
 #include <math.h>
 #include <ctype.h>
 #include <cal_path.h>
+#include <g_io.h>
 
 static char* unused_pchar __attribute__((unused));
 
 
-/**Get length of a file in lines
-@param file_name file name
-*/
-int get_file_len(struct simulation *sim,char *file_name)
-{
-FILE *file;
-if (!(file=fopen(file_name,"r")))
-{
-	printf_log(sim,"Error opening file %s\n",file_name);
-	exit(0);
-}
-char buffer[1000];
-
-int i;
-i=0;
-char *p;
-do
-{
-	buffer[0]=0;
-	unused_pchar=fgets(buffer, 1000, file);
-	p=buffer;
-	if (buffer[0]=='#')
-	{
-		i--;
-	}else
-	{
-		//Check for empty line
-		while(*p==' ' || *p=='\t') p++;
-		if ((*p=='\r')||(*p=='\n')||(*p==0)) i--;
-	}
-i++;
-}while(!feof(file));
-//i--;
-fclose(file);
-return i;
-}
-
-
-
-
-
-
 void print_hex(struct simulation *sim,unsigned char *data)
 {
-int i;
-for (i=0;i<16;i++)
-{
-	printf_log(sim,"%02x",data[i]);
-}
-printf_log(sim,"\n");
-}
-
-
-void write_x_y_to_file(struct simulation *sim,char *name,double *x,double *y,int len)
-{
-int i;
-FILE *out;
-
-	out=fopen(name,"w");
-	if (out==NULL)
+	int i;
+	for (i=0;i<16;i++)
 	{
-		ewe(sim,"%s %s\n",_("Error writing file"),name);
+		printf_log(sim,"%02x",data[i]);
 	}
-
-	for (i=0;i<len;i++)
-	{
-		fprintf(out,"%le %le\n",x[i],y[i]);
-	}
-	fclose(out);
-}
-
-void write_x_y_z_to_file(struct simulation *sim,char *name,double *x,double *y,double *z,int len)
-{
-int i;
-FILE *out;
-
-	out=fopen(name,"w");
-	if (out==NULL)
-	{
-		ewe(sim,"%s %s\n",_("Error writing file"),name);
-	}
-
-	for (i=0;i<len;i++)
-	{
-		fprintf(out,"%le %le %le\n",x[i],y[i],z[i]);
-	}
-	fclose(out);
+	printf_log(sim,"\n");
 }
 
 void str_to_lower(char *out, char *in)
@@ -207,26 +126,9 @@ if (strcmp(temp,"left")==0)
 {
 	return LEFT;
 }else
-if (strcmp(temp,"links")==0)
-{
-	return LEFT;
-}else
-if (strcmp(temp,"ja")==0)
-{
-	return TRUE;
-}else
-if (strcmp(temp,"nein")==0)
-{
-	return FALSE;
-}else
 if (strcmp(temp,"right")==0)
 {
 	return RIGHT;
-}else
-if (strcmp(temp,"rechts")==0)
-{
-	return RIGHT;
-
 }else
 if (strcmp(temp,"gaus")==0)
 {
@@ -350,6 +252,10 @@ if (strcmp(temp,"ray_run_step")==0)
 {
 	return ray_run_step;
 }else
+if (strcmp(temp,"ray_run_step_n")==0)
+{
+	return ray_run_step_n;
+}else
 if (strcmp(temp,"ray_emission_single_point")==0)
 {
 	return ray_emission_single_point;
@@ -357,6 +263,10 @@ if (strcmp(temp,"ray_emission_single_point")==0)
 if (strcmp(temp,"ray_emission_electrical_mesh")==0)
 {
 	return ray_emission_electrical_mesh;
+}else
+if (strcmp(temp,"ray_emission_every_x_point")==0)
+{
+	return ray_emission_every_x_point;
 }else
 if (strcmp(temp,"measure_voltage")==0)
 {
@@ -386,7 +296,7 @@ if (strcmp(temp,"thermal_lattice")==0)
 {
 	return THERMAL_LATTICE;
 }else
-if (strcmp(temp,"isothermal")==0)
+if (strcmp(temp,"dirichlet")==0)
 {
 	return ISOTHERMAL;
 }else
@@ -397,6 +307,14 @@ if (strcmp(temp,"dirichlet")==0)
 if (strcmp(temp,"neumann")==0)
 {
 	return NEUMANN;
+}else
+if (strcmp(temp,"abc")==0)
+{
+	return A_B_C;
+}else
+if (strcmp(temp,"periodic")==0)
+{
+	return PERIODIC;
 }else
 if (strcmp(temp,"heatsink")==0)
 {
@@ -485,71 +403,70 @@ if (strcmp(temp,"energy_space_map")==0)
 if (strcmp(temp,"single_mesh_point")==0)
 {
 	return SINGLE_MESH_POINT;
+}else
+if (strcmp(temp,"point")==0)
+{
+	return GPVDM_POINT;
+}else
+if (strcmp(temp,"average")==0)
+{
+	return GPVDM_AVERAGE;
+}else
+if (strcmp(temp,"max")==0)
+{
+	return GPVDM_MAX;
+}else
+if (strcmp(temp,"min")==0)
+{
+	return GPVDM_MIN;
+}else
+if (strcmp(temp,"max_pos_y_slice")==0)
+{
+	return GPVDM_MAX_POS_Y_SLICE;
+}else
+if (strcmp(temp,"max_pos_y_slice0")==0)
+{
+	return GPVDM_MAX_POS_Y_SLICE0;
+}else
+if (strcmp(temp,"max_pos_y_slice1")==0)
+{
+	return GPVDM_MAX_POS_Y_SLICE1;
+}else
+if (strcmp(temp,"max_pos_y_val_slice")==0)
+{
+	return GPVDM_MAX_POS_Y_VAL_SLICE;
+}else
+if (strcmp(temp,"max_pos_y_val_slice0")==0)
+{
+	return GPVDM_MAX_POS_Y_VAL_SLICE0;
+}else
+if (strcmp(temp,"max_pos_y_val_slice1")==0)
+{
+	return GPVDM_MAX_POS_Y_VAL_SLICE1;
+}else
+if (strcmp(temp,"contacts")==0)
+{
+	return CONTACTS;
+}else
+if (strcmp(temp,"mid_point")==0)
+{
+	return MID_POINT;
+}else
+if (strcmp(temp,"avg")==0)
+{
+	return AVG;
+}else
+if (strcmp(temp,"yes_nk")==0)
+{
+	return yes_nk;
+}else
+if (strcmp(temp,"yes_k")==0)
+{
+	return yes_k;
 }
 
-//printf("I don't understand: %s\n",in);
-//getchar();
 ewe(sim,"%s %s\n",_(">I don't understand the command"),in);
 return 0;
-}
-
-double read_value(struct simulation *sim,char *file,int skip,int line)
-{
-FILE *in;
-char buf[1000];
-double value;
-in=fopen(file,"r");
-if (in==NULL)
-{
-ewe(sim,"%s %s\n",_("Can not read file"),file);
-}
-int l=0;
-
-do
-{
-l++;
-	unused=fscanf(in,"%s",buf);
-
-	if (l==line)
-	{
-		sscanf((buf+skip),"%le\n",&value);
-		break;
-	}
-
-
-}while (!feof(in));
-
-fclose(in);
-
-
-return value;
-}
-
-void safe_file(struct simulation *sim,char *name)
-{
-FILE *file;
-file = fopen(name, "rb");
-
-if (!file)
-{
-	ewe(sim,"%s: %s\n",_("File not found"),name);
-}
-
-fclose(file);
-}
-
-
-
-
-FILE *fopena(char *path,char *name,const char *mode)
-{
-char wholename[PATH_MAX];
-join_path(2, wholename,path,name);
-
-FILE *pointer;
-pointer=fopen(wholename,mode);
-
-return pointer;
 }
 
 
@@ -606,295 +523,13 @@ return no;
 
 
 
-void copy_file(struct simulation *sim,char *output,char *input)
-{
-char buf[8192];
-struct stat results;
-int in_fd = open(input, O_RDONLY);
-if (in_fd== -1)
-{
-	ewe(sim,"%s: %s\n",_("Can not open file"),input);
-}
-
-stat(input, &results);
-
-int out_fd = open(output, O_WRONLY | O_CREAT| O_TRUNC,results.st_mode);
-if (in_fd== -1)
-{
-	ewe(sim,"%s: %s\n",_("Can not open file"),output);
-}
-
-
-while (1)
-{
-    ssize_t result = read(in_fd, buf, 8192*sizeof(char));
-
-    if (result==0)
-	{
-		break;
-	}
-    write(out_fd, buf, result*sizeof(char));
-}
-
-close(in_fd);
-close(out_fd);
-}
-
-
-
-int path_up_level(char *out, char *in)
-{
-int i=0;
-strcpy(out,in);
-int len=strlen(out);
-if (len<1)
-{
-	return -1;
-}
-
-if (len!=3)
-{
-	if (out[len-1]=='\\')
-	{
-		out[len-1]=0;
-		len=strlen(out);
-	}
-}
-
-if (len!=1)
-{
-	if (out[len-1]=='/')
-	{
-		out[len-1]=0;
-		len=strlen(out);
-	}
-}
-
-for (i=len;i>=0;i--)
-{
-
-		if (out[i]=='\\')
-		{
-			out[i+1]=0;
-			break;
-		}
-
-
-
-		if (out[i]=='/')
-		{
-			out[i+1]=0;
-			break;
-		}
-}
-
-return 0;
-}
-
-
-int get_dir_name_from_path(char *out, char *in)
-{
-strcpy(out,in);
-
-int i=0;
-int len=strlen(in);
-for (i=len;i>0;i--)
-{
-	//#ifdef windows
-		if ((in[i]=='\\')||(in[i]=='/'))
-		{
-			out[i]=0;
-			return 0;
-		}
-	//#else
-	//	if (in[i]=='/')
-	//	{
-	//		out[i]=0;
-	//		return 0;
-	//	}
-	//#endif
-}
-
-if (len>0)
-{
-	out[0]=0;
-	return 0;
-}
-
-return -1;
-}
-
-/**
- * @brief Tests for a directory, returns 0 if found non zero if not.
- *
- * Detailed explanation.
- */
-int isdir(const char *path)
-{
-	struct stat statbuf;
-	if (stat(path, &statbuf) != 0)
-	{
-		return 1;
-	}else
-	{
-		if (S_ISDIR(statbuf.st_mode)==0)
-		{
-			return 1;
-		}else
-		{
-			return 0;
-		}
-	}
-}
-
-/**
- * @brief Tests for a file, returns 0 if found non zero if not.
- *
- * Detailed explanation.
- */
-int isfile(char *in)
-{
-	struct stat statbuf;
-	if (stat(in, &statbuf) != 0)
-	{
-		return 1;
-	}else
-	{
-		if (S_ISREG(statbuf.st_mode)==0)
-		{
-			return 1;
-		}else
-		{
-			return 0;
-		}
-	}
-
-}
-
-void remove_file(struct simulation *sim,char* file_name)
-{
-	if (isfile(file_name)==0)
-	{
-		remove(file_name);
-	}
-}
-
-struct remove_dir_struct
-{
-	int delete;
-	int tot_files;
-	int count;
-	int progress_count;
-};
-
-void remove_dir_ittr(struct simulation *sim,char* dir_name,int depth, struct remove_dir_struct *data)
-{
-	depth++;
-	struct dirent *next_file;
-	DIR *theFolder;
-	char filepath[PATH_MAX];
-	if (depth==-1)
-	{
-		if (data->delete==TRUE)
-		{
-			printf_log(sim,"%s =%s:",_("Deleting directory: "),dir_name);
-		}
-		data->progress_count=0;
-	}
-	theFolder = opendir(dir_name);
-
-	int progress_delta;
-	if (data->delete==TRUE)
-	{
-		progress_delta=data->tot_files/20;
-	}
-
-	if (theFolder!=NULL)
-	{
-		while((next_file=readdir(theFolder))!=NULL)
-		{
-			if ((strcmp(next_file->d_name,".")!=0)&&(strcmp(next_file->d_name,"..")!=0))
-			{
-				join_path(2, filepath,dir_name,next_file->d_name);
-				if (isdir(filepath)==0)
-				{
-					remove_dir_ittr(sim,filepath,depth,data);
-					if (data->delete==TRUE)
-					{
-						//printf_log(sim,"%s =%s\r",_("Deleting directory"),filepath);
-							remove(filepath);
-						data->progress_count++;
-						if (data->progress_count>progress_delta)
-						{
-							printf_log(sim,"#");
-							data->progress_count=0;
-						}
-						
-					}
-					data->count++;
-				}else
-				{
-					if (data->delete==TRUE)
-					{
-						remove_file(sim,filepath);
-						if (data->progress_count>progress_delta)
-						{
-							printf_log(sim,"#");
-							data->progress_count=0;
-						}
-						data->progress_count++;
-					}
-					data->count++;
-				}
-			}
-		}
-
-		closedir (theFolder);
-
-		if (depth==0)
-		{
-			if (data->delete==TRUE)
-			{
-					remove(dir_name);
-
-				printf_log(sim,"\n");
-
-			}
-		}
-	}
-
-	
-}
-
-void remove_dir(struct simulation *sim,char* dir_name)
-{
-	if (strcmp(dir_name,"")==0)
-	{
-		return;
-	}
-
-	struct remove_dir_struct data;
-	data.delete=FALSE;
-	data.tot_files=0;
-	data.count=0;
-
-	remove_dir_ittr(sim,dir_name,-1,&data);
-
-	data.tot_files=data.count;
-	data.count=0;
-	data.delete=TRUE;
-
-	remove_dir_ittr(sim,dir_name,-1,&data);
-
-
-}
 
 /**This is a version of the standard fgets, but it will also accept a 0x0d as a new line.
 @param buf output buffer
 @param len max length of buffer
 @param file file handle
 */
-int gpvdm_fgets(char *buf,int len,FILE *file)
+int oghma_fgets(char *buf,int len,FILE *file)
 {
 	char dat;
 	int pos=0;
@@ -931,3 +566,50 @@ int gpvdm_fgets(char *buf,int len,FILE *file)
 
 	return pos;
 }
+
+int copy_file(struct simulation *sim,char *output,char *input)
+{
+	long len;
+	char *buf;
+	//struct stat results;
+	FILE* out_fd;
+	int ret=0;
+	ret=g_read_file_to_buffer(&buf, &len,input,-1);
+
+	if (ret==-1)
+	{
+		return -1;//ewe(sim,"%s: %s\n",_("Can not open file"),input);
+	}
+
+	if (ret==-2)
+	{
+		return -2;
+		//ewe(sim,"problem reading file size does not match %s\n ",input);
+	}
+
+	out_fd =  g_fopen(output, "wb");
+	if (out_fd == NULL)
+	{
+		return -3;
+		//ewe(sim,"File %s can not be opened for write\n",output);
+	}
+
+	fwrite( buf, len*sizeof(char),1,out_fd);
+
+	free(buf);
+
+	fclose(out_fd);
+	return 0;
+}
+
+FILE *fopena(char *path,char *name,const char *mode)
+{
+	char wholename[PATH_MAX];
+	join_path(2, wholename,path,name);
+
+	FILE *pointer;
+	pointer=g_fopen(wholename,mode);
+
+	return pointer;
+}
+

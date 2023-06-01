@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -33,11 +31,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <g_io.h>
 #include <sim_struct.h>
 #include <json.h>
 #include <hard_limit_struct.h>
 #include <hard_limit.h>
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 
 
 void hard_limit_init(struct simulation *sim,struct hard_limit *hl)
@@ -61,7 +60,7 @@ void hard_limit_load(struct simulation *sim,struct hard_limit *hl,struct json_ob
 	struct json_obj *json_hl_seg;
 	hl->n_lines=0;
 
-	json_get_int(sim,json_hl, &(hl->n_lines),"segments");
+	json_get_int(sim,json_hl, &(hl->n_lines),"segments",TRUE);
 
 	hl->lines=malloc(hl->n_lines*sizeof(struct hard_limit_line));
 	for (i=0;i<hl->n_lines;i++)
@@ -70,16 +69,16 @@ void hard_limit_load(struct simulation *sim,struct hard_limit *hl,struct json_ob
 		json_hl_seg=json_obj_find(json_hl, seg_name);
 
 		json_get_string(sim,json_hl_seg, hl->lines[i].token,"token");
-		json_get_long_double(sim,json_hl_seg, &(hl->lines[i].min),"min");
-		json_get_long_double(sim,json_hl_seg, &(hl->lines[i].max),"max");
+		json_get_double(sim,json_hl_seg, &(hl->lines[i].min),"min",TRUE);
+		json_get_double(sim,json_hl_seg, &(hl->lines[i].max),"max",TRUE);
 	}
 
 }
 
-void hard_limit_do(struct simulation *sim,char *token,long double *value)
+void hard_limit_do(struct simulation *sim,char *token,gdouble *value)
 {
 int i;
-long double ret= *value;
+gdouble ret= *value;
 struct hard_limit *hl=&(sim->hl);
 	//printf("== %d %p\n",	sim->hl.n_lines,&(sim->hl.n_lines));
 
@@ -91,12 +90,12 @@ struct hard_limit *hl=&(sim->hl);
 		{
 			if (ret>hl->lines[i].max)
 			{
-				ret=hl->lines[i].max;
+				ret=(gdouble)hl->lines[i].max;
 			}
 
 			if (ret<hl->lines[i].min)
 			{
-				ret=hl->lines[i].min;
+				ret=(gdouble)hl->lines[i].min;
 			}
 		}
 	}

@@ -23,34 +23,31 @@
 // SOFTWARE.
 // 
 
-/** @file timer.c
-	@brief Timer.
+/** @file g_strings.c
+	@brief Dealing with utf 16 /utf 8
 */
 
+#include <enabled_libs.h>
+#include <g_io.h>
+#include <string.h>
+#include <unistd.h>
+#include <oghma_const.h>
+#include <util_str.h>
 
-#include <sys/time.h>
-#include <stdio.h>
+	#include <dlfcn.h>
+	#include <sys/types.h>
+	#include <sys/stat.h>
+	#include <fnmatch.h>
+	#include <pthread.h>
+	#include <pwd.h>
 
-static double start_times[10];
 
-void timer_init(int timer)
+#include <path_ops.h>
+
+int g_fnmatch(char *pat,char *in)
 {
-struct timeval result;
-gettimeofday (&result, NULL);
-start_times[timer]=result.tv_sec + result.tv_usec/1000000.0;
+
+	return fnmatch(pat,in, FNM_PATHNAME);
+
 }
 
-double timer_get_time(int timer)
-{
-struct timeval result;
-gettimeofday (&result, NULL);
-double cur_time=result.tv_sec + result.tv_usec/1000000.0;
-return cur_time-start_times[timer];
-}
-
-double timer_get_time_in_ms()
-{
-	struct timeval result;
-	gettimeofday (&result, NULL);
-	return (result.tv_sec) * 1000.0 + ((double)(result.tv_usec)) / 1000.0 ;
-}

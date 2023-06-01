@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -42,45 +40,51 @@
 #include <dat_file.h>
 #include <epitaxy.h>
 #include <lang.h>
-
-static int unused __attribute__((unused));
-
 #include "dump.h"
 #include "log.h"
 #include "cal_path.h"
+#include <g_io.h>
 
-
-void write_zip_buffer(struct simulation *sim,char *outfile,long double *buf,int buf_len)
+int write_zip_buffer(struct simulation *sim,char *outfile,gdouble *buf,int buf_len)
 {
 	//#ifndef windows
 	//	gzFile file;
 	//	file = gzopen (outfile, "w9b");
-	//	gzwrite (file, (char*)buf, buf_len*sizeof(long double));
+	//	gzwrite (file, (char*)buf, buf_len*sizeof(gdouble));
 	//	gzclose (file);
 	//#else
 		FILE* file;
-		file = fopen (outfile, "wb");
-		fwrite ( (char*)buf, buf_len*sizeof(long double),1,file);
+		file = g_fopen (outfile, "wb");
+		if (file==NULL)
+		{
+			return -1;
+		}
+		fwrite ( (char*)buf, buf_len*sizeof(gdouble),1,file);
 		fclose (file);
 	//#endif
 	FILE * file_append;
-	file_append = fopen (outfile, "ab");
-	int temp1=buf_len*sizeof(long double);
+	file_append = g_fopen (outfile, "ab");
+	if (file_append==NULL)
+	{
+		return -1;
+	}
+	int temp1=buf_len*sizeof(gdouble);
 	fwrite ((char*)&temp1, sizeof(int),1,file_append);
 	fclose (file_append);
 
-	//out = fopen(outfile, "wb");
+	//out = g_fopen(outfile, "wb");
 	//fwrite((char*)buf, buf_len*sizeof(gdouble), 1, out);
 	//fclose(out);
 
+	return 0;
 }
 
 
-int read_zip_buffer(struct simulation *sim,char *file_name,long double **buf)
+int read_zip_buffer(struct simulation *sim,char *file_name,gdouble **buf)
 {
 	int len;
 
-	FILE *tl=fopen(file_name,"rb");
+	FILE *tl=g_fopen(file_name,"rb");
 	if (tl==NULL)
 	{
 		return -1;
@@ -103,7 +107,7 @@ int read_zip_buffer(struct simulation *sim,char *file_name,long double **buf)
 	//	}
 	//#else
 		FILE *file_in;
-		file_in = fopen (file_name, "rb");
+		file_in = g_fopen (file_name, "rb");
 		if (file_in==NULL)
 		{
 			ewe(sim,_("File not found\n"));
@@ -112,9 +116,9 @@ int read_zip_buffer(struct simulation *sim,char *file_name,long double **buf)
 
 
 
-	int buf_len=len/sizeof(long double);
+	int buf_len=len/sizeof(gdouble);
 
-	(*buf)=(long double *)malloc(sizeof(long double)*buf_len);
+	(*buf)=(gdouble *)malloc(sizeof(gdouble)*buf_len);
 
 
 	//#ifndef windows

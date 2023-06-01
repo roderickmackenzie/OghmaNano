@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -26,7 +24,7 @@
 // 
 
 /** @file inp.c
-	@brief Input file interface, files can be in .gpvdm files or stand alone files.
+	@brief Input file interface, files can be in .oghma files or stand alone files.
 */
 
 
@@ -36,198 +34,15 @@
 #include <zip.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <dirent.h>
-
 #include "inp.h"
 #include "util.h"
 #include "code_ctrl.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include <log.h>
 #include <cal_path.h>
 #include "lock.h"
 #include <list.h>
-
-int inp_test_end_of_data(char *line)
-{
-if ((line==NULL)||(strcmp(line,"#end")==0)||(strcmp(line,"#ver")==0))
-{
-	return 0;
-}
-
-return -1;
-}
-int search_for_token(struct simulation *sim,char *ret,char *dir_name,char* token,char *search_value)
-{
-int i=0;
-int found=FALSE;
-int is_sim_file=FALSE;
-char found_value[256];
-struct inp_file inp;
-struct list a;
-inp_listdir(sim,dir_name,&a);
-
-
-	for (i=0;i<a.len;i++)
-	{
-		if ((strcmp(a.names[i],".")!=0)&&(strcmp(a.names[i],"..")!=0))
-		{
-			if (strcmp_end(a.names[i],".inp")==0)
-			{
-				inp_init(sim,&inp);
-				inp_load_from_path(sim,&inp,dir_name,a.names[i]);
-				is_sim_file=inp_search(sim,found_value,&inp,token);
-				inp_free(sim,&inp);
-
-				if (is_sim_file==0)
-				{
-						if (strcmp(found_value,search_value)==0)
-						{
-							strcpy(ret,a.names[i]);
-							found=TRUE;
-							break;
-						}
-				}
-
-
-			}
-		}
-	}
-
-list_free(&a);
-
-if (found==TRUE)
-{
-	return 0;
-}else
-{
-	strcpy(ret,"");
-	return -1;
-}
-
-return -1;
-}
-
-int guess_whole_sim_name(struct simulation *sim,char *ret,char *dir_name,char* search_name)
-{
-int i=0;
-int found=FALSE;
-int is_sim_file=FALSE;
-char sim_name[256];
-char name[200];
-struct inp_file inp;
-struct list a;
-inp_listdir(sim,dir_name,&a);
-
-
-	for (i=0;i<a.len;i++)
-	{
-		if ((strcmp(a.names[i],".")!=0)&&(strcmp(a.names[i],"..")!=0))
-		{
-			if (strcmp_end(a.names[i],".inp")==0)
-			{
-				inp_init(sim,&inp);
-				inp_load_from_path(sim,&inp,dir_name,a.names[i]);
-				is_sim_file=inp_search(sim,sim_name,&inp,"#sim_menu_name");
-				inp_free(sim,&inp);
-
-				if (is_sim_file==0)
-				{
-					if (strextract_name(name,sim_name)!= -1)
-					{
-						if (strcmp(name,search_name)==0)
-						{
-							strcpy(ret,sim_name);
-							found=TRUE;
-							break;
-						}
-					}
-				}
-				//if (strcmp(sim_name,search_name)==0)
-				//{
-				//	strcpy(ret,a.names[i]);
-				//	found=TRUE;
-				//	break;
-				//}
-
-			}
-		}
-	}
-
-list_free(&a);
-
-if (found==TRUE)
-{
-	return 0;
-}else
-{
-	strcpy(ret,"");
-	return -1;
-}
-
-return -1;
-}
-
-int find_config_file(struct simulation *sim,char *ret,char *dir_name,char* search_name,char *start_of_name)
-{
-int i=0;
-int found=FALSE;
-char sim_name[256];
-struct inp_file inp;
-inp_init(sim,&inp);
-
-struct list a;
-inp_listdir(sim,dir_name,&a);
-
-
-	for (i=0;i<a.len;i++)
-	{
-		if ((strcmp(a.names[i],".")!=0)&&(strcmp(a.names[i],"..")!=0))
-		{
-			//printf(">>%s %d\n",a.names[i],strlen(a.names[i]));
-			if ((cmpstr_min(a.names[i],start_of_name)==0)&&(strcmp_end(a.names[i],".inp")==0))
-			{
-
-				if (inp_load_from_path(sim,&inp,dir_name,a.names[i])==0)
-				{
-					//printf(">>loaded\n");
-
-					strcmp(sim_name,"");
-
-					if (inp_is_token(sim,&inp,"#sim_menu_name")==0)
-					{
-						inp_search_string(sim,&inp,sim_name,"#sim_menu_name");
-					}
-
-					inp_free(sim,&inp);
-					//printf(">>freed\n");
-
-					if (strcmp(sim_name,search_name)==0)
-					{
-						strcpy(ret,a.names[i]);
-						found=TRUE;
-						break;
-					}
-
-
-				}
-
-			}
-		}
-	}
-
-list_free(&a);
-
-if (found==TRUE)
-{
-	return 0;
-}else
-{
-	strcpy(ret,"");
-	return -1;
-}
-
-return -1;
-}
+#include <g_io.h>
 
 
 void inp_listdir(struct simulation *sim, char *dir_name,struct list *out)
@@ -238,7 +53,7 @@ int i=0;
 int err = 0;
 char temp[200];
 
-join_path(2,sim_file,dir_name,"sim.gpvdm");
+join_path(2,sim_file,dir_name,"sim.oghma");
 
 out->names=(char**)malloc(sizeof(char*)*2000);
 out->len=0;
@@ -253,10 +68,13 @@ if (z!=NULL)
 		strcpy(temp,zip_get_name(z, i, ZIP_FL_UNCHANGED));
 		if (list_cmp(out,temp)!=0)
 		{
-			mylen=strlen(temp);
-			out->names[out->len]=(char*)malloc(sizeof(char)*(mylen+1));
-			strcpy(out->names[out->len],temp);
-			out->len++;
+			if ((strcmp(temp,".")!=0)&&(strcmp(temp,"..")!=0))
+			{
+				mylen=strlen(temp);
+				out->names[out->len]=(char*)malloc(sizeof(char)*(mylen+1));
+				strcpy(out->names[out->len],temp);
+				out->len++;
+			}
 		}
 
 	}
@@ -264,63 +82,32 @@ if (z!=NULL)
 	zip_close(z);
 
 }
-struct dirent *next_file;
-DIR *theFolder;
 
-theFolder = opendir(dir_name);
-if (theFolder!=NULL)
+struct find_file find;
+
+if (find_open(&find,dir_name)==0)
 {
-	while((next_file=readdir(theFolder))!=NULL)
+	while(find_read(&find)==0)
 	{
-		mylen=strlen(next_file->d_name);
-		out->names[out->len]=(char*)malloc(sizeof(char)*(mylen+1));
-		strcpy(out->names[out->len],next_file->d_name);
-		out->len++;
-	}
-
-closedir (theFolder);
-
-}
-
-}
-
-
-int zip_is_in_archive(char *full_file_name)
-{
-	char zip_path[1000];
-	char file_path[1000];
-	char file_name[1000];
-	get_dir_name_from_path(file_path,full_file_name);
-	get_file_name_from_path(file_name,full_file_name);
-
-	join_path(2,zip_path,file_path,"sim.gpvdm");
-
-	int err = 0;
-	struct zip *z = zip_open(zip_path, 0, &err);
-
-	if (z!=NULL)
-	{
-		//Search for the file of given name
-		struct zip_stat st;
-		zip_stat_init(&st);
-		int ret=zip_stat(z, file_name, 0, &st);
-		zip_close(z);
-
-		if (ret!=0)
+		if ((strcmp(find.file_name,".")!=0)&&(strcmp(find.file_name,"..")!=0))
 		{
-		 	return -1;
+			mylen=strlen(find.file_name);
+			out->names[out->len]=(char*)malloc(sizeof(char)*(mylen+1));
+			strcpy(out->names[out->len],find.file_name);
+			out->len++;
 		}
-
-		return 0;
-	}else
-	{
-		return -1;
 	}
+
+find_close(&find);
+
 }
+
+}
+
 
 int inp_isfile(struct simulation *sim,char *full_file_name)
 {
-FILE *f = fopen(full_file_name, "rb");
+FILE *f = g_fopen(full_file_name, "rb");
 if (f!=NULL)
 {
 	sim->files_read++;
@@ -331,7 +118,7 @@ if (f!=NULL)
 	return zip_is_in_archive(full_file_name);
 }
 //#endif
-
+return -1;
 }
 
 
@@ -342,15 +129,12 @@ in->pos=0;
 
 int inp_get_string(struct simulation *sim,char *out, struct inp_file *in)
 {
-	//int i;
-	//memset(out, 0, 400);
-	//int ii=0;
 	if (in->pos>=in->fsize)
 	{
 		return -1;
 	}
 
-	get_line(out,in->data,in->fsize,&in->pos);
+	get_line(out,in->data,in->fsize,&in->pos,-1);
 
 	return 0;
 }
@@ -360,41 +144,31 @@ int inp_get_string(struct simulation *sim,char *out, struct inp_file *in)
 
 int inp_read_buffer(struct simulation *sim,char **buf, long *len,char *full_file_name)
 {
-FILE *f = fopen(full_file_name, "rb");
-if (f!=NULL)
+
+if (isfile(full_file_name)==0)
 {
-	sim->files_read++;
-	int err=0;
-	fseek(f, 0, SEEK_END);
-	*len = ftell(f);
-	fseek(f, 0, SEEK_SET);
-
-	sim->bytes_read+=*len;
-
-	log_write_file_access(sim,full_file_name,'r');
-
-	*buf = malloc(((*len) + 1)*sizeof(char));
-	//memset(*buf, 0, ((*len) + 1)*sizeof(char));
-	if (fread(*buf, *len, 1, f)==0)
+	if (g_read_file_to_buffer(buf, len,full_file_name,-1)!=0)
 	{
-		err= -1;
+		return -1;
 	}
 
+	sim->files_read++;
+	sim->bytes_read+=*len;
+	log_write_file_access(sim,full_file_name,'r');
 
-	(*buf)[*len]=0;
-	fclose(f);
-	return err;
+
+	return 0;
 
 }else
 {
-	char zip_path[1000];
-	char file_path[1000];
-	char file_name[1000];
+	char zip_path[OGHMA_PATH_MAX];
+	char file_path[OGHMA_PATH_MAX];
+	char file_name[OGHMA_PATH_MAX];
 
 	get_dir_name_from_path(file_path,full_file_name);
-	get_file_name_from_path(file_name,full_file_name);
+	get_file_name_from_path(file_name,full_file_name,OGHMA_PATH_MAX);
 
-	join_path(2,zip_path,file_path,"sim.gpvdm");
+	join_path(2,zip_path,file_path,"sim.oghma");
 
 	int err = 0;
 	struct zip *z = zip_open(zip_path, 0, &err);
@@ -465,7 +239,7 @@ in->edited=FALSE;
 int inp_load_from_path(struct simulation *sim,struct inp_file *in,char *path,char *file)
 {
 int ret=0;
-char full_path[1000];
+char full_path[OGHMA_PATH_MAX];
 join_path(2,full_path,path,file);
 ret=inp_load(sim,in,full_path);
 return ret;
@@ -515,21 +289,6 @@ if (strcmp(in->full_name,file)!=0)
 return ret;
 }
 
-void inp_replace_double_offset_col(struct simulation *sim,struct inp_file *in,char *token, double value,int offset,int col)
-{
-	char temp[200];
-	char new[200];
-	inp_search(sim,temp,in,token);
-	replace_number_in_string(new, temp, value, col);
-	inp_replace_offset(sim,in,token,new,offset);
-}
-
-void inp_replace_double_offset(struct simulation *sim,struct inp_file *in,char *token, double value,int offset)
-{
-	char temp[100];
-	sprintf(temp,"%le",value);
-	inp_replace_offset(sim,in,token,temp,offset);
-}
 
 void inp_replace_double(struct simulation *sim,struct inp_file *in,char *token, double value)
 {
@@ -551,11 +310,11 @@ char *temp = malloc(in->fsize + 100);
 memset(temp, 0, in->fsize + 100);
 //char *line;
 int len=0;
-int pos=0;
+long pos=0;
 int ret=0;
 char line[in->fsize + 100];
 
-ret=get_line(line,in->data,in->fsize,&pos);
+ret=get_line(line,in->data,in->fsize,&pos,-1);
 
 int found=FALSE;
 
@@ -572,17 +331,17 @@ while(ret!=-1)
 
 		for (i=0;i<offset;i++)
 		{
-			ret=get_line(line,in->data,in->fsize,&pos);
+			ret=get_line(line,in->data,in->fsize,&pos,-1);
 			strcat(temp,line);
 			strcat(temp,"\n");
 		}
 
 		strcat(temp,text);
 		strcat(temp,"\n");
-		ret=get_line(line,in->data,in->fsize,&pos);
+		ret=get_line(line,in->data,in->fsize,&pos,-1);
 		found=TRUE;
 	}
-	ret=get_line(line,in->data,in->fsize,&pos);
+	ret=get_line(line,in->data,in->fsize,&pos,-1);
 }
 
 
@@ -604,119 +363,7 @@ if (in->data[len]!=0)
 free(temp);
 }
 
-int zip_write_buffer(struct simulation *sim,char *full_file_name,char *buffer, int len)
-{
-int	in_zip_file= -1;
-int	outside_zip_file= -1;
 
-in_zip_file=zip_is_in_archive(full_file_name);
-outside_zip_file=isfile(full_file_name);
-
-//printf_log(sim,"here1:%s %d %d\n",full_file_name,in_zip_file,outside_zip_file);
-if ((in_zip_file!=0)||(outside_zip_file==0))
-{
-	int out_fd = open(full_file_name, O_WRONLY | O_CREAT | O_TRUNC,0644);
-	sim->files_written++;
-	if (out_fd== -1)
-	{
-		ewe(sim,"File %s can not be opened\n",full_file_name);
-	}
-
-	if (ftruncate(out_fd, 0)== -1)
-	{
-		ewe(sim,"Error with truncate command\n");
-	}
-
-	if (write(out_fd, buffer, len*sizeof(char))== -1)
-	{
-		ewe(sim,"Error writing data to file.\n");
-	}
-	close(out_fd);
-}else
-{
-	char zip_path[1000];
-	char file_path[1000];
-	char file_name[1000];
-
-	get_dir_name_from_path(file_path,full_file_name);
-	get_file_name_from_path(file_name,full_file_name);
-
-	join_path(2,zip_path,file_path,"sim.gpvdm");
-
-	int err = 0;
-	struct zip *z = zip_open(zip_path, 0, &err);
-	zip_close(z);
-
-	z = zip_open(zip_path, 0, &err);
-	zip_close(z);
-
-	z = zip_open(zip_path, 0, &err);
-	zip_close(z);
-
-	z = zip_open(zip_path, 0, &err);
-	zip_close(z);
-
-	z = zip_open(zip_path, 0, &err);
-	zip_close(z);
-
-	z = zip_open(zip_path, 0, &err);
-
-	if(!z || err != ZIP_ER_OK)
-	{
-		exit(0);
-	}
-
-
-	//printf_log(sim,"archive:%s\n", zip_path);
-	//printf_log(sim,"here:%s\n",file_name);
-	if (z!=NULL)
-	{
-		struct zip_source *s;
-		s=zip_source_buffer(z, buffer, len,0);
-		//printf_log(sim,"writing:%s\n",file_name);
-		err=-1;
-		#ifdef ZIP_FL_OVERWRITE				//For cluster compatability
-		err=zip_file_add(z, file_name, s, ZIP_FL_OVERWRITE);
-		#endif
-		if (err==-1)
-		{
-			ewe(sim,"zip write error");
-		}
-		zip_close(z);
-		//zip_fclose(err);
-		/*int index=zip_name_locate(z,  file_name,  0);
-
-		if (index== -1)
-		{
-			printf_log(sim,"writing:%s %d\n",file_name,index);
-
-			zip_add(z, file_name, s);
-			sim->files_written++;
-
-		}else
-		{
-			printf_log(sim,"replace:%s %d\n",file_name,index);
-
-			err=zip_replace(z, index, s);
-			if (err==-1)
-			{
-				ewe(sim,"zip write error");
-			}
-			sim->files_written++;
-		}*/
-
-
-
-
-	}else
-	{
-		ewe(sim,"zip write error");
-		return -1;
-	}
-
-}
-return 0;
-}
 
 int inp_save(struct simulation *sim,struct inp_file *in)
 {
@@ -739,16 +386,10 @@ void inp_free(struct simulation *sim,struct inp_file *in)
 	inp_init(sim,in);
 }
 
-void inp_free_no_save(struct simulation *sim,struct inp_file *in)
-{
-
-	free(in->data);
-	inp_init(sim,in);
-}
-
 int inp_search_gdouble(struct simulation *sim,struct inp_file *in,gdouble* out,char* token)
 {
 char temp[200];
+double tmp;
 if (inp_search(sim,temp,in,token)==0)
 {
 	if (str_isnumber(temp)==FALSE)
@@ -757,7 +398,8 @@ if (inp_search(sim,temp,in,token)==0)
 		getchar();
 	}
 
-	sscanf(temp,"%Le",out);
+	sscanf(temp,"%le",&tmp);
+	*out=tmp;
 	//printf("oh %Le %s\n",*out,token);
 	return 0;
 }
@@ -780,38 +422,6 @@ if (inp_search(sim,temp,in,token)==0)
 return -1;
 }
 
-int inp_search_float(struct simulation *sim,struct inp_file *in,float* out,char* token)
-{
-char temp[200];
-if (inp_search(sim,temp,in,token)==0)
-{
-	if (str_isnumber(temp)==FALSE)
-	{
-		printf_log(sim,"'%s' is not a number.\n",temp);
-	}
-	sscanf(temp,"%e",out);
-	return 0;
-}
-return -1;
-}
-
-
-void inp_search_double_offset(struct simulation *sim,struct inp_file *in,double* out,char* token,int offset)
-{
-char temp[200];
-if (inp_search(sim,temp,in,token)==0)
-{
-	if (str_isnumber(temp)==FALSE)
-	{
-		printf_log(sim,"'%s' is not a number.\n",temp);
-	}
-
-	sscanf(temp,"%le",out);
-	return;
-}
-ewe(sim,"token %s not found in file %s\n",token,in->full_name);
-}
-
 
 void inp_search_int(struct simulation *sim,struct inp_file *in,int* out,char* token)
 {
@@ -829,31 +439,6 @@ if (inp_search(sim,temp,in,token)==0)
 ewe(sim,"token %s not found in file %s\n",token,in->full_name);
 }
 
-void inp_search_long_long(struct simulation *sim,struct inp_file *in,long long* out,char* token)
-{
-char temp[200];
-if (inp_search(sim,temp,in,token)==0)
-{
-	if (str_isnumber(temp)==FALSE)
-	{
-		printf_log(sim,"'%s' is not a number.\n",temp);
-	}
-
-	sscanf(temp,"%lld",out);
-	return;
-}
-ewe(sim,"token %s not found in file %s\n",token,in->full_name);
-}
-
-int inp_is_token(struct simulation *sim,struct inp_file *in,char* token)
-{
-	char out[100];
-	if (inp_search(sim,out,in,token)==0)
-	{
-		return 0;
-	}
-	return -1;
-}
 
 void inp_search_string(struct simulation *sim,struct inp_file *in,char* out,char* token)
 {
@@ -868,18 +453,18 @@ void inp_check(struct simulation *sim,struct inp_file *in,double ver)
 {
 	char line[4000];
 	double read_ver=0.0;
-	int pos=0;
+	long pos=0;
 	int ret=0;
 	inp_reset_read(sim,in);
 
-	ret=get_line(line,in->data,in->fsize,&pos);
+	ret=get_line(line,in->data,in->fsize,&pos,-1);
 
 	while(ret!=-1)
 	{
 		//printf(">>>>>>>%s\n",line);
 		if (strcmp(line,"#ver")==0)
 		{
-			ret=get_line(line,in->data,in->fsize,&pos);
+			ret=get_line(line,in->data,in->fsize,&pos,-1);
 
 			//printf(">>>>>>>%s\n",line);
 			sscanf(line,"%lf",&(read_ver));
@@ -889,7 +474,7 @@ void inp_check(struct simulation *sim,struct inp_file *in,double ver)
 				ewe(sim,"File compatibility problem %s >%s< >%s< >%lf<\n",in->full_name,in->data,line,ver);
 
 			}
-			ret=get_line(line,in->data,in->fsize,&pos);
+			ret=get_line(line,in->data,in->fsize,&pos,-1);
 
 			if ((ret==-1)||(strcmp(line,"#end")!=0))
 			{
@@ -900,7 +485,7 @@ void inp_check(struct simulation *sim,struct inp_file *in,double ver)
 			return;
 		}
 
-		ret=get_line(line,in->data,in->fsize,&pos);
+		ret=get_line(line,in->data,in->fsize,&pos,-1);
 	}
 
 ewe(sim,"Token #ver not found in %s\n",in->full_name);
@@ -911,8 +496,7 @@ return;
 int inp_search(struct simulation *sim,char* out,struct inp_file *in,char *token)
 {
 	char line[2000];
-	int i;
-	int pos=0;
+	long pos=0;
 	int ret=0;
 	inp_reset_read(sim,in);
 
@@ -924,14 +508,14 @@ int inp_search(struct simulation *sim,char* out,struct inp_file *in,char *token)
 		}
 	}
 
-	ret=get_line(line,in->data,in->fsize,&pos);
+	ret=get_line(line,in->data,in->fsize,&pos,-1);
 
 	while(ret!=-1)
 	{
 
 		if (strcmp(line,token)==0)
 		{
-			ret=get_line(line,in->data,in->fsize,&pos);
+			ret=get_line(line,in->data,in->fsize,&pos,-1);
 			//printf("1:%s %d\n",line,ret);
 			if (ret==-1)
 			{
@@ -941,7 +525,7 @@ int inp_search(struct simulation *sim,char* out,struct inp_file *in,char *token)
 			return 0;
 		}
 
-		ret=get_line(line,in->data,in->fsize,&pos);
+		ret=get_line(line,in->data,in->fsize,&pos,-1);
 		//printf("2:%d\n",ret);
 
 	}
@@ -954,20 +538,20 @@ int inp_search_english(struct simulation *sim,struct inp_file *in,char *token)
 {
 	char line[4000];
 	int ret=0;
-	int pos=0;
+	long pos=0;
 	inp_reset_read(sim,in);
-	ret=get_line(line,in->data,in->fsize,&pos);
+	ret=get_line(line,in->data,in->fsize,&pos,-1);
 
 	while(ret!=-1)
 	{
 
 		if (strcmp(line,token)==0)
 		{
-			ret=get_line(line,in->data,in->fsize,&pos);
+			ret=get_line(line,in->data,in->fsize,&pos,-1);
 			return english_to_bin(sim,line);
 		}
 
-		ret=get_line(line,in->data,in->fsize,&pos);
+		ret=get_line(line,in->data,in->fsize,&pos,-1);
 	}
 ewe(sim,"Token %s not found in file %s",token,in->full_name);
 exit(0);

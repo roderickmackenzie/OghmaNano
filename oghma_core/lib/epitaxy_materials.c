@@ -1,29 +1,27 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
 //
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
-//
+// https://www.oghma-nano.com
+// 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
 // to deal in the Software without restriction, including without limitation
-// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// the rights to use, copy, modify, merge, publish, distribute, sublicense, 
 // and/or sell copies of the Software, and to permit persons to whom the
 // Software is furnished to do so, subject to the following conditions:
-//
+// 
 // The above copyright notice and this permission notice shall be included
 // in all copies or substantial portions of the Software.
-//
+// 
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
 // OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
 // THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
 // SOFTWARE.
-//
+// 
 
 /** @file epitaxy_materials.c
 	@brief Load the materials into the epitaxy structure.
@@ -32,11 +30,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <dirent.h>
 #include "util.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include "device.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include "dump.h"
 #include "config.h"
 #include "inp.h"
@@ -57,10 +54,10 @@ void epitaxy_load_emission(struct simulation *sim,struct epi_layer *layer)
 {
 	char temp_file[100];
 	struct dat_file buf;
-	long double max;
-	long double X;
-	long double Y;
-	long double Z;
+	double max;
+	double X;
+	double Y;
+	double Z;
 	int R;
 	int G;
 	int B;
@@ -111,7 +108,7 @@ void epitaxy_load_emission(struct simulation *sim,struct epi_layer *layer)
 
 	dat_file_init(&buf);
 
-	buffer_malloc(&buf);
+	dat_file_malloc(&buf);
 	buf.y_mul=1.0;
 	buf.y_mul=1e9;
 
@@ -128,10 +125,10 @@ void epitaxy_load_emission(struct simulation *sim,struct epi_layer *layer)
 
 	buf.logscale_x=0;
 	buf.logscale_y=0;
-	dat_file_add_xy_data(sim,&buf,layer->pl_spectrum.x, layer->pl_spectrum.data, layer->pl_spectrum.len);
+	dat_file_add_math_xy(sim,&buf,&(layer->pl_spectrum));
 	sprintf(temp_file,"emission_input_%d.dat",layer->layer_number);
-	buffer_dump_path(sim,"",temp_file,&buf);
-	buffer_free(&buf);
+	dat_file_dump_path(sim,"",temp_file,&buf);
+	dat_file_free(&buf);
 
 }
 

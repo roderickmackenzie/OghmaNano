@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -32,13 +30,8 @@
 #include <enabled_libs.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-	#define _GNU_SOURCE
-	#include <dlfcn.h>
-
 #include "util.h"
-#include "inp.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include "device.h"
 #include "dump_ctrl.h"
 #include "config.h"
@@ -46,6 +39,7 @@
 #include <lang.h>
 #include <log.h>
 #include <code_ctrl.h>
+#include <g_io.h>
 
 static int unused __attribute__((unused));
 
@@ -59,32 +53,30 @@ char lib_path[PATH_MAX];
 	if (sim->dll_matrix_handle==NULL)
 	{
 		find_dll(sim, lib_path,solver_name);
-			char *error;
+		sim->dll_matrix_handle = g_dlopen(lib_path);
 
+		if (sim->dll_matrix_handle==NULL)
+		{
+			ewe(sim,"%s %s\n",_("dll not loaded"),lib_path);
+		}
 
-			sim->dll_matrix_handle = dlopen(lib_path, RTLD_LAZY |RTLD_GLOBAL);
-			if (!sim->dll_matrix_handle)
-			{
-				ewe(sim, "%s\n", dlerror());
-			}
+		sim->dll_matrix_solve = g_dlsym(sim->dll_matrix_handle, "dll_matrix_solve");
+		if (sim->dll_matrix_solve==NULL)
+		{
+			ewe(sim,_("dll function dll_matrix_solve not found\n"));
+		}
 
-			sim->dll_matrix_solve = dlsym(sim->dll_matrix_handle, "dll_matrix_solve");
-			if ((error = dlerror()) != NULL)
-			{
-				ewe(sim, "%s\n", error);
-			}
+		sim->dll_matrix_solver_free = g_dlsym(sim->dll_matrix_handle, "dll_matrix_solver_free");
+		if (sim->dll_matrix_solver_free==NULL)
+		{
+			ewe(sim,_("dll function dll_matrix_solver_free not found\n"));
+		}
 
-			sim->dll_matrix_solver_free = dlsym(sim->dll_matrix_handle, "dll_matrix_solver_free");
-			if ((error = dlerror()) != NULL)
-			{
-				ewe(sim, "%s\n", error);
-			}
-
-			sim->dll_matrix_init = dlsym(sim->dll_matrix_handle, "dll_matrix_init");
-			if ((error = dlerror()) != NULL)
-			{
-				ewe(sim, "%s\n", error);
-			}
+		sim->dll_matrix_init = g_dlsym(sim->dll_matrix_handle, "dll_matrix_init");
+		if (sim->dll_matrix_init==NULL)
+		{
+			ewe(sim,_("dll function dll_matrix_init not found\n"));
+		}
 
 	}
 
@@ -109,21 +101,22 @@ void solver_free(struct simulation *sim,struct matrix_solver_memory *msm)
 
 void solver_unload_dll(struct simulation *sim)
 {
-	printf("unload DLLs\n");
+	if (sim->fitting==FIT_NOT_FITTING)
+	{
+		printf_log(sim,"unload DLLs\n");
+	}
 	if (sim->dll_matrix_handle!=NULL)
 	{
 
+		if (g_dlclose(sim->dll_matrix_handle)!=0)
+		{
+			ewe(sim,"%s\n",_("Error closing dll"));
+		}
 
-			//#ifndef disable_dlclose
-			//printf(">>>>>>>>>dealloc %p\n",sim->dll_matrix_handle);
-			if (dlclose(sim->dll_matrix_handle)!=0)
-			{
-				ewe(sim,"%s\n",_("Error closing dll"));
-			}
-			//#endif
-			sim->dll_matrix_handle=NULL;
-			sim->dll_matrix_solve=NULL;
-			sim->dll_matrix_solver_free=NULL;
-			sim->dll_matrix_init=NULL;
+		sim->dll_matrix_handle=NULL;
+		sim->dll_matrix_solve=NULL;
+		sim->dll_matrix_solver_free=NULL;
+		sim->dll_matrix_init=NULL;
+
 	}
 }

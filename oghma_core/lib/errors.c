@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -36,14 +34,13 @@
 #include <string.h>
 #include "util.h"
 #include "log.h"
-#include "gpvdm_const.h"
-//#include "dump_ctrl.h"
-//#include "dos_types.h"
+#include "oghma_const.h"
 #include "gui_hooks.h"
 #include "lang.h"
 #include <signal.h>
 #include <server.h>
 #include <unistd.h>
+#include <g_io.h>
 
 static char lock_name[100];
 static char lock_data[100];
@@ -119,13 +116,31 @@ void errors_free(struct simulation *sim)
 
 void set_ewe_lock_file(char *lockname,char *data)
 {
-strcpy(lock_name,lockname);
-strcpy(lock_data,data);
+	strcpy(lock_name,lockname);
+	strcpy(lock_data,data);
+}
+
+
+void write_lock_file( struct simulation *sim)
+{
+	if (strcmp(sim->server.lock_file,"")!=0)
+	{
+		FILE *out=g_fopen(sim->server.lock_file,"w");
+		if (out == NULL)
+		{
+			printf("Problem writing file!\n");
+			getchar();
+		}
+		fclose(out);
+
+	}
 }
 
 int ewe( struct simulation *sim, const char *format, ...)
 {
-	FILE* out;
+	#ifndef pydll
+		FILE* out;
+	#endif
 	char temp[1000];
 	char temp2[1000];
 	int ret=0;
@@ -139,44 +154,36 @@ int ewe( struct simulation *sim, const char *format, ...)
 		printf("error.c: sprintf error\n");
 		exit(0);
 	}
-	rainbow_print(sim,600e-9, 640e-9, "%s\n",temp2);
-	//printf_log(sim, "%s\n",temp2);
 
 	va_end(args);
 
-		//getchar();
-
-
-
-
-	gui_send_finished_to_gui(sim);
-
-
-	if (strcmp(lock_name,"")!=0)
+	if (sim!=NULL)
 	{
-		out=fopen(lock_name,"w");
-		fprintf(out,"%s",lock_data);
-		fclose(out);
-	}
-	//printf_log(sim,"Raising segmentation fault\n");
-	//raise(SIGSEGV);
+		#ifndef pydll
+			rainbow_print(sim,600e-9, 640e-9, "%s\n",temp2);
+			//printf_log(sim, "%s\n",temp2);
 
-	write_lock_file(sim);
+
+				//getchar();
+
+			gui_send_finished_to_gui(sim);
+
+
+			if (strcmp(lock_name,"")!=0)
+			{
+				out=g_fopen(lock_name,"w");
+				fprintf(out,"%s",lock_data);
+				fclose(out);
+			}
+			//printf_log(sim,"Raising segmentation fault\n");
+			//raise(SIGSEGV);
+
+			write_lock_file(sim);
+		#endif
+	}else
+	{
+		printf("%s\n",temp2);
+	}
+
 exit(1);
-}
-
-void write_lock_file( struct simulation *sim)
-{
-	if (strcmp(sim->server.lock_file,"")!=0)
-	{
-		char lockname[500];
-		FILE *out=fopen(sim->server.lock_file,"w");
-		if (out == NULL)
-		{
-			printf("Problem writing file!\n");
-			getchar();
-		}
-		fclose(out);
-
-	}
 }

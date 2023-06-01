@@ -23,34 +23,63 @@
 // SOFTWARE.
 // 
 
-/** @file timer.c
-	@brief Timer.
+/** @file util_str_clean.c
+	@brief Utility functions for string handeling.
 */
 
 
-#include <sys/time.h>
+
+#include <enabled_libs.h>
+#include <oghma_const.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <util_str.h>
+#include <ctype.h>
 
-static double start_times[10];
-
-void timer_init(int timer)
+void remove_space_after(char *in)
 {
-struct timeval result;
-gettimeofday (&result, NULL);
-start_times[timer]=result.tv_sec + result.tv_usec/1000000.0;
+	int i;
+	for (i=strlen(in)-1;i>0;i--)
+	{
+		if (isspace(in[i])!=0)
+		{
+			in[i]=0;
+		}else
+		{
+			break;
+		}
+	}	
 }
 
-double timer_get_time(int timer)
+void remove_quotes(char *out)
 {
-struct timeval result;
-gettimeofday (&result, NULL);
-double cur_time=result.tv_sec + result.tv_usec/1000000.0;
-return cur_time-start_times[timer];
-}
+	int i=0;
+	int len;
+	remove_space_after(out);
+	len=strlen(out);
+	if (len>1)
+	{
+		if (out[len-1]=='\"')				//So it ends with a quote so now remove it and hunt for the first quote
+		{
+			out[len-1]=0;
+			len=strlen(out);
+			int out_pos=0;
+			int first_quote_found=FALSE;
+			for (i=0;i<len;i++)
+			{
+				if ((out[i]!='\"')||(first_quote_found==TRUE))
+				{
+					out[out_pos]=out[i];
+					out_pos++;
+				}
 
-double timer_get_time_in_ms()
-{
-	struct timeval result;
-	gettimeofday (&result, NULL);
-	return (result.tv_sec) * 1000.0 + ((double)(result.tv_usec)) / 1000.0 ;
+				if (out[i]=='\"')
+				{
+					first_quote_found=TRUE;
+				}
+			}
+			out[out_pos]=0;
+		}
+	}
 }

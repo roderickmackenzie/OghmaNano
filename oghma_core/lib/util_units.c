@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -37,11 +35,10 @@
 #include <stdarg.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <dirent.h>
 #include <fcntl.h>
 #include "util.h"
 #include "log.h"
-#include <gpvdm_const.h>
+#include <oghma_const.h>
 #include <lang.h>
 #include <math.h>
 #include <ctype.h>
@@ -49,7 +46,7 @@
 
 static char* unused_pchar __attribute__((unused));
 
-void get_wavelength_dim(char *unit,long double *mul,long double max_val)
+void get_wavelength_dim(char *unit,double *mul,double max_val)
 {
 
 if (max_val<1e-6)
@@ -74,34 +71,44 @@ if (max_val<1e-1)
 
 }
 
-void get_meter_dim(char *unit,long double *mul,long double max_val)
+void get_meter_dim(char *unit,double *mul,double max_val)
 {
-
+max_val=fabs(max_val);
+if (max_val<1e-9)
+{
+	strcpy(unit,"pm");
+	*mul=1e12;
+	return;
+}else
 if (max_val<1e-6)
 {
 	strcpy(unit,"nm");
 	*mul=1e9;
+	return;
 }else
 if (max_val<1e-3)
 {
 	strcpy(unit,"um");
 	*mul=1e6;
+	return;
 }else
 if (max_val<1e-1)
 {
 	strcpy(unit,"mm");
 	*mul=1e3;
+	return;
 }else
 {
 	strcpy(unit,"m");
 	*mul=1.0;
+	return;
 }
 
 }
 
-void get_time_dim(char *unit,long double *mul,long double max_val)
+void get_time_dim(char *unit,double *mul,double max_val)
 {
-
+max_val=fabs(max_val);
 if (max_val<1e-15)
 {
 	strcpy(unit,"as");
@@ -139,26 +146,30 @@ if (max_val<1e-1)
 
 }
 
-void fx_with_units(char *out,double number)
+void fx_with_units(char *unit,double *mul,double max_val)
 {
-	if (number<1e3)
+	if (max_val<1e3)
 	{
-		sprintf(out,"%.3lf Hz",number);
+		strcpy(unit,"Hz");
+		*mul=1.0;
 	}
 	else
-	if (number<1e6)
+	if (max_val<1e6)
 	{
-		sprintf(out,"%.3lf KHz",number*1e-3);
+		strcpy(unit,"KHz");
+		*mul=1e-3;
 	}
 	else
-	if (number<1e9)
+	if (max_val<1e9)
 	{
-		sprintf(out,"%.3lf MHz",number*1e-6);
+		strcpy(unit,"MHz");
+		*mul=1e-6;
 	}
 	else
-	if (number<1e12)
+	if (max_val<1e12)
 	{
-		sprintf(out,"%.3lf GHz",number*1e-9);
+		strcpy(unit,"GHz");
+		*mul=1e-9;
 	}
 
 }
@@ -166,10 +177,10 @@ void fx_with_units(char *out,double number)
 void time_with_units(char *out,double number)
 {
 	char unit[100];
-	long double mul;
-	long double val=fabs(number);
+	double mul;
+	double val=fabs(number);
 	get_time_dim(unit,&mul,val);
-	sprintf(out,"%.3Lf %s",number*mul,unit);
+	sprintf(out,"%.3lf %s",number*mul,unit);
 
 }
 

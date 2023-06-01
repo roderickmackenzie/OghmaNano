@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -39,16 +37,12 @@
 #include <sys/time.h>
 #include <gui_hooks.h>
 #include <util.h>
-#include <gpvdm_const.h>
+#include <oghma_const.h>
 #include <log.h>
 #include <string.h>
 #include <cal_path.h>
-
-
-#ifdef dbus
-	#include <dbus/dbus.h>
-#endif
-
+#include <g_io.h>
+#include <ipc.h>
 
 struct timeval my_last_time;
 
@@ -85,14 +79,13 @@ join_path(2,temp,sim->root_simulation_path,"tx.dat");
 //printf("checking for tx from %s\n",temp);
 if (isfile(temp)==0)
 {
-	in=fopen(temp,"r");
+	in=g_fopen(temp,"r");
 	if (in==NULL)
 	{
 		return;
 	}
 	fscanf(in,"%s",line);
 	fclose(in);
-	//remove_file(sim,temp);
 
 	//printf("read from gui:%s\n", line);
 	if (strcmp(line,"terminate")==0)
@@ -120,10 +113,10 @@ void gui_terminal_reset(struct simulation *sim)
 
 int gui_send_data (struct simulation *sim,int from,char *tx_data_in)
 {
-char tx_data[1024];
-char temp[1024];
-int ret;
-//printf("sending data!!!!!!!!!!!!!!!!!!!!!! %s\n",tx_data_in);
+	char tx_data[1024];
+	char temp[1024];
+	int ret;
+
 	if (sim->gui==FALSE)
 	{
 		return 0;
@@ -167,25 +160,15 @@ int ret;
 	}
 
 
-		//printf("sending data!!!!!!!!!!!!!!!!!!!!!!\n");
-
 		string_to_hex(temp,tx_data_in);
 		ret=snprintf(tx_data,1024,"hex%s",temp);
 		if (ret<0)
 		{
 			ewe(sim,"tx_data error\n");
 		}
-		#ifdef dbus
 
-		DBusMessage *message;
-		message = dbus_message_new_signal ("/org/my/test","org.my.gpvdm",tx_data);
-		/* Send the signal */
-		dbus_connection_send ((DBusConnection*)sim->connection, message, NULL);
-		dbus_connection_flush((DBusConnection*)sim->connection);
-		dbus_message_unref (message);
 
-		#endif
-
+			ipc_send(&(sim->ipc),tx_data);
 
 
 return 0;
@@ -211,7 +194,7 @@ void gui_close_pipe(struct simulation *sim)
 //int i=0;
 /*for (i=0;i<10;i++)
 {
-	PeekNamedPipe((HANDLE)sim->connection,(LPVOID)tx_data, 1000 * sizeof(char), &numBytesRead,  &lpTotalBytesAvail, lpBytesLeftThisMessage);
+	PeekNamedPipe((HANDLE)ipc->connection,(LPVOID)tx_data, 1000 * sizeof(char), &numBytesRead,  &lpTotalBytesAvail, lpBytesLeftThisMessage);
 	if (numBytesRead==0)
 	{
 		break;
@@ -223,14 +206,9 @@ void gui_close_pipe(struct simulation *sim)
 	//sleep(3);
 	//printf_log(sim,"Done waiting\n");
 
-	#ifdef dbus
-	if (sim->connection!=NULL)
-	{
-		dbus_connection_unref ((DBusConnection*)sim->connection);
-		//dbus_connection_close(sim->connection);
-	}
-	dbus_shutdown();
-	#endif
+		ipc_close(&(sim->ipc));
+
+
 }
 
 void gui_start(struct simulation *sim)
@@ -242,19 +220,8 @@ void gui_start(struct simulation *sim)
 
 	gettimeofday (&my_last_time, NULL);
 
-	#ifdef dbus
-	DBusError error;
-	dbus_error_init (&error);
-	sim->connection = (void*)dbus_bus_get (DBUS_BUS_SESSION, &error);
-	dbus_connection_set_exit_on_disconnect(sim->connection,FALSE);
-	if (!sim->connection)
-	{
-		printf_log(sim,"Failed to connect to the D-BUS daemon: %s", error.message);
-		sim->connection=NULL;
-		dbus_error_free (&error);
-		return;
-	}
-	#endif
+
+		ipc_open(&(sim->ipc));
 
 
 	gui_send_data(sim,gui_main,"start");

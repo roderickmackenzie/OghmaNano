@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -32,22 +30,17 @@
 
 
 #include <enabled_libs.h>
+#include <oghma_const.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
 #include <sys/stat.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <fcntl.h>
-#include "util.h"
-#include "log.h"
-#include <gpvdm_const.h>
-#include <lang.h>
 #include <math.h>
 #include <stdarg.h>
-
-	#include <fnmatch.h>
+#include <util_str.h>
+#include <ctype.h>
+	 #include <fnmatch.h>
 
 int is_numbered_file(char *in,char *root)
 {
@@ -64,133 +57,6 @@ int is_numbered_file(char *in,char *root)
 return 0;
 }
 
-int is_number(char a)
-{
-switch(a)
-{
-	case '1':
-		return TRUE;
-	case '2':
-		return TRUE;
-	case '3':
-		return TRUE;
-	case '4':
-		return TRUE;
-	case '5':
-		return TRUE;
-	case '6':
-		return TRUE;
-	case '7':
-		return TRUE;
-	case '8':
-		return TRUE;
-	case '9':
-		return TRUE;
-	case '0':
-		return TRUE;
-	case 'e':
-		return TRUE;
-	case 'E':
-		return TRUE;
-	case '+':
-		return TRUE;
-	case '-':
-		return TRUE;
-	case '.':
-		return TRUE;
-	default:
-		return FALSE;
-}
-
-}
-
-int get_number_in_string(double *out, char* in, int n)
-{
-	int i=0;
-	int len=strlen(in);
-	int m=0;
-	int c=0;
-	int number=-1;
-	for (i=0;i<len;i++)
-	{
-		if (i>0)
-		{
-			m=is_number(in[i-1]);
-		}else
-		{
-			m=FALSE;
-		}
-
-		c=is_number(in[i]);
-
-		if ((m==FALSE) && (c==TRUE))
-		{
-			number++;
-			if (number==n)
-			{
-				sscanf(&(in[i]),"%le",out);
-				return 0;
-			}
-		}
-
-
-	}
-
-return -1;
-}
-
-int replace_number_in_string(char *buf, char* in, double replace, int n)
-{
-	int i=0;
-	int len=strlen(in);
-	int m=0;
-	int c=0;
-	int number=-1;
-	int pos=0;
-	strcpy(buf,"");
-
-	for (i=0;i<len;i++)
-	{
-		if (i>0)
-		{
-		m=is_number(in[i-1]);
-		}else
-		{
-			m=FALSE;
-		}
-
-		c=is_number(in[i]);
-
-		if ((m==FALSE) && (c==TRUE))
-		{
-			number++;
-			if (number==n)
-			{
-				char temp[200];
-				sprintf(temp,"%le ",replace);
-				strcat(buf,temp);
-				pos=strlen(buf);
-			}
-		}
-
-		if (number!=n)
-		{
-			buf[pos]=in[i];
-			pos++;
-			buf[pos]=0;
-
-		}
-
-	}
-
-}
-
-int fnmatch2(char *pat,char *in)
-{
-
-	return fnmatch(pat,in, FNM_PATHNAME);
-
-}
 
 void string_to_hex(char* out,char* in)
 {
@@ -206,6 +72,35 @@ for (i=0;i<strlen(in);i++)
 
 }
 
+int hex_to_string(char* in)
+{
+	//This needs fixing.
+	int i;
+	int len;
+	char temp[8];
+	unsigned int val;
+
+	len=strlen(in);
+
+	if (len%2!=0)
+	{
+		return -1;
+	}
+
+	for (i=0;i<len/2;i++)
+	{
+		temp[0]=in[i*2];
+		temp[1]=in[(i*2)+1];
+		temp[2]=0;
+		sscanf(temp,"%x",&val);
+		in[i]=val;
+	}
+
+	in[i]=0;
+
+	return 0;
+
+}
 
 int cmpstr_min(char * in1,char *in2)
 {
@@ -318,116 +213,6 @@ sscanf(temp,"%d",&ret);
 return ret;
 }
 
-int str_isnumber(char *input)
-{
-    int start = 0;
-	int len=strlen(input);
-	int stop= len-1;
-	if (len==0)
-	{
-		return FALSE;
-	}
-
-	//sort spaces
-	while(input[start] == ' ')
-	{
-		start++;
-		if (start>=len)
-		{
-			return FALSE;
-		}
-	}
-
-	while(input[stop] == ' ')
-	{
-        stop--;
-		if (stop<=0)
-		{
-			printf("b\n");
-			return FALSE;
-		}
-	}
-
-
-    // len==1 and first character not digit
-    if(len == 1 && !(input[start] >= '0' && input[stop] <= '9'))
-	{
-		return FALSE;
-	}
-
-    // 1st char must be +, -, . or number
-    if( input[start] != '+' && input[start] != '-' && !(input[start] >= '0' && input[start] <= '9'))
-	{
-		return FALSE;
-	}
-
-    int dot_or_e = FALSE;
-    int seen_e = FALSE;
-	int i=start;
-
-    for(i ; i <= stop ; i++)
-    {
-        // Only allow numbers, +, - and e
-        if(input[i] != 'e' && input[i] != 'E' && input[i] != '.' &&   input[i] != '+' && input[i] != '-' &&  !(input[i] >= '0' && input[i] <= '9'))
-		{
-			return FALSE;
-		}
-
-        if(input[i] == '.')
-        {
-            // a . as a last character is not allowed
-            if(i == len-1)
-			{
-				return FALSE;
-			}
-
-            // have we seen a dot or e before
-            if(dot_or_e == TRUE)
-			{
-                return FALSE;
-			}
-
-            // If we have a . we need a number after it
-            if(!(input[i+1] >= '0' && input[i+1] <= '9'))
-			{
-				return FALSE;
-			}
-
-		}else
-		if ((input[i] == 'e') || (input[i] == 'E'))
-        {
-            if (seen_e==TRUE)
-			{
-				return FALSE;
-			}
-
-            dot_or_e = TRUE;
-			seen_e=TRUE;
-
-            // e as the last character is also not allowed
-            if(i == len-1)
-			{
-				return FALSE;
-			}
-
-            // an e first is not allowed we need a number before it
-            if(!(input[i-1] >= '0' && input[i-1] <= '9'))
-			{
-				return FALSE;
-			}
-
-            // e must be followed by a + - or a number
-            if (input[i+1] != '+' && input[i+1] != '-' && (input[i+1] >= '0' && input[i] <= '9'))
-			{
-				return FALSE;
-			}
-        }
-    }
-
-
-	return TRUE;
-}
-
 void split_dot(char *out, char *in)
 {
 	int i=0;
@@ -443,7 +228,7 @@ void split_dot(char *out, char *in)
 }
 
 
-int get_line(char *out,char *data,int len,int *pos)
+int get_line(char *out,char *data,long len,long *pos, int out_buffer_max)
 {
 	out[0]=0;
 	//printf("%s\n",data);
@@ -479,11 +264,70 @@ int get_line(char *out,char *data,int len,int *pos)
 		out[i]=data[*pos];
 		out[i+1]=0;
 		i++;
+
+		if (out_buffer_max!=-1)
+		{
+			if (i>=out_buffer_max)
+			{
+				printf("buffer smashed\n");
+				return -1;
+			}
+		}
+
 		(*pos)++;
 
 	}
 
-return 0;
+return i;
+}
+
+//This gets the number of text/number items in a line
+//It assumes the first # encountered means everything after is a comment
+int count_csv_items(char *in)
+{
+	int i;
+	int end=strlen(in);
+	int items=0;
+	//find the end or comment #
+	for (i=0;i<strlen(in);i++)
+	{
+		if (in[i]==0)
+		{
+			end=strlen(in);
+		}
+
+		if (in[i]=='#')
+		{
+			end=i;
+		}
+	}
+
+	int space=FALSE;
+	int last_char_space=TRUE;
+	for (i=0;i<end;i++)
+	{
+		if (isspace(in[i])==0)		//Done as output from isspace is confusing
+		{
+			space=FALSE;
+		}else
+		{
+			space=TRUE;
+		}
+
+		if ((last_char_space==FALSE)&&(space==TRUE))
+		{
+			items++;
+		}else
+		if ((space==FALSE)&&(i==end-1))
+		{
+			items++;
+		}
+
+		//printf("%c %d %d\n",in[i],space,items);
+
+		last_char_space=space;
+	}
+	return items;
 }
 
 void str_split(char *in_string, ...)
@@ -536,5 +380,133 @@ void str_strip(char *in_string)
 			break;
 		}
 	}
+
+}
+
+int str_is_ascii(char *in_string)
+{
+	int i;
+	unsigned char val; 
+	for (i=0;i<strlen(in_string);i++)
+	{
+		val=in_string[i];
+		//printf("%c %d\n",val,val);
+		if (val>127)
+		{
+			return -1;
+		}
+
+		if (val==63)
+		{
+			return -1;
+		}
+	}
+	return 0;
+}
+
+int str_count(char *in,char *find)
+{
+	int i;
+	int ii;
+	int times=0;
+	int found=FALSE;
+	int in_len=0;
+	int find_len=0;
+	in_len=strlen(in);
+	find_len=strlen(find);
+
+	for (i=0;i<in_len;i++)
+	{
+		found=TRUE;
+		for (ii=0;ii<find_len;ii++)
+		{
+			if (i+ii<in_len)
+			{
+				if (in[i+ii]!=find[ii])
+				{
+					found=FALSE;
+				}
+			}else
+			{
+				found=FALSE;
+			}
+		}
+
+		if (found==TRUE)
+		{
+			times++;
+		}
+	}
+
+	if (times==0)
+	{
+		return -1;
+	}
+
+	return times;
+}
+
+void str_replce(char **out, char *in,char *find,char *replace)
+{
+	int i;
+	int ii;
+	int times=0;
+	int found=FALSE;
+	int in_len=0;
+	int find_len=0;
+	int replace_len=0;
+	int out_pos=0;
+	int new_len=0;
+	in_len=strlen(in);
+	find_len=strlen(find);
+	replace_len=strlen(replace);
+
+	times=str_count(in,find);
+	if (times==-1)
+	{
+		times=0;
+	}
+
+	new_len=in_len+1+find_len*times;
+	*out=malloc(new_len);
+	
+	(*out)[out_pos]=0;
+	for (i=0;i<in_len;i++)
+	{
+		found=TRUE;
+		for (ii=0;ii<find_len;ii++)
+		{
+			if (i+ii<in_len)
+			{
+				if (in[i+ii]!=find[ii])
+				{
+					found=FALSE;
+				}
+			}else
+			{
+				found=FALSE;
+			}
+		}
+
+		if (found==TRUE)
+		{
+			for (ii=0;ii<replace_len;ii++)
+			{
+				(*out)[out_pos++]=replace[ii];
+			}
+			i+=find_len-1;
+		}else
+		{
+			(*out)[out_pos++]=in[i];
+		}
+	}
+
+	if (out_pos>=new_len)
+	{
+		printf("str_replce error %d %d!\n",out_pos,new_len);
+	}
+
+	(*out)[out_pos++]=0;
+
 
 }

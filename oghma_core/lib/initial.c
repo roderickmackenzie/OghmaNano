@@ -1,29 +1,27 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
 //
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
-//
+// https://www.oghma-nano.com
+// 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
 // to deal in the Software without restriction, including without limitation
-// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// the rights to use, copy, modify, merge, publish, distribute, sublicense, 
 // and/or sell copies of the Software, and to permit persons to whom the
 // Software is furnished to do so, subject to the following conditions:
-//
+// 
 // The above copyright notice and this permission notice shall be included
 // in all copies or substantial portions of the Software.
-//
+// 
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
 // OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
 // THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
 // SOFTWARE.
-//
+// 
 
 /** @file initial.c
 @brief setup the initial guess for the solvers, this really is just a really bad guess.
@@ -41,29 +39,20 @@
 #include <string.h>
 #include <contacts.h>
 #include <cal_path.h>
-#include <sys/stat.h>
-#include <sys/types.h>
 #include <contacts.h>
 #include <device_fun.h>
+#include <g_io.h>
 
 void init_dump(struct simulation *sim,struct device *in)
 {
 struct dat_file buf;
-char out_dir[400];
-char name[400];
 struct dimensions *dim=&in->ns.dim;
 
 if (get_dump_status(sim,dump_first_guess)==TRUE)
 {
-	struct stat st = {0};
-
 	char out_dir[PATH_MAX];
 	join_path(2,out_dir,get_output_path(in),"equilibrium");
-
-	if (stat(out_dir, &st) == -1)
-	{
-		mkdir(out_dir, 0700);
-	}
+	g_mkdir(out_dir);
 
 	strcpy(out_dir,"equilibrium");
 
@@ -71,127 +60,114 @@ if (get_dump_status(sim,dump_first_guess)==TRUE)
 
 	if (buffer_set_file_name(sim,in,&buf,"init_Fi.csv")==0)
 	{
-		buffer_malloc(&buf);
-		buf.y_mul=1.0;
-		buf.x_mul=1e9;
+		dat_file_malloc(&buf);
+		dim_info_to_buf(&buf,dim);
 		sprintf(buf.title,"%s - %s",_("Equilibrium Fermi-level"),_("position"));
-		strcpy(buf.type,"xy");
-		strcpy(buf.x_label,_("Position"));
-		strcpy(buf.y_label,"Fi");
-		strcpy(buf.x_units,"nm");
-		strcpy(buf.y_units,"eV");
-		strcpy(buf.section_one,_("1D position space output"));
-		strcpy(buf.section_two,_("Transport"));
+		strcpy(buf.data_label,_("Equilibrium Fermi-level"));
+		strcpy(buf.data_units,"eV");
 		buf.logscale_x=0;
 		buf.logscale_y=0;
-		buf.x=dim->xlen;
-		buf.y=dim->ylen;
-		buf.z=dim->zlen;
 		buf.time=in->time;
 		buf.Vexternal=0.0;
 		dat_file_add_zxy_data(sim,&buf,dim,  in->Fi);
-		buffer_dump_path(sim,out_dir,NULL,&buf);
-		buffer_free(&buf);
+		dat_file_dump_path(sim,out_dir,NULL,&buf);
+		dat_file_free(&buf);
 	}
 
 	if (buffer_set_file_name(sim,in,&buf,"init_Ec.csv")==0)
 	{
-		buffer_malloc(&buf);
-		buf.y_mul=1.0;
-		buf.x_mul=1e9;
+		dat_file_malloc(&buf);
+		dim_info_to_buf(&buf,dim);
 		sprintf(buf.title,"%s - %s",_("LUMO"),_("position"));
-		strcpy(buf.type,"xy");
-		strcpy(buf.x_label,_("Position"));
-		strcpy(buf.y_label,"E_{c}");
-		strcpy(buf.x_units,"nm");
-		strcpy(buf.y_units,"eV");
-		strcpy(buf.section_one,_("1D position space output"));
-		strcpy(buf.section_two,_("Transport"));
+		strcpy(buf.data_label,_("LUMO"));
+		strcpy(buf.data_units,"eV");
 		buf.logscale_x=0;
 		buf.logscale_y=0;
-		buf.x=dim->xlen;
-		buf.y=dim->ylen;
-		buf.z=dim->zlen;
 		buf.time=in->time;
 		buf.Vexternal=0.0;
 		dat_file_add_zxy_data(sim,&buf,dim,  in->Ec);
-		buffer_dump_path(sim,out_dir,NULL,&buf);
-		buffer_free(&buf);
+		dat_file_dump_path(sim,out_dir,NULL,&buf);
+		dat_file_free(&buf);
 	}
 
 	if (buffer_set_file_name(sim,in,&buf,"init_Ev.csv")==0)
 	{
-		buffer_malloc(&buf);
-		buf.y_mul=1.0;
-		buf.x_mul=1e9;
+		dat_file_malloc(&buf);
+		dim_info_to_buf(&buf,dim);
 		sprintf(buf.title,"%s - %s",_("HOMO"),_("position"));
-		strcpy(buf.type,"xy");
-		strcpy(buf.x_label,_("Position"));
-		strcpy(buf.y_label,"E_{v}");
-		strcpy(buf.x_units,"nm");
-		strcpy(buf.y_units,"eV");
-		strcpy(buf.section_one,_("1D position space output"));
-		strcpy(buf.section_two,_("Transport"));
+		strcpy(buf.data_label,_("HOMO"));
+		strcpy(buf.data_units,"eV");
 		buf.logscale_x=0;
 		buf.logscale_y=0;
-		buf.x=dim->xlen;
-		buf.y=dim->ylen;
-		buf.z=dim->zlen;
 		buf.time=in->time;
 		buf.Vexternal=0.0;
 		dat_file_add_zxy_data(sim,&buf,dim,  in->Ev);
-		buffer_dump_path(sim,out_dir,NULL,&buf);
-		buffer_free(&buf);
+		dat_file_dump_path(sim,out_dir,NULL,&buf);
+		dat_file_free(&buf);
 	}
 
 	if (buffer_set_file_name(sim,in,&buf,"init_n.csv")==0)
 	{
-		buffer_malloc(&buf);
-		buf.y_mul=1.0;
-		buf.x_mul=1e9;
+		dat_file_malloc(&buf);
+		dim_info_to_buf(&buf,dim);
 		sprintf(buf.title,"%s - %s",_("Electron density"),_("position"));
-		strcpy(buf.type,"xy");
-		strcpy(buf.x_label,_("Position"));
-		strcpy(buf.y_label,"n");
-		strcpy(buf.x_units,"nm");
-		strcpy(buf.y_units,"m^{-3}");
-		strcpy(buf.section_one,_("1D position space output"));
-		strcpy(buf.section_two,_("Transport"));
+		strcpy(buf.data_label,_("Electron density"));
+		strcpy(buf.data_units,"m^{-3}");
 		buf.logscale_x=0;
 		buf.logscale_y=0;
-		buf.x=dim->xlen;
-		buf.y=dim->ylen;
-		buf.z=dim->zlen;
 		buf.time=in->time;
 		buf.Vexternal=0.0;
 		dat_file_add_zxy_data(sim,&buf,dim,  in->n);
-		buffer_dump_path(sim,out_dir,NULL,&buf);
-		buffer_free(&buf);
+		dat_file_dump_path(sim,out_dir,NULL,&buf);
+		dat_file_free(&buf);
 	}
 
 	if (buffer_set_file_name(sim,in,&buf,"init_p.csv")==0)
 	{
-		buffer_malloc(&buf);
-		buf.y_mul=1.0;
-		buf.x_mul=1e9;
+		dat_file_malloc(&buf);
+		dim_info_to_buf(&buf,dim);
 		sprintf(buf.title,"%s - %s",_("Hole density"),_("position"));
-		strcpy(buf.type,"xy");
-		strcpy(buf.x_label,_("Position"));
-		strcpy(buf.y_label,_("n"));
-		strcpy(buf.x_units,"nm");
-		strcpy(buf.y_units,"m^{-3}");
-		strcpy(buf.section_one,_("1D position space output"));
-		strcpy(buf.section_two,_("Transport"));
+		strcpy(buf.data_label,_("Hole density"));
+		strcpy(buf.data_units,"m^{-3}");
 		buf.logscale_x=0;
 		buf.logscale_y=0;
-		buf.x=dim->xlen;
-		buf.y=dim->ylen;
-		buf.z=dim->zlen;
+		buf.time=in->time;
+		buf.Vexternal=0.0;
+		dat_file_add_zxy_data(sim,&buf,dim,  in->pt_all);
+		dat_file_dump_path(sim,out_dir,NULL,&buf);
+		dat_file_free(&buf);
+	}
+
+	if (buffer_set_file_name(sim,in,&buf,"init_nt.csv")==0)
+	{
+		dat_file_malloc(&buf);
+		dim_info_to_buf(&buf,dim);
+		sprintf(buf.title,"%s - %s",_("Electron density"),_("position"));
+		strcpy(buf.data_label,_("Electron density"));
+		strcpy(buf.data_units,"m^{-3}");
+		buf.logscale_x=0;
+		buf.logscale_y=0;
+		buf.time=in->time;
+		buf.Vexternal=0.0;
+		dat_file_add_zxy_data(sim,&buf,dim,  in->nt_all);
+		dat_file_dump_path(sim,out_dir,NULL,&buf);
+		dat_file_free(&buf);
+	}
+
+	if (buffer_set_file_name(sim,in,&buf,"init_pt.csv")==0)
+	{
+		dat_file_malloc(&buf);
+		dim_info_to_buf(&buf,dim);
+		sprintf(buf.title,"%s - %s",_("Hole density"),_("position"));
+		strcpy(buf.data_label,_("Hole density"));
+		strcpy(buf.data_units,"m^{-3}");
+		buf.logscale_x=0;
+		buf.logscale_y=0;
 		buf.time=in->time;
 		buf.Vexternal=0.0;
 		dat_file_add_zxy_data(sim,&buf,dim,  in->p);
-		buffer_dump_path(sim,out_dir,NULL,&buf);
-		buffer_free(&buf);
+		dat_file_dump_path(sim,out_dir,NULL,&buf);
+		dat_file_free(&buf);
 	}
 }
 }
@@ -209,32 +185,30 @@ void get_initial(struct simulation *sim,struct device *in,int guess)
 		return;
 	}
 
-	int i=0;
 	int z=0;
 	int x=0;
 	int y=0;
-	long double Ef=0.0;
-	long double phi_ramp=0.0;
-	long double Eg=0.0;
-	long double Xi=0.0;
-	long double charge_right=0.0;
-	long double top_l=0.0;
-	long double top_r=0.0;
-	long double left_ref_to_zero=0.0;
-	long double right_ref_to_zero=0.0;
-	long double delta_phi=0.0;
+	gdouble Ef=0.0;
+	gdouble phi_ramp=0.0;
+	gdouble Eg=0.0;
+	gdouble Xi=0.0;
+	gdouble charge_right=0.0;
+	gdouble top_l=0.0;
+	gdouble top_r=0.0;
+	gdouble left_ref_to_zero=0.0;
+	gdouble right_ref_to_zero=0.0;
+	gdouble delta_phi=0.0;
 	int c=0;
-	int type=0;
-	long double top;
+	gdouble top;
+	int equs;
 	struct newton_state *ns=&(in->ns);
 	struct dimensions *dim=&in->ns.dim;
-	struct epitaxy *epi=&(in->my_epitaxy);
 	struct shape *s;
 	struct json_obj *json_math;
 	int math_stop_on_inverted_fermi_level;
 
 	json_math=json_obj_find(&(in->config.obj), "math");
-	json_get_english(sim,json_math, &(math_stop_on_inverted_fermi_level),"math_stop_on_inverted_fermi_level");
+	json_get_english(sim,json_math, &(math_stop_on_inverted_fermi_level),"math_stop_on_inverted_fermi_level",TRUE);
 
 	Eg=in->Eg[0][0][0];
 	Xi=in->Xi[0][0][0];
@@ -335,8 +309,7 @@ void get_initial(struct simulation *sim,struct device *in,int guess)
 				in->Fi0_y1[z][x]= -(top_l+Xi+Eg);
 				check_fermi_inversion_p(sim,s,1e15,math_stop_on_inverted_fermi_level);
 			}
-			//printf(">>a>%Le %Le\n",in->Fi0_y0[z][x],in->Fi0_y1[z][x]);
-			//getchar();
+
 			in->V_y1[z][x]=in->Fi0_y1[z][x]-in->Fi0_y0[0][0];		//Everything is referenced to the [0][0] point.
 
 		}
@@ -417,10 +390,6 @@ void get_initial(struct simulation *sim,struct device *in,int guess)
 
 	delta_phi=right_ref_to_zero-left_ref_to_zero;
 
-	//printf("%Le\n",delta_phi);
-	//getchar();
-	//in->vbi=delta_phi;
-
 	for (z=0;z<dim->zlen;z++)
 	{
 		for (x=0;x<dim->xlen;x++)
@@ -432,8 +401,7 @@ void get_initial(struct simulation *sim,struct device *in,int guess)
 			s=in->obj_zxy[0][0][dim->ylen-1]->s;
 			get_n_den(s,in->Fi0_y1[z][x]+in->Xi[z][x][dim->ylen-1],in->Te[0][0][dim->ylen-1],&(in->electrons_y1[z][x]),NULL,NULL);
 			get_p_den(s,-(in->Fi0_y1[z][x]+in->Xi[z][x][dim->ylen-1]+in->Eg[z][x][dim->ylen-1]),in->Th[0][0][dim->ylen-1],&(in->holes_y1[z][x]),NULL,NULL);
-			//printf(">>>%Le %Le %Le\n",in->Fi0_y1[z][x],in->Xi[z][x][dim->ylen-1],in->Eg[z][x][dim->ylen-1]);
-			//getchar();
+
 
 		}
 
@@ -442,14 +410,10 @@ void get_initial(struct simulation *sim,struct device *in,int guess)
 			s=in->obj_zxy[z][0][y]->s;
 			get_n_den(s,in->Fi0_x0[z][y]+in->Xi[z][0][y],in->Te[z][0][y],&(in->electrons_x0[z][y]),NULL,NULL);
 			get_p_den(s,-(in->Fi0_x0[z][y]+in->Xi[z][0][y]+in->Eg[z][0][y]),in->Th[z][0][y],&(in->holes_x0[z][y]),NULL,NULL);
-			//printf_log(sim,"Left (%d,%d)  p=%Le n=%Le\n",z,x,in->l_holes[z][x],in->l_electrons[z][x]);
 
 			s=in->obj_zxy[0][dim->xlen-1][y]->s;
 			get_n_den(s,in->Fi0_x1[z][y]+in->Xi[z][dim->xlen-1][y],in->Te[0][dim->xlen-1][y],&(in->electrons_x1[z][y]),NULL,NULL);
 			get_p_den(s,-(in->Fi0_x1[z][y]+in->Xi[z][dim->xlen-1][y]+in->Eg[z][dim->xlen-1][y]),in->Th[0][dim->xlen-1][y],&(in->holes_x1[z][y]),NULL,NULL);
-
-			//printf("%Le %Le\n",delta_phi,in->V_y1[z][x]);
-			//getchar();
 		}
 	}
 
@@ -464,8 +428,9 @@ void get_initial(struct simulation *sim,struct device *in,int guess)
 
 				for (y=0;y<dim->ylen;y++)
 				{
+					equs=in->equs[y];
 					phi_ramp=delta_phi*(dim->y[y]/dim->y[dim->ylen-1]);
-					//printf("%ld %ld %ld %Le\n",x,y,z,phi_ramp);
+
 					in->Fi[z][x][y]=Ef;
 
 					in->Fn[z][x][y]=Ef;
@@ -496,9 +461,21 @@ void get_initial(struct simulation *sim,struct device *in,int guess)
 
 					gdouble t=in->Fi[z][x][y]-in->Ec[z][x][y];
 					gdouble tp=in->Ev[z][x][y]-in->Fi[z][x][y];
+					if (equs & SOLVE_JE_Y)
+					{
+						in->n[z][x][y]=in->Nc[z][x][y]*exp(((t)*Qe)/(kb*in->Te[z][x][y]));
+					}else
+					{
+						in->n[z][x][y]=0.0;
+					}
 
-					in->n[z][x][y]=in->Nc[z][x][y]*exp(((t)*Qe)/(kb*in->Te[z][x][y]));
-					in->p[z][x][y]=in->Nv[z][x][y]*exp(((tp)*Qe)/(kb*in->Th[z][x][y]));
+					if (equs & SOLVE_JH_Y)
+					{
+						in->p[z][x][y]=in->Nv[z][x][y]*exp(((tp)*Qe)/(kb*in->Th[z][x][y]));
+					}else
+					{
+						in->p[z][x][y]=0.0;
+					}
 
 					s=in->obj_zxy[z][x][y]->s;
 
@@ -527,28 +504,40 @@ void get_initial(struct simulation *sim,struct device *in,int guess)
 
 					}
 
-					//printf("%Le %Le\n",in->n[z][x][y],in->p[z][x][y]);
 					for (band=0;band<dim->srh_bands;band++)
 					{
 						in->Fnt[z][x][y][band]= Ef;//-ns->phi[z][x][y]-in->Xi[z][x][y]+dos_srh_get_fermi_n(in,in->n[z][x][y], in->p[z][x][y],band,in->imat[z][x][y],in->Te[z][x][y]);
-						//printf("d %ld %Le\n",band,dos_srh_get_fermi_n(in,in->n[z][x][y], in->p[z][x][y],band,in->imat[z][x][y],in->Te[z][x][y]));
+						//printf("%Le\n",Ef);
 						in->Fpt[z][x][y][band]= Ef;//-ns->phi[z][x][y]-in->Xi[z][x][y]-in->Eg[z][x][y]-dos_srh_get_fermi_p(in,in->n[z][x][y], in->p[z][x][y],band,in->imat[z][x][y],in->Th[z][x][y]);
 						ns->xt[z][x][y][band]=ns->phi[z][x][y]+in->Fnt[z][x][y][band];
-
-
-						in->nt[z][x][y][band]=get_n_pop_srh(sim,s,ns->xt[z][x][y][band]+in->tt[z][x][y],in->Te[z][x][y],band);
-						in->dnt[z][x][y][band]=get_dn_pop_srh(sim,s,ns->xt[z][x][y][band]+in->tt[z][x][y],in->Te[z][x][y],band);
-
-
 						ns->xpt[z][x][y][band]= -(ns->phi[z][x][y]+in->Fpt[z][x][y][band]);
-						in->pt[z][x][y][band]=get_p_pop_srh(sim,s,ns->xpt[z][x][y][band]-in->tpt[z][x][y],in->Th[z][x][y],band);
-						in->dpt[z][x][y][band]=get_dp_pop_srh(sim,s,ns->xpt[z][x][y][band]-in->tpt[z][x][y],in->Th[z][x][y],band);
+
+						if (equs & SOLVE_SRH_E)
+						{
+							//printf("%le %le\n",get_n_pop_srh(sim,s,ns->xt[z][x][y][band]+in->tt[z][x][y],in->Te[z][x][y],0),in->Te[z][x][y]);
+							//getchar();
+							in->nt[z][x][y][band]=get_n_pop_srh(sim,s,ns->xt[z][x][y][band]+in->tt[z][x][y],in->Te[z][x][y],band);
+							in->dnt[z][x][y][band]=get_dn_pop_srh(sim,s,ns->xt[z][x][y][band]+in->tt[z][x][y],in->Te[z][x][y],band);
+						}else
+						{
+							in->nt[z][x][y][band]=0.0;
+							in->dnt[z][x][y][band]=0.0;
+						}
+
+						if (equs & SOLVE_SRH_H)
+						{
+							in->pt[z][x][y][band]=get_p_pop_srh(sim,s,ns->xpt[z][x][y][band]-in->tpt[z][x][y],in->Th[z][x][y],band);
+							in->dpt[z][x][y][band]=get_dp_pop_srh(sim,s,ns->xpt[z][x][y][band]-in->tpt[z][x][y],in->Th[z][x][y],band);
+						}else
+						{
+							in->pt[z][x][y][band]=0.0;
+							in->dpt[z][x][y][band]=0.0;
+						}
 					}
 
 				}
 			}
 		}
-
 
 		ns->x_y0[0][0]=in->V_y0[0][0]+Ef;
 		ns->xp_y0[0][0]=-(in->V_y0[0][0]+Ef);
@@ -559,7 +548,6 @@ void get_initial(struct simulation *sim,struct device *in,int guess)
 		init_dump(sim,in);
 	}
 
-if (in->stoppoint==1) exit(0);
 return;
 }
 

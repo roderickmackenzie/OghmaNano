@@ -23,120 +23,56 @@
 // SOFTWARE.
 // 
 
-/** @file list.c
-	@brief Simple list code
+/** @file inp.c
+	@brief Input file interface, files can be in .oghma files or stand alone files.
 */
 
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <zip.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include "list_struct.h"
+#include "inp.h"
 #include "util.h"
 #include "code_ctrl.h"
 #include "oghma_const.h"
 #include <log.h>
 #include <cal_path.h>
- #include <ctype.h>
+#include "lock.h"
+#include <list.h>
+#include <g_io.h>
 
-void list_init(struct list *in)
+int zip_is_in_archive(char *full_file_name)
 {
-	in->names=NULL;
-	in->len=0;
-	in->len_max=0;
-}
+	char zip_path[OGHMA_PATH_MAX];
+	char file_path[OGHMA_PATH_MAX];
+	char file_name[OGHMA_PATH_MAX];
+	get_dir_name_from_path(file_path,full_file_name);
+	get_file_name_from_path(file_name,full_file_name,OGHMA_PATH_MAX);
 
-void list_malloc(struct list *in)
-{
-	in->len=0;
-	in->len_max=10;
-	in->names=(char **)malloc(in->len_max*sizeof(char*));
-}
+	join_path(2,zip_path,file_path,"sim.oghma");
 
-void list_add(struct list *in,char *text)
-{
-	if (in->names==NULL)
+	int err = 0;
+	struct zip *z = zip_open(zip_path, 0, &err);
+
+	if (z!=NULL)
 	{
-		list_malloc(in);
-	}
+		//Search for the file of given name
+		struct zip_stat st;
+		zip_stat_init(&st);
+		int ret=zip_stat(z, file_name, 0, &st);
+		zip_close(z);
 
-	in->names[in->len]=(char *)malloc(sizeof(char)*STR_MAX);
-	strcpy(in->names[in->len],text);
-	in->len++;
-	if (in->len==in->len_max)
-	{
-		in->len_max*=2;
-		in->names=(char **)realloc(in->names,in->len_max*sizeof(char *));
-	}
-}
-
-void list_free(struct list *in)
-{
-	int i=0;
-
-	for (i=0;i<in->len;i++)
-	{
-		free(in->names[i]);
-	}
-
-	free(in->names);
-	list_init(in);
-}
-
-int list_cmp(struct list *in,char *name)
-{
-	int i=0;
-
-	for (i=0;i<in->len;i++)
-	{
-		if (strcmp(name,in->names[i])==0)
+		if (ret!=0)
 		{
-			return 0;
-		}
-	}
-
-return -1;
-}
-
-void list_dump(struct list *in)
-{
-	int i=0;
-
-	for (i=0;i<in->len;i++)
-	{
-		printf("%s |",in->names[i]);
-	}
-
-	printf("\n");
-}
-
-void list_import_from_string(struct list *in, char *text)
-{
-	int i;
-	int len=strlen(text);
-	char build[STR_MAX];
-	int pos=0;
-
-	for (i=0;i<len;i++)
-	{
-		if (isspace(text[i])==0)
-		{
-			build[pos]=text[i];
-			pos++;
-			build[pos]=0;
+		 	return -1;
 		}
 
-		if (pos!=0)
-		{
-			if ((isspace(text[i])!=0)||(i==(len-1)))
-			{
-				list_add(in,build);
-				pos=0;
-			}
-		}
-
+		return 0;
+	}else
+	{
+		return -1;
 	}
-	
 }

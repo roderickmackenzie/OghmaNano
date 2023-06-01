@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -35,88 +33,61 @@
 #include <unistd.h>
 #include "cal_path.h"
 #include "util.h"
-#include "inp.h"
 #include <log.h>
 
 #include <unistd.h>
-#include <dirent.h>
 #include <fcntl.h>
 #include <stdarg.h>
-#include <gpvdm_const.h>
+#include <oghma_const.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <g_io.h>
 
 #include <limits.h>
 #include <pwd.h>
 
+int find_dll(struct simulation *sim, char *lib_path,char *lib_name)
+{
+	char full_name[PATH_MAX];
+	char temp[PATH_MAX];
+	struct find_file find;
 
-int get_delta_path(struct simulation *sim,char *out, char *root,char *file_name)
-{
-int root_len=strlen(root);
-int file_name_len=strlen(file_name);
-if (root_len>file_name_len)
-{
-	strcpy(out,file_name);
+		sprintf(full_name,"%s.so",lib_name);
+
+	join_path(2,lib_path,get_plugins_path(sim),full_name);
+	if (isfile(lib_path)==0)
+	{
+		return 0;
+	}
+
+
+	if (find_open(&find,get_plugins_path(sim))==0)
+	{
+		while(find_read(&find)==0)
+		{
+			split_dot(temp, find.file_name);
+			if (strcmp(lib_name,temp)==0)
+			{
+				join_path(2,lib_path,get_plugins_path(sim),find.file_name);
+				if (isfile(lib_path)==0)
+				{
+					find_close(&find);
+					return 0;
+				}
+
+			}
+		}
+
+	find_close(&find);
+
+	}
+
+	ewe(sim,"I can't find the dll %s,\n",lib_name);
+
 	return -1;
 }
 
-if (root_len==0)
-{
-	strcpy(out,file_name);
-	return 0;
-}
-if (strcmp_begin(file_name,root)==0)
-{
-	strcpy(out,file_name+root_len+1);
-	return 0;
-}
-
-return -1;
-}
-
-int find_dll(struct simulation *sim, char *lib_path,char *lib_name)
-{
-char full_name[PATH_MAX];
-char temp[PATH_MAX];
-sprintf(full_name,"%s.so",lib_name);
-
-join_path(2,lib_path,get_plugins_path(sim),full_name);
-if (isfile(lib_path)==0)
-{
-	return 0;
-}
-
-struct dirent *next_file;
-DIR *theFolder;
-
-theFolder = opendir(get_plugins_path(sim));
-if (theFolder!=NULL)
-{
-	while((next_file=readdir(theFolder))!=NULL)
-	{
-		split_dot(temp, next_file->d_name);
-		if (strcmp(lib_name,temp)==0)
-		{
-			join_path(2,lib_path,get_plugins_path(sim),next_file->d_name);
-			if (isfile(lib_path)==0)
-			{
-				closedir (theFolder);
-				return 0;
-			}
-
-		}
-	}
-
-closedir (theFolder);
-
-}
-
-ewe(sim,"I can't find the dll %s,\n",lib_name);
-
-return -1;
-}
-
-void set_path(struct simulation *sim,char *out, char *name)
+int set_path(struct simulation *sim,char *out, char *name)
 {
 char cwd[PATH_MAX];
 
@@ -125,16 +96,16 @@ char temp[PATH_MAX];
 
 
 	//Check the home dir first
-	join_path(3,temp,sim->home_path,"gpvdm_local",name);
+	join_path(3,temp,sim->home_path,"oghma_local",name);
 	if ((isdir(temp)==0)||(isfile(temp)==0))
 	{
 		strcpy(out,temp);
 		//printf(">>>>>>>>%s",temp);
-		return;
+		return 0;
 	}
 
 	//Check the cwd
-	if (getcwd(cwd,PATH_MAX)==NULL)
+	if (g_getcwd(cwd,PATH_MAX)==NULL)
 	{
 		ewe(sim,"cwd returned NULL, check if the directory exists.\n");
 	}
@@ -144,24 +115,24 @@ char temp[PATH_MAX];
 	if ((isdir(temp)==0)||(isfile(temp)==0))
 	{
 		strcpy(out,temp);
-		return;
+		return 0;
 	}
 
-	//check gpvdm_*
-	join_path(3,temp,cwd,"gpvdm_data",name);
+	//check oghma_*
+	join_path(3,temp,cwd,"oghma_data",name);
 
 	if (isdir(temp)==0)
 	{
 		strcpy(out,temp);
-		return;
+		return 0;
 	}
 
-	join_path(3,temp,cwd,"gpvdm_core",name);
+	join_path(3,temp,cwd,"oghma_core",name);
 
 	if (isdir(temp)==0)
 	{
 		strcpy(out,temp);
-		return;
+		return 0;
 	}
 
 	//search the exe path
@@ -170,247 +141,148 @@ char temp[PATH_MAX];
 	if (isdir(temp)==0)
 	{
 		strcpy(out,temp);
-		return;
+		return 0;
 	}
 
 	//search the exe path minus one level
 
-	join_path(3,temp,sim->exe_path_dot_dot,"gpvdm_data",name);
+	join_path(3,temp,sim->exe_path_dot_dot,"oghma_data",name);
 
 	if (isdir(temp)==0)
 	{
 		strcpy(out,temp);
-		return;
+		return 0;
 	}
 
-	join_path(3,temp,sim->exe_path_dot_dot,"gpvdm_core",name);
+	join_path(3,temp,sim->exe_path_dot_dot,"oghma_core",name);
 
 	if (isdir(temp)==0)
 	{
 		strcpy(out,temp);
-		return;
+		return 0;
 	}
 
-	join_path(2,temp,"/usr/lib/gpvdm/",name);
+	join_path(2,temp,"/usr/lib/oghma/",name);
 	if (isdir(temp)==0)
 	{
 		strcpy(out,temp);
-		return;
+		return 0;
 	}
 
-	join_path(2,temp,"/usr/lib64/gpvdm/",name);
+	join_path(2,temp,"/usr/lib64/oghma/",name);
 	if (isdir(temp)==0)
 	{
 		strcpy(out,temp);
-		return;
+		return 0;
 	}
 
-	join_path(2,temp,"/usr/share/gpvdm/",name);
+	join_path(2,temp,"/usr/share/oghma/",name);
 	if (isdir(temp)==0)
 	{
 		strcpy(out,temp);
-		return;
+		return 0;
 	}
 
 	//Ubuntu
-	join_path(2,temp,"/usr/lib/x86_64-linux-gnu/gpvdm/",name);
+	join_path(2,temp,"/usr/lib/x86_64-linux-gnu/oghma/",name);
 	if (isdir(temp)==0)
 	{
 		strcpy(out,temp);
-		return;
+		return 0;
 	}
 
 	join_path(2,temp,sim->share_path,name);
 	if (isdir(temp)==0)
 	{
 		strcpy(out,temp);
-		return;
-	}
-
-	//if ((strcmp(name,"settings.inp")!=0)&&(strcmp(name,"info.inp")!=0))
-	//{
-	//	ewe(sim,"I can't find the %s\n",name);
-	//}
-}
-
-void get_file_name_from_path(char *out,char *in)
-{
-	int i=0;
-
-	strcpy(out,in);
-
-	if (strlen(in)==0)
-	{
-		return;
-	}
-
-	for (i=strlen(in)-1;i>=0;i--)
-	{
-		if ((in[i]=='\\') || (in[i]=='/'))
-		{
-			i++;
-			strcpy(out,(char*)(in+i));
-			return;
-		}
-	}
-
-}
-
-void get_dir_name(char *out,char *in)
-{
-	int i=0;
-
-	strcpy(out,in);
-
-	if (strlen(in)==0)
-	{
-		return;
-	}
-
-	for (i=strlen(out)-1;i>=0;i--)
-	{
-		if ((out[i]=='\\') || (out[i]=='/'))
-		{
-			out[i]=0;
-			return;
-		}
-	}
-
-}
-int is_dir_in_path(char *long_path, char* search_dir)
-{
-	if( strstr(long_path, search_dir) != NULL)
-	{
 		return 0;
-	}else
-	{
-		return -1;
 	}
-return -1;
+
+	return -1;
 }
 
-void get_nth_dir_name_from_path(char *out,char *in,int n)
-{
-	int i=0;
-	int ii=0;
-	int pos=0;
-	int start=0;
-	int stop=0;
-	int count=0;
-	strcpy(out,in);
-
-	if (strlen(in)==0)
-	{
-		return;
-	}
-
-	for (i=0;i<strlen(in);i++)
-	{
-		if ((in[i]=='\\') || (in[i]=='/') || (i==strlen(in)-1))
-		{
-			if (i!=0)
-			{
-				stop=i;
-				if (i==strlen(in)-1)
-				{
-					stop++;
-				}
-
-
-				if (count==n)
-				{
-
-					for (ii=start;ii<stop;ii++)
-					{
-						out[pos]=in[ii];
-						pos++;
-					}
-					out[pos]=0;
-					return;
-				}
-				start=stop+1;
-				count++;
-			}else
-			{
-				start=i+1;		// move it past the first / in a unix string
-			}
-		}
-	}
-
-}
 void cal_path(struct simulation *sim)
 {
-char cwd[PATH_MAX];
-char temp[PATH_MAX];
+	char cwd[PATH_MAX];
+	char temp[PATH_MAX];
 
-strcpy(cwd,"");
-strcpy(temp,"");
+	strcpy(cwd,"");
+	strcpy(temp,"");
 
-strcpy(sim->share_path,"nopath");
+	strcpy(sim->share_path,"nopath");
 
-strcpy(sim->plugins_path,"");
-strcpy(sim->lang_path,"");
+	strcpy(sim->plugins_path,"");
+	strcpy(sim->lang_path,"");
 
 
-memset(temp, 0, PATH_MAX * sizeof(char));
-int len = readlink("/proc/self/exe", temp, PATH_MAX);
-if (len == -1)
-{
-	ewe(sim,"IO error\n");
+	if (get_exe_path(temp)!=0)
+	{
+		ewe(sim,"get_exe_path failed\n");
+	}
+
+	if (get_home_dir(sim->home_path)!=0)
+	{
+		ewe(sim,"get_home_dir failed\n");
+	}
+
+	get_dir_name_from_path(sim->exe_path, temp);
+	get_dir_name_from_path(sim->exe_path_dot_dot, sim->exe_path);
+
+	if (isfile("configure.ac")==0)
+	{
+		strcpy(sim->share_path,cwd);
+		//printf_log(sim,"share path: %s\n",sim->share_path);
+	}else
+	if (isfile("ver.py")==0)
+	{
+		path_up_level(temp, cwd);
+		strcpy(sim->share_path,temp);
+		//printf_log(sim,"share path: %s\n",sim->share_path);
+	}else
+	{
+		strcpy(sim->share_path,"/usr/lib64/oghma/");
+	}
+
+
+
+	if (g_getcwd(cwd,PATH_MAX)==NULL)
+	{
+		ewe(sim,"cwd returned NULL\n");
+	}
+
+	if (strcmp(sim->root_simulation_path,"")==0)
+	{
+		strcpy(sim->root_simulation_path,cwd);
+		join_path(2,sim->cache_path,cwd,"cache");
+	}else
+	{
+		join_path(2,sim->cache_path,sim->root_simulation_path,"cache");
+	}
+
+	set_path(sim,sim->plugins_path, "plugins");
+	//set_path(sim,sim->lang_path, "lang");
+	strcpy(sim->lang_path,"langdisabled");
+	set_path(sim,sim->materials_path, "materials");
+	set_path(sim,sim->filter_path, "filters");
+	set_path(sim,sim->cie_color_path, "cie_color");
+	set_path(sim,sim->shape_path, "shape");
+
+	set_path(sim,sim->spectra_path, "spectra");
+
+	join_path(3,sim->cache_path_for_fit,cwd,"sim","cache");
+	join_path(2,sim->oghma_local_path,sim->home_path,"oghma_local");
+
+	join_path(2,sim->tmp_path,sim->oghma_local_path,"tmp");
+
 }
 
 
-struct passwd *pw = getpwuid(getuid());
-
-strcpy(sim->home_path,pw->pw_dir);
-
-
-get_dir_name_from_path(sim->exe_path, temp);
-get_dir_name_from_path(sim->exe_path_dot_dot, sim->exe_path);
-
-if (isfile("configure.ac")==0)
-{
-	strcpy(sim->share_path,cwd);
-	//printf_log(sim,"share path: %s\n",sim->share_path);
-}else
-if (isfile("ver.py")==0)
-{
-	path_up_level(temp, cwd);
-	strcpy(sim->share_path,temp);
-	//printf_log(sim,"share path: %s\n",sim->share_path);
-}else
-{
-	strcpy(sim->share_path,"/usr/lib64/gpvdm/");
-}
-
-if (getcwd(cwd,PATH_MAX)==NULL)
-{
-	ewe(sim,"cwd returned NULL\n");
-}
-
-strcpy(sim->root_simulation_path,cwd);
-set_path(sim,sim->plugins_path, "plugins");
-//set_path(sim,sim->lang_path, "lang");
-strcpy(sim->lang_path,"langdisabled");
-set_path(sim,sim->materials_path, "materials");
-set_path(sim,sim->filter_path, "filters");
-set_path(sim,sim->cie_color_path, "cie_color");
-set_path(sim,sim->shape_path, "shape");
-set_path(sim,sim->emission_path, "emission");
-
-set_path(sim,sim->spectra_path, "spectra");
-join_path(2,sim->cache_path,cwd,"cache");
-join_path(3,sim->cache_path_for_fit,cwd,"sim","cache");
-join_path(2,sim->gpvdm_local_path,sim->home_path,"gpvdm_local");
-
-join_path(2,sim->tmp_path,sim->gpvdm_local_path,"tmp");
-}
 
 
 
 char *get_cache_path(struct simulation *sim)
 {
-	if (sim->fitting==FALSE)
+	if ((sim->fitting==FIT_NOT_FITTING)||(sim->fitting==OPTIMIZER_RUNNING))
 	{
 		return sim->cache_path;
 	}else
@@ -419,151 +291,50 @@ char *get_cache_path(struct simulation *sim)
 	}
 }
 
-char *get_gpvdm_local_path(struct simulation *sim)
+
+char *get_oghma_local_path(struct simulation *sim)
 {
-return sim->gpvdm_local_path;
+	return sim->oghma_local_path;
 }
 
 char *get_spectra_path(struct simulation *sim)
 {
-return sim->spectra_path;
+	return sim->spectra_path;
 }
 
 
 char *get_materials_path(struct simulation *sim)
 {
-return sim->materials_path;
+	return sim->materials_path;
 }
 
 char *get_filter_path(struct simulation *sim)
 {
-return sim->filter_path;
+	return sim->filter_path;
 }
 
 char *get_cie_color_path(struct simulation *sim)
 {
-return sim->cie_color_path;
+	return sim->cie_color_path;
 }
 
 char *get_shape_path(struct simulation *sim)
 {
-return sim->shape_path;
+	return sim->shape_path;
 }
 
 char *get_plugins_path(struct simulation *sim)
 {
-return sim->plugins_path;
+	return sim->plugins_path;
 }
 
 char *get_lang_path(struct simulation *sim)
 {
-return sim->lang_path;
+	return sim->lang_path;
 }
 
 char *get_tmp_path(struct simulation *sim)
 {
-return sim->tmp_path;
+	return sim->tmp_path;
 }
 
-void join_path(int max, ...)
-{
-	max=max+1;
-	char temp[PATH_MAX];
-	strcpy(temp,"");
-	va_list arguments;
-	int i;
-	va_start ( arguments, max );
-	char *ret=va_arg ( arguments, char * );
-	strcpy(ret,"");
-	for (i = 1; i < max; i++ )
-	{
-		if ((i!=1)&&(strcmp(temp,"")!=0))
-		{
-			strcat(ret,"/");
-		}
-		strcpy(temp,va_arg ( arguments, char * ));
-		strcat(ret,temp);
-	}
-	va_end ( arguments );                  // Cleans up the list
-
-	return;
-}
-
-
-/**Make sure the slashes go the right way in a string for which ever OS we are on.
-@param path path to check
-*/
-void assert_platform_path(char * path)
-{
-	int i=0;
-	char temp[PATH_MAX];
-	strcpy(temp,"");
-	int max=strlen(path);
-	for (i=0;i<max;i++)
-	{
-		if ((path[i]=='\\')||(path[i]=='/'))
-		{
-			strcat(temp,"/");
-		}else
-		{
-			temp[i]=path[i];
-			temp[i+1]=0;
-		}
-
-
-	}
-
-	strcpy(path,temp);
-
-	return;
-}
-
-void remove_file_ext(char *path)
-{
-	int i=0;
-	for (i=strlen(path)-1;i>0;i--)
-	{
-		if (path[i]=='.')
-		{
-			path[i]=0;
-			break;
-		}
-	}
-}
-
-void gpvdm_mkdir(char *file_name)
-{
-struct stat st = {0};
-
-	if (stat(file_name, &st) == -1)
-	{
-			mkdir(file_name, 0700);
-	}
-
-}
-
-void mkdirs(char *dir)
-{
-
-	int i;
-	char temp[PATH_MAX];
-	strcpy(temp,dir);
-	for (i=0;i<strlen(dir);i++)
-	{
-		if ((temp[i]=='/')&&(i!=0))
-		{
-			temp[i]=0;
-			if (isdir(temp)!=0)
-			{
-				gpvdm_mkdir(temp);
-			}
-			strcpy(temp,dir);
-		}
-	}
-
-	if (isdir(dir)!=0)
-	{
-		gpvdm_mkdir(dir);
-	}
-
-}

@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -40,11 +38,12 @@
 #include <util.h>
 #include <cal_path.h>
 #include <string.h>
-#include <gpvdm_const.h>
+#include <oghma_const.h>
 #include <lang.h>
 #include <dump.h>
 #include <wchar.h>
 #include <color.h>
+#include <g_io.h>
 
 void randomprint(struct simulation *sim,char *in)
 {
@@ -77,8 +76,9 @@ void randomprint(struct simulation *sim,char *in)
 		textcolor(sim,fg_reset);
 
 		}
-
-fflush(stdout);
+#ifndef pydll
+	fflush(stdout);
+#endif
 }
 
 void log_time_stamp(struct simulation *sim)
@@ -94,28 +94,29 @@ void log_time_stamp(struct simulation *sim)
 void log_clear(struct simulation *sim)
 {
 	//FILE* out;
-	char temp[500];
-	/*
-	join_path(2,temp,get_output_path(sim),"log.dat");
-	remove_file(sim,temp);
-	//out=fopen(temp,"w");
-	//fprintf(out,"gpvdm log file:\n");
-	//fclose(out);
-	*/
-	//join_path(2,temp,sim->path,"log_file_access.dat");
-	//remove_file(sim,temp);
+	//char temp[500];
+	//if (sim!=NULL)
+	//{
+		//join_path(2,temp,get_output_path(sim),"log.dat");
+		//g_rmfile(temp);
+		//out=g_fopen(temp,"w");
+		//fprintf(out,"oghma log file:\n");
+		//fclose(out);
+		
+		//join_path(2,temp,sim->path,"log_file_access.dat");
+		//g_rmfile(temp);
 
-	//out=fopen(temp,"w");
-	//fprintf(out,"gpvdm file access log file:\n");
-	//fclose(out);
-
+		//out=g_fopen(temp,"w");
+		//fprintf(out,"oghma file access log file:\n");
+		//fclose(out);
+	//}
 }
 
 void log_tell_use_where_file_access_log_is(struct simulation *sim)
 {
 	if ((sim->log_level==log_level_disk)||(sim->log_level==log_level_screen_and_disk))
 	{
-		char temp[500];
+		//char temp[500];
 		//join_path(2,temp,sim->path,"log_file_access.dat");
 		//printf_log(sim,_("File access log written to %s\n"),temp);
 	}
@@ -128,7 +129,7 @@ void log_write_file_access(struct simulation *sim,char * file,char mode)
 		FILE* out;
 		char temp[500];
 		join_path(2,temp,sim->path,"log_file_access.dat");
-		out=fopen(temp,"a");
+		out=g_fopen(temp,"a");
 		if (mode=='w')
 		{
 			fprintf(out,"write:%s\n",file);
@@ -148,68 +149,73 @@ void set_logging_level(struct simulation *sim,int value)
 
 void text_to_html(struct simulation *sim,char *out, char *in,int max)
 {
-	if (sim->html==TRUE)
-	{
 
-		int i=0;
-		int out_pos=0;
-		int len=0;
-		len=strlen(in);
-		for (i=0;i<len;i++)
+	if (sim!=NULL)
+	{
+		if (sim->html==TRUE)
 		{
-			if (in[i]=='\n')
+
+			int i=0;
+			int out_pos=0;
+			int len=0;
+			len=strlen(in);
+			for (i=0;i<len;i++)
 			{
-				out[out_pos]=0;
-				strcat(out,"<br>");
-				out_pos=strlen(out);
-			}else
-			{
-				out[out_pos]=in[i];
-				out_pos++;
-				if (out_pos>=max)
+				if (in[i]=='\n')
 				{
-					out_pos--;
-					break;
+					out[out_pos]=0;
+					strcat(out,"<br>");
+					out_pos=strlen(out);
+				}else
+				{
+					out[out_pos]=in[i];
+					out_pos++;
+					if (out_pos>=max)
+					{
+						out_pos--;
+						break;
+					}
 				}
+
 			}
 
+			out[out_pos]=0;
+			return;
 		}
-
-		out[out_pos]=0;
-	}else
-	{
-		out[0]=0;
-		strncpy(out,in,max);
 	}
+
+	out[0]=0;
+	strncpy(out,in,max);
 
 }
 
+
 void printf_log(struct simulation *sim, const char *format, ...)
 {
-	FILE* out;
 	char data[STR_MAX];
-	char data_html[STR_MAX];
-	char temp[PATH_MAX];
+	#ifndef pydll
+		char data_html[STR_MAX];
+	#endif
 	va_list args;
 	va_start(args, format);
 	vsnprintf(data,STR_MAX,format, args);
 
-	if ((sim->log_level==log_level_screen)||(sim->log_level==log_level_screen_and_disk))
-	{
-		text_to_html(sim,data_html, data,1000);
+	#ifndef pydll
+		if ((sim->log_level==log_level_screen)||(sim->log_level==log_level_screen_and_disk))
+		{
+			text_to_html(sim,data_html, data,1000);
 
-		//wchar_t wide[1000];
-		//int i=mbstowcs(wide, data_html, 1000);
-		//wprintf(L"%S",wide);
-			printf("%s",data_html);
-			fflush(stdout);
+				printf("%s",data_html);
+				fflush(stdout);
 
-	}
-
+		}
+	#else
+		printf("%s",data);
+	#endif
 	/*if ((sim->log_level==log_level_disk)||(sim->log_level==log_level_screen_and_disk))
 	{
 		join_path(2,temp,sim->path,"log.dat");
-		out=fopen(temp,"a");
+		out=g_fopen(temp,"a");
 		if (out!=NULL)
 		{
 			fprintf(out,"%s",data);
@@ -226,7 +232,6 @@ void printf_log(struct simulation *sim, const char *format, ...)
 void rainbow_print(struct simulation *sim,double start,double stop, const char *format, ...)
 {
 	char data[STR_MAX];
-	char temp[PATH_MAX];
 	va_list args;
 	va_start(args, format);
 	vsnprintf(data,STR_MAX,format, args);
@@ -289,6 +294,42 @@ void waveprint(struct simulation *sim,char *in,double wavelength)
 	}
 }
 
+
+void temperature_print(struct simulation *sim,char *in,double T)
+{
+	int r;
+	int g;
+	int b;
+
+	if ((sim->log_level==log_level_screen)||(sim->log_level==log_level_screen_and_disk))
+	{
+		if (sim->html==TRUE)
+		{
+			temperature_to_rgb(&r,&g,&b,T);
+			printf_log(sim,"<font color=\"#%.2x%.2x%.2x\">",r,g,b);
+		}else
+		{
+			temperature_to_rgb(&r,&g,&b,T);
+			textcolor_rgb(sim,r, g, b);
+
+		}
+	}
+
+	printf_log(sim,"%s",in);
+
+	if ((sim->log_level==log_level_screen)||(sim->log_level==log_level_screen_and_disk))
+	{
+		if (sim->html==TRUE)
+		{
+			printf_log(sim,"</font>");
+		}else
+		{
+			textcolor_rgb(sim,-1, -1, -1);
+			//textcolor(sim,fg_reset);
+		}
+
+	}
+}
 void textcolor_rgb(struct simulation *sim, int r, int g, int b)
 {
 	if (sim->html==TRUE)
@@ -361,7 +402,7 @@ int log_search_error(char *path)
     char * line = NULL;
     ssize_t read;
 	size_t len = 0;
-    fp = fopen(path, "r");
+    fp = g_fopen(path, "r");
 
     if (fp == NULL)
 	{
