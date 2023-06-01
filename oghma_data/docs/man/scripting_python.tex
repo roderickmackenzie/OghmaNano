@@ -1,8 +1,7 @@
 \subsection{Python scripting}
 \label{sec:pythonscripts}
 Related YouTube videos:
-\begin{figure}
-
+\begin{figure}[H]
 \begin{tabular}{ c l }
 
 \includegraphics[width=0.05\textwidth]{./images/youtube.png}
@@ -13,11 +12,11 @@ Related YouTube videos:
 \end{tabular}
 \end{figure}
 
-There are two ways to interact with .gpvdm files via python, using native python commands or by using the gpvdm class structures, examples of both are given below.
+There are two ways to interact with \fileext files via python, using native python commands or by using the \simname class structures, examples of both are given below.
 
 
 \subsubsection{The native python way}
-As described in section \ref{sec:gpvdmfileformat}, .gpvdm files are simply json files zipped up in an archive. If you extract the sim.json file form the sim.gpvdm file you can use Python's json reading/writing code to edit the .json config file directly, this is a quick and dirty approach which will work. You can then use the $os.system$ call to run \emph{gpvdm\_core.exe} to execute gpvdm.
+As described in section \ref{sec:fileformat}, \fileext files are simply json files zipped up in an archive. If you extract the sim.json file form the sim\fileext file you can use Python's json reading/writing code to edit the .json config file directly, this is a quick and dirty approach which will work. You can then use the $os.system$ call to run oghma\_core to execute \simname.
 
 For example were one to want to change the mobility of the 1st device layer to 1.0 and then run a simulation you would use the code listed in listing \ref{python-example}.
 
@@ -48,10 +47,10 @@ For example were one to want to change the mobility of the 1st device layer to 1
 	f.write(jstr)
 	f.close()
 
-	#run the simulation using gpvdm_core
-	os.system("gpvdm_core.exe")
+	#run the simulation using oghma_core
+	os.system("oghma_core.exe")
 \end{minted}
-\caption{Manipulating a sim.json file with python and running a gpvdm simulation.} 
+\caption{Manipulating a sim.json file with python and running a \simname simulation.} 
 \label{python-example}
 \end{listing}
 
@@ -76,8 +75,8 @@ f.close()
 
 
 
-\subsubsection{Using gpvdm's built in classes for reading and writing json}
-Gpvdm has a set of classes that can read in gpvdm files and write them to disk. The difference between using python's native commands and the gpvmd classes is that, gpvdm will convert the json save files to a hierarchical tree of python classes rather than leaving them as raw json. So for example using Python's native json interpreters one would write:
+\subsubsection{Using \simname's built in classes for reading and writing json}
+\simname has a set of classes that can read in \simname files and write them to disk. The difference between using python's native commands and the gpvmd classes is that, \simname will convert the json save files to a hierarchical tree of python classes rather than leaving them as raw json. So for example using Python's native json interpreters one would write:
 
  
 \begin{listing}
@@ -88,7 +87,7 @@ Gpvdm has a set of classes that can read in gpvdm files and write them to disk. 
 \label{python-example3}
 \end{listing}
 
-but using the gpvdm interpreter one would write
+but using the \simname interpreter one would write
 
 \begin{listing}
 \begin{minted}[frame=single,framesep=3mm,linenos=false,xleftmargin=21pt,tabsize=4]{python}
@@ -98,7 +97,7 @@ but using the gpvdm interpreter one would write
 \label{python-example4}
 \end{listing}
 
-The gpvdm class tree also has embedded functions for searching for objects and alike some of which are described below in listing \ref{python-example5}.
+The \simname class tree also has embedded functions for searching for objects and alike some of which are described below in listing \ref{python-example5}.
 
 \begin{listing}
 \begin{minted}[frame=single,framesep=3mm,linenos=false,xleftmargin=21pt,tabsize=4]{python}
@@ -107,35 +106,35 @@ import json
 import os
 import sys
 
-sys.path.append('c:\Program files x86\gpvdm\modules')
-from gpvdm_json import gpvdm_data
+sys.path.append('c:\Program files x86\\simname\modules')
+from json_root import json_root
 
-data=gpvdm_data()
+data=json_root()
 data.load("sim.json")
 data.epitaxy.layer[1].shape_dos.mue_y=1.0
 data.save()
 
-os.system("gpvdm_core.exe")
+os.system("coreexename.exe")
 
 \end{minted}
-\caption{Editing sim.json files using gpvdm's built in classes.} 
+\caption{Editing sim.json files using \simname's built in classes.} 
 \label{python-example5}
 \end{listing}
 
-\subsubsection{Running gpvdm across multiple cores}
-The scan window by default uses gpvdm's built in job scheduler so that if you want to scan across 10 parameters and have a CPU with multiple cores, the jobs will be spread across all cores.  This increases the overall speed of the simulations. You can access this API using the gpvdm\_api class, an example of how to do this is given in listing \ref{python-example6}.
+\subsubsection{Running \simname across multiple cores}
+The scan window by default uses \simname's built in job scheduler so that if you want to scan across 10 parameters and have a CPU with multiple cores, the jobs will be spread across all cores.  This increases the overall speed of the simulations. You can access this API using the \simname\_api class, an example of how to do this is given in listing \ref{python-example6}.
 
 \begin{listing}
 \begin{minted}[frame=single,framesep=3mm,linenos=false,xleftmargin=4pt,tabsize=4]{python}
 #!/usr/bin/env python3
 import os
 import sys
-sys.path.append('c:\Program files x86\gpvdm\modules')
+sys.path.append('c:\Program files x86\ \simname \ modules')
 
-from gpvdm_api import gpvdm_api
+from model_api import model_api
 
 #initialize the API
-api=gpvdm_api(verbose=False)
+api=model_api(verbose=False)
 
 #Use the name of the current script to determine the directory name to make
 script_name=os.path.basename(__file__).split(".")[0]
@@ -161,7 +160,7 @@ for mue in [ 1e-5, 1e-6, 1e-7, 1e-8]:
 		api.clone(sim_path,os.getcwd())		
 
 		#make edit the newly generated sim.json file
-		data=gpvdm_data()
+		data=json_root()
 		data.load(os.path.join(sim_path,"sim.json"))
 		data.epitaxy.layer[1].shape_dos.mue_y=mue
 		data.epitaxy.layer[1].shape_dos.muh_y=muh

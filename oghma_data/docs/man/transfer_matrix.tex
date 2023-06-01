@@ -1,0 +1,63 @@
+\section{Transfer matrix model}
+In general the transfer matrix method is good for simulating sandwich type structures where light is incident normal to the surface of a device. Examples of such devices are solar cells, optical filters or sensors. This method is good for understanding optical absorption, reflection and transition in these structures.  There are other more complex methods which can accomplish the same task such as FDTD, however general speaking the transfer matrix model will be orders of magnitude faster than these methods.
+
+\subsection{The user interface}
+The transfer matrix simulation tool can be reached from the \emph{Optical ribbon} in the main window by selecting \emph{Transfer matrix}.  If you click \emph{Run optical simulation} (see \ref{fig:transfermatrix0}) the distribution of light within the structure will be calculated as a function of position and wavelength. You can see from the top of the figure that there are various simulation modes. The full transfer matrix method is selected by selecting \emph{Transfer matrix}, this will do full optical simulation.  The other buttons represent other simplified approximations to the transfer matrix method that allow the user to explore more simple charge carrier generation profiles. From the left the push buttons in Figure \ref{fig:transfermatrix0} represent the following optical models:
+
+\begin{itemize}
+  \item \emph{Transfer matrix:} This is a full transfer matrix simulation that takes into account multiple reflections from the interfaces and optical loss within the structure. This is in effect solving the wave equation in 1D and is an accurate (and recommended) optical model to use. See section \ref{ssec:transfer_matrix_theory}. If you are unsure which model to pick, pick this one.
+
+  \item \emph{Exponential profile}: This is a very simple optical model that assumes light decays exponentially according to the relation
+\begin{equation}
+I=I_{0}e^{-\alpha x}
+\label{efield2}
+\end{equation}
+between layers and and assumes light is transmitted between layers according to the formula:
+\begin{equation}
+T=1.0-\frac{n_1-n_0}{n_1+n_0}
+\label{equ:transfermatrixreflection}
+\end{equation}
+No reflection is accounted for.
+  \item \emph{Flat profile}: The flat profile assumes light is constant within layers and only decreases at material interfaces according to equation \ref{equ:transfermatrixreflection}. One might want to use this model when trying to understand the charge carrier dynamics in a device but wants to remove the effects of a non-uniform charge generation generation profile.
+
+  \item \emph{From file}: This can be used to import generation profiles from a file. It us generally used to import the results of more complex optical simulations such as those from external FDTD solvers.
+  \item \emph{Constant value}: If you click on the arrow to the right of the simulation button you will be able to set the charge carrier generation rate within each layer by hand. Again this is generally used when trying to understand charge carrier dynamics or device performance without to consider a complex optical profile. This would allow one to plot graphs of charge generation rate v.s. $V_{oc}$ etc..
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth,height=0.6\textwidth]{./images/transfer_matrix/opticalsimulation4.png}
+\caption{This is the Transfer matrix optical simulation window, here you can view the photon density and the rate of photon absorption in the device.  The play button will run the simulation, exactly which flavour of transfer matrix simulation is run will depend on which push button you select from ribbon.}
+\label{fig:transfermatrix0}
+\end{figure}
+
+The optical simulation window has various tabs which can be used to explore how light interacts with the device. These can be seen in figure \ref{fig:transfermatrix1}. The the top left image shows the photon density within the device, the image on the right shows the \emph{total} photon density within the layers of the device.  Notice how the reflection of the light of various layers causes interference patterns.  The image on the bottom left shows the configuration of the optical model. A key parameter that can be seen in this window is the \emph{Photon efficiency}, this parameter determines how many electron-hole pairs each photon that is absorbed within the active layer generates. In organic devices it accounts for geminate recombination, in other types of devices it should be set close to 1.0. Bottom right shows the same figure as in the top right of the figure, except by right clicking and playing with the menu options the figure has been converted into band diagram.  This can be useful for generating band diagram figures for papers.
+  
+\begin{figure}[H]
+\centering
+\begin{tabular}{ c c }
+
+\includegraphics[width=0.5\textwidth,height=0.4\textwidth]{./images/transfer_matrix/opticalsimulation.png}
+
+&
+\includegraphics[width=0.5\textwidth,height=0.4\textwidth]{./images/transfer_matrix/opticalsimulation1.png}
+
+\\
+\includegraphics[width=0.5\textwidth,height=0.4\textwidth]{./images/transfer_matrix/opticalsimulation2.png}
+
+&
+\includegraphics[width=0.5\textwidth,height=0.4\textwidth]{./images/transfer_matrix/opticalsimulation3.png}
+
+\\
+\end{tabular}
+\caption{Various views of the optical simulation window}
+\label{fig:transfermatrix1}
+\end{figure}
+
+\subsubsection{Running the transfer matrix simulation}
+As described above, the transfer matrix simulation can be run by directly clicking on the play button.  However when running an electrical simulation the optical model is run automaticity without any user interaction. The only difference between the two ways of calling the optical simulation is that when the user directly calls the optical model more output files are written to disk, however when the optical simulation is run as part of an electrical simulation the number of files and output are limited as to not slow the electrical simulation. 
+\newpage
+\input{transfer_matrix_output_files}
+\input{transfer_matrix_thick_layers}
+\input{transfer_matrix_theory}
+

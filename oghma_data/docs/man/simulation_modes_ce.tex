@@ -1,0 +1,40 @@
+\newpage
+\section{Charge extraction editor}
+\noindent
+\begin{minipage}{0.5\textwidth}
+This is the charge extraction editor, it allows one to simulate charge extraction transients. A charge extraction experiment is performed to find out how much charge is in a disordered device. For this type of experiment one runs the device at a set voltage and light intensity say 1V @ 1Sun. Then one turns off the light and shorts the cell through a resistor and integrates the total current outputted by the cell to get the charge that was in the cell when it was operating. Typically the cell is shorted through the the 50 Ohm termination of an oscilloscope so that by measuring the voltage transient and applying V=IR one can calculate the current and thus total charge.
+\end{minipage}
+\hspace{4pt}
+\begin{minipage}[]{0.5\linewidth}
+	\centering
+	\includegraphics[width=\linewidth,height=0.8\linewidth]{./images/sim_editors/ce.png}
+	\captionof{figure}{Charge extraction editor}
+	\label{fig:ce_editor}
+\end{minipage}
+\\
+\\
+ This type of measurement is important in disordered devices when one wants to find out how much charge is in the trap states.  It is important to note that the experiment does not extract all the charge in the device, it only extracts the difference between charge at operating conditions and 0V @ 0 Suns. The background charge due to injection from the contacts/doping is still left in the device. There is also error loss in the CE experiment due to recombination annihilating charge before it has left the device.
+
+
+\subsection{Outputs}
+
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+	File name 			& 	Description  \\ 
+ \hline
+	$time\_i.csv$ 		&	Time v.s. extraction current for a single CE experiment\\ 
+	$time\_v.csv$ 		&	Time v.s. voltage for a single CE experiment\\ 
+	$suns\_Q\_ce.dat$ 	&	Suns v.s. extracted charge including effects of recombination\\ 
+	$v\_np.dat$ 			&	Voltage c.s. extracted charge including the effects of recombination \\
+	$suns\_np.dat$ 		&	Suns c.s. extracted charge including the effects of recombination   \\
+	$v\_np\_ideal.dat$ 	&	Voltage v.s. extracted charge not including the effects of recombination\\
+	$suns\_np\_ideal.dat$ &	Suns v.s. extracted charge not including the effects of recombination\\
+ \hline
+\end{tabular}
+\caption{Files produced by the charge extraction simulation}
+\label{tab:ce_output}
+\end{center}
+\end{table}

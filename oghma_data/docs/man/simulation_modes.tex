@@ -1,80 +1,81 @@
 \chapter{Simulation modes and simulation editors}
 \label{sec:simmodes}
 
-Gpvdm has \index{various} plugins which enable the base simulation code to perform a variety of simulation types. For example there is a plugin to perform steady state JV simulations, another plugin to perform frequency domain simulations, and another to calculate the Quantum Efficiency etc... In the simulation editors ribbon (see figure \ref{fig:simeditors}) you can see the icons for each plugin. By clicking on an icon in this ribbon you will be able to edit how the plugin performs the various simulation types.  For example under the JV plugin editor one can change the start/stop voltages of a voltage sweep.  The simulation mode ribbon shown in figure \ref{fig:simmodes} enables the user to select which simulation mode is run.  You can see in the image that the \emph{JV curve} icon is depressed which means when the user clicks run, a JV curve will be simulated.
+OghmaNano uses a modular architecture that enables the core solver to perform a variety of simulation types using \index{plugins}. For example there is a plugin to perform steady state JV simulations, another plugin to perform frequency domain simulations, and another to calculate the Quantum Efficiency. They all leverage the same OghmaNano core solver but run it in a slightly different way with custom inputs and outputs. A list of the plugins and what they do can be found below:
 
-\begin{figure}[H]
+\begin{itemize}
+	\vspace{-0.2cm}\item Plugins for various types of experiment
+	\begin{itemize}
+		\vspace{-0.2cm}\item jv: To calculate steady state JV curves.
+		\vspace{-0.2cm}\item suns\_jsc: Simulate suns v.s. Jsc curves.
+		\vspace{-0.2cm}\item suns\_voc: Suns v.s. Voc simulations.
+		\vspace{-0.2cm}\item eqe: Simulates EQE.
+		\vspace{-0.2cm}\item cv: Capacitance voltage simulations.
+		\vspace{-0.2cm}\item ce: To simulate charge extraction experiments.
+		\vspace{-0.2cm}\item time\_domain: A time domain solver for transient simulations.
+		\vspace{-0.2cm}\item fx\_domain: Simulate the frequency domain response of a device, both electrical and optical excitation.
+		\vspace{-0.2cm}\item pl\_ss: Calculate the PL spectrum at in steady state.
+		\vspace{-0.2cm}\item mode: Used to solve optical modes in 1/2D waveguides.
+		\vspace{-0.2cm}\item spm: Simulates scanning probe microscopy in 3D electrical simulations.
+		\vspace{-0.2cm}\item equilibrium: Equilibrium electrical simulations.
+		\vspace{-0.2cm}\item exciton: Exciton simulations.
+		\vspace{-0.2cm}\item mesh\_gen: Generates meshes.
+	\end{itemize}
+	\vspace{-0.2cm}\item Optical solver plugins
+	\begin{itemize}
+		\vspace{-0.2cm}\item fdtd: Finite Difference Time Domain (FDTD) optical solver.
+		\vspace{-0.2cm}\item optics: Optical transfer matrix solver for 1D structures
+		\vspace{-0.2cm}\item light\_full: Optical transfer matrix solver.
+		\vspace{-0.2cm}\item light\_qe: Calculates optical profile using the experimental quantum efficiency.
+		\vspace{-0.2cm}\item light\_exp: Calculates optical profile assuming exponential propagation of light in 1D structures.
+		\vspace{-0.2cm}\item light\_flat: Calculates optical profile assuming flat optical profiles in the structure.
+		\vspace{-0.2cm}\item light\_constant: Assumes user given values of generation rate in optical structures.
+		\vspace{-0.2cm}\item light\_fromfile: Takes a generation rate from a file.
+	\end{itemize}
+\end{itemize}
+
+In the simulation editors ribbon (see Figure \ref{fig:simeditors}) you can see icons that represent each plugin, these are the simulation editors. By clicking on an icon in this ribbon you will be able to edit how the plugin performs the various simulations.  For example in the JV simulation editor one can change the start/stop voltages of a voltage sweep.  The JV editor can be seen in Figure \ref{fig:jv_low}. Within each simulation editor the user can define multiple so called \emph{experiments}. This can be seen in below in Figure \ref{fig:jv_low} and Figure \ref{fig:jv_high}, where two JV scans have been defined within the JV editor, one called \emph{JV curve - low voltage} and another called \emph{JV curve - high voltage}. One has a start voltage of 0.02V and stop voltage of 1.0V, while the other has a start voltage of 1.0V and a stop voltage of 10V.  This feature is most useful in more complex experiments such as in time domain experiments where one may want to simulate multiple different voltage/light ramps/pulses for one device. There is no limit to how many \emph{experiments} can be defined for each plugin.
+\\
+\begin{figure}
 \centering
-\includegraphics[width=1.0\textwidth]{./images/sim_editors/ribbon_sim_editors.png}
-\caption{Simulation editors}
+\includegraphics[width=\linewidth,height=0.2\linewidth]{./images/sim_editors/ribbon_sim_editors.png}
+\caption{Simulation editors use this toolbar to edit the various simulation conditions your device will experience.}
 \label{fig:simeditors}
 \end{figure}
 
-Each plugin editor can generate multiple simulation modes.  For example the time domain simulation editor (see figure \ref{fig:simeditors}) is responsible for the generating both the \emph{CELIV} and the \emph{TPC 400mV DARK} icon in Figure \ref{fig:simmodes}. This enables the user to define new types of simulation modes at will.  For example there may be no TDCF simulation setup, but using the time domain editor you can set one up.  Below the various simulation editors are described in detail.
+\begin{minipage}{0.5\textwidth}
+	\centering
+	\includegraphics[width=\linewidth,height=0.8\linewidth]{./images/sim_editors/jv_high_voltage.png}
+	\captionof{figure}{An experiment set up in the JV window for high voltage simulations.}
+	\label{fig:jv_low}
+\end{minipage}
+\hspace{4pt}
+\begin{minipage}[]{0.5\linewidth}
+	\centering
+	\includegraphics[width=\linewidth,height=0.8\linewidth]{./images/sim_editors/jv_low_voltage.png}
+	\captionof{figure}{An experiment set up in the JV window for low voltage simulations.}
+	\label{fig:jv_high}
+\end{minipage}
+
+Once an \emph{experiment} has been defined an icon representing it will appear in the simulation mode ribbon shown in figure \ref{fig:simmodes}. You can see in the figure an icon for \emph{JV curve low voltage} and \emph{JV curve high voltage} that were defined in Figure \ref{fig:jv_low} and \ref{fig:jv_high}. You can see in Figure \ref{fig:simmodes} that \emph{JV curve low voltage} is depressed. This means that when the simulation is run this simulation mode will be executed. If you select another simulation mode, then when the play button (or F9) is pressed that simulation mode will be run. Only one simulation mode can be run at a time.
+
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1.0\textwidth]{./images/sim_editors/ribbon_sim_modes.png}
-\caption{Selectig a simulation mode}
+\includegraphics[width=\linewidth,height=0.2\linewidth]{./images/sim_editors/ribbon_sim_modes.png}
+\caption{Selecting a simulation mode, in this case the \emph{JV curve low voltage} has been selected so that when the user presses play that simulation mode will be run.}
 \label{fig:simmodes}
 \end{figure}
 
 \input{simulation_modes_jv.tex}
 \input{simulation_modes_time_domain.tex}
-
-\section{Suns-Voc editor}
-The Suns-Voc plugin can be used to calculate how open circuit voltage changes as a function of light intensity.  This can be useful for understanding tail slope and disorder in devices.  A picture of the suns-voc editor window can be seen below in figure \ref{fig:sunsvoceditor}.  The window can be used to set the start and stop light intensity.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth,height=0.5\textwidth]{./images/sim_editors/suns_voc_editor.png}
-\caption{The suns-voc editor window}
-\label{fig:sunsvoceditor}
-\end{figure}
-
-
-\section{Suns-Jsc editor}
-The Jsc editor can be used to configure suns-Jsc simulations. It enables you to set the start light intensity, stop light intensity and how big the steps are. This is shown in figure \ref{fig:sunsjsceditor}.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth,height=0.5\textwidth]{./images/sim_editors/suns_jsc_editor.png}
-\caption{The JV curve editor window}
-\label{fig:sunsjsceditor}
-\end{figure}
-
-
-\section{Frequency domain editor}
-The frequency domain editor allows you to configure frequency domain simulations. This is shown in figure \ref{fig:fxdomaineditor}. On the right of the window you can see the frequency points which will be simulated. These are also displayed on the graph to the right of the window.  Notice that in the figure there are multiple simulations configured, IMPS, IMVS, IS and "test".  Each of these simulations will appear as an separate simulation mode in the simulation mode ribbon.
-
-Related YouTube videos:
-\begin{figure}[H]
-
-\begin{tabular}{ c l }
-
-\includegraphics[width=0.05\textwidth]{./images/youtube.png}
-
-&
-\href{https://www.youtube.com/watch?v=NJAsZeiB5FU}{Simulating impedance spectroscopy (IS) in solar cells.}
-
-\end{tabular}
-\end{figure}
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth,height=0.5\textwidth]{./images/sim_editors/fx_domain_editor.png}
-\caption{The frequency domain editor window}
-\label{fig:fxdomaineditor}
-\end{figure}
-
-\section{Quantum efficiency editor}
-The quantum efficiency editor simulates both EQE and IQE.  The configuration window can be used to set the voltage at which EQE and IQE are performed.
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth,height=0.5\textwidth]{./images/sim_editors/qe_editor.png}
-\caption{The quantum efficiency editor window}
-\label{fig:qeeditor}
-\end{figure}
-
+\input{simulation_modes_fx_domain.tex}
+\input{simulation_modes_suns_voc.tex}
+\input{simulation_modes_suns_jsc.tex}
+\input{simulation_modes_qe.tex}
+\input{simulation_modes_spm.tex}
+\input{simulation_modes_equilibrium.tex}
+\input{simulation_modes_pl.tex}
+\input{simulation_modes_ce.tex}
+\input{simulation_modes_cv.tex}
 

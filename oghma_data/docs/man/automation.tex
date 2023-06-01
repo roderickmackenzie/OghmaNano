@@ -1,0 +1,20 @@
+\newpage
+\chapter{Automation and Scripting}
+Often a user will have set up a simulation structure to represent a real world device but will then ask the question: What happens to my solar cell efficiency as I change the mobility of the active layer? Or what happens to the wavelength of my laser output as I change the thickness of the Quantum Well. To answer these type of questions one must change one or more material parameters over a range of values and then examine the simulation results.  Clearly this could be done by hand but there are better ways to automate this process.
+
+There are three main ways to automate OghamNano simulations:
+\begin{enumerate}
+  \item The first method is using the parameter scan window, this is described below in section \ref{sec:scanwindow}.  The parameter scan window allows a user to vary a parameter (or multiple paramters) in steps using the graphical user interface. No knowledge of coding is required for this approach.  The parameter scan window is useful if one wants to quickly examine how a parameter influences the results and the scenario you are examining is not very complex. The scan window fits most users's needs most of the time.
+  \item For more fine grained control over how the parameters are varied the next method is to use Python scripting, this is described in section \ref{sec:pythonscripts}.  Python scripting allws the user ultimate flexibility in adjusting all simulation parameters and running simulations, Python is widely available which makes this approach very attractive. 
+  \item The third way is through MATLAB scripting, this is described in section \ref{sec:matlabscripts}. The advantage of MATLAB scripting is that lots of people can code in MATLAB so makes automating OghmaNano very accessable. The downside of using MATLAB is that it is quite expensive and not all people have access to it. An alternative to MATLAB would be Octave however at the time of writing it does not have a json reader/writer.
+\end{enumerate}
+
+Or option 4: All the above methods rely on the same principles: The OghmaNano simulation save file is systematic edited and the back end of the software $oghma\_core.exe$ run on the sim.oghma file to generate new results. Key to understanding how scripting works is to realize that the sim.oghma is simply a zip file (See \ref{sec:fileformat}) with a json file (sim.json) inside it, and if one can edit the json file (using any language you want ActionScript, C, C++, C\#, Cold Fusion, Java, Lisp, Perl, Objective-C, OCAML, PHP, Python, Ruby etc... ) the you can automate OghmaNano.
+\vfill
+
+\pagebreak
+\input{scan_window.tex}
+\input{scan_optimizer.tex}
+\input{scripting_intro.tex}
+\input{scripting_python.tex}
+\input{scripting_matlab.tex}

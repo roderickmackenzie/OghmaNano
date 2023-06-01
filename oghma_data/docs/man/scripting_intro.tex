@@ -1,0 +1,9 @@
+\pagebreak
+\section{Python/MATLAB scripting of OghmaNano}
+Scripting offers a more powerful way to interact with gvpdm. Rather than using the graphical user interface, you can use your favourite programming language to interact with OghmaNano.  This gives you the option to drive simulations in a far more powerful way than can be done using the graphical interface alone.  Below I give examples of using MATLAB and python to drive OghmaNano, but you can use any language you want which has a json reader/writer.  Pearl and Java are two languages which spring to mind.
+
+Before you begin scripting OghmaNano you need to tell windows where OghmaNano is installed, the default OghmaNano will be installed to C:\textbackslash Program files x86 \textbackslash OghmaNano, in there you will see in this directory there are two windows executables, one called \emph{oghma.exe}, this is the graphical user interface, and a second .exe, called \emph{oghma\_core.exe}.  You can run \emph{oghma\_core.exe} from the command line without \emph{oghma.exe}. You simply need to navigate to a directory containing a \emph{sim.oghma} folder and call \emph{oghma\_core.exe}, this can be done from the windows command line, matlab, python or any other scripting language.
+However, before you can do this on windows, you need to add C:\textbackslash Program files x86 \textbackslash OghmaNano to your windows path so that windows knows where OghmaNano is installed.  An example of how to do this on a modern version of windows is given in the link
+\url{https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)}
+
+Every new version of windows seems to move the configuration options around, so you may have to find instructions for your version of windows.

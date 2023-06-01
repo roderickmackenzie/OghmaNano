@@ -1,6 +1,4 @@
 \chapter{Fitting experimental data}
-\label{sec:fitting}
-
 Related YouTube videos:
 \begin{figure}[H]
 
@@ -9,18 +7,192 @@ Related YouTube videos:
 \includegraphics[width=0.05\textwidth]{./images/youtube.png}
 
 &
-\href{https://www.youtube.com/watch?v=uEj0dB-mPTQ}{Advanced topics in fitting of JV curves to experimental data using gpvdm.}\
+\href{https://www.youtube.com/watch?v=uEj0dB-mPTQ}{Advanced topics in fitting of JV curves to experimental data using \simname.}\
 \\
 \includegraphics[width=0.05\textwidth]{./images/youtube.png}
 
 &
-\href{https://www.youtube.com/watch?v=WY_grICDP4Y}{Fitting transient photocurrent (TPC) and light JV curves using gpvdm}
+\href{https://www.youtube.com/watch?v=WY_grICDP4Y}{Fitting transient photocurrent (TPC) and light JV curves using \simname}
 \\
 \includegraphics[width=0.05\textwidth]{./images/youtube.png}
 
 &
-\href{https://www.youtube.com/watch?v=61umU4hrsqk&t=58s}{Fitting the light JV curve of an ultra large area (2.5meter x 1cm) OPV device using gpvdm}
+\href{https://www.youtube.com/watch?v=61umU4hrsqk&t=58s}{Fitting the light JV curve of an ultra large area (2.5meter x 1cm) OPV device using \simname}
 
 \end{tabular}
 \end{figure}
+
+\label{sec:fitting}
+In the same way you can fit the diode equation to a dark curve of a solar cell to extract the ideality factor, OghmaNano can be fitted to experimental data using the fitting function. Fitting is a good way to extract physical parameters from a device such as mobility, destiny of trap states etc. The advantage of fitting a complex model such as OghmaNano to data rather than simplistic analytical equations is that far more detailed information can be extracted and a better physical picture of the underlying physics obtained. This section gives an overview of the fitting tools in OghamNano.
+
+\section{Key tips and tricks}
+\label{sec:key_tips_and_tricks}
+
+\begin{itemize}
+  \item 
+Generally speaking fitting is tricky process requiring a lot of patience and manual fine tuning to get it to work. Don't expect to click a button and for it to just work. You will have to work to get nice fits.
+  \item If the fit is not working something may be wrong with the physical assumptions you have made with your device. The model will only fit physically reasonable data so if something is off by and order of magnitude go back and think again about what you are asking the model to do.
+  \item Different data sets provide different types of information. For example the dark JV curve of a solar cell provides information about the shunt resistance, the series resistance, and some information about mobility and recombination/tale states. However, the light JV curve provides almost no information about the shunt resistance so don't expect a fit to the light JV curve to provide accurate estimates of $R_{shunt}$. Alway think about what information is contained within your data before interpreting the numbers extracted from a fit.
+  \item The fitting works process by: 1) Running a simulation; 2) Calculating the difference between the numerical and experimental results; 3) tweaking the simulation parameters ; 4) rerunning the simulation and seeing if the difference between the experiment and simulation has reduced; 5) If the error has reduced the change of parameter is accepted and the process repeated with a different parameter.  This process continues hundreds or thousands of times until an acceptable fit has been achieved. Therefore to do a fit the model must be run thousands of times, this means that for a fit to arrive at an answer quickly, the individual simulation when run alone must be fast. So for example if your simulation has 1000 mesh points, when fitting try reducing this to 10. Or if you have 1000 time steps try reducing this to 100. Every speed up in the base simulation will result in a speed up in the fitting process.
+  \item Writing files to disk is the slowest part of any computational process. Even modern SSDs are about 30 times slower than main memory for example the maximum write speed to an SSD is 456 MB/s where as the bandwidth of a PC3-12800 memory module is  12,800 MB/s. When you save your files on USB drives, network storage drives, or even worse the internet aka OneDrive or Dropbox, read write speeds again drop massively. Therefore if you want your simulation to run fast save it on a local hard disk which is ideally and SSD and not a mechanical drive and not being mirrored over the network.
+  \item As stated above writing files to disk is slow, therefore try to minimize the number of files your simulation kicks out. Turn off things such as snapshots, optical output and the dynamic folder.  You can check if your simulation is dumping a lot of files by opening your simulation directory in windows explorer and counting the files.  A simulation set to write very little to disk should have about 50 files in it. If your simulation directory has hundreds of files in it then you need to find out why.
+ \item Although you can fit with the GUI, it can be slow. I personally tend to set up fits in the GUI but run them from the command line. There is a section on how to do this below.
+ \item Fitting writes quite a lot of files to disk. Virus killers can slow down the fitting significantly as they scan all the data files before they are written to disk.   
+\end{itemize}
+
+\section{The main fitting window}
+
+An example of how to fit the model to experimental data is included in the demo simulations provided with OghmaNano. This can be found under "Fitting and parameter extraction" (see \ref{fig:fit_new_sim}). If you open this simulation you will be presented with
+
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{ c c }
+
+\includegraphics[width=0.45\textwidth]{./images/fit/example.png}
+&
+\includegraphics[width=0.45\textwidth]{./images/fit/main_window.png}
+\\
+\label{fig:fit_new_sim}
+\end{tabular}
+\caption{a) The example fitting simulation can be found in the "Fitting and parameter extraction" demo. b) Once opened it will look like the window on the right.}
+\end{figure}
+
+From the file ribbon then click on the "Fit to experiment icon". This will bring up the fitting window (see figure \ref{fig:fit_window_first_open}).  The icons in the ribbon of this window perform the following tasks:
+
+\begin{itemize}
+  \item New experiment: Currently the window is only displaying one set of experimental data in this case a light JV curve. Using the New experiment button one can add other data sets such as a dark JV curve to the fit. The more sets of data you fit against the more accurate your extracted parameters will be but the harder the fit will be to perform and the slower it will run.
+  \item Delete experiment: This will remove a data set from the fit.
+  \item Clone experiment: This will clone the current data set to a new data set.
+  \item Rename experiment: This will rename the data set.
+  \item Export data: This will export the fit to a zip file.
+  \item Import data: This will import experimental data. The import wizard is explained elsewhere.
+  \item Configure: This is used to configure the fitting variables, this is explained in detail below.
+  \item One iteration data: This will run the fit just once to see how close to the experimental data it is. It is highly recommended to use this function and change the parameters by hand to get a closish fit before running the automated fit.
+  \item Run fit: This will run the automated fitting algorithm. It will run forever, you have to press the button again to stop it.
+  \item Fit this data set: This enables or disables the fitting of the data set currently being viewed.
+\end{itemize}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{./images/fit/fit_window_first_open.png}
+\caption{The main fitting window.}
+\label{fig:fit_window_first_open}
+\end{figure}
+
+If you click the one fit button, the fit window will update and will look like \ref{fig:fit_one_fit}a. You can now see the difference between the experimental and simulated curves.  The green line represents the difference between the two curves, it is called the error function. It represents the mathematical difference between the simulated and experimental data.  If you now click "Run fit" to start the fitting process, you should see the curves gradually start to get closer and the error function decrease in value. Now click on the "Fit progress" tab, this plots the error function as a function of fit iterations.  Watch as the error drops off. It should start looking like figure \ref{fig:fit_one_fit}b.  This process should take about 30 seconds, if it takes longer read section \ref{sec:key_tips_and_tricks} above.
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{ c c }
+
+\includegraphics[width=0.45\textwidth]{./images/fit/fit_delta.png}
+&
+\includegraphics[width=0.45\textwidth]{./images/fit/fit_converge.png}
+\\
+\label{fig:fit_new_sim}
+\end{tabular}
+\caption{a) The result of clicking the one fit button. b) The error function dropping during a simulation.}
+\end{figure}
+
+\section{Fit variables}
+In figure \ref{fig:fit_window_first_open}, there is a "Configure" icon. If you click on this it will open the fit variable window.  This window is used to configure the fitting variables. This window has the following tabs:
+
+\begin{itemize}
+  \item Duplicate variables: This is used to copy one parameter to another.  In this example we are assuming the device is symmetric, so we are only fitting the electron but we are using the "Duplicate variables" variables tool to copy the newly fitted electron parameters on top of the hole parameters. This enables us to vary electron mobility in the fitting process but let the hole mobility have the same value at each step. (See figure \ref{ig:fit_window_first_open}).
+  \item Fit variables: This defines the variables we will fit.  The more variables you fit at the same time the longer the fit will take. Try to minimize the number of variables you are fitting. A good tip is to start of fitting with symmetric parameters then only move to asymmetric parameters, once the fit becomes good. (see figure \ref{fig:fit_vars}).
+  \item Fit variables: This is used to force one parameter to be bigger than another.
+  \item Configure minimizer: This configures how the fitting algorithm behaves.
+	\begin{itemize}
+	  \item Stall steps: If fit error does not improve in this number of steps then the fit is considered stalled and therefore stopped.
+	  \item Disable reset at level: This will stop the fit restarting if fit error drops to below this level.
+ 	  \item Fit define convergence: This is the level of error at which the fit will stop.
+  	  \item Start simplex step multiplication:  This defines the size of the first fitting step, a smaller value will mean the fitting algorithm will only change the initial numbers a bit, while a large number will change the initial numbers a lot. If you want your fit to explore the parameter space widely set this value to be greater than 1.0. If you want your fit to more or less stay around where your initial parameters are set this value to be less than 1.0.  A value of 2.0 is considered big, a value of 0.1 is considered small.
+   	  \item Fitting method: This can be set to Simplex (simplex downhill \url{https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method}) or newton. Newton is experimental and should not be used.
+   	  \item Enable snapshots during fit: By default snapshots are turned off during fitting as they produce a lot of disk access to allow them the be dumped to disk set this on.
+      \item Simplex reset steps: This sets after how many steps the simplex algorithm is reset. Resetting the algorithm can push the answer away from the solution, but it can also pop the solver out of a valley if it has become trapped and allow better convergence.
+	\end{itemize}
+\end{itemize}
+
+  
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{./images/fit/fit_duplicate_vars.png}
+\caption{The fit variable window. This window is used to configure the fitting variables.}
+\label{fig:fit_duplicate_vars}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{./images/fit/fit_vars.png}
+\caption{The fit variables used to fit the data.}
+\label{fig:fit_vars}
+\end{figure}
+
+\section{How the fitting process works}
+When you click the "Run fit" button, OghmaNano makes a new directory inside the simulation directory called "sim" this is the directory in which the fitting process takes place. Inside this directory OghmaNano will make one new directory for each data set you are trying to fit, it will populate each directory with the sim.json (and sim.oghma) files from your main simulation directory.  At this point the sim.json files in all the directories are identical.  Then using the contents of the fit "fit patch" (see figure \ref{fig:fit_patch}) the content of each sim.json file will be updated, this process is called patching the simulation files.  This process enables you to adjust parameters in each simulation directory to match the data set you are trying to fit. For example you might want one data set to have optical/light/Psun set 1.0 and another to be set to 0.0 to enable fitting of a 1 sun JV curve and a dark JV curve. After patching each directory, the fitting process then commences. During this process fitting variables in the sim.json files in the "sim" directory are updated.  During the fit the algorithm will often produce fits which are worse than the current best effort, and only sometimes produce fits which are better than the current best effort. Only when a better fit is obtained will the sim.json file be updated in the main simulation directory and the curves in the GUI also updated.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{./images/fit/fit_patch.png}
+\caption{The fit patch applied to each data set.}
+\label{fig:fit_patch}
+\end{figure}
+
+
+\section{Fitting without the GUI}
+The GUI is a very easy and efficient way to setup a fit. However, it takes considerable CPU time to update the user interface as the fit runs and this therefore slows the fitting process. Therefore if you are doing lots of fitting or fitting difficult problems, fitting without the GUI can be faster.  This section covers how to fit from the Windows command line:
+
+\begin{enumerate}
+  \item First set up your simulation you want to fit in the usual way using the GUI. Run a single iteration of the fit to make sure it looks right.  Then close the GUI.
+  \item Next we need to tell Windows where it can find OghmaNano, usually it has been installed in C:\textbackslash Program files x86 \textbackslash OghmaNano . If you open this directory you will see lots of files.  But the two key ones are \emph{oghma.exe} and \emph{oghma\_core.exe}. The file \emph{oghma.exe} is the GUI, \emph{oghma\_core.exe} is the core solver, these are completely independent programs.  The core solver can be run without the GUI.  To tell windows where these files are we need to add C:\textbackslash Program files x86 \textbackslash OghmaNano to the windows path. This can be done by following these \url{https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)} instructions.  These instructions are for a modern version of Windows, but on your system things may be in slightly different places. On most versions of windows the process is more or less the same, if you get stuck google "adding a path to window".
+
+  \item Click on the start menu and type "cmd" and enter to bring up a Windows terminal.  Type:
+\begin{listing}[H]
+\begin{minted}[frame=single,
+               framesep=3mm,
+               linenos=false,
+               xleftmargin=21pt,
+               tabsize=4]{bash}
+oghma_core.exe --help
+\end{minted}
+\end{listing}
+Note it is a double dash before help not a single dash.
+
+This should bring up some help for OghmaNano.  If it does them we have successfully told windows where \emph{oghma\_core.exe} lives. If you get an error, try step 2 again (and/or restart your computer).
+  \item Now that windows knows where \emph{oghma\_core.exe} lives, we can navigate to our simulation directory.  Use \emph{cd} to navigate to the directory where your simulation you want to fit is saved.
+  \item First run the command \emph{oghma\_core.exe} to see if your simulation runs OK. If it does not then recheck your simulation file.
+  \item Now run a single fit by typing:
+
+\begin{listing}[H]
+\begin{minted}[frame=single,
+               framesep=3mm,
+               linenos=false,
+               xleftmargin=21pt,
+               tabsize=4]{bash}
+oghma_core.exe --1fit
+\end{minted}
+\end{listing}
+
+Inspect the results in the "sim" directory, use your favourite plotting program to compare the results to the experimental data. Note the experimental data is stored in \emph{fit\_data(0-1).inp}.
+
+  \item If everything went well with the above step, you can run a real fit by typing:
+\begin{listing}[H]
+\begin{minted}[frame=single,
+               framesep=3mm,
+               linenos=false,
+               xleftmargin=21pt,
+               tabsize=4]{bash}
+oghma_core.exe --fit
+\end{minted}
+\end{listing}
+Again those are double dashes before the fit command. Ctrl+C will terminate the fit. You can check the progress of convergence by plotting \emph{fitlog.csv}.
+
+\end{enumerate}
+
+
+
+
 

@@ -1,5 +1,5 @@
 \section{Light sources}
-In gpvdm light comes from light sources, which are defined in the light source editor which can be found in the Optical ribbon of the main window see figure \ref{fig:opticalribbon}.
+In OghmaNano light comes from light sources.  Light sources defined in the light source editor this can be found in the Optical ribbon of the main window see figure \ref{fig:opticalribbon}.
 
 \begin{figure}[H]
 \centering
@@ -8,7 +8,7 @@ In gpvdm light comes from light sources, which are defined in the light source e
 \label{fig:opticalribbon}
 \end{figure}
 
-The light source editor is shown below in figure \ref{fig:lightsourceeditor}. Each light source consists of of illumination spectra and optical filters. In this way you can define a light source to emit AM1.5G but then filter out various components of the spectrum.  This enables one to simulate for example a device under AM1.5G spectra but behind a thick glass contact which takes sunlight below 300 nm. Light sources can be combined in the "Light source" tab, so for example one could combine AM1.5G and light given off by a fluorescent tube. Each spectrum is multiplied by a "Multiplayer" defined in the "Multiplayer" column this defines the relative intensity of the light sources.
+The light source editor is shown below in Figure \ref{fig:lightsourceeditor}. Each light source consists of of illumination spectra and optical filters. In this way you can define a light source to emit AM1.5G but then filter out various components of the spectrum.  This enables one to simulate for example a device under AM1.5G spectra but behind a thick glass contact that takes sunlight below 300 nm. Light sources can be combined in the \emph{Light source} tab, so for example one could combine AM1.5G and light given off by a fluorescent tube. Each spectrum is multiplied by a \emph{multiplier} defined in the \emph{multiplier} column this defines the relative intensity of the light sources.
 
 In the filters tab you can define the optical filters. They can be enabled or disabled using the Enable switch, you can select the material which will act as a filter, and decide how much the filter attenuates in dB.
 
@@ -42,6 +42,7 @@ can be set in the configure tab.
 \\
 \end{tabular}
 \caption{Left: Building an optical spectrum; Right modifying the light sources with optical filters.}
+\label{fig:lightsourceeditor}
 \end{figure}
 
 
@@ -65,6 +66,7 @@ can be set in the configure tab.
 \label{fig:lightcomesfrom}
 \end{figure}
 
+\newpage
 
 
 
