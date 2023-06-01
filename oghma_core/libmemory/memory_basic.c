@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -40,13 +38,12 @@
 #include "log.h"
 #include <solver_interface.h>
 #include "memory.h"
-
-
+#include <g_io.h>
+#include <math_kern_1d.h>
 
 void zx_copy_gdouble(struct dimensions *dim, gdouble **dst, gdouble **src)
 {
 int x=0;
-int y=0;
 int z=0;
 
 	for (z = 0; z < dim->zlen; z++)
@@ -61,12 +58,10 @@ int z=0;
 
 
 
-void memory_flip_1d_long_double(long double *var,int len)
+void memory_flip_1d_long_double(gdouble *var,int len)
 {
-	int x=0;
 	int y=0;
-	int z=0;
-	long double * data=malloc(sizeof(long double)*len);
+	gdouble * data=malloc(sizeof(gdouble)*len);
 	for (y=0;y<len;y++)
 	{
 		data[y]=var[len-1-y];
@@ -81,7 +76,7 @@ void memory_flip_1d_long_double(long double *var,int len)
 
 }
 
-void three_d_interpolate_srh(long double ****out, long double ****in, struct dimensions *dim_out, struct dimensions *dim_in,int band)
+void three_d_interpolate_srh(gdouble ****out, gdouble ****in, struct dimensions *dim_out, struct dimensions *dim_in,int band)
 {
 int x=0;
 int y=0;
@@ -90,23 +85,23 @@ int z=0;
 int yi;
 int xi;
 
-long double y_out;
-long double x_out;
+gdouble y_out;
+gdouble x_out;
 
-long double y00;
-long double y01;
-long double yr;
-long double y0;
+gdouble y00;
+gdouble y01;
+gdouble yr;
+gdouble y0;
 
-long double y10;
-long double y11;
-long double y1;
+gdouble y10;
+gdouble y11;
+gdouble y1;
 
-long double x0;
-long double x1;
-long double xr;
+gdouble x0;
+gdouble x1;
+gdouble xr;
 
-long double c;
+gdouble c;
 
 	z=0;
 	for (x = 0; x < dim_out->xlen; x++)
@@ -142,7 +137,7 @@ long double c;
 
 }
 
-void three_d_interpolate_srh2(long double ****out, long double ****in, struct dimensions *dim_out, struct dimensions *dim_in,int band)
+void three_d_interpolate_srh2(gdouble ****out, gdouble ****in, struct dimensions *dim_out, struct dimensions *dim_in,int band)
 {
 int x=0;
 int y=0;
@@ -151,23 +146,23 @@ int z=0;
 int yi;
 int xi;
 
-long double y_out;
-long double x_out;
+gdouble y_out;
+gdouble x_out;
 
-long double y00;
-long double y01;
-long double yr;
-long double y0;
+gdouble y00;
+gdouble y01;
+gdouble yr;
+gdouble y0;
 
-long double y10;
-long double y11;
-long double y1;
+gdouble y10;
+gdouble y11;
+gdouble y1;
 
-long double x0;
-long double x1;
-long double xr;
+gdouble x0;
+gdouble x1;
+gdouble xr;
 
-long double c;
+gdouble c;
 
 	z=0;
 	for (x = 0; x < dim_out->xlen; x++)
@@ -204,12 +199,12 @@ long double c;
 }
 
 
-void srh_quick_dump(char *file_name, long double ****in, struct dimensions *dim,int band)
+void srh_quick_dump(char *file_name, gdouble ****in, struct dimensions *dim,int band)
 {
 int x=0;
 int y=0;
 int z=0;
-	FILE *out=fopen(file_name,"w");
+	FILE *out=g_fopen(file_name,"w");
 
 	for (z = 0; z < dim->zlen; z++)
 	{
@@ -219,7 +214,7 @@ int z=0;
 
 			for (y = 0; y < dim->ylen; y++)
 			{
-				fprintf(out,"%Le %Le %Le\n",dim->x[x],dim->y[y],in[z][x][y][band]);
+				fprintf(out,"%le %le %le\n",(double)dim->x[x],(double)dim->y[y],(double)in[z][x][y][band]);
 			}
 
 			fprintf(out,"\n");
@@ -234,41 +229,22 @@ fclose(out);
 @param N length
 @param find Value to find
 */
-int search(long double *x,int N,long double find)
+int search(gdouble *x,int N,gdouble find)
 {
-if (N==1) return 0;
-int pos=N/2;
-int step=N/2;
-do
+
+	chop_search_1d
+
+return pos;
+}
+
+/**Do a chop search for a value
+@param x index array
+@param N length
+@param find Value to find
+*/
+int search_double(double *x,int N,double find)
 {
-	step=step/2 + (step % 2 > 0 ? 1 : 0);
-
-	if (x[pos]>find)
-	{
-		pos-=step;
-	}else
-	{
-		pos+=step;
-	}
-
-	if (pos<=0)
-	{
-		pos=0;
-		break;
-	}
-	if (pos>=(N-1))
-	{
-		pos=N-1;
-		break;
-	}
-	if (step==0) break;
-	if (x[pos]==find) break;
-	if ((x[pos]<=find)&&((x[pos+1]>find))) break;
-
-}while(1);
-
-if (pos==(N-1)) pos=N-2;
-
+	chop_search_1d
 
 return pos;
 }

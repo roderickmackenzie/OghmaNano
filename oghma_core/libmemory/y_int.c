@@ -23,39 +23,34 @@
 // SOFTWARE.
 // 
 
-/** @file memory_basic.c
+/** @file y_int.c
 @brief memory functions for 3D arrays
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <lang.h>
 #include "sim.h"
-#include "dump.h"
-#include "mesh.h"
 #include <math.h>
 #include "log.h"
 #include <solver_interface.h>
 #include "memory.h"
+#include <g_io.h>
+#include <math_kern_1d.h>
 
-
-void malloc_light_zxyl_float_complex(struct dimensions *dim, float complex * (****var))
+void malloc_y_int(struct dimensions *dim,int * (*var))
 {
-	malloc_4d( (void*****)var, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
+
+	malloc_1d((void **)var,dim->ylen, sizeof(int));
 }
 
 
-
-void free_light_zxyl_float_complex(struct dimensions *dim, float complex * (****in_var))
+void free_y_int( int * (*in_var))
 {
-	free_4d( (void*****)in_var, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
+
+	free_1d((void **)in_var);
+
 }
 
-
-void cpy_light_zxyl_float_complex(struct dimensions *dim, float complex * (****out),float complex * (****in))
+void cpy_y_int(struct dimensions *dim,int * (*out), int * (*in), int alloc)
 {
-	free_4d( (void*****)out, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
-	malloc_4d( (void*****)out, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
-	cpy_4d( (void*****)out, (void*****)in, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
+	cpy_1d((void **)out, (void **)in, dim->ylen, sizeof(int), alloc);
+
 }

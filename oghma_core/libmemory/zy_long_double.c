@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -42,18 +40,24 @@
 #include "memory.h"
 
 
-void malloc_zy_long_double(struct dimensions *dim, long double * (**var))
+void malloc_zy_long_double(struct dimensions *dim, gdouble * (**var))
 {
 	 malloc_2d_long_double(dim->zlen, dim->ylen, var);
 }
 
-void free_zy_long_double(struct dimensions *dim, long double * (**var))
+void free_zy_long_double(struct dimensions *dim, gdouble * (**var))
 {
 	free_2d_long_double(dim->zlen, dim->ylen, var);
 }
 
-void cpy_zy_long_double(struct dimensions *dim, long double * (**out), long double * (**in))
+void cpy_zy_long_double(struct dimensions *dim, gdouble * (**out), gdouble * (**in))
 {
+	if (*in==NULL)
+	{
+		*out=NULL;
+		return;
+	}
+
 	free_2d_long_double(dim->zlen, dim->ylen, out);
 	malloc_2d_long_double(dim->zlen, dim->ylen, out);
 	cpy_2d_long_double(dim->zlen, dim->ylen, out, in);

@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -44,30 +42,30 @@
 
 
 
-void malloc_2d_long_double(int zlen, int xlen, long double * (**var))
+void malloc_2d_long_double(int zlen, int xlen, gdouble * (**var))
 {
 	int z=0;
 
 	if (*var!=NULL)
 	{
-		printf("Warning allocating onto non NULL pointer\n");
+		printf("Warning malloc_2d_long_double allocating onto non NULL pointer\n");
 		getchar();
 	}
 
-	*var = (long double **) malloc(zlen * sizeof(long double *));
+	*var = (gdouble **) malloc(zlen * sizeof(gdouble *));
 
 	for (z = 0; z < zlen; z++)
 	{
-		(*var)[z] = (long double *) malloc(xlen * sizeof(long double));
-		memset((*var)[z], 0, xlen * sizeof(long double));
+		(*var)[z] = (gdouble *) malloc(xlen * sizeof(gdouble));
+		memset((*var)[z], 0, xlen * sizeof(gdouble));
 	}
 
 }
 
-void free_2d_long_double(int zlen, int xlen, long double * (**in_var))
+void free_2d_long_double(int zlen, int xlen, gdouble * (**in_var))
 {
 	int z=0;
-	long double **var=*in_var;
+	gdouble **var=*in_var;
 
 	if (var==NULL)
 	{
@@ -86,13 +84,13 @@ void free_2d_long_double(int zlen, int xlen, long double * (**in_var))
 	*in_var=NULL;
 }
 
-void cpy_2d_long_double(int zlen, int xlen, long double * (**out), long double * (**in))
+void cpy_2d_long_double(int zlen, int xlen, gdouble * (**out), gdouble * (**in))
 {
 	int z=0;
 
 	for (z = 0; z < zlen; z++)
 	{
-		memcpy((*out)[z], (*in)[z], xlen * sizeof(long double));
+		memcpy((*out)[z], (*in)[z], xlen * sizeof(gdouble));
 	}
 
 }

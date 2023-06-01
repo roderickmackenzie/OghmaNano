@@ -1,29 +1,27 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
 //
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
-//
+// https://www.oghma-nano.com
+// 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
 // to deal in the Software without restriction, including without limitation
-// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// the rights to use, copy, modify, merge, publish, distribute, sublicense, 
 // and/or sell copies of the Software, and to permit persons to whom the
 // Software is furnished to do so, subject to the following conditions:
-//
+// 
 // The above copyright notice and this permission notice shall be included
 // in all copies or substantial portions of the Software.
-//
+// 
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
 // OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
 // THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
 // SOFTWARE.
-//
+// 
 
 /** @file memory_basic.c
 @brief memory functions for 3D arrays
@@ -76,6 +74,26 @@ void cpy_light_zxyl_wavelength_double(struct dimensions *dim, double ****out, do
 			for (y=0;y<dim->ylen;y++)
 			{
 				out[z][x][y][l]=in[z][x][y][l];
+			}
+		}
+	}
+}
+
+void mul_light_zxyl_wavelength_double(struct dimensions *dim, double ****out, int l,double mul)
+{
+	int x=0;
+	int y=0;
+	int z=0;
+
+	for (z=0;z<dim->zlen;z++)
+	{
+
+		for (x=0;x<dim->xlen;x++)
+		{
+
+			for (y=0;y<dim->ylen;y++)
+			{
+				out[z][x][y][l]*=mul;
 			}
 		}
 	}

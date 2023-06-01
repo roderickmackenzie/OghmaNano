@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -65,7 +63,7 @@ void mem_set_zx_gdouble_from_zx_gdouble(struct dimensions *dim, gdouble **data_o
 
 }
 
-void mem_set_zx_long_double(struct dimensions *dim, long double **data, long double val)
+void mem_set_zx_long_double(struct dimensions *dim, gdouble **data, gdouble val)
 {
 	int z=0;
 	int x=0;
@@ -81,7 +79,7 @@ void mem_set_zx_long_double(struct dimensions *dim, long double **data, long dou
 
 }
 
-void mem_zx_invert_long_double(struct dimensions *dim, long double **data)
+void mem_zx_invert_long_double(struct dimensions *dim, gdouble **data)
 {
 	int z=0;
 	int x=0;
@@ -97,11 +95,11 @@ void mem_zx_invert_long_double(struct dimensions *dim, long double **data)
 
 }
 
-void mem_mul_zx_area(struct dimensions *dim, long double **data)
+void mem_mul_zx_area(struct dimensions *dim, gdouble **data)
 {
 	int z=0;
 	int x=0;
-	long double A=0.0;
+	gdouble A=0.0;
 
 	for (z = 0; z < dim->zlen; z++)
 	{
@@ -114,7 +112,7 @@ void mem_mul_zx_area(struct dimensions *dim, long double **data)
 
 }
 
-void mem_mul_zx_long_double(struct dimensions *dim, long double **data,long double val)
+void mem_mul_zx_long_double(struct dimensions *dim, gdouble **data,gdouble val)
 {
 	int z=0;
 	int x=0;
@@ -129,7 +127,7 @@ void mem_mul_zx_long_double(struct dimensions *dim, long double **data,long doub
 
 }
 
-void mem_div_zx_long_double(struct dimensions *dim, long double **data,long double val)
+void mem_div_zx_long_double(struct dimensions *dim, gdouble **data,gdouble val)
 {
 	int z=0;
 	int x=0;
@@ -165,8 +163,13 @@ void free_zx_gdouble(struct dimensions *dim, gdouble * (**in_var))
 	free_2d_long_double(dim->zlen, dim->xlen, in_var);
 }
 
-void cpy_zx_long_double(struct dimensions *dim, long double * (**out),long double * (**in))
+void cpy_zx_long_double(struct dimensions *dim, gdouble * (**out),gdouble * (**in))
 {
+	if (*in==NULL)
+	{
+		*out=NULL;
+		return;
+	}
 	free_2d_long_double(dim->zlen, dim->xlen, out);
 	malloc_2d_long_double(dim->zlen, dim->xlen, out);
 	cpy_2d_long_double(dim->zlen, dim->xlen, out, in);

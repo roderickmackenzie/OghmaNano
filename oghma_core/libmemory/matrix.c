@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -43,6 +41,7 @@
 #include "md5.h"
 #include "cal_path.h"
 #include <timer.h>
+#include <g_io.h>
 
 void matrix_init(struct matrix *mx)
 {
@@ -70,7 +69,6 @@ void matrix_init(struct matrix *mx)
 
 	//stats
 	mx->tot_time=0;
-	mx->call=0;
 	strcpy(mx->dump_name,"");
 	mx->msort = NULL;
 	mx->msort_len=-1;
@@ -94,14 +92,14 @@ int i;
 	printf("J:\n");
 	for (i=0;i<mx->nz;i++)
 	{
-		printf_log(sim,"%ld %ld %Le\n",mx->Tj[i],mx->Ti[i],mx->Tx[i]);
+		printf_log(sim,"%ld %ld %le\n",mx->Tj[i],mx->Ti[i],(double)mx->Tx[i]);
 	}
 
 	printf("b:");
 	
 	for (i=0;i<mx->M;i++)
 	{
-		printf_log(sim,"%Le\n",mx->b[i]);
+		printf_log(sim,"%le\n",(double)mx->b[i]);
 	}
 
 }
@@ -111,21 +109,24 @@ void matrix_load_from_file(struct simulation *sim,struct matrix *mx,char *file_n
 int i;
 	FILE *in;
 	char temp[200];
-	in=fopen(file_name,"r");
+	double tmp;
+	in=g_fopen(file_name,"r");
 	fscanf(in,"%d",&mx->M);
 	fscanf(in,"%d",&mx->nz);
 	matrix_malloc(sim,mx);
 	fscanf(in,"%s",temp);
 	for (i=0;i<mx->nz;i++)
 	{
-		fscanf(in,"%d %d %Le",&mx->Tj[i],&mx->Ti[i],&mx->Tx[i]);
+		fscanf(in,"%d %d %le",&mx->Tj[i],&mx->Ti[i],&tmp);
+		mx->Tx[i]=(gdouble)tmp;
 	}
 
 	fscanf(in,"%s",temp);
 	
 	for (i=0;i<mx->M;i++)
 	{
-		fscanf(in,"%Le\n",&mx->b[i]);
+		fscanf(in,"%le\n",&tmp);
+		mx->b[i]=(gdouble)tmp;
 	}
 
 	fclose(in);
@@ -135,20 +136,20 @@ void matrix_dump_to_file(struct simulation *sim,struct matrix *mx,char *file_nam
 {
 int i;
 	FILE *out;
-	out=fopen(file_name,"w");
+	out=g_fopen(file_name,"w");
 	fprintf(out,"%d\n",mx->M);
 	fprintf(out,"%d\n",mx->nz);
 	fprintf(out,"J:\n");
 	for (i=0;i<mx->nz;i++)
 	{
-		fprintf(out,"%d %d %Le\n",mx->Tj[i],mx->Ti[i],mx->Tx[i]);
+		fprintf(out,"%d %d %le\n",mx->Tj[i],mx->Ti[i],(double)mx->Tx[i]);
 	}
 
 	fprintf(out,"b:\n");
 	
 	for (i=0;i<mx->M;i++)
 	{
-		fprintf(out,"%Le\n",mx->b[i]);
+		fprintf(out,"%le\n",(double)mx->b[i]);
 	}
 
 	fclose(out);
@@ -165,7 +166,7 @@ int matrix_cmp_to_file(struct simulation *sim,struct matrix *mx,char *file_name)
 	int Tj,Ti;
 	FILE *out;
 
-	out=fopen(file_name,"r");
+	out=g_fopen(file_name,"r");
 
 	fscanf(out,"%s",temp);
 	for (i=0;i<mx->nz;i++)
@@ -173,7 +174,7 @@ int matrix_cmp_to_file(struct simulation *sim,struct matrix *mx,char *file_name)
 		fscanf(out,"%d %d %s",&Tj,&Ti,Tx_file);
 
 
-		sprintf(Tx,"%Le",mx->Tx[i]);
+		sprintf(Tx,"%le",(double)mx->Tx[i]);
 		if (strcmp(Tx,Tx_file)!=0)
 		{
 			printf("J: %d %d %s!=%s\n",Ti,Tj,Tx,Tx_file);
@@ -188,7 +189,7 @@ int matrix_cmp_to_file(struct simulation *sim,struct matrix *mx,char *file_name)
 	for (i=0;i<mx->M;i++)
 	{
 		fscanf(out,"%s",b);
-		sprintf(b_file,"%Le",mx->b[i]);
+		sprintf(b_file,"%le",(double)mx->b[i]);
 		if (strcmp(b,b_file)!=0)
 		{
 			printf("b: %d %s!=%s\n",i,b,b_file);
@@ -208,13 +209,13 @@ int i;
 	{
 		for (i=0;i<mx->M;i++)
 		{
-			printf_log(sim,"%Le %Le\n",mx->b[i],mx->bz[i]);
+			printf_log(sim,"%le %le\n",mx->b[i],mx->bz[i]);
 		}
 	}else
 	{
 		for (i=0;i<mx->M;i++)
 		{
-			printf_log(sim,"%Le\n",mx->b[i]);
+			printf_log(sim,"%le\n",mx->b[i]);
 		}
 	}
 }
@@ -226,26 +227,26 @@ int i;
 	{
 		for (i=0;i<mx->nz;i++)
 		{
-			printf_log(sim,"%ld %ld %Le %Le\n",mx->Ti[i],mx->Tj[i],mx->Tx[i],mx->Txz[i]);
+			printf_log(sim,"%ld %ld %le %le\n",mx->Ti[i],mx->Tj[i],mx->Tx[i],mx->Txz[i]);
 		}
 	}else
 	{
 
 		for (i=0;i<mx->nz;i++)
 		{
-			printf_log(sim,"%ld %ld %Le\n",mx->Ti[i],mx->Tj[i],mx->Tx[i]);
+			printf_log(sim,"%ld %ld %le\n",mx->Ti[i],mx->Tj[i],mx->Tx[i]);
 		}
 	}
 }
 
 
-long double matrix_cal_error(struct simulation *sim,struct matrix *mx)
+gdouble matrix_cal_error(struct simulation *sim,struct matrix *mx)
 {
 int i;
-long double sum=0.0;
+gdouble sum=0.0;
 	for (i=0;i<mx->M;i++)
 	{
-		sum+=fabsl(mx->b[i]);
+		sum+=gfabs(mx->b[i]);
 	}
 
 return sum;
@@ -253,11 +254,8 @@ return sum;
 
 int matrix_solve(struct simulation *sim,struct matrix_solver_memory *msm,struct matrix *mx)
 {
-char out[100];
-char temp[200];
+char file_name[400];
 struct md5 hash;
-int dump_matrix_check=FALSE;
-int matrix_check=FALSE;
 int start_time=timer_get_time_in_ms();
 	
 	if (mx->use_cache==TRUE)
@@ -267,12 +265,13 @@ int start_time=timer_get_time_in_ms();
 			md5_init(&hash);
 			md5_update(&hash,(char*)mx->Ti,mx->nz*sizeof(int));
 			md5_update(&hash,(char*)mx->Tj,mx->nz*sizeof(int));
-			md5_update(&hash,(char*)mx->Tx,mx->nz*sizeof(long double));
-			md5_update(&hash,(char*)mx->b,mx->M*sizeof(long double));
+			md5_update(&hash,(char*)mx->Tx,mx->nz*sizeof(gdouble));
+			md5_update(&hash,(char*)mx->b,mx->M*sizeof(gdouble));
 			md5_to_str(mx->hash,&hash);
 
-			join_path(2,mx->cache_file_path,get_cache_path(sim),mx->hash);
-
+			sprintf(file_name,"oghma_cache_%s.dat",mx->hash);
+			join_path(2,mx->cache_file_path,sim->newton_cache_path,file_name);
+			//printf("%s %d\n",mx->cache_file_path,isfile(mx->cache_file_path));
 			if (isfile(mx->cache_file_path)==0)
 			{
 				return 0;
@@ -288,12 +287,12 @@ int start_time=timer_get_time_in_ms();
 
 		for (i=0;i<mx->nz;i++)
 		{
-			printf("%d %Le\n",i,mx->b[i]);
+			printf("%d %le\n",i,mx->b[i]);
 		}
 
 		for (i=0;i<mx->M;i++)
 		{
-			printf("%d %Le\n",i,mx->b[i]);
+			printf("%d %le\n",i,mx->b[i]);
 		}
 
 		getchar();*/
@@ -312,7 +311,7 @@ int start_time=timer_get_time_in_ms();
 	}
 
 	mx->tot_time+=(timer_get_time_in_ms()-start_time);
-	mx->call++;
+	mx->ittr++;
 return -1;
 }
 
@@ -322,21 +321,21 @@ void matrix_malloc(struct simulation *sim,struct matrix *mx)
 
 	malloc_1d((void **)(&mx->Tj), mx->nz, sizeof(int));
 
-	malloc_1d((void **)(&mx->Tx), mx->nz, sizeof(long double));
+	malloc_1d((void **)(&mx->Tx), mx->nz, sizeof(gdouble));
 
-	malloc_1d((void **)(&mx->b), mx->M, sizeof(long double));
+	malloc_1d((void **)(&mx->b), mx->M, sizeof(gdouble));
 
 
 	if (mx->complex_matrix==TRUE)
 	{
-		malloc_1d((void **)(&mx->Txz), mx->nz, sizeof(long double));
+		malloc_1d((void **)(&mx->Txz), mx->nz, sizeof(gdouble));
 
-		malloc_1d((void **)(&mx->bz), mx->M, sizeof(long double));
+		malloc_1d((void **)(&mx->bz), mx->M, sizeof(gdouble));
 	}
 
 	/*if (mx->build_from_non_sparse==TRUE)
 	{
-		malloc_2d((void ***)(&mx->J), mx->M, mx->M, sizeof(long double));
+		malloc_2d((void ***)(&mx->J), mx->M, mx->M, sizeof(gdouble));
 	}*/
 
 }
@@ -371,15 +370,7 @@ int matrix_sort_comparator (const void *in_m0, const void *in_m1)
 
 void matrix_convert_J_to_sparse(struct simulation *sim,struct matrix *mx)
 {
-	int x;
-	int y;
 	int n;
-	int nn;
-	int write_pos=0;
-	int read_pos=0;
-	int read_Ti=0;
-	int read_Tj=0;
-	int t=0;
 
 	struct matrix_sort *ms;
 	if (mx->msort_len<mx->nz)
@@ -399,7 +390,7 @@ void matrix_convert_J_to_sparse(struct simulation *sim,struct matrix *mx)
 	/*for (n=0;n<mx->nz;n++)
 	{
 		ms=&(mx->msort[n]);
-		printf("b %d %d %Le\n",ms->Ti,ms->Tj,ms->Tx);
+		printf("b %d %d %le\n",ms->Ti,ms->Tj,ms->Tx);
 	}*/
 
 	qsort(mx->msort, mx->nz,sizeof(struct matrix_sort),matrix_sort_comparator);
@@ -407,7 +398,7 @@ void matrix_convert_J_to_sparse(struct simulation *sim,struct matrix *mx)
 	for (n=0;n<mx->nz;n++)
 	{
 		ms=&(mx->msort[n]);
-		printf("a %d %d %Le\n",ms->Ti,ms->Tj,ms->Tx);
+		printf("a %d %d %le\n",ms->Ti,ms->Tj,ms->Tx);
 	}*/
 	
 
@@ -418,7 +409,7 @@ void matrix_convert_J_to_sparse(struct simulation *sim,struct matrix *mx)
 	for (n=0;n<mx->nz;n++)
 	{
 		ms=&(mx->msort[n]);
-		//printf("c %d %d %Le %d\n",ms->Ti,ms->Tj,ms->Tx,pos);
+		//printf("c %d %d %le %d\n",ms->Ti,ms->Tj,ms->Tx,pos);
 		//printf("%d %d\n",last_Ti,last_Tj);
 		if ((ms->Ti!=-1)&&(ms->Tj!=-1))
 		{
@@ -440,7 +431,7 @@ void matrix_convert_J_to_sparse(struct simulation *sim,struct matrix *mx)
 	/*for (n=0;n<mx->nz;n++)
 	{
 		ms=&(mx->msort[n]);
-		printf("c %d %d %Le\n",ms->Ti,ms->Tj,ms->Tx);
+		printf("c %d %d %le\n",ms->Ti,ms->Tj,ms->Tx);
 	}
 	printf("\n");*/
 	pos=0;
@@ -545,7 +536,7 @@ void matrix_convert_J_to_sparse(struct simulation *sim,struct matrix *mx)
 	//mx->nz=write_pos;
 }
 
-void matrix_add_nz_item(struct simulation *sim,struct matrix *mx,int x,int y,long double val)
+void matrix_add_nz_item(struct simulation *sim,struct matrix *mx,int x,int y,gdouble val)
 {
 	//int i;
 	//(printf("search =%d %d\n",x,y);
@@ -566,7 +557,7 @@ void matrix_add_nz_item(struct simulation *sim,struct matrix *mx,int x,int y,lon
 		mx->nz_max+=1000;
 		mx->Ti=realloc(mx->Ti,mx->nz_max*sizeof(int));
 		mx->Tj=realloc(mx->Tj,mx->nz_max*sizeof(int));
-		mx->Tx=realloc(mx->Tx,mx->nz_max*sizeof(long double));
+		mx->Tx=realloc(mx->Tx,mx->nz_max*sizeof(gdouble));
 	}
 
 	mx->Ti[mx->nz]=y;
@@ -599,17 +590,17 @@ void matrix_realloc(struct simulation *sim,struct matrix *mx)
 		memset(mx->Tj, 0, mx->nz*sizeof(int));
 	}
 
-	dtemp = realloc(mx->Tx,mx->nz*sizeof(long double));
+	dtemp = realloc(mx->Tx,mx->nz*sizeof(gdouble));
 	if (dtemp==NULL)
 	{
 		ewe(sim,"mx->Tx - memory error\n");
 	}else
 	{
 		mx->Tx=dtemp;
-		memset(mx->Tx, 0, mx->nz*sizeof(long double));
+		memset(mx->Tx, 0, mx->nz*sizeof(gdouble));
 	}
 
-	dtemp = realloc(mx->b,mx->M*sizeof(long double));
+	dtemp = realloc(mx->b,mx->M*sizeof(gdouble));
 
 	if (dtemp==NULL)
 	{
@@ -617,22 +608,22 @@ void matrix_realloc(struct simulation *sim,struct matrix *mx)
 	}else
 	{
 		mx->b=dtemp;
-		memset(mx->b, 0, mx->M*sizeof(long double));
+		memset(mx->b, 0, mx->M*sizeof(gdouble));
 	}
 
 	if (mx->complex_matrix==TRUE)
 	{
-		dtemp = realloc(mx->Txz,mx->nz*sizeof(long double));
+		dtemp = realloc(mx->Txz,mx->nz*sizeof(gdouble));
 		if (dtemp==NULL)
 		{
 			ewe(sim,"mx->Txz - memory error\n");
 		}else
 		{
 			mx->Txz=dtemp;
-			memset(mx->Txz, 0, mx->nz*sizeof(long double));
+			memset(mx->Txz, 0, mx->nz*sizeof(gdouble));
 		}
 
-		dtemp = realloc(mx->bz,mx->M*sizeof(long double));
+		dtemp = realloc(mx->bz,mx->M*sizeof(gdouble));
 
 		if (dtemp==NULL)
 		{
@@ -640,7 +631,7 @@ void matrix_realloc(struct simulation *sim,struct matrix *mx)
 		}else
 		{
 			mx->bz=dtemp;
-			memset(mx->bz, 0, mx->M*sizeof(long double));
+			memset(mx->bz, 0, mx->M*sizeof(gdouble));
 		}
 
 	}
@@ -655,22 +646,22 @@ void matrix_realloc(struct simulation *sim,struct matrix *mx)
 
 		free(mx->J);
 
-		mx->J=malloc(mx->M*sizeof(long double*));
+		mx->J=malloc(mx->M*sizeof(gdouble*));
 		for (y=0;y<mx->M;y++)
 		{
-			mx->J[y]=malloc(mx->M*sizeof(long double));
-			memset(mx->J[y], 0, mx->M*sizeof(long double));
+			mx->J[y]=malloc(mx->M*sizeof(gdouble));
+			memset(mx->J[y], 0, mx->M*sizeof(gdouble));
 		}
 	}*/
 }
 
 void matrix_zero_b(struct simulation *sim,struct matrix *mx)
 {
-	memset(mx->b, 0, mx->M*sizeof(long double));
+	memset(mx->b, 0, mx->M*sizeof(gdouble));
 
 	if (mx->complex_matrix==TRUE)
 	{
-		memset(mx->bz, 0, mx->M*sizeof(long double));
+		memset(mx->bz, 0, mx->M*sizeof(gdouble));
 	}
 
 	/*if (mx->build_from_non_sparse==TRUE)
@@ -679,29 +670,25 @@ void matrix_zero_b(struct simulation *sim,struct matrix *mx)
 
 		for (y=0;y<mx->M;y++)
 		{
-			memset(mx->J[y], 0, mx->M*sizeof(long double));
+			memset(mx->J[y], 0, mx->M*sizeof(gdouble));
 		}
 	}*/
 }
 
 void matrix_save(struct simulation *sim,struct matrix *mx)
 {
-	char cache_file[PATH_MAX];
 	FILE *file;
-
-	join_path(2, cache_file,get_cache_path(sim),mx->hash);
-
-	file=fopen(cache_file,"wb");
+	file=g_fopen(mx->cache_file_path,"wb");
 
 	fwrite ((char*)mx->Ti,mx->nz*sizeof(int),1,file);
 	fwrite ((char*)mx->Tj,mx->nz*sizeof(int),1,file);
-	fwrite ((char*)mx->Tx,mx->nz*sizeof(long double),1,file);
-	fwrite ((char*)mx->b,mx->M*sizeof(long double),1,file);
+	fwrite ((char*)mx->Tx,mx->nz*sizeof(gdouble),1,file);
+	fwrite ((char*)mx->b,mx->M*sizeof(gdouble),1,file);
 
 	if (mx->complex_matrix==TRUE)
 	{
-		fwrite ((char*)mx->Txz,mx->nz*sizeof(long double),1,file);
-		fwrite ((char*)mx->bz,mx->M*sizeof(long double),1,file);
+		fwrite ((char*)mx->Txz,mx->nz*sizeof(gdouble),1,file);
+		fwrite ((char*)mx->bz,mx->M*sizeof(gdouble),1,file);
 	}
 
 	fclose(file);
@@ -710,12 +697,14 @@ void matrix_save(struct simulation *sim,struct matrix *mx)
 
 int matrix_load(struct simulation *sim,struct matrix *mx)
 {
+	char file_name[400];
 	char cache_file[PATH_MAX];
 	FILE *file;
 
-	join_path(2, cache_file,get_cache_path(sim),mx->hash);
+	sprintf(file_name,"oghma_cache_%s.dat",mx->hash);
+	join_path(2,cache_file,sim->newton_cache_path,file_name);
 
-	file=fopen(cache_file,"rb");
+	file=g_fopen(cache_file,"rb");
 	if (file==NULL)
 	{
 		return -1;
@@ -723,13 +712,13 @@ int matrix_load(struct simulation *sim,struct matrix *mx)
 
 	fread((int*)mx->Ti, mx->nz*sizeof(int), 1, file);
 	fread((int*)mx->Tj, mx->nz*sizeof(int), 1, file);
-	fread((long double *)mx->Tx, mx->nz*sizeof(long double), 1, file);
-	fread((long double *)mx->b, mx->M*sizeof(long double), 1, file);
+	fread((gdouble *)mx->Tx, mx->nz*sizeof(gdouble), 1, file);
+	fread((gdouble *)mx->b, mx->M*sizeof(gdouble), 1, file);
 
 	if (mx->complex_matrix==TRUE)
 	{
-		fread((long double *)mx->Txz, mx->nz*sizeof(long double), 1, file);
-		fread((long double *)mx->bz, mx->M*sizeof(long double), 1, file);
+		fread((gdouble *)mx->Txz, mx->nz*sizeof(gdouble), 1, file);
+		fread((gdouble *)mx->bz, mx->M*sizeof(gdouble), 1, file);
 	}
 	fclose(file);
 

@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -78,7 +76,6 @@ void cpy_4d( void *(****dst), void *(****src),int zlen, int xlen, int ylen,int b
 int x=0;
 int y=0;
 int z=0;
-int b=0;
 
 	for (z = 0; z < zlen; z++)
 	{
@@ -100,22 +97,46 @@ void malloc_4d( void * (****var), int zlen, int xlen, int ylen,int bands,int ite
 	int y=0;
 	int z=0;
 
-	//printf("alloc %d %d %d %d \n",xlen,ylen,zlen,srh_bands);
+	//printf("alloc %d %d %d %d \n",xlen,ylen,zlen,bands);
 	if ((zlen>0)&&(xlen>0))
 	{
 		*var = (void  ****) malloc(zlen * sizeof(void  ***));
+		if (*var==NULL)
+		{
+			printf("malloc_4d no more memory\n");
+			exit(0);
+		}
 
 		for (z = 0; z < zlen; z++)
 		{
 			(*var)[z] = (void  ***) malloc(xlen * sizeof(void **));
+			if ((*var)[z]==NULL)
+			{
+				printf("malloc_4d no more memory\n");
+				exit(0);
+			}
+
+
 			for (x = 0; x < xlen; x++)
 			{
 				(*var)[z][x] = (void  **) malloc(ylen * sizeof(void *));
+				if ((*var)[z][x]==NULL)
+				{
+					printf("malloc_4d no more memory\n");
+					exit(0);
+				}
+
 				for (y = 0; y < ylen; y++)
 				{
 					if (bands != 0)
 					{
 						(*var)[z][x][y] = (void  *) malloc(bands * item_size);
+						if ((*var)[z][x][y]==NULL)
+						{
+							printf("malloc_4d no more memory\n");
+							exit(0);
+						}
+
 						memset((*var)[z][x][y], 0, bands * item_size);
 					}else
 					{

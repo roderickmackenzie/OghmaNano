@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -46,7 +44,6 @@
 
 void matrix_cpy(struct simulation *sim,struct matrix *out,struct matrix *in)
 {
-	int y;
 	//printf("matrix copy\n");
 	//getchar();
 	out->nz=in->nz;
@@ -62,27 +59,27 @@ void matrix_cpy(struct simulation *sim,struct matrix *out,struct matrix *in)
 
 	if (in->nz_max==0)
 	{
-		cpy_1d_alloc((void **)&(out->Ti), (void **)&(in->Ti), in->nz, sizeof(int));
-		cpy_1d_alloc((void **)&(out->Tj), (void **)&(in->Tj), in->nz, sizeof(int));
-		cpy_1d_alloc((void **)&(out->Tx), (void **)&(in->Tx), in->nz, sizeof(long double));
+		cpy_1d((void **)&(out->Ti), (void **)&(in->Ti), in->nz, sizeof(int),TRUE);
+		cpy_1d((void **)&(out->Tj), (void **)&(in->Tj), in->nz, sizeof(int),TRUE);
+		cpy_1d((void **)&(out->Tx), (void **)&(in->Tx), in->nz, sizeof(gdouble),TRUE);
 	}else
 	{
 		out->nz_max=in->nz_max;
-		cpy_1d_alloc((void **)&(out->Ti), (void **)&(in->Ti), in->nz_max, sizeof(int));
-		cpy_1d_alloc((void **)&(out->Tj), (void **)&(in->Tj), in->nz_max, sizeof(int));
-		cpy_1d_alloc((void **)&(out->Tx), (void **)&(in->Tx), in->nz_max, sizeof(long double));
+		cpy_1d((void **)&(out->Ti), (void **)&(in->Ti), in->nz_max, sizeof(int),TRUE);
+		cpy_1d((void **)&(out->Tj), (void **)&(in->Tj), in->nz_max, sizeof(int),TRUE);
+		cpy_1d((void **)&(out->Tx), (void **)&(in->Tx), in->nz_max, sizeof(gdouble),TRUE);
 	}
-	cpy_1d_alloc((void **)&(out->b), (void **)&(in->b), in->M, sizeof(long double));
+	cpy_1d((void **)&(out->b), (void **)&(in->b), in->M, sizeof(gdouble),TRUE);
 
 	if (in->complex_matrix==TRUE)
 	{
-		cpy_1d_alloc((void **)&(out->Txz), (void **)&(in->Txz), in->nz, sizeof(long double));
-		cpy_1d_alloc((void **)&(out->bz), (void **)&(in->bz), in->M, sizeof(long double));
+		cpy_1d((void **)&(out->Txz), (void **)&(in->Txz), in->nz, sizeof(gdouble),TRUE);
+		cpy_1d((void **)&(out->bz), (void **)&(in->bz), in->M, sizeof(gdouble),TRUE);
 	}
 
 	if (in->build_from_non_sparse==TRUE)
 	{
-		cpy_1d_alloc((void **)&(out->msort), (void **)&(in->msort), in->msort_len, sizeof(struct matrix_sort));
+		cpy_1d((void **)&(out->msort), (void **)&(in->msort), in->msort_len, sizeof(struct matrix_sort),TRUE);
 	}
 
 

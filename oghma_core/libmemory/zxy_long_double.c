@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -40,52 +38,55 @@
 #include "log.h"
 #include <solver_interface.h>
 #include "memory.h"
-
+#include <g_io.h>
+#include "zxy_math_kern.h"
+#include <math_xy.h>
 
 void malloc_zxy_long_double(struct dimensions *dim, gdouble * (***var))
 {
-	malloc_3d((void****)var,dim->zlen, dim->xlen, dim->ylen,sizeof(long double));
+	malloc_3d((void****)var,dim->zlen, dim->xlen, dim->ylen,sizeof(gdouble));
 }
 
 void free_zxy_long_double(struct dimensions *dim, gdouble * (***var))
 {
-	free_3d((void****)var,dim->zlen, dim->xlen, dim->ylen,sizeof(long double));
+	free_3d((void****)var,dim->zlen, dim->xlen, dim->ylen,sizeof(gdouble));
 }
 
-void cpy_zxy_long_double(struct dimensions *dim, long double * (***out), long double * (***in))
+void cpy_zxy_long_double(struct dimensions *dim, gdouble * (***out), gdouble * (***in),int aloc)
 {
-	free_3d((void****)out,dim->zlen, dim->xlen, dim->ylen,sizeof(long double));
-	if (*in==NULL)
+	if (aloc==TRUE)
 	{
-		return;
+		free_3d((void****)out,dim->zlen, dim->xlen, dim->ylen,sizeof(gdouble));
+		if (*in==NULL)
+		{
+			return;
+		}
+		malloc_3d((void****)out,dim->zlen, dim->xlen, dim->ylen,sizeof(gdouble));
+	}else
+	{
+		if (in==NULL)
+		{
+			printf("Warning copying null pointer\n");
+		}
+
+		if (out==NULL)
+		{
+			printf("Warning copying onto null pointer!\n");
+			getchar();
+		}
+
 	}
-	malloc_3d((void****)out,dim->zlen, dim->xlen, dim->ylen,sizeof(long double));
-	cpy_3d((void****)out, (void****)in, dim->zlen, dim->xlen, dim->ylen, sizeof(long double));
+
+	cpy_3d((void****)out, (void****)in, dim->zlen, dim->xlen, dim->ylen, sizeof(gdouble));
 }
 
-void three_d_copy_gdouble(struct dimensions *dim, long double ***out, long double ***in)
-{
-	if (in==NULL)
-	{
-		printf("Warning copying null pointer\n");
-	}
-
-	if (out==NULL)
-	{
-		printf("Warning copying onto null pointer!\n");
-		getchar();
-	}
-
-	cpy_3d((void****)&out, (void****)&in, dim->zlen, dim->xlen, dim->ylen, sizeof(long double));
-}
-
-long double zxy_min_gdouble(struct dimensions *dim, gdouble ***var)
+gdouble zxy_min_gdouble(struct dimensions *dim, gdouble ***var)
 {
 	int x=0;
 	int y=0;
 	int z=0;
 
-	long double min=var[0][0][0];
+	gdouble min=var[0][0][0];
 
 	for (z = 0; z < dim->zlen; z++)
 	{
@@ -104,53 +105,84 @@ long double zxy_min_gdouble(struct dimensions *dim, gdouble ***var)
 return min;
 }
 
-long double zxy_max_gdouble(struct dimensions *dim, gdouble ***var)
+double zxy_max_double(struct dimensions *dim, double ***var)
 {
-	int x=0;
-	int y=0;
-	int z=0;
+	int z_len=dim->zlen;
+	int x_len=dim->xlen;
+	int y_len=dim->ylen;
+	max_zxy;
+	return max;
+}
 
-	long double max=var[0][0][0];
+//Finds the centre point of a distribution and the sides where the max value has decreased by a factor of 0.5 
+void zxy_max_y_pos_slice_long_double(struct dimensions *dim, gdouble ***var,int z, int x,double *max_y_mid, double *max_yn, double *max_yp,double *val)
+{
+	int y;
+	double tot=0.0;
 
-	for (z = 0; z < dim->zlen; z++)
+	struct math_xy dat;
+	math_xy_init(&dat);
+	math_xy_malloc(&dat,dim->ylen);
+
+	struct math_xy dat_intergral;
+	math_xy_init(&dat_intergral);
+	math_xy_malloc(&dat_intergral,dim->ylen);
+
+	dat.len=dim->ylen;
+	dat_intergral.len=dim->ylen;
+
+	for (y = 0; y < dim->ylen; y++)
 	{
-		for (x = 0; x < dim->xlen; x++)
+		dat.data[y]=var[z][x][y];
+		dat.x[y]=dim->y[y];
+
+		dat_intergral.data[y]=tot;
+		dat_intergral.x[y]=dim->y[y];
+		tot+=var[z][x][y]*dim->dY[y];
+	}
+
+	inter_swap(&dat_intergral);
+
+	if (max_y_mid!=NULL)
+	{
+		inter_get(&dat_intergral,tot*0.5,max_y_mid);
+		if (val!=NULL)
 		{
-			for (y = 0; y < dim->ylen; y++)
-			{
-				if (var[z][x][y]>max)
-				{
-					max=var[z][x][y];
-				}
-			}
+			inter_get(&dat,*max_y_mid,val);
 		}
 	}
 
-return max;
-}
-
-long double zx_y_max_gdouble(struct dimensions *dim, gdouble ***var,int y)
-{
-	int x=0;
-	int z=0;
-
-	long double max=var[0][0][0];
-
-	for (z = 0; z < dim->zlen; z++)
+	if (max_yn!=NULL)
 	{
-		for (x = 0; x < dim->xlen; x++)
+		inter_get(&dat_intergral,tot*0.25,max_yn);
+		if (val!=NULL)
 		{
-			if (var[z][x][y]>max)
-			{
-				max=var[z][x][y];
-			}
+			inter_get(&dat,*max_yn,val);
 		}
 	}
 
-return max;
+	if (max_yp!=NULL)
+	{
+		inter_get(&dat_intergral,tot*0.75,max_yp);
+		if (val!=NULL)
+		{
+			inter_get(&dat,*max_yp,val);
+		}
+	}
+
+	math_xy_free(&dat);
+	math_xy_free(&dat_intergral);
+
 }
 
-void zxy_set_gdouble(struct dimensions *dim, gdouble ***var, gdouble val)
+void zxy_norm_gdouble(struct dimensions *dim, gdouble ***var)
+{
+	gdouble max=0.0;
+	max=zxy_max_double(dim,var);
+	zxy_mul_gdouble(dim, var, 1.0/max);
+}
+
+void set_zxy_long_double(struct dimensions *dim, gdouble ***var, gdouble val)
 {
 int x=0;
 int y=0;
@@ -191,121 +223,47 @@ int z=0;
 
 }
 
-
-
-void three_d_add_gdouble(struct dimensions *dim, gdouble ***var, gdouble ***add)
+void three_d_add_gdouble(struct dimensions *dim, gdouble ***a, gdouble ***b)
 {
-int x=0;
-int y=0;
-int z=0;
-
-	for (z = 0; z < dim->zlen; z++)
-	{
-		for (x = 0; x < dim->xlen; x++)
-		{
-			for (y = 0; y < dim->ylen; y++)
-			{
-				var[z][x][y]+=add[z][x][y];
-			}
-
-		}
-	}
-
+	add_zxy_zxy;
 }
 
-void zxy_mul_gdouble(struct dimensions *dim, gdouble ***src, gdouble val)
+void add_zxy_long_double_double(struct dimensions *dim, gdouble ***a, double ***b)
 {
-int x=0;
-int y=0;
-int z=0;
+	add_zxy_zxy;
+}
 
-	for (z = 0; z < dim->zlen; z++)
-	{
-		for (x = 0; x < dim->xlen; x++)
-		{
-			for (y = 0; y < dim->ylen; y++)
-			{
-				src[z][x][y]*=val;
-			}
-
-		}
-	}
-
+void zxy_mul_gdouble(struct dimensions *dim, gdouble ***a, gdouble b)
+{
+	mul_zxy_double;
 }
 
 void zxy_long_double_mul_by_zxy_long_double(struct dimensions *dim, gdouble ***a, gdouble ***b)
 {
-int x=0;
-int y=0;
-int z=0;
-
-	for (z = 0; z < dim->zlen; z++)
-	{
-		for (x = 0; x < dim->xlen; x++)
-		{
-			for (y = 0; y < dim->ylen; y++)
-			{
-				a[z][x][y]*=b[z][x][y];
-			}
-
-		}
-	}
-
+	mul_zxy_zxy;
 }
 
 void zxy_long_double_div_by_zxy_long_double(struct dimensions *dim, gdouble ***a, gdouble ***b)
 {
-int x=0;
-int y=0;
-int z=0;
-
-	for (z = 0; z < dim->zlen; z++)
-	{
-		for (x = 0; x < dim->xlen; x++)
-		{
-			for (y = 0; y < dim->ylen; y++)
-			{
-				a[z][x][y]/=b[z][x][y];
-			}
-
-		}
-	}
-
+	div_zxy_zxy;
 }
 
-void zxy_div_gdouble(struct dimensions *dim, gdouble ***src, gdouble val)
+
+gdouble three_d_avg_raw(struct device *in, gdouble ***src)
 {
+gdouble sum=0.0;
+gdouble ret=0.0;
+gdouble count=0.0;
+
 int x=0;
 int y=0;
 int z=0;
 
-	for (z = 0; z < dim->zlen; z++)
-	{
-		for (x = 0; x < dim->xlen; x++)
-		{
-			for (y = 0; y < dim->ylen; y++)
-			{
-				src[z][x][y]/=val;
-			}
-
-		}
-	}
-
-}
-
-long double three_d_avg_raw(struct device *in, long double ***src)
-{
-int x=0;
-int y=0;
-int z=0;
-long double sum=0.0;
-long double ret=0.0;
 if (src==NULL)
 {
 	return 0.0;
 }
 
-long double count=0.0;
 struct dimensions *dim=&(in->ns.dim);
 
 	for (z = 0; z < dim->zlen; z++)
@@ -317,7 +275,6 @@ struct dimensions *dim=&(in->ns.dim);
 
 				sum+=src[z][x][y];
 				count+=1.0;
-//				printf("%Le %Le %Le %Le %Le %Le\n",dim->dx[x],dim->dy[y],dim->dz[z],in->zlen,in->xlen,in->ylen);
 			}
 
 		}
@@ -327,59 +284,29 @@ ret=sum/count;
 return ret;
 }
 
-long double three_d_avg(struct device *in, long double ***src)
+gdouble three_d_avg(struct device *in, gdouble ***src)
 {
-int x=0;
-int y=0;
-int z=0;
-long double sum=0.0;
-long double ret=0.0;
+gdouble sum=0.0;
+gdouble ret=0.0;
 
-long double dx=0.0;
-long double dy=0.0;
-long double dz=0.0;
+avg_vol_xzy;
 
-if (src==NULL)
-{
-	return 0.0;
-}
-
-struct dimensions *dim=&(in->ns.dim);
-
-	for (z = 0; z < dim->zlen; z++)
-	{
-		for (x = 0; x < dim->xlen; x++)
-		{
-			for (y = 0; y < dim->ylen; y++)
-			{
-
-				sum+=src[z][x][y]*dim->dX[x]*dim->dY[y]*dim->dZ[z];
-//				printf("%Le %Le %Le %Le %Le %Le\n",dim->dx[x],dim->dy[y],dim->dZ[z],in->zlen,in->xlen,in->ylen);
-			}
-
-		}
-	}
-
-ret=sum/(in->zlen*in->xlen*in->ylen);
-//printf("ret=%Le\n",ret);
 return ret;
 }
 
 
-void three_d_printf(struct dimensions *dim, long double ***src)
+void three_d_printf(struct dimensions *dim, gdouble ***src)
 {
 int x=0;
 int y=0;
 int z=0;
-long double sum=0.0;
-long double ret=0.0;
 	for (z = 0; z < dim->zlen; z++)
 	{
 		for (x = 0; x < dim->xlen; x++)
 		{
 			for (y = 0; y < dim->ylen; y++)
 			{
-				printf("%Le\n",src[z][x][y]);
+				printf("%le\n",(double)src[z][x][y]);
 			}
 
 		}
@@ -388,13 +315,13 @@ long double ret=0.0;
 return;
 }
 
-long double three_d_avg_fabsl(struct device *in, long double ***src)
+gdouble three_d_avg_gfabs(struct device *in, gdouble ***src)
 {
 int x=0;
 int y=0;
 int z=0;
-long double sum=0.0;
-long double ret=0.0;
+gdouble sum=0.0;
+gdouble ret=0.0;
 
 if (src==NULL)
 {
@@ -408,7 +335,7 @@ struct dimensions *dim=&(in->ns.dim);
 		{
 			for (y = 0; y < dim->ylen; y++)
 			{
-				sum+=fabsl(src[z][x][y])*dim->dX[x]*dim->dY[y]*dim->dZ[z];
+				sum+=gfabs(src[z][x][y])*dim->dX[x]*dim->dY[y]*dim->dZ[z];
 			}
 
 		}
@@ -418,34 +345,21 @@ ret=sum/(in->zlen*in->xlen*in->ylen);
 return ret;
 }
 
-long double three_d_integrate(struct dimensions *dim, long double ***src)
+gdouble three_d_integrate(struct dimensions *dim, gdouble ***src)
 {
-int x=0;
-int y=0;
-int z=0;
-long double sum=0.0;
+gdouble sum=0.0;
 
-	for (z = 0; z < dim->zlen; z++)
-	{
-		for (x = 0; x < dim->xlen; x++)
-		{
-			for (y = 0; y < dim->ylen; y++)
-			{
-				sum+=src[z][x][y]*dim->dX[x]*dim->dY[y]*dim->dZ[z];
-			}
-
-		}
-	}
+inter_zxy;
 
 return sum;
 }
 
-long double zxy_sum_gdouble(struct dimensions *dim, long double ***src)
+gdouble zxy_sum_gdouble(struct dimensions *dim, gdouble ***src)
 {
 int x=0;
 int y=0;
 int z=0;
-long double sum=0.0;
+gdouble sum=0.0;
 
 	for (z = 0; z < dim->zlen; z++)
 	{
@@ -462,8 +376,13 @@ long double sum=0.0;
 return sum;
 }
 
+void zxy_mod_gdouble(struct dimensions *dim, gdouble ***src)
+{
+	mod_zxy;
 
-void three_d_interpolate_gdouble(long double ***out, long double ***in, struct dimensions *dim_out, struct dimensions *dim_in)
+}
+
+void three_d_interpolate_gdouble(gdouble ***out, gdouble ***in, struct dimensions *dim_out, struct dimensions *dim_in)
 {
 int x=0;
 int y=0;
@@ -472,23 +391,23 @@ int z=0;
 int yi;
 int xi;
 
-long double y_out;
-long double x_out;
+gdouble y_out;
+gdouble x_out;
 
-long double y00;
-long double y01;
-long double yr;
-long double y0;
+gdouble y00;
+gdouble y01;
+gdouble yr;
+gdouble y0;
 
-long double y10;
-long double y11;
-long double y1;
+gdouble y10;
+gdouble y11;
+gdouble y1;
 
-long double x0;
-long double x1;
-long double xr;
+gdouble x0;
+gdouble x1;
+gdouble xr;
 
-long double c;
+gdouble c;
 
 	z=0;
 	for (x = 0; x < dim_out->xlen; x++)
@@ -524,46 +443,13 @@ long double c;
 
 }
 
-void zx_y_quick_dump(char *file_name, long double ***in, struct dimensions *dim)
+
+
+void three_d_quick_dump(char *file_name, gdouble ***in, struct dimensions *dim)
 {
 int x=0;
-int y=0;
 int z=0;
-	FILE *out;
-char full_name[200];
-
-	for (y = 0; y < dim->ylen; y++)
-	{
-		sprintf(full_name,"%s.%d.dat",file_name,y);
-		out=fopen(full_name,"w");
-
-		for (z = 0; z < dim->zlen; z++)
-		{
-
-			for (x = 0; x < dim->xlen; x++)
-			{
-
-
-					fprintf(out,"%Le %Le %Le\n",dim->z[z],dim->x[x],in[z][x][y]);
-				//}
-
-
-			}
-			fprintf(out,"\n");
-			//fprintf(out,"\n\n");
-		}
-	fclose(out);
-
-	}
-
-}
-
-void three_d_quick_dump(char *file_name, long double ***in, struct dimensions *dim)
-{
-int x=0;
-int y=0;
-int z=0;
-	FILE *out=fopen(file_name,"w");
+	FILE *out=g_fopen(file_name,"w");
 
 	for (z = 0; z < dim->zlen; z++)
 	{
@@ -573,7 +459,7 @@ int z=0;
 
 			//for (y = 0; y < dim->ylen; y++)
 			//{
-				fprintf(out,"%Le %Le %Le\n",dim->z[z],dim->x[x],in[z][x][2]);
+				fprintf(out,"%le %le %le\n",(double)dim->z[z],(double)dim->x[x],(double)in[z][x][2]);
 			//}
 
 
@@ -586,7 +472,7 @@ fclose(out);
 }
 
 
-void zxy_load_long_double(struct simulation *sim, struct dimensions *dim,long double **** data,char *file_name)
+void zxy_load_long_double(struct simulation *sim, struct dimensions *dim,gdouble **** data,char *file_name)
 {
 	char line[1000];
 	FILE *file;
@@ -595,38 +481,47 @@ void zxy_load_long_double(struct simulation *sim, struct dimensions *dim,long do
 	int x;
 	int y;
 	int z;
-	long double x_val;
-	long double y_val;
-	long double z_val;
-	long double val;
-	long double ***dat=*data;
+	double x_val;
+	double z_val;
+	double val;
+	gdouble ***dat=*data;
 	struct dat_file d;
-	dat_file_load_info(sim,&d,file_name);
-	if ((d.x!=dim->xlen)||(d.y!=dim->ylen)||(d.z!=dim->zlen))
+	char *buf;
+	long file_len;
+
+	//This is messy as we are reading the file twice but it will do for now
+	if (g_read_file_to_buffer(&buf, &file_len,file_name,-1)!=0)
 	{
-		ewe(sim,"not matching dim should be (%d,%d,%d)\n",d.x,d.y,d.z);
+		ewe(sim,"Error opening file %s\n",file_name);
+	}
+	
+	dat_file_load_info(sim,&d,buf,file_len);
+	free(buf);
+	if ((d.x_len!=dim->xlen)||(d.y_len!=dim->ylen)||(d.z_len!=dim->zlen))
+	{
+		ewe(sim,"not matching dim should be (%d,%d,%d)\n",d.x_len,d.y_len,d.z_len);
 	}
 
 	//zxy_malloc_gdouble(dim, data);
 
 	items_per_line++;
 
-	if (d.y>1)
+	if (d.y_len>1)
 	{
 		items_per_line++;
 	}
 
-	if (d.x>1)
+	if (d.x_len>1)
 	{
 		items_per_line++;
 	}
 
-	if (d.z>1)
+	if (d.z_len>1)
 	{
 		items_per_line++;
 	}
 
-	file=fopen(file_name,"r");
+	file=g_fopen(file_name,"r");
 	x=0;
 	y=0;
 	z=0;
@@ -634,7 +529,7 @@ void zxy_load_long_double(struct simulation *sim, struct dimensions *dim,long do
 	do
 	{
 		memset(line,0,1000);
-		ret=gpvdm_fgets(line, 1000, file);
+		ret=oghma_fgets(line, 1000, file);
 
 		if (strcmp(line,"#end")==0)
 		{
@@ -648,8 +543,8 @@ void zxy_load_long_double(struct simulation *sim, struct dimensions *dim,long do
 
 				if (items_per_line==3)
 				{
-					sscanf(line,"%Le %Le %Le",&x_val,&z_val,&val);
-					dat[z][x][y]=val;
+					sscanf(line,"%le %le %le",&x_val,&z_val,&val);
+					dat[z][x][y]=(gdouble)val;
 					//printf("%Le %Le %Le %d %d %d\n",x_val,z_val,dat[z][x][y],z,x,y);
 					//getchar();
 				}else
@@ -688,12 +583,12 @@ void zxy_load_long_double(struct simulation *sim, struct dimensions *dim,long do
 	fclose(file);
 }
 
-void flip_zxy_long_double_y(struct simulation *sim, struct dimensions *dim,long double *** data)
+void flip_zxy_long_double_y(struct simulation *sim, struct dimensions *dim,gdouble *** data)
 {
 	int x=0;
 	int y=0;
 	int z=0;
-	long double ***temp=NULL;
+	gdouble ***temp=NULL;
 
 	malloc_zxy_long_double(dim, &temp);
 
@@ -727,15 +622,15 @@ void flip_zxy_long_double_y(struct simulation *sim, struct dimensions *dim,long 
 }
 
 //This shoudl be 3D interpolation but we are assuming the meshes are aligned.
-long double interpolate_zxy_long_double(struct dimensions *dim, long double ***data,int z, int x, long double y_in)
+gdouble interpolate_zxy_long_double(struct dimensions *dim, gdouble ***data,int z, int x, gdouble y_in)
 {
 	int y=0;
-	long double x0=0.0;
-	long double x1=0.0;
-	long double y0=0.0;
-	long double y1=0.0;
+	gdouble x0=0.0;
+	gdouble x1=0.0;
+	gdouble y0=0.0;
+	gdouble y1=0.0;
 
-	long double ret;
+	gdouble ret;
 
 	if (y_in<dim->y[0])
 	{

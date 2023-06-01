@@ -23,39 +23,31 @@
 // SOFTWARE.
 // 
 
-/** @file memory_basic.c
-@brief memory functions for 3D arrays
+/** @file 1d_double.c
+@brief 1d gdouble routines
 */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <lang.h>
-#include "sim.h"
-#include "dump.h"
-#include "mesh.h"
 #include <math.h>
-#include "log.h"
-#include <solver_interface.h>
 #include "memory.h"
 
 
-void malloc_light_zxyl_float_complex(struct dimensions *dim, float complex * (****var))
+int sort_compare_ascending(const void *a, const void *b)
 {
-	malloc_4d( (void*****)var, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
+	double aa = *(double*)a;
+	double bb = *(double*)b;
+
+	if (aa < bb) return -1;
+	if (aa > bb) return  1;
+
+	return 0;
 }
 
 
-
-void free_light_zxyl_float_complex(struct dimensions *dim, float complex * (****in_var))
+void sort_ascending_1d_double(double *in, int len)
 {
-	free_4d( (void*****)in_var, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
+	qsort(in, len, sizeof(double), sort_compare_ascending);
 }
 
-
-void cpy_light_zxyl_float_complex(struct dimensions *dim, float complex * (****out),float complex * (****in))
-{
-	free_4d( (void*****)out, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
-	malloc_4d( (void*****)out, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
-	cpy_4d( (void*****)out, (void*****)in, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
-}

@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -160,6 +158,12 @@ void matrix_solver_memory_init(struct matrix_solver_memory *msm)
 	msm->fd_from_solver=-1;
 
 	msm->x_matrix_offset=0;
+	msm->y_trap_n=0;
+	msm->y_trap_p=0;
+	msm->ylen_Je_y=0;
+	msm->ylen_Jh_y=0;
+	msm->ylen_Je_x=0;
+	msm->ylen_Jh_x=0;
 
 	/*msm->dll_matrix_handle=NULL;
 	msm->dll_matrix_solve=NULL;
@@ -167,74 +171,6 @@ void matrix_solver_memory_init(struct matrix_solver_memory *msm)
 	msm->dll_matrix_init=NULL;*/
 }
 
-void matrix_solver_memory_load_dll(struct simulation *sim,struct matrix_solver_memory *msm)
-{
-	/*char lib_path[PATH_MAX];
-	if (msm->dll_matrix_handle==NULL)
-	{
-		find_dll(sim, lib_path,sim->solver_name);
-		#ifndef windows
-			char *error;
-
-			msm->dll_matrix_handle = dlopen(lib_path, RTLD_LAZY |RTLD_GLOBAL);
-			//printf("here1\n");
-			//msm->dll_matrix_handle = dlmopen(LM_ID_NEWLM,lib_path, RTLD_LAZY);
-			//printf("here2\n");
-			//printf("1%p\n",dlmopen(LM_ID_NEWLM,lib_path, RTLD_LAZY ));
-			//printf("2%p\n",dlmopen(LM_ID_NEWLM,lib_path, RTLD_LAZY ));
-			//getchar();
-			if (!msm->dll_matrix_handle)
-			{
-				ewe(sim, "oh: %s\n", dlerror());
-			}
-
-			msm->dll_matrix_solve = dlsym(msm->dll_matrix_handle, "dll_matrix_solve");
-			if ((error = dlerror()) != NULL)
-			{
-				ewe(sim, "%s\n", error);
-			}
-
-			msm->dll_matrix_solver_free = dlsym(msm->dll_matrix_handle, "dll_matrix_solver_free");
-			if ((error = dlerror()) != NULL)
-			{
-				ewe(sim, "%s\n", error);
-			}
-
-			msm->dll_matrix_init = dlsym(msm->dll_matrix_handle, "dll_matrix_init");
-			if ((error = dlerror()) != NULL)
-			{
-				ewe(sim, "%s\n", error);
-			}
-
-		#else
-
-			msm->dll_matrix_handle = LoadLibrary(lib_path);
-			if (msm->dll_matrix_handle==NULL)
-			{
-				ewe(sim,"%s %s\n",_("dll not loaded"),lib_path);
-			}
-
-			msm->dll_matrix_solve = (void*)GetProcAddress(msm->dll_matrix_handle, "dll_matrix_solve");
-			if (msm->dll_matrix_solve==NULL)
-			{
-				ewe(sim,_("dll function dll_matrix_solve not found\n"));
-			}
-
-
-			msm->dll_matrix_solver_free = (void*)GetProcAddress(msm->dll_matrix_handle, "dll_matrix_solver_free");
-			if (msm->dll_matrix_solver_free==NULL)
-			{
-				ewe(sim,_("dll function dll_matrix_solver_free not found\n"));
-			}
-
-			msm->dll_matrix_init = (void*)GetProcAddress(msm->dll_matrix_handle, "dll_matrix_init");
-			if (msm->dll_matrix_init==NULL)
-			{
-				ewe(sim,_("dll function dll_matrix_init not found\n"));
-			}
-		#endif
-	}*/
-}
 
 void matrix_solver_memory_free(struct simulation *sim,struct matrix_solver_memory *msm)
 {
@@ -342,25 +278,5 @@ void matrix_solver_memory_free(struct simulation *sim,struct matrix_solver_memor
 	msm->last_col=0;
 	msm->last_nz=0;
 
-	/*if (msm->dll_matrix_handle!=NULL)
-	{
-
-		#ifdef windows
-			FreeLibrary(msm->dll_matrix_handle);
-		#else
-
-			//#ifndef disable_dlclose
-			//printf(">>>>>>>>>dealloc %p\n",sim->dll_matrix_handle);
-			if (dlclose(msm->dll_matrix_handle)!=0)
-			{
-				ewe(sim,"%s\n",_("Error closing dll"));
-			}
-			//#endif
-			msm->dll_matrix_handle=NULL;
-			msm->dll_matrix_solve=NULL;
-			msm->dll_matrix_solver_free=NULL;
-			msm->dll_matrix_init=NULL;
-		#endif
-	}*/
 }
 

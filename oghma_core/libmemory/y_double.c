@@ -38,24 +38,17 @@
 #include "log.h"
 #include <solver_interface.h>
 #include "memory.h"
+#include <g_io.h>
+#include <math_kern_1d.h>
 
-
-void malloc_light_zxyl_float_complex(struct dimensions *dim, float complex * (****var))
+void div_y_double_y_double(struct dimensions *dim, double * a,double * b)
 {
-	malloc_4d( (void*****)var, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
+	int len=dim->ylen;
+	div_1d_1d;
 }
 
-
-
-void free_light_zxyl_float_complex(struct dimensions *dim, float complex * (****in_var))
+void div_y_double_double(struct dimensions *dim, double * a,double b)
 {
-	free_4d( (void*****)in_var, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
-}
-
-
-void cpy_light_zxyl_float_complex(struct dimensions *dim, float complex * (****out),float complex * (****in))
-{
-	free_4d( (void*****)out, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
-	malloc_4d( (void*****)out, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
-	cpy_4d( (void*****)out, (void*****)in, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
+	int len=dim->ylen;
+	div_1d_double;
 }

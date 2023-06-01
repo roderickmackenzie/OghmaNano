@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -41,9 +39,9 @@
 #include <solver_interface.h>
 #include "memory.h"
 
-void free_4d_long_double(int zlen, int xlen, int ylen,int bands, long double *(**** in_var))
+void free_4d_long_double(int zlen, int xlen, int ylen,int bands, gdouble *(**** in_var))
 {
-	long double ****var=*in_var;
+	gdouble ****var=*in_var;
 
 	if (var==NULL)
 	{
@@ -73,12 +71,11 @@ void free_4d_long_double(int zlen, int xlen, int ylen,int bands, long double *(*
 }
 
 
-void cpy_4d_long_double(int zlen, int xlen, int ylen,int bands, long double *(****dst), long double *(****src))
+void cpy_4d_long_double(int zlen, int xlen, int ylen,int bands, gdouble *(****dst), gdouble *(****src))
 {
 int x=0;
 int y=0;
 int z=0;
-int b=0;
 
 	for (z = 0; z < zlen; z++)
 	{
@@ -86,7 +83,7 @@ int b=0;
 		{
 			for (y = 0; y < ylen; y++)
 			{
-				memcpy((*dst)[z][x][y], (*src)[z][x][y], bands * sizeof(long double));
+				memcpy((*dst)[z][x][y], (*src)[z][x][y], bands * sizeof(gdouble));
 			}
 
 		}
@@ -94,29 +91,51 @@ int b=0;
 
 }
 
-void malloc_4d_long_double(int zlen, int xlen, int ylen,int bands, long double * (****var))
+void malloc_4d_long_double(int zlen, int xlen, int ylen,int bands, gdouble * (****var))
 {
 	int x=0;
 	int y=0;
 	int z=0;
 
-	//printf("alloc %d %d %d %d \n",xlen,ylen,zlen,srh_bands);
+	//printf("alloc %d %d %d %d \n",xlen,ylen,zlen,bands);
 	if ((zlen>0)&&(xlen>0))
 	{
-		*var = (long double  ****) malloc(zlen * sizeof(long double  ***));
-
+		*var = (gdouble  ****) malloc(zlen * sizeof(gdouble  ***));
+		if (*var==NULL)
+		{
+			printf("malloc_4d_long_double no more memory\n");
+			exit(0);
+		}
 		for (z = 0; z < zlen; z++)
 		{
-			(*var)[z] = (long double  ***) malloc(xlen * sizeof(long double **));
+			(*var)[z] = (gdouble  ***) malloc(xlen * sizeof(gdouble **));
+			if ((*var)[z]==NULL)
+			{
+				printf("malloc_4d_long_double no more memory\n");
+				exit(0);
+			}
+
 			for (x = 0; x < xlen; x++)
 			{
-				(*var)[z][x] = (long double  **) malloc(ylen * sizeof(long double *));
+				(*var)[z][x] = (gdouble  **) malloc(ylen * sizeof(gdouble *));
+				if ((*var)[z][x]==NULL)
+				{
+					printf("malloc_4d_long_double no more memory\n");
+					exit(0);
+				}
+
 				for (y = 0; y < ylen; y++)
 				{
 					if (bands != 0)
 					{
-						(*var)[z][x][y] = (long double  *) malloc(bands * sizeof(long double ));
-						memset((*var)[z][x][y], 0, bands * sizeof(long double ));
+						(*var)[z][x][y] = (gdouble  *) malloc(bands * sizeof(gdouble ));
+						if ((*var)[z][x][y]==NULL)
+						{
+							printf("malloc_4d_long_double no more memory\n");
+							exit(0);
+						}
+
+						memset((*var)[z][x][y], 0, bands * sizeof(gdouble ));
 					}else
 					{
 						(*var)[z][x][y] = NULL;

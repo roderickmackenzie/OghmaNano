@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -42,22 +40,21 @@
 #include "memory.h"
 
 
-void malloc_zxy_long_double_complex(struct dimensions *dim, long double complex * (***var))
+void malloc_zxy_long_double_complex(struct dimensions *dim, gdouble complex * (***var))
 {
 	int x=0;
-	int y=0;
 	int z=0;
 
 
-	*var = (long double complex ***) malloc(dim->zlen * sizeof(long double complex **));
+	*var = (gdouble complex ***) malloc(dim->zlen * sizeof(gdouble complex **));
 
 	for (z = 0; z < dim->zlen; z++)
 	{
-		(*var)[z] = (long double complex **) malloc(dim->xlen * sizeof(long double complex*));
+		(*var)[z] = (gdouble complex **) malloc(dim->xlen * sizeof(gdouble complex*));
 		for (x = 0; x < dim->xlen; x++)
 		{
-			(*var)[z][x] = (long double complex *) malloc(dim->ylen * sizeof(long double complex));
-			memset((*var)[z][x], 0, dim->ylen * sizeof(long double complex));
+			(*var)[z][x] = (gdouble complex *) malloc(dim->ylen * sizeof(gdouble complex));
+			memset((*var)[z][x], 0, dim->ylen * sizeof(gdouble complex));
 		}
 	}
 
@@ -65,13 +62,12 @@ void malloc_zxy_long_double_complex(struct dimensions *dim, long double complex 
 
 
 
-void free_zxy_long_double_complex(struct dimensions *dim, long double complex * (***in_var))
+void free_zxy_long_double_complex(struct dimensions *dim, gdouble complex * (***in_var))
 {
 	int x=0;
-	int y=0;
 	int z=0;
 
-	long double complex ***var=*in_var;
+	gdouble complex ***var=*in_var;
 	if (var==NULL)
 	{
 		return;

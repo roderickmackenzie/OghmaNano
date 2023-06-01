@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,17 +29,22 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <lang.h>
 #include "sim.h"
 #include "dump.h"
-#include "mesh.h"
 #include <math.h>
 #include "log.h"
 #include <solver_interface.h>
 #include "memory.h"
+#include "zxy_math_kern.h"
 
-
+void set_zxy_int(struct dimensions *dim, int ***data, int val)
+{
+	int var_size=sizeof(int);
+	int z_len=dim->zlen;
+	int x_len=dim->xlen;
+	int y_len=dim->ylen;
+	memset_zxy;
+}
 
 void malloc_zxy_int(struct dimensions *dim, int * (***var))
 {
@@ -55,6 +58,12 @@ void free_zxy_int(struct dimensions *dim, int * (***var))
 
 void cpy_zxy_int(struct dimensions *dim, int * (***out),int * (***in))
 {
+	if (*in==NULL)
+	{
+		*out=NULL;
+		return;
+	}
+
 	free_3d_int(dim->zlen, dim->xlen, dim->ylen, out);
 	malloc_3d_int(dim->zlen, dim->xlen, dim->ylen, out);
 	cpy_3d_int(dim->zlen, dim->xlen, dim->ylen, out, in);
@@ -63,9 +72,7 @@ void cpy_zxy_int(struct dimensions *dim, int * (***out),int * (***in))
 
 void memory_flip_1d_int(int *var,int len)
 {
-	int x=0;
 	int y=0;
-	int z=0;
 	int * data=malloc(sizeof(int)*len);
 	for (y=0;y<len;y++)
 	{

@@ -40,22 +40,31 @@
 #include "memory.h"
 
 
-void malloc_light_zxyl_float_complex(struct dimensions *dim, float complex * (****var))
+void malloc_light_l_double(struct dimensions *dim, double * (*var))
 {
-	malloc_4d( (void*****)var, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
+	malloc_1d((void **)var,dim->llen, sizeof(double ));
 }
 
 
-
-void free_light_zxyl_float_complex(struct dimensions *dim, float complex * (****in_var))
+void free_light_l_double(struct dimensions *dim, double * (*in_var))
 {
-	free_4d( (void*****)in_var, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
+	free_1d((void **)in_var);
+
 }
 
-
-void cpy_light_zxyl_float_complex(struct dimensions *dim, float complex * (****out),float complex * (****in))
+void cpy_light_l_double(struct dimensions *dim, double * (*out), double * (*in))
 {
-	free_4d( (void*****)out, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
-	malloc_4d( (void*****)out, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
-	cpy_4d( (void*****)out, (void*****)in, dim->zlen, dim->xlen, dim->ylen,dim->llen,sizeof(float complex));
+	cpy_1d((void **)out,(void **)in, dim->llen , sizeof(double ),TRUE);
+}
+
+double intergrate_light_l_double(struct dimensions *dim, double *var)
+{
+	int i;
+	double sum=0.0;
+	for (i=0;i<dim->llen;i++)
+	{
+		sum+=dim->dl*var[i];
+	}
+
+	return sum;
 }

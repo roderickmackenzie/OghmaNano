@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -45,12 +43,11 @@
 void malloc_3d( void * (***var),int zlen, int xlen, int ylen,int item_size)
 {
 	int x=0;
-	int y=0;
 	int z=0;
 
 	if (*var!=NULL)
 	{
-		printf("Warning allocating onto non NULL pointer\n");
+		printf("Warning malloc_3d allocating onto non NULL pointer\n");
 		getchar();
 	}
 
@@ -73,7 +70,6 @@ void malloc_3d( void * (***var),int zlen, int xlen, int ylen,int item_size)
 void free_3d(void * (***in_var),int zlen, int xlen, int ylen,int item_size)
 {
 	int x=0;
-	int y=0;
 	int z=0;
 
 	void ***var=*in_var;
