@@ -24,41 +24,82 @@
 #   SOFTWARE.
 #
 
-## @package json_suns_voc
-#  Store the suns_voc json data
+## @package json_jv
+#  Store the cv domain json data
 #
 
+
 from json_base import json_base
+from json_world_object import json_world_object
 
-class json_suns_voc_config(json_base):
+class json_gl_light(json_base,json_world_object):
 
 	def __init__(self):
-		json_base.__init__(self,"config")
+		json_base.__init__(self,"gl_light")
+		json_world_object.__init__(self)
+		self.var_list_build()
+
+class json_gl_lights(json_base):
+	def __init__(self):
+		json_base.__init__(self,"gl_lights",segment_class=True,segment_example=json_gl_light())
+		self.safe_init(0)
+
+	def load_from_json(self,json):
 		self.var_list=[]
-		self.var_list.append(["sun_voc_single_point",False])
-		self.var_list.append(["sun_voc_Psun_start",0.11])
-		self.var_list.append(["sun_voc_Psun_stop",1.1])
-		self.var_list.append(["sun_voc_Psun_mul",1.2])
-		self.var_list.append(["dump_verbosity",1])
-		self.var_list_build()
+		segs=0
+		try:
+			segs=json['segments']
+		except:
+			pass
 
-class json_suns_voc_simulation(json_base):
+		if self.safe_init(segs)==False:
+			self.segments=[]
+			for i in range(0,segs):
+				a=json_gl_light()
+				simulation_name="segment"+str(i)
+				a.load_from_json(json[simulation_name])
+				self.segments.append(a)
 
-	def __init__(self):
-		json_base.__init__(self,"suns_voc_segment")
-		self.var_list=[]
-		self.var_list.append(["name","Suns\\nVoc"])
-		self.var_list.append(["icon","sunsvoc"])
-		self.var_list.append(["config",json_suns_voc_config()])
-		self.var_list.append(["id",self.random_id()])
-		self.var_list_build()
+	def safe_init(self,segs):
+		if segs!=6:
+			self.segments=[]
+			l=json_gl_light()
+			l.x0=0
+			l.y0=5
+			l.z0=-10
+			self.segments.append(l)
+
+			l=json_gl_light()
+			l.x0=0
+			l.y0=-5
+			l.z0=-10
+			self.segments.append(l)
 
 
-class json_suns_voc(json_base):
+			l=json_gl_light()
+			l.x0=0
+			l.y0=5
+			l.z0=10
+			self.segments.append(l)
 
-	def __init__(self):
-		json_base.__init__(self,"suns_voc",segment_class=True,segment_example=json_suns_voc_simulation())
-		self.var_list.append(["icon_","sunsvoc"])
-		self.var_list_build()
+			l=json_gl_light()
+			l.x0=0
+			l.y0=-5
+			l.z0=10
+			self.segments.append(l)
 
+			l=json_gl_light()
+			l.x0=-10
+			l.y0=-5
+			l.z0=0
+			self.segments.append(l)
+
+			l=json_gl_light()
+			l.x0=10
+			l.y0=-5
+			l.z0=0
+			self.segments.append(l)
+
+			return True
+		return False
 

@@ -24,41 +24,37 @@
 #   SOFTWARE.
 #
 
-## @package json_suns_voc
-#  Store the suns_voc json data
+## @package json_scan
+#  Sacns
 #
 
 from json_base import json_base
 
-class json_suns_voc_config(json_base):
+class json_gui_main_ribbon(json_base):
 
 	def __init__(self):
-		json_base.__init__(self,"config")
+		json_base.__init__(self,"main_ribbon")
 		self.var_list=[]
-		self.var_list.append(["sun_voc_single_point",False])
-		self.var_list.append(["sun_voc_Psun_start",0.11])
-		self.var_list.append(["sun_voc_Psun_stop",1.1])
-		self.var_list.append(["sun_voc_Psun_mul",1.2])
-		self.var_list.append(["dump_verbosity",1])
+		self.var_list.append(["thermal_visible",True])
+		self.var_list.append(["sim_mode_visible",True])
+		self.var_list.append(["editors_visible",True])
+		self.var_list.append(["automation_visible",True])
+		self.var_list.append(["electrical_visible",True])
+		self.var_list.append(["optical_visible",True])
+		self.var_list.append(["thermal_visible",True])
+		self.var_list.append(["database_visible",True])
+		self.var_list.append(["cluster_visible",False])
+		self.var_list.append(["information_visible",True])
 		self.var_list_build()
 
-class json_suns_voc_simulation(json_base):
+class json_gui_config(json_base):
 
 	def __init__(self):
-		json_base.__init__(self,"suns_voc_segment")
+		json_base.__init__(self,"gui_config")
 		self.var_list=[]
-		self.var_list.append(["name","Suns\\nVoc"])
-		self.var_list.append(["icon","sunsvoc"])
-		self.var_list.append(["config",json_suns_voc_config()])
-		self.var_list.append(["id",self.random_id()])
+		self.var_list.append(["main_ribbon",json_gui_main_ribbon()])
 		self.var_list_build()
 
 
-class json_suns_voc(json_base):
-
-	def __init__(self):
-		json_base.__init__(self,"suns_voc",segment_class=True,segment_example=json_suns_voc_simulation())
-		self.var_list.append(["icon_","sunsvoc"])
-		self.var_list_build()
 
 

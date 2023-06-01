@@ -1,34 +1,34 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
-
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package json_fx_domain
 #  Store the fx domain json data
 #
 
 
-import sys
-import os
-import shutil
-import json
 from json_base import json_base
 
 class json_fx_domain_mesh_segment(json_base):
@@ -45,18 +45,7 @@ class json_fx_domain_mesh_segment(json_base):
 class json_fx_domain_mesh(json_base):
 
 	def __init__(self):
-		json_base.__init__(self,"mesh",segment_class=True)
-		#self.segments.append(json_fx_domain_mesh_segment())
-		#self.segments.append(json_fx_domain_mesh_segment())
-
-	def load_from_json(self,json):
-		self.segments=[]
-		segs=json['segments']
-		for i in range(0,segs):
-			a=json_fx_domain_mesh_segment()
-			segment_name="segment"+str(i)
-			a.load_from_json(json[segment_name])
-			self.segments.append(a)
+		json_base.__init__(self,"mesh",segment_class=True,segment_example=json_fx_domain_mesh_segment())
 
 class json_fx_domain_config(json_base):
 
@@ -66,7 +55,7 @@ class json_fx_domain_config(json_base):
 		self.var_list.append(["is_Vexternal",0.0])
 		self.var_list.append(["load_type","load"])
 		self.var_list.append(["fxdomain_large_signal",True])
-		self.var_list.append(["fxdomain_Rload",50])
+		self.var_list.append(["fxdomain_Rload",0.0])
 		self.var_list.append(["fxdomain_points",30])
 		self.var_list.append(["fxdomain_n",5])
 		self.var_list.append(["fx_modulation_type","voltage"])
@@ -91,8 +80,8 @@ class json_fx_domain_simulation(json_base):
 	def __init__(self):
 		json_base.__init__(self,"fx_domain_segment")
 		self.var_list=[]
-		self.var_list.append(["english_name","celiv"])
-		self.var_list.append(["icon","celiv"])
+		self.var_list.append(["name","celiv"])
+		self.var_list.append(["icon","spectrum"])
 		self.var_list.append(["config",json_fx_domain_config()])
 		self.var_list.append(["mesh",json_fx_domain_mesh()])
 		self.var_list.append(["id",self.random_id()])
@@ -103,5 +92,5 @@ class json_fx_domain(json_base):
 
 	def __init__(self):
 		json_base.__init__(self,"fx_domain",segment_class=True,segment_example=json_fx_domain_simulation())
-
-
+		self.var_list.append(["icon_","spectrum"])
+		self.var_list_build()

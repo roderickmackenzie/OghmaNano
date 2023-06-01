@@ -24,41 +24,29 @@
 #   SOFTWARE.
 #
 
-## @package json_suns_voc
-#  Store the suns_voc json data
+## @package json_equilibrium
+#  Store the equilibrium domain json data
 #
+
 
 from json_base import json_base
 
-class json_suns_voc_config(json_base):
+
+class json_equilibrium_simulation(json_base):
 
 	def __init__(self):
-		json_base.__init__(self,"config")
+		json_base.__init__(self,"equilibrium_segment")
 		self.var_list=[]
-		self.var_list.append(["sun_voc_single_point",False])
-		self.var_list.append(["sun_voc_Psun_start",0.11])
-		self.var_list.append(["sun_voc_Psun_stop",1.1])
-		self.var_list.append(["sun_voc_Psun_mul",1.2])
-		self.var_list.append(["dump_verbosity",1])
-		self.var_list_build()
-
-class json_suns_voc_simulation(json_base):
-
-	def __init__(self):
-		json_base.__init__(self,"suns_voc_segment")
-		self.var_list=[]
-		self.var_list.append(["name","Suns\\nVoc"])
-		self.var_list.append(["icon","sunsvoc"])
-		self.var_list.append(["config",json_suns_voc_config()])
+		self.var_list.append(["name","Equilibrium"])
+		self.var_list.append(["icon","equilibrium"])
 		self.var_list.append(["id",self.random_id()])
 		self.var_list_build()
 
 
-class json_suns_voc(json_base):
+class json_equilibrium(json_base):
 
 	def __init__(self):
-		json_base.__init__(self,"suns_voc",segment_class=True,segment_example=json_suns_voc_simulation())
-		self.var_list.append(["icon_","sunsvoc"])
+		json_base.__init__(self,"equilibrium",segment_class=True,segment_example=json_equilibrium_simulation())
+		self.var_list.append(["icon_","equilibrium"])
 		self.var_list_build()
-
 

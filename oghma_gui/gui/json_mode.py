@@ -24,41 +24,42 @@
 #   SOFTWARE.
 #
 
-## @package json_suns_voc
-#  Store the suns_voc json data
+## @package json_transfer_matrix
+#  Store the cv domain json data
 #
+
 
 from json_base import json_base
 
-class json_suns_voc_config(json_base):
+class json_mode_config(json_base):
 
 	def __init__(self):
 		json_base.__init__(self,"config")
 		self.var_list=[]
-		self.var_list.append(["sun_voc_single_point",False])
-		self.var_list.append(["sun_voc_Psun_start",0.11])
-		self.var_list.append(["sun_voc_Psun_stop",1.1])
-		self.var_list.append(["sun_voc_Psun_mul",1.2])
-		self.var_list.append(["dump_verbosity",1])
+		self.var_list.append(["mode_max_ittr",25])
+		self.var_list.append(["mode_stop_error",10.0])
+		self.var_list.append(["mode_max_eigenmode_x",5])
+		self.var_list.append(["mode_max_eigenmode_y",5])
+		self.var_list.append(["mode_te_tm","TE"])
+		self.var_list.append(["mode_only_fundamental",False])
 		self.var_list_build()
 
-class json_suns_voc_simulation(json_base):
+class json_mode_simulation(json_base):
 
 	def __init__(self):
-		json_base.__init__(self,"suns_voc_segment")
+		json_base.__init__(self,"mode_segment")
 		self.var_list=[]
-		self.var_list.append(["name","Suns\\nVoc"])
-		self.var_list.append(["icon","sunsvoc"])
-		self.var_list.append(["config",json_suns_voc_config()])
+		self.var_list.append(["name","Mode"])
+		self.var_list.append(["icon","mode_fiber"])
+		self.var_list.append(["config",json_mode_config()])
 		self.var_list.append(["id",self.random_id()])
 		self.var_list_build()
 
 
-class json_suns_voc(json_base):
+class json_mode(json_base):
 
 	def __init__(self):
-		json_base.__init__(self,"suns_voc",segment_class=True,segment_example=json_suns_voc_simulation())
-		self.var_list.append(["icon_","sunsvoc"])
+		json_base.__init__(self,"mode",segment_class=True,segment_example=json_mode_simulation())
+		self.var_list.append(["icon_","mode"])
 		self.var_list_build()
-
 

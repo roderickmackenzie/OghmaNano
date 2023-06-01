@@ -24,41 +24,49 @@
 #   SOFTWARE.
 #
 
-## @package json_suns_voc
-#  Store the suns_voc json data
+## @package json_probes
+#  Machine learning 
 #
 
 from json_base import json_base
 
-class json_suns_voc_config(json_base):
+###############
+
+class json_probe_item(json_base):
 
 	def __init__(self):
-		json_base.__init__(self,"config")
+		json_base.__init__(self,"probe_item")
 		self.var_list=[]
-		self.var_list.append(["sun_voc_single_point",False])
-		self.var_list.append(["sun_voc_Psun_start",0.11])
-		self.var_list.append(["sun_voc_Psun_stop",1.1])
-		self.var_list.append(["sun_voc_Psun_mul",1.2])
-		self.var_list.append(["dump_verbosity",1])
+		self.var_list.append(["probe_enabled",True])
+		self.var_list.append(["probe_type","point"])
+		self.var_list.append(["file_name","Ec.csv"])
+		self.var_list.append(["px",0])
+		self.var_list.append(["py",0])
+		self.var_list.append(["pz",0])
+		self.var_list.append(["id",self.random_id()])
 		self.var_list_build()
 
-class json_suns_voc_simulation(json_base):
+class json_probes(json_base):
 
 	def __init__(self):
-		json_base.__init__(self,"suns_voc_segment")
+		json_base.__init__(self,"probes",segment_class=True,segment_example=json_probe_item())
+
+
+class json_probe_block(json_base):
+
+	def __init__(self):
+		json_base.__init__(self,"probe")
 		self.var_list=[]
-		self.var_list.append(["name","Suns\\nVoc"])
-		self.var_list.append(["icon","sunsvoc"])
-		self.var_list.append(["config",json_suns_voc_config()])
+		self.var_list.append(["name","probe"])
+		self.var_list.append(["icon_","map_pin"])
+		self.var_list.append(["probes",json_probes()])
 		self.var_list.append(["id",self.random_id()])
 		self.var_list_build()
 
 
-class json_suns_voc(json_base):
+class json_all_probes(json_base):
 
 	def __init__(self):
-		json_base.__init__(self,"suns_voc",segment_class=True,segment_example=json_suns_voc_simulation())
-		self.var_list.append(["icon_","sunsvoc"])
-		self.var_list_build()
+		json_base.__init__(self,"probes",segment_class=True,segment_example=json_probe_block())
 
 

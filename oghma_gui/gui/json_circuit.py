@@ -1,30 +1,33 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
-
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package json_circuit
 #  Store the cv domain json data
 #
 
-import json
 from json_base import json_base
 
 
@@ -33,7 +36,8 @@ class json_component(json_base):
 	def __init__(self):
 		json_base.__init__(self,"component")
 		self.var_list=[]
-		self.var_list.append(["name","resistor"])
+		self.var_list.append(["name","component"])
+		self.var_list.append(["comp","resistor"])
 		self.var_list.append(["x0",2])
 		self.var_list.append(["y0",2])
 		self.var_list.append(["x1",3])
@@ -41,6 +45,9 @@ class json_component(json_base):
 		self.var_list.append(["R",10.0])
 		self.var_list.append(["C",0.0])
 		self.var_list.append(["L",0.0])
+		self.var_list.append(["a",1e-3])
+		self.var_list.append(["b",1e-3])
+		self.var_list.append(["c",1e-3])
 		self.var_list.append(["nid",1.0])
 		self.var_list.append(["I0",1e-12])
 		self.var_list.append(["layer","none"])
@@ -83,16 +90,19 @@ class json_component(json_base):
 class json_circuit_diagram(json_base):
 
 	def __init__(self):
-		json_base.__init__(self,"circuit_diagram",segment_class=True)
+		json_base.__init__(self,"circuit_diagram",segment_class=True,segment_example=json_component())
 
-	def load_from_json(self,json):
-		self.segments=[]
-		segs=json['segments']
-		for i in range(0,segs):
-			a=json_component()
-			simulation_name="segment"+str(i)
-			a.load_from_json(json[simulation_name])
-			self.segments.append(a)
+
+class json_circuit_config(json_base):
+
+	def __init__(self):
+		json_base.__init__(self,"config")
+		self.var_list=[]
+		self.var_list.append(["solver_verbosity","solver_verbosity_at_end"])
+		self.var_list_build()
+
+		self.dir="north"
+		self.lines=[]
 
 class json_circuit(json_base):
 
@@ -100,7 +110,9 @@ class json_circuit(json_base):
 		json_base.__init__(self,"circuit")
 		self.var_list=[]
 		self.var_list.append(["enabled",False])
+		self.var_list.append(["icon_","kirchhoff"])
 		self.var_list.append(["circuit_diagram",json_circuit_diagram()])
+		self.var_list.append(["config",json_circuit_config()])
 		self.var_list_build()
 
 

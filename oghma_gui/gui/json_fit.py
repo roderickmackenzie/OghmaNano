@@ -1,37 +1,35 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
-
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package json_fit
 #  Store the fit config in a json file
 #
 
-
-import sys
-import os
-import shutil
-import json
 from json_base import json_base
 from json_import_config import json_import_config
-import codecs
 
 class json_fit_patch_line(json_base):
 
@@ -57,6 +55,7 @@ class json_fit_config(json_base):
 		self.var_list.append(["fit_simplexmul",0.1])
 		self.var_list.append(["fit_simplex_reset",200])
 		self.var_list.append(["fit_method","simplex"])
+		self.var_list.append(["fit_dump_snapshots",False])
 		self.var_list_build()
 
 class json_fit_patch(json_base):
@@ -72,21 +71,22 @@ class json_data_set_config(json_base):
 		json_base.__init__(self,"config")
 		self.var_list=[]
 		self.var_list.append(["enabled",True])
-		self.var_list.append(["plugin","fit_stark"])
+		self.var_list.append(["sim_data","jv.dat"])
 		self.var_list.append(["fit_name","jv_light_0h"])
 		self.var_list.append(["fit_error_mul",1.0])
 		self.var_list.append(["time_shift",0.0])
 		self.var_list.append(["fit_shift_y",0.0])
 		self.var_list.append(["start",0.0])
 		self.var_list.append(["stop",0.85])
-		#self.var_list.append(["end_data",1.0])
-		self.var_list.append(["sim_data","jv.dat"])
 		self.var_list.append(["log_x",False])
 		self.var_list.append(["log_y",False])
 		self.var_list.append(["log_y_keep_sign",False])
 		self.var_list.append(["fit_invert_simulation_y",False])
 		self.var_list.append(["fit_subtract_lowest_point",False])
 		self.var_list.append(["fit_set_first_point_to_zero",False])
+		self.var_list.append(["fit_1st_deriv",False])
+		self.var_list.append(["fit_norm_data_at",False])
+		self.var_list.append(["fit_norm_x_point",0.5])
 		self.var_list.append(["fit_set_error_to_zero_before",-100.0])
 		self.var_list.append(["fit_hidden",False])
 		self.var_list.append(["fit_against","self"])
@@ -98,6 +98,7 @@ class json_data_set(json_base):
 		json_base.__init__(self,"data_set")
 		self.var_list=[]
 		self.var_list.append(["fit_patch",json_fit_patch()])
+		self.var_list.append(["duplicate",json_fit_duplicate()])
 		self.var_list.append(["config",json_data_set_config()])
 		self.var_list.append(["import_config",json_import_config()])
 		self.var_list.append(["id",self.random_id()])
@@ -170,10 +171,28 @@ class json_duplicate_line(json_base):
 		self.var_list.append(["json_dest","one/two/three"])
 		self.var_list_build()
 
+class json_dummy_vars(json_base):
+
+	def __init__(self):
+		json_base.__init__(self,"dummy_vars")
+		self.var_list=[]
+		self.var_list.append(["dummy_var0",1.0])
+		self.var_list.append(["dummy_var1",1.0])
+		self.var_list.append(["dummy_var2",1.0])
+		self.var_list.append(["dummy_var3",1.0])
+		self.var_list.append(["dummy_var4",1.0])
+		self.var_list.append(["dummy_var5",1.0])
+		self.var_list.append(["dummy_var6",1.0])
+		self.var_list.append(["dummy_var7",1.0])
+		self.var_list_build()
+
 class json_fit_duplicate(json_base):
 
 	def __init__(self):
+		self.segments=[]
 		json_base.__init__(self,"duplicate",segment_class=True,segment_example=json_duplicate_line())
+		self.var_list.append(["id",self.random_id()])
+		self.var_list_build()
 
 class json_all_fits(json_base):
 
@@ -212,10 +231,12 @@ class json_fits(json_base):
 	def __init__(self):
 		json_base.__init__(self,"fits")
 		self.var_list=[]
+		self.var_list.append(["icon_","fit"])
 		self.var_list.append(["fit_config",json_fit_config()])
 		self.var_list.append(["duplicate",json_fit_duplicate()])
 		self.var_list.append(["vars",json_fit_vars()])
 		self.var_list.append(["rules",json_fit_rules()])
 		self.var_list.append(["fits",json_all_fits()])
+		self.var_list.append(["dummy_vars",json_dummy_vars()])
 		self.var_list_build()
 

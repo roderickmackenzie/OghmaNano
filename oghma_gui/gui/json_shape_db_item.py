@@ -1,24 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
-
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package json_shape_db_item
 #  Store the shape information
@@ -43,6 +47,16 @@ class json_shape_db_blur(json_base):
 		self.var_list=[]
 		self.var_list.append(["shape_import_blur_enabled",False])
 		self.var_list.append(["shape_import_blur",10])
+		self.var_list_build()
+
+class json_shape_saw_wave(json_base):
+
+	def __init__(self):
+		json_base.__init__(self,"saw_wave")
+		self.var_list=[]
+		self.var_list.append(["shape_saw_offset",0])
+		self.var_list.append(["shape_saw_length",50])
+		self.var_list.append(["shape_saw_type","saw_wave"])
 		self.var_list_build()
 
 class json_shape_db_mesh(json_base):
@@ -114,6 +128,7 @@ class json_shape_db_item_lens(json_base):
 		json_base.__init__(self,"lens")
 		self.var_list=[]
 		self.var_list.append(["lens_type","convex"])
+		self.var_list.append(["lens_size",1.0])
 		self.var_list_build()
 
 class json_shape_db_item_gaus(json_base):
@@ -124,6 +139,7 @@ class json_shape_db_item_gaus(json_base):
 		self.var_list.append(["gauss_sigma",100.0])
 		self.var_list.append(["gauss_offset_x",0])
 		self.var_list.append(["gauss_offset_y",0])
+		self.var_list.append(["gauss_invert",False])
 		self.var_list_build()
 
 class shape_db_item(json_base):
@@ -138,7 +154,13 @@ class shape_db_item(json_base):
 		self.var_list.append(["image_ylen",200])
 		self.var_list.append(["image_xlen",200])
 		self.var_list.append(["color_alpha",0.8])
-		self.var_list.append(["status","public"])
+
+		self.var_list.append(["shape_type0_enable",False])
+		self.var_list.append(["shape_type0","box"])
+		self.var_list.append(["shape_type1_enable",False])
+		self.var_list.append(["shape_type1","box"])
+
+		self.var_list.append(["status","private"])
 		self.var_list.append(["gauss",json_shape_db_item_gaus()])
 		self.var_list.append(["honeycomb",json_shape_db_item_honeycomb()])
 		self.var_list.append(["xtal",json_shape_db_item_xtal()])
@@ -147,6 +169,7 @@ class shape_db_item(json_base):
 		self.var_list.append(["boundary",json_shape_boundary()])
 		self.var_list.append(["mesh",json_shape_db_mesh()])
 		self.var_list.append(["blur",json_shape_db_blur()])
+		self.var_list.append(["saw_wave",json_shape_saw_wave()])
 		self.var_list.append(["threshold",json_shape_db_threshold()])
 
 		self.var_list_build()
