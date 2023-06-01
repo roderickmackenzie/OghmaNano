@@ -1,10 +1,10 @@
 #! /usr/bin/env python3
 # 
-# General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
+# General-purpose Photovoltaic Device Model oghma-nano.com - a drift diffusion
 # base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
 # The model can simulate OLEDs, Perovskite cells, and OFETs.
 # 
-# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
+# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.oghma-nano.com
 # r.c.i.mackenzie at googlemail.com
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a
@@ -66,7 +66,7 @@ if os.geteuid() != 0:
 d = Dialog(dialog="dialog")
 
 # Dialog.set_background_title() requires pythondialog 2.13 or later
-d.set_background_title("https://www.gpvdm.com build configure, Roderick MacKenzie 2018")
+d.set_background_title("https://www.oghma-nano.com build configure, Roderick MacKenzie 2018")
 
 
 while(1):
@@ -74,9 +74,9 @@ while(1):
 
 	if os.geteuid() == 0:
 		menu.append(("(packages)", "Install dependencies to compile"))
-		menu.append(("(systeminstall)", "Install/Remove gpvdm"))
+		menu.append(("(systeminstall)", "Install/Remove oghma"))
 	else:
-		menu.append(("(compile)", "Compile gpvdm"))
+		menu.append(("(compile)", "Compile oghma"))
 		menu.append(("(packages)", "Install dependencies to compile"))
 		if is_rod()==True:
 			menu.append(("(buildpackage)", "Build package"))
@@ -87,7 +87,7 @@ while(1):
 
 	menu.append(("(exit)", "Exit"))
 
-	code, tag = d.menu("gpvdm build system:", choices=menu)
+	code, tag = d.menu("OghmaNano build system:", choices=menu)
 	if code == d.OK:
 		if tag=="(publish)":
 			publish_menu(d)
@@ -106,7 +106,7 @@ while(1):
 			buildpackage_menu(d)
 
 		if tag=="(about)":
-			d.msgbox("This is the gpvdm build system, use it to configure the build system, make, and install gpvdm. Copyright Roderick MacKenzie 2018.  Released under the GPL v2 license.")
+			d.msgbox("This is the OghmaNano build system, use it to configure the build system, make, and install oghma. Copyright Roderick MacKenzie 2018.  Released under the GPL v2 license.")
 
 
 		if tag=="(exit)":

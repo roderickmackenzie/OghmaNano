@@ -58,7 +58,7 @@ def flat_install(d):
 	flat_path_inp_template=os.path.join(flat_path,"inp_template")
 	flat_path_docs=os.path.join(flat_path,"docs")
 	flat_path_device_lib=os.path.join(flat_path,"device_lib")
-
+	flat_path_licenses=os.path.join(flat_path,"licenses")
 
 	#asdsd
 
@@ -68,20 +68,23 @@ def flat_install(d):
 	os.makedirs(output_path)
 	interactive=">../log.txt 2>../log.txt &"
 	interactive=""
-	os.system("cd gpvdm_core; make DESTDIR="+output_path+" install "+interactive)
+	os.system("cd oghma_core; make DESTDIR="+output_path+" install "+interactive)
 	#ret=d.tailbox("log.txt", height=None, width=150)
 
-	os.system("cd gpvdm_gui; make DESTDIR="+output_path+" install "+interactive)
+	os.system("cd oghma_gui; make DESTDIR="+output_path+" install "+interactive)
 	#ret=d.tailbox("log.txt", height=None, width=150)
 
-	os.system("cd gpvdm_data; make DESTDIR="+output_path+" install "+interactive)
+	os.system("cd oghma_data; make DESTDIR="+output_path+" install "+interactive)
 	#ret=d.tailbox("log.txt", height=None, width=150)
 
 	#This needs fixing
-	intelligent_move(flat_path,output_path,"gpvdm_core")
-	intelligent_move(flat_path,output_path,"gpvdm_data")
+	intelligent_move(flat_path,output_path,"oghma_core")
+	intelligent_move(flat_path_licenses,output_path,"licenses")
+
+	intelligent_move(flat_path,output_path,"oghma_data")
 	intelligent_move(flat_path_device_lib,output_path,"device_lib")
-	intelligent_move(flat_path,output_path,"gpvdm_gui")
+	intelligent_move(flat_path,output_path,"oghma_gui")
+
 	intelligent_move(flat_path_plugins,output_path,"plugins")
 	intelligent_move(flat_path,output_path,"icons")
 	intelligent_move(flat_path_docs,output_path,"doc")
@@ -91,17 +94,19 @@ def flat_install(d):
 	intelligent_move(flat_path,output_path,"mime")
 	intelligent_move(flat_path,output_path,"video")
 	#The bin file
-	intelligent_move(flat_path,output_path,"gpvdm_core",directory=False)
-	intelligent_move(flat_path,output_path,"gpvdm_core.exe",directory=False)
-	intelligent_move(flat_path,output_path,"libgpvdm_core.dll",directory=False)
-	intelligent_move(flat_path,output_path,"libgpvdm_core.so",directory=False)
-	intelligent_move(flat_path,output_path,"base.gpvdm",directory=False)
+	intelligent_move(flat_path,output_path,"oghma_core",directory=False)
+	intelligent_move(flat_path,output_path,"oghma_core.exe",directory=False)
+	intelligent_move(flat_path,output_path,"liboghma_core.dll",directory=False)
+	intelligent_move(flat_path,output_path,"liboghma_core.so",directory=False)
+	intelligent_move(flat_path,output_path,"liboghma_fdtd.dll",directory=False)
+	intelligent_move(flat_path,output_path,"liboghma_fdtd.so",directory=False)
+	intelligent_move(flat_path,output_path,"liboghma_py.dll",directory=False)
+	intelligent_move(flat_path,output_path,"liboghma_py.so",directory=False)
+
+	os.symlink("gui/oghmanano.py",os.path.join(flat_path,"oghmanano"))
+	#os.symlink("gui/oghma_tool.py",os.path.join(flat_path,"oghma_tool"))
 
 
-	os.symlink("gui/gpvdm.py",os.path.join(flat_path,"gpvdm"))
-	#os.symlink("gui/gpvdm_tool.py",os.path.join(flat_path,"gpvdm_tool"))
-
-
-	#shutil.copytree("./gpvdm_data/materials", os.path.join(output_path,"materials"), symlinks=False)
-	#shutil.copytree("./gpvdm_data/spectra", os.path.join(output_path,"spectra"), symlinks=False)
+	#shutil.copytree("./oghma_data/materials", os.path.join(output_path,"materials"), symlinks=False)
+	#shutil.copytree("./oghma_data/spectra", os.path.join(output_path,"spectra"), symlinks=False)
 	return flat_path

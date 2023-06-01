@@ -1,9 +1,9 @@
 # 
-# General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
+# General-purpose Photovoltaic Device Model oghma-nano.com - a drift diffusion
 # base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
 # The model can simulate OLEDs, Perovskite cells, and OFETs.
 # 
-# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
+# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.oghma-nano.com
 # r.c.i.mackenzie at googlemail.com
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a
@@ -33,13 +33,13 @@ except:
 
 
 def git_pull():
-	if os.path.isdir("gpvdm_core")==False or os.path.isdir("gpvdm_gui")==False or os.path.isdir("gpvdm_data")==False:
+	if os.path.isdir("oghma_core")==False or os.path.isdir("oghma_gui")==False or os.path.isdir("oghma_data")==False:
 		#print()
-		a=input("Should I download the source code to gpvdm? [y/n]")
+		a=input("Should I download the source code to oghma? [y/n]")
 		if a == "y":
-			os.system("git clone https://github.com/roderickmackenzie/gpvdm_core")
-			os.system("git clone https://github.com/roderickmackenzie/gpvdm_gui")
-			os.system("git clone https://github.com/roderickmackenzie/gpvdm_data")
+			os.system("git clone https://github.com/roderickmackenzie/oghma_core")
+			os.system("git clone https://github.com/roderickmackenzie/oghma_gui")
+			os.system("git clone https://github.com/roderickmackenzie/oghma_data")
 		else:
 			print("For me to compile the source code you need to download it first.")
 			exit()

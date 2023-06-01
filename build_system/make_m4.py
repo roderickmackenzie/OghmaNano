@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # 
-# General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
+# General-purpose Photovoltaic Device Model oghma-nano.com - a drift diffusion
 # base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
 # The model can simulate OLEDs, Perovskite cells, and OFETs.
 # 
-# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
+# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.oghma-nano.com
 # r.c.i.mackenzie at googlemail.com
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a
@@ -30,16 +30,16 @@ import os
 import sys
 import argparse
 
-def make_m4(hpc=False, win=False,usear=False,dbus=True,windows=False):
+def make_m4(hpc=False, win=False,usear=False,dbus=True,wine=False):
 	path=os.getcwd()
-	make_m4_core(path,hpc=hpc, win=win,usear=usear,dbus=dbus,windows=windows)
+	make_m4_core(path,hpc=hpc, win=win,usear=usear,dbus=dbus,wine=wine)
 	make_m4_gui(path,hpc=hpc, win=win,usear=usear)
 	make_m4_data(path,hpc=hpc, win=win,usear=usear)
 
-def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,windows=False):
-	path=os.path.join(path,"gpvdm_core")
+def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,wine=False):
+	path=os.path.join(path,"oghma_core")
 	config_files=[]
-	gpvdm_lib=[]
+	oghma_lib=[]
 	link_libs=""
 
 	config_files.append("")
@@ -48,122 +48,131 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,windows=False):
 		config_files.append("lang")
 
 	config_files.append("libi")
-	gpvdm_lib.append("libi")
+	oghma_lib.append("libi")
 
 	config_files.append("libmath2d")
-	gpvdm_lib.append("libmath2d")
+	oghma_lib.append("libmath2d")
 
 	config_files.append("libbasicmath")
-	gpvdm_lib.append("libbasicmath")
+	oghma_lib.append("libbasicmath")
 
 	if os.path.isdir(os.path.join(path,"libfxdomain")):
 		config_files.append("libfxdomain")
-		gpvdm_lib.append("libfxdomain")
+		oghma_lib.append("libfxdomain")
 
 	config_files.append("librpn")
-	gpvdm_lib.append("librpn")
+	oghma_lib.append("librpn")
 
 	config_files.append("libshape")
-	gpvdm_lib.append("libshape")
+	oghma_lib.append("libshape")
 
 	if os.path.isdir(os.path.join(path,"libemission")):
 		config_files.append("libemission")
-		gpvdm_lib.append("libemission")
+		oghma_lib.append("libemission")
 
 	config_files.append("libmemory")
-	gpvdm_lib.append("libmemory")
+	oghma_lib.append("libmemory")
 
 	config_files.append("libdos")
-	gpvdm_lib.append("libdos")
+	oghma_lib.append("libdos")
 
 	config_files.append("liblight")
-	gpvdm_lib.append("liblight")
+	oghma_lib.append("liblight")
 
 	config_files.append("libjson")
-	gpvdm_lib.append("libjson")
+	oghma_lib.append("libjson")
 
 	if os.path.isdir(os.path.join(path,"libheat")):
 		config_files.append("libheat")
-		gpvdm_lib.append("libheat")
+		oghma_lib.append("libheat")
 
 	if os.path.isdir(os.path.join(path,"libexciton")):
 		config_files.append("libexciton")
-		gpvdm_lib.append("libexciton")
+		oghma_lib.append("libexciton")
 
 	if os.path.isdir(os.path.join(path,"libsinglet")):
 		config_files.append("libsinglet")
-		gpvdm_lib.append("libsinglet")
+		oghma_lib.append("libsinglet")
 
 	if os.path.isdir(os.path.join(path,"libray")):
 		config_files.append("libray")
-		gpvdm_lib.append("libray")
+		oghma_lib.append("libray")
 
 	config_files.append("libcolor")
-	gpvdm_lib.append("libcolor")
+	oghma_lib.append("libcolor")
 
 	config_files.append("libmeasure")
-	gpvdm_lib.append("libmeasure")
+	oghma_lib.append("libmeasure")
 
 	config_files.append("libcontacts")
-	gpvdm_lib.append("libcontacts")
-
-	config_files.append("lib")
-	gpvdm_lib.append("lib")
+	oghma_lib.append("libcontacts")
 
 	config_files.append("libdump")
-	gpvdm_lib.append("libdump")
+	oghma_lib.append("libdump")
 
-	#config_files.append("libdumpctrl")
-	#gpvdm_lib.append("libdumpctrl")
+	config_files.append("libpy")
+	config_files.append("libgl")
+
+	config_files.append("libscan")
+	oghma_lib.append("libscan")
 
 	config_files.append("libdevice")
-	gpvdm_lib.append("libdevice")
+	oghma_lib.append("libdevice")
 
 	if os.path.isdir(os.path.join(path,"libserver")):
 		config_files.append("libserver")
-		gpvdm_lib.append("libserver")
+		oghma_lib.append("libserver")
 
 	config_files.append("libmesh")
-	gpvdm_lib.append("libmesh")
+	oghma_lib.append("libmesh")
 
 	if os.path.isdir(os.path.join(path,"libperovskite")):
 		config_files.append("libperovskite")
-		gpvdm_lib.append("libperovskite")
+		oghma_lib.append("libperovskite")
 
 	config_files.append("libnewtontricks")
-	gpvdm_lib.append("libnewtontricks")
+	oghma_lib.append("libnewtontricks")
 
 	if os.path.isdir(os.path.join(path,"libfit")):
 		config_files.append("libfit")
-		link_libs=link_libs+" -lgpvdm_fit"
+		link_libs=link_libs+" -loghma_fit"
 
 	if os.path.isdir(os.path.join(path,"libsimplex")):
 		config_files.append("libsimplex")
-		gpvdm_lib.append("libsimplex")
-
-	if os.path.isdir(os.path.join(path,"libfdtd")):
-		config_files.append("libfdtd")
-		gpvdm_lib.append("libfdtd")
+		oghma_lib.append("libsimplex")
 
 	if os.path.isdir(os.path.join(path,"libmode")):
 		config_files.append("libmode")
-		gpvdm_lib.append("libmode")
+		oghma_lib.append("libmode")
 
 	if os.path.isdir(os.path.join(path,"liblock")):
 		config_files.append("liblock")
-		gpvdm_lib.append("liblock")
+		oghma_lib.append("liblock")
 
 	if os.path.isdir(os.path.join(path,"libcircuit")):
 		config_files.append("libcircuit")
-		gpvdm_lib.append("libcircuit")
+		oghma_lib.append("libcircuit")
 
 	if win==False:
 		if os.path.isdir(os.path.join(path,"mumps")):
 			config_files.append("mumps")
 
-	link_libs=link_libs+" -lgpvdm_core"
+	config_files.append("lib")					#Main lib dll
+	oghma_lib.append("lib")
 
-	config_files.append("src")
+
+
+	link_libs=link_libs+" -loghma_core"
+
+	#dlls past this point which need liboghma_core
+
+	if os.path.isdir(os.path.join(path,"libfdtd")):
+		config_files.append("libfdtd")
+		#oghma_lib.append("libfdtd")
+		link_libs=link_libs+" -loghma_fdtd"
+
+
+	config_files.append("src")					#The exe
 
 	for root, dirs, files in os.walk(os.path.join(path,"plugins")):
 		for file in files:
@@ -181,6 +190,8 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,windows=False):
 		except:
 			pass
 
+
+
 	if hpc==False:
 		config_files.append("cluster_")
 		if win==False:
@@ -194,6 +205,39 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,windows=False):
 		f.write( "AC_CONFIG_FILES(["+os.path.join(config_files[i],"Makefile")+"])\n")
 
 	f.close()
+
+	f = open(os.path.join(path,"os_target.m4"), "w")
+	f.write( "#This file has been autogenerated\n")
+	if win==False:
+		#linux
+		f.write( "AC_SUBST(GUIC, \"gcc\")\n")
+		f.write( "AC_SUBST(LIBOPENGL, \"-lGL -lGLU\")\n")
+		f.write( "AC_SUBST(DEFINE_CORE, \"-Denable_server -Duse_open_cl\")\n")
+		f.write( "AC_SUBST(DEFINE_GUI, \"-Denable_server -Duse_open_cl -Dpydll\")\n")
+		f.write( "AC_SUBST(LIBS_GUI, \" -lm -rdynamic -export-dynamic -ldl -lzip -lz -lpng\")\n")
+		f.write( "AC_SUBST(COMPILE_FLAG, \" -fPIC \")\n")	#this is for the core
+		f.write( "AC_SUBST(COMPILE_FLAG_GUI, \" -fPIC \")\n")
+	else:
+		if wine==True:
+			#hybrid
+			f.write( "AC_SUBST(GUIC, \"gcc\")\n")
+			f.write( "AC_SUBST(LIBOPENGL, \"-lGL -lGLU\")\n")
+			f.write( "AC_SUBST(DEFINE_CORE, \"-Dwindows \")\n")
+			f.write( "AC_SUBST(DEFINE_GUI, \" -Dpydll \")\n")
+			f.write( "AC_SUBST(LIBS_GUI, \" -lm -rdynamic -export-dynamic -ldl -lzip -lz -lpng\")\n")
+			f.write( "AC_SUBST(COMPILE_FLAG, \" \")\n")	#this is for the core
+			f.write( "AC_SUBST(COMPILE_FLAG_GUI, \" -fPIC \")\n")
+		else:
+			#windows
+			f.write( "AC_SUBST(GUIC, \"x86_64-w64-mingw32-gcc\")\n")
+			f.write( "AC_SUBST(LIBOPENGL, \"-lopengl32 -lglu32\")\n")
+			f.write( "AC_SUBST(DEFINE_CORE, \"-Dwindows \")\n")
+			f.write( "AC_SUBST(DEFINE_GUI, \" -Dwindows -Dpydll \")\n")
+			f.write( "AC_SUBST(LIBS_GUI, \" -luserenv -lzip -L/home/rod/windll/compiled_dlls4_x86/\")\n")
+			f.write( "AC_SUBST(COMPILE_FLAG, \" \")\n")	#this is for the core
+			f.write( "AC_SUBST(COMPILE_FLAG_GUI, \" \")\n")
+	f.close()
+
 
 	f = open(os.path.join(path,"make_files.m4"), "w")
 	f.write( "#This file has been autogenerated\n")
@@ -224,9 +268,9 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,windows=False):
 	f.close()
 
 
-	f = open(os.path.join(path,"gpvdm_core_lib.m4"), "w")
-	f.write( "AC_SUBST(GPVDM_CORE_LIB_FILES,\"")
-	for file_name in gpvdm_lib:
+	f = open(os.path.join(path,"oghma_core_lib.m4"), "w")
+	f.write( "AC_SUBST(OGHMA_CORE_LIB_FILES,\"")
+	for file_name in oghma_lib:
 		f.write("../"+file_name+"/*.o ")
 	f.write("\")")
 
@@ -235,7 +279,7 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,windows=False):
 
 	f = open(os.path.join(path,"include","enabled_libs.h"), "w")
 	f.write("//This file is auto_generated do not edit.\n")
-	for lib_name in gpvdm_lib:
+	for lib_name in oghma_lib:
 		f.write("#define "+lib_name+"_enabled\n")
 
 	if config_files.count("libfit")!=0:
@@ -244,15 +288,11 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,windows=False):
 	if dbus==True:
 		f.write("#define dbus\n")
 
-	if windows==True:
-		f.write("#define windows\n")
-	else:
-		f.write("#define enable_server\n")
 
 	f.close()
 
 def make_m4_gui(path,hpc=False, win=False,usear=False):
-	path=os.path.join(path,"gpvdm_gui")
+	path=os.path.join(path,"oghma_gui")
 	config_files=[]
 	link_libs=""
 
@@ -321,17 +361,22 @@ def make_m4_gui(path,hpc=False, win=False,usear=False):
 	f.close()
 
 def make_m4_data(path,hpc=False, win=False,usear=False):
-	path=os.path.join(path,"gpvdm_data")
+	path=os.path.join(path,"oghma_data")
 	config_files=[]
 	link_libs=""
 
 	config_files.append("")
 	config_files.append("cie_color")
-	config_files.append("docs/man")
 
+	if os.path.isdir(os.path.join(path,"docs","man")):
+		config_files.append("docs/man")
 
 	f = open(os.path.join(path,"config_files.m4"), "w")
 	f.write( "#This file has been autogenerated\n")
+
+	if os.path.isdir(os.path.join(path,"docs","man")):
+		f.write( "AC_CONFIG_SRCDIR([./docs/man/understanding_oghma_nano.tex])")
+
 	for i in range(0,len(config_files)):
 		f.write( "AC_CONFIG_FILES(["+os.path.join(config_files[i],"Makefile")+"])\n")
 

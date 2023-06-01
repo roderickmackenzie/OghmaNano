@@ -1,10 +1,10 @@
 #! /usr/bin/env python3
 # 
-# General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
+# General-purpose Photovoltaic Device Model oghma-nano.com - a drift diffusion
 # base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
 # The model can simulate OLEDs, Perovskite cells, and OFETs.
 # 
-# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
+# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.oghma-nano.com
 # r.c.i.mackenzie at googlemail.com
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a

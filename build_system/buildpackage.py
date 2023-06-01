@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # 
-# General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
+# General-purpose Photovoltaic Device Model oghma-nano.com - a drift diffusion
 # base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
 # The model can simulate OLEDs, Perovskite cells, and OFETs.
 # 
-# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
+# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.oghma-nano.com
 # r.c.i.mackenzie at googlemail.com
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a
@@ -41,25 +41,24 @@ from flat_install import flat_install
 
 def build_windows_install(d):
 	if d.yesno("Build files for windows installer?") == d.OK:
-		dll_opengl_path="/home/rod/windll/opengl_dlls/"
-		dll_compiled_path="/home/rod/windll/compiled_dlls2/"
+		#dll_opengl_path="/home/rod/windll/opengl_dlls/"
+		dll_compiled_path="/home/rod/windll/compiled_dlls4_x86/"
 		windows_share_path="/home/rod/windows/share"
 
 		output_path=flat_install(d)	
 	
 		#copy dlls
-		for file in os.listdir(dll_opengl_path):
-			copyfile(os.path.join(dll_opengl_path,file), os.path.join(output_path,file))
 
 		for file in os.listdir(dll_compiled_path):
-			copyfile(os.path.join(dll_compiled_path,file), os.path.join(output_path,file))
+			if file.endswith(".dll"):
+				copyfile(os.path.join(dll_compiled_path,file), os.path.join(output_path,file))
 
 
 		if os.path.isdir(windows_share_path)==True:
-			ret=d.inputbox("Copy files to "+windows_share_path+"?", init=windows_share_path)
+			ret=d.inputbox("Copy files from "+output_path+" to "+windows_share_path+" ?", init=windows_share_path)
 			if ret[0]=="ok":
 				windows_share_path=ret[1]
-				print
+
 				#yesno("Copy files to "+windows_share_path+"?") == d.OK:
 				publish_dir=os.path.join(windows_share_path,"pub")
 				if os.path.isdir(publish_dir)==True:
@@ -99,9 +98,9 @@ def buildpackage_menu(d):
 				flat_install(d)
 				shutil.copyfile(os.path.join(os.getcwd(),"build_system","dependency_scripts","packages_ubuntu.sh"), os.path.join("pub","flat","install_packages.sh"))
 
-				shutil.copyfile(os.path.join(os.getcwd(),"gpvdm_data","docs","readme","readme_flat_install_linux.md"), os.path.join("pub","flat","README.md"))
+				shutil.copyfile(os.path.join(os.getcwd(),"oghma_data","docs","readme","readme_flat_install_linux.md"), os.path.join("pub","flat","README.md"))
 
-				os.system("tar -czvf ./pub/gpvdm-8.0-for-ubuntu-20.04.tar.gz -C ./pub/flat/ .")
+				os.system("tar -czvf ./pub/oghma-8.0-for-ubuntu-20.04.tar.gz -C ./pub/flat/ .")
 
 
 		else:

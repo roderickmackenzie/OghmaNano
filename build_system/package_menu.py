@@ -53,11 +53,11 @@ def package_menu(d):
 		generic_install(d,"build_system/dependency_scripts/packages_raspbian.sh")
 		ret=d.tailbox("out.dat",height=None, width=100)
 	else:
-		d.msgbox("I don't know how to install packages for your distribution, file a bug report if you would like your distro added to gpvdm.")
+		d.msgbox("I don't know how to install packages for your distribution, file a bug report if you would like your distro added to oghma.")
 
 
 if __name__ == "__main__":
 	d = Dialog(dialog="dialog")
 
-	d.set_background_title("gpvdm build configure")
+	d.set_background_title("oghma build configure")
 	package_menu(d)

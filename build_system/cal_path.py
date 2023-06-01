@@ -3,7 +3,7 @@
 #   model for 1st, 2nd and 3rd generation solar cells.
 #   Copyright (C) 2012-2017 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
 #
-#   https://www.gpvdm.com
+#   https://www.oghma-nano.com
 #   Room B86 Coates, University Park, Nottingham, NG7 2RD, UK
 #
 #   This program is free software; you can redistribute it and/or modify
@@ -60,7 +60,7 @@ def subtract_paths(root,b_in):
 
 
 def get_ver():
-	f = open("./gpvdm_core/include/version.h", mode='rb')
+	f = open("./oghma_core/include/version.h", mode='rb')
 	lines = f.read()
 	f.close()
 
@@ -69,9 +69,9 @@ def get_ver():
 	ver=""
 	sub_ver=""
 	for l in lines:
-		if l.count("gpvdm_ver")>0:
+		if l.count("oghma_ver")>0:
 			ver=l.split()[2][1:-1]
-		if l.count("gpvdm_sub_ver")>0:
+		if l.count("oghma_sub_ver")>0:
 			sub_ver=l.split()[2][1:-1]
 
 	return ver#,sub_ver

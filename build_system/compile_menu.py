@@ -1,9 +1,9 @@
 # 
-# General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
+# General-purpose Photovoltaic Device Model oghma-nano.com - a drift diffusion
 # base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
 # The model can simulate OLEDs, Perovskite cells, and OFETs.
 # 
-# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
+# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.oghma-nano.com
 # r.c.i.mackenzie at googlemail.com
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a
@@ -38,7 +38,7 @@ from shutil import copyfile
 def write_includes(dbus=None,umfpack=None):
 	if dbus==None:
 		dbus="-I/usr/include/dbus-1.0/ `pkg-config --cflags dbus-1`"
-	f = open(os.path.join("gpvdm_core","includes.m4"), "w")
+	f = open(os.path.join("oghma_core","includes.m4"), "w")
 	f.write( "AC_SUBST(I_DBUS,\"")
 	f.write(dbus)
 	f.write("\")")
@@ -46,28 +46,28 @@ def write_includes(dbus=None,umfpack=None):
 	f.close()
 
 def test(d):
-	if d.yesno("Run gpvdm") == d.OK:
+	if d.yesno("Run oghma") == d.OK:
 		os.system("./go.o  >log.txt 2>log.txt &")
 		et=d.tailbox("log.txt", height=None, width=150)
 
 def make_all(d):
 	if d.yesno("Run make clean") == d.OK:
-		os.system("cd gpvdm_core;make clean >../log.txt 2>../log.txt ;cd ../gpvdm_gui; make clean >../log.txt 2>../log.txt ;cd ../gpvdm_data; make clean >../log.txt 2>../log.txt&")
+		os.system("cd oghma_core;make clean >../log.txt 2>../log.txt ;cd ../oghma_gui; make clean >../log.txt 2>../log.txt ;cd ../oghma_data; make clean >../log.txt 2>../log.txt&")
 		et=d.tailbox("log.txt", height=None, width=150)
 
-	if d.yesno("Run make in gpvdm_core") == d.OK:
+	if d.yesno("Run make in oghma_core") == d.OK:
 		jobs=os.cpu_count()
-		os.system("cd gpvdm_core; make  -j "+str(jobs)+" >../log.txt 2>../log.txt &")
+		os.system("cd oghma_core; make  -j "+str(jobs)+" >../log.txt 2>../log.txt &")
 		et=d.tailbox("log.txt", height=None, width=150)
 
-	if d.yesno("Run make in gpvdm_gui") == d.OK:
+	if d.yesno("Run make in oghma_gui") == d.OK:
 		jobs=os.cpu_count()
-		os.system("cd gpvdm_gui; make  -j "+str(jobs)+" >../log.txt 2>../log.txt &")
+		os.system("cd oghma_gui; make  -j "+str(jobs)+" >../log.txt 2>../log.txt &")
 		et=d.tailbox("log.txt", height=None, width=150)
 
-	if d.yesno("Run make in gpvdm_data") == d.OK:
+	if d.yesno("Run make in oghma_data") == d.OK:
 		jobs=os.cpu_count()
-		os.system("cd gpvdm_data; make  -j "+str(jobs)+" >../log.txt 2>../log.txt &")
+		os.system("cd oghma_data; make  -j "+str(jobs)+" >../log.txt 2>../log.txt &")
 		et=d.tailbox("log.txt", height=None, width=150)
 
     	#d.msgbox("You have been warned...")
@@ -82,134 +82,152 @@ def build_configure(directory):
 	os.chdir(my_dir)
 
 def build_configure_all():
-	build_configure("gpvdm_core")
-	build_configure("gpvdm_gui")
-	build_configure("gpvdm_data")
+	build_configure("oghma_core")
+	build_configure("oghma_gui")
+	build_configure("oghma_data")
 
 def configure_for_fedora(d):
-	make_m4(hpc=False, win=False,usear=True,dbus=True,windows=False)
+	make_m4(hpc=False, win=False,usear=True,dbus=True)
 	#d.infobox("aclocal", width=0, height=0, title="configure")
 	build_configure_all()
 	mpi_include="-I/usr/include/openmpi-x86_64/ -I/usr/include/MUMPS/ -L/usr/lib64/openmpi/lib/"
-	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/suitesparse/ "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" &>../log.txt  &")
+	os.system("cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/suitesparse/ "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_gui;./configure &>../log.txt  &")
+	os.system("cd oghma_gui;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_data;./configure &>../log.txt  &")
+	os.system("cd oghma_data;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 def configure_for_debian(d):
-	make_m4(hpc=False, win=False,usear=True,dbus=True,windows=False)
+	make_m4(hpc=False, win=False,usear=True,dbus=True)
 	#d.infobox("aclocal", width=0, height=0, title="configure")
 	build_configure_all()
-	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &")
+	os.system("cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_gui;./configure &>../log.txt  &")
+	os.system("cd oghma_gui;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_data;./configure &>../log.txt  &")
+	os.system("cd oghma_data;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 
 def configure_for_ubuntu(d):
-	make_m4(hpc=False, win=False,usear=True,dbus=True,windows=False)
+	make_m4(hpc=False, win=False,usear=True,dbus=True)
 	write_includes()
 	build_configure_all()
 
 	mpi_include="-I/usr/lib/x86_64-linux-gnu/openmpi/include/ -L/usr/lib64/openmpi/lib/"
-	command="cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/ -I/usr/include/superlu/ \" LDFLAGS=\"-lumfpack "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &"
+	command="cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/ \" LDFLAGS=\"-lumfpack "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &"
 	print(command)
 	os.system(command)
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_gui;./configure &>../log.txt  &")
+	os.system("cd oghma_gui;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_data;./configure &>../log.txt  &")
+	os.system("cd oghma_data;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 def configure_for_ubuntu_with_flat_install(d):
-	make_m4(hpc=False, win=False,usear=True,dbus=True,windows=False)
+	make_m4(hpc=False, win=False,usear=True,dbus=True)
 
 	build_configure_all()
 
-	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/\"  --enable-noplots --enable-noman --docdir=/ --datadir=/ --bindir=/  --libdir=/   >../log.txt 2>../log.txt &")
+	os.system("cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/\"  --enable-noplots --enable-noman --docdir=/ --datadir=/ --bindir=/  --libdir=/   >../log.txt 2>../log.txt &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_gui;./configure  --enable-nodesktop --enable-noman --docdir=/ --datadir=/ --bindir=/  --libdir=/  &>../log.txt  &")
+	os.system("cd oghma_gui;./configure  --enable-nodesktop --enable-noman --docdir=/ --datadir=/ --bindir=/  --libdir=/  &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_data;./configure  --docdir=/ --datadir=/ --bindir=/  --libdir=/ &>../log.txt  &")
+	os.system("cd oghma_data;./configure  --docdir=/ --datadir=/ --bindir=/  --libdir=/ &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 def configure_for_centos_hpc(d):
 	print("Running:configure_for_centos_hpc")
-	make_m4(hpc=True, win=False,usear=False,dbus=True,windows=False)
+	make_m4(hpc=True, win=False,usear=False,dbus=True)
 
 	build_configure_all()
 
-	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/\" --enable-hpc --enable-noplots --enable-noman  --enable-nodevicelib --enable-nocluster")
+	os.system("cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/\" --enable-hpc --enable-noplots --enable-noman  --enable-nocluster")
 	# >../log.txt 2>../log.txt &
 
 	#et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_gui;./configure --enable-noman --enable-hpc --enable-nodesktop  --enable-noimages --enable-nohtml") #&>../log.txt  &
+	os.system("cd oghma_gui;./configure --enable-noman --enable-hpc --enable-nodesktop  --enable-noimages --enable-nohtml") #&>../log.txt  &
 	#et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_data;./configure --enable-nodocs") #&>../log.txt  &
+	os.system("cd oghma_data;./configure --enable-nodevicelib") #&>../log.txt  &
 
 def configure_for_centos(d):
 	print("Running:configure_for_centos")
-	make_m4(hpc=False, win=False,usear=True,dbus=True,windows=False)
+	make_m4(hpc=False, win=False,usear=True,dbus=True)
 
 	build_configure_all()
 
-	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/\" >../log.txt 2>../log.txt &")
+	os.system("cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/\" >../log.txt 2>../log.txt &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_gui;./configure &>../log.txt  &")
+	os.system("cd oghma_gui;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_data;./configure &>../log.txt  &")
+	os.system("cd oghma_data;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 	make_all(d)
 
 def configure_for_arch(d):
-	make_m4(hpc=False, win=False,usear=True,dbus=True,windows=False)
+	make_m4(hpc=False, win=False,usear=True,dbus=True)
 
 	build_configure_all()
 
-	os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/\" >../log.txt 2>../log.txt &")
+	os.system("cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/\" >../log.txt 2>../log.txt &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_gui;./configure &>../log.txt  &")
+	os.system("cd oghma_gui;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_data;./configure &>../log.txt  &")
+	os.system("cd oghma_data;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 	make_all(d)
 
 def configure_for_windows(d):
-	make_m4(hpc=False, win=True,usear=True,dbus=False,windows=True)
+	make_m4(hpc=False, win=True,usear=True,dbus=False)
 	write_includes(dbus="")
 	build_configure_all()
 
 	home=str(Path.home())
-	flags="-I"+home+"/windll/libzip/libzip-0.11.2/lib/ -I"+home+"/windll/SuiteSparse-3.0.0/SuiteSparse/UFconfig/ -I"+home+"/windll/SuiteSparse-3.0.0/SuiteSparse/AMD/Include/ -I"+home+"/windll/SuiteSparse-3.0.0/SuiteSparse/UMFPACK/Include/ -I"+home+"/windll/libpng/libpng-1.6.37/"
+	flags="-I"+home+"/windll/libzip/libzip-0.11.2/lib/ -I"+home+"/windll/libpng/libpng-1.6.37/"
 	#+home+"-I/windll/OpenCL-Headers-master/"
 	#+"-I/windll/gsl-1.16/
-	os.system("cd gpvdm_core; ./configure --host=i686-w64-mingw32 CPPFLAGS=\""+flags+"\"  --enable-noplots --enable-noman  >../log.txt 2>../log.txt &")
+	os.system("cd oghma_core; ./configure --host=x86_64-w64-mingw32 CPPFLAGS=\""+flags+"\"  --enable-noplots --enable-noman  >../log.txt 2>../log.txt &")
 	ret=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_gui;./configure --enable-nodesktop --enable-noman  &>../log.txt  &")
+	os.system("cd oghma_gui;./configure --enable-nodesktop --enable-noman  &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd gpvdm_data;./configure  &>../log.txt  &")
+	os.system("cd oghma_data;./configure &>../log.txt  &")
+	et=d.tailbox("log.txt", height=None, width=100)
+
+def configure_for_hybrid_wine(d):
+	make_m4(hpc=False, win=True,usear=True,dbus=False,wine=True)
+	write_includes(dbus="")
+	build_configure_all()
+
+	home=str(Path.home())
+	flags="-I"+home+"/windll/libzip/libzip-0.11.2/lib/ -I"+home+"/windll/libpng/libpng-1.6.37/"
+	#+home+"-I/windll/OpenCL-Headers-master/"
+	#+"-I/windll/gsl-1.16/
+	os.system("cd oghma_core; ./configure --host=x86_64-w64-mingw32 CPPFLAGS=\""+flags+"\"  --enable-hybrid --enable-noplots --enable-noman  >../log.txt 2>../log.txt &")
+	ret=d.tailbox("log.txt", height=None, width=100)
+
+	os.system("cd oghma_gui;./configure --enable-nodesktop --enable-noman  &>../log.txt  &")
+	et=d.tailbox("log.txt", height=None, width=100)
+
+	os.system("cd oghma_data;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 def configure_autodetect(d):
@@ -247,12 +265,14 @@ def select_distro_menu(d):
 		return
 	code, tag = d.menu("build for:",
 		               choices=[("(back)", "back"),
+								("(win)", "Windows (x86_64)"),
+								("(hybrid)", "Hybrid/Wine (x86_64)"),
+								("(ubuntu)", "Ubuntu (x86_64)"),
 								("(fedora)", "fedora (x86_64)"),
 								("(debian)", "debian (x86_64)"),
 								("(raspberry)", "Raspberry (ARM)"),
 								("(centos)", "CENTOS (x86_64)"),
 								("(mint)", "Mint (x86_64)"),
-								("(ubuntu)", "Ubuntu (x86_64)"),
 								("(suse)", "Open Suse (x86_64)"),
 								("(arch)", "Arch (x86_64)"),
 								("(debian-i386)","Debian (i386)"),
@@ -294,7 +314,7 @@ def select_distro_menu(d):
 			os.system("automake")
 			os.system("automake --add-missing")
 			os.system("automake")
-			os.system("cd gpvdm_core; ./configure CPPFLAGS=\"-I/usr/include/\" --host=arm-linux >../log.txt 2>../log.txt &")
+			os.system("cd oghma_core; ./configure CPPFLAGS=\"-I/usr/include/\" --host=arm-linux >../log.txt 2>../log.txt &")
 			et=d.tailbox("log.txt", height=None, width=100)
 
 			make_all(d)
@@ -313,7 +333,7 @@ def select_distro_menu(d):
 
 			build_configure_all()
 
-			os.system("cd gpvdm_core; ./configure CPPFLAGS=\"-I/usr/include/\" >../log.txt 2>../log.txt &")
+			os.system("cd oghma_core; ./configure CPPFLAGS=\"-I/usr/include/\" >../log.txt 2>../log.txt &")
 			et=d.tailbox("log.txt", height=None, width=100)
 
 			make_all(d)
@@ -330,7 +350,7 @@ def select_distro_menu(d):
 
 			build_configure_all()
 
-			os.system("cd gpvdm_core; ./configure CPPFLAGS=\"-I/usr/include/\" >../log.txt 2>../log.txt &")
+			os.system("cd oghma_core; ./configure CPPFLAGS=\"-I/usr/include/\" >../log.txt 2>../log.txt &")
 			et=d.tailbox("log.txt", height=None, width=100)
 
 			make_all(d)
@@ -341,13 +361,21 @@ def select_distro_menu(d):
 			configure_for_arch(d)
 
 			d.msgbox("Built")
+		if tag=="(win)":
+			configure_for_windows(d)
+			make_all(d)
+			d.msgbox("Built")
+		elif tag=="(hybrid)":
+			configure_for_hybrid_wine(d)
+			make_all(d)
+			d.msgbox("Built")
 
 		if tag=="(debian-i386)":
 
 			make_m4(hpc=False, win=False,usear=True)
 			#d.infobox("aclocal", width=0, height=0, title="configure")
 			build_configure_all()
-			os.system("cd gpvdm_core;./configure CPPFLAGS=\"-I/usr/include/\" --host=i686-linux-gnu --build=i686-linux-gnu CC=\"gcc -m32\" CXX=\"g++ -m32\" >../log.txt 2>../log.txt &")
+			os.system("cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/\" --host=i686-linux-gnu --build=i686-linux-gnu CC=\"gcc -m32\" CXX=\"g++ -m32\" >../log.txt 2>../log.txt &")
 			et=d.tailbox("log.txt", height=None, width=100)
 
 			make_all(d)
