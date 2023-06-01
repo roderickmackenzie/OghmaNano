@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -41,12 +39,9 @@
 
 void newton_start(struct simulation *sim,struct multimin *data)
 {
-int i;
 int count=0;
 double e0=0.0;
 double e1=0.0;
-double dx=0.0;
-double dy=0.0;
 data->s[0]=1e-8;
 double clamp=0.01;
 double deriv=0.0;
@@ -90,20 +85,14 @@ data->ptry[0]+=step;
 
 int simplex_iterate(struct simulation *sim,struct multimin *data)
 {
-	int i=0;
-	int j=0;
 
-	double rtol=0.0;
-	double sum=0.0;
-	double swap=0.0;
-	double ysave=0.0;
-	int ittr=0;
-	//printf("BOOM\n");
-	//getchar();
+	#ifdef simplex_verbose
+		double rtol=0.0;
+		rtol=2.0*fabs(data->y[data->i_hi0]-data->y[data->i_lo])/(fabs(data->y[data->i_hi0])+fabs(data->y[data->i_lo])+TINY);
+	#endif
+
+
 	multimin_find_best(data);
-
-
-	rtol=2.0*fabs(data->y[data->i_hi0]-data->y[data->i_lo])/(fabs(data->y[data->i_hi0])+fabs(data->y[data->i_lo])+TINY);
 
 
 	if (data->ittr >= data->n_max)
