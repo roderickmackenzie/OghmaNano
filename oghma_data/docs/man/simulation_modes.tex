@@ -1,0 +1,80 @@
+\chapter{Simulation modes and simulation editors}
+\label{sec:simmodes}
+
+Gpvdm has \index{various} plugins which enable the base simulation code to perform a variety of simulation types. For example there is a plugin to perform steady state JV simulations, another plugin to perform frequency domain simulations, and another to calculate the Quantum Efficiency etc... In the simulation editors ribbon (see figure \ref{fig:simeditors}) you can see the icons for each plugin. By clicking on an icon in this ribbon you will be able to edit how the plugin performs the various simulation types.  For example under the JV plugin editor one can change the start/stop voltages of a voltage sweep.  The simulation mode ribbon shown in figure \ref{fig:simmodes} enables the user to select which simulation mode is run.  You can see in the image that the \emph{JV curve} icon is depressed which means when the user clicks run, a JV curve will be simulated.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{./images/sim_editors/ribbon_sim_editors.png}
+\caption{Simulation editors}
+\label{fig:simeditors}
+\end{figure}
+
+Each plugin editor can generate multiple simulation modes.  For example the time domain simulation editor (see figure \ref{fig:simeditors}) is responsible for the generating both the \emph{CELIV} and the \emph{TPC 400mV DARK} icon in Figure \ref{fig:simmodes}. This enables the user to define new types of simulation modes at will.  For example there may be no TDCF simulation setup, but using the time domain editor you can set one up.  Below the various simulation editors are described in detail.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{./images/sim_editors/ribbon_sim_modes.png}
+\caption{Selectig a simulation mode}
+\label{fig:simmodes}
+\end{figure}
+
+\input{simulation_modes_jv.tex}
+\input{simulation_modes_time_domain.tex}
+
+\section{Suns-Voc editor}
+The Suns-Voc plugin can be used to calculate how open circuit voltage changes as a function of light intensity.  This can be useful for understanding tail slope and disorder in devices.  A picture of the suns-voc editor window can be seen below in figure \ref{fig:sunsvoceditor}.  The window can be used to set the start and stop light intensity.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth,height=0.5\textwidth]{./images/sim_editors/suns_voc_editor.png}
+\caption{The suns-voc editor window}
+\label{fig:sunsvoceditor}
+\end{figure}
+
+
+\section{Suns-Jsc editor}
+The Jsc editor can be used to configure suns-Jsc simulations. It enables you to set the start light intensity, stop light intensity and how big the steps are. This is shown in figure \ref{fig:sunsjsceditor}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth,height=0.5\textwidth]{./images/sim_editors/suns_jsc_editor.png}
+\caption{The JV curve editor window}
+\label{fig:sunsjsceditor}
+\end{figure}
+
+
+\section{Frequency domain editor}
+The frequency domain editor allows you to configure frequency domain simulations. This is shown in figure \ref{fig:fxdomaineditor}. On the right of the window you can see the frequency points which will be simulated. These are also displayed on the graph to the right of the window.  Notice that in the figure there are multiple simulations configured, IMPS, IMVS, IS and "test".  Each of these simulations will appear as an separate simulation mode in the simulation mode ribbon.
+
+Related YouTube videos:
+\begin{figure}[H]
+
+\begin{tabular}{ c l }
+
+\includegraphics[width=0.05\textwidth]{./images/youtube.png}
+
+&
+\href{https://www.youtube.com/watch?v=NJAsZeiB5FU}{Simulating impedance spectroscopy (IS) in solar cells.}
+
+\end{tabular}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth,height=0.5\textwidth]{./images/sim_editors/fx_domain_editor.png}
+\caption{The frequency domain editor window}
+\label{fig:fxdomaineditor}
+\end{figure}
+
+\section{Quantum efficiency editor}
+The quantum efficiency editor simulates both EQE and IQE.  The configuration window can be used to set the voltage at which EQE and IQE are performed.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth,height=0.5\textwidth]{./images/sim_editors/qe_editor.png}
+\caption{The quantum efficiency editor window}
+\label{fig:qeeditor}
+\end{figure}
+
+
