@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -56,7 +54,7 @@ int cmp_addjob(int sock,struct tx_struct *data)
 char job_name[400];
 char full_path[400];
 
-	if (cmpstr_min(data->id,"gpvdmaddjob")==0)
+	if (cmpstr_min(data->id,"cluster_addjob")==0)
 	{
 		sprintf(job_name,"job%d",njobs);
 		jobs_add(job_name,data->target,data->cpus);
@@ -92,7 +90,7 @@ int tx_job_list()
 	if (master!=NULL)
 	{
 		tx_struct_init(&packet);
-		tx_set_id(&packet,"gpvdm_job_list");
+		tx_set_id(&packet,"cluster_job_list");
 
 		gen_job_list(buf);
 
@@ -105,7 +103,7 @@ return 0;
 int cmp_send_job_list(int sock,struct tx_struct *data)
 {
 
-	if (cmpstr_min(data->id,"gpvdm_send_job_list")==0)
+	if (cmpstr_min(data->id,"cluster_send_job_list")==0)
 	{
 		tx_job_list();
 

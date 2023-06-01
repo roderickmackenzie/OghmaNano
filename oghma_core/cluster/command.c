@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -46,6 +44,7 @@
 #include "tx_packet.h"
 #include <pthread.h>
 #include <sys/prctl.h>
+#include <g_io.h>
 
 struct state *local_sim;
 struct node_struct nodes[100];
@@ -56,7 +55,7 @@ int send_command(int sock,char *command,char *dir_name,int cpus)
 	int ret=0;
 	struct tx_struct packet;
 	tx_struct_init(&packet);
-	tx_set_id(&packet,"gpvdmcommand");
+	tx_set_id(&packet,"oghmacommand");
 	strcpy(packet.exe_name,command);
 	strcpy(packet.dir_name,dir_name);
 	packet.cpus=cpus;
@@ -122,7 +121,7 @@ void* exec_command(void *in)
 
 	struct tx_struct packet;
 	tx_struct_init(&packet);
-	tx_set_id(&packet,"gpvdmsimfinished");
+	tx_set_id(&packet,"oghmasimfinished");
 	strcpy(packet.dir_name,data.dir_name);
 	strcpy(packet.ip,get_my_ip());
 	packet.cpus=data.cpus;
@@ -135,7 +134,7 @@ void* exec_command(void *in)
 int cmp_node_runjob(struct state *sim,struct tx_struct *data)
 {
 	local_sim=sim;
-	if (cmpstr_min(data->id,"gpvdmcommand")==0)
+	if (cmpstr_min(data->id,"oghmacommand")==0)
 	{
 
 		printf("I will run %s in a new process\n",data->exe_name);
@@ -186,7 +185,7 @@ void* command_thread(void *in)
 	printf("%s\n",temp);
 	send_message(temp);
 
-	getcwd(temp, 500);
+	g_getcwd(temp, 500);
 	send_message(temp);
 
 	fp = popen(data.command, "r");
@@ -223,7 +222,7 @@ int cmp_head_exe(struct state *sim,int sock,struct tx_struct *data)
 {
 local_sim=sim;
 
-	if (cmpstr_min(data->id,"gpvdmheadexe")==0)
+	if (cmpstr_min(data->id,"oghmaheadexe")==0)
 	{
 
 

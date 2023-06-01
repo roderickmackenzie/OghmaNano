@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -138,7 +136,7 @@ int cpus;
 
 	struct tx_struct packet;
 	tx_struct_init(&packet);
-	tx_set_id(&packet,"gpvdmaddnode");
+	tx_set_id(&packet,"cluster_addnode");
 	strcpy(packet.ip, get_my_ip());
 	packet.cpus=cpus;
 	strcpy(packet.host_name, host_name);
@@ -170,7 +168,7 @@ struct tx_struct packet;
 	if (sock>=0)
 	{
 		tx_struct_init(&packet);
-		tx_set_id(&packet,"gpvdmdeletenode");
+		tx_set_id(&packet,"cluster_deletenode");
 
 		tx_packet(sock,&packet,NULL);
 	}
@@ -179,7 +177,7 @@ struct tx_struct packet;
 
 int cmp_addnode(int sock,struct tx_struct *data)
 {
-	if (cmpstr_min(data->id,"gpvdmaddnode")==0)
+	if (cmpstr_min(data->id,"cluster_addnode")==0)
 	{
 
 		node_add("slave",data->ip,data->cpus,sock,data->host_name);
@@ -193,7 +191,7 @@ return -1;
 int cmp_deletenode(int sock_han,struct tx_struct *data)
 {
 char my_ip[20];
-	if (cmpstr_min(data->id,"gpvdmdeletenode")==0)
+	if (cmpstr_min(data->id,"cluster_deletenode")==0)
 	{
 
 
@@ -219,7 +217,7 @@ printf("number\ttype\tname\t\tip\t\tcpus\tmax_cpus\tsock\tload\tload0\t\tlast_se
 int cmp_sendnodelist(int sock,struct tx_struct *data)
 {
 
-	if (cmpstr_min(data->id,"gpvdmsendnodelist")==0)
+	if (cmpstr_min(data->id,"cluster_sendnodelist")==0)
 	{
 		nodes_txnodelist();
 		return 0;
@@ -279,7 +277,7 @@ int nodes_txnodelist()
 		}
 
 		tx_struct_init(&packet);
-		tx_set_id(&packet,"gpvdmnodelist");
+		tx_set_id(&packet,"cluster_nodelist");
 		packet.size=strlen(buf);
 
 		tx_packet(master->sock,&packet,buf);
@@ -467,7 +465,7 @@ return -1;
 int cmp_simfinished(struct state *sim,int sock,struct tx_struct *data)
 {
 	struct tx_struct packet;
-	if (cmpstr_min(data->id,"gpvdmsimfinished")==0)
+	if (cmpstr_min(data->id,"cluster_simfinished")==0)
 	{
 		struct job* job=NULL;
 		job=jobs_find_job(data->dir_name);
@@ -529,7 +527,7 @@ int cmp_simfinished(struct state *sim,int sock,struct tx_struct *data)
 
 
 			tx_struct_init(&packet);
-			tx_set_id(&packet,"gpvdmpercent");
+			tx_set_id(&packet,"cluster_percent");
 			packet.percent=(int)jobs_cal_percent_finished();
 
 			tx_packet(sock,&packet,NULL);
@@ -540,7 +538,7 @@ int cmp_simfinished(struct state *sim,int sock,struct tx_struct *data)
 			{
 
 				tx_struct_init(&packet);
-				tx_set_id(&packet,"gpvdmfinished");
+				tx_set_id(&packet,"cluster_finished");
 				tx_packet(sock,&packet,NULL);
 
 				//jobs_clear_all();

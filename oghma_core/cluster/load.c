@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -57,7 +55,7 @@ int send_node_load(int sock)
 
 	struct tx_struct packet;
 	tx_struct_init(&packet);
-	tx_set_id(&packet,"gpvdmload");
+	tx_set_id(&packet,"cluster_load");
 	tx_set_size(&packet,0);
 	packet.load0=loadavg[0];
 	packet.load1=loadavg[1];
@@ -88,7 +86,7 @@ int cmp_nodeload(int sock,struct tx_struct *data)
 {
 
 	int ret=0;
-	if (cmpstr_min(data->id,"gpvdmnodegetload")==0)
+	if (cmpstr_min(data->id,"cluster_nodegetload")==0)
 	{
 		ret=send_node_load(sock);
 		return ret;
@@ -99,7 +97,7 @@ return -1;
 int cmp_rxloadstats(int sock,struct tx_struct *data)
 {
 	struct node_struct* node;
-	if (cmpstr_min(data->id,"gpvdmload")==0)
+	if (cmpstr_min(data->id,"cluster_load")==0)
 	{
 
 		node=node_find(data->ip);
@@ -122,7 +120,7 @@ char *max_load=NULL;
 char max_buf[100];
 int cpus=0.0;
 
-	if (cmpstr_min(data->id,"gpvdm_set_max_loads")==0)
+	if (cmpstr_min(data->id,"cluster_set_max_loads")==0)
 	{
 
 		printf("rod %s\n",data->data);

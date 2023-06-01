@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -44,8 +42,8 @@
 #include <sys/ioctl.h>
 #include <net/if.h>
 #include <sys/stat.h>
-
-#include "tx_packet.h"
+#include <tx_packet.h>
+#include <g_io.h>
 
 static int count=0;
 int cmp_rxfile(int sock,struct tx_struct *data,struct state *sim)
@@ -55,7 +53,7 @@ struct inp_file decode;
 char dir_name[400];
 char full_path[400]; //full path
 
-	if (cmpstr_min(data->id,"gpvdmfile")==0)
+	if (cmpstr_min(data->id,"cluster_file")==0)
 	{
 		char *buf=NULL;
 
@@ -77,7 +75,7 @@ char full_path[400]; //full path
 		printf("file: %s %s\n",dir_name, full_path);
 
 
-		FILE *fp = fopen(full_path, "w");
+		FILE *fp = g_fopen(full_path, "w");
 
 		if(fp == NULL)
 		{

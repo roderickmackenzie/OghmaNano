@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -526,7 +524,7 @@ int tx_packet(int sock,struct tx_struct *in,char *buf)
 	bzero(packet, packet_size);
 
 	char id_line[128];
-	sprintf(id_line,"gpvdm%d %ld",packet_size-32,strlen(head));
+	sprintf(id_line,"cluster_%d %ld",packet_size-32,strlen(head));
 	while(strlen(id_line)<32)
 	{
 		strcat(id_line," ");
@@ -606,7 +604,7 @@ int rx_packet(int sock,struct tx_struct *in)
 		return -1;
 	}
 
-	if (cmpstr_min(buf,"gpvdm")!=0)
+	if (cmpstr_min(buf,"cluster")!=0)
 	{
 		get_ip_from_sock(ip,sock);
 		printf(">>>>>>>>>>>>>>>>>> I've got odd data %s\n",ip);
@@ -733,7 +731,7 @@ void tx_thing_done(int sock,struct tx_struct* in_packet)
 	printf(">>>>>>>>>>>>>>>>>>>>adasdasda");
 	struct tx_struct packet;
 	tx_struct_init(&packet);
-	tx_set_id(&packet,"gpvdmthingdone");
+	tx_set_id(&packet,"cluster_thingdone");
 	strcpy(packet.token,in_packet->token);
 	strcpy(packet.ip,get_my_ip());
 	tx_packet(sock,&packet,NULL);

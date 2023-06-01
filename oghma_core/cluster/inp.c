@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -26,7 +24,7 @@
 // 
 
 /** @file inp.c
-@brief functions to read input files, this is a copy from gpvdm
+@brief functions to read input files
 */
 
 
@@ -45,7 +43,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
+#include <g_io.h>
 
 
 void inp_listdir( char *dir_name,struct inp_list *out)
@@ -56,7 +54,7 @@ int i=0;
 int err = 0;
 char temp[200];
 
-join_path(2,sim_file,dir_name,"sim.gpvdm");
+join_path(2,sim_file,dir_name,"sim.oghma");
 
 out->names=(char**)malloc(sizeof(char*)*2000);
 out->len=0;
@@ -85,7 +83,7 @@ if (z!=NULL)
 struct dirent *next_file;
 DIR *theFolder;
 
-theFolder = opendir(dir_name);
+theFolder = g_opendir(dir_name);
 if (theFolder!=NULL)
 {
 	while((next_file=readdir(theFolder))!=NULL)
@@ -155,7 +153,7 @@ int zip_is_in_archive(char *full_file_name)
 	get_dir_name_from_path(file_path,full_file_name);
 	char *file_name=get_file_name_from_path(full_file_name);
 
-	join_path(2,zip_path,file_path,"sim.gpvdm");
+	join_path(2,zip_path,file_path,"sim.oghma");
 
 	int err = 0;
 	struct zip *z = zip_open(zip_path, 0, &err);
@@ -182,7 +180,7 @@ int zip_is_in_archive(char *full_file_name)
 
 int inp_isfile(char *full_file_name)
 {
-FILE *f = fopen(full_file_name, "rb");
+FILE *f = g_fopen(full_file_name, "rb");
 if (f!=NULL)
 {
 	fclose(f);
@@ -258,7 +256,7 @@ return in->temp;
 
 int inp_read_buffer(char **buf, long *len,char *full_file_name)
 {
-FILE *f = fopen(full_file_name, "rb");
+FILE *f = g_fopen(full_file_name, "rb");
 
 if (f!=NULL)
 {
@@ -285,7 +283,7 @@ if (f!=NULL)
 
 	char *file_name=get_file_name_from_path(full_file_name);
 
-	join_path(2,zip_path,file_path,"sim.gpvdm");
+	join_path(2,zip_path,file_path,"sim.oghma");
 
 	//printf("1>%s 2>%s 3>%s 4>%s\n",full_file_name,file_path,file_name,zip_path);
 	int err = 0;
@@ -467,7 +465,7 @@ if ((in_zip_file!=0)||(outside_zip_file==0))
 	get_dir_name_from_path(file_path,full_file_name);
 	char *file_name=get_file_name_from_path(full_file_name);
 
-	join_path(2,zip_path,file_path,"sim.gpvdm");
+	join_path(2,zip_path,file_path,"sim.oghma");
 
 	int err = 0;
 	struct zip *z = zip_open(zip_path, 0, &err);

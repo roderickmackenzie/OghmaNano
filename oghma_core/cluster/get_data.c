@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -52,7 +50,7 @@ int cmp_node_send_data(struct state *sim,int sock,struct tx_struct *data)
 	char full_path[200];
 	struct tx_struct packet;
 
-	if (cmpstr_min(data->id,"gpvdmnodesenddata")==0)
+	if (cmpstr_min(data->id,"cluster_nodesenddata")==0)
 	{
 
 
@@ -62,7 +60,7 @@ int cmp_node_send_data(struct state *sim,int sock,struct tx_struct *data)
 		send_dir(sim,sock,full_path, 0,full_path,data->job);
 
 		tx_struct_init(&packet);
-		tx_set_id(&packet,"gpvdmgetdata");
+		tx_set_id(&packet,"cluster_getdata");
 		tx_packet(sock,&packet,NULL);
 
 		return 0;
@@ -81,9 +79,9 @@ int cmp_get_data(struct state *sim,int sock,struct tx_struct *data)
 	int state_changed=FALSE;
 	njobs=get_njobs();
 	jobs=get_jobs_array();
-	if (cmpstr_min(data->id,"gpvdmgetdata")==0)
+	if (cmpstr_min(data->id,"cluster_getdata")==0)
 	{
-		printf("check getdata gpvdmgetdata\n");
+		printf("check getdata cluster_getdata\n");
 
 
 
@@ -100,7 +98,7 @@ int cmp_get_data(struct state *sim,int sock,struct tx_struct *data)
 				{
 					struct tx_struct packet;
 					tx_struct_init(&packet);
-					tx_set_id(&packet,"gpvdmnodesenddata");
+					tx_set_id(&packet,"cluster_nodesenddata");
 					strcpy(packet.job,jobs[i].name);
 
 					tx_packet(job_node->sock,&packet,NULL);

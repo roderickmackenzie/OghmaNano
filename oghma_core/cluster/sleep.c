@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -47,7 +45,7 @@
 
 int cmp_node_sleep(int sock,struct tx_struct *data)
 {
-	if (cmpstr_min(data->id,"gpvdmnodesleep")==0)
+	if (cmpstr_min(data->id,"cluster_nodesleep")==0)
 	{
 		printf("sleep\n");
 	}
@@ -57,11 +55,11 @@ return -1;
 
 int cmp_head_sleep(int sock,struct tx_struct *data)
 {
-	if (cmpstr_min(data->id,"gpvdmsleep")==0)
+	if (cmpstr_min(data->id,"cluster_sleep")==0)
 	{
 		struct tx_struct packet;
 		tx_struct_init(&packet);
-		tx_set_id(&packet,"gpvdmnodesleep");
+		tx_set_id(&packet,"cluster_nodesleep");
 		broadcast_to_nodes(&packet);
 	}
 

@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -72,7 +70,7 @@ int gen_dir_list(char ** out,int *len,int *pos,const char *path,char *base_path)
 	int path_ofset=strlen(base_path);
     struct dirent *entry;
 
-    if (!(dir = opendir(path)))
+    if (!(dir = g_opendir(path)))
 	{
         return -1;
 	}
@@ -136,7 +134,7 @@ if (sim->state==HEAD)
 	struct stat stat_buf;
     struct dirent *entry;
 
-    if (!(dir = opendir(name)))
+    if (!(dir = g_opendir(name)))
 	{
         return -1;
 	}
@@ -204,7 +202,7 @@ if (sim->state==HEAD)
 	send_message(temp);
 }
 tx_struct_init(&packet);
-tx_set_id(&packet,"gpvdmfile");
+tx_set_id(&packet,"cluster_file");
 if (stat(file_name, &results)!=0)
 {
 	printf("Error sending file %s my guess would be it does not exists!\n",file_name);
@@ -228,7 +226,7 @@ tx_set_zip(&packet,1);
 
 		FILE *fp=NULL;
 
-		fp = fopen(file_name, "r");
+		fp = g_fopen(file_name, "r");
 		if (fp == NULL)
 		{
 			printf(" %s\n", strerror(errno));
