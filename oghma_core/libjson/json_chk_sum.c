@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -36,16 +34,14 @@
 #include <zip.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <dirent.h>
-
-#include "inp.h"
 #include "util.h"
 #include "code_ctrl.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include <log.h>
 #include <cal_path.h>
 #include "lock.h"
 #include <json.h>
+#include <g_io.h>
 
 void json_chk_sum(struct simulation *sim,struct md5 *sum,struct json_obj *json_in)
 {
@@ -81,22 +77,19 @@ void json_chk_sum(struct simulation *sim,struct md5 *sum,struct json_obj *json_i
 
 }
 
-int json_checksum_check(struct simulation *sim,char *out_check_sum, char *chk_file,struct json_obj *json_in)
+int json_checksum_check(struct simulation *sim,char *out_check_sum, char *chk_file,struct md5 *in_sum)
 {
 	FILE *file;
 	char newcheck[100];
 	char fromfile[100];
-	struct md5 sum;
-	md5_init(&sum);
-	json_chk_sum(sim,&sum,json_in);
-	md5_to_str(newcheck,&sum);
+	md5_to_str(newcheck,in_sum);
 
 	if (out_check_sum!=NULL)
 	{
 		strcpy(out_check_sum,newcheck);
 	}
 
-	file=fopen(chk_file,"r");
+	file=g_fopen(chk_file,"r");
 
 	if (!file)
 	{

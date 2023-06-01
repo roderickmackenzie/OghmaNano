@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -33,20 +31,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <zip.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <dirent.h>
-
-#include "inp.h"
 #include "util.h"
 #include "code_ctrl.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include <log.h>
 #include <cal_path.h>
 #include "lock.h"
 #include <json.h>
 #include <ctype.h>
+#include <g_io.h>
+#include <util_str.h>
+
+#include <zip.h>
 
 void json_obj_init(struct json_obj *obj)
 {
@@ -97,21 +95,6 @@ struct json_obj * json_obj_add(struct json_obj *obj,char *name,char *data)
 	return obj_next;
 }
 
-
-void remove_space_after(char *in)
-{
-	int i;
-	for (i=strlen(in)-1;i>0;i--)
-	{
-		if ((in[i]==' ')||(in[i]=='\t')||(in[i]=='\n'))
-		{
-			in[i]=0;
-		}else
-		{
-			break;
-		}
-	}	
-}
 
 void gobble(struct json *j)
 {
@@ -172,72 +155,71 @@ void get_name(char *out,struct json *j)
 	return;
 }
 
-void get_value(char *out,struct json *j)
+void get_value(char *out,struct json *j, int debug)
 {
 	int i=0;
-	int add=TRUE;
-	int comma_open=FALSE;
-	int quotes_found=0;
 	strcpy(out,"");
 
+	//Copy until , or }
+	int in_quote=FALSE;
 	while(j->pos<j->raw_data_len)
 	{
-		add=TRUE;
 
-		if (j->raw_data[j->pos]=='\"')
+		//This is to allow } and , inside of quotes.
+		if (j->raw_data[j->pos]=='"')
 		{
-			if (comma_open==TRUE)
+			if (j->pos>0)
 			{
-				comma_open=FALSE;
-			}
-			quotes_found++;
-		}
-
-		//printf("%d %c %d\n",i,j->raw_data[j->pos],comma_open);
-		if (comma_open==FALSE)
-		{
-			if ((j->raw_data[j->pos]==',')||(j->raw_data[j->pos]=='}'))
-			{
-				remove_space_after(out);
-				//printf("'%s'\n",out);
-				int len=strlen(out);
-				if (len>0)
+				if (j->raw_data[j->pos-1]!='\\')
 				{
-					if (out[len-1]=='\"')
-					{
-						out[len-1]=0;
-					}
+					in_quote = TRUE-in_quote;		//Flip between 1 and 0;
 				}
-				return;
 			}
 		}
 
-		if ((quotes_found==1)&&(j->raw_data[j->pos]=='\"'))
+		if (in_quote==FALSE)
 		{
-			add=FALSE;
-			comma_open=TRUE;
+			if ((j->raw_data[j->pos]=='}')||(j->raw_data[j->pos]==','))
+			{
+				break;
+			}
 		}
-
-		if (add==TRUE)
-		{	
-			out[i]=j->raw_data[j->pos];
-			out[i+1]=0;
-			i++;
-		}
+		
+		out[i]=j->raw_data[j->pos];
+		out[i+1]=0;
+		i++;
 
 		j->pos++;
 
 	}
 
+	//Now try to remove the first and last quote if they exist
+	remove_quotes(out);
 	return;
 }
 
+void print_next_10(char *out,struct json *j)
+{
+	int i=0;
+
+	while(j->pos<j->raw_data_len)
+	{
+		printf(">%c %d\n",j->raw_data[j->pos+i],j->raw_data[j->pos+i]);
+		i++;
+
+		if (i>10)
+		{
+			break;
+		}
+	}
+}
 
 int json_decode(struct json *j,struct json_obj *obj)
 {
 	int i;
 	char token[100];
-	char out[PATH_MAX];
+	char out[STR_MAX];
+	int debug=FALSE;
 	struct json_obj *next_obj;
 	gobble(j);
 
@@ -248,10 +230,14 @@ int json_decode(struct json *j,struct json_obj *obj)
 	{
 		j->level++;
 	}
-	for (i=0;i<100;i++)
+	for (i=0;i<1000;i++)
 	{
 		gobble(j);
 		get_name(token,j);
+		//if (strcmp(token,"html_link")==0)
+		//{
+		//	debug=TRUE;
+		//}
 
 		gobble(j);
 		if (j->raw_data[j->pos]=='{')
@@ -276,9 +262,17 @@ int json_decode(struct json *j,struct json_obj *obj)
 			strcpy(out,"none");
 		}else
 		{
-			//printf("t='%s'\n",token);
-			get_value(out,j);
-			//printf("v='%s'\n",out);
+			//if (debug==TRUE)
+			//{
+			//	printf("token=|%s|\n",token);
+			//}
+			get_value(out,j,debug);
+
+			//if (debug==TRUE)
+			//{
+			//	printf("value=|%s|\n",out);
+			//}
+			//print_next_10(out,j);
 			//getchar();
 			json_obj_add(obj,token,out);
 		}
@@ -289,8 +283,10 @@ int json_decode(struct json *j,struct json_obj *obj)
 			return 0;
 		}
 
-		//printf("%d: path=%s%s=%s\n",j->level,j->path,token,out);
-		
+		//if (strcmp(j->path,"sim")==0)
+		//{
+		//	printf("%d: path=%s %s=|%s|\n",j->level,j->path,token,out);
+		//}
 		gobble(j);
 		if (j->raw_data[j->pos]==',')
 		{
@@ -337,6 +333,7 @@ int json_load_from_path(struct simulation *sim,struct json *j,char *path,char *f
 {
 	char full_file_name[PATH_MAX];
 	join_path(2,full_file_name,path,file_name);
+	//printf("%s\n",full_file_name);
 	return json_load(sim,j,full_file_name);
 }
 
@@ -352,49 +349,42 @@ void json_from_buffer(struct simulation *sim,struct json *j,char *buf,int len)
 
 int json_load(struct simulation *sim,struct json *j,char *full_file_name)
 {
+	int ret;
 	strcpy(j->file_path,full_file_name);
-	FILE *f = fopen(full_file_name, "rb");
-	if (f!=NULL)
+	//printf("%s\n",full_file_name);
+	if (isfile(full_file_name)==0)
 	{
-		sim->files_read++;
-		int err=0;
-		fseek(f, 0, SEEK_END);
-		j->raw_data_len = ftell(f);
-		fseek(f, 0, SEEK_SET);
+		ret=g_read_file_to_buffer(&(j->raw_data), &j->raw_data_len,full_file_name,-1);
 
-		sim->bytes_read+=j->raw_data_len;
-
-		log_write_file_access(sim,full_file_name,'r');
-
-		j->raw_data = malloc(((j->raw_data_len) + 1)*sizeof(char));
-		//memset(*buf, 0, ((*len) + 1)*sizeof(char));
-		if (fread(j->raw_data, j->raw_data_len, 1, f)==0)
+		if (ret!=0)
 		{
-			err= -1;
+			return ret;
 		}
 
-
-		j->raw_data[j->raw_data_len]=0;
-		fclose(f);
-		if (err==0)
+		if (sim!=NULL)
 		{
-			json_decode(j,&(j->obj));
-			//json_dump_obj(&(j->obj));
-			//getchar();
+			sim->files_read++;
+			sim->bytes_read+=j->raw_data_len;
+			log_write_file_access(sim,full_file_name,'r');
 		}
-		return err;
 
-	}else
-	{
+		json_decode(j,&(j->obj));
+		//json_dump_obj(&(j->obj));
+		//getchar();
+		return 0;
+
+	}
+	else
+	{	
 		char zip_path[1000];
 		char file_path[1000];
 		char file_name[1000];
 
 		get_dir_name_from_path(file_path,full_file_name);
-		get_file_name_from_path(file_name,full_file_name);
+		get_file_name_from_path(file_name,full_file_name,1000);
 
-		join_path(2,zip_path,file_path,"sim.gpvdm");
-
+		join_path(2,zip_path,file_path,"sim.oghma");
+		//printf("OK %s\n",zip_path);
 		int err = 0;
 		struct zip *z = zip_open(zip_path, 0, &err);
 
@@ -410,11 +400,19 @@ int json_load(struct simulation *sim,struct json *j,char *full_file_name)
 				//Alloc memory for its uncompressed contents
 				j->raw_data_len=st.size*sizeof(char);
 				j->raw_data = (char *)malloc((j->raw_data_len+1)*sizeof(char));
-				sim->bytes_read+=j->raw_data_len;
+				if (sim!=NULL)
+				{
+					sim->bytes_read+=j->raw_data_len;
+				}
 
 				//Read the compressed file
 				struct zip_file *f = zip_fopen(z, file_name, 0);
-				sim->files_read++;
+
+				if (sim!=NULL)
+				{
+					sim->files_read++;
+				}
+
 				if (f==NULL)
 				{
 					free(j->raw_data);
@@ -445,11 +443,9 @@ int json_load(struct simulation *sim,struct json *j,char *full_file_name)
 			json_decode(j,&(j->obj));
 
 			return 0;
-		}else
-		{
-			return -1;
 		}
 
 	}
 
+	return -1;
 }

@@ -23,16 +23,18 @@
 // SOFTWARE.
 // 
 
-/** @file josn_free.c
-	@brief Json free objects
+/** @file josn_search.c
+	@brief Search the json tree
 */
 
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <zip.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include "inp.h"
 #include "util.h"
 #include "code_ctrl.h"
 #include "oghma_const.h"
@@ -41,62 +43,36 @@
 #include "lock.h"
 #include <json.h>
 
-void json_free(struct json *j)
+struct json_obj *json_find_sim_struct(struct simulation *sim, struct json *j,char *sim_command)
 {
-	json_obj_all_free(j,&(j->obj));
-	free(j->raw_data);
-	json_init(j);
+	char sim_experiment[100];
+	char sim_mode[100];
+	char *mode_pointer;
+	struct json_obj *json_sims=NULL;
+	struct json_obj *json_mode=NULL;
+	struct json_obj *json_experiment=NULL;
 
-}
+	strextract_name(sim_experiment,sim_command);
+	mode_pointer=strextract_domain(sim_command);
+	strcpy(sim_mode,mode_pointer);
 
-void json_objs_free(struct json_obj *obj)
-{
-	int i;
-	struct json_obj *objs;
-	struct json_obj *next_obj;
-	objs=(struct json_obj* )obj->objs;
-	for (i=0;i<obj->len;i++)
+	json_sims=json_obj_find(&(j->obj), "sims");
+	if (json_sims==NULL)
 	{
-		next_obj=&(objs[i]);
-		if (next_obj->data!=NULL)
-		{
-			free(next_obj->data);
-			next_obj->data=NULL;
-		}
+		ewe(sim,"Simulation mode sims not found\n");
 	}
 
-	if (obj->objs!=NULL)
+	json_mode=json_obj_find(json_sims, sim_mode);
+	if (json_mode==NULL)
 	{
-		//printf("'%s'\n",obj->name);
-		free(obj->objs);
-		obj->objs=NULL;
-	}
-	obj->len=0;
-	obj->max_len=0;
-
-}
-
-void json_obj_all_free(struct json *j,struct json_obj *obj)
-{
-	int i;
-
-	struct json_obj *objs;
-	struct json_obj *next_obj;
-	objs=(struct json_obj* )obj->objs;
-	for (i=0;i<obj->len;i++)
-	{
-		next_obj=&(objs[i]);
-
-		if (next_obj->node==TRUE)
-		{
-			json_obj_all_free(j,next_obj);
-
-		}
+		ewe(sim,"Simulation mode %s not found\n",sim_mode);
 	}
 
-	json_objs_free(obj);
+	json_experiment=json_obj_find(json_mode, sim_experiment);
+	if (json_experiment==NULL)
+	{
+		ewe(sim,"Experiment %s not found in %s\n",sim_experiment,sim_mode);
+	}
 
+	return json_experiment;
 }
-
-
-
