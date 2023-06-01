@@ -1,9 +1,8 @@
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -35,58 +34,51 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
-
 #include "util.h"
-#include "cal_path.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include <rpn.h>
 #include <log.h>
 #include <math.h>
 
-char* eval_sin(char *out,char* a,char* b)
+int eval_sin(char *out,char* a,char* b)
 {
 	double aa=0.0;
-	double bb=0.0;
 	double sum=0.0;
 
 	sscanf(a,"%le",&aa);
-	//sscanf(b,"%le",&bb);
 	sum=sin(aa);
 	sprintf(out,"%le",sum);
+	return 0;
 }
 
-char* eval_abs(char *out,char* a,char* b)
+int eval_abs(char *out,char* a,char* b)
 {
 	double aa=0.0;
-	double bb=0.0;
 	double sum=0.0;
 
 	sscanf(a,"%le",&aa);
-	//sscanf(b,"%le",&bb);
 	sum=fabs(aa);
 	sprintf(out,"%le",sum);
+	return 0;
 }
 
-char* eval_log10(char *out,char* a,char* b)
+int eval_log10(char *out,char* a,char* b)
 {
 	double aa=0.0;
-	double bb=0.0;
 	double sum=0.0;
 
 	sscanf(a,"%le",&aa);
-	//sscanf(b,"%le",&bb);
 	sum=log10(aa);
 	sprintf(out,"%le",sum);
+	return 0;
 }
 
-char* eval_pos(char *out,char* a,char* b)
+int eval_pos(char *out,char* a,char* b)
 {
 	double aa=0.0;
-	double bb=0.0;
 	double sum=0.0;
 
 	sscanf(a,"%le",&aa);
-	//sscanf(b,"%le",&bb);
 	if (aa<0)
 	{
 		sum=0.0;
@@ -95,51 +87,51 @@ char* eval_pos(char *out,char* a,char* b)
 		sum=aa;
 	}
 	sprintf(out,"%le",sum);
+	return 0;
 }
 
-char* eval_add(char *out,char* a,char* b)
+int eval_add(char *out,char* a,char* b)
 {
 	double aa=0.0;
 	double bb=0.0;
 	double sum=0.0;
-	char ret[100];
 	sscanf(a,"%le",&aa);
 	sscanf(b,"%le",&bb);
 	sum=aa+bb;
 	sprintf(out,"%le",sum);
+	return 0;
 }
 
-char* eval_sub(char *out,char* a,char* b)
+int eval_sub(char *out,char* a,char* b)
 {
 	double aa=0.0;
 	double bb=0.0;
 	double sum=0.0;
-	char ret[100];
 	sscanf(a,"%le",&aa);
 	sscanf(b,"%le",&bb);
 	sum=aa-bb;
 	sprintf(out,"%le",sum);
+	return 0;
 }
 
 
-char* eval_mul(char *out,char* a,char* b)
+int eval_mul(char *out,char* a,char* b)
 {
 	double aa=0.0;
 	double bb=0.0;
 	double sum=0.0;
-	char ret[100];
 	sscanf(a,"%le",&aa);
 	sscanf(b,"%le",&bb);
 	sum=aa*bb;
 	sprintf(out,"%le",sum);
+	return 0;
 }
 
-char* eval_bg(char *out,char* a,char* b)
+int eval_bg(char *out,char* a,char* b)
 {
 	double aa=0.0;
 	double bb=0.0;
 	double sum=0.0;
-	char ret[100];
 	sscanf(a,"%le",&aa);
 	sscanf(b,"%le",&bb);
 
@@ -149,14 +141,31 @@ char* eval_bg(char *out,char* a,char* b)
 	}
 
 	sprintf(out,"%le",sum);
+	return 0;
 }
 
-char* eval_sm(char *out,char* a,char* b)
+int eval_bg_eq(char *out,char* a,char* b)
 {
 	double aa=0.0;
 	double bb=0.0;
 	double sum=0.0;
-	char ret[100];
+	sscanf(a,"%le",&aa);
+	sscanf(b,"%le",&bb);
+
+	if (aa>=bb)
+	{
+		sum=1.0;
+	}
+
+	sprintf(out,"%le",sum);
+	return 0;
+}
+
+int eval_sm(char *out,char* a,char* b)
+{
+	double aa=0.0;
+	double bb=0.0;
+	double sum=0.0;
 	sscanf(a,"%le",&aa);
 	sscanf(b,"%le",&bb);
 
@@ -166,30 +175,48 @@ char* eval_sm(char *out,char* a,char* b)
 	}
 
 	sprintf(out,"%le",sum);
+	return 0;
 }
 
-char* eval_pow(char *out,char* a,char* b)
+int eval_sm_eq(char *out,char* a,char* b)
 {
 	double aa=0.0;
 	double bb=0.0;
 	double sum=0.0;
-	char ret[100];
+	sscanf(a,"%le",&aa);
+	sscanf(b,"%le",&bb);
+
+	if (aa<=bb)
+	{
+		sum=1.0;
+	}
+
+	sprintf(out,"%le",sum);
+	return 0;
+}
+
+int eval_pow(char *out,char* a,char* b)
+{
+	double aa=0.0;
+	double bb=0.0;
+	double sum=0.0;
 	sscanf(a,"%le",&aa);
 	sscanf(b,"%le",&bb);
 	sum=pow(aa,bb);
 	sprintf(out,"%le",sum);
+	return 0;
 }
 
-char* eval_div(char *out,char* a,char* b)
+int eval_div(char *out,char* a,char* b)
 {
 	double aa=0.0;
 	double bb=0.0;
 	double sum=0.0;
-	char ret[100];
 	sscanf(a,"%le",&aa);
 	sscanf(b,"%le",&bb);
 	sum=aa/bb;
 	sprintf(out,"%le",sum);
+	return 0;
 }
 
 

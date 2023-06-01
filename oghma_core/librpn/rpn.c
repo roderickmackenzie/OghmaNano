@@ -1,9 +1,8 @@
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -38,10 +37,10 @@
 
 #include "util.h"
 #include "cal_path.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include <rpn.h>
 #include <log.h>
-
+#include <ctype.h>
 
 void rpn_init(struct simulation *sim,struct rpn *in)
 {
@@ -50,13 +49,15 @@ void rpn_init(struct simulation *sim,struct rpn *in)
 	in->vars_pos=0;
 	in->functions_count=0;
 	in->opp_count=0;
-	add_opp(sim,in,"^", 4, RIGHT,&eval_pow);
-	add_opp(sim,in,"*", 3, LEFT,&eval_mul);
-	add_opp(sim,in,"/", 3, LEFT,&eval_div);
-	add_opp(sim,in,"+", 2, LEFT,&eval_add);
-	add_opp(sim,in,"-", 2, LEFT,&eval_sub);
-	add_opp(sim,in,">", 3, LEFT,&eval_bg);
-	add_opp(sim,in,"<", 3, LEFT,&eval_sm);
+	add_opp(in,"^", 4, RIGHT,&eval_pow);
+	add_opp(in,"*", 3, LEFT,&eval_mul);
+	add_opp(in,"/", 3, LEFT,&eval_div);
+	add_opp(in,"+", 2, LEFT,&eval_add);
+	add_opp(in,"-", 2, LEFT,&eval_sub);
+	add_opp(in,">", 3, LEFT,&eval_bg);
+	add_opp(in,"<", 3, LEFT,&eval_sm);
+	add_opp(in,">=", 3, LEFT,&eval_bg_eq);
+	add_opp(in,"<=", 3, LEFT,&eval_sm_eq);
 
 	add_function(sim,in,"sin",&eval_sin);
 	add_function(sim,in,"abs",&eval_abs);
@@ -64,29 +65,27 @@ void rpn_init(struct simulation *sim,struct rpn *in)
 	add_function(sim,in,"log",&eval_log10);
 }
 
-void pro(struct simulation *sim,struct rpn *in,char *buf,int type)
+int rpn_process(struct simulation *sim,struct rpn *in,char *buf,int type)
 {
 int ii=0;
 int temp_n=0;
 char temp[100];
-int push=1;
+//int push=1;
 int o1_lr=0;
 int o1_pr=0;
-int o2_lr=0;
+//int o2_lr=0;
 int o2_pr=0;
 
 	//printf("edge %s %d\n",buf,isnumber(buf[0]));
-
-	if (rpn_is_var(sim,in,NULL,buf)==0)
+	if (rpn_is_var(in,NULL,buf)==0)		//https://www.youtube.com/watch?v=LQ-iW8jm6Mk
 	{
 		output_push(sim,in,buf);
-		return;
-	}
-	else
+		return 0;
+	}else
 	if (isnumber(buf[0])==0)
 	{
 		output_push(sim,in,buf);
-		return;
+		return 0;
 	}
 
 	if (strcmp(buf,")")==0)
@@ -108,14 +107,14 @@ int o2_pr=0;
 			}
 		}
 
-		return;
+		return 0;
 	}
 
 	if (strcmp(buf,"(")==0)
 	{
 		stack_push(sim,in,buf);
 
-		return;
+		return 0;
 	}
 
 	if (is_opp(sim,in,buf)!=-1)
@@ -162,13 +161,14 @@ int o2_pr=0;
 		stack_push(sim,in,buf);
 	}
 
+	return 0;
 }
 
 double evaluate(struct simulation *sim,struct rpn *in)
 {
 	double ret=0;
 	int i=0;
-	int n=in->output_pos;
+	//int n=in->output_pos;
 	char *token;
 	char *right;
 	char *left;
@@ -178,7 +178,7 @@ double evaluate(struct simulation *sim,struct rpn *in)
 	for (i=0;i<in->output_pos;i++)
 	{
 		token=in->output[i];
-		if (rpn_is_var(sim,in,temp,token)==0)
+		if (rpn_is_var(in,temp,token)==0)
 		{
 			stack_push(sim,in,temp);
 		}
@@ -223,18 +223,24 @@ double rpn_evaluate(struct simulation *sim,struct rpn *in, char *string)
 {
 	double ret=0.0;
 	int i=0;
-	char temp[100];
+	//char temp[100];
 	int n=isnumber(string[0]);
 	int last=n;
-	char buf[40];
+	char buf[STR_MAX];
+	buf[0]=0;
 	strcpy(buf,"");
 	int buf_len=0;
-	int temp_n=0;
-	for (i=0;i<strlen(string);i++)
+	int str_max=strlen(string);
+	//int temp_n=0;
+	in->stack_pos=0;
+	in->output_pos=0;
+
+	for (i=0;i<str_max;i++)
 	{
-		if (edge_detect(sim,in,buf,string[i])==0)
+		if (edge_detect(sim,in,buf,string[i])==0)		//This detects edges and breaks the math down into chunks
 		{
-			pro(sim,in,buf,last);
+			//printf("EDGE>>>>>>buf='%s'\n",buf);
+			rpn_process(sim,in,buf,last);
 			strcpy(buf,"");
 			buf_len=0;
 			//print_stack(sim,in);
@@ -242,16 +248,16 @@ double rpn_evaluate(struct simulation *sim,struct rpn *in, char *string)
 			//getchar();
 		}
 
-		if (string[i]!=' ')
+		if (isspace(string[i])==0)		//If it is not white space add it to the build string
 		{
 			buf[buf_len]=string[i];
 			buf[buf_len+1]=0;
 			buf_len++;
 		}
 
-		if (i==strlen(string)-1)
+		if (i==str_max-1)
 		{
-			pro(sim,in,buf,last);
+			rpn_process(sim,in,buf,last);
 		}
 
 		last=n;

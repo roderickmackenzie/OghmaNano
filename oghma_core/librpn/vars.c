@@ -1,9 +1,8 @@
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -38,18 +37,25 @@
 
 #include "util.h"
 #include "cal_path.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include <rpn.h>
 #include <log.h>
 
-void rpn_add_var(struct simulation *sim,struct rpn *in,char *name,double value)
+int rpn_add_var(struct rpn *in,char *name,double value)
 {
 	strcpy(in->vars[in->vars_pos].name,name);
 	in->vars[in->vars_pos].value=value;
 	in->vars_pos++;
+	return in->vars_pos-1;
 }
 
-int rpn_is_var(struct simulation *sim,struct rpn *in,char *out,char *name)
+int rpn_set_var(struct rpn *in,int pos,double value)
+{
+	in->vars[pos].value=value;
+	return 0;
+}
+
+int rpn_is_var(struct rpn *in,char *out,char *name)
 {
 	int i;
 	for (i=0;i<in->vars_pos;i++)

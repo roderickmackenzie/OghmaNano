@@ -1,9 +1,8 @@
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -39,14 +38,12 @@
 
 #include "util.h"
 #include "cal_path.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include <rpn.h>
 #include <log.h>
 
 int isnumber(char a)
 {
-int i;
-int ret=TRUE;
 int digit=isdigit(a);
 
 	if ((digit!=0)||(a=='.'))
@@ -120,11 +117,18 @@ int edge_detect(struct simulation *sim,struct rpn *in,char *buf,char next)
 	}
 
 	int i;
+	for (i=0;i<in->opp_count;i++)	//looking for >= and <=
+	{
+		if ((strcmp(buf,in->opps[i].name)==0)&&(next=='='))
+		{
+			return -1;
+		}
+	}
+
 	for (i=0;i<in->opp_count;i++)
 	{
 		if ((strcmp(buf,in->opps[i].name)==0)||(in->opps[i].name[0]==next))
 		{
-
 			return 0;
 		}
 	}

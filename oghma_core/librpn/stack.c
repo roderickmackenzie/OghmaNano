@@ -1,9 +1,8 @@
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -38,7 +37,7 @@
 
 #include "util.h"
 #include "cal_path.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include <rpn.h>
 #include <log.h>
 
@@ -49,7 +48,11 @@ void output_push(struct simulation *sim,struct rpn *in,char *val)
 
 void stack_push(struct simulation *sim,struct rpn *in,char *val)
 {
-	//printf("stack push %d %s\n",in->stack_pos,val);
+	if (in->stack_pos==RPN_STACK_MAX_LEN)
+	{
+		ewe(sim,"RPN: Stack too small\n");
+	}
+
 	strcpy(in->stack[in->stack_pos++],val);
 }
 
@@ -87,7 +90,7 @@ void print_stack(struct simulation *sim,struct rpn *in)
 void print_output(struct simulation *sim,struct rpn *in)
 {
 	int i=0;
-	printf("output:\n");
+	printf("output (len=%d):\n",in->output_pos);
 	for (i=0;i<in->output_pos;i++)
 	{
 		printf(">%s<\n",in->output[i]);
