@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package optics_filters_tab
 #  A mesh editor for the time domain mesh.
@@ -25,28 +30,23 @@
 
 
 import os
-from numpy import *
-from gui_util import dlg_get_text
-import webbrowser
-from util import time_with_units
 from cal_path import get_icon_path
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QLabel,QHBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget,QAbstractItemView, QMenu
-from PyQt5.QtGui import QPainter,QIcon
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QLabel,QToolBar,QSizePolicy,QAction
 
-from gpvdm_tab2 import gpvdm_tab2
-from gpvdm_json import gpvdm_data
+from g_tab2 import g_tab2
+from json_root import json_root
 from json_light import json_filter_spectrum
 from global_objects import global_object_run
 
 from plot_widget import plot_widget
-from cal_path import get_sim_path
+from cal_path import sim_paths
 
 from icon_lib import icon_get
 from tab import tab_class
-from gpvdm_graph import gpvdm_graph
+from g_graph import g_graph
 import i18n
 _ = i18n.language.gettext
 
@@ -54,7 +54,7 @@ _ = i18n.language.gettext
 class optics_filters_tab(QWidget):
  
 	def get_json_obj(self):
-		data=gpvdm_data()
+		json_root()
 		data_obj=eval(self.serach_path).find_object_by_id(self.uid)
 		return data_obj
 
@@ -72,7 +72,7 @@ class optics_filters_tab(QWidget):
 		self.main_vbox_y0.addWidget(toolbar2)
 	
 
-		self.tab_filters = gpvdm_tab2(toolbar=toolbar2)
+		self.tab_filters = g_tab2(toolbar=toolbar2)
 		self.tab_filters.set_tokens(["filter_enabled","filter_material","filter_invert","filter_db"])
 		self.tab_filters.set_labels([_("Enabled"),_("Filter"),_("Invert"),_("dB")])
 		self.tab_filters.setColumnWidth(0, 100)
@@ -92,9 +92,9 @@ class optics_filters_tab(QWidget):
 		self.tab_filters.changed.connect(self.on_cell_edited)
 		self.main_vbox_y0.addWidget(self.tab_filters)
 
-		self.plot_widget=plot_widget(enable_toolbar=False,widget_mode="gpvdm_graph")
+		self.plot_widget=plot_widget(enable_toolbar=False,widget_mode="g_graph")
 		self.plot_widget.set_labels([_("Attenuation")])
-		plot_file=os.path.join(get_sim_path(),"optical_output","light_src_filter_"+self.uid+".csv")
+		plot_file=os.path.join(sim_paths.get_sim_path(),"optical_output","light_src_filter_"+self.uid+".csv")
 		self.plot_widget.load_data([plot_file])
 		self.plot_widget.canvas.x0_mul=0.2
 		self.plot_widget.canvas.y_label="Transmission"
@@ -112,11 +112,11 @@ class optics_filters_tab(QWidget):
 		obj=json_filter_spectrum()
 		self.get_json_obj().virtual_spectra.light_filters.segments.insert(row,obj)
 		self.tab_filters.insert_row(obj,row)
-		gpvdm_data().save()
+		json_root().save()
 		self.plot_widget.do_plot()
 
 	def on_cell_edited(self):
-		gpvdm_data().save()
+		json_root().save()
 		self.plot_widget.do_plot()
 		global_object_run("gl_force_redraw")
 

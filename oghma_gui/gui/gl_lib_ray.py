@@ -1,80 +1,177 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package gl_lib_ray
 #  Library to draw ray
 #
 
-import sys
+
+from vec import vec
+import ctypes
+import time
 
 try:
 	from OpenGL.GL import *
 	from OpenGL.GLU import *
-	from PyQt5 import QtOpenGL
-	from PyQt5.QtOpenGL import QGLWidget
-	open_gl_ok=True
 except:
-	print("opengl error from gl_lib",sys.exc_info()[0])
-	
-import random
-import os
-from math import sqrt
-from math import fabs
-from lines import lines_read
-from util import wavelength_to_rgb
-from util import isnumber
-
-from gl_base_object import gl_base_object
-
-from dat_file import dat_file
+	pass
 
 class gl_lib_ray():
 
 	def __init__(self):
-		self.ray_data=dat_file()
-		self.ray_mesh_data=dat_file()
-		self.triangle_file="triangles.dat"
+		self.ray_data=[]
 
-	def draw_rays(self,ray_file):
-		r=1.0
-		g=0.0
-		b=0.0
-		if self.ray_data.load(ray_file)==True:
-			self.gl_objects_remove_regex("ray_trace_results")
-			self.draw_graph_rays(self.ray_data)
+	def draw_graph_rays(self,data):
+		if data.plotted==True:
+			return
 
-	def draw_ray_mesh(self):
-		r=1.0
-		g=0.0
-		b=0.0
-		if self.ray_mesh_data.load(self.triangle_file)==True:
-			if self.ray_mesh_data.new_read==True or self.gl_objects_count_regex("ray_mesh")==0:
-				self.gl_objects_remove_regex("ray_mesh")
-				a=gl_base_object()
-				a.id=["ray_mesh"]
-				a.type="open_triangles"
-				a.r=r
-				a.g=g
-				a.b=b
-				a.triangles=self.scale.project_trianges_m2screen(self.ray_mesh_data.data)
-				self.gl_objects_add(a)
+		o=self.gl_main.add_object()
+
+		o.id=b"ray_trace"
+		o.type=b"solid_and_mesh"
+
+		o.add_xyz(0.0,0.0,0.0)
+
+		block=o.add_block()
+		block.gl_array_type=GL_LINES
+		block.gl_line_width=4
+		block.solid_lines=self.active_view.ray_solid_lines
+		data.lib.gl_code_block_import_dat_file_ray(ctypes.byref(block),ctypes.byref(data))
+		data.lib.gl_project_m2screen_zxy(ctypes.byref(block),ctypes.byref(self.gl_main.scale))
 
 
+		data.plotted=True
+
+	def draw_graph_triangles_scale(self,data):
+		if data.plotted==True:
+			return
+		a=self.gl_main.add_object()
+		a.id=b"graph_mesh"
+		a.type=b"solid_and_mesh"
+
+		xx=self.scale.project_m2screen_x(self.gl_main.scale.world_min.x)
+		yy=self.scale.project_m2screen_y(self.gl_main.scale.world_min.y)
+		zz=self.scale.project_m2screen_z(self.gl_main.scale.world_min.z)
+		a.add_xyz(xx,yy,zz)
+
+		a.dx=(self.gl_main.scale.world_max.x-self.gl_main.scale.world_min.x)*self.gl_main.scale.x_mul
+		a.dy=(self.gl_main.scale.world_max.y-self.gl_main.scale.world_min.y)*self.gl_main.scale.y_mul
+		a.dz=(self.gl_main.scale.world_max.z-self.gl_main.scale.world_min.z)*self.gl_main.scale.z_mul
+
+		a.r=1.0
+		a.g=0.0
+		a.b=0.0
+		a.selected=False
+		a.moveable=False
+		a.resizable=False
+		a.rotate_x=180
+
+		block=a.add_block()
+		block.gl_array_type=GL_LINES
+		block.gl_line_width=4
+		block.solid_lines=self.active_view.ray_solid_lines
+		data.lib.gl_code_block_import_dat_file_triangles(ctypes.byref(block),ctypes.byref(data))
+		data.lib.gl_code_block_import_rgb(ctypes.byref(block),ctypes.c_float(a.r*0.9), ctypes.c_float(a.g*0.9), ctypes.c_float(a.b*0.9), ctypes.c_float(0.5), ctypes.c_int(block.gl_array_points))
+
+		block=a.add_block()
+		block.gl_array_type=GL_TRIANGLES
+		block.gl_line_width=4
+		block.solid_lines=self.active_view.ray_solid_lines
+		data.lib.gl_code_block_import_dat_file_triangles(ctypes.byref(block),ctypes.byref(data))
+		data.lib.gl_code_block_import_rgb(ctypes.byref(block),ctypes.c_float(a.r), ctypes.c_float(a.g), ctypes.c_float(a.b), ctypes.c_float(1.0), ctypes.c_int(block.gl_array_points))
+
+		data.plotted=True
+
+	def draw_graph_triangles(self,data,solid=True,gl_line_width=2,line_alpha=0.5):
+		if data.plotted==True:
+			return
+		a=self.gl_main.add_object()
+		a.id=b"bing"
+		a.type=b"from_array"
+		a.r=data.r
+		a.g=data.g
+		a.b=data.b
+		a.add_xyz(0.0,0.0,0.0)
+		block=a.add_block()
+		block.gl_array_type=GL_LINES
+		block.gl_line_width=gl_line_width
+		block.solid_lines=self.active_view.ray_solid_lines
+		data.lib.gl_code_block_import_dat_file_triangles(ctypes.byref(block),ctypes.byref(data))
+		data.lib.gl_project_m2screen_zxy(ctypes.byref(block),ctypes.byref(self.gl_main.scale))
+		data.lib.gl_code_block_import_rgb(ctypes.byref(block),ctypes.c_float(a.r*0.9), ctypes.c_float(a.g*0.9), ctypes.c_float(a.b*0.9), ctypes.c_float(line_alpha), ctypes.c_int(block.gl_array_points))
+
+		if solid==True:
+			block=a.add_block()
+			block.gl_array_type=GL_TRIANGLES
+			block.gl_line_width=2
+			block.solid_lines=self.active_view.ray_solid_lines
+			data.lib.gl_code_block_import_dat_file_triangles(ctypes.byref(block),ctypes.byref(data))
+			data.lib.gl_project_m2screen_zxy(ctypes.byref(block),ctypes.byref(self.gl_main.scale))
+			data.lib.gl_code_block_import_rgb(ctypes.byref(block),ctypes.c_float(a.r), ctypes.c_float(a.g), ctypes.c_float(a.b), ctypes.c_float(1.0), ctypes.c_int(block.gl_array_points))
+
+		data.plotted=True
+
+	def draw_graph_zxyzxyrgb(self,data):
+		if data.plotted==True:
+			return
+
+		o=self.gl_main.add_object()
+
+		o.id=b"ray_trace"
+		o.type=b"from_array"
+
+		o.add_xyz(0.0,0.0,0.0)
+
+		block=o.add_block()
+		block.gl_array_type=GL_LINES
+		block.gl_line_width=4
+		block.solid_lines=self.active_view.ray_solid_lines
+		data.lib.gl_code_block_import_zxyzxyrgb(ctypes.byref(block),ctypes.byref(data))
+		data.lib.gl_project_m2screen_zxy(ctypes.byref(block),ctypes.byref(self.gl_main.scale))
+
+
+		data.plotted=True
+
+	def draw_graph_zxyrgb(self,data):
+		if data.plotted==True:
+			return
+
+		o=self.gl_main.add_object()
+
+		o.id=b"ray_trace"
+		o.type=b"from_array"
+
+		o.add_xyz(0.0,0.0,0.0)
+
+		block=o.add_block()
+		block.gl_array_type=GL_POINTS
+		block.gl_point_size=2
+		block.solid_lines=self.active_view.ray_solid_lines
+		data.lib.gl_code_block_import_zxyrgb(ctypes.byref(block),ctypes.byref(data))
+		data.lib.gl_project_m2screen_zxy(ctypes.byref(block),ctypes.byref(self.gl_main.scale))
+
+
+		data.plotted=True

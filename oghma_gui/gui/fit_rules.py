@@ -1,59 +1,56 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package fit_rules
 #  A window to define the math fitting rules 
 #
-import os
 
 from token_lib import tokens
 
 from icon_lib import icon_get
-from str2bool import str2bool
 
 import i18n
 _ = i18n.language.gettext
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QAbstractItemView, QMenuBar, QTableWidgetItem
-from PyQt5.QtGui import QPainter,QIcon
-
-from gpvdm_select import gpvdm_select
-
-from open_save_dlg import open_as_filter
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QAbstractItemView, QMenuBar, QTableWidgetItem
+from PySide2.QtGui import QPainter,QIcon
 from error_dlg import error_dlg
-from gtkswitch import gtkswitch
-from str2bool import str2bool
 
-from scan_select import select_param
-from gpvdm_json import gpvdm_data
+from select_param import select_param
+from json_root import json_root
 from json_fit import json_fit_rules_line
-from gpvdm_tab2 import gpvdm_tab2
+from g_tab2 import g_tab2
 
 class fit_rules(QWidget):
 
 	def __init__(self):
 		QWidget.__init__(self)
-		data=gpvdm_data()
+		data=json_root()
 		self.data=data.fits.rules
 
 		self.vbox=QVBoxLayout()
@@ -65,12 +62,12 @@ class fit_rules(QWidget):
 		self.vbox.addWidget(toolbar)
 
 		#tab
-		self.tab2 = gpvdm_tab2(toolbar=toolbar)
+		self.tab2 = g_tab2(toolbar=toolbar)
 		self.tab2.set_tokens(["fit_rule_enabled","human_x","human_y","function","json_x","json_y"])
 		self.tab2.set_labels([_("Enabled"),_("x"), _("y"), _("Function"), _("JSON x"), _("JSON y")])
 
 
-		self.tab2.json_search_path="gpvdm_data().fits.rules.segments"
+		self.tab2.json_search_path="json_root().fits.rules.segments"
 		self.tab2.fixup_new_row=self.fixup_new_row
 		self.tab2.setColumnWidth(0, 100)
 		self.tab2.setColumnWidth(1, 300)
@@ -102,7 +99,7 @@ class fit_rules(QWidget):
 		self.setLayout(self.vbox)
 
 	def callback_save(self):
-		gpvdm_data().save()
+		json_root().save()
 
 	def callback_show_list_a(self):
 		self.select_param_window_a.show()

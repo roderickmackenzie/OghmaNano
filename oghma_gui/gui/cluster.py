@@ -1,58 +1,52 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package cluster
 #  Back end to talk to the cluster.
 #
 
-import sys
 import os
-#import shutil
-#from search import return_file_list
-from str2bool import str2bool
 from inp import inp_get_token_value
 import threading
 #import gobject
-import multiprocessing
-import time
 #import glob
 import socket
 
 from time import sleep
-from win_lin import running_on_linux
-import subprocess
+from win_lin import get_platform
 from util import gui_print_path
 
-#from copying import copying
 from cal_path import get_exe_command
-#from global_objects import global_object_get
-#from help import my_help_class
-from sim_warnings import sim_warnings
 from inp import inp_search_token_value
 from stat import *
-from encrypt import encrypt
-from encrypt import encrypt2
+from cluster_encrypt import encrypt
+from cluster_encrypt import encrypt2
 
-from encrypt import decrypt
-from encrypt import encrypt_load
+from cluster_encrypt import decrypt
+from cluster_encrypt import encrypt_load
 import hashlib
 import i18n
 _ = i18n.language.gettext
@@ -64,14 +58,15 @@ from gui_enable import gui_get
 from process_events import process_events
 
 if gui_get()==True:
-	from PyQt5.QtCore import pyqtSignal
+	from gQtCore import gSignal
 
-from cal_path import get_sim_path
+from cal_path import sim_paths
 from cal_path import get_exe_name
 from cal_path import get_cluster_libs_path
 
 from job import job
 import random
+from sim_name import sim_name
 
 def strip_slash(tx_name):
 	start=0
@@ -152,12 +147,12 @@ def wait_update(id):
 
 class cluster:
 	if gui_get()==True:
-		load_update = pyqtSignal()
-		jobs_update = pyqtSignal()
-		new_message = pyqtSignal(str)
+		load_update = gSignal()
+		jobs_update = gSignal()
+		new_message = gSignal(str)
 
 	def load_server_ip(self):
-		self.server_ip=inp_get_token_value(os.path.join(get_sim_path(),"cluster"),"#cluster_ip",search_active_file=True)
+		self.server_ip=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),"cluster"),"#cluster_ip",search_active_file=True)
 
 	def cluster_init(self):
 		self.socket = False
@@ -170,7 +165,7 @@ class cluster:
 			encrypt_load()
 			self.load_server_ip()
 			self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-			port=int(inp_get_token_value(os.path.join(get_sim_path(),"cluster"),"#port",search_active_file=True))
+			port=int(inp_get_token_value(os.path.join(sim_paths.get_sim_path(),"cluster"),"#port",search_active_file=True))
 			try:
 				self.socket.connect((self.server_ip, port))
 			except:
@@ -180,7 +175,7 @@ class cluster:
 			self.cluster=True
 
 			data=tx_struct()
-			data.id="gpvdmregistermaster"
+			data.id="cluster_registermaster"
 			self.tx_packet(data)
 
 			if self.running==False:
@@ -254,14 +249,12 @@ class cluster:
 
 	def cluster_make(self):
 		data=tx_struct()
-		data.id="gpvdmheadexe"
+		data.id="cluster_headexe"
 		data.dir_name="src"
-		data.command=inp_get_token_value(os.path.join(get_sim_path(),"cluster"),"#make_command",search_active_file=True)
+		data.command=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),"cluster"),"#make_command",search_active_file=True)
 		self.tx_packet(data)
 
 	def sync_files(self,files,target):
-		count=0
-		banned=[]
 		sums=""
 
 		for fname in files:
@@ -291,9 +284,9 @@ class cluster:
 			data[i]=sums[i]
 
 		
-		head="gpvdm_sync_packet_one\n#size\n"+str(size)+"\n#target\n"+target+"\n#src\n"+path+"\n#end"
+		head="cluster_sync_packet_one\n#size\n"+str(size)+"\n#target\n"+target+"\n#src\n"+path+"\n#end"
 
-		start_len=len(head)
+		len(head)
 
 		head_buf=bytearray(512)
 		for i in range(0,len(head)):
@@ -305,9 +298,7 @@ class cluster:
 		self.socket.sendall(buf)
 
 	def sync_dir(self,path,target):
-		count=0
-		banned=[]
-		sums=""
+		pass
 
 		files=self.gen_dir_list(path)
 		self.sync_files(files,target)
@@ -342,7 +333,7 @@ class cluster:
 
 		f=[]
 		for i in range(0,len(file_list)):
-			if file_list[i].endswith("gpvdm_gui_config.inp"):
+			if file_list[i].endswith("cluster_gui_config.inp"):
 				banned_dirs.append(os.path.dirname(file_list[i]))
 
 		for i in range(0,len(file_list)):
@@ -365,7 +356,7 @@ class cluster:
 		
 		#If the user wants to tx a string conver it into byte sfirst
 
-		data_size=len(data.data)
+		len(data.data)
 
 		if type(data.data)==str:
 			dat=str.encode(data.data)
@@ -377,7 +368,7 @@ class cluster:
 			data.uzipsize=len(dat)
 			dat = zlib.compress(dat)
 
-		header="gpvdm                           "
+		header="cluster                           "
 		header=header+"#id\n"+data.id+"\n"
 
 		if data.file_name!="":
@@ -399,7 +390,7 @@ class cluster:
 		if data.command!="":
 			header=header+"#command\n"+data.command+"\n"
 
-		hash = random.getrandbits(128)
+		random.getrandbits(128)
 		header=header+"#token\n"+data.token+"\n"
  
 		if data.cpus!=-1:
@@ -433,7 +424,7 @@ class cluster:
 
 		#buf=buf+bytes
 		#print("I am encrypting2",len(buf),data.id,len(buf),len(dat))
-		buf=encrypt2(packet)
+		encrypt2(packet)
 		#print("I am sending",len(buf),data.id)
 		self.socket.sendall(packet)
 
@@ -505,7 +496,6 @@ class cluster:
 		process_events()
 		
 		count=0
-		banned=[]
 
 		for i in range(0,len(files)):
 			data=tx_struct()
@@ -521,7 +511,7 @@ class cluster:
 			f = open(full_path, 'rb')   
 			bytes = f.read()
 			f.close()
-			orig_size=len(bytes)
+			len(bytes)
 
 			print("tx file:",full_path)
 
@@ -530,7 +520,7 @@ class cluster:
 			else:
 				data.target=target
 
-			data.id="gpvdmfile"
+			data.id="cluster_file"
 			data.uzipsize=len(bytes)
 			data.data=bytes
 			data.zip=True
@@ -659,7 +649,7 @@ class cluster:
 
 		packet=packet[:-1]
 		data=tx_struct()
-		data.id="gpvdm_set_max_loads"
+		data.id="cluster_set_max_loads"
 		data.data=packet
 		data.size=len(packet)
 		self.tx_packet(data)
@@ -670,7 +660,7 @@ class cluster:
 			if path==None:
 				return
 			self.sync_dir(path,"src")
-			path=inp_get_token_value(os.path.join(get_sim_path(),"cluster"),"#path_to_libs",search_active_file=True)
+			path=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),"cluster"),"#path_to_libs",search_active_file=True)
 			self.sync_dir(path,"src")
 		
 	def copy_src_to_cluster(self):
@@ -680,7 +670,7 @@ class cluster:
 				return
 
 			banned_types=[".pdf",".png",".dll",".o",".so",".so",".a",".dat",".aprox",".ods",".rpm",".deb"]
-			banned_types.extend([".xls",".xlsx",".log",".pptx",".dig",".old",".bak",".opj",".csv",".jpg",".so.3",".so.5","gpvdm_core"])
+			banned_types.extend([".xls",".xlsx",".log",".pptx",".dig",".old",".bak",".opj",".csv",".jpg",".so.3",".so.5",sim_name.exe_name])
 			banned_types.extend(["so.0",".zip"])
 
 
@@ -689,7 +679,7 @@ class cluster:
 			files=self.gen_dir_list(path,banned_types=banned_types,banned_dirs=banned_dirs)
 			self.send_files("src",path,files)
 
-			path=inp_get_token_value(os.path.join(get_sim_path(),"cluster"),"#path_to_libs",search_active_file=True)
+			path=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),"cluster"),"#path_to_libs",search_active_file=True)
 			if path=="autosearch":
 				path=get_cluster_libs_path()
 
@@ -698,43 +688,43 @@ class cluster:
 	def cluster_get_data(self):
 		if self.cluster==True:
 			data=tx_struct()
-			data.id="gpvdmgetdata"
+			data.id="cluster_getdata"
 			self.tx_packet(data)
 
 
 	def cluster_get_info(self):
 		if self.cluster==True:
 			data=tx_struct()
-			data.id="gpvdmsendnodelist"
+			data.id="cluster_sendnodelist"
 			self.tx_packet(data)
 
 	def cluster_quit(self):
 		if self.cluster==True:
 			data=tx_struct()
-			data.id="gpvdmquit"
+			data.id="cluster_quit"
 			self.tx_packet(data)
 
 
 	def cluster_killall(self):
 		data=tx_struct()
 
-		data.id="gpvdm_stop_all_jobs"
+		data.id="cluster_stop_all_jobs"
 		self.tx_packet(data)
 
-		data.id="gpvdmkillall"
+		data.id="cluster_killall"
 		self.tx_packet(data)
 
 		sleep(1)
 
-		data.id="gpvdm_delete_all_jobs"
+		data.id="cluster_delete_all_jobs"
 		self.tx_packet(data)
 
 		self.stop()
 
 	def cluster_run_jobs(self):
-		exe_name=inp_get_token_value(os.path.join(get_sim_path(),"cluster"),"#exe_name",search_active_file=True)
+		exe_name=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),"cluster"),"#exe_name",search_active_file=True)
 		data=tx_struct()
-		data.id="gpvdmrunjobs"
+		data.id="cluster_runjobs"
 		data.exe_name=exe_name
 		self.tx_packet(data)
 
@@ -742,21 +732,21 @@ class cluster:
 	def sleep(self):
 		if self.cluster==True:
 			data=tx_struct()
-			data.id="gpvdmsleep"
+			data.id="cluster_sleep"
 			self.tx_packet(data)
 
 
 	def poweroff(self):
 		if self.cluster==True:
 			data=tx_struct()
-			data.id="gpvdmpoweroff"
+			data.id="cluster_poweroff"
 			self.tx_packet(data)
 
 	def add_remote_job(self,job_orig_path):
 		data=tx_struct()
-		data.id="gpvdmaddjob"
+		data.id="cluster_addjob"
 		data.target=job_orig_path
-		data.cpus=int(inp_get_token_value(os.path.join(get_sim_path(),"cluster"),"#cluster_cpus",search_active_file=True))
+		data.cpus=int(inp_get_token_value(os.path.join(sim_paths.get_sim_path(),"cluster"),"#cluster_cpus",search_active_file=True))
 		if data.cpus==0:
 			data.cpus=1
 		wait_add(data)
@@ -765,13 +755,13 @@ class cluster:
 
 	def cluster_clean(self):
 		data=tx_struct()
-		data.id="gpvdm_master_clean"
+		data.id="cluster_master_clean"
 		self.tx_packet(data)
 
 
 	def cluster_list_jobs(self):
 		data=tx_struct()
-		data.id="gpvdm_send_job_list"
+		data.id="cluster_send_job_list"
 		self.tx_packet(data)
 
 	def rx_file(self,data):
@@ -813,55 +803,55 @@ class cluster:
 				break
 
 			#print(data.id)
-			if data.id=="gpvdmnodelist":
+			if data.id=="cluster_nodelist":
 				self.process_node_list(data)
 				self.load_update.emit()
 				understood=True
 
-			if data.id=="gpvdm_job_list":
+			if data.id=="cluster_job_list":
 				self.process_job_list(data)
 				understood=True
 
-			if data.id=="gpvdmfinished":
+			if data.id=="cluster_finished":
 				self.stop()
 				understood=True
 
-			if data.id=="gpvdmheadquit":
+			if data.id=="cluster_headquit":
 				self.stop()
 				print("Server quit!")
 				understood=True
 
-			if data.id=="gpvdm_message":
+			if data.id=="cluster_message":
 				self.new_message.emit(data.message)
 				understood=True
 
-			if data.id=="gpvdmfile":
+			if data.id=="cluster_file":
 				print("from here",data.id)
 				self.rx_file(data)
 				understood=True
 
-			if data.id=="gpvdmpercent":
+			if data.id=="cluster_percent":
 				lines=data.split("\n")
 				percent=float(inp_search_token_value(lines, "#percent"))
 				self.progress_window.set_fraction(percent/100.0)
 				understood=True
 
 
-			if data.id=="gpvdmjobfinished":
+			if data.id=="cluster_jobfinished":
 				lines=data.split("\n")
 				name=inp_search_token_value(lines, "#job_name")
 				self.label.set_text(gui_print_path("Finished:  ",name,60))
 				understood=True
 
-			if data.id=="gpvdmthingdone":
+			if data.id=="cluster_thingdone":
 				wait_update(data.token)
 				understood=True
 
-			if data.id=="gpvdm_sync_packet_two":
+			if data.id=="cluster_sync_packet_two":
 				self.process_sync_packet_two(data)
 				understood=True
 
-			if data.id=="gpvdm_sync_packet_one":
+			if data.id=="cluster_sync_packet_one":
 				self.process_sync_packet_one(data)
 				understood=True
 

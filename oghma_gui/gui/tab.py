@@ -1,76 +1,70 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package tab
 #  The main tab class, used to display material properties.
 #
 
-import os
 
 from token_lib import tokens
 from undo import undo_list_class
 from tab_base import tab_base
-from str2bool import str2bool
-from util import latex_to_html
 from help import help_window
 
-from PyQt5.QtCore import pyqtSignal
-
-from PyQt5.QtWidgets import QTextEdit,QWidget, QScrollArea,QVBoxLayout,QLabel,QHBoxLayout,QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,QComboBox,QGridLayout,QLineEdit
-from PyQt5.QtCore import QSize, Qt
-from PyQt5.QtGui import QPixmap, QIcon
+from PySide2.QtWidgets import QTextEdit,QWidget, QScrollArea,QVBoxLayout,QLabel,QHBoxLayout,QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,QComboBox,QGridLayout,QLineEdit
+from gQtCore import QSize, Qt, QTimer, gSignal
+from PySide2.QtGui import QPixmap, QIcon
 
 from icon_lib import icon_get
-
-from PyQt5.QtCore import QTimer
 
 import i18n
 _ = i18n.language.gettext
 
-import functools
-from error_dlg import error_dlg
-
 from json_viewer import json_viewer
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 
 class tab_class(QWidget,tab_base):
 
-	changed = pyqtSignal(str)
+	changed = gSignal(str)
 
-	def __init__(self,template_widget,data=gpvdm_data(),db_json_file=None,json_path=None,uid=None):
+	def __init__(self,template_widget,data=json_root(),db_json_file=None,json_path=None,uid=None,enable_apply_button=False,db_json_db_path=None):
 		QWidget.__init__(self)
 		self.editable=True
-		self.icon_file=""
+		self.enable_apply_button=enable_apply_button
 		self.data=data
 		self.scroll=QScrollArea()
 		self.main_box_widget=QWidget()
 		self.vbox=QVBoxLayout()
-		self.hbox=QHBoxLayout()
-		self.hbox.setAlignment(Qt.AlignTop)
+		self.main_vbox=QVBoxLayout()
+		self.main_vbox.setAlignment(Qt.AlignTop)
 
-		self.tab=json_viewer(db_json_file=db_json_file)
+		self.tab=json_viewer(db_json_file=db_json_file,db_json_db_path=db_json_db_path)
 		self.tab.populate(template_widget,json_path=json_path,uid=uid)
 
 		self.vbox.addWidget(self.tab)
-
 
 		spacer = QWidget()
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -79,30 +73,26 @@ class tab_class(QWidget,tab_base):
 		self.scroll.setWidgetResizable(True)
 		self.scroll.setWidget(self.main_box_widget)
 
-		self.icon_widget=QWidget()
-		self.icon_widget_vbox=QVBoxLayout()
-		self.icon_widget.setLayout(self.icon_widget_vbox)
+		self.main_vbox.addWidget(self.scroll)
 		
-		if self.icon_file!="":
-			self.image=QLabel()
-			icon=icon_get(self.icon_file)
-			self.image.setPixmap(icon.pixmap(icon.actualSize(QSize(32, 32))))
-			self.icon_widget_vbox.addWidget(self.image)
+		if self.enable_apply_button==True:
+			button_box = QWidget()
+			button_layout=QHBoxLayout()
+			button_box.setLayout(button_layout)
+			spacer = QWidget()
+			spacer.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Fixed)
+			button_layout.addWidget(spacer)
+			button=QPushButton("Apply")
+			button_layout.addWidget(button)
+			button.clicked.connect(self.callback_edit)
+			self.main_vbox.addWidget(button_box)
+		else:
+			self.tab.changed.connect(self.callback_edit)
 
-			spacer2 = QWidget()
-			spacer2.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
-			self.icon_widget_vbox.addWidget(spacer2)
-
-			self.hbox.addWidget(self.icon_widget)
-
-		self.hbox.addWidget(self.scroll)
-		
-		self.setLayout(self.hbox)
-
-		self.tab.changed.connect(self.callback_edit)
-
+		self.setLayout(self.main_vbox)
 	def callback_edit(self,token):
-		self.data.save()
+		if self.enable_apply_button==False:
+			self.data.save()
 		self.changed.emit(token)
 
 	def set_edit(self,editable):

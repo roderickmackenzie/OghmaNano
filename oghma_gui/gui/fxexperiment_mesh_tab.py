@@ -1,72 +1,64 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package fxexperiment_mesh_tab
 #  fx domain mesh editor
 #
 
-import os
-from gui_util import dlg_get_text
-import webbrowser
 from util import fx_with_units
 from icon_lib import icon_get
 
 import i18n
 _ = i18n.language.gettext
 
-#inp
-
-#matplotlib
-import matplotlib
-matplotlib.use('Qt5Agg')
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+import pyqtgraph as pg
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget,QAbstractItemView,QApplication
-from PyQt5.QtGui import QPainter,QIcon
-
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget
+from PySide2.QtGui import QPainter,QIcon
 
 #windows
 from open_save_dlg import save_as_jpg
 
-from cal_path import get_sim_path
-from gpvdm_tab2 import gpvdm_tab2
+from cal_path import sim_paths
+from g_tab2 import g_tab2
 
-import matplotlib.cm as cm
 import numpy as np
 from json_fx_domain import json_fx_domain_mesh_segment
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 
 class fxexperiment_mesh_tab(QWidget):
 
 	def save_data(self):
-		gpvdm_data().save()
+		json_root().save()
 		
 	def update(self):
 		self.build_mesh()
 		self.draw_graph()
-		self.fig.canvas.draw()
 
 	def draw_graph(self):
 		if len(self.fx)==0:
@@ -95,38 +87,38 @@ class fxexperiment_mesh_tab(QWidget):
 				mag.append(1)
 			fx.extend(local_fx)
 
-		self.fig.clf()
-		self.fig.subplots_adjust(bottom=0.2)
-		self.fig.subplots_adjust(left=0.1)
-		self.ax1 = self.fig.add_subplot(111)
+		self.plot.clear()
+		self.plot.getAxis('bottom').enableAutoSIPrefix(False)
+		self.plot.getPlotItem().hideAxis('left')
+		self.plot.getPlotItem().setMouseEnabled(x=False, y=False)		
+		scatter = pg.ScatterPlotItem()
 
-		cmap = cm.jet
-		#self.ax1.clear()
-		#self.ax1.scatter(self.x,self.mag ,c=c, cmap=cmap)
-		#self.fig.canvas.draw()
+		#here
+		pi = self.plot.getPlotItem()
+		ai = pi.getAxis("bottom")
+		ai.setLogMode(True)
 
-		c = np.linspace(0, 10, len(fx))
+		#spots = []
+		brush=[]
+		for i in range(0,len(fx)):
+			#spot_dic = {'pos': (fx[i], 1), 'size': 10, 'brush': pg.intColor(i, len(fx)), 'pen': None}
+			#spots.append(spot_dic)
+			brush.append(pg.intColor(i, len(fx)))
 
-		self.ax1 = self.fig.add_subplot(111)
-		self.ax1.ticklabel_format(useOffset=False)
+		#scatter.addPoints(spots)
+		my_plot = pi.plot(fx,mag, size=10, pen=None, symbolBrush=brush)
+		#my_plot.addItem(scatter)
+		my_plot.setLogMode(True, False)
+		#self.plot.addItem(scatter)
+		self.plot.setLogMode(True, False)
+		self.plot.setLabel('bottom', _("Frequency")+" ("+unit+")", color='k')
 
-		self.ax1.set_ylabel(_("Magnitude")+" ("+_("Volts")+" )")
-		self.ax1.get_yaxis().set_visible(False)
-		self.ax1.spines['top'].set_visible(False)
-		self.ax1.spines['right'].set_visible(False)
-		#self.ax1.spines['bottom'].set_visible(False)
-		self.ax1.spines['left'].set_visible(False)
-		self.ax1.set_xscale("log")
-		#print(fx,self.mag)
-		self.ax1.scatter(fx,mag, c=c, cmap=cmap)
-		
-		self.ax1.set_xlabel(_("Frequency")+" ("+unit+")")
 
 
 	def build_mesh(self):
 		self.mag=[]
 		self.fx=[]
-		data=gpvdm_data().fx_domain.find_object_by_id(self.uid)
+		data=json_root().sims.fx_domain.find_object_by_id(self.uid)
 
 		for mesh_item in data.mesh.segments:
 			local_mag=[]
@@ -168,24 +160,19 @@ class fxexperiment_mesh_tab(QWidget):
 	def on_cell_edited(self):
 		self.redraw_and_save()
 
-	def save_image(self):
-		file_name = save_as_jpg(self)
-		if file_name !=None:
-			self.fig.savefig(file_name)
-
 	def __init__(self,uid):
 		QWidget.__init__(self)
 		self.uid=uid
 		self.ax1=None
 
-		self.fig = Figure(figsize=(5,4), dpi=100)
-		self.canvas = FigureCanvas(self.fig)
-		self.canvas.figure.patch.set_facecolor('white')
+		pg.setConfigOption('background', 'w')
+		pg.setConfigOption('foreground', 'k')
+		self.plot = pg.PlotWidget()
+		self.plot.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 		self.main_vbox = QHBoxLayout()
 
-		self.main_vbox.addWidget(self.canvas)
-		self.canvas.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+		self.main_vbox.addWidget(self.plot)
 
 
 		#toolbar 2
@@ -196,7 +183,7 @@ class fxexperiment_mesh_tab(QWidget):
 		tab_holder=QWidget()
 		tab_vbox_layout= QVBoxLayout()
 		tab_holder.setLayout(tab_vbox_layout)
-		self.tab = gpvdm_tab2(toolbar=toolbar2)
+		self.tab = g_tab2(toolbar=toolbar2)
 
 		self.tab.set_tokens(["start","stop","points","mul"])
 		self.tab.set_labels([_("Frequency start"),_("Frequency stop"), _("Max points"), _("Multiply")])
@@ -204,9 +191,9 @@ class fxexperiment_mesh_tab(QWidget):
 		self.tab.setColumnWidth(0, 200)
 		self.tab.setColumnWidth(1, 200)
 
-		data=gpvdm_data().fx_domain.find_object_by_id(self.uid)
-		index=gpvdm_data().fx_domain.segments.index(data)
-		self.tab.json_search_path="gpvdm_data().fx_domain.segments["+str(index)+"].mesh.segments"
+		data=json_root().sims.fx_domain.find_object_by_id(self.uid)
+		index=json_root().sims.fx_domain.segments.index(data)
+		self.tab.json_search_path="json_root().sims.fx_domain.segments["+str(index)+"].mesh.segments"
 
 		self.tab.populate()
 
@@ -227,7 +214,7 @@ class fxexperiment_mesh_tab(QWidget):
 
 	def callback_new_row_clicked(self,row):
 		obj=json_fx_domain_mesh_segment()
-		data=gpvdm_data().fx_domain.find_object_by_id(self.uid).mesh.segments.insert(row,obj)
+		json_root().sims.fx_domain.find_object_by_id(self.uid).mesh.segments.insert(row,obj)
 		self.tab.insert_row(obj,row)
 
 

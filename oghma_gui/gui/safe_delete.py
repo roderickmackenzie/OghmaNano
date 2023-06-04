@@ -1,24 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
-
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package util
 #  General helper functions.
@@ -29,14 +33,33 @@
 import os
 import shutil
 import sys
-import hashlib
-import glob
-from cal_path import get_home_path
-from win_lin import running_on_linux
+from cal_path import sim_paths
+from win_lin import get_platform
 
-def gpvdm_delete_file(path,allow_dir_removal=False):
+def can_i_delete(file_name):
+	if os.path.samefile(str(sim_paths.get_home_path()),str(file_name))==True:
+		return False
+	elif file_name.startswith(sim_paths.get_sim_path()):
+		return True
+	elif file_name.startswith(sim_paths.get_shape_path()):
+		return True
+	elif file_name.startswith(sim_paths.get_materials_path()):
+		return True
+	elif file_name.startswith(sim_paths.get_filters_path()):
+		return True
+	elif file_name.startswith(sim_paths.get_spectra_path()):
+		return True
+	elif file_name.startswith(sim_paths.get_backup_path()):
+		return True
+	return False
+
+def safe_delete(path,allow_dir_removal=False):
 	#Paranoia
-	if os.path.samefile(str(get_home_path()),str(path))==True:
+	if can_i_delete(path)==False:
+		return
+
+	#Paranoia
+	if os.path.samefile(str(sim_paths.get_home_path()),str(path))==True:
 		sys.exit('I can not delete this dir')
 		return
 

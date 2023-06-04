@@ -1,97 +1,95 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package new_simulation
 #  A new simulation window, shows the user which simulation he/she can make.
 #
 
-from clone import gpvdm_clone
 import os
 from import_archive import import_archive
-from open_save_dlg import save_as_gpvdm
+from open_save_dlg import save_as_simfile
 
 import i18n
 _ = i18n.language.gettext
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QPushButton,QCheckBox,QHBoxLayout, QListView, QLabel,QWidget,QDialog,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QSystemTrayIcon,QMenu,QListWidget,QListWidgetItem
-from PyQt5.QtGui import QIcon
-from PyQt5.uic import loadUi
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QPushButton,QCheckBox,QHBoxLayout, QListView, QLabel,QWidget,QDialog,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QMenu
+from PySide2.QtGui import QIcon
 
 #calpath
 from cal_path import get_device_lib_path
 from icon_lib import icon_get
-from cal_path import get_ui_path
 from error_dlg import error_dlg
-from cal_path import get_exe_path
 
 from help import help_window
 
-from inp import inp_update_token_value
+from dlg_get_text2 import dlg_get_text2
 
-from str2bool import str2bool
-from gui_util import dlg_get_text
-
-from gpvdm_viewer import gpvdm_viewer
-
+from dir_viewer import dir_viewer
 
 from util import peek_data
-from inp_encrypt import decrypt_file
-from cal_path import gpvdm_paths
-
-class simulation():
-	name=""
-	file_name=""
-	icon=None
-	hidden=False
+from cal_path import sim_paths
+from lock import get_lock
+from util_zip import archive_make_empty
+from sim_name import sim_name
+import ctypes
+from bytes2str import str2bytes
 
 class new_simulation(QDialog):
 
-	def callback_close(self, widget, data=None):
+
+	def callback_close(self):
 		self.reject()
 
-
 	def callback_next(self):
+		self.lib=sim_paths.get_dll_py()
+		self.lib.lock_decrypt_file.restype = ctypes.c_int
 		help_window().help_set_help(["document-save-as.png",_("<big><b>Now save the simulation</b></big><br>Now select where you would like to save the simulation directory.")])
 
 		if len(self.viewer.selectedItems())>0:
 			device_lib_sim_file=self.viewer.file_path
-			decrypted_file=os.path.join(gpvdm_paths.get_tmp_path(),"tmp.gpvdm")
-			if peek_data(device_lib_sim_file).startswith(b"gpvdmenc")==True:
-				pw_dlg=dlg_get_text( _("password:"), "","gnome-dialog-password")
-				if decrypt_file(decrypted_file,device_lib_sim_file,pw_dlg.ret)==False:
+			decrypted_file=os.path.join(sim_paths.get_tmp_path(),"tmp.oghma")
+			if peek_data(device_lib_sim_file).startswith(b"oghmaenc")==True:
+				pw_dlg=dlg_get_text2( _("password:"), "","gnome-dialog-password")
+				if self.lib.lock_decrypt_file(ctypes.c_char_p(str2bytes(decrypted_file)),ctypes.c_char_p(str2bytes(device_lib_sim_file)),ctypes.c_char_p(str2bytes(pw_dlg.ret),None))==-1:
 					error_dlg(self,_("Wrong password"))
 					return
 				else:
 					device_lib_sim_file=decrypted_file
 
-			file_path=save_as_gpvdm(self)
-			#print(file_path,get_exe_path())
+			file_path=save_as_simfile(self)
+			#print(file_path,sim_paths.get_exe_path())
 			if file_path!=None:
-				if file_path.isascii()==False:
-					error_dlg(self,_("Gpvdm can't save to a directory with non-English characters in the path, so characters in the Chinese, Greek, Arabic and Greek alphabet.. Sorry! Try again with a different file path containing only English characters."))
+				if file_path.startswith(sim_paths.get_exe_path())==True:
+					error_dlg(self,_("It's not a good idea to save the simulation in the installation directory.  Try saving it somewhere else, such as your desktop or home directory."))
+					return
 
-				if file_path.startswith(get_exe_path())==True:
-					error_dlg(self,_("It's not a good idea to save the simulation in the gpvdm installation directory.  Try saving it somewhere else, such as your desktop or home directory."))
+				if file_path.count("oghma_local")>0:
+					error_dlg(self,_("It's not a good idea to save the simulation in the oghma_local directory."))
 					return
 
 				if os.path.isdir(file_path)==True:
@@ -104,8 +102,9 @@ class new_simulation(QDialog):
 				self.ret_path=file_path
 
 				os.chdir(self.ret_path)
-				gpvdm_clone(os.getcwd(),copy_dirs=True)
-				import_archive(device_lib_sim_file,os.path.join(os.getcwd(),"sim.gpvdm"),False)
+				new_archive=os.path.join(os.getcwd(),"sim.oghma")
+				archive_make_empty(new_archive)
+				import_archive(device_lib_sim_file,new_archive,False)
 
 				self.close()
 		else:
@@ -132,11 +131,11 @@ class new_simulation(QDialog):
 		QDialog.__init__(self)
 		self.main_vbox=QVBoxLayout()
 		self.setMinimumSize(900,580) 
-		self.setWindowTitle(_("New simulation")+" (https://www.gpvdm.com)")
+		self.setWindowTitle(_("New simulation")+sim_name.web_window_title)
 		self.setWindowIcon(icon_get("si"))
-		self.title=QLabel("<big><b>"+_("Which type of device would you like to simulate?")+"</b></big>")
+		self.title=QLabel("<big><b>"+_("Which type of device would you like to simulate?")+" ("+_("Double click to open")+")</b></big>")
 
-		self.viewer=gpvdm_viewer(get_device_lib_path())
+		self.viewer=dir_viewer(get_device_lib_path())
 		self.viewer.open_own_files=False
 		self.viewer.set_back_arrow(True)
 		self.viewer.set_enable_menu(False)
@@ -158,18 +157,22 @@ class new_simulation(QDialog):
 
 		self.hwidget=QWidget()
 
-		self.nextButton = QPushButton(_("Next"))
-		self.cancelButton = QPushButton(_("Cancel"))
+		#self.nextButton = QPushButton(_("Next"))
+		self.cancelButton = QPushButton(_("Close"))
 
 		self.files=[]
 
 		hbox = QHBoxLayout()
 		self.show_hidden=QCheckBox(_("Show hidden"))
 		self.show_hidden.clicked.connect(self.callback_toggle_hidden)
+		#if get_lock().is_next()==True:
 		hbox.addWidget(self.show_hidden)
+		self.show_hidden.setChecked(True)
+		self.viewer.set_show_hidden(True)
+
 		hbox.addStretch(1)
 		hbox.addWidget(self.cancelButton)
-		hbox.addWidget(self.nextButton)
+		#hbox.addWidget(self.nextButton)
 		self.hwidget.setLayout(hbox)
 
 		self.main_vbox.addWidget(self.hwidget)
@@ -182,7 +185,7 @@ class new_simulation(QDialog):
 
 		
 		self.viewer.accept.connect(self.callback_next)
-		self.nextButton.clicked.connect(self.callback_next)
+		#self.nextButton.clicked.connect(self.callback_next)
 		self.cancelButton.clicked.connect(self.callback_close)
 
 

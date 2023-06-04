@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package optics
 #  The main optics window
@@ -27,8 +32,6 @@
 import os
 from plot_gen import plot_gen
 from icon_lib import icon_get
-import zipfile
-import glob
 from tab import tab_class
 from progress_class import progress_class
 from help import my_help_class
@@ -37,29 +40,28 @@ from help import my_help_class
 from cal_path import get_exe_command
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QHBoxLayout,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QSystemTrayIcon,QMenu, QComboBox, QMenuBar, QLabel
-from PyQt5.QtGui import QIcon
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QHBoxLayout,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QSystemTrayIcon,QMenu, QComboBox, QMenuBar, QLabel, QStatusBar
+from PySide2.QtGui import QIcon
 
 #windows
 from band_graph2 import band_graph2
 
 from plot_widget import plot_widget
-from error_dlg import error_dlg
 
 from server import server_get
 
-from global_objects import global_object_run
 from global_objects import global_object_delete
-from cal_path import get_sim_path
+from cal_path import sim_paths
 from QWidgetSavePos import QWidgetSavePos
 
 from optics_ribbon import optics_ribbon
 
 from css import css_apply
 from gui_util import yes_no_dlg
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 from config_window import class_config_window
+from help import help_window
 
 class class_optical(QWidgetSavePos):
 
@@ -69,20 +71,20 @@ class class_optical(QWidgetSavePos):
 		self.setWindowIcon(icon_get("optics"))
 
 		self.setMinimumSize(1000, 600)
-		self.setWindowTitle(_("Optical simulation editor")+" (https://www.gpvdm.com)")    
+		self.setWindowTitle2(_("Optical simulation editor"))    
 
 		self.ribbon=optics_ribbon()
 
 		self.edit_list=[]
 		self.line_number=[]
 		self.articles=[]
-		input_files=[]
-		input_files.append(os.path.join(get_sim_path(),"optical_output","light_2d_photons.dat"))
-		input_files.append(os.path.join(get_sim_path(),"optical_output","light_2d_photons_asb.dat"))
+		self.input_files=[]
+		self.input_files.append(os.path.join(sim_paths.get_sim_path(),"optical_output","photons_yl.csv"))
+		self.input_files.append(os.path.join(sim_paths.get_sim_path(),"optical_output","photons_abs_yl.csv"))
 
-		plot_labels=[]
-		plot_labels.append(_("Photon distribution"))
-		plot_labels.append(_("Photon distribution absorbed"))
+		self.plot_labels=[]
+		self.plot_labels.append(_("Photon distribution"))
+		self.plot_labels.append(_("Photon distribution absorbed"))
 
 
 		self.setWindowIcon(icon_get("optics"))
@@ -92,6 +94,8 @@ class class_optical(QWidgetSavePos):
 		self.ribbon.optics.run.start_sim.connect(self.callback_run)
 
 		self.ribbon.optics.configwindow.triggered.connect(self.callback_configwindow)
+
+		self.ribbon.optics.optical_thickness.triggered.connect(self.callback_optical_thickness)
 
 		self.ribbon.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
 
@@ -107,18 +111,19 @@ class class_optical(QWidgetSavePos):
 
 		self.plot_widgets=[]
 		self.progress_window.start()
-		for i in range(0,len(input_files)):
-			self.plot_widgets.append(plot_widget(enable_toolbar=False))
+		for i in range(0,len(self.input_files)):
+			self.plot_widgets.append(plot_widget(enable_toolbar=False,widget_mode="pyqtgraph_imageview"))	#matplotlib
 			self.plot_widgets[i].hide_title=True
-			self.plot_widgets[i].set_labels([plot_labels[0]])
-			self.plot_widgets[i].load_data([input_files[i]])
+			self.plot_widgets[i].set_labels([self.plot_labels[0]])
+			self.plot_widgets[i].load_data([self.input_files[i]])
 			#self.plot_widgets[i].watermark_alpha=0.5
 			self.plot_widgets[i].do_plot()
 			#self.plot_widgets[i].show()
-			self.notebook.addTab(self.plot_widgets[i],plot_labels[i])
+			self.notebook.addTab(self.plot_widgets[i],self.plot_labels[i])
 
+		self.input_files.append(os.path.join(sim_paths.get_sim_path(),"optical_output","G_y.csv"))
 		self.fig_gen_rate = band_graph2()
-		self.fig_gen_rate.set_data_file("light_1d_Gn.dat")
+		self.fig_gen_rate.set_data_file(self.input_files[-1])
 		self.notebook.addTab(self.fig_gen_rate,_("Generation rate"))
 
 
@@ -131,17 +136,28 @@ class class_optical(QWidgetSavePos):
 
 		self.setLayout(self.main_vbox)
 
-		if os.path.isfile(os.path.join(get_sim_path(),"optical_output","light_2d_photons.dat"))==False:
+		if os.path.isfile(os.path.join(sim_paths.get_sim_path(),"optical_output","photons_yl.csv"))==False:
 			response=yes_no_dlg(self,"You have not yet run a full optical simulation, to use this feature you need to.  Would you run one now?")
 			if response == True:
 				self.callback_run()
 			else:
 				self.close()
 
+		self.status_bar = QStatusBar()
+		self.main_vbox.addWidget(self.status_bar)
+		self.notebook.currentChanged.connect(self.changed_click)
+		self.changed_click()
+
 	def callback_configwindow(self):
-		data=gpvdm_data()
-		self.config_window=class_config_window([data.light],[_("Output files")])
+		data=json_root()
+		self.config_window=class_config_window([data.optical.light],[_("Output files")])
 		self.config_window.show()
+
+	def callback_optical_thickness(self):
+		from optical_thickness_editor import optical_thickness_editor
+		self.window_optical_thickness=optical_thickness_editor()
+		self.window_optical_thickness.show()
+		help_window().help_set_help(["optical_thickness",_("<big><b>Optical thickness</b></big><br>Usually the optical thickness of a layer will be taken from the layer structure set out in the layer editor. However, sometimes one wants to simulate very thick layers. This window will enable you to force the optical thickness to a value while maintaining it's physical thickness.")])
 
 	def callback_save(self):
 		tab = self.notebook.currentWidget()
@@ -151,8 +167,8 @@ class class_optical(QWidgetSavePos):
 		for i in range(0,len(self.layer_end)):
 			if (self.layer_end[i]>event.xdata):
 				break
-		pwd=get_sim_path()
-		plot_gen([os.path.join(pwd,"materials",self.layer_name[i],"alpha.gmat")],[],None,"")
+		pwd=sim_paths.get_sim_path()
+		plot_gen([os.path.join(pwd,"materials",self.layer_name[i],"alpha.csv")],[],None,"")
 
 
 	def closeEvent(self, event):
@@ -161,8 +177,8 @@ class class_optical(QWidgetSavePos):
 		event.accept()
 
 	def optics_sim_finished(self):
-		data=gpvdm_data()
-		data.light.dump_verbosity=self.dump_verbosity
+		data=json_root()
+		data.optical.light.dump_verbosity=self.dump_verbosity
 		data.save()
 		self.force_redraw()
 
@@ -177,17 +193,19 @@ class class_optical(QWidgetSavePos):
 		self.ribbon.update()
 		
 	def callback_run(self):
-		data=gpvdm_data()
+		data=json_root()
 		self.my_server=server_get()
-		self.dump_verbosity=data.light.dump_verbosity
+		self.dump_verbosity=data.optical.light.dump_verbosity
 
-		data.light.dump_verbosity=1
+		data.optical.light.dump_verbosity=1
 		data.save()
 
 		self.my_server.clear_cache()
 		self.my_server.clear_jobs()
-		self.my_server.add_job(get_sim_path(),"--simmode opticalmodel@optics")
+		self.my_server.add_job(sim_paths.get_sim_path(),"--simmode opticalmodel@optics")
 		self.my_server.sim_finished.connect(self.optics_sim_finished)
 		self.my_server.start()
 
-
+	def changed_click(self):
+		i = self.notebook.currentIndex()
+		self.status_bar.showMessage(self.input_files[i])

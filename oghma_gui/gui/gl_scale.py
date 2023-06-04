@@ -1,203 +1,70 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package gl_scale
 #  The gl_scale class for the OpenGL display.
 #
 
-import sys
-from math import fabs
+from json_root import json_root
+import ctypes
+from cal_path import sim_paths
+from gl_main import gl_main
 
-from epitaxy import get_epi
-import math
+class gl_scale_class(ctypes.Structure):
 
-from triangle import triangle
-from gpvdm_json import gpvdm_data
-from triangle import vec
-
-
-
-
-class gl_scale():
-
-	def __init__(self):
-		self.x_mul=1.0
-		self.y_mul=1.0
-		self.z_mul=1.0
-		self.x_start=0.0
-		self.y_start=0.0
-		self.z_start=0.0
-		self.world_min=None
-		self.world_max=None
+	def __init__(self,gl_scale):
+		self.gl_scale=gl_scale
 		self.refresh_world_size=True
-
-	def project_screen_x_to_m(self,x):
-		if type(x)==float or type(x)==int:
-			return (x-self.x_start)/self.x_mul
-		elif type(x)==list:
-			ret=[]
-			for val in x:
-				ret.append((val-self.x_start)/self.x_mul)
-			return ret
-
-	def project_screen_y_to_m(self,y):
-		if type(y)==float or type(y)==int:
-			return (y-self.y_start)/self.y_mul
-		elif type(y)==list:
-			ret=[]
-			for val in y:
-				ret.append((val-self.y_start)/self.y_mul)
-			return ret
-
-	def project_screen_z_to_m(self,z):
-		if type(z)==float or type(z)==int:
-			return (z-self.z_start)/self.z_mul
-		elif type(z)==list:
-			ret=[]
-			for val in z:
-				ret.append((val-self.z_start)/self.z_mul)
-			return ret
+		self.world_delta=None
+		self.lib=sim_paths.get_dll_py()
+		self.lib.project_m2screen_x.restype = ctypes.c_float
+		self.lib.project_m2screen_y.restype = ctypes.c_float
+		self.lib.project_m2screen_z.restype = ctypes.c_float
 
 	def project_m2screen_x(self,x):
-		if type(x)==float or type(x)==int:
-			return self.x_start+self.x_mul*x
-		elif type(x)==list:
-			ret=[]
-			for val in x:
-				ret.append(self.x_start+self.x_mul*val)
-			return ret
-
+		return self.lib.project_m2screen_x(ctypes.byref(self.gl_scale),ctypes.c_float(x))
 
 	def project_m2screen_y(self,y):
-		if type(y)==float or type(y)==int :
-			return self.y_start+self.y_mul*y
-		elif type(y)==list:
-			ret=[]
-			for val in y:
-				ret.append(self.y_start+self.y_mul*val)
-			return ret
+		return self.lib.project_m2screen_y(ctypes.byref(self.gl_scale),ctypes.c_float(y))
 
-		
 	def project_m2screen_z(self,z):
-
-		if type(z)==float or type(z)==int:
-			return self.z_start+self.z_mul*z
-		elif type(z)==list:
-			ret=[]
-			for val in z:
-				ret.append(self.z_start+self.z_mul*val)
-			return ret
-
-	def project_base_objects_from_m_2_screen(self,objs):
-		ret=[]
-		for o in objs:
-			for xyz in o.xyz:
-				xyz.x=self.project_m2screen_x(xyz.x)
-				xyz.y=self.project_m2screen_y(xyz.y)
-				xyz.z=self.project_m2screen_z(xyz.z)
-				break
-
-			o.dxyz.x=o.dxyz.x*self.x_mul
-			o.dxyz.y=o.dxyz.y*self.y_mul
-			o.dxyz.z=o.dxyz.z*self.z_mul
-			o.sub_objects=self.project_base_objects_from_m_2_screen(o.sub_objects)
-			ret.append(o)
-		return ret
-
+		return self.lib.project_m2screen_z(ctypes.byref(self.gl_scale),ctypes.c_float(z))
+		
 	def set_m2screen(self):
 		if self.refresh_world_size==True:
-			self.world_min,self.world_max=gpvdm_data().get_world_size()
-			
-		max_dist_x=10
-		max_dist_z=10
-		max_dist_y=10
+			wmin,wmax=json_root().get_world_size()
+			self.world_delta=wmax-wmin
+			self.gl_scale.world_min.x=wmin.x
+			self.gl_scale.world_min.y=wmin.y
+			self.gl_scale.world_min.z=wmin.z
 
-		x_len= self.world_max.x-self.world_min.x
-		y_len= self.world_max.y-self.world_min.y 
-		z_len= self.world_max.z-self.world_min.z
+			self.gl_scale.world_max.x=wmax.x
+			self.gl_scale.world_max.y=wmax.y
+			self.gl_scale.world_max.z=wmax.z
 
-		xyz_max=max([x_len,y_len,z_len])
-
-		#all the same
-		self.x_mul=max_dist_x/xyz_max
-		self.y_mul=max_dist_y/xyz_max
-		self.z_mul=max_dist_z/xyz_max
-
-		while (self.x_mul*x_len*2.0<max_dist_x):
-			self.x_mul=self.x_mul*2.0
-
-		while (self.z_mul*z_len*2.0<max_dist_z):
-			self.z_mul=self.z_mul*2.0
-
-		if y_len*10.0<xyz_max:		#rescale for thin devices
-			max_dist_y=2
-			self.y_mul=2.0*max_dist_y/y_len
-
-		size_x=x_len*self.x_mul
-		size_z=z_len*self.z_mul
-
-		self.x_start=-size_x/2.0
-		self.z_start=-size_z/2.0
-		self.y_start=0.0
-
-	def scale_trianges_m2screen(self,triangles):
-		ret=[]
-		for t in triangles:
-			t0=triangle()
-			t0.points=t.points
-			t0.xyz0.x=t.xyz0.x*self.x_mul
-			t0.xyz0.y=t.xyz0.y*self.y_mul
-			t0.xyz0.z=t.xyz0.z*self.z_mul
-
-			t0.xyz1.x=t.xyz1.x*self.x_mul
-			t0.xyz1.y=t.xyz1.y*self.y_mul
-			t0.xyz1.z=t.xyz1.z*self.z_mul
-
-			t0.xyz2.x=t.xyz2.x*self.x_mul
-			t0.xyz2.y=t.xyz2.y*self.y_mul
-			t0.xyz2.z=t.xyz2.z*self.z_mul
-			ret.append(t0)
-
-		return ret
-
-	def project_trianges_m2screen(self,triangles):
-		ret=[]
-		for t in triangles:
-			t0=triangle()
-			t0.points=t.points
-			t0.xyz0.x=self.project_m2screen_x(t.xyz0.x)
-			t0.xyz0.y=self.project_m2screen_y(t.xyz0.y)
-			t0.xyz0.z=self.project_m2screen_z(t.xyz0.z)
-
-			t0.xyz1.x=self.project_m2screen_x(t.xyz1.x)
-			t0.xyz1.y=self.project_m2screen_y(t.xyz1.y)
-			t0.xyz1.z=self.project_m2screen_z(t.xyz1.z)
-
-			t0.xyz2.x=self.project_m2screen_x(t.xyz2.x)
-			t0.xyz2.y=self.project_m2screen_y(t.xyz2.y)
-			t0.xyz2.z=self.project_m2screen_z(t.xyz2.z)
-
-			ret.append(t0)
-
-		return ret
-
-
+		self.gl_scale.world_fills_mesh=json_root().world.config.world_fills_mesh
+		self.lib.set_m2screen(ctypes.byref(self.gl_scale))
 

@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package help
 #  Help window on the top right.
@@ -28,10 +33,10 @@ import os
 from cal_path import get_icon_path
 import webbrowser
 
-from PyQt5.QtCore import QSize, Qt
-from PyQt5.QtGui import QIcon,QFont
-from PyQt5.QtWidgets import QWidget, QVBoxLayout,QProgressBar,QLabel,QDesktopWidget,QToolBar,QHBoxLayout,QAction,QSizePolicy,QStatusBar
-from PyQt5.QtGui import QPixmap
+from gQtCore import QSize, Qt
+from PySide2.QtGui import QIcon,QFont
+from PySide2.QtWidgets import QWidget, QVBoxLayout,QProgressBar,QLabel,QDesktopWidget,QToolBar,QHBoxLayout,QAction,QSizePolicy,QStatusBar
+from PySide2.QtGui import QPixmap
 
 from i18n import get_language
 
@@ -39,8 +44,8 @@ from cal_path import get_flag_file_path
 from i18n import get_full_desired_lang_path
 
 from bibtex import bibtex
-
 from icon_lib import icon_get
+from sim_name import sim_name
 my_help_class=None
 
 class QAction_help(QAction):
@@ -50,7 +55,7 @@ class QAction_help(QAction):
 		self.triggered.connect(self.callback_help)
 
 	def callback_help(self):
-		webbrowser.open('http://www.gpvdm.com/docs.html')
+		webbrowser.open(sim_name.web+"/docs.html")
 
 class help_data():
 	def __init__(self,token,icon,text):
@@ -63,9 +68,9 @@ class help_class(QWidget):
 		shape=QDesktopWidget().screenGeometry()
 
 		w=shape.width()
-		h=shape.height()
+		shape.height()
 		win_w=self.frameGeometry().width()
-		win_h=self.frameGeometry().height()
+		self.frameGeometry().height()
 
 		x=w-win_w
 		y=50
@@ -83,7 +88,7 @@ class help_class(QWidget):
 
 		self.move_window()
 
-	def init(self):
+	def __init__(self):
 		QWidget.__init__(self)
 		self.item_height=10
 		self.setWindowFlags(Qt.FramelessWindowHint|Qt.WindowStaysOnTopHint)
@@ -185,7 +190,7 @@ class help_class(QWidget):
 		self.update()
 
 	def on_line_help(self,widget):
-		webbrowser.open("https://www.gpvdm.com/man/index.html")
+		webbrowser.open(sim_name.web+"/man/index.html")
 
 	def update(self):
 		items=int(len(self.last[self.pos])/2)
@@ -196,7 +201,7 @@ class help_class(QWidget):
 		for i in range(0,items):
 			all_text=self.last[self.pos][i*2+1]
 			nbr=all_text.count("<br>")
-			end_text=len(all_text.split("<br>")[-1])
+			len(all_text.split("<br>")[-1])
 			pixmap = QPixmap(get_icon_path(self.last[self.pos][i*2],size=64))
 			self.image[i].setPixmap(pixmap)
 			text=all_text+"<br>"
@@ -247,7 +252,6 @@ class help_class(QWidget):
 def help_init():
 	global my_help_class
 	my_help_class=help_class()
-	my_help_class.init()
 
 def help_window():
 	global my_help_class
@@ -261,7 +265,7 @@ def language_advert():
 		loaded=b.load(os.path.join(get_full_desired_lang_path(),"ref.bib"))
 
 		if loaded==False or r.author=="":
-			my_help_class.help_append([f,"<big><b>"+_("gpvdm in your language!")+"</b></big><br>"+"Would you like gpvdm to be translated into your native language?  If so please help with the gpvdm <a href=\"https://gpvdm.com/translation.html\">translation project.</a>"])
+			my_help_class.help_append([f,"<big><b>"+_("OghmaNano in your language!")+"</b></big><br>"+"Would you like OghmaNano to be translated into your native language?  If so please help with the OghmaNano <a href=\""+sim_name.web+"/translation.html\">translation project.</a>"])
 		else:
-			my_help_class.help_append([f,"<big><b>"+_("gpvdm translated by:")+"</b></big><br>"+r.author])
+			my_help_class.help_append([f,"<big><b>"+_("OghmaNano translated by:")+"</b></big><br>"+r.author])
 			

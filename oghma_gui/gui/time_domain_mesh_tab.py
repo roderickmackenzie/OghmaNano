@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package time_domain_mesh_tab
 #  A mesh editor for the time domain mesh.
@@ -25,73 +30,75 @@
 
 
 import os
-from numpy import *
-from gui_util import dlg_get_text
-import webbrowser
+from dlg_get_text2 import dlg_get_text2
 from util import time_with_units
 from cal_path import get_icon_path
 
 
-#matplotlib
-import matplotlib
-matplotlib.use('Qt5Agg')
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
-#from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-import matplotlib.ticker as ticker
+#pyqtgraph
+from pyqtgraph import PlotWidget, plot
+from pyqtgraph.graphicsItems.ViewBox import axisCtrlTemplate_pyside2
+from pyqtgraph.graphicsItems.PlotItem import plotConfigTemplate_pyside2
+from pyqtgraph.imageview import ImageViewTemplate_pyside2
+import pyqtgraph as pg
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget,QAbstractItemView
-from PyQt5.QtGui import QPainter,QIcon
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget,QAbstractItemView
+from PySide2.QtGui import QPainter,QIcon
 
 #windows
 from open_save_dlg import save_as_image
-from cal_path import get_sim_path
+from cal_path import sim_paths
 from icon_lib import icon_get
-from error_dlg import error_dlg
-from gpvdm_tab2 import gpvdm_tab2
-from gpvdm_json import gpvdm_data
+from g_tab2 import g_tab2
+from json_root import json_root
 from json_time_domain import json_time_domain_mesh_segment
 import i18n
 _ = i18n.language.gettext
-
+from math import exp
+from math import pow
 
 class tab_time_mesh(QWidget):
 
 	def save_data(self):
-		gpvdm_data().save()
+		json_root().save()
 
 
 
 	def callback_laser(self):
-		data=gpvdm_data().time_domain.find_object_by_id(self.uid)
-		new_time=dlg_get_text( _("Enter the time at which the laser pulse will fire (-1) to turn it off"), str(data.config.fs_laser_time),"laser.png")
+		data=json_root().sims.time_domain.find_object_by_id(self.uid)
+		new_time=dlg_get_text2( _("Enter the time at which the laser pulse will fire (-1) to turn it off"), str(data.config.fs_laser_time),"laser.png")
 		new_time=new_time.ret
 
 		if new_time!=None:
 			data.config.fs_laser_time=float(new_time)
 			self.build_mesh()
 			self.draw_graph()
-			self.fig.canvas.draw()
-			gpvdm_data().save()
+			json_root().save()
 
 	def update(self):
 		self.build_mesh()
 		self.draw_graph()
-		self.fig.canvas.draw()
 
 	def on_cell_edited(self):
 		self.save_data()
 		self.build_mesh()
 		self.draw_graph()
-		self.fig.canvas.draw()
 
-	def gaussian(self,x, mu, sig):
-		return exp(-power(x - mu, 2.) / (2 * power(sig, 2.)))
+	def gaussian(self,start, stop, mu, sig,x_mul=1.0):
+		x=[]					#avoiding numpy
+		y=[]
+		pos=start
+		dx=(stop-start)/20.0
+		while(pos<stop):
+			x.append(pos*x_mul)
+			y.append(exp(-pow(pos - mu, 2.) / (2 * pow(sig, 2.))))
+			pos=pos+dx
+		return x,y
 
 	def draw_graph(self):
-		fs_laser_time=gpvdm_data().time_domain.find_object_by_id(self.uid).config.fs_laser_time
+		fs_laser_time=json_root().sims.time_domain.find_object_by_id(self.uid).config.fs_laser_time
 		if (len(self.time)>0):
 			mul,unit=time_with_units(float(self.time[len(self.time)-1]-self.time[0]))
 		else:
@@ -101,67 +108,39 @@ class tab_time_mesh(QWidget):
 		time=[]
 		for i in range(0,len(self.time)):
 			time.append(self.time[i]*mul)
-		self.fig.clf()
-		self.fig.subplots_adjust(bottom=0.2)
-		self.fig.subplots_adjust(left=0.1)
 
+		self.canvas.clear()
 
-		self.ax1 = self.fig.add_subplot(211)
-		self.ax1.ticklabel_format(useOffset=False)
-		self.ax1.spines['right'].set_visible(False)
-		self.ax1.spines['top'].set_visible(False)
-		self.ax1.yaxis.set_ticks_position('left')
-		self.ax1.xaxis.set_ticks_position('bottom')
-		self.ax1.yaxis.set_major_locator(ticker.MaxNLocator(4))
-		self.ax1.set_ylabel(_("Voltage (Volts)"))
-		self.ax1.set_xticklabels([])
-		self.ax1.grid(True)
-		voltage, = self.ax1.plot(time,self.voltage, 'ro-', linewidth=3 ,alpha=1.0)
+		pen = pg.mkPen((255, 0, 0), width=3)
 
+		plot0=self.canvas.addPlot(row=0, col=0)
+		plot0.addLegend()
+		plot0.plot(x=time, y=self.voltage, pen=pen, name=_("Voltage"), symbol='o', symbolSize=8, symbolBrush =(255, 0, 0))
+		plot0.setLabel('left', _("Voltage")+" (Volts)", color='k')
+		plot0.setLabel('bottom', _("Time") +" ("+unit+")", color='k')
+		plot0.showGrid(x = True, y = True, alpha = 1.0)
+		#plot0.hideAxis('bottom')
 
+		pen = pg.mkPen((0, 255, 0), width=3)
+		plot1=self.canvas.addPlot( row=1, col=0)
+		plot1.addLegend()
+		plot1.plot(x=time, y=self.sun, pen=pen,  name=_("Sun"), symbol='o', symbolSize=8, symbolBrush =(0, 255, 0))
+		plot1.setLabel('left', _("Suns")+" (Suns)", color='k')
+		plot1.setLabel('bottom', _("Time")+" ("+unit+")", color='k')
+		plot0.setXLink(plot1)
+		plot1.showGrid(x = True, y = True, alpha = 1.0)
 
-		self.ax2 = self.fig.add_subplot(212)
-		self.ax2.spines['right'].set_visible(False)
-		self.ax2.spines['top'].set_visible(False)
-		self.ax2.yaxis.set_ticks_position('left')
-		self.ax2.xaxis.set_ticks_position('bottom')
-		self.ax2.yaxis.set_major_locator(ticker.MaxNLocator(4))
-		self.ax2.set_ylabel(_("Suns")+" (Suns)")
-		self.ax2.set_xlabel(_("Time")+" ("+unit+')')
-		self.ax2.grid(True)
-		sun, = self.ax2.plot(time,self.sun, 'go-', linewidth=3 ,alpha=1.0)
+		pen = pg.mkPen((0, 0, 255), width=3)
+		plot1.plot(time,self.laser, pen=pen, symbol='o', symbolSize=8, name=_("Laser"), symbolBrush =(0, 0, 255))
 
-
-		laser, = self.ax2.plot(time,self.laser, 'bo-', linewidth=3 ,alpha=1.0)
-
-		fs_laser_enabled=False
 		if fs_laser_time!=-1:
 			if len(self.time)>2:
 				dt=(self.time[len(time)-1]-self.time[0])/100
 				start=fs_laser_time-dt*5
 				stop=fs_laser_time+dt*5
-				x = linspace(start,stop,100)
-				y=self.gaussian(x,fs_laser_time,dt)
-				#print y
-
-				fs_laser, = self.ax2.plot(x*mul,y, 'g-', linewidth=3 ,alpha=1.0)
-				fs_laser_enabled=True
-				self.ax2.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
-
-		self.fig.subplots_adjust(hspace=0)
-
-
-	def image_save(self):
-		response=save_as_image(self)
-		if response != None:
-			file_name=response
-
-			if os.path.splitext(file_name)[1]:
-				self.fig.savefig(file_name)
-			else:
-				filter=response
-				self.fig.savefig(file_name+".png")
-
+				x,y=self.gaussian(start,stop,fs_laser_time,dt,x_mul=mul)
+				pen = pg.mkPen((0, 255, 0), width=3)
+				plot1.plot(x,y, pen=pen, name=_("fs Laser"))
 
 	def build_mesh(self):
 
@@ -170,7 +149,7 @@ class tab_time_mesh(QWidget):
 		self.voltage=[]
 		self.time=[]
 		self.fs_laser=[]
-		data=gpvdm_data().time_domain.find_object_by_id(self.uid)
+		data=json_root().sims.time_domain.find_object_by_id(self.uid)
 		mesh=data.mesh
 		pos=data.config.start_time
 		fired=False
@@ -178,7 +157,7 @@ class tab_time_mesh(QWidget):
 		laser_pulse_width=0.0
 
 
-		sun_steady_state=float(gpvdm_data().light.Psun)
+		float(json_root().optical.light.Psun)
 
 		voltage_bias=data.config.pulse_bias
 		fs_laser_time=data.config.fs_laser_time
@@ -235,16 +214,15 @@ class tab_time_mesh(QWidget):
 
 
 	def callback_start_time(self):
-		data=gpvdm_data().time_domain.find_object_by_id(self.uid)
-		new_time=dlg_get_text( _("Enter the start time of the simulation"), str(data.config.start_time),"start.png")
+		data=json_root().sims.time_domain.find_object_by_id(self.uid)
+		new_time=dlg_get_text2( _("Enter the start time of the simulation"), str(data.config.start_time),"start.png")
 		new_time=new_time.ret
 
 		if new_time!=None:
 			data.config.start_time=float(new_time)
 			self.build_mesh()
 			self.draw_graph()
-			self.fig.canvas.draw()
-			gpvdm_data().save()
+			json_root().save()
 
 
 	def __init__(self,uid):
@@ -260,11 +238,10 @@ class tab_time_mesh(QWidget):
 		self.line_number=[]
 		self.list=[]
 
-		self.fig = Figure(figsize=(5,4), dpi=100)
-		self.canvas = FigureCanvas(self.fig)
-		self.canvas.figure.patch.set_facecolor('white')
+		pg.setConfigOption('background', 'w')
+		pg.setConfigOption('foreground', 'k')
+		self.canvas = pg.GraphicsLayoutWidget()#pg.PlotWidget()
 
-		self.ax1=None
 		self.show_key=True
 
 		self.main_vbox.addWidget(self.canvas)
@@ -276,15 +253,15 @@ class tab_time_mesh(QWidget):
 
 		self.main_vbox.addWidget(toolbar2)
 	
-		self.tab = gpvdm_tab2(toolbar=toolbar2)
+		self.tab = g_tab2(toolbar=toolbar2)
 		self.tab.set_tokens(["len","dt","voltage_start","voltage_stop","mul","sun_start","sun_stop","laser_start","laser_stop"])
 		self.tab.set_labels([_("Length"),_("dt"), _("Start Voltage"), _("Stop Voltage"), _("step multiplyer"), _("Sun start"), _("Sun stop"),_("Laser start"),_("Laser stop")])
 
 		self.tab.setMinimumSize(self.width(), 120)
 
-		data=gpvdm_data().time_domain.find_object_by_id(self.uid)
-		index=gpvdm_data().time_domain.segments.index(data)
-		self.tab.json_search_path="gpvdm_data().time_domain.segments["+str(index)+"].mesh.segments"
+		data=json_root().sims.time_domain.find_object_by_id(self.uid)
+		index=json_root().sims.time_domain.segments.index(data)
+		self.tab.json_search_path="json_root().sims.time_domain.segments["+str(index)+"].mesh.segments"
 		self.tab.base_obj=json_time_domain_mesh_segment()
 
 		self.tab.populate()

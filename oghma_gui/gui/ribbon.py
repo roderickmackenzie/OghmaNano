@@ -1,44 +1,42 @@
 # -*- coding: utf-8 -*-
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package ribbon
 #  Main ribbon class for main window.
 #
 
 
-import os
 
-from gpvdm_local import gpvdm_local
-
-from cal_path import get_css_path
+from json_local_root import json_local_root
 
 #qt
-from PyQt5.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QSize, Qt,QFile,QIODevice
-from PyQt5.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QLabel,QHBoxLayout,QPushButton,QDialog,QFileDialog,QToolBar,QMessageBox, QLineEdit, QToolButton
-from PyQt5.QtWidgets import QTabWidget
+from gQtCore import QSize, gSignal, Qt
+from PySide2.QtWidgets import QWidget,QLabel,QHBoxLayout,QToolBar, QToolButton,QMenu, QAction
+#from PySide2.QtWidgets import QTabWidget
 
-#from ribbon_device import ribbon_device
 from ribbon_database import ribbon_database
 from ribbon_simulations import ribbon_simulations
 from ribbon_electrical import ribbon_electrical
@@ -60,15 +58,17 @@ from connect_to_cluster import connect_to_cluster
 from ribbon_base import ribbon_base
 from error_dlg import error_dlg
 from ribbon_file import ribbon_file
-from PyQt5.QtCore import pyqtSignal
 import webbrowser
 
 from help import help_window
 from lock import get_lock
 from ribbon_thermal import ribbon_thermal
+from ribbon_automation import ribbon_automation
+from sim_name import sim_name
+from json_root import json_root
 
 class QLabel_click(QLabel):
-	clicked=pyqtSignal()
+	clicked=gSignal()
 	def __init(self, parent):
 		QLabel.__init__(self, QMouseEvent)
 
@@ -77,32 +77,40 @@ class QLabel_click(QLabel):
 
 class ribbon(ribbon_base):
 
+	def callback_menu(self,event):
+		self.main_menu.exec_(self.mapToGlobal(event))
 
 	def update(self):
-		#self.device.update()
+		self.file.update()
 		self.database.update()
 		self.simulations.update()
 		self.electrical.update()
 		self.optical.update()
 		self.information.update()
-		#self.home.update()
 		self.ribbon_sim_mode.update()
 		self.thermal.update()
-
+		self.automation.update()
+		self.setup_tabs()
+		self.menu_update()
 
 	def callback_about_dialog(self):
 		dlg=about_dlg()
 		dlg.exec_()
 
 	def callback_questions(self):
-		webbrowser.open("https://www.gpvdm.com/contact.html")
+		webbrowser.open(sim_name.web+"/contact.html")
+
+	def mouseReleaseEvent(self,event):
+		if event.button()==Qt.RightButton:
+			self.main_menu.exec_(event.globalPos())
 
 	def __init__(self):
 		ribbon_base.__init__(self)
-		self.cluster_tab=None
-		#self.setMaximumHeight(140)
+		self.build_main_menu()
+		self.setContextMenuPolicy(Qt.CustomContextMenu)
+		#self.customContextMenuRequested.connect(self.callback_menu)
 
-		#self.setStyleSheet("QWidget {	background-color:cyan; }")
+		self.cluster_tab=None
 
 		self.myserver=server_get()
 
@@ -132,38 +140,25 @@ class ribbon(ribbon_base):
 		self.addTab(self.file,_("File"))
 		
 		self.ribbon_sim_mode=ribbon_sim_mode()
-		self.addTab(self.ribbon_sim_mode,_("Simulation type"))
-		
 		
 		self.simulations=ribbon_simulations()
-		self.addTab(self.simulations,_("Simulation Editors"))
+
 		self.simulations.experiments_changed.connect(self.ribbon_sim_mode.update)
 
+		self.automation=ribbon_automation()
 		self.electrical=ribbon_electrical()
-		self.addTab(self.electrical,_("Electrical"))
-
 		self.optical=ribbon_optical()
-		self.addTab(self.optical,_("Optical"))
-
 		self.thermal=ribbon_thermal()
-		self.addTab(self.thermal,_("Thermal"))
-
 		self.database=ribbon_database()
-		self.addTab(self.database,_("Databases"))
-
 		self.tb_cluster=ribbon_cluster()
-		if gpvdm_local().gui_config.enable_betafeatures==True:
-
-			self.addTab(self.tb_cluster,_("Cluster"))
-
 		self.information=ribbon_information()
-		self.addTab(self.information,_("Information"))
 
-		#self.setStyleSheet("QWidget {	background-color:cyan; }") 
+
 		css_apply(self,"style.css")
-		#self.setStyleSheet("background-color: rgb(255,0,0); margin:5px; border:1px solid rgb(0, 255, 0); ")
-		#self.setStyleSheet(" margin: 0px;  padding:0px; border:0px; background-color: rgb(255,0,0); border:1px solid rgb(0, 255, 0);")
+
 		self.currentChanged.connect(self.changed_click)
+		self.setup_tabs()
+		self.menu_update()
 
 	def callback_cluster_connect(self):
 		dialog=connect_to_cluster()
@@ -177,7 +172,7 @@ class ribbon(ribbon_base):
 				self.myserver.cluster_disconnect()
 				print("Disconnected")
 
-		print(self.myserver.cluster)
+		#print(self.myserver.cluster)
 
 		self.tb_cluster.update()
 		if self.myserver.cluster==True:
@@ -189,7 +184,7 @@ class ribbon(ribbon_base):
 
 	def changed_click(self):
 
-		if self.tabText(self.currentIndex()).strip()==_("Simulation Editors"):
+		if self.tabText(self.currentIndex()).strip()==_("Editors"):
 			help_window().help_set_help(["sunsvoc.png",_("<big><b>Simulation Editors</b></big><br> Use this tab to edit the simulation you wish to perform, you can choose from steady state measurments such as JV curve/Suns-Voc, time domain or frequency domain.  You can also choose to use advanced optical models to understand your data.")])
 
 		if self.tabText(self.currentIndex()).strip()==_("Configure"):
@@ -202,4 +197,106 @@ class ribbon(ribbon_base):
 
 		if self.tabText(self.currentIndex()).strip()==_("Information"):
 			help_window().help_set_help(["youtube.png",_("<big><b>Information</b></big><br> Access extra information about the model in this tab, there are lots of tutorial videos on YouTube, follow on Twitter for the latest updates.")])
+
+	def build_main_menu(self):
+		view_menu = QMenu(self)
+		self.main_menu = QMenu(self)
+		view=self.main_menu.addMenu(_("View"))
+
+		#view
+		self.menu_view_sim_mode=view.addAction(_("Simulation type"))
+		self.menu_view_sim_mode.triggered.connect(self.menu_toggle_view)
+		self.menu_view_sim_mode.setCheckable(True)
+
+		self.menu_view_editors=view.addAction(_("Editors"))
+		self.menu_view_editors.triggered.connect(self.menu_toggle_view)
+		self.menu_view_editors.setCheckable(True)
+
+		self.menu_view_automation=view.addAction(_("Automation"))
+		self.menu_view_automation.triggered.connect(self.menu_toggle_view)
+		self.menu_view_automation.setCheckable(True)
+
+		self.menu_view_electrical=view.addAction(_("Electrical"))
+		self.menu_view_electrical.triggered.connect(self.menu_toggle_view)
+		self.menu_view_electrical.setCheckable(True)
+
+		self.menu_view_optical=view.addAction(_("Optical"))
+		self.menu_view_optical.triggered.connect(self.menu_toggle_view)
+		self.menu_view_optical.setCheckable(True)
+
+		self.menu_view_thermal=view.addAction(_("Thermal"))
+		self.menu_view_thermal.triggered.connect(self.menu_toggle_view)
+		self.menu_view_thermal.setCheckable(True)
+
+		self.menu_view_database=view.addAction(_("Databases"))
+		self.menu_view_database.triggered.connect(self.menu_toggle_view)
+		self.menu_view_database.setCheckable(True)
+
+		self.menu_view_cluster=view.addAction(_("Cluster"))
+		self.menu_view_cluster.triggered.connect(self.menu_toggle_view)
+		self.menu_view_cluster.setCheckable(True)
+
+		self.menu_view_information=view.addAction(_("Information"))
+		self.menu_view_information.triggered.connect(self.menu_toggle_view)
+		self.menu_view_information.setCheckable(True)
+
+
+	def setup_tabs(self):
+		self.clear()
+		self.addTab(self.file,_("File"))
+
+		if json_root().gui_config.main_ribbon.sim_mode_visible==True:
+			self.addTab(self.ribbon_sim_mode,_("Simulation type"))
+
+		if json_root().gui_config.main_ribbon.editors_visible==True:
+			self.addTab(self.simulations,_("Editors"))
+
+		if json_root().gui_config.main_ribbon.automation_visible==True:
+			self.addTab(self.automation,_("Automation"))
+
+		if json_root().gui_config.main_ribbon.electrical_visible==True:
+			self.addTab(self.electrical,_("Electrical"))
+
+		if json_root().gui_config.main_ribbon.optical_visible==True:
+			self.addTab(self.optical,_("Optical"))
+
+		if json_root().gui_config.main_ribbon.thermal_visible==True:
+			self.addTab(self.thermal,_("Thermal"))
+
+		if json_root().gui_config.main_ribbon.database_visible==True:
+			self.addTab(self.database,_("Databases"))
+
+		if json_root().gui_config.main_ribbon.cluster_visible==True:
+			self.addTab(self.tb_cluster,_("Cluster"))
+
+		if json_root().gui_config.main_ribbon.information_visible==True:
+			self.addTab(self.information,_("Information"))
+
+
+	def menu_toggle_view(self):
+		json_root().gui_config.main_ribbon.sim_mode_visible=self.menu_view_sim_mode.isChecked()
+		json_root().gui_config.main_ribbon.editors_visible=self.menu_view_editors.isChecked()
+		json_root().gui_config.main_ribbon.automation_visible=self.menu_view_automation.isChecked()
+		json_root().gui_config.main_ribbon.electrical_visible=self.menu_view_electrical.isChecked()
+		json_root().gui_config.main_ribbon.optical_visible=self.menu_view_optical.isChecked()
+		json_root().gui_config.main_ribbon.thermal_visible=self.menu_view_thermal.isChecked()
+		json_root().gui_config.main_ribbon.database_visible=self.menu_view_database.isChecked()
+		json_root().gui_config.main_ribbon.cluster_visible=self.menu_view_cluster.isChecked()
+		json_root().gui_config.main_ribbon.information_visible=self.menu_view_information.isChecked()
+
+		self.setup_tabs()
+
+		json_root().save()
+
+	def menu_update(self):
+		self.menu_view_sim_mode.setChecked(json_root().gui_config.main_ribbon.sim_mode_visible)
+		self.menu_view_editors.setChecked(json_root().gui_config.main_ribbon.editors_visible)
+		self.menu_view_automation.setChecked(json_root().gui_config.main_ribbon.automation_visible)
+		self.menu_view_electrical.setChecked(json_root().gui_config.main_ribbon.electrical_visible)
+		self.menu_view_optical.setChecked(json_root().gui_config.main_ribbon.optical_visible)
+		self.menu_view_thermal.setChecked(json_root().gui_config.main_ribbon.thermal_visible)
+		self.menu_view_database.setChecked(json_root().gui_config.main_ribbon.database_visible)
+		self.menu_view_cluster.setChecked(json_root().gui_config.main_ribbon.cluster_visible)
+		self.menu_view_information.setChecked(json_root().gui_config.main_ribbon.information_visible)
+
 

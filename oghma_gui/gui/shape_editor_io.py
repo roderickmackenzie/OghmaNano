@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package shape_editor_io
 #  This builds the images which are then used to generate shapes
@@ -30,12 +35,11 @@ from PIL.ImageQt import ImageQt
 
 from cal_path import get_exe_command
 from server import server_get
-from cal_path import get_sim_path
+from cal_path import sim_paths
 
 from math import sin
 from math import cos
 from math import exp
-from math import pow
 from math import sqrt
 
 from json_shape_db_item import shape_db_item
@@ -95,11 +99,11 @@ class shape_editor_io(shape_db_item):
 
 		x_start=-20
 		x_stop=self.image_xlen
-		n_x=(x_stop-x_start)/dx
+		(x_stop-x_start)/dx
 
 		y_start=-20
 		y_stop=self.image_ylen
-		n_y=(y_stop-y_start)/dy
+		(y_stop-y_start)/dy
 
 		x_pos=0
 		y_pos=0
@@ -160,12 +164,13 @@ class shape_editor_io(shape_db_item):
 		else:
 			convex=False
 
-		dr=self.image_xlen/2
+		dr=self.image_xlen*self.lens.lens_size*0.5
+		do=self.image_xlen*0.5-dr
 		im= Image.new("RGB", (self.image_xlen, self.image_ylen), "#000000")
 		
 		for y in range(0,self.image_ylen):
 			for x in range(0,self.image_xlen):
-				mag=dr*dr-(x-dr)*(x-dr)-(y-dr)*(y-dr)
+				mag=dr*dr-((x-do)-dr)*((x-do)-dr)-((y-do)-dr)*((y-do)-dr)
 				if mag<0:
 					mag=0.0
 				else:
@@ -181,10 +186,47 @@ class shape_editor_io(shape_db_item):
 
 		return im
 
+	def f_square_wave(self,shift,period,x):
+		pos=shift+x
+		n=int(pos/period)
+		if (n % 2) == 0:
+			return 0.0
+		else:
+			return 1.0
+
+	def f_saw_wave(self,shift,period,x):
+		pos=shift+x
+		n=int(pos/period)
+		dx=pos-n*period
+		if (n % 2) == 0:
+			return (dx/period)
+		else:
+			return 1.0-(dx/period)
+
+	def draw_saw_wave(self):
+		pass
+
+		self.image_xlen/2
+		im= Image.new("RGB", (self.image_xlen, self.image_ylen), "#000000")
+
+		for x in range(0,self.image_xlen):
+			for y in range(0,self.image_ylen):
+			
+				if self.saw_wave.shape_saw_type=="saw_wave":
+					mag=self.f_saw_wave(self.saw_wave.shape_saw_offset,self.saw_wave.shape_saw_length,x)
+				else:
+					mag=self.f_square_wave(self.saw_wave.shape_saw_offset,self.saw_wave.shape_saw_length,x)
+
+				mag=int(255*mag)
+
+				im.putpixel((x,y),(mag, mag, mag))
+
+			
+		return im
 
 	def add_job_to_server(self,sim_path,server):
 		path=os.path.dirname(self.file_name)
-		server.add_job(sim_path,"--simmode data@mesh_gen --path "+path)
+		server.add_job(sim_path,"--simmode data@mesh_gen --path \""+path+"\"")
 
 	def load_image(self):
 		file_to_load=os.path.join(os.path.dirname(self.file_name),"image.png")
@@ -208,8 +250,49 @@ class shape_editor_io(shape_db_item):
 		for y in range(0,self.image_ylen):
 			for x in range(0,self.image_xlen):
 				mag=int(255*exp(-((x-gauss_offset_x-self.image_xlen/2)/sigma)**2 -((y-gauss_offset_y-self.image_ylen/2)/sigma)**2))
-
+				if self.gauss.gauss_invert==True:
+					mag=255-mag
 				im.putpixel((x,y),(mag, mag, mag))
 
 		return im
+
+	def new_shape(self,path,info=[]):
+		from dlg_get_text2 import dlg_get_text2
+		from clone_materials import clone_material
+		new_sim_name=dlg_get_text2( _("New shape name:"), _("New shape name"),"add_shape")
+		if new_sim_name==None:
+			return
+		new_sim_name=new_sim_name.ret
+	
+		if new_sim_name!=None:
+			new_shape=os.path.join(path,new_sim_name)
+			ret=clone_material(new_shape,sim_paths.get_shape_template_path())
+			self.save_as(os.path.join(new_shape,"data.json"))
+			if ret==False:
+				error_dlg(self,_("I cant write to:")+new_shape+" "+_("This means either the disk is full or your system administrator has not given you write permissions to that location."))
+				return None
+
+			return new_shape
+
+		return None
+
+	def merge_shapes(self,path,info=[]):
+		from dlg_get_text2 import dlg_get_text2
+		from clone_materials import clone_material
+		dlg_obj=dlg_get_text2( _("New shape name"), "","add_shape",info=info,title_text=_("Merge shapes to new"))
+		if dlg_obj==None:
+			return
+			
+		new_sim_name=dlg_obj.ret[0]
 		
+		if new_sim_name!=None:
+			new_shape=os.path.join(path,new_sim_name)
+			ret=clone_material(new_shape,sim_paths.get_shape_template_path())
+			self.save_as(os.path.join(new_shape,"data.json"))
+			if ret==False:
+				error_dlg(self,_("I cant write to:")+new_shape+" "+_("This means either the disk is full or your system administrator has not given you write permissions to that location."))
+				return None
+
+			return new_shape,dlg_obj.ret[1],dlg_obj.ret[2]
+
+		return None

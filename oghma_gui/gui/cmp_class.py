@@ -1,24 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
-
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package cmp_class
 #  Compare simulation results window as a function of time.
@@ -26,28 +30,23 @@
 
 import os
 from plot_widget import plot_widget
-from dat_file import dat_file
-from cal_path import get_exe_command
 from icon_lib import icon_get
-import webbrowser
 
 #qt
-from PyQt5.QtCore import QSize, Qt , QTimer
-from PyQt5.QtWidgets import QWidget, QStatusBar, QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QHBoxLayout,QLabel,QComboBox
-from PyQt5.QtGui import QPainter,QIcon
+from gQtCore import QTimer
+from PySide2.QtWidgets import QWidget, QStatusBar, QVBoxLayout,QSizePolicy,QAction,QHBoxLayout,QLabel,QComboBox
 
 from snapshot_slider import snapshot_slider
 
 from open_save_dlg import save_as_filter
 
-from PyQt5.QtWidgets import QApplication
+from PySide2.QtWidgets import QApplication
 
-from help import help_window
 from QWidgetSavePos import QWidgetSavePos
-from cal_path import get_sim_path
+from cal_path import sim_paths
 
 from PIL import Image
-from PyQt5.QtGui import QImage
+from PySide2.QtGui import QImage
 import io
 from util_latex import str_to_latex
 from inp import inp
@@ -77,6 +76,19 @@ class cmp_class(QWidgetSavePos):
 			self.plot.set_labels(key)
 			self.plot.set_plot_types(types)
 			self.plot.do_plot()
+
+		if len(files)>0:
+			if len(self.snapshot_dirs)>0:
+				f=inp()
+				j=f.load_json(os.path.join(os.path.dirname(files[0]),"data.json"))
+				V=None
+				try:
+					V=j['voltage']
+				except:
+					pass
+				if V!=None:
+					self.setWindowTitle(self.title_base+" @ "+str(V)+"V") 
+				
 
 	def callback_video(self):
 		dir_name, ext = os.path.splitext(self.video_name)
@@ -113,7 +125,7 @@ class cmp_class(QWidgetSavePos):
 
 			
 
-	def callback_save(self, widget, data=None):
+	def callback_save(self):
 		file_name=save_as_filter(self,"avi (*.avi)")
 		if file_name!=None:
 			self.save_video(file_name)
@@ -178,7 +190,7 @@ class cmp_class(QWidgetSavePos):
 	def find_snapshots(self):
 
 		matches = []
-		for root, dirnames, filenames in os.walk(get_sim_path()):
+		for root, dirnames, filenames in os.walk(sim_paths.get_sim_path()):
 			for filename in filenames:
 				my_file=os.path.join(root,filename)
 				if my_file.endswith("snapshots.inp")==True:
@@ -193,11 +205,13 @@ class cmp_class(QWidgetSavePos):
 	def __init__(self,path=None,widget_mode="matplotlib"):
 		QWidgetSavePos.__init__(self,"cmpclass")
 		self.snapshots_widget=None
-		self.setWindowTitle(_("Examine simulation results in time domain")) 
+		self.title_base=_("Simulation snapshots")
+		self.setWindowTitle(self.title_base) 
 		self.setWindowIcon(icon_get("cover_flow"))
 		self.timer=QTimer()
 
 		self.snapshot_dirs=[]
+
 
 		if path==None:
 			self.snapshots_hbox = QHBoxLayout()
@@ -221,7 +235,7 @@ class cmp_class(QWidgetSavePos):
 
 
 		if len(self.snapshot_dirs)!=0:
-			self.slider.set_path(os.path.join(get_sim_path(),self.snapshot_dirs[0]))
+			self.slider.set_path(os.path.join(sim_paths.get_sim_path(),self.snapshot_dirs[0]))
 
 
 		self.slider.changed.connect(self.update)
@@ -229,12 +243,15 @@ class cmp_class(QWidgetSavePos):
 		f=inp()
 		j=f.load_json(os.path.join(path,"data.json"))
 
-		print(j['default_plot_type'])
 		if j['default_plot_type']=="3d":
 			force_2d3d="3d"
 
-		if j['default_plot_type']=="trap_map":
-			widget_mode="gpvdm_graph"
+		elif j['default_plot_type']=="trap_map":
+			widget_mode="g_graph"
+		elif j['default_plot_type']=="circuit":
+			widget_mode="circuit"
+		else:
+			widget_mode="matplotlib"
 
 		self.plot=plot_widget(enable_3d=True,widget_mode=widget_mode,force_2d3d=force_2d3d)
 		self.plot.setMinimumHeight(300)

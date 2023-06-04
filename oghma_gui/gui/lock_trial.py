@@ -1,24 +1,28 @@
 # -*- coding: utf-8 -*-
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package lock_trial
 #  The trial window
@@ -26,19 +30,17 @@
 
 
 
-import os
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QLineEdit,QComboBox,QHBoxLayout,QPushButton,QLabel,QDialog,QVBoxLayout,QSizePolicy
-from PyQt5.QtGui import QPainter,QIcon,QImage
-from PyQt5.QtGui import QFont
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QLineEdit,QComboBox,QHBoxLayout,QPushButton,QLabel,QDialog,QVBoxLayout,QSizePolicy
+from PySide2.QtGui import QPainter,QIcon,QImage
+from PySide2.QtGui import QFont
 
 from icon_lib import icon_get
 
-from PyQt5.QtCore import QSize, Qt
+from gQtCore import QSize, Qt
 
-import re
 
 from error_dlg import error_dlg
 from lock import lock
@@ -49,11 +51,12 @@ import webbrowser
 from lock_license_key import license_key
 from error_dlg import error_dlg
 from msg_dlg import msg_dlg
+from sim_name import sim_name
 
 class lock_trial(QDialog):
 
 	def callback_trial(self):
-		webbrowser.open("https://www.gpvdm.com/buy.php")
+		webbrowser.open(sim_name.web+"/buy.php")
 		self.reject()
 
 	def callback_close(self):
@@ -75,7 +78,7 @@ class lock_trial(QDialog):
 		elif get_lock().error=="outoftime":
 			error_dlg(self,_("This key has expired."))
 		elif get_lock().error=="too_old":
-			error_dlg(self,_("This version of gpvdm is too old to validate it's key, please download the latest version."))
+			error_dlg(self,_("This version of the software is too old to validate it's key, please download the latest version."))
 		else:
 			error_dlg(self,_("Can't access the internet"))
 
@@ -93,9 +96,9 @@ class lock_trial(QDialog):
 
 
 	def __init__(self,show_text=True,override_text=False,title_font_size=25):
-		QWidget.__init__(self)
+		QDialog.__init__(self)
 		self.setWindowIcon(icon_get("icon"))
-		self.setWindowTitle(_("gpvdm trial (www.gpvdm.com)")) 
+		self.setWindowTitle(_("OghmaNano trial")+sim_name.web_window_title) 
 		self.setWindowFlags(Qt.WindowStaysOnTopHint)
 
 		vbox=QVBoxLayout()
@@ -106,13 +109,6 @@ class lock_trial(QDialog):
 		self.title_text.setFont(QFont('SansSerif', title_font_size))
 		self.title_text.setWordWrap(True)
 		vbox.addWidget(self.title_text)
-
-		#if show_text==True:
-		#	l=QLabel(_("<br>Dear User, <br><br>Thank you for downloading and using gpvdm. I hope you find the software useful. Developing gpvdm takes a considerable amount of time and money.  So that I can continue to develop the model and make it available, I would ask you to buy license.  I will invest all money in the future development of the model.<br><br>  If you really can’t afford to buy a license, or wish to use the model in classroom teaching please contact me. Please also contact me if you are a long time collaborator of mine. <br><br>Many thanks,<br>Rod"))
-		#	l.setWordWrap(True)
-		#	l.setFont(QFont('SansSerif', 14))
-		#	vbox.addWidget(l)
-
 
 
 		button_box=QHBoxLayout()

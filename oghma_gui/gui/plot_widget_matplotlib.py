@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package plot_widget
 #  The main plot widget.
@@ -26,7 +31,6 @@
 from __future__ import unicode_literals
 
 import os
-import io
 from numpy import *
 
 
@@ -50,6 +54,10 @@ from util import fx_with_units
 from util import time_with_units
 
 from matplotlib.ticker import ScalarFormatter
+from lock import get_lock
+from sim_name import sim_name
+from math import isnan
+from bytes2str import bytes2str
 
 class plot_widget_matplotlib():
 
@@ -66,29 +74,30 @@ class plot_widget_matplotlib():
 		key_text=[]
 
 		self.plot_type=""
-
+		#print("OK ",self.data[0].type)
 		#print(self.data[0].x_len,self.data[0].z_len,self.data[0].data)
-		if self.data[0].type=="rgb":
+
+		if self.data[0].type==b"yrgb" or self.data[0].cols==b"zxrgb":
 			self.plot_type="rgb"
-		elif self.data[0].type=="quiver":
+		elif self.data[0].type==b"quiver":
 			self.plot_type="quiver"
 		else:
 			if self.data[0].x_len==1 and self.data[0].z_len==1:
 				self.plot_type="linegraph"
 			elif self.data[0].x_len>1 and self.data[0].y_len>1 and self.data[0].z_len==1:
-				if self.data[0].type=="3d":
+				if self.data[0].type==b"3d":
 					self.plot_type="wireframe"
-				if self.data[0].type=="heat":
+				if self.data[0].type==b"heat":
 					self.plot_type="heat"
 			elif self.data[0].x_len>1 and self.data[0].y_len==1 and self.data[0].z_len>1:
-				if self.data[0].type=="3d":
+				if self.data[0].type==b"3d":
 					self.plot_type="wireframe"
-				if self.data[0].type=="heat":
+				if self.data[0].type==b"heat":
 					self.plot_type="heat"
 			elif self.data[0].x_len==1 and self.data[0].y_len>1 and self.data[0].z_len>1:
-				if self.data[0].type=="3d":
+				if self.data[0].type==b"3d":
 					self.plot_type="wireframe"
-				if self.data[0].type=="heat":
+				if self.data[0].type==b"heat":
 					self.plot_type="heat"
 			elif self.data[0].x_len>1 and self.data[0].y_len>1 and self.data[0].z_len>1:
 				print("ohhh full 3D")
@@ -103,10 +112,10 @@ class plot_widget_matplotlib():
 		all_plots=[]
 		files=[]
 		my_max=1.0
-
+		
 		if self.plot_type=="linegraph":		#This is for the 1D graph case
-			self.ax[0].set_xlabel(self.data[0].y_label+" ("+str(self.data[0].y_units)+")")
-			self.ax[0].set_ylabel(self.data[0].data_label+" ("+self.data[0].data_units+")")
+			self.ax[0].set_xlabel(self.data[0].y_label.decode()+" ("+self.data[0].y_units.decode()+")")
+			self.ax[0].set_ylabel(self.data[0].data_label.decode()+" ("+self.data[0].data_units.decode()+")")
 	
 			for i in range(0,len(self.data)):
 				if self.data[0].logy==True:
@@ -115,9 +124,8 @@ class plot_widget_matplotlib():
 				if self.data[0].logdata==True:
 					self.ax[i].set_yscale("log")
 
-				if self.data[i].data_min!=None:
+				if isnan(self.data[i].data_min)==False and isnan(self.data[i].data_max)==False:
 					self.ax[i].set_ylim([self.data[i].data_min,self.data[i].data_max])
-
 				if self.data[i].rgb_to_hex()!=None:
 					col="#"+self.data[i].rgb_to_hex()
 				else:
@@ -125,7 +133,7 @@ class plot_widget_matplotlib():
 				cur_plot, = self.ax[i].plot(self.data[i].y_scale,self.data[i].data[0][0], linewidth=3 ,alpha=1.0,color=col,marker=get_marker(i))
 				#print(self.data[i].y_scale,self.data[i].data[0][0])
 				if self.data[i].key_text!="":
-					key_text.append("$"+latex().numbers_to_latex(str(self.data[i].key_text))+ " "+pygtk_to_latex_subscript(self.data[0].key_units) +"$")
+					key_text.append("$"+latex().numbers_to_latex(bytes2str(self.data[i].key_text))+ " "+pygtk_to_latex_subscript(bytes2str(self.data[0].key_units)) +"$")
 
 				all_plots.append(cur_plot)
 				
@@ -149,14 +157,14 @@ class plot_widget_matplotlib():
 				#print(self.data[i].labels)
 		elif self.plot_type=="wireframe":
 
-			if self.data[0].cols=="xzd":
-				self.ax[0].set_xlabel('\n'+self.data[0].x_label+'\n ('+self.data[0].x_units+")")
-				self.ax[0].set_ylabel('\n'+self.data[0].z_label+'\n ('+self.data[0].z_units+")")
-				self.ax[0].set_zlabel('\n'+self.data[0].data_label+'\n ('+self.data[0].data_units+")")
+			if self.data[0].cols==b"xzd":
+				self.ax[0].set_xlabel('\n'+bytes2str(self.data[0].x_label)+'\n ('+bytes2str(self.data[0].x_units)+")")
+				self.ax[0].set_ylabel('\n'+bytes2str(self.data[0].z_label)+'\n ('+bytes2str(self.data[0].z_units)+")")
+				self.ax[0].set_zlabel('\n'+bytes2str(self.data[0].data_label)+'\n ('+bytes2str(self.data[0].data_units)+")")
 			else:
-				self.ax[0].set_xlabel('\n'+self.data[0].x_label+'\n ('+self.data[0].x_units+")")
-				self.ax[0].set_ylabel('\n'+self.data[0].y_label+'\n ('+self.data[0].y_units+")")
-				self.ax[0].set_zlabel('\n'+self.data[0].data_label+'\n ('+self.data[0].data_units+")")
+				self.ax[0].set_xlabel('\n'+bytes2str(self.data[0].x_label)+'\n ('+bytes2str(self.data[0].x_units)+")")
+				self.ax[0].set_ylabel('\n'+bytes2str(self.data[0].y_label)+'\n ('+bytes2str(self.data[0].y_units)+")")
+				self.ax[0].set_zlabel('\n'+bytes2str(self.data[0].data_label)+'\n ('+bytes2str(self.data[0].data_units)+")")
 
 			self.log_3d_workaround()
 
@@ -167,7 +175,7 @@ class plot_widget_matplotlib():
 			else:
 				my_max=self.force_data_max
 				my_min=self.force_data_min
-
+			#print(self.force_data_max,my_min,my_max)
 			self.ax[0].set_zlim(my_min, my_max)
 
 			for i in range(0,len(self.data)):
@@ -179,15 +187,15 @@ class plot_widget_matplotlib():
 					self.ax[i].set_yscale("log")
 
 				#if self.data[i].key_text!="":
-				key="$"+latex().numbers_to_latex(str(self.data[i].key_text))+ " "+pygtk_to_latex_subscript(self.data[0].key_units) +"$"
+				key="$"+latex().numbers_to_latex(bytes2str(self.data[i].key_text))+ " "+pygtk_to_latex_subscript(bytes2str(self.data[0].key_units)) +"$"
 
-				if self.data[i].cols=="xzd":
+				if self.data[i].cols==b"xzd":
 					X, Y = meshgrid( self.data[i].z_scale,self.data[i].x_scale)
 					Z=array(self.data[i].data)
 					#a=Z.flatten(len(self.data[i].z_scale),len(self.data[i].x_scale))
 					#a.reshape()
 					Z = reshape(self.data[i].data,(len(self.data[i].z_scale),len(self.data[i].x_scale)))
-				elif self.data[i].cols=="yzd":
+				elif self.data[i].cols==b"yzd":
 					X, Y = meshgrid( self.data[i].z_scale,self.data[i].y_scale)
 					#Z = self.data[i].data[0]
 					Z=array(self.data[i].data)
@@ -198,25 +206,32 @@ class plot_widget_matplotlib():
 					Z = array(Z)
 
 				# Plot the surface
-				col=get_color(i)
+				if self.data[i].r==-1:
+					col=get_color(i)
+				else:
+					col=[self.data[i].r, self.data[i].g, self.data[i].b]
+
 				#print(self.data[i].plot_type,"here")
 				if self.data[i].plot_type=="wireframe" or self.data[i].plot_type=="":
 					if self.show_key==False:
 						key=None
-					im=self.ax[0].plot_wireframe( Y,X, Z,color=col, label=key, clip_on=True)
+					try:
+						im=self.ax[0].plot_wireframe( Y,X, Z,color=col, label=key, clip_on=True)
+					except:
+						print("MATPLOT error in plot_widget_matplotlib")
 				elif self.data[i].plot_type=="contour":
-					im=self.ax[0].contourf( Y,X, Z,color=col)
+					im=self.ax[0].contourf( Y,X, Z,cmap="inferno")	#,color=col
 				elif self.data[i].plot_type=="heat":
 					my_max,my_min=self.data[0].max_min()
-					im=self.ax[0].plot_surface(Y,X, Z, linewidth=0, vmin=my_min, vmax=my_max,cmap="hsv", antialiased=False)
-
+					im=self.ax[0].plot_surface(Y,X, Z, linewidth=0, vmin=my_min, vmax=my_max,cmap="inferno", antialiased=False)
+					#hsv
 				self.ax[0].legend()
 				#im=self.ax[0].contourf( Y,X, Z,color=col)
 
 #cset = ax.contourf(X, Y, Z, zdir='y', offset=40, cmap=cm.coolwarm)
 		elif self.plot_type=="heat":
-			self.ax[0].set_xlabel(self.data[0].y_label+" ("+self.data[0].y_units+")")
-			self.ax[0].set_ylabel(self.data[0].x_label+" ("+self.data[0].x_units+")")
+			self.ax[0].set_xlabel(self.data[0].y_label.decode()+" ("+self.data[0].y_units.decode()+")")
+			self.ax[0].set_ylabel(self.data[0].x_label.decode()+" ("+self.data[0].x_units.decode()+")")
 			my_max,my_min=self.data[0].max_min()
 			for i in range(0,len(self.data)):
 				if self.data[i].logdata==True:
@@ -229,8 +244,8 @@ class plot_widget_matplotlib():
 				self.cb=self.fig.colorbar(im)
 
 		elif self.plot_type=="3d":
-			self.ax[0].set_xlabel(self.data[0].x_label+" ("+self.data[0].x_units+")")
-			self.ax[0].set_ylabel(self.data[0].y_label+" ("+self.data[0].y_units+")")
+			self.ax[0].set_xlabel(self.data[0].x_label.decode()+" ("+self.data[0].x_units.decode()+")")
+			self.ax[0].set_ylabel(self.data[0].y_label.decode()+" ("+self.data[0].y_units.decode()+")")
 			i=0
 			y_scale=self.data[i].y_scale
 			x_scale=self.data[i].x_scale
@@ -240,15 +255,23 @@ class plot_widget_matplotlib():
 			col=get_color(i)
 			my_max,my_min=self.data[0].max_min()
 		elif self.plot_type=="rgb":
-			self.ax[0].set_xlabel(self.data[0].y_label+" ("+str(self.data[0].y_units)+")")
-			self.ax[0].set_ylabel(self.data[0].data_label+" ("+self.data[0].data_units+")")
-			self.ax[0].imshow(self.data[0].data[0],extent=[self.data[0].y_scale[0],self.data[0].y_scale[-1],self.data[0].y_scale[0]/4,self.data[0].y_scale[-1]/4])
+			if self.data[0].cols==b"yrgb":
+				self.ax[0].set_xlabel(self.data[0].y_label.decode()+" ("+self.data[0].y_units.decode()+")")
+				self.ax[0].set_ylabel(self.data[0].data_label.decode()+" ("+self.data[0].data_units.decode()+")")
+				self.ax[0].imshow(self.data[0].data[0],extent=[self.data[0].y_scale[0],self.data[0].y_scale[-1],self.data[0].y_scale[0]/4,self.data[0].y_scale[-1]/4])
+			elif self.data[0].cols==b"zxrgb":
+				self.ax[0].set_xlabel(self.data[0].z_label.decode()+" ("+self.data[0].z_units.decode()+")")
+				self.ax[0].set_ylabel(self.data[0].x_label.decode()+" ("+self.data[0].x_label.decode()+")")
+				self.ax[0].imshow(self.data[0].data)
+				#,extent=[self.data[0].z_scale[0],self.data[0].z_scale[-1],self.data[0].x_scale[0], self.data[0].x_scale[-1]]
+				#print(self.data[0].data)
+				#
 			#plt.xticks([0,90,180])
 			#,extent=[self.data[0].y_scale[0],self.data[0].y_scale[-1],0,20]
 		elif self.plot_type=="quiver":
-			self.ax[0].set_xlabel(self.data[0].x_label+" ("+self.data[0].x_units+")")
-			self.ax[0].set_ylabel(self.data[0].y_label+" ("+self.data[0].y_units+")")
-			self.ax[0].set_zlabel(self.data[0].z_label+" ("+self.data[0].z_units+")")
+			self.ax[0].set_xlabel(self.data[0].x_label.decode()+" ("+self.data[0].x_units.decode()+")")
+			self.ax[0].set_ylabel(self.data[0].y_label.decode()+" ("+self.data[0].y_units.decode()+")")
+			self.ax[0].set_zlabel(self.data[0].z_label.decode()+" ("+self.data[0].z_units.decode()+")")
 			X=[]
 			Y=[]
 			Z=[]
@@ -285,17 +308,37 @@ class plot_widget_matplotlib():
 			if len(files)<40:
 				self.fig.legend(all_plots, key_text, self.data[0].legend_pos)
 
+		if get_lock().encode_output==True:
+			x=0.8
+			y=0.25
+			#while(x<1.0):
+			#	y=0
+			#	while(y<1.0):
+			self.fig.text(x, y, "Upgrade to "+sim_name.name+" professional today!", fontsize=20, color='gray', ha='right', va='bottom', alpha=0.05)
+
+			#		y=y+0.2
+			#	x=x+0.4
 
 		if self.show_title==True:
 			
-			title=self.data[0].title
+			title=bytes2str(self.data[0].title)
 			if self.data[0].time!=-1.0 and self.data[0].Vexternal!=-1.0:
 				mul,unit=time_with_units(self.data[0].time)
-				title=title+" V="+str(self.data[0].Vexternal)+" "+_("time")+"="+str(self.data[0].time*mul)+" "+unit
+				if isnan(self.data[0].Vexternal)==False:
+					voltage_text=" V="+str(self.data[0].Vexternal)+" "
+				else:
+					voltage_text=""
+
+				if isnan(self.data[0].Vexternal)==False:
+					time_text=_("time")+"="+str(self.data[0].time*mul)+" "+unit
+				else:
+					time_text=""
+
+				title=title+voltage_text+time_text
 
 			self.fig.suptitle(title)
 
-			self.setWindowTitle(title+" - www.gpvdm.com")
+			self.setWindowTitle(title+sim_name.web_window_title)
 		else:
 			self.fig.suptitle("")
 
@@ -304,7 +347,17 @@ class plot_widget_matplotlib():
 	def matplotlib_norm_data(self):
 
 		if len(self.data)>0:
-			if self.data[0].type=="rgb" or self.data[0].type=="quiver" or self.data[0].type=="poly":
+			if self.data[0].type==b"yrgb" or self.data[0].type==b"quiver" or self.data[0].type==b"poly":
+				return
+
+			if self.data[0].type==b"zxrgb":
+				#for i in range(0,len(self.data)):
+				#	for x in range(0,self.data[i].x_len):
+				#		self.data[i].x_scale[x]=self.data[i].x_scale[x]*self.data[i].x_mul
+
+				#	for z in range(0,self.data[i].z_len):
+				#		self.data[i].z_scale[z]=self.data[i].z_scale[z]*self.data[i].z_mul
+
 				return
 
 			if self.data[0].data==None:
@@ -350,7 +403,7 @@ class plot_widget_matplotlib():
 	def setup_axis(self):
 		this_plot=[]
 		for d in self.data:
-			this_plot.append(os.path.basename(d.file_name))
+			this_plot.append(os.path.basename(d.file_name)) 
 
 		if (this_plot==self.last_plot)==False:
 			#print("redoooo!!!!!!!!!!!!!")
@@ -363,13 +416,17 @@ class plot_widget_matplotlib():
 			self.ax=[]
 
 			if self.plot_type=="linegraph":
+				ax1=None
 				for i in range(0,len(self.data)):
 					axis="y1"
+					if i==0:
+						ax1=self.fig.add_subplot(111,facecolor='white')
+
 					if len(self.y1_y2)>i:
 						if self.y1_y2[i]=="y2":
 							axis="y2"
 					if axis=="y1":
-						self.ax.append(self.fig.add_subplot(111,facecolor='white'))
+						self.ax.append(ax1)
 					else:
 						self.ax.append(self.ax[-1].twinx())
 

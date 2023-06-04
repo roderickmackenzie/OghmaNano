@@ -1,38 +1,39 @@
 # -*- coding: utf-8 -*-
 #
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package ribbon_sim_mode
 #  The sim mode ribbon.
 #
 
 
-import os
-import sys
 from cal_path import get_css_path
 
 #qt
-from PyQt5.QtWidgets import QTextEdit, QAction
-from PyQt5.QtCore import QSize, Qt,QFile,QIODevice
-from PyQt5.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QToolBar, QToolButton,QDialog
+from gQtCore import QSize, Qt,QFile,QIODevice
+from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QPushButton,QToolBar, QLineEdit, QToolButton, QTextEdit, QAction, QTabWidget, QMenu
 
 from win_lin import desktop_open
 
@@ -44,12 +45,11 @@ from server import server_get
 from global_objects import global_object_run
 from icon_lib import icon_get
 
-from cal_path import get_sim_path
+from cal_path import sim_paths
 from play import play
 from util import wrap_text
 
-import webbrowser
-from PyQt5.QtCore import pyqtSignal
+from gQtCore import gSignal
 
 from global_objects import global_object_register
 
@@ -57,31 +57,35 @@ from lock import get_lock
 
 from help import help_window
 from QAction_lock import QAction_lock
-from str2bool import str2bool
 from lock import get_lock
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 from ribbon_page import ribbon_page
 
 class gQAction(QAction_lock):
-	selected=pyqtSignal(QAction_lock)
+	selected=gSignal(QAction_lock)
 
-	def __init__(self,s,file_name,command,module):
-		self.icon=False
-		self.text=command
+	def __init__(self,s,obj,command,module,actions):
+		if module=="ray":
+			module="trace"
+		elif module=="transfer_matrix":
+			module="optics"
+
 		self.command=command
 		self.module=module
-		self.done=False
-
-		data=file_name
-		self.icon_name=data.icon
-		self.text=data.english_name.replace("\\n","\n")
-
+		self.icon_name=obj.icon
+		self.id=obj.id
+		self.over=False
+		self.name=obj.name
+		self.text=obj.name.replace("\\n","\n")
+		self.actions=actions
+		
 		QAction_lock.__init__(self,self.icon_name, self.text, s,self.module)
-		self.setCheckable( True)
+		self.setCheckable(True)
 		self.clicked.connect(self.callback_click)
+		self.hovered.connect(self.callback_hover)
 
 	def callback_click(self):
-		data=gpvdm_data()
+		data=json_root()
 		data.sim.simmode=self.command+"@"+self.module
 		data.save()
 		self.selected.emit(self)
@@ -89,6 +93,12 @@ class gQAction(QAction_lock):
 	def get_simmode(self):
 		a=self.command+"@"+self.module
 		return a.lower()
+
+	def callback_hover(self):
+		for a in self.actions:
+			a.over=False
+			if self==a:
+				a.over=True
 
 class ribbon_sim_mode(ribbon_page):
 
@@ -101,77 +111,44 @@ class ribbon_sim_mode(ribbon_page):
 		w.setChecked(True)
 		if disable_help==False:
 			if w.icon!=False and w.text!=None:
-				help_window().help_set_help([w.icon_name+".png",_("<big><b>Simulation mode changed</b></big><br>"+w.english_name.replace("\\n"," "))])
+				help_window().help_set_help([w.icon_name+".png",_("<big><b>Simulation mode changed</b></big><br>"+w.name.replace("\\n"," "))])
 
 		self.blockSignals(False)
 
 	def update(self):
-		data=gpvdm_data()
+		data=json_root()
 		self.clear_toolbar()
 
 		self.blockSignals(True)
 
-		sims=[]
-		sims.append([data.jv.segments, "jv","segment"])
-		sims.append([data.suns_voc.segments, "suns_voc","segment"])
-		sims.append([data.suns_jsc.segments, "suns_jsc","segment"])
-		sims.append([data.time_domain.segments, "time_domain","segment"])
-
-		sims.append([data.fx_domain.segments, "fx_domain","segment"])
-		if get_lock().is_gpvdm_next()==True:
-			sims.append([data.cv.segments, "cv","segment"])
-		sims.append([data.ce.segments, "ce","segment"])
-		sims.append([data.pl_ss.segments, "pl_ss","segment"])
-		sims.append([data.transfer_matrix.segments, "optics","segment"])
-		sims.append([data.eqe.segments, "eqe","segment"])
-		sims.append([data.fdtd.segments, "fdtd","segment"])
-		sims.append([data.ray.segments, "trace","segment"])
-		sims.append([data.spm.segments, "spm","segment"])
-		sims.append([data.exciton.segments, "exciton","segment"])
-		#print(data.pl.simulations)
-		for sim in sims:
-			i=0
-			for sub_sim in sim[0]:
-				add=True
-				#print(sim.english_name,sim.icon)
-				if sim[1]=="fx_domain":
-					if sub_sim.config.fx_modulation_type=="optical":
-						add=False
-					if sub_sim.english_name=="test":
-						add=False
-					if sub_sim.english_name=="IMVS":
-						add=False
-					if sub_sim.english_name=="IMPS":
-						add=False
-
-				if add==True:
-					a = gQAction(self, sub_sim,sim[2]+str(i), sim[1])
-					a.selected.connect(self.callback_click)
-					self.actions.append(a)
-				i=i+1
-
-			self.actions.append("|")
-
-		lines=[]
-
-
-		#temp.sort()
-		#print(self.actions)
+		found=False
 		simmode=data.sim.simmode.lower()
 
-		found=False
-		last=None
-		for a in self.actions:
-			#self.sim_mode.addItem(command)
-			if type(a)==gQAction:
-				self.addAction(a)
-				if a.get_simmode()==simmode:
-					self.callback_click(a,disable_help=True)
-					found=True
-			else:
-				if last != "|":
+		for segment_name in data.sims.var_list:
+			segment_name=segment_name[0]
+			segs=getattr(data.sims,segment_name,None)
+			if segs!=None:
+				segs=getattr(segs,"segments",None)
+
+			if segs!=None:
+				i=0
+				added=0
+				for sub_sim in segs:
+					added=added+1
+					a = gQAction(self, sub_sim,"segment"+str(i), segment_name,self.actions)
+					a.selected.connect(self.callback_click)
+					
+					self.actions.append(a)
+					self.addAction(a)
+					if a.get_simmode()==simmode:
+						self.callback_click(a,disable_help=True)
+						
+						found=True
+
+					i=i+1
+				if added!=0:
 					self.addSeparator()
-			last=a
+
 
 		#if there is no known mode, just set it to jv mode
 		if found==False:
@@ -179,7 +156,7 @@ class ribbon_sim_mode(ribbon_page):
 				if type(a)==gQAction:
 					if a.module=="jv":
 						self.callback_click(a,disable_help=True)
-						data=gpvdm_data()
+						data=json_root()
 						data.sim.simmode=a.command+"@"+a.module
 						data.save()
 						break
@@ -187,11 +164,6 @@ class ribbon_sim_mode(ribbon_page):
 			self.blockSignals(False)
 
 	def clear_toolbar(self):
-		#for a in self.actions:
-		#	if type(a)==gQAction:
-		#		self.removeAction(a)
-		#	if type(a)==str:
-		#		self.removeSeperator(a)
 		self.clear()
 		self.actions=[]
 
@@ -201,6 +173,10 @@ class ribbon_sim_mode(ribbon_page):
 		self.dont_show=["photon_extraction"]
 		self.myserver=server_get()
 
+		self.main_menu = QMenu(self)
+		action=self.main_menu.addAction(icon_get("list-remove"),_("Delete"))
+		action.triggered.connect(self.callback_delete)
+		
 		global_object_register("ribbon_sim_mode_update",self.update)
 
 	def setEnabled(self,val):
@@ -213,3 +189,27 @@ class ribbon_sim_mode(ribbon_page):
 		self.help.setEnabled(val)
 
 
+
+	def mouseReleaseEvent(self,event):
+		if event.button()==Qt.RightButton:
+			self.main_menu.exec_(event.globalPos())
+
+	def callback_delete(self):
+		i=0
+		for a in self.actions:
+			if a.over==True:
+				self.removeAction(a)
+				self.actions.pop(i)
+				obj=json_root().sims.find_object_by_id(a.id)
+				for segment_name in json_root().sims.var_list:
+					segment_name=segment_name[0]
+					segs=getattr(json_root().sims,segment_name,None)
+					if segs!=None:
+						segs=getattr(segs,"segments",None)
+						ii=0
+						for o in segs:
+							if o==obj:
+								segs.pop(ii)
+					json_root().save()
+				break
+			i=i+1

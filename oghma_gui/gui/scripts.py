@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package scripts
 #  The main script editor
@@ -26,8 +31,6 @@
 
 import os
 from icon_lib import icon_get
-import zipfile
-import glob
 from tab import tab_class
 from progress_class import progress_class
 from help import my_help_class
@@ -37,13 +40,12 @@ from cal_path import get_exe_command
 from inp import inp_save_lines_to_file
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QHBoxLayout,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QSystemTrayIcon,QMenu, QComboBox, QMenuBar, QLabel
-from PyQt5.QtGui import QIcon
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QHBoxLayout,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QSystemTrayIcon,QMenu, QComboBox, QMenuBar, QLabel
+from PySide2.QtGui import QIcon
 
 #windows
 from plot_widget import plot_widget
-from error_dlg import error_dlg
 
 from server import server_get
 
@@ -54,21 +56,19 @@ from QWidgetSavePos import QWidgetSavePos
 from script_ribbon import script_ribbon
 
 from css import css_apply
-from gui_util import yes_no_dlg
 from script_editor import script_editor
-from inp import inp_lsdir
-from gui_util import dlg_get_text
-from cal_path import get_scripts_path
+from dlg_get_text2 import dlg_get_text2
+from cal_path import sim_paths
 from os import listdir
 from inp import inp_save
 
-from gpvdm_api import gpvdm_api
+from oghma_api import oghma_api
 
 class scripts(QWidgetSavePos):
 
 	def __init__(self,path="",api_callback=None):
 		if path=="":
-			self.path=get_scripts_path()
+			self.path=sim_paths.get_scripts_path()
 		else:
 			self.path=path
 
@@ -77,7 +77,7 @@ class scripts(QWidgetSavePos):
 		self.setWindowIcon(icon_get("script"))
 
 		self.setMinimumSize(1000, 600)
-		self.setWindowTitle(_("Script editor")+" (https://www.gpvdm.com)")    
+		self.setWindowTitle2(_("Script editor"))    
 
 		self.ribbon=script_ribbon()
 
@@ -138,10 +138,10 @@ class scripts(QWidgetSavePos):
 		data.append("import os")
 		data.append("import sys")
 		data.append("")
-		data.append("from gpvdm_api import gpvdm_api")
+		data.append("from oghma_api import oghma_api")
 		data.append("")
 		data.append("def run():")
-		data.append("	a=gpvdm_api(verbose=True)")
+		data.append("	a=oghma_api(verbose=True)")
 		data.append("	a.set_save_dir(device_data)")
 		data.append("	a.edit(\"light.inp\",\"#light_model\",\"qe\")")
 		data.append("	a.edit(\"jv0.inp\",\"#Vstop\",\"0.8\")")
@@ -150,7 +150,7 @@ class scripts(QWidgetSavePos):
 		inp_save_lines_to_file(file_name,data)
 
 	def callback_add_page(self):
-		new_sim_name=dlg_get_text( "Add a new script:", "exampe.py","document-new.png")
+		new_sim_name=dlg_get_text2( "Add a new script:", "exampe.py","document-new.png")
 		if new_sim_name.ret!=None:
 			name=os.path.join(self.path,new_sim_name.ret)
 			self.new_script(name)
@@ -162,8 +162,8 @@ class scripts(QWidgetSavePos):
 
 	def callback_rename_page(self):
 		tab = self.notebook.currentWidget()
-		index=self.notebook.currentIndex()
-		new_sim_name=dlg_get_text( _("Rename the script:"), os.path.basename(tab.file_name),"rename.png")
+		self.notebook.currentIndex()
+		new_sim_name=dlg_get_text2( _("Rename the script:"), os.path.basename(tab.file_name),"rename.png")
 
 		new_sim_name=new_sim_name.ret
 

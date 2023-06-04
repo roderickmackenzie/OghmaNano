@@ -1,24 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
-
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package gl_fallback
 #  If OpenGL does not work fall back to this.
@@ -26,39 +30,51 @@
 
 import math
 import os
-from epitaxy import epitaxy_get_name
 
 import i18n
 _ = i18n.language.gettext
 
 #qt
-from PyQt5.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QSizePolicy,QHBoxLayout,QPushButton,QDialog,QFileDialog,QToolBar,QMessageBox, QLineEdit,QLabel
-from PyQt5.QtCore import QTimer
-from PyQt5.QtGui import QPainter,QFont,QColor,QPen,QPainterPath,QBrush
+from PySide2.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
+from PySide2.QtGui import QIcon
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QSizePolicy,QHBoxLayout,QPushButton,QDialog,QFileDialog,QToolBar,QMessageBox, QLineEdit,QLabel
+from gQtCore import QTimer
+from PySide2.QtGui import QPainter,QFont,QColor,QPen,QPainterPath,QBrush
 
 import numpy as np
-from math import pi,acos,sin,cos
 
 from dat_file import dat_file
 from global_objects import global_object_register
-from cal_path import get_sim_path
-from gl_base_widget import gl_base_widget
+from cal_path import sim_paths
 from epitaxy import get_epi
 
-from gpvdm_json import gpvdm_data
+from json_root import json_root
+from PySide2.QtWidgets import QMessageBox
+from gl_toolbar import gl_toolbar
+from gl_views import gl_views
+from gl_main import gl_main
+from gl_scale import gl_scale_class
 
-class gl_fallback(QWidget,gl_base_widget):
+class gl_fallback(QWidget, gl_toolbar,gl_views):
 
 	def __init__(self):
 		QWidget.__init__(self)
-		gl_base_widget.__init__(self)
+		gl_toolbar.__init__(self)
 		#self.setMinimumSize(600, 500)
 		self.epi=get_epi()
 		global_object_register("gl_force_redraw",self.force_redraw)
-		
+		global_object_register("gl_force_redraw_hard",self.force_redraw)
+		self.box_shown=False
+		self.gl_main=gl_main()
+		self.scale=gl_scale_class(self.gl_main.scale)
+		self.failed=False
+		self.open_gl_working=False
+		self.timer=None
+		self.suns=0.0
+		self.lastPos=None
+		self.mouse_click_time=0.0
+
 	def paintEvent(self, e):
 		qp = QPainter()
 		qp.begin(self)
@@ -67,12 +83,12 @@ class gl_fallback(QWidget,gl_base_widget):
 
 
 	def drawWidget(self, qp):
-		data=gpvdm_data()
+		data=json_root()
 		font = QFont('Sans', 11, QFont.Normal)
 		qp.setFont(font)
 		epi=data.epi
 		emission=False
-
+		
 		for l in epi.layers:
 			if l.layer_type=="active":
 				if l.shape_pl.pl_emission_enabled==True:
@@ -82,8 +98,7 @@ class gl_fallback(QWidget,gl_base_widget):
 
 		pos=0.0
 		total_layers=len(epi.layers)
-		lines=[]
-
+		
 		for i in range(0,total_layers):
 			thick=200.0*epi.layers[total_layers-1-i].dy/tot
 			pos=pos+thick
@@ -95,7 +110,7 @@ class gl_fallback(QWidget,gl_base_widget):
 			self.draw_box(qp,200,450.0-pos,thick*0.9,red,green,blue,total_layers-1-i)
 		step=50.0
 
-		self.suns=float(data.light.Psun)
+		self.suns=float(data.optical.light.Psun)
 
 		if self.suns<=0.01:
 			step=200
@@ -116,12 +131,22 @@ class gl_fallback(QWidget,gl_base_widget):
 				self.draw_photon(qp,240+x,140,True)
 
 		self.draw_mode(qp,200,250)
-		y=500
-		qp.drawText(40, y+40, "You do not have working 3D graphics hardware acceleration on your PC.")
-		qp.drawText(40, y+70, "If your PC is modern it is likely that you don't have the correct drivers installed")
-		qp.drawText(40, y+100, "Gpvdm is using 2D fallback mode - the model will still work")
-		qp.drawText(40, y+130, "It will just not look as pretty.")
+		
+		#if self.box_shown==False:
+		#	self.box_shown=True
+		#	self.show_error()
 
+	def show_error(self):
+		msgBox = QMessageBox(self)
+		msgBox.setIcon(QMessageBox.Warning)
+		msgBox.setText("Warning:")
+		text="You do not have working 3D graphics hardware acceleration on your PC. This could be because:\n 1. If your PC is modern it is likely that you don't have the correct drivers installed.\n 2. If your PC is older it is possible you don't have 3D acceleration hardware.\n 3.  If you are using the software through a virtual machine it could be that your VM is not correctly configured for 3D graphics acceleration.\n\nYou can continue using the software but it will be using a 2D fallback mode. The model will still work, the results will be the same the interface just won't be as nice and some 3D features won't work."
+		msgBox.setInformativeText(text)
+		print(text)
+		msgBox.setStandardButtons(QMessageBox.Ok )
+		msgBox.setDefaultButton(QMessageBox.Ok)
+		msgBox.setMinimumWidth(700)
+		msgBox.exec_()
 
 
 	def draw_photon(self,qp,start_x,start_y,up):
@@ -172,32 +197,28 @@ class gl_fallback(QWidget,gl_base_widget):
 		w=200
 		qp.setBrush(QColor(r*255,g*255,b*255))
 		qp.drawRect(x, y, 200,h)
-		data=gpvdm_data()
+		data=json_root()
 		epi=data.epi
-		if epi.layers[layer].layer_type=="active":
-			text=epitaxy_get_name(layer)+" (active)"
+		l=epi.layers[layer]
+		if l.layer_type=="active":
+			text=l.name+" (active)"
 			qp.setBrush(QColor(0,0,0.7*255))
 			qp.drawRect(x+w+5, y, 20,h)
 		else:
-			text=epitaxy_get_name(layer)
+			text=l.name
 
 		qp.drawText(x+200+40, y+h/2, text)
 		
 		return
 
 	def draw_mode(self,qp,start_x,start_y):
-		t=[]
-		s=[]
-		z=[]
-		x=start_x
-		y=start_y
 		pen=QPen()
 		pen.setWidth(3)
 		pen.setColor(QColor(0,0,0))
 
 		qp.setPen(pen)
 		data=dat_file()
-		if data.load(os.path.join(get_sim_path(),"optical_output","light_1d_photons_tot_norm.dat"))==True:
+		if data.load(os.path.join(sim_paths.get_sim_path(),"optical_output","photons_yl_norm.csv"))==True:
 			for i in range(1,data.y_len):
 				
 				x0=(start_x-data.data[0][0][i-1]*40-10)
@@ -219,3 +240,9 @@ class gl_fallback(QWidget,gl_base_widget):
 
 	def force_redraw(self):
 		self.repaint()
+
+	def rebuild_scene(self):
+		pass
+
+	def do_draw(self):
+		pass

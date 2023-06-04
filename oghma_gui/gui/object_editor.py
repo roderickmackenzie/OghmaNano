@@ -1,67 +1,68 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package object_editor
 #  An editor for shape files
 #
 
-import os
 from icon_lib import icon_get
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget, QStatusBar
-from PyQt5.QtGui import QPainter,QIcon
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget, QStatusBar
+from PySide2.QtGui import QPainter,QIcon
 
 from help import help_window
 from QWidgetSavePos import QWidgetSavePos
 from css import css_apply
 
-from global_objects import global_object_run
 from epitaxy import get_epi
 from util import wrap_text
 
 from shape import shape
-from cal_path import get_sim_path
+from cal_path import sim_paths
 
-from gui_util import dlg_get_text
-from error_dlg import error_dlg
+from dlg_get_text2 import dlg_get_text2
 from gui_util import yes_no_dlg
 from tick_cross import tick_cross
-from str2bool import str2bool
-from global_objects import global_object_run
 from json_viewer import json_viewer
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 import copy
 from help import QAction_help
+from bytes2str import bytes2str
 
 class object_editor(QWidgetSavePos):
 
 
 	def __init__(self,gl_forece_redraw):
-		QWidgetSavePos.__init__(self,"shape_editor")
-		self.setMinimumSize(600, 700)
+		QWidgetSavePos.__init__(self,"object_editor")
+		self.setMinimumSize(600, 500)
 		self.setWindowIcon(icon_get("shape"))
 
-		self.setWindowTitle(_("Object editor")+"  (https://www.gpvdm.com)") 
+		self.setWindowTitle2(_("Object editor")) 
 		
 		self.force_redraw=gl_forece_redraw
 		self.main_vbox = QVBoxLayout()
@@ -70,25 +71,25 @@ class object_editor(QWidgetSavePos):
 		toolbar.setToolButtonStyle( Qt.ToolButtonTextUnderIcon)
 		toolbar.setIconSize(QSize(48, 48))
 
-		self.tb_new = QAction(icon_get("document-new"), wrap_text("New shape",2), self)
+		self.tb_new = QAction(icon_get("document-new"), wrap_text("New object",2), self)
 		self.tb_new.triggered.connect(self.callback_add_shape)
 
 		toolbar.addAction(self.tb_new)
 
-		self.tb_delete = QAction(icon_get("edit-delete"), wrap_text("Delete shape",3), self)
+		self.tb_delete = QAction(icon_get("edit-delete"), wrap_text("Delete object",3), self)
 		self.tb_delete.triggered.connect(self.callback_delete_shape)
 
 		toolbar.addAction(self.tb_delete)
 
-		self.tb_rename = QAction(icon_get("rename"), wrap_text("Rename shape",3), self)
+		self.tb_rename = QAction(icon_get("rename"), wrap_text("Rename object",3), self)
 		self.tb_rename.triggered.connect(self.callback_rename_shape)
 		toolbar.addAction(self.tb_rename)
 
-		self.tb_clone = QAction(icon_get("clone"), wrap_text("Clone shape",3), self)
+		self.tb_clone = QAction(icon_get("clone"), wrap_text("Clone object",3), self)
 		self.tb_clone.triggered.connect(self.callback_clone_shape)
 		toolbar.addAction(self.tb_clone)
 
-		self.enable=tick_cross(enable_text=_("Shape\nenabled"),disable_text=_("Shape\ndisabled"))
+		self.enable=tick_cross(enable_text=_("Object\nenabled"),disable_text=_("Object\ndisabled"))
 		self.enable.changed.connect(self.callback_enable_disable)
 		toolbar.addAction(self.enable)
 
@@ -125,20 +126,20 @@ class object_editor(QWidgetSavePos):
 		self.root_id=ids[0]
 
 		for id in ids:
-			s=gpvdm_data().find_object_by_id(id)
+			s=json_root().find_object_by_id(id)
 			my_tab=json_viewer()
 			my_tab.populate(s)
 
 			my_tab.changed.connect(self.callback_edit)
 
-			name=s.shape_name
+			name=s.name
 
 			self.notebook.addTab(my_tab,name)	
 			i=i+1
 
 	def callback_edit(self,item):
-		data=gpvdm_data()
-		tab = self.notebook.currentWidget()
+		data=json_root()
+		self.notebook.currentWidget()
 		data.save()
 		if item=="shape_type":
 			self.force_redraw(level="reload_rebuild")
@@ -146,12 +147,12 @@ class object_editor(QWidgetSavePos):
 			self.force_redraw()
 
 	def callback_enable_disable(self):
-		data=gpvdm_data()
+		data=json_root()
 		tab = self.notebook.currentWidget()
 		if tab!=None:
 			tab.setEnabled(self.enable.enabled)
 			s=tab.template_widget
-			s.shape_enabled=self.enable.enabled
+			s.enabled=self.enable.enabled
 			data.save()
 			self.force_redraw()
 			
@@ -160,9 +161,9 @@ class object_editor(QWidgetSavePos):
 		tab = self.notebook.currentWidget()
 		if tab!=None:
 			s=tab.template_widget
-			tab.setEnabled(s.shape_enabled)
-			self.enable.setState(s.shape_enabled)
-			self.status_bar.showMessage(s.shape_name)
+			tab.setEnabled(s.enabled)
+			self.enable.setState(s.enabled)
+			self.status_bar.showMessage(s.name+" "+bytes2str(s.id))
 
 			if self.notebook.currentIndex()==0:
 				self.tb_delete.setEnabled(False)
@@ -172,32 +173,32 @@ class object_editor(QWidgetSavePos):
 				self.tb_clone.setEnabled(True)
 
 	def callback_add_shape(self):
-		data=gpvdm_data()
-		obj=gpvdm_data().find_object_by_id(self.root_id)
+		data=json_root()
+		obj=json_root().find_object_by_id(self.root_id)
 		s=shape()
 		s.dx=obj.dx/2.0
 		s.dy=obj.dy/2.0
 		s.dz=obj.dz/2.0
 		s.moveable=True
-		obj.shapes.append(s)
+		obj.segments.append(s)
 		my_tab=json_viewer()
 		my_tab.populate(s)
 		my_tab.changed.connect(self.callback_edit)
-		self.notebook.addTab(my_tab,s.shape_name)
+		self.notebook.addTab(my_tab,s.name)
 		my_tab.changed.connect(self.callback_edit)
 		self.force_redraw(level="reload_rebuild")
 		data.save()
 
 	def callback_rename_shape(self):
-		data=gpvdm_data()
+		data=json_root()
 		tab = self.notebook.currentWidget()
 
-		new_sim_name=dlg_get_text( "Rename the shape:", tab.template_widget.shape_name,"rename.png")
+		new_sim_name=dlg_get_text2( "Rename the object:", tab.template_widget.name,"rename.png")
 
 		new_sim_name=new_sim_name.ret
 
 		if new_sim_name!=None:
-			tab.template_widget.shape_name=new_sim_name
+			tab.template_widget.name=new_sim_name
 			index=self.notebook.currentIndex() 
 			self.notebook.setTabText(index, new_sim_name)
 			data.save()
@@ -205,41 +206,41 @@ class object_editor(QWidgetSavePos):
 
 	def callback_clone_shape(self):
 		tab = self.notebook.currentWidget()
-		name=tab.template_widget.shape_name+"_new"
+		name=tab.template_widget.name+"_new"
 
-		new_sim_name=dlg_get_text( "Clone the shape:", name,"clone.png")
+		new_sim_name=dlg_get_text2( "Clone the object:", name,"clone.png")
 		new_sim_name=new_sim_name.ret
 
 		if new_sim_name!=None:
-			obj=gpvdm_data().find_object_by_id(self.root_id)
-			for s in obj.shapes:
-				if s.shape_name==tab.template_widget.shape_name:
+			obj=json_root().find_object_by_id(self.root_id)
+			for s in obj.segments:
+				if s.name==tab.template_widget.name:
 					my_shape=copy.deepcopy(s)
-					my_shape.shape_name=new_sim_name
+					my_shape.name=new_sim_name
 					my_shape.update_random_ids()
-					obj.shapes.append(my_shape)
+					obj.segments.append(my_shape)
 					
 					my_tab=json_viewer()
 					my_tab.populate(my_shape)
-					self.notebook.addTab(my_tab,my_shape.shape_name)
+					self.notebook.addTab(my_tab,my_shape.name)
 					my_tab.changed.connect(self.callback_edit)
 					self.force_redraw()
 
 	def callback_delete_shape(self):
-		data=gpvdm_data()
+		data=json_root()
 		tab = self.notebook.currentWidget()
-		name=tab.template_widget.shape_name
+		name=tab.template_widget.name
 		
-		response=yes_no_dlg(self,"Do you really want to the shape: "+name)
+		response=yes_no_dlg(self,"Do you really want to the object: "+name)
 
 		if response == True:
 
 			index=self.notebook.currentIndex() 
 			self.notebook.removeTab(index)
-			obj=gpvdm_data().find_object_by_id(self.root_id)
-			for i in range(0,len(obj.shapes)):
-				if obj.shapes[i].shape_name==tab.template_widget.shape_name:
-					obj.shapes.pop(i)
+			obj=json_root().find_object_by_id(self.root_id)
+			for i in range(0,len(obj.segments)):
+				if obj.segments[i].name==tab.template_widget.name:
+					obj.segments.pop(i)
 					data.save()
 					break
 

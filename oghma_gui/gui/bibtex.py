@@ -1,36 +1,63 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
-
-## @package bibtex
-#  A bibtex parser for gpvdm
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
 #
 
-import os
+## @package bibtex
+#  A bibtex parser
+#
+
 from inp import inp
 from json_base import json_base
 import operator
 
-class bib_item(json_base):
+class json_bib(json_base):
+	def __init__(self,name):
+		json_base.__init__(self,name)
+		self.type=""
+		self.token=""
+		self.var_list=[]
+		self.var_list.append(["author",""])
+		self.var_list.append(["title",""])
+		self.var_list.append(["journal",""])
+		self.var_list.append(["volume",""])
+		self.var_list.append(["number",""])
+		self.var_list.append(["pages",""])
+		self.var_list.append(["year",""])
+		self.var_list.append(["DOI",""])
+		self.var_list.append(["publisher",""])
+		self.var_list.append(["address",""])
+		self.var_list.append(["booktitle",""])
+		self.var_list.append(["isbn",""])
+		self.var_list.append(["unformatted",""])
+		self.var_list_build()
+
+		self.year_int=1970
+
+class bib_item(json_bib):
 	def __init__(self):
-		json_base.__init__(self,"bibtex")
+		json_bib.__init__(self,"bibtex")
 		self.type=""
 		self.token=""
 		self.var_list=[]
@@ -126,7 +153,6 @@ class bib_item(json_base):
 			self.year_int=int(self.year)
 		except:
 			pass
-		new_lines=[]
 
 
 	def bib_get_as_str(self):
@@ -180,7 +206,6 @@ class bib_item(json_base):
 
 	def clean_author(self,author):
 		au=author.split(" and ")
-		n=0
 		ret=""
 		for a in au:
 			name=a

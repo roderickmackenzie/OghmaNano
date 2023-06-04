@@ -1,24 +1,28 @@
-#!/usr/bin/env python3
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package clean_sim
 #  Clean the simulation
@@ -26,33 +30,11 @@
 
 #import sys
 import os
-from cal_path import get_sim_path
-from safe_delete import gpvdm_delete_file
+from cal_path import sim_paths
+from safe_delete import safe_delete
 
 #import glob
 
-def remove_bin(directory):
-	for root, dirs, files in os.walk(os.path.join(os.getcwd(),directory)):
-		for file in files:
-			if file.endswith(".o"):
-				del_file=os.path.join(root, file)
-				print("Deleteing "+del_file)
-				os.remove(del_file)
-
-			if file.endswith(".so"):
-				del_file=os.path.join(root, file)
-				print("Deleteing "+del_file)
-				os.remove(del_file)
-
-			if file.endswith(".a"):
-				del_file=os.path.join(root, file)
-				print("Deleteing "+del_file)
-				os.remove(del_file)
-
-			if file.endswith(".dll"):
-				del_file=os.path.join(root, file)
-				print("Deleteing "+del_file)
-				os.remove(del_file)
 
 def clean_sim_dir(path,clean_exp_data=True):
 	if clean_exp_data==True:
@@ -62,54 +44,6 @@ def clean_sim_dir(path,clean_exp_data=True):
 				if f.endswith(".inp")==True:
 					os.unlink(full_path)
 
-	return
-	remove_bin("light")
-	remove_bin("plugins")
-	remove_bin("solvers")
-
-	del_file=os.path.join(get_sim_path(),"pub")
-	if os.path.isdir(del_file):
-		print("Deleteing "+del_file)
-		gpvdm_delete_file(del_file,allow_dir_removal=True)
-
-	del_file=os.path.join(get_sim_path(),"dynamic")
-	if os.path.isdir(del_file):
-		print("Deleteing "+del_file)
-		gpvdm_delete_file(del_file,allow_dir_removal=True)
-
-	del_file=os.path.join(get_sim_path(),"snapshots")
-	if os.path.isdir(del_file):
-		print("Deleteing "+del_file)
-		gpvdm_delete_file(del_file,allow_dir_removal=True)
-
-	files = os.listdir(get_sim_path())
-	for file in files:
-		if file.startswith("snapshots_"):
-			print("deleting dir",file)
-			gpvdm_delete_file(file,allow_dir_removal=True)
-
-	files = os.listdir(get_sim_path())
-	for file in files:
-		remove=False
-		if file.endswith(".txt"):
-			remove=True
-		if file.endswith("~"):
-			remove=True
-		if file.endswith(".dat"):
-			remove=True
-		if file.endswith(".o"):
-			remove=True
-		if file.endswith(".orig"):
-			remove=True
-		if file.endswith(".back"):
-			remove=True
-		if file.endswith(".bak"):
-			remove=True
-		if file.endswith("gmon.out"):
-			remove=True
-		if remove==True:
-			print("Deleting",file)
-			os.remove(file)
 
 def delete_files(dirs_to_del,parent_window=None):
 	if parent_window!=None:
@@ -124,7 +58,7 @@ def delete_files(dirs_to_del,parent_window=None):
 		process_events()
 	
 	for i in range(0, len(dirs_to_del)):
-		gpvdm_delete_file(dirs_to_del[i],allow_dir_removal=True)
+		safe_delete(dirs_to_del[i],allow_dir_removal=True)
 		if parent_window!=None:
 			progress_window.set_fraction(float(i)/float(len(dirs_to_del)))
 			progress_window.set_text("Deleting"+dirs_to_del[i])

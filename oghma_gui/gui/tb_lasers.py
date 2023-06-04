@@ -1,24 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
-
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package tb_lasers
 #  Toolbar item to select the type of laser a user wants.
@@ -29,10 +33,10 @@ import i18n
 _ = i18n.language.gettext
 
 #qt
-from PyQt5.QtWidgets import  QTextEdit
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QLabel,QComboBox
-from gpvdm_json import gpvdm_data
+from PySide2.QtWidgets import  QTextEdit
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QLabel,QComboBox
+from json_root import json_root
 
 class tb_lasers(QWidget):
 
@@ -41,8 +45,8 @@ class tb_lasers(QWidget):
 		self.sim_mode.blockSignals(True)
 		self.sim_mode.clear()
 
-		for laser in gpvdm_data().lasers.segments:
-			value=laser.english_name.rstrip()
+		for laser in json_root().optical.lasers.segments:
+			value=laser.name.rstrip()
 			self.sim_mode.addItem(value)
 
 		all_items  = [self.sim_mode.itemText(i) for i in range(self.sim_mode.count())]
@@ -50,7 +54,6 @@ class tb_lasers(QWidget):
 		for i in range(0,len(all_items)):
 			if all_items[i] == self.data.config.pump_laser:
 				self.sim_mode.setCurrentIndex(i)
-				found=True
 
 		self.sim_mode.blockSignals(False)
 

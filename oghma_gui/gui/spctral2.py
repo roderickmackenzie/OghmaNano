@@ -1,37 +1,42 @@
 # -*- coding: utf-8 -*-
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package spctral2
 #  After R. Bird and C. Riordan 1984
 #
 
 import os
-import sys
 
 from math import *
 
 from dat_file import dat_file
 from cal_path import get_atmosphere_path
-from zenith import zenith
+from bytes2str import bytes2str
+import ctypes
+from cal_path import sim_paths
 
 class spctral2():
 	def __init__(self):
@@ -46,13 +51,16 @@ class spctral2():
 		self.W= 1.42	#precip water
 		self.No2_un=0.0
 
+		self.lib=sim_paths.get_dll_py()
+		self.lib.zenith.restype = ctypes.c_double
+
 		file_name = os.path.join(get_atmosphere_path(), "spctral2", "etr.inp")
 		#print(file_name)
 		self.etr=dat_file()
 		self.etr.y_mul=1e9
-		self.etr.y_units="nm"
+		self.etr.y_units=b"nm"
 		self.etr.data_mul=1.0
-		self.etr.data_units="W m^{-3} m^{-1}"
+		self.etr.data_units=b"W m^{-3} m^{-1}"
 
 		self.etr.load(file_name)
 
@@ -88,24 +96,25 @@ class spctral2():
 		self.cal_earth_sun_distance()
 		
 		#zenith
-		self.Z_rad=zenith(self.lat, self.day, self.hour, self.min)
+		self.Z_rad=self.lib.zenith(ctypes.c_double(self.lat), ctypes.c_double(self.day), ctypes.c_double(self.hour), ctypes.c_double(self.min))
+		print("Zenith",self.Z_rad)
 		self.Z_deg=self.Z_rad*360/2/pi
-		print("Zenith",self.Z_deg)
+
 
 		if self.Z_deg>90.0:
 			self.Iglobal=dat_file()
 			self.Iglobal.copy(self.etr)
-			self.Iglobal.file_name="Iglobal.dat"
+			self.Iglobal.file_name=b"Iglobal.dat"
 			self.Iglobal.key_text="Global"
 
 			self.Is=dat_file()
 			self.Is.copy(self.etr)
-			self.Is.file_name="Idiffuse.dat"
+			self.Is.file_name=b"Idiffuse.dat"
 			self.Is.key_text="Diffuse"
 
 			self.Id=dat_file()
 			self.Id.copy(self.etr)
-			self.Id.file_name="Idirect.dat"
+			self.Id.file_name=b"Idirect.dat"
 			self.Id.key_text="Direct"
 			return
 
@@ -116,6 +125,7 @@ class spctral2():
 
 		self.Tr=dat_file()
 		self.Tr.copy(self.etr)
+
 		self.cal_rayleigh()
 		if self.debug==True:
 			self.Tr.save("Tr.dat")
@@ -151,7 +161,7 @@ class spctral2():
 			self.Tno2.save("Tno.dat")
 
 		self.Id=self.etr*self.D*self.Tr*self.Ta*self.Tw*self.To*self.Tu*self.Tno2
-		self.Id.file_name="Idirect.dat"
+		self.Id.file_name=b"Idirect.dat"
 		self.Id.key_text="Direct"
 
 
@@ -187,8 +197,8 @@ class spctral2():
 		self.Fs=dat_file()
 		self.Fs.copy(self.etr)
 		self.cal_Fs()
-
 		self.Ia=self.etr*self.D*cos(self.Z_rad)*self.To*self.Tu*self.Tw*self.Taa*self.Tr.pow(1.5)*(1.0-self.Tas)*self.Fs*self.Cs
+
 		#Ig
 
 		self.TuP=dat_file()
@@ -233,7 +243,7 @@ class spctral2():
 
 
 		self.Is=self.Ir+self.Ia+self.Ig
-		self.Is.file_name="Idiffuse.dat"
+		self.Is.file_name=b"Idiffuse.dat"
 		self.Is.key_text="Diffuse"
 
 		self.Ir.save("Ir.dat")
@@ -244,7 +254,7 @@ class spctral2():
 		self.Id.save("Id.dat")
 
 		self.Iglobal=self.Is+self.Id
-		self.Iglobal.file_name="Iglobal.dat"
+		self.Iglobal.file_name=b"Iglobal.dat"
 		self.Iglobal.key_text="Global"
 		self.Iglobal.save("Iglobal.dat")
 

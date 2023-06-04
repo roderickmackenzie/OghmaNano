@@ -1,217 +1,128 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package gl_cords
 #  The gl_cords class for the OpenGL display.
 #
 
-import sys
 from math import fabs
 
 try:
 	from OpenGL.GL import *
 	from OpenGL.GLU import *
-	from PyQt5 import QtOpenGL
-	from PyQt5.QtOpenGL import QGLWidget
-	from gl_lib import val_to_rgb
-	from PyQt5.QtGui import QFont
-
-
 except:
 	pass
 
-from gl_base_object import gl_base_object
-from triangle import vec
-from gpvdm_json import gpvdm_data
+from vec import vec
+import ctypes
+from bytes2str import str2bytes
 
 class gl_cords():
 
 	def draw_cords(self):
-		if self.false_color==True:
+		if self.gl_main.scale.calculated_world_min_max==False:
 			return
 
-		if self.scale.world_max==None:
-			return
-
-		width=0.04
-		leng=1.0
-		
-		start_x=self.scale.project_m2screen_x(0.0)-2.0
-		start_z=self.scale.project_m2screen_z(0.0)-2.0
-		start_y=self.scale.project_m2screen_y(self.scale.world_max.y)-1.0#  self.scale.project_m2screen_y(0.0)+1.0
-		#quad=gluNewQuadric()
-
-
-		glPushMatrix()
-		glTranslatef(start_x,start_y,start_z)
-		self.render_text (leng+0.2,0.0,0.0, "x")
-		glColor4f(0.7,0.7,0.7, 1.0)
-		quad=gluNewQuadric()
-		glRotatef(90, 0.0, 1.0, 0.0)
-		gluCylinder(quad, width, width, leng, 10, 1)
-		glTranslatef(0.0,0.0,leng)
-		gluCylinder(quad, 0.1, 0.00, 0.2, 10, 1)
-		#if self.view.zoom<20:
-		glPopMatrix()
-
-
-		glPushMatrix()
-		glTranslatef(start_x,start_y,start_z)
-		self.render_text (0.0,leng+0.4,0.0, "y")
-		glColor4f(0.7,0.7,0.7, 1.0)
-		quad=gluNewQuadric()
-		#glTranslatef(0.0,0.0,0.0)
-		glRotatef(270, 1.0, 0.0, 0.0)
-		gluCylinder(quad, width, width, leng, 10, 1)
-		glTranslatef(0.0,0.0,leng)
-		gluCylinder(quad, 0.1, 0.00, 0.2, 10, 1)
-		#if self.view.zoom<20:
-		glPopMatrix()
-
-
-		glPushMatrix()
-		glTranslatef(start_x,start_y,start_z)
-		self.render_text (-0.0,0.0,leng+0.2, "z")
-		glColor4f(0.7,0.7,0.7, 1.0)
-		quad=gluNewQuadric()
-		glRotatef(0, 0.0, 1.0, 0.0)
-		gluCylinder(quad, width, width, leng, 10, 1)
-		glTranslatef(0.0,0.0,leng)
-		gluCylinder(quad, 0.1, 0.00, 0.2, 10, 1)
-
-		gluSphere(quad,0.08,32,32)
-		#if self.view.zoom<20:
-		glPopMatrix()
-
-		#self.draw_numbers()
+		start_x=self.scale.gl_scale.gl_universe_x0+2
+		start_z=self.scale.gl_scale.gl_universe_z0+2
+		start_y=self.scale.project_m2screen_y(self.gl_main.scale.world_max.y)-2.0
+		self.lib.gl_cords(ctypes.byref(self.gl_main), ctypes.c_float(start_x), ctypes.c_float(start_y), ctypes.c_float(start_z))
 
 	def draw_numbers(self):
+		self.render_text (self.gl_main,0.0,0.0,0.0, "(0,0,0)")
+		self.render_text (self.gl_main,1.0,0.0,0.0, "(1,0,0)")
+		self.render_text (self.gl_main,0.0,2.0,0.0, "(0,1,0)")
+		self.render_text (self.gl_main,0.0,0.0,1.0, "(0,0,1)")
 
-		#font = QFont("Arial")
-		#font.setPointSize(18)
+	#This should be replaced with gl_objects_add_grid2
+	def gl_objects_add_grid(self,x0,x1,y0,y1,z0,z1,uid,color=[0.8,0.8,0.8,1.0],direction="zx"):
+		o=self.gl_main.add_object()
+		o.id=str2bytes(uid)
+		o.type=b"solid_and_mesh"
 
-
-		self.render_text (0.0,0.0,0.0, "(0,0,0)")
-		self.render_text (1.0,0.0,0.0, "(1,0,0)")
-		self.render_text (0.0,2.0,0.0, "(0,1,0)")
-		self.render_text (0.0,0.0,1.0, "(0,0,1)")
-
-	def gl_objects_add_grid(self,x0,x1,y0,y1,z0,z1,color=[0.8,0.8,0.8,1.0],dx=1.0,dz=1.0,dy=1.0,direction="zx"):
-		o=gl_base_object()
-		o.id=["grid"]
-		o.type="solid_and_mesh"
-
-		start_x=0
-		start_y=0
-		start_z=0
-
-		if x1!=None:
-			stop_x=x1-x0
-			nx=int((stop_x-start_x)/dx)
-
-		if y1!=None:
-			stop_y=y1-y0
-			ny=int((stop_y-start_y)/dy)
-
-		if z1!=None:
-			stop_z=z1-z0
-			nz=int((stop_z-start_z)/dz)
-
-		xyz=vec()
-		xyz.x=x0
-		xyz.z=z0
-		xyz.y=y0
-
-		o.xyz.append(xyz)
-
+		o.add_xyz(x0,y0,z0)
+		o.text_size=1.0
+		block=o.add_block()
+		block.gl_array_type=GL_LINES
+		block.gl_line_width=1
+		block.solid_lines=True
 
 		if direction=="zx":
-			pos=start_z
-			while pos<=stop_z:
-				o.triangles.append([start_x, 0.0, pos])
-				o.triangles.append([stop_x, 0.0, pos])
-				pos=pos+dz
-
-			pos=start_x
-			while pos<=stop_x:
-				o.triangles.append([pos, 0.0, start_z])
-				o.triangles.append([pos, 0.0, stop_z])
-				pos=pos+dx
-
+			o.dx=x1-x0
+			o.dz=z1-z0
+			o.dy=0.0
+			nx=40
+			ny=0
+			nz=40
 		elif direction=="zy":
-			pos=start_z
-			while pos<=stop_z:
-				o.triangles.append([0.0, start_y, pos])
-				o.triangles.append([0.0, stop_y, pos])
-				pos=pos+dz
-
-			pos=start_y
-			while pos<=stop_y:
-				o.triangles.append([0.0, pos, start_z])
-				o.triangles.append([0.0, pos, stop_z])
-				pos=pos+dy
-
+			o.dx=0.0
+			o.dz=z1-z0
+			o.dy=y1-y0
+			nx=0
+			ny=40
+			nz=40
 		elif direction=="xy":
-			pos=start_x
-			while pos<=stop_x:
-				o.triangles.append([pos, start_y, 0.0])
-				o.triangles.append([pos, stop_y, 0.0])
-				pos=pos+dx
+			o.dx=x1-x0
+			o.dz=0.0
+			o.dy=y1-y0
+			nx=40
+			ny=40
+			nz=0
 
-			pos=start_y
-			while pos<=stop_y:
-				o.triangles.append([start_x, pos, 0.0])
-				o.triangles.append([stop_x, pos, 0.0])
-				pos=pos+dy
-
-		self.gl_objects_add(o)
-		self.objects[-1].compile("lines",color,line_width=1)
-		return self.objects[-1]
+		self.lib.gl_code_bloc_gen_grid(ctypes.byref(block), ctypes.c_float(0.0),ctypes.c_float(1.0),ctypes.c_float(0.0), ctypes.c_float(1.0), ctypes.c_float(0.0), ctypes.c_float(1.0),  ctypes.c_int(nx), ctypes.c_int(ny) , ctypes.c_int(nz))
+		self.lib.gl_code_block_import_rgb(ctypes.byref(block),ctypes.c_float(color[0]), ctypes.c_float(color[1]), ctypes.c_float(color[2]), ctypes.c_float(color[3]), ctypes.c_int(block.gl_array_points))
 
 
 
 	def world_box(self):
 		self.gl_objects_remove_regex("world_box")
-		a=gl_base_object()
-		a.type="solid_and_mesh"
-		a.id=["world_box"]
+		a=self.gl_main.add_object()
+		a.type=b"solid_and_mesh"
+		a.id=b"world_box"
 
-		xyz=vec()
-		xyz.x=self.scale.project_m2screen_x(self.scale.world_min.x)
-		xyz.y=self.scale.project_m2screen_y(self.scale.world_min.y)
-		xyz.z=self.scale.project_m2screen_z(self.scale.world_min.z)
-		a.xyz.append(xyz)
+		xx=self.scale.project_m2screen_x(self.gl_main.scale.world_min.x)
+		yy=self.scale.project_m2screen_y(self.gl_main.scale.world_min.y)
+		zz=self.scale.project_m2screen_z(self.gl_main.scale.world_min.z)
+		a.add_xyz(xx,yy,zz)
 
-		a.dxyz.x=fabs(self.scale.world_max.x-self.scale.world_min.x)*self.scale.x_mul
-		a.dxyz.y=fabs(self.scale.world_max.y-self.scale.world_min.y)*self.scale.y_mul
-		a.dxyz.z=fabs(self.scale.world_max.z-self.scale.world_min.z)*self.scale.z_mul
+		a.dx=fabs(self.gl_main.scale.world_max.x-self.gl_main.scale.world_min.x)*self.gl_main.scale.x_mul
+		a.dy=fabs(self.gl_main.scale.world_max.y-self.gl_main.scale.world_min.y)*self.gl_main.scale.y_mul
+		a.dz=fabs(self.gl_main.scale.world_max.z-self.gl_main.scale.world_min.z)*self.gl_main.scale.z_mul
 
 		a.r=1.0
 		a.g=0.0
 		a.b=0.0
-
 		a.alpha=1.0
 
-		a.triangles.extend(self.default_shapes.box.data)
+		block=a.add_block()
+		block.gl_array_type=GL_LINES
+		block.gl_line_width=5
+		block.solid_lines=True
+		self.lib.gl_code_block_import_dat_file_triangles(ctypes.byref(block),ctypes.byref(self.default_shapes.box))
+		self.lib.gl_code_block_import_rgb(ctypes.byref(block),ctypes.c_float(1.0), ctypes.c_float(0.0), ctypes.c_float(0.0), ctypes.c_float(1.0), ctypes.c_int(block.gl_array_points))
 
-		self.gl_objects_add(a)
-		self.objects[-1].compile("triangles_open",[1.0,0.0,0.0,1.0],line_width=5)
+
 

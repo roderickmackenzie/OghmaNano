@@ -1,56 +1,59 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package circuit
 #  Widget to draw circuit diagram
 #
 
-import os
 from cal_path import get_image_file_path
 from tb_pulse_load_type import tb_pulse_load_type
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QMenuBar,QStatusBar
-from PyQt5.QtGui import QPainter,QIcon,QPixmap
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QStatusBar
+from PySide2.QtGui import QPainter,QIcon,QPixmap
 from ersatzschaltbild import ersatzschaltbild
 from icon_lib import icon_get
 import functools
 from gui_util import yes_no_dlg
-from inp import inp
 from epitaxy import get_epi
-from cal_path import get_sim_path
+from cal_path import sim_paths
 from json_circuit import json_component
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 
 class tool_item(QAction):
-	def __init__(self,icon_name,name,s):
+	def __init__(self,icon_name,comp,s):
 		self.icon=icon_name
-		self.name=name
-		QAction.__init__(self,icon_get(icon_name), name,s)
+		self.comp=comp
+		QAction.__init__(self,icon_get(icon_name), comp,s)
 		self.setCheckable(True)
 
 class circuit_editor(QWidget):
 
-	def __init__(self):
+	def __init__(self,show_toolbar=True):
 		QWidget.__init__(self)
 
 		vbox=QHBoxLayout()
@@ -61,8 +64,9 @@ class circuit_editor(QWidget):
 
 		self.buttons=[]
 		self.buttons.append(tool_item("resistor", _("Resistor"),self))
-		#self.buttons.append(tool_item("capacitor", _("Capacitor"),self))
+		self.buttons.append(tool_item("capacitor", _("Capacitor"),self))
 		self.buttons.append(tool_item("diode", _("Diode"),self))
+		self.buttons.append(tool_item("power", _("Power law"),self))
 		self.buttons.append(tool_item("wire", _("Wire"),self))
 		self.buttons.append(tool_item("ground", _("Ground"),self))
 		self.buttons.append(tool_item("bat", _("Voltage source"),self))
@@ -79,7 +83,8 @@ class circuit_editor(QWidget):
 				self.toolbar.addAction(item)
 				item.triggered.connect(functools.partial(self.callback_click,item))
 
-		vbox.addWidget(self.toolbar)
+		if show_toolbar==True:
+			vbox.addWidget(self.toolbar)
 
 		self.ersatzschaltbild = ersatzschaltbild()
 		self.ersatzschaltbild.dx=80
@@ -92,14 +97,14 @@ class circuit_editor(QWidget):
 		#self.setMinimumSize(800, 800)
 		self.build_from_epi()
 
-		gpvdm_data().add_call_back(self.ersatzschaltbild.load)
+		json_root().add_call_back(self.ersatzschaltbild.load)
 		self.destroyed.connect(self.doSomeDestruction)
 
 	def doSomeDestruction(self):
-		gpvdm_data().remove_call_back(self.ersatzschaltbild.load)
+		json_root().remove_call_back(self.ersatzschaltbild.load)
 
 	def build_from_epi(self):
-			data=gpvdm_data()
+			data=json_root()
 			if data.circuit.enabled==False:
 				epi=get_epi()
 				pos=3
@@ -109,7 +114,7 @@ class circuit_editor(QWidget):
 				a.y0=3
 				a.x1=pos+1
 				a.y1=3
-				a.name="bat"
+				a.comp="bat"
 				self.ersatzschaltbild.add_object(a)
 
 				pos=pos+1
@@ -123,7 +128,7 @@ class circuit_editor(QWidget):
 							a.y0=3
 							a.x1=pos+1
 							a.y1=3
-							a.name="resistor"
+							a.comp="resistor"
 							self.ersatzschaltbild.add_object(a)
 						if component=="diode":
 							a=json_component()
@@ -131,7 +136,7 @@ class circuit_editor(QWidget):
 							a.y0=3
 							a.x1=pos+1
 							a.y1=3
-							a.name="diode"
+							a.comp="diode"
 							self.ersatzschaltbild.add_object(a)
 						pos=pos+1
 
@@ -140,7 +145,7 @@ class circuit_editor(QWidget):
 				a.y0=3
 				a.x1=pos+1
 				a.y1=3
-				a.name="ground"
+				a.comp="ground"
 				self.ersatzschaltbild.add_object(a)
 
 				self.ersatzschaltbild.objects_push()

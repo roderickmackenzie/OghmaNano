@@ -1,35 +1,40 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package spinner
 #  A spinner widget.
 #
 
 import sys
-from PyQt5.QtWidgets import QWidget
-from PyQt5.QtGui import QIcon,QPalette
-from PyQt5.QtGui import QPainter,QFont,QColor,QPen,QPainterPath,QBrush
-from PyQt5.QtCore import Qt, QTimer
+from PySide2.QtWidgets import QWidget
+from PySide2.QtGui import QIcon,QPalette
+from PySide2.QtGui import QPainter,QFont,QColor,QPen,QPainterPath,QBrush
+from gQtCore import Qt, QTimer
 
-from math import pi,acos,sin,cos,atan2
+from math import pi,acos,sin,cos
 import random
 
 class spinner(QWidget):
@@ -42,6 +47,9 @@ class spinner(QWidget):
 		#self.setWindowTitle('Icon')
 		#self.setWindowIcon(QIcon('web.png'))        
 		#self.start()
+		self.blue_target=255.0
+		self.green_target=0.0
+		self.red_target=0.0
 		self.timer=None
 
 	def start(self):
@@ -97,7 +105,7 @@ class spinner(QWidget):
 		qp.setBrush(QColor(100,0,0))
 
 		pen=QPen()
-		pen.setWidth(self.width()/10)
+		pen.setWidth(int(self.width()/10))
 		
 		pen.setColor(QColor(0,0,255))
 		pen.setCapStyle(Qt.RoundCap)
@@ -145,7 +153,7 @@ class spinner(QWidget):
 			cg=self.green_target*c[i]+color.green()*(1.0-c[i])
 			cr=self.red_target*c[i]+color.red()*(1.0-c[i])
 			
-			pen.setColor(QColor(cr,cg,cb))
+			pen.setColor(QColor(int(cr),int(cg),int(cb)))
 			qp.setPen(pen)
-			qp.drawLine(x+x_shift,y+y_shift,x1+x_shift,y1+y_shift)
+			qp.drawLine(int(x+x_shift),int(y+y_shift),int(x1+x_shift),int(y1+y_shift))
         

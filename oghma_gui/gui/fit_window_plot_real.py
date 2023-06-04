@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package fit_window_plot_real
 #  Another fit plotting window?
@@ -31,22 +36,15 @@ import i18n
 _ = i18n.language.gettext
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QMenuBar,QStatusBar, QMenu, QTableWidget, QAbstractItemView, QLabel
-from PyQt5.QtGui import QPainter,QIcon,QCursor
-
-#matplotlib
-import matplotlib
-matplotlib.use('Qt5Agg')
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QMenuBar,QStatusBar, QMenu, QTableWidget, QAbstractItemView, QLabel
+from PySide2.QtGui import QPainter,QIcon,QCursor
 
 from open_save_dlg import open_as_filter
 
 
 from icon_lib import icon_get
-from cal_path import get_sim_path
+from cal_path import sim_paths
 
 from plot_widget import plot_widget
 
@@ -56,12 +54,11 @@ class fit_window_plot_real(QWidget):
 		self.draw_graph()
 
 	def draw_graph(self):
-
 		plot_labels=["Experimental"]
-		data_files=[os.path.join(get_sim_path(),self.data.import_config.data_file)]
-
-		sim_data_file=os.path.join(get_sim_path(),"sim",self.data.config.fit_name,self.data.config.sim_data)	#[:-4]+".best"
-
+		data_files=[os.path.join(sim_paths.get_sim_path(),self.data.import_config.data_file)]
+		pre, ext = os.path.splitext(self.data.config.sim_data)
+		sim_data_file=os.path.join(sim_paths.get_sim_path(),"sim",self.data.config.fit_name,pre+".best")
+		#print(sim_data_file)
 		if os.path.isfile(sim_data_file)==True:
 			plot_labels.append("Simulated")
 			data_files.append(sim_data_file)
@@ -72,19 +69,17 @@ class fit_window_plot_real(QWidget):
 		self.label.setText(_("Data imported from: ")+self.data.import_config.import_file_path+" col:"+str(self.data.import_config.import_x_spin)+" "+str(self.data.import_config.import_data_spin))
 		self.plot.do_plot()
 
-
 	def __init__(self,data):
 		QWidget.__init__(self)
 
 		self.data=data
-		self.fig = Figure(figsize=(5,4), dpi=100)
 		self.ax1=None
 		self.show_key=True
 		
 		self.hbox=QVBoxLayout()
 
 		self.label=QLabel()
-		self.plot=plot_widget(enable_toolbar=False)
+		self.plot=plot_widget(enable_toolbar=False,widget_mode="pyqtgraph")
 		self.draw_graph()
 
 		self.hbox.addWidget(self.plot)

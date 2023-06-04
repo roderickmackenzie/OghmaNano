@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package scan_io
 #  IO functions for the scanning simulation parameters.
@@ -30,22 +35,17 @@ import shutil
 import gc
 
 from inp import inp_get_token_value
+
 from scan_tree import tree_load_flat_list
 from scan_tree import tree_gen_flat_list
-
-from scan_tree import tree_gen
 from scan_tree import tree_save_flat_list
-
-from server_io import server_find_simulations_to_run
 
 
 from server import server_break
-from numpy import std
 
 from error_dlg import error_dlg
-from scan_tree import scan_tree_leaf
 from process_events import process_events
-from safe_delete import gpvdm_delete_file
+from safe_delete import safe_delete
 
 import i18n
 _ = i18n.language.gettext
@@ -54,9 +54,13 @@ _ = i18n.language.gettext
 import zipfile
 from util_zip import archive_add_dir
 from inp import inp
-from scan_program_line import scan_program_line
+from json_scan import json_scan_line
 from clean_sim import ask_to_delete
 from progress_class import progress_class
+from decode_inode import decode_inode
+import ctypes
+from cal_path import sim_paths
+
 
 def scan_next_archive(sim_dir):
 	i=0
@@ -107,7 +111,7 @@ def scan_list_simulations(dir_to_search):
 	for root, dirs, files in os.walk(dir_to_search):
 		for name in files:
 #			full_name=os.path.join(root, name)
-			if name=="sim.gpvdm":
+			if name=="sim.oghma":
 				found_dirs.append(root)
 	return found_dirs
 
@@ -115,7 +119,7 @@ def scan_plot_fits(dir_to_search):
 	files=os.listdir(dir_to_search)
 	for i in range(0,len(files)):
 		if files[i].endswith(".jpg"):
-			os.remove(os.path.join(dir_to_search,files[i]))
+			safe_delete(os.path.join(dir_to_search,files[i]))
 			#print("remove",os.path.join(dir_to_search,files[i]))
 
 	sim_dirs=tree_load_flat_list(dir_to_search)
@@ -172,116 +176,6 @@ class report_token():
 		self.token=token
 		self.values=[]
 
-def scan_gen_report(path):
-	tokens=[]
-	tokens.append(report_token("dos0.inp","#Etrape"))
-	tokens.append(report_token("dos0.inp","#mueffe"))
-	tokens.append(report_token("dos0.inp","#Ntrape"))
-	tokens.append(report_token("dos0.inp","#srhsigman_e"))
-	tokens.append(report_token("dos0.inp","#srhsigmap_e"))
-	tokens.append(report_token("dos0.inp","#srhsigman_h"))
-	tokens.append(report_token("dos0.inp","#srhsigmap_h"))
-	tokens.append(report_token("sim/thick_light/sim_info.dat","#jv_pmax_tau"))
-	tokens.append(report_token("sim/thick_light/sim_info.dat","#jv_pmax_mue"))
-	tokens.append(report_token("sim/thick_light/sim_info.dat","#jv_pmax_muh"))
-	tokens.append(report_token("jv1.inp","#jv_Rcontact"))
-	tokens.append(report_token("jv1.inp","#jv_Rshunt"))
-
-
-	simulation_dirs=tree_load_flat_list(path)
-	errors=[]
-	for i in range(0,len(simulation_dirs)):
-		print(simulation_dirs[i])
-
-		error=scan_get_converged_status(os.path.join(simulation_dirs[i],"fitlog.dat"))
-		print("error",error)
-		errors.append(error)
-
-		for ii in range(0,len(tokens)):
-			value=inp_get_token_value(os.path.join(simulation_dirs[i],tokens[ii].file_name), tokens[ii].token)
-			#print(os.path.join(simulation_dirs[i],tokens[ii].file_name), tokens[ii].token,value)
-			if value!=None:
-				print(tokens[ii].token,str(value))
-
-				tokens[ii].values.append(float(value))
-
-	print("Errors:",errors)
-	for ii in range(0,len(tokens)):
-		print(tokens[ii].token,tokens[ii].values,sum(tokens[ii].values)/len(tokens[ii].values),std(tokens[ii].values))
-
-	for ii in range(0,len(tokens)):
-		print(tokens[ii].token,sum(tokens[ii].values)/len(tokens[ii].values),std(tokens[ii].values))
-
-
-def scan_build_nested_simulation(root_simulation,nest_simulation):
-
-	if os.path.isdir(nest_simulation)==False:
-		print("Path ",nest_simulation,"does not exist")
-		sys.exit(0)
-
-	progress_window=progress_class()
-	progress_window.show()
-	progress_window.start()
-
-	process_events()
-
-	nest_simulation_name=os.path.basename(nest_simulation) 
-	program_list=tree_load_program(nest_simulation)
-		
-	files = os.listdir(root_simulation)
-	simulations=[]
-	for i in range(0,len(files)):
-		if os.path.isfile(os.path.join(root_simulation,files[i],"sim.gpvdm"))==True:
-			simulations.append(files[i])
-
-	flat_simulation_list=[]
-
-	path=os.getcwd()
-	for i in range(0,len(simulations)):
-		dest_name=os.path.join(root_simulation,simulations[i],nest_simulation_name)
-		base_dir=os.path.join(root_simulation,simulations[i])
-		#print(">>>",dest_name,base_dir,"<<",nest_simulation_name)
-		tree_gen(dest_name,flat_simulation_list,program_list,base_dir)
-
-		progress_window.set_fraction(float(i)/float(len(simulations)))
-		progress_window.set_text(simulations[i])
-		process_events()
-
-	progress_window.stop()
-	
-	os.chdir(path)
-
-	flat_simulation_list=tree_gen_flat_list(root_simulation,level=1)
-
-	#print(flat_simulation_list)
-	tree_save_flat_list(root_simulation,flat_simulation_list)
-
-	return
-
-def scan_clean_nested_simulation(root_simulation,nest_simulation):
-	files = os.listdir(root_simulation)
-	simulations=[]
-	for i in range(0,len(files)):
-		if os.path.isfile(os.path.join(root_simulation,files[i],"sim.gpvdm"))==True:
-			simulations.append(files[i])
-
-	for i in range(0,len(simulations)):
-		dest_name=os.path.join(root_simulation,simulations[i])
-
-		files = os.listdir(dest_name)
-		for file in files:
-			if file.endswith(".inp") or file.endswith(".gpvdm") or file.endswith(".dat") :
-				os.remove(os.path.join(dest_name,file))
-
-
-	return
-
-def scan_clean_unconverged(parent,dir_to_clean):
-		dirs_to_del=[]
-		dirs_to_del=scan_list_unconverged_simulations(dir_to_clean)
-
-		ask_to_delete(parent,dirs_to_del)
-
 def scan_push_to_hpc(base_dir,only_unconverged):
 	config_file=os.path.join(os.getcwd(),"server.inp")
 	#print(config_file)
@@ -292,7 +186,7 @@ def scan_push_to_hpc(base_dir,only_unconverged):
 		hpc_files=[]
 		hpc_files=scan_list_simulations(hpc_path)
 		#print("hpc files=",hpc_files)
-		delete_files(hpc_files)
+		safe_delete(hpc_files)
 		files=[]
 
 		if only_unconverged==True:
@@ -308,117 +202,64 @@ def scan_push_to_hpc(base_dir,only_unconverged):
 	else:
 		print("HPC dir not found",hpc_path)
 
-def scan_import_from_hpc(base_dir):
-	config_file=os.path.join(os.getcwd(),"server.inp")
-	hpc_path=inp_get_token_value(config_file, "#hpc_dir")
-	hpc_path=os.path.abspath(hpc_path)
-
-	if os.path.isdir(hpc_path)==True:
-
-		hpc_files=scan_list_simulations(hpc_path)
-
-		for i in range(0,len(hpc_files)):
-			if hpc_files[i].endswith("orig")==False:
-				src_path=hpc_files[i]
-				dest_path=os.path.join(base_dir,hpc_files[i][len(hpc_path)+1:])
-				if os.path.isdir(dest_path):
-					gpvdm_delete_file(dest_path,allow_dir_removal=True)
-				shutil.copytree(src_path, dest_path, symlinks=False, ignore=None)
-				#print(src_path,dest_path)
-	else:
-		print("HPC dir not found",hpc_path)
-
-
-class scan_io:
+class scan_io(ctypes.Structure):
+	_fields_ = [('scan_items', ctypes.c_void_p),
+				('nitems', ctypes.c_int),
+				('optimizer_enabled', ctypes.c_int),
+				('scan_optimizer_dump_at_end', ctypes.c_int),
+				('scan_optimizer_dump_n_steps', ctypes.c_int),
+				('name', ctypes.c_char * 4096),
+				('last_error', ctypes.c_char * 4096)]
 
 	def __init__(self):
 		self.parent_window=None
 		self.interactive=True
 		self.scan_dir=None
 		self.base_dir=None
-		self.human_name=None
+		self.scan_name=None
 		self.config_file=None
 		self.program_list=[]
 		self.myserver=None
+		self.lib=sim_paths.get_dll_py()
+		self.lib.scan_load_config_from_file.restype = ctypes.c_int
+		self.lib.scan_make_dirs.restype = ctypes.c_int
+		self.lib.scan_init(None,ctypes.byref(self))
 
-	def load(self,file_name):
+	def load_config_from_file(self,path,json_path):
+		return self.lib.scan_load_config_from_file(None,ctypes.byref(self), bytes(path, encoding='utf8') , bytes(json_path, encoding='utf8'))
+
+	def scan_dump(self):
+		self.lib.scan_dump(None,ctypes.byref(self))
+
+	def scan_make_dirs(self,path):
+		return self.lib.scan_make_dirs(None,ctypes.byref(self),bytes(path, encoding='utf8'))
+
+	def scan_free(self):
+		self.lib.scan_free(None,ctypes.byref(self))
+
+	def __del__(self):
+		self.lib.scan_free(None,ctypes.byref(self))
+
+
+	def load(self,path,name,scan_obj):
 		self.program_list=[]
-		self.config_file=file_name
-		f=inp()
-		f.load(self.config_file)
-		self.human_name=f.get_token("#scan_name")
-		self.scan_dir=os.path.join(os.path.dirname(self.config_file),self.human_name)
 
-		pos=2
-		mylen=int(f.lines[pos])
-		pos=pos+1
+		if name!=None:
+			self.scan_name=name
+		else:
+			self.scan_name=os.path.basename(path)
 
-		for i in range(0, mylen):
-			item=scan_program_line()
-			#item.file=f.lines[pos]
-			#item.token=f.lines[pos+1]
-			item.human_name=f.lines[pos+2]
-			item.values=f.lines[pos+3]
-			item.opp=f.lines[pos+4]
-			self.program_list.append(item)
-			pos=pos+6
+		self.scan_dir=os.path.join(path,self.scan_name)
 
-		#print(f.lines)
-
-	def save(self):
-		f=inp()
-		f.lines=[]
-		f.lines.append("#scan_name")
-		f.lines.append(self.human_name)
-		#print(self.tab.rowCount())
-		f.lines.append(str(len(self.program_list)))
-		for item in self.program_list:
-			#print(i)
-			f.lines.append("notused")
-			f.lines.append("notused")
-			f.lines.append(item.human_name)
-			f.lines.append(item.values)
-			f.lines.append(item.opp)
-			f.lines.append("notused")
-
-		f.save_as(self.config_file)
-
-
-		if os.path.isfile(os.path.join(self.scan_dir,"scan_config.inp"))==False:
-			a = open(os.path.join(self.scan_dir,"scan_config.inp"), "w")
-			a.write("#scan_config_args\n")
-			a.write("\n")
-			a.write("#scan_config_compress\n")
-			a.write("false\n")
-			a.write("#end\n")
-
-			a.close()
+		if scan_obj!=None:
+			for s in scan_obj.segments:
+				self.program_list.append(s)
 
 	def set_path(self,scan_dir):
 		self.scan_dir=scan_dir
 
 	def set_base_dir(self,base_dir):
 		self.base_dir=base_dir
-
-	def clean_dir(self):
-		dirs_to_del=[]
-		listing=os.listdir(self.scan_dir)
-
-		for i in range(0,len(listing)):
-			full_path=os.path.join(self.scan_dir,listing[i])
-			if os.path.isdir(full_path)==True:
-				dirs_to_del.append(full_path)
-
-		ask_to_delete(self.parent_window,dirs_to_del,interactive=self.interactive)
-
-	def apply_constants_to_dir(self,folder):
-		leaf=scan_tree_leaf()
-		leaf.json_load(os.path.join(folder,"sim.json"))
-		leaf.directory=folder
-		leaf.program_list=self.program_list
-		leaf.apply_constants()
-		leaf.apply_python_scripts()
-		leaf.json_save()
 
 	def run(self,run_simulation=True,generate_simulations=True,args=""):
 		f=inp()
@@ -434,8 +275,6 @@ class scan_io:
 			error_dlg(self.parent_window,_("No sim dir name"))
 			return
 
-		self.make_dir()
-
 		if generate_simulations==True:
 			self.build_scan()
 
@@ -449,6 +288,7 @@ class scan_io:
 				self.myserver.add_job(commands[i],args)
 				#print("Adding job"+commands[i])
 
+			#print("2.",os.listdir(self.scan_dir))
 			self.myserver.start()
 
 		gc.collect()
@@ -456,33 +296,46 @@ class scan_io:
 	def build_scan(self):
 		self.clean_dir()
 
-		flat_simulation_list=[]
+		if self.load_config_from_file(self.base_dir,self.scan_name)!=0:
+			error_dlg(self.parent_window,_("Problem loading file."))
 
-		path=os.getcwd()
-
-		#print(self.scan_dir,flat_simulation_list,self.program_list,self.base_dir)
-		if tree_gen(self.scan_dir,flat_simulation_list,self.program_list,self.base_dir)==False:
+		if self.scan_make_dirs(self.base_dir)!=0:
 			error_dlg(self.parent_window,_("Problem generating tree."))
+			self.scan_free()
 			return False
-		os.chdir(path)
 
+		flat_simulation_list=tree_gen_flat_list(self.scan_dir)
 		tree_save_flat_list(self.scan_dir,flat_simulation_list)
+		self.scan_free()
 
-	def make_dir(self):
-		if os.path.isdir(self.scan_dir)==False:
-			os.makedirs(self.scan_dir)
+	def is_scan_dir(self,scan_name):
+		ret=decode_inode(scan_name)
+		if ret.type==b"scan":
+			return True
+		return False
+
+	def clean_dir(self):
+		dirs_to_del=[]
+		if self.is_scan_dir(self.scan_dir)==False:
+			return
+
+		listing=os.listdir(self.scan_dir)
+
+		for sub_sir in listing:
+			full_path=os.path.join(self.scan_dir, sub_sir)
+			if os.path.isdir(full_path)==True:
+				dirs_to_del.append(full_path)
+
+		ask_to_delete(self.parent_window,dirs_to_del,interactive=self.interactive)
 
 	def rename(self,new_name):
 		new_path=os.path.join(os.path.dirname(self.scan_dir),new_name)
-		f=inp()
-		f.load(self.config_file)
-		f.set_token("#scan_name",new_name)
-		f.save()
-		self.human_name=new_name
-
-		shutil.move(self.scan_dir, new_path)
-		self.scan_dir=new_path
-
+		try:
+			shutil.move(self.scan_dir, new_path)
+			self.scan_dir=new_path
+		except:
+			pass
+		
 	def clone(self,new_human,new_config_file):
 		self.scan_dir=os.path.join(os.path.dirname(self.scan_dir),new_name)
 		print(self.config_file)

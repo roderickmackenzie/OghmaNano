@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package gui_util
 #  GUI utilities.
@@ -25,62 +30,38 @@
 
 
 from cal_path import get_image_file_path
-import os
 
 #qt
 from gui_enable import gui_get
 
 if gui_get()==True:
-	from PyQt5.QtWidgets import QTextEdit, QAction,QTableWidgetItem,QComboBox, QMessageBox, QDialog, QDialogButtonBox
-	from PyQt5.QtWidgets import QListWidgetItem,QListView,QLineEdit,QWidget,QHBoxLayout,QPushButton
-	from PyQt5.uic import loadUi
-	from PyQt5.QtGui import QPixmap
-	from PyQt5.QtCore import QSize, Qt, QTimer
+	from PySide2.QtWidgets import QTextEdit, QAction,QTableWidgetItem,QComboBox, QMessageBox, QDialog, QDialogButtonBox
+	from PySide2.QtWidgets import QListWidgetItem,QListView,QLineEdit,QWidget,QHBoxLayout,QPushButton
+	from PySide2.QtGui import QPixmap, QIcon
+	from gQtCore import QSize, Qt, QTimer
 	from QComboBoxLang import QComboBoxLang
-	from PyQt5.QtGui import QIcon
 	from gtkswitch import gtkswitch
-	from gpvdm_select_material import gpvdm_select_material
-	from gpvdm_select_emission import gpvdm_select_emission
-	from gpvdm_select_filter import gpvdm_select_filter
-	from gpvdm_select_shape import gpvdm_select_shape
+	from g_select_material import g_select_material
+	from g_select_filter import g_select_filter
+	from g_select_shape import g_select_shape
 	from icon_widget import icon_widget
 	from leftright import leftright
-	from gpvdm_select import gpvdm_select
+	from g_select import g_select
 	from QComboBoxLang import QComboBoxLang
 	from QColorPicker import QColorPicker
 	from QColorPicker import QColorPicker_one_line
 	from QComboBoxNewtonSelect import QComboBoxNewtonSelect
 	from QChangeLog import QChangeLog
-	from QParasitic import QParasitic
 	from generic_switch import generic_switch
 	from shape_dos_switch import shape_dos_switch
 	from shape_electrical_switch import shape_electrical_switch
 	from mobility_widget import mobility_widget
 	from QComboBoxLayers import QComboBoxLayers
+	from QComboBoxOpenCL import QComboBoxOpenCL
 
 #windows
-from cal_path import get_ui_path
-
 from icon_lib import icon_get
-
-
 from str2bool import str2bool
-
-class dlg_get_text():
-	def __init__(self,text,default,image):
-		#QDialog.__init__(self)
-		self.ui = loadUi(os.path.join(get_ui_path(),"question.ui"))
-		self.ui.label.setText(text)
-		self.ui.text.setText(default)
-		#pixmap = QPixmap(os.path.join(get_image_file_path(),image))
-		icon=icon_get(image)
-		self.ui.setWindowIcon(icon)
-		self.ui.image.setPixmap(icon.pixmap(icon.actualSize(QSize(64, 64))))
-		ret=self.ui.exec_()
-		if ret==True:
-			self.ret=self.ui.text.text()
-		else:
-			self.ret=None
 
 
 def yes_no_dlg(parent,text):
@@ -103,15 +84,13 @@ def widget_get_value(widget):
 		return widget.get_value()
 	elif type(widget)==leftright:
 		return widget.get_value()
-	elif type(widget)==gpvdm_select:
+	elif type(widget)==g_select:
 		return widget.text()
-	elif type(widget)==gpvdm_select_material:
+	elif type(widget)==g_select_material:
 		return widget.text()
-	elif type(widget)==gpvdm_select_filter:
+	elif type(widget)==g_select_filter:
 		return widget.text()
-	elif type(widget)==gpvdm_select_emission:
-		return widget.text()
-	elif type(widget)==gpvdm_select_shape:
+	elif type(widget)==g_select_shape:
 		return widget.text()
 	elif type(widget)==icon_widget:
 		return widget.text()
@@ -129,8 +108,8 @@ def widget_get_value(widget):
 		return widget.currentText()
 	elif type(widget)==QComboBoxLayers:
 		return widget.currentText()
-	elif type(widget)==QParasitic:
-		return widget.text()
+	elif type(widget)==QComboBoxOpenCL:
+		return widget.currentText()
 	elif type(widget)==generic_switch:
 		return widget.get_value()
 	elif type(widget)==shape_dos_switch:
@@ -151,15 +130,13 @@ def widget_set_value(widget,value):
 		widget.set_value(str2bool(value))
 	elif type(widget)==leftright:
 		widget.set_value(str2bool(value))
-	elif type(widget)==gpvdm_select:
+	elif type(widget)==g_select:
 		widget.setText(value)
-	elif type(widget)==gpvdm_select_material:
+	elif type(widget)==g_select_material:
 		widget.setText(value)
-	elif type(widget)==gpvdm_select_filter:
+	elif type(widget)==g_select_filter:
 		widget.setText(value)
-	elif type(widget)==gpvdm_select_shape:
-		widget.setText(value)
-	elif type(widget)==gpvdm_select_emission:
+	elif type(widget)==g_select_shape:
 		widget.setText(value)
 	elif type(widget)==icon_widget:
 		widget.setText(value)
@@ -181,8 +158,8 @@ def widget_set_value(widget,value):
 		widget.setValue(value)
 	elif type(widget)==QComboBoxLayers:
 		return widget.setValue(value)
-	elif type(widget)==QParasitic:
-		widget.setValue(value)
+	elif type(widget)==QComboBoxOpenCL:
+		pass
 	elif type(widget)==generic_switch:
 		widget.set_value(value)
 	elif type(widget)==shape_dos_switch:

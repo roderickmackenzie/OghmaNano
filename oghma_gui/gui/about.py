@@ -1,46 +1,46 @@
 # -*- coding: utf-8 -*-
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
-
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 import os
 from const_ver import const_ver
 from cal_path import get_image_file_path
 from cal_path import get_materials_path
-from cal_path import get_html_path
-import sys
 
-from PyQt5.uic import loadUi
-from PyQt5.QtWidgets import QPushButton,QListWidget,QTextBrowser,QTabWidget,QWidget,QHBoxLayout,QLabel,QDialog,QVBoxLayout,QListWidgetItem,QListView
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import QSize
-from PyQt5.QtGui import QIcon
+from PySide2.QtWidgets import QPushButton,QTextBrowser,QTabWidget,QWidget,QHBoxLayout,QLabel,QDialog,QVBoxLayout
+from PySide2.QtGui import QPixmap
 
 from icon_lib import icon_get
 
-from cal_path import get_device_lib_path, get_bin_path, get_plugins_path, get_exe_path, get_exe_command, get_exe_name
+from cal_path import get_device_lib_path, get_bin_path, get_plugins_path, sim_paths, get_exe_command, get_exe_name
 from lock import get_lock
 
 from cal_path import multiplatform_exe_command
 from cal_path import get_exe_command
+from sim_name import sim_name
+from bytes2str import bytes2str
 
 class about_dlg(QDialog):
 	def __init__(self):
@@ -49,17 +49,17 @@ class about_dlg(QDialog):
 		self.left_vbox=QVBoxLayout()
 		self.main_vbox=QVBoxLayout()
 		self.setFixedSize(750,480) 
-		self.setWindowTitle(_("About")+" (https://www.gpvdm.com)")
+		self.setWindowTitle(_("About")+sim_name.web_window_title)
 		self.setWindowIcon(icon_get("icon"))
-		self.gpvdm=QLabel("<font size=40><b>gpvdm_gui</b></font>")
+		self.name=QLabel("<font size=40><b>"+sim_name.name_lower+"_gui</b></font>")
 		self.image=QLabel()
 		self.image.mousePressEvent=self.callback
-		self.written_by=QLabel(_("Written by Roderick MacKenzie 2012-2019, published under the GPL V2.0 license."))
+		self.written_by=QLabel(_("Written by Roderick MacKenzie 2012-2022, released under the MIT software license."))
 		self.written_by.setWordWrap(True)
 		self.ver=QLabel(_("Version ")+const_ver())
 		pixmap = QPixmap(os.path.join(get_image_file_path(),"image.jpg"))
 		self.image.setPixmap(pixmap)
-		self.left_vbox.addWidget(self.gpvdm)
+		self.left_vbox.addWidget(self.name)
 		self.left_vbox.addWidget(self.image)
 		self.left_vbox.addWidget(self.written_by)
 		self.left_vbox.addWidget(self.ver)
@@ -69,7 +69,7 @@ class about_dlg(QDialog):
 		self.right.setMinimumWidth(500)
 		self.about=QTextBrowser()
 		text=""
-		text=text+_("gpvdm is a general-purpose tool for simulation of light harvesting devices. It was originally written to simulate organic solar cells and OLEDs, but it has recently been extended to simulate other devices including silicon based devices. Currently the model can sumulate:")
+		text=text+_(sim_name.name+" is a general-purpose tool for simulation of light harvesting devices. It was originally written to simulate organic solar cells and OLEDs, but it has recently been extended to simulate other devices including silicon based devices. Currently the model can sumulate:")
 		text=text+"<ul>"
 		text=text+"<li>"+_("Organic solar cells")+"</li>"
 		text=text+"<li>"+_("Organic LEDs")+"</li>"
@@ -80,13 +80,13 @@ class about_dlg(QDialog):
 		text=text+_("The model solves both electron and hole drift-diffusion, and carrier continuity equations in position space to describe the movement of charge within the device. The model also solves Poisson's equation to calculate the internal electrostatic potential. Recombination and carrier trapping are described within the model using a Shockley-Read-Hall (SRH) formalism, the distribution of trap sates can be arbitrarily defined. All equations can be solved either in steady state or in time domain. A fuller description of the model can be found in the here, in the associated publications and in the manual.")
 		text=text+"<br>"
 		text=text+"<br>"
-		text=text+"<center><a href=\"https://www.gpvdm.com\">https://www.gpvdm.com</a></center>"
+		text=text+"<center><a href=\""+sim_name.web+"\">"+sim_name.web+"</a></center>"
 		self.about.setText(text)
 		self.right.addTab(self.about,_("About"))
 		
 		self.license=QTextBrowser()
 		text=""
-		license_file=os.path.join(get_html_path(),"LICENSE.html")
+		license_file=os.path.join(sim_paths.get_html_path(),"LICENSE.html")
 		if (os.path.isfile(license_file)==True):
 				f = open(license_file, mode='rb')
 				lines = f.read()
@@ -102,7 +102,7 @@ class about_dlg(QDialog):
 		self.translations=QTextBrowser()
 		text=""
 
-		text=text+"Translations of gpvdm:"
+		text=text+"Translations of "+sim_name.name+":"
 		text=text+"<br>"
 		text=text+"<br>"
 		text=text+"<b>Greek</b>: Dimitris Tsikritzis"
@@ -112,8 +112,8 @@ class about_dlg(QDialog):
 		text=text+"<b>Portuguese</b>: Luciano Azevedo Neves"
 		text=text+"<br>"
 		text=text+"<br>"
-		text=text+"Help translate gpvdm into your language.."
-		text=text+"If so then please consider joining the gpvdm translation effort.  This is somthing you can put on your CV and it\'s a way to make sure that speakers of your language have access to high quality scientific tools for simulating solar cells."
+		text=text+"Help translate "+sim_name.name+" into your language.."
+		text=text+"If so then please consider joining the "+sim_name.name+" translation effort.  This is somthing you can put on your CV and it\'s a way to make sure that speakers of your language have access to high quality scientific tools for simulating solar cells."
 
 		self.translations.setText(text)
 		self.right.addTab(self.translations,_("Translations"))
@@ -129,7 +129,7 @@ class about_dlg(QDialog):
 		text=text+"<b>"+_("Binary path")+":</b>"+get_bin_path()+"<br>"
 		text=text+"<b>"+_("Plugins path")+":</b>"+get_plugins_path()+"<br>"
 		text=text+"<b>"+_("Binary name")+":</b>"+get_exe_name()+"<br>"
-		text=text+"<b>"+_("Install ID")+":</b>"+get_lock().data.uid+"<br>"
+		text=text+"<b>"+_("Install ID")+":</b>"+bytes2str(get_lock().uid)+"<br>"
 
 		self.paths.setText(text)
 		self.right.addTab(self.paths,_("Paths"))

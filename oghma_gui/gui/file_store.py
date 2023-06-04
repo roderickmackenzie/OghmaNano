@@ -1,41 +1,54 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
-
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package util
 #  General helper functions.
 #
+import ctypes
+from bytes2str import bytes2str
+from cal_path import sim_paths
 
+class file_store(ctypes.Structure):
+	_fields_ = [('icon', ctypes.c_char * 100),
+				('file_name', ctypes.c_char * 100),
+				('display_name', ctypes.c_char * 100),
+				('hidden', ctypes.c_int),
+				('type', ctypes.c_char * 100),
+				('isdir', ctypes.c_int),
+				('allow_navigation', ctypes.c_int),
+				('sub_icon', ctypes.c_char * 100),
+				('hide_this_json_file', ctypes.c_int),
+				('view_type', ctypes.c_char * 100),
+				('can_delete', ctypes.c_int)]
 
-class file_store():
 	def __init__(self):
-		self.file_name=None
-		self.display_name=None
-		self.icon=""
-		self.hidden=False
-		self.type=None
-		self.isdir=False
-		self.allow_navigation=False
+		self.lib=sim_paths.get_dll_py()	
+		self.lib.file_store_init(ctypes.byref(self))
 
 	def __str__(self):
-		return str(self.file_name)+":"+str(self.display_name)+":"+str(self.icon)+":"+str(self.type)
+		return bytes2str(self.file_name)+","+bytes2str(self.display_name)+","+bytes2str(self.icon)+","+bytes2str(self.type)+", hidden="+str(int(self.hidden))
 
 

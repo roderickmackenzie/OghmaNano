@@ -1,47 +1,51 @@
 # -*- coding: utf-8 -*-
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package solar_main
 #  Part of solar module - delete
 #
 import sys
-from PyQt5.QtWidgets import QMenuBar, QWidget, QCalendarWidget,QTimeEdit, QAction,QDesktopWidget,QTabWidget,QVBoxLayout,QHBoxLayout, QLineEdit, QLabel
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QTime
+from PySide2.QtWidgets import QMenuBar, QWidget, QCalendarWidget,QTimeEdit, QAction,QDesktopWidget,QTabWidget,QVBoxLayout,QHBoxLayout, QLineEdit, QLabel
+from PySide2.QtGui import QIcon
+from gQtCore import QTime
 
 import os
 
 from ribbon_solar import ribbon_solar
 
 from icon_lib import icon_get
-from PyQt5.QtCore import pyqtSignal
+from gQtCore import gSignal
 from plot_widget import plot_widget
 from spctral2 import spctral2
 from dat_file import dat_file
 
-from gpvdm_json import gpvdm_data
-from gpvdm_local import gpvdm_local
-from open_save_dlg import save_as_gpvdm
-from cal_path import gpvdm_paths
+from json_root import json_root
+from json_local_root import json_local_root
+from open_save_dlg import save_as_simfile
+from cal_path import sim_paths
 
 class spctral2_gui(QWidget):
 
@@ -115,7 +119,7 @@ class spctral2_gui(QWidget):
 		self.no2_layout.addWidget(self.no2_label)
 		self.no2_layout.addWidget(self.no2_edit)
 		self.no2_widget.setLayout(self.no2_layout)
-		if gpvdm_local().gui_config.enable_betafeatures==True:
+		if json_local_root().gui_config.enable_betafeatures==True:
 			date_vbox.addWidget(self.no2_widget)
 
 		date_widget.setLayout(date_vbox)
@@ -125,7 +129,7 @@ class spctral2_gui(QWidget):
 
 		self.setLayout(top_hbox)
 
-		data=gpvdm_data()
+		data=json_root().optical
 		self.water_edit.setText(str(data.spctral2.spctral2_water))
 		self.aod_edit.setText(str(data.spctral2.spctral2_aod))
 		self.preasure_edit.setText(str(data.spctral2.spctral2_preasure))
@@ -144,12 +148,12 @@ class spctral2_gui(QWidget):
 		day=self.cal.selectedDate().dayOfYear()
 		hour=self.time.time().hour()
 		minute=self.time.time().minute()
-		data=gpvdm_data()
+		data=json_root().optical
 		data.spctral2.spctral2_day=int(day)
 		data.spctral2.spctral2_hour=int(hour)
 		data.spctral2.spctral2_minute=int(minute)
 		
-		data.spctral2.spctral2_lat=int(self.lat_edit.text())
+		data.spctral2.spctral2_lat=float(self.lat_edit.text())
 
 		data.spctral2.spctral2_aod=float(self.aod_edit.text())
 		data.spctral2.spctral2_preasure=float(self.preasure_edit.text())
@@ -160,7 +164,7 @@ class spctral2_gui(QWidget):
 		self.spctral2.calc(data.spctral2)
 
 		am=dat_file()
-		am.load(os.path.join(gpvdm_paths.get_spectra_path(),"AM1.5G","spectra.inp"))
+		am.load(os.path.join(sim_paths.get_spectra_path(),"AM1.5G","spectra.csv"))
 		am.key_text="AM1.5G"
 		self.plot.data.append(am)
 
@@ -174,11 +178,11 @@ class spctral2_gui(QWidget):
 		self.plot.do_plot()
 
 	def export(self):
-		path=save_as_gpvdm(self,directory = gpvdm_paths.get_spectra_path())
+		path=save_as_simfile(self,directory = sim_paths.get_spectra_path())
 		if path!=None:
 			os.makedirs(path)
 			from json_spectra_db_item import json_spectra_db_item
-			self.spctral2.Iglobal.save(os.path.join(path,"spectra.inp"))
+			self.spctral2.Iglobal.save(os.path.join(path,"spectra.csv"))
 			a=json_spectra_db_item()
 			a.save_as(os.path.join(path,"data.json"))
 

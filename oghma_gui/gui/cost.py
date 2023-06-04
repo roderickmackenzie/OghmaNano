@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package cost
 #  A window to calculate the cost of the solar cell.
@@ -28,28 +33,20 @@ from tab import tab_class
 from icon_lib import icon_get
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QAbstractItemView
-from PyQt5.QtGui import QPainter,QIcon
-from gpvdm_tab import gpvdm_tab
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QAbstractItemView
+from PySide2.QtGui import QPainter,QIcon
+from g_tab import g_tab
 
 from help import help_window
 
-from epitaxy import epitaxy_get_layers
-from epitaxy import get_epi
-
-work_book_enabled=False
-try:
-	from openpyxl import Workbook
-	from openpyxl import load_workbook
-	work_book_enabled=True
-except:
-	print("python3-openpyxl not found")
 
 from cal_path import get_materials_path
-from inp import inp_get_token_value
 from QWidgetSavePos import QWidgetSavePos
 from help import QAction_help
+from json_root import json_root
+from json_material_db_item import json_material_db_item
+from json_base import json_base
 
 class cost(QWidgetSavePos):
 
@@ -82,14 +79,13 @@ class cost(QWidgetSavePos):
 		self.main_vbox.addWidget(toolbar)
 
 
-		self.tab= gpvdm_tab()
+		self.tab= g_tab()
 
 		self.main_vbox.addWidget(self.tab)
 
 
 
 		self.setLayout(self.main_vbox)
-		self.epi=get_epi()
 
 		self.update()
 
@@ -103,44 +99,44 @@ class cost(QWidgetSavePos):
 		self.tab.setColumnWidth(2, 200)
 		self.tab.setColumnWidth(3, 200)
 		self.tab.setColumnWidth(4, 200)
-		if work_book_enabled==False:
-			print(_("python3-openpyxl not found"))
-			return
 
 		energy_tot=0.0
 		cost_tot=0.0
+		epi=json_root().epi
 		for l in epi.layers:
 			
-			volume=l.shape.dy*1.0*1.0
-			name=l.shape.optical_material
-			xls_file_name=os.path.join(get_materials_path(),l.shape.optical_material,"cost.xlsx")
-			if os.path.isfile(xls_file_name):
-				wb = load_workbook(xls_file_name)
-				ws= wb.get_sheet_by_name("results")
+			volume=l.dy*1.0*1.0
+			name=l.optical_material
+			mat_file=os.path.join(get_materials_path(),l.optical_material,"data.json")
+			data=json_material_db_item()
+			data.load(mat_file)
 
-				density = float(ws['B2'].value)
-				mass=density*volume
+			density = data.lca.lca_density
+			mass=density*volume
 
-				cost_per_kg = float(ws['B3'].value)
-				cost=mass*cost_per_kg
+			cost_per_kg = data.lca.lca_cost
+			cost=mass*cost_per_kg
 
-				energy_per_kg = float(ws['B4'].value)
-				energy=energy_per_kg*mass
+			energy_per_kg = data.lca.lca_energy
+			energy=energy_per_kg*mass
 
-				self.tab.add([name,str(volume),str(mass),str(cost),str(energy)])
+			self.tab.add([name,str(volume),str(mass),str(cost),str(energy)])
 
-				energy_tot=energy_tot+energy
-				cost_tot=cost_tot+cost
-		
-		pce=inp_get_token_value("sim_info.dat", "#pce")
+			energy_tot=energy_tot+energy
+			cost_tot=cost_tot+cost
+
+		sim_info=json_base("decode")
+		sim_info.import_from_file("sim_info.dat")
+
+		pce=sim_info.pce
 		payback_time=-1.0
 		if pce!=None:
 			pce=float(pce)
 			gen_energy=1366.0*pce/100.0
 			payback_time=energy_tot/gen_energy/60.0/60.0/24/365
 		
-		self.tab.add(self.tab,["sum","","",str(cost_tot),str(energy_tot)])
-		self.tab.add(self.tab,["","","pay back time=",str(payback_time),"years"])
+		self.tab.add(["sum","","",str(cost_tot),str(energy_tot)])
+		self.tab.add(["","","pay back time=",str(payback_time),"years"])
 
 
 

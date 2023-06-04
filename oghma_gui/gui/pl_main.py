@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package pl_main
 #  PL editing window
@@ -26,15 +31,13 @@
 
 from tab_base import tab_base
 from tab import tab_class
-from epitaxy import epitaxy_get_layers
 from global_objects import global_object_register
-from epitaxy import epitaxy_get_name
 
 #qt5
-from PyQt5.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QPushButton,QDialog,QFileDialog,QToolBar,QMessageBox,QTabWidget
+from PySide2.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
+from PySide2.QtGui import QIcon
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QPushButton,QDialog,QFileDialog,QToolBar,QMessageBox,QTabWidget
 from about import about_dlg
 
 #windows
@@ -42,10 +45,12 @@ from QHTabBar import QHTabBar
 from icon_lib import icon_get
 
 from css import css_apply
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 from help import QAction_help
+from sim_name import sim_name
+from ribbon_page import ribbon_page
 
-class pl_main(QWidget):
+class pl_main(QWidget,tab_base):
 
 	def __init__(self):
 		QWidget.__init__(self)
@@ -53,10 +58,16 @@ class pl_main(QWidget):
 
 		self.setWindowIcon(icon_get("preferences-system"))
 
-		self.setWindowTitle(_("Luminescence editor")+" (https://www.gpvdm.com)") 
+		self.setWindowTitle(_("Luminescence editor")+sim_name.web_window_title) 
 
-		toolbar=QToolBar()
-		toolbar.setIconSize(QSize(48, 48))
+		self.setMinimumSize(1000, 600)
+		toolbar=ribbon_page()
+		#toolbar.setIconSize(QSize(48, 48))
+
+		self.tb_pl_enabled = QAction(icon_get("emission"), _("Optical\nEmission"), self)
+		self.tb_pl_enabled.setCheckable(True)
+		self.tb_pl_enabled.triggered.connect(self.callback_pl_enabled)
+		toolbar.addAction(self.tb_pl_enabled)
 
 		spacer = QWidget()
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -70,37 +81,52 @@ class pl_main(QWidget):
 		self.main_vbox.addWidget(toolbar)
 
 		self.notebook = QTabWidget()
-
-		css_apply(self,"tab_default.css")
+		if len(json_root().epi.layers)>8:
+			self.tab_bar=QHTabBar()
+			css_apply(self.notebook,"style_h.css")
+			self.notebook.setTabBar(self.tab_bar)
+			self.notebook.setTabPosition(QTabWidget.West)
+		else:
+			css_apply(self,"tab_default.css")
 
 		self.main_vbox.addWidget(self.notebook)
 		self.setLayout(self.main_vbox)
 
-		self.notebook.setTabsClosable(True)
-		self.notebook.setMovable(True)
-		bar=QHTabBar()
-		bar.setStyleSheet("QTabBar::tab { height: 35px; width: 200px; }")
-		self.notebook.setTabBar(bar)
-		self.notebook.setTabPosition(QTabWidget.West)
 
 		global_object_register("pl_update",self.update)
-
+		self.notebook.currentChanged.connect(self.changed_click)
 		self.update()
 
 	def update(self):
 		self.notebook.clear()
-		epi=gpvdm_data().epi
+		epi=json_root().epi
 
 		for l in epi.layers:
 			if l.layer_type=="active":
 
-				name=_("Luminescence of ")+l.shape_name
-
 				widget=tab_class(l.shape_pl)
 
-				self.notebook.addTab(widget,name)
+				self.notebook.addTab(widget,l.name)
 
 	def help(self):
 		help_window().help_set_help(["tab.png",_("<big><b>Luminescence</b></big>\nIf you set 'Turn on luminescence' to true, the simulation will assume recombination is a raditave process and intergrate it to produce Voltage-Light intensity curves (lv.dat).  Each number in the tab tells the model how efficient each recombination mechanism is at producing photons.")])
 
+	def changed_click(self):
+		data=json_root()
+
+		tab = self.notebook.currentWidget()
+		if tab==None:
+			return
+		tab.tab.refind_template_widget()
+		self.tb_pl_enabled.setChecked(tab.tab.template_widget.pl_emission_enabled)
+
+
+	def callback_pl_enabled(self):
+		data=json_root()
+		tab = self.notebook.currentWidget()
+		tab.tab.refind_template_widget()
+		tab.tab.template_widget.pl_emission_enabled=self.tb_pl_enabled.isChecked()
+
+		tab.tab.hide_show_widgets()
+		data.save()
 

@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package equation_editor
 #  An equation editor
@@ -25,7 +30,6 @@
 
 import os
 import sys
-from gui_util import dlg_get_text
 from util import fx_with_units
 from icon_lib import icon_get
 
@@ -36,15 +40,10 @@ _ = i18n.language.gettext
 from inp import inp_load_file
 from inp import inp_read_next_item
 
-#matplotlib
-import matplotlib
-matplotlib.use('Qt5Agg')
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
-
+import pyqtgraph as pg
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QDialog,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget,QAbstractItemView
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QDialog,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget,QAbstractItemView
 
 #windows
 from open_save_dlg import save_as_filter
@@ -57,15 +56,14 @@ from help import help_window
 from QWidgetSavePos import QWidgetSavePos
 from gui_util import yes_no_dlg
 
-from PyQt5.QtCore import pyqtSignal
+from gQtCore import gSignal
 from dat_file import dat_file
 
-from gpvdm_tab import gpvdm_tab
-mesh_articles = []
+from g_tab import g_tab
 
 class equation_editor(QWidgetSavePos):
 
-	data_written = pyqtSignal()
+	data_written = gSignal()
 	def save_data(self):
 
 		out_text=[]
@@ -95,7 +93,7 @@ class equation_editor(QWidgetSavePos):
 		dump=dump.rstrip("\n")
 
 		f=open(os.path.join(self.path,self.equation_file), mode='wb')
-		lines = f.write(str.encode(dump))
+		f.write(str.encode(dump))
 		f.close()
 
 
@@ -105,7 +103,6 @@ class equation_editor(QWidgetSavePos):
 
 		self.build_mesh()
 		self.draw_graph()
-		self.fig.canvas.draw()
 		self.save_data()
 
 	def callback_remove_item(self):
@@ -114,7 +111,6 @@ class equation_editor(QWidgetSavePos):
 		self.build_mesh()
 
 		self.draw_graph()
-		self.fig.canvas.draw()
 		self.save_data()
 
 	def callback_move_down(self):
@@ -122,7 +118,6 @@ class equation_editor(QWidgetSavePos):
 
 		self.build_mesh()
 		self.draw_graph()
-		self.fig.canvas.draw()
 		self.save_data()
 
 	def callback_move_up(self):
@@ -131,27 +126,24 @@ class equation_editor(QWidgetSavePos):
 
 		self.build_mesh()
 		self.draw_graph()
-		self.fig.canvas.draw()
 		self.save_data()
 
 	def update(self):
 		self.build_mesh()
 		self.draw_graph()
-		self.fig.canvas.draw()
 
 	def draw_graph(self):
-		self.fig.clf()
-		self.fig.subplots_adjust(bottom=0.2)
-		self.fig.subplots_adjust(left=0.1)
-		self.ax1 = self.fig.add_subplot(111)
-		self.ax1.ticklabel_format(useOffset=False)
+		self.canvas.clear()
+		plot0=self.canvas.addPlot(row=0, col=0)
+		plot0.addLegend()
 
-		#self.ax1.set_ylabel(self.ylabel)
 		if self.data.y_scale!=None:
+			pen = pg.mkPen((255, 0, 0), width=3)
 			y_nm= [y * self.data.y_mul for y in self.data.y_scale]
-			frequency, = self.ax1.plot(y_nm,self.data.data[0][0], 'ro-', linewidth=3 ,alpha=1.0)
-
-		self.ax1.set_xlabel(_("Wavelength")+" (nm)")
+			plot0.plot(x=y_nm, y=self.data.data[0][0], pen=pen, name=_("Value"), symbol='o', symbolSize=8, symbolBrush =(255, 0, 0))
+			plot0.setLabel('left', _("Value")+" (au)", color='k')
+			plot0.setLabel('bottom', _("Wavelength") +" (nm)", color='k')
+			plot0.showGrid(x = True, y = True, alpha = 1.0)
 
 	def load_data(self):
 		self.tab.clear()
@@ -163,7 +155,9 @@ class equation_editor(QWidgetSavePos):
 		pos=0
 		lines=inp_load_file(os.path.join(self.path,self.equation_file))
 		if lines!=False:
-			token,self.data.y_len,pos=inp_read_next_item(lines,pos)
+			token,y_len,pos=inp_read_next_item(lines,pos)
+			self.data.y_len=int(y_len)
+
 			token,equations,pos=inp_read_next_item(lines,pos)
 			equations=int(equations)
 			self.data.y_len=int(self.data.y_len)
@@ -176,7 +170,6 @@ class equation_editor(QWidgetSavePos):
 				self.tab.add([str(start),str(stop),str(equation)])
 
 	def build_mesh(self):
-
 		data_min=100.0
 		if self.tab.rowCount()!=0:
 			for i in range(0,self.tab.rowCount()):
@@ -219,8 +212,8 @@ class equation_editor(QWidgetSavePos):
 				w=w+dx
 
 	def on_cell_edited(self, x,y):
+		self.build_mesh()
 		self.draw_graph()
-		self.fig.canvas.draw()
 		self.save_data()
 
 	def set_default_value(self,value):
@@ -243,7 +236,6 @@ class equation_editor(QWidgetSavePos):
 	def callback_play(self):
 		self.build_mesh()
 		self.draw_graph()
-		self.fig.canvas.draw()
 
 	def load(self):
 		self.data.x_len=1
@@ -268,15 +260,15 @@ class equation_editor(QWidgetSavePos):
 		self.default_value="3.0"
 		self.setMinimumSize(600,300)
 		self.setWindowIcon(icon_get("vars"))
-		self.setWindowTitle(_("Equation editor")+" (https://www.gpvdm.com)") 
+		self.setWindowTitle2(_("Equation editor"))
 
 		self.path=path
 		self.equation_file=equation_file
 		self.out_file=out_file
 
-		self.fig = Figure(figsize=(7,3), dpi=100)
-		self.canvas = FigureCanvas(self.fig)
-		self.canvas.figure.patch.set_facecolor('white')
+		pg.setConfigOption('background', 'w')
+		pg.setConfigOption('foreground', 'k')
+		self.canvas = pg.GraphicsLayoutWidget()
 
 		self.main_vbox = QVBoxLayout()
 
@@ -320,7 +312,7 @@ class equation_editor(QWidgetSavePos):
 
 		self.main_vbox.addWidget(toolbar2)
 
-		self.tab = gpvdm_tab()
+		self.tab = g_tab()
 		self.tab.resizeColumnsToContents()
 
 		self.tab.verticalHeader().setVisible(False)

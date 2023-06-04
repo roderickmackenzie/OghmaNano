@@ -1,56 +1,52 @@
+# -*- coding: utf-8 -*-
 #
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package time_domain_experiment
 #  The main experiment window, used for configuring time domain experiments.
 #
 
-import os
-from gui_util import dlg_get_text
-import webbrowser
-from global_objects import global_object_get
 from icon_lib import icon_get
-from global_objects import global_object_register
 import i18n
 _ = i18n.language.gettext
 
 #qt
-from PyQt5.QtCore import QSize, Qt
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QMenuBar,QStatusBar
-from PyQt5.QtGui import QPainter,QIcon
+from gQtCore import QSize, Qt
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QMenuBar,QStatusBar, QMenu
+from PySide2.QtGui import QPainter,QIcon
 
 #window
-from gui_util import yes_no_dlg
-from PyQt5.QtCore import pyqtSignal
+from gQtCore import gSignal
 from util import wrap_text
-from QWidgetSavePos import QWidgetSavePos
-from cal_path import get_sim_path
 
 from css import css_apply
 
-from progress_class import progress_class
-from process_events import process_events
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 from experiment import experiment
 from tb_lasers import tb_lasers
+from config_window import class_config_window
 
 class time_domain_experiment(experiment):
 
@@ -68,11 +64,23 @@ class time_domain_experiment(experiment):
 		self.tb_start = QAction(icon_get("start"), _("Simulation start time"), self)
 		toolbar.addAction(self.tb_start)
 
+		self.tb_loop = QAction(icon_get("loop"), _("Loop"), self)
+		self.tb_loop.setCheckable(True)
+
+		self.menu_loop = QMenu(self)
+		configure_item=QAction(_("Configure"), self)
+		self.menu_loop.addAction(configure_item)
+		self.tb_loop.setMenu(self.menu_loop)
+		self.tb_loop.triggered.connect(self.callback_loop)
+		self.menu_loop.triggered.connect(self.callback_loop_menu)
+
+		toolbar.addAction(self.tb_loop)
+
 		return toolbar
 
 	def __init__(self):
-		gpvdm_data().time_domain.fix_identical_uids([])
-		experiment.__init__(self,"time_domain_experiment_tab",window_save_name="time_domain_experiment", window_title=_("Time domain experiment window"),json_search_path="gpvdm_data().time_domain")
+		json_root().sims.time_domain.fix_identical_uids([])
+		experiment.__init__(self,"time_domain_experiment_tab",window_save_name="time_domain_experiment", window_title=_("Time domain experiment window"),json_search_path="json_root().sims.time_domain")
 
 		w=self.ribbon_simulation()
 		self.ribbon.addTab(w,_("Simulation"))
@@ -96,4 +104,19 @@ class time_domain_experiment(experiment):
 		tab = self.notebook.currentWidget()
 		if tab!=None:
 			self.tb_lasers.update(tab.data)
+			self.tb_loop.setChecked(tab.data.mesh.time_loop)
+
+	def callback_loop(self):
+		tab = self.notebook.currentWidget()
+		if tab!=None:
+			tab.data.mesh.time_loop = not tab.data.mesh.time_loop
+			self.tb_loop.setChecked(tab.data.mesh.time_loop)
+			json_root().save()
+
+	def callback_loop_menu(self):
+		tab = self.notebook.currentWidget()
+		if tab!=None:
+			self.mesh_config=class_config_window([tab.data.mesh],[_("Config")],title=_("Loop configuration"),icon="loop")
+			self.mesh_config.show()
+
 

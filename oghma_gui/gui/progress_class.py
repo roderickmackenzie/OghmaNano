@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package progress
 #  Progress bar window, when not in GUI mode it will do a text based one.
@@ -26,7 +31,7 @@
 
 import sys
 import time
-from numpy import exp
+from math import exp
 from gui_enable import gui_get
 	
 class progress_base():
@@ -102,9 +107,9 @@ class progress_base():
 	
 if gui_get()==True:
 
-	from PyQt5.QtCore import QSize, Qt
-	from PyQt5.QtWidgets import QWidget, QVBoxLayout,QHBoxLayout,QLabel,QDesktopWidget
-	from gpvdm_progress import gpvdm_progress
+	from gQtCore import QSize, Qt
+	from PySide2.QtWidgets import QWidget, QVBoxLayout,QHBoxLayout,QLabel,QDesktopWidget
+	from g_progress import g_progress
 	from spinner import spinner
 	from icon_lib import icon_get
 
@@ -118,11 +123,11 @@ if gui_get()==True:
 			#self.setWindowFlags(Qt.FramelessWindowHint|Qt.WindowStaysOnTopHint)
 			self.setWindowTitle("Working...")
 			self.setWindowIcon(icon_get("icon"))
-			self.setMinimumSize(400, 90)
+			self.setMinimumSize(400, 100)
 			main_vbox = QVBoxLayout()
 			hbox= QHBoxLayout()
 			hbox.setContentsMargins(0, 0, 0, 0)
-			self.progress = gpvdm_progress()
+			self.progress = g_progress()
 			self.spinner=spinner()
 
 			hbox.addWidget(self.progress, 0)
@@ -159,17 +164,18 @@ if gui_get()==True:
 		def pulse(self):
 			self.progress.pulse()
 			
-		def start(self):
-			shape=QDesktopWidget().screenGeometry()
+		def start(self,offset=True):
+			if offset==True:
+				shape=QDesktopWidget().screenGeometry()
 
-			w=shape.width()
-			h=shape.height()
-			win_w=self.frameGeometry().width()
-			win_h=self.frameGeometry().height()
+				w=shape.width()
+				shape.height()
+				win_w=self.frameGeometry().width()
+				self.frameGeometry().height()
 
-			x=w-win_w
-			y=0
-			self.move(x,y)
+				x=w-win_w
+				y=0
+				self.move(x,y)
 			self.show()
 			self.spinner.start()
 			self.enable_pulse(False)

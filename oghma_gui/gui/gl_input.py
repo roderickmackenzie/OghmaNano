@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package gl_input
 #  The mouse and keyboard input to the OpenGL display.
@@ -28,38 +33,39 @@ open_gl_ok=False
 
 import sys
 from math import fabs
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtGui import QCursor
+
+from PySide2.QtWidgets import QApplication
+from gQtCore import QTimer, Qt
+from PySide2.QtGui import QCursor,QKeySequence,QKeyEvent
+
 try:
 	from OpenGL.GL import *
 	from OpenGL.GLU import *
-	from PyQt5 import QtOpenGL
-	from PyQt5.QtOpenGL import QGLWidget
-	from gl_lib import val_to_rgb
-	from gl_color import color
-	from gl_lim import gl_obj_id_starts_with
-
 except:
 	pass
 
-from PyQt5.QtCore import QTimer
-from PyQt5.QtCore import Qt
-from PyQt5 import QtGui
+
 import time
 from math import cos
 from math import sin
-
 from epitaxy import get_epi
-from gl_lib import gl_obj_id_starts_with
-from gpvdm_json import gpvdm_data
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import Qt
+from json_root import json_root
+import webbrowser
+from bytes2str import bytes2str
+from vec import vec
 
 class mouse_event():
 	def __init__(self):
 		self.time=0
 		self.x=0
 		self.y=0
+		self.dxyz=vec()
+		self.rotate_x=0.0
+		self.rotate_y=0.0
+		self.working=False
+		self.drag=False
+		self.rotate=False
+		self.scale=False
 
 	def delta_time(self):
 		return time.time()-self.time
@@ -68,18 +74,32 @@ class gl_input():
 
 	def __init__(self):
 		self.cursor=None
+		self.last_object_clicked=None
 
-	def keyPressEvent(self, event):
-		if type(event) == QtGui.QKeyEvent:
+	def keyPressEvent_han(self, event):
+		keyname=event.key()
+		modifiers = event.modifiers()
+
+		if (keyname>64 and keyname<91 ) or (keyname>96 and keyname<123):
+			keyname=chr(keyname)
+			if keyname.isalpha()==True:
+				if Qt.ShiftModifier == modifiers:
+					keyname=keyname.upper()
+				else:
+					keyname=keyname.lower()
+
+
+		if type(event) == QKeyEvent:
+			modifiers = QApplication.keyboardModifiers()
 			if event.text()=="f":
 				self.showFullScreen()
-			if event.text()=="r":
+			elif event.text()=="r":
 				if self.timer==None:
 					self.start_rotate()
 				else:
 					self.timer.stop()
 					self.timer=None
-			if event.text()=="z":
+			elif event.text()=="z":
 				if self.timer==None:
 					self.start_rotate()
 					if self.active_view.zoom>-40:
@@ -91,31 +111,35 @@ class gl_input():
 					self.timer.stop()
 					self.timer=None
 
+		if  modifiers == Qt.ControlModifier and keyname=='c':
+			self.object_copy_json()
+		if  modifiers == Qt.ControlModifier and keyname=='v':
+			self.callback_paste_object()
+		if event.key() == Qt.Key_Delete:
+			self.layer_delete()
 
 	def event_to_3d_obj(self,event):
 		x = event.x()
 		y = self.height()-event.y()
 		self.set_false_color(True)
 
-		old_val=self.view_options.text
-		self.view_options.text=False
+		old_val=self.active_view.text
 		self.render()
-		self.view_options.text=old_val
 
 		data=glReadPixelsub(x, y, 1, 1, GL_RGBA,GL_FLOAT)
-
+		#print(data[0][0][0],data[0][0][1],data[0][0][2])
 		obj=self.gl_objects_search_by_color(data[0][0][0],data[0][0][1],data[0][0][2])
 
 		self.set_false_color(False)
 		return obj
 
-	def mouseDoubleClickEvent(self,event):
+	def mouseDoubleClickEvent_han(self,event):
 		#thumb_nail_gen()
 		self.obj=self.event_to_3d_obj(event)
-		if self.obj!=None:
-			if gl_obj_id_starts_with(self.obj.id,"layer")==True:
-				self.selected_obj=self.obj
-				self.do_draw()
+		#if self.obj!=None:
+		#	if gl_obj_id_starts_with(self.obj.id,"layer")==True:
+		#		self.selected_obj=self.obj
+		#		self.do_draw()
 
 	def set_cursor(self,cursor):
 		if self.cursor!=cursor:
@@ -160,7 +184,7 @@ class gl_input():
 		dzdy=(z1-z0)/2.0
 		return dxdx,dydx,dzdx,dxdy,dydy,dzdy 
 		
-	def mouseMoveEvent(self,event):
+	def mouseMoveEvent_han(self,event):
 		if 	self.timer!=None:
 			self.timer.stop()
 			self.timer=None
@@ -182,22 +206,54 @@ class gl_input():
 				self.active_view.x_pos =self.active_view.x_pos + 0.1 * dx
 				self.active_view.y_pos =self.active_view.y_pos + 0.1 * dy
 		else:
+			if self.mouse_click_event.working==False:
+				self.mouse_click_event.dxyz.set(0.0,0.0,0.0)
+				self.mouse_click_event.rotate_x=0.0
+				self.mouse_click_event.rotate_y=0.0
+				self.mouse_click_event.working=True
 			modifiers = QApplication.keyboardModifiers()
-			if modifiers == Qt.ShiftModifier:
-				dtheta=360*dx/self.width()
-				dphi=360*dy/self.height()
-				self.gl_objects_rotate(dphi,dtheta)
+
+			if self.view_count_enabled()==1:
+				dx_=self.dxdx*dx-self.dxdy*dy
+				dy_=self.dydx*dy-self.dydy*dy
+				dz_=self.dzdx*dx-self.dzdy*dy
+
+				if self.last_object_clicked!=None:
+					#print(self.last_object_clicked.id1)
+					if self.last_object_clicked.id1==b"rotate":
+						self.mouse_click_event.rotate=True
+						dtheta=float(360*dx/self.width())
+						dphi=float(360*dy/self.height())
+						self.gl_objects_rotate(dphi,dtheta)
+						self.mouse_click_event.rotate_x=self.mouse_click_event.rotate_x+dphi
+						self.mouse_click_event.rotate_y=self.mouse_click_event.rotate_y+dtheta
+					elif self.last_object_clicked.id1==b"rotate_x":
+						self.mouse_click_event.rotate=True
+						dtheta=0.0
+						dphi=float(360*dy/self.height())
+						self.gl_objects_rotate(dphi,dtheta)
+						self.mouse_click_event.rotate_x=self.mouse_click_event.rotate_x+dphi
+					elif self.last_object_clicked.id1==b"rotate_y":
+						self.mouse_click_event.rotate=True
+						dtheta=float(360*dx/self.width())
+						dphi=0.0
+						self.gl_objects_rotate(dphi,dtheta)
+						self.mouse_click_event.rotate_y=self.mouse_click_event.rotate_y+dtheta
+					elif self.last_object_clicked.id1==b"resize_ball":
+						self.mouse_click_event.scale=True
+						self.gl_objects_scale(dx_,dy_,dz_)
+					else:
+						self.mouse_click_event.drag=True
+						self.gl_objects_move(dx_,dy_,dz_)
+		
 			else:
-				if self.view_count_enabled()==1:
-					dx_=self.dxdx*dx-self.dxdy*dy
-					dy_=self.dydx*dy-self.dydy*dy
-					dz_=self.dzdx*dx-self.dzdy*dy
-					self.gl_objects_move(dx_,dy_,dz_)
-				else:
-					dx_=dx*cos(2.0*3.14159*self.active_view.yRot/360)+dy*sin(2.0*3.14159*self.active_view.xRot/360)
-					dz_=dx*sin(2.0*3.14159*self.active_view.yRot/360)-dy*sin(2.0*3.14159*self.active_view.xRot/360)
-					dy_=dy*cos(2.0*3.14159*self.active_view.xRot/360)
-					self.gl_objects_move(dx_*0.2/self.active_view.zoom,dy_*0.2/self.active_view.zoom,dz_*0.2/self.active_view.zoom)
+				dx_=dx*cos(2.0*3.14159*self.active_view.yRot/360)+dy*sin(2.0*3.14159*self.active_view.xRot/360)
+				dz_=dx*sin(2.0*3.14159*self.active_view.yRot/360)-dy*sin(2.0*3.14159*self.active_view.xRot/360)
+				dy_=dy*cos(2.0*3.14159*self.active_view.xRot/360)
+				self.gl_objects_move(dx_*0.2/self.active_view.zoom,dy_*0.2/self.active_view.zoom,dz_*0.2/self.active_view.zoom)
+			self.mouse_click_event.dxyz.x=self.mouse_click_event.dxyz.x+dx_
+			self.mouse_click_event.dxyz.y=self.mouse_click_event.dxyz.y+dy_
+			self.mouse_click_event.dxyz.z=self.mouse_click_event.dxyz.z+dz_
 
 		self.lastPos=event.pos()
 		self.setFocusPolicy(Qt.StrongFocus)
@@ -206,41 +262,59 @@ class gl_input():
 		#self.view_dump()
 
 	def event_to_view(self,event):
-		for v in self.views:
-			if event.x()>v.window_x*self.width():
-				if self.height()-event.y()>v.window_y*self.height():
-					if event.x()<v.window_x*self.width()+v.window_w*self.width():
-						if self.height()-event.y()<v.window_y*self.height()+v.window_h*self.height():
-							return v
+		for v in json_root().gl.views.segments:
+			if v.name in self.enabled_veiws:
+				if event.x()>v.window_x*self.width():
+					if self.height()-event.y()>v.window_y*self.height():
+						if event.x()<v.window_x*self.width()+v.window_w*self.width():
+							if self.height()-event.y()<v.window_y*self.height()+v.window_h*self.height():
+								return v
 
 		return False
 
-	def mousePressEvent(self,event):
+	def mousePressEvent_han(self,event):
 		self.lastPos=None
 		self.mouse_click_event=mouse_event()
 		self.mouse_click_event.time=time.time()
 		self.mouse_click_event.x=event.x()
 		self.mouse_click_event.y=event.y()
 		self.active_view=self.event_to_view(event)
+		if self.active_view!=False:
+			self.gl_main.active_view=ctypes.addressof(self.active_view)
+		else:
+			self.gl_main.active_view=None
 
 		if event.buttons()==Qt.LeftButton or event.buttons()==Qt.RightButton:
 			obj=self.event_to_3d_obj(event)
-
 			if obj!=None:
-				if len(obj.id)>0:
+				if obj.id!=b"":
 					self.dxdx,self.dydx,self.dzdx,self.dxdy,self.dydy,self.dzdy = self.get_3d_pos(event)
-					self.gl_object_deselect_all()
-					self.gl_objects_select_by_id(obj.id)
-					self.set_cursor(QCursor(Qt.SizeAllCursor))
-					self.text_output.emit(obj.id[0]+" "+obj.text)
-					self.force_redraw(level="no_rebuild")
+					self.last_object_clicked=obj
+					if obj.selected==False:
+						modifiers = QApplication.keyboardModifiers()
+						if modifiers != Qt.ShiftModifier:
+							self.gl_object_deselect_all()
+						
+						self.gl_objects_select_by_id(obj.id)
+						self.lib.gl_selection_box(ctypes.byref(self.gl_main))
+						self.set_cursor(QCursor(Qt.SizeAllCursor))
+						self.text_output.emit(bytes2str(obj.id)+" "+bytes2str(obj.text))
+						self.force_redraw(level="no_rebuild")
 			else:
 				self.gl_object_deselect_all()
+				self.lib.gl_main_remove_selection_box(ctypes.byref(self.gl_main))
 				self.force_redraw(level="no_rebuild")
 
-
-	def mouseReleaseEvent(self,event):
+	def mouseReleaseEvent_han(self,event):
 		self.set_cursor(None)
+		#print(self.mouse_click_event.drag)
+		if self.mouse_click_event.working==True:
+			self.gl_objects_move_update_json()
+			self.mouse_click_event.drag=False
+			self.mouse_click_event.rotate=False
+			self.mouse_click_event.scale=False
+			self.mouse_click_event.working=False
+			return
 
 		delta=time.time() - self.mouse_click_event.time
 
@@ -252,20 +326,26 @@ class gl_input():
 			if (delta)<3:
 				if obj!=None:
 					if len(obj.id)>0:
-						data_obj=gpvdm_data().find_object_by_id(obj.id[0])
+						data_obj=json_root().find_object_by_id(bytes2str(obj.id))
 						if data_obj!=None:
-							if gl_obj_id_starts_with(data_obj.id,"mesh")==False:
-								self.menu_obj(event,data_obj)
-							else:
-								self.mesh_menu(event)
+							self.menu_obj(event,data_obj)
+
 				else:
 					self.menu(event)
 
+
+			json_root().save()
+
 		if event.button()==Qt.LeftButton:
-			self.gl_objects_save_selected()
+			try:
+				if obj!=None:
+					if obj.html!=b"":
+						webbrowser.open(bytes2str(obj.html))
+			except:
+				pass
+			json_root().save()
 
-
-	def wheelEvent(self,event):
+	def wheelEvent_han(self,event):
 		p=event.angleDelta()
 		self.active_view=self.event_to_view(event)
 		if self.active_view!=False:

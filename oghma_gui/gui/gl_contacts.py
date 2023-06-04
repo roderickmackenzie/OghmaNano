@@ -1,149 +1,161 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package gl_lib_ray
 #  Library to draw ray
 #
 
-import sys
 
 try:
 	from OpenGL.GL import *
 	from OpenGL.GLU import *
-	from PyQt5 import QtOpenGL
-	from PyQt5.QtOpenGL import QGLWidget
-	open_gl_ok=True
 except:
-	print("opengl error from gl_lib",sys.exc_info()[0])
-	
-import os
-
-from gl_base_object import gl_base_object
+	pass
 
 from epitaxy import get_epi
+from vec import vec
 
-from triangle_io import triangles_mul_vec
-
-from triangle import vec
-
-from triangle_io import triangles_flip_in_box
-from triangle_io import triangles_add_vec
-from triangle_io import triangles_flip
-from gpvdm_json import gpvdm_data
+from json_root import json_root
+from bytes2str import str2bytes
 
 class gl_contacts():
 
-	def draw_contacts(self):
-		#print("draw contacts")
+	def draw_contacts(self,z_shift=0.0):
 		epi=get_epi()
 		box=vec()
 		pos=vec()
-		mesh_y=gpvdm_data().mesh.mesh_y
-		mesh_x=gpvdm_data().mesh.mesh_x
-		mesh_z=gpvdm_data().mesh.mesh_z
+		json_root().electrical_solver.mesh.mesh_y
+		mesh_x=json_root().electrical_solver.mesh.mesh_x
+		mesh_z=json_root().electrical_solver.mesh.mesh_z
 
 		self.gl_objects_remove_regex("contact")
 		top_contact_layer=epi.get_top_contact_layer()
-		btm_contact_layer=epi.get_btm_contact_layer()
+		epi.get_btm_contact_layer()
 
 		for c in epi.contacts.segments:
-			if c.shape_enabled==True:
-				a=gl_base_object()
-				a.id=[c.id]
+			if c.enabled==True:
+				a=self.gl_main.add_object()
+				a.id=str2bytes(c.id)
+				added=False
 
-				if c.position=="left":
-					if mesh_x.get_points()>1:
+				if c.position=="left" or c.position=="right":
+					if mesh_x.enabled==True:
 						sticking_out_bit=0.2
-						a.type="solid_and_mesh"
-						xyz=vec()
-						xyz.x=self.scale.project_m2screen_x(0)-sticking_out_bit
-						xyz.y=self.scale.project_m2screen_y(c.y0)
-						xyz.z=self.scale.project_m2screen_z(0)
-						a.xyz.append(xyz)
-						a.dxyz.x=1.0
-						a.dxyz.y=self.scale.y_mul*c.dy
-						a.dxyz.z=self.scale.project_m2screen_z(mesh_z.get_len())
+						a.type=b"solid_and_mesh"
+
+						if c.position=="left":
+							xx=self.scale.project_m2screen_x(0)-sticking_out_bit
+						else:
+							xx=self.scale.project_m2screen_x(mesh_x.get_len())
+
+						yy=self.scale.project_m2screen_y(c.x0)
+						zz=self.scale.project_m2screen_z(0)
+						o.add_xyz(xx,yy,zz)
+
+						a.dx=sticking_out_bit
+						a.dy=self.gl_main.scale.y_mul*c.dx
+						a.dz=self.gl_main.scale.z_mul*mesh_z.get_len()
 
 						a.r=c.color_r
 						a.g=c.color_g
 						a.b=c.color_b
 						a.coloralpha=1.0
 
-						my_vec=vec()
-						my_vec.x=sticking_out_bit/self.scale.x_mul#+c.ingress
-						my_vec.y=c.dy
-						my_vec.z=mesh_z.get_len()
-
-						if c.triangles!=None:
-							a.triangles=triangles_flip_in_box(c.triangles.data)
-							a.triangles=triangles_mul_vec(a.triangles,box)
-							a.triangles=triangles_add_vec(a.triangles,pos)
-							a.triangles=self.scale.scale_trianges_m2screen(a.triangles)
-							self.gl_objects_add(a)
+						added=True
 
 				elif c.position=="top" or c.position=="bottom":
 					if top_contact_layer!=-1:
 
-						xyz=vec()
-						if mesh_x.get_points()==1:
-							xyz.x=self.scale.project_m2screen_x(0.0)
-							a.dxyz.x=mesh_x.get_len()*self.scale.x_mul
+						if mesh_x.enabled==False:
+							yy=0.0	#was missing from origonal
+							xx=self.scale.project_m2screen_x(0.0)
+							zz=self.scale.project_m2screen_z(0.0)
+							a.dx=mesh_x.get_len()*self.gl_main.scale.x_mul
+							
+							#xyz.x=self.scale.project_m2screen_x(pos.x)
+							#xyz.y=self.scale.project_m2screen_y(pos.y)
+							zz=self.scale.project_m2screen_z(pos.z)
+							a.add_xyz(xx,yy,zz)
 						else:
-							xyz.x=self.scale.project_m2screen_x(c.x0)
-							a.dxyz.x=c.dx*self.scale.x_mul
+							a.dx=c.dx*self.gl_main.scale.x_mul
 
-						if mesh_z.get_points()==1:
-							a.dxyz.z=mesh_z.get_len()*self.scale.z_mul
+						if mesh_z.enabled==False:
+							a.dz=mesh_z.get_len()*self.gl_main.scale.z_mul
 						else:
-							a.dxyz.z=c.dz*self.scale.z_mul
+							a.dz=c.dz*self.gl_main.scale.z_mul
+
+						if mesh_x.enabled==True or mesh_z.enabled==True:
+							a.xyz_n=0
+							for pos in c.expand_xyz0():
+								xx=self.scale.project_m2screen_x(pos.x)
+								yy=self.scale.project_m2screen_y(pos.y)
+								zz=self.scale.project_m2screen_z(pos.z)+z_shift
+								a.add_xyz(xx,yy,zz)
+
+						added=True
+
+						#fixup
+						for n in range(0,a.xyz_n): 
+							xyz=a.get_xyz(n)
+							if c.position=="top":
+								a.dy=epi.layers[0].dy*self.gl_main.scale.y_mul
+								xyz.y=self.scale.project_m2screen_y(epi.get_layer_start(0))
+							else:
+								a.dy=epi.layers[len(epi.layers)-1].dy*self.gl_main.scale.y_mul
+								xyz.y=self.scale.project_m2screen_y(epi.get_layer_start(len(epi.layers)-1))
+							a.set_xyz(n,xyz)
+
+				if added==True:
+					a.type=b"solid_and_mesh"
+					a.selectable=True
+
+					a.r=c.color_r
+					a.g=c.color_g
+					a.b=c.color_b
+					a.color_alpha=c.color_alpha
+
+					a.rotate_x=c.rotate_x
+					a.rotate_y=c.rotate_y
+
+					if c.triangles!=None:
+						block=a.add_block()
+						block.gl_array_type=GL_LINES
+						block.gl_line_width=5
+						block.solid_lines=True
+						self.lib.gl_code_block_import_dat_file_triangles(ctypes.byref(block),ctypes.byref(c.triangles))
+						self.lib.gl_code_block_import_rgb(ctypes.byref(block),ctypes.c_float(a.r*0.9), ctypes.c_float(a.g*0.9), ctypes.c_float(a.b*0.9), ctypes.c_float(a.color_alpha), ctypes.c_int(block.gl_array_points))
+
+						block=a.add_block()
+						block.gl_array_type=GL_TRIANGLES
+						block.gl_line_width=5
+						block.solid_lines=True
+						self.lib.gl_code_block_import_dat_file_triangles(ctypes.byref(block),ctypes.byref(c.triangles))
+						self.lib.gl_code_block_import_rgb(ctypes.byref(block),ctypes.c_float(a.r), ctypes.c_float(a.g), ctypes.c_float(a.b), ctypes.c_float(a.color_alpha), ctypes.c_int(block.gl_array_points))
 
 
-						if c.position=="top":
-							a.dxyz.y=epi.layers[0].dy*self.scale.y_mul
-							xyz.y=self.scale.project_m2screen_y(epi.get_layer_start(0))
-						else:
-							a.dxyz.y=epi.layers[len(epi.layers)-1].dy*self.scale.y_mul
-							xyz.y=self.scale.project_m2screen_y(epi.get_layer_start(len(epi.layers)-1))
-
-						xyz.z=self.scale.project_m2screen_z(0.0)
-
-						a.xyz.append(xyz)
-
-						a.type="solid_and_mesh"
-
-						a.r=c.color_r
-						a.g=c.color_g
-						a.b=c.color_b
-						a.color_alpha=1.0
-
-						a.rotate_x=c.rotate_x
-						a.rotate_y=c.rotate_y
-
-						if c.triangles!=None:
-							a.triangles.extend(c.triangles.data)
-
-						self.gl_objects_add(a)
-
-						self.objects[-1].compile("triangles_solid",[a.r,a.g,a.b,0.5])
-						self.objects[-1].compile("triangles_open",[a.r*0.9, a.g*0.9, a.b*0.9, a.color_alpha],line_width=5)
 
 
 

@@ -1,41 +1,42 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package gl_photons
 #  Shows photons on the device
 #
 
-import sys
 
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-import random
 import numpy as np
-from math import pi,acos,sin,cos
 
-from gl_base_object import gl_base_object
-from triangle import vec
+from vec import vec
 
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 
 class gl_photons():
 
@@ -74,56 +75,19 @@ class gl_photons():
 
 			glEnd()
 
-	def draw_photon_sheet(self,source,x0,z0):
-
-		up_photons=False
-		dx=gpvdm_data().mesh.mesh_x.get_len()*self.scale.x_mul
-		dz=gpvdm_data().mesh.mesh_z.get_len()*self.scale.z_mul
-		if source.light_illuminate_from=="y0":
-			y=-1.0
-		elif source.light_illuminate_from=="y1":
-			if self.scale.world_max==None:
-				return
-			y=self.scale.project_m2screen_y(self.scale.world_max.y)+0.5
-			up_photons=True
-		else:
-			return
-
-		suns=self.suns
-		if suns!=0:
-			if suns<=0.01:
-				den=dx/5
-			elif suns<=0.1:
-				den=dx/8
-			elif suns<=1.0:
-				den=dx/10
-			elif suns<=10.0:
-				den=dx/20
-			else:
-				den=dx/25
-			x=np.arange(x0+den/2.0, x0+dx , den)
-			z=np.arange(z0+den/2.0, z0+dz , den)
-			count=0
-			for i in range(0,len(x)):
-				for ii in range(0,len(z)):
-					self.draw_photon(x[i],y,z[ii],not up_photons,0.0,1.0,0.0)
-					count=count+1
-				if count>1000:
-					break
-
 	def draw_photons(self,x0,z0):
-		if self.false_color==True:
+		if self.gl_main.false_color==True:
 			return
-		done=[]
-		for source in gpvdm_data().light_sources.lights.segments:
-			if source.light_illuminate_from not in done:
-				self.draw_photon_sheet(source,x0,z0)
-				done.append(source.light_illuminate_from)
 
-		if self.emission==True and self.ray_model==False:
+		try:
+			ray_model=data.sims.ray.segments[0].config.ray_auto_run
+		except:
+			ray_model=False
+
+		if self.emission==True and ray_model==False:
 			den=1.2
-			x=np.arange(x0+den/2.0, x0+gpvdm_data().mesh.mesh_x.get_len()*self.scale.x_mul , den)
-			z=np.arange(z0+den/2.0, z0+gpvdm_data().mesh.mesh_z.get_len()*self.scale.z_mul , den)
+			x=np.arange(x0+den/2.0, x0+json_root().electrical_solver.mesh.mesh_x.get_len()*self.scale.x_mul , den)
+			z=np.arange(z0+den/2.0, z0+json_root().electrical_solver.mesh.mesh_z.get_len()*self.scale.z_mul , den)
 
 			for i in range(0,len(x)):
 				for ii in range(0,len(z)):

@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package shape_editor
 #  The shape editor
@@ -29,12 +34,11 @@ from icon_lib import icon_get
 
 #qt
 from PIL import Image, ImageFilter,ImageOps, ImageDraw
-from PyQt5.QtCore import QSize, Qt
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget, QDialog, QMenu
-from PyQt5.QtGui import QPainter,QIcon,QPixmap,QPen,QColor
+from gQtCore import QSize, Qt
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget, QDialog, QMenu
+from PySide2.QtGui import QPainter,QIcon,QPixmap,QPen,QColor
 
 #python modules
-import webbrowser
 
 from help import help_window
 
@@ -47,27 +51,20 @@ from ribbon_shape_import import ribbon_shape_import
 
 from open_save_dlg import open_as_filter
 
-from shutil import copyfile
 from dat_file import dat_file
 
-from triangle import triangle
-
-from PyQt5.QtCore import pyqtSignal
+from gQtCore import gSignal
 from PIL import Image, ImageFilter,ImageOps 
 from PIL.ImageQt import ImageQt
 from inp import inp
-from str2bool import str2bool
 
-from PyQt5.QtWidgets import QApplication
+from PySide2.QtWidgets import QApplication
 import time
-from triangle_io import triangles_get_min
-from triangle_io import triangles_sub_vec
-from triangle_io import triangles_get_max
-from triangle_io import triangles_mul_vec
-from triangle_io import triangles_div_vec
+import shutil
+from vec import vec
 
 class shape_image_flat_view(QWidget):
-	changed = pyqtSignal()
+	changed = gSignal()
 
 	def __init__(self,path,config):
 		super().__init__()
@@ -82,21 +79,24 @@ class shape_image_flat_view(QWidget):
 		self.im=None
 
 		self.dat_file=dat_file()
-		self.triangles=[]
 		self.load_image()
 
 	def build_mesh(self):
+		if self.im==None:
+			return
+
 		if self.config.mesh.mesh_show==True:
 			width, height = self.im.size
+			self.dat_file.load(os.path.join(self.path,"shape.inp"),raw_data=True)
+			if self.dat_file.data!=None:
+				if self.dat_file.y_len>0:
+					a=vec()
+					min_vec=self.dat_file.gl_triangles_get_min()
+					self.dat_file.gl_triangles_sub_vec(min_vec)
+					max_vec=self.dat_file.gl_triangles_get_max()
+					self.dat_file.gl_triangles_div_vec(max_vec)
 
-			if self.dat_file.load(os.path.join(self.path,"shape.inp"))==True:
-				if len(self.dat_file.data)!=0:
-					width, height = self.im.size
-					min=triangles_get_min(self.dat_file.data)
-					self.dat_file.data=triangles_sub_vec(self.dat_file.data,min)
-					max=triangles_get_max(self.dat_file.data)
-					
-					self.dat_file.data=triangles_div_vec(self.dat_file.data,max)
+
 
 
 	def force_update(self):
@@ -106,9 +106,13 @@ class shape_image_flat_view(QWidget):
 
 
 	def load_image(self):
+		#print(self.image_out)
 		if os.path.isfile(self.image_out)==False:
-			self.im=None
-			return
+			if os.path.isfile(self.image_in)==False:
+				self.im=None
+				return
+			else:
+				shutil.copyfile(self.image_in, self.image_out)
 
 		img=Image.open(self.image_out)
 		if img.mode!="RGB":
@@ -131,10 +135,12 @@ class shape_image_flat_view(QWidget):
 		self.im.save(self.image_in)
 
 	def paintEvent(self, event):
-		painter = QPainter(self)
 
 		if self.im==None:
 			return
+
+		painter = QPainter(self)
+
 		width, height = self.im.size
 		#print(type(self.im))
 		qim = ImageQt(self.im)
@@ -147,16 +153,35 @@ class shape_image_flat_view(QWidget):
 		pen = QPen(Qt.red, 3)
 		painter.setPen(pen)
 
+		if self.dat_file.valid_data==False:
+			return
+
 		if self.config.mesh.mesh_show==True:
 			if self.dat_file.data==None:
 				self.build_mesh()
 
+			dat=self.dat_file.py_data[0][0]
+			p=0
 			if self.dat_file.data!=None:
-				for t in self.dat_file.data:
-					#print(t.xyz0.x,t.xyz0.x*x_mul,self.width())
-					painter.drawLine(t.xyz0.z*z_mul, t.xyz0.x*x_mul, t.xyz1.z*z_mul, t.xyz1.x*x_mul)
-					painter.drawLine(t.xyz1.z*z_mul, t.xyz1.x*x_mul, t.xyz2.z*z_mul, t.xyz2.x*x_mul)
-					painter.drawLine(t.xyz2.z*z_mul, t.xyz2.x*x_mul, t.xyz0.z*z_mul, t.xyz0.x*x_mul)
+				for i in range(0,self.dat_file.y_len):
+					z0=dat[p*3]
+					x0=dat[p*3+1]
+					y0=dat[p*3+2]
+					p=p+1
+
+					z1=dat[p*3]
+					x1=dat[p*3+1]
+					y1=dat[p*3+2]
+					p=p+1
+
+					z2=dat[p*3]
+					x2=dat[p*3+1]
+					y2=dat[p*3+2]
+					p=p+1
+
+					painter.drawLine(z0*z_mul, x0*x_mul, z1*z_mul, x1*x_mul)
+					painter.drawLine(z1*z_mul, x1*x_mul, z2*z_mul, x2*x_mul)
+					painter.drawLine(z2*z_mul, x2*x_mul, z0*z_mul, x0*x_mul)
 
 
 	def callback_copy(self,event):

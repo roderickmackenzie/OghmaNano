@@ -1,48 +1,45 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package server
 #  The server module, used to run simulations across all CPUs, also has interface to the HPC class.
 #
 
-import sys
-import os
 
 from str2bool import str2bool
 
-import threading
-import multiprocessing
 import time
 from cal_path import get_exe_name
 from cal_path import get_exe_args
 
-from time import sleep
-from win_lin import running_on_linux
-import subprocess
-from util import gui_print_path
+from win_lin import get_platform
 from progress_class import progress_class
 
 from cal_path import get_exe_command
 from sim_warnings import sim_warnings
-from stat import *
 import i18n
 _ = i18n.language.gettext
 from cluster import cluster
@@ -57,35 +54,29 @@ from gui_enable import gui_get
 
 if gui_get()==True:
 	from help import help_window
-	from PyQt5.QtCore import pyqtSignal
-	from PyQt5.QtWidgets import QWidget
-	from PyQt5.QtCore import QTimer
+	from gQtCore import gSignal
+	from PySide2.QtWidgets import QWidget
+	from gQtCore import QTimer
 	from process_events import process_events
-
-from server_io import server_find_simulations_to_run
-from inp import inp
 
 import time
 
-from cal_path import get_sim_path
+from cal_path import sim_paths
 from gui_enable import gui_get
 from job import job
-import socket
 
 my_server=False
 
-from datetime import datetime
-from gui_hooks import tx_to_core
-from lock import get_lock
-from gpvdm_json import gpvdm_data
+#from lock import get_lock
+from json_root import json_root
 
 from server_base import server_base
 
 if gui_get()==True:
 	class server(QWidget,server_base,cluster):
 		
-		sim_finished = pyqtSignal()
-		sim_started = pyqtSignal()
+		sim_finished = gSignal()
+		sim_started = gSignal()
 
 		def __init__(self):
 			QWidget.__init__(self)
@@ -258,19 +249,22 @@ if gui_get()==True:
 						splitup=data.split(":", 1)
 						if len(splitup)>1:
 							self.progress_window.set_text(data.split(":", 1)[1])
-				elif (data.startswith("liblock")):
-					splitup=data.split(":", 1)
-					get_lock().uid=splitup[1]
+				#elif (data.startswith("liblock")):
+				#	splitup=data.split(":", 1)
+				#	get_lock().uid=splitup[1]
 				elif (data.startswith("fit_run")):
 					elapsed_time = time.time() - self.gui_update_time
-					if elapsed_time>5:
-
+					if elapsed_time>0.5:
+						#print("PLOT!",elapsed_time)
 						self.gui_update_time=time.time()
-					
 						if self.fit_update!=None:
 							self.fit_update()
-							if self.terminal!=None:
-								self.terminal.clear()
+				elif (data.startswith("fit_update_force")):
+					#print("PLOT!")
+					if self.fit_update!=None:
+						self.fit_update()
+
+
 			else:
 				print("rx",data_in)
 

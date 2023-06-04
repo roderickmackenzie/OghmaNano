@@ -1,71 +1,61 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package server_base
 #  The server module, used to run simulations across all CPUs, also has interface to the HPC class.
 #
 
-import sys
 import os
 
-from str2bool import str2bool
-
-import threading
 import multiprocessing
 import time
 from cal_path import get_exe_name
 from cal_path import get_exe_args
 
-from time import sleep
-from win_lin import running_on_linux
-import subprocess
-from util import gui_print_path
+from win_lin import get_platform
 from progress_class import progress_class
 
 from cal_path import get_exe_command
-from sim_warnings import sim_warnings
 from stat import *
-from encrypt import encrypt
-from encrypt import decrypt
-from encrypt import encrypt_load
+
 import i18n
 _ = i18n.language.gettext
 from cluster import cluster
 
 from gui_enable import gui_get
 
-from server_io import server_find_simulations_to_run
-from inp import inp
-
 import time
 
-from cal_path import get_sim_path
+from cal_path import sim_paths
 from job import job
 
 my_server=False
 
 from datetime import datetime
-from gui_hooks import tx_to_core
-from lock import get_lock
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 import socket
 if gui_get()==True:
 	from process_events import process_events
@@ -115,8 +105,8 @@ class server_base():
 		if self.cpus>4:
 			self.cpus=self.cpus-2
 
-		data=gpvdm_data()
-		max=data.server.max_gpvdm_instances
+		data=json_root()
+		max=data.server.max_core_instances
 		if max==False or str(max)=="none" or max==0:
 			return
 
@@ -132,7 +122,7 @@ class server_base():
 		self.jobs.append(j)
 
 	def run_now(self):
-		self.exe_command(get_sim_path(),get_exe_command(),background=False)
+		self.exe_command(sim_paths.get_sim_path(),get_exe_command(),background=False)
 
 	def check_warnings(self):
 		message=""
@@ -177,21 +167,26 @@ class server_base():
 
 
 	def exe_command(self,path,command,background=True):
-		if running_on_linux()==True:
-			command_sep=";"
+		command_sep=";"
+		cmd=""
+		if get_platform()=="linux":
+			cmd="cd "+path+command_sep	#remove you should not need this on linux with sim-root-path
+			cmd=cmd+ command+" --sim-root-path "+path
+		elif get_platform()=="wine":
+			cmd="/bin/wine "+command+" --sim-root-path "+path
 		else:
 			command_sep=" & "
+			cmd="cd "+path+command_sep
+			cmd=cmd+command
 
-		cmd="cd "+path+command_sep
-		cmd=cmd+command
-		if running_on_linux()==True:
+		if get_platform()=="linux" or get_platform()=="wine":
 			if self.pipe_to_null==True:
-				cmd=cmd+" >/dev/null "
+				cmd=cmd+" 2>&1 > "+path+".dat" #"/dev/null "
 				if background==True:
 					cmd=cmd+" &"
 
 		cmd=cmd+"\n"
-		print(cmd)
+		print("I will run:"+cmd)
 		os.system(cmd)
 
 	def server_base_process_jobs(self):
@@ -227,9 +222,7 @@ class server_base():
 		self.remove_lock_files()
 				
 		self.server_base_process_jobs()
-		#if gui_get()==True:
-		#	self.progress_window.show()
-		#	self.progress_window.start()
+		dt=0.1
 		n=0
 		while(1):
 			ls=os.listdir(self.sim_dir)
@@ -243,7 +236,7 @@ class server_base():
 					self.base_job_finished(job)
 
 			self.server_base_process_jobs()
-			time.sleep(1)
+			time.sleep(dt)
 			#self.print_jobs()
 			self.server_base_check_for_crashed()
 			#self.print_jobs()
@@ -252,18 +245,18 @@ class server_base():
 				break
 
 			if self.time_out!=False:
-				if n>30:
+				if n>self.time_out/2:
 					print(str(n)+"/"+str(self.time_out))
 
 				if n>self.time_out:
 					self.remove_lock_files()
 					break
-			n=n+1
+			n=n+dt
 
 	def base_job_finished(self,job):
 		if self.jobs[job].status!=1:
 			print("This job never ran!!!",self.jobs[job].status)
-			asdsadasd
+			#asdsadasd
 		self.jobs[job].status=2
 		self.jobs[job].stop=str(datetime.now())
 		self.jobs_run=self.jobs_run+1
@@ -313,23 +306,29 @@ class server_base():
 						command_lock=" --lock "+"lock"+str(i)
 					my_command=get_exe_command()
 					
-					#if running_on_linux()==False:
-					#	my_command="\""+get_exe_command()+"\""
-
+					#if get_platform()=="linux":
 					full_command=my_command+command_lock+" "+self.jobs[i].args+" "+get_exe_args()
+					#else:
+					#	full_command="\""+my_command+"\""+command_lock+" "+self.jobs[i].args+" "+get_exe_args()
 					self.jobs[i].full_command=full_command
 					return self.jobs[i].path,full_command
 
 		return False,False
 
+	def tx_to_core(self,data):
+		path=os.path.join(sim_paths.get_sim_path(),"tx.dat")
+		print("tx to core:"+path+" "+data)
+		f=open(path,"w")
+		f.write(data)
+		f.close()
 
 	def killall(self):
 		self.stop_work=True
 		if self.cluster==True:
 			self.cluster_killall()
 		#else:
-		tx_to_core("terminate")
-		#	if running_on_linux()==True:
+		self.tx_to_core("terminate")
+		#	if get_platform()=="linux":
 		#		cmd = 'killall '+get_exe_name()
 		#		os.system(cmd)
 		#		print(cmd)

@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package plot_widget
 #  The main plot widget.
@@ -25,7 +30,6 @@
 
 from __future__ import unicode_literals
 
-import os
 import io
 from numpy import *
 
@@ -42,9 +46,9 @@ from matplotlib.pyplot import colorbar
 from matplotlib.colors import LogNorm
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget,QAbstractItemView, QMenuBar,QApplication
-from PyQt5.QtGui import QPainter,QIcon,QImage
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget,QAbstractItemView, QMenuBar,QApplication
+from PySide2.QtGui import QPainter,QIcon,QImage
 
 #calpath
 from icon_lib import icon_get
@@ -52,11 +56,7 @@ from open_save_dlg import save_as_image
 from open_save_dlg import save_as_filter
 
 from dat_file import dat_file
-
-
-from dlg_get_multi_text import dlg_get_multi_text
-
-from mpl_toolkits.mplot3d import Axes3D
+from dlg_get_text2 import dlg_get_text2
 
 from plot_ribbon import plot_ribbon
 from lock import get_lock
@@ -68,9 +68,18 @@ from util_latex import latex
 
 from plot_widget_menu import plot_widget_menu
 from plot_widget_matplotlib import plot_widget_matplotlib
+from plot_widget_pyqtgraph import plot_widget_pyqtgraph
 from band_graph2 import band_graph2
+from QAction_lock import QAction_lock
+from pyqtgraph import PlotWidget, plot
+from pyqtgraph.graphicsItems.ViewBox import axisCtrlTemplate_pyside2
+from pyqtgraph.graphicsItems.PlotItem import plotConfigTemplate_pyside2
+from pyqtgraph.imageview import ImageViewTemplate_pyside2
+import pyqtgraph as pg
+import os
+from color_map import get_color
 
-class plot_widget(plot_widget_menu,plot_widget_matplotlib):
+class plot_widget(plot_widget_menu,plot_widget_matplotlib,plot_widget_pyqtgraph):
 
 
 	def keyPressEvent(self, event):
@@ -166,6 +175,8 @@ class plot_widget(plot_widget_menu,plot_widget_matplotlib):
 
 			zticks=[]
 			zticks_txt=[]
+			if my_min==0.0:
+				return
 			pos=pow(10,floor(log10(abs(my_min))))
 
 			if my_min>0:
@@ -209,9 +220,15 @@ class plot_widget(plot_widget_menu,plot_widget_matplotlib):
 			self.gl_plot.graph_data=self.data
 			self.gl_plot.force_redraw()
 		else:
-			if self.widget_mode=="band_graph" or self.widget_mode=="gpvdm_graph":
+			if self.widget_mode=="band_graph" or self.widget_mode=="g_graph":
 				self.canvas.set_data_file(self.input_files[0])
 				self.canvas.draw_graph()
+			elif self.widget_mode=="pyqtgraph":
+				self.pyqtgraph_do_plot()
+			elif self.widget_mode=="pyqtgraph_imageview":
+				self.pyqtgraph_do_plot()
+			elif self.widget_mode=="circuit":
+				self.canvas.ersatzschaltbild.load()
 			else:
 				self.matplotlib_do_plot()
 			
@@ -222,28 +239,40 @@ class plot_widget(plot_widget_menu,plot_widget_matplotlib):
 		else:
 			self.gl_plot.grabFrameBuffer().save(file_name)
 
+		#if self.widget_mode=="pyqtgraph":
+		#	exporter = pg.exporters.ImageExporter(plt.plotItem)
+
+
 	def callback_save_image(self):
 		file_name=save_as_image(self)
 		if file_name != None:
 			self.save_image(file_name)
 
 	def callback_save_csv(self):
+		if self.is_item_activated()==False:
+			return
 		file_name=save_as_filter(self,"*.csv")
 		if file_name != None:
 			dat_files_to_csv(file_name,self.data)
 
 	def callback_save_xlsx(self):
+		if self.is_item_activated()==False:
+			return
 		from dat_files_to_excel import dat_files_to_excel
 		file_name=save_as_filter(self,"*.xlsx")
 		if file_name != None:
 			dat_files_to_excel(file_name,self.data)
 
 	def callback_save_txt(self):
+		if self.is_item_activated()==False:
+			return
 		file_name=save_as_filter(self,"*.txt")
 		if file_name != None:
 			self.data[0].save_as_txt(file_name)
 
 	def callback_save_gnuplot(self):
+		if self.is_item_activated()==False:
+			return
 		file_name=save_as_filter(self,"gnuplot (*.)")
 		if file_name != None:
 			dat_files_to_gnuplot(file_name,self.data)
@@ -266,11 +295,23 @@ class plot_widget(plot_widget_menu,plot_widget_matplotlib):
 			#print("setting",plot_types[i])
 			self.data[i].plot_type=plot_types[i]
 
+	def is_item_activated(self):
+		a=QAction_lock("export_gnuplot","none",self,"none")
+		a.locked=get_lock().encode_output
+		if a.locked==True:
+			a.callback_secure_click()
+			return False
+
+		return True
+
 	def reload(self):
 		self.data=[]
 		self.done_log=False
 
-		
+		if self.widget_mode=="circuit":
+			self.canvas.ersatzschaltbild.file_current_voltage=self.input_files[0]
+			return
+
 		for i in range(0,len(self.input_files)):
 			dat=dat_file()
 			ret=dat.load(self.input_files[i])
@@ -312,13 +353,6 @@ class plot_widget(plot_widget_menu,plot_widget_matplotlib):
 	def callback_key(self):
 		if len(self.data)>0:
 			self.data[0].legend_pos=widget.get_label()
-			self.do_plot()
-
-	def callback_units(self):
-		if len(self.data)>0:
-			units=dlg_get_text( "Units:", self.data[0].key_units)
-			if units!=None:
-				self.data[0].key_units=units
 			self.do_plot()
 
 
@@ -365,11 +399,12 @@ class plot_widget(plot_widget_menu,plot_widget_matplotlib):
 
 	def callback_set_heat_map(self):
 		if len(self.data)>0:
-			self.data[0].type="heat"
+			self.data[0].type=b"heat"
 			self.do_plot()
 
 	def callback_heat_map_edit(self):
-		ret = dlg_get_multi_text([["x start",str(self.data[0].x_start)],["x stop",str(self.data[0].x_stop)],["x points",str(self.data[0].x_points)],["y start",str(self.data[0].y_start)],["y stop",str(self.data[0].y_stop)],["y points",str(self.data[0].y_points)]],title="2D plot editor")
+		ret = dlg_get_text2("Enter the parameters","","plot",info=[["x start",str(self.data[0].x_start)],["x stop",str(self.data[0].x_stop)],["x points",str(self.data[0].x_points)],["y start",str(self.data[0].y_start)],["y stop",str(self.data[0].y_stop)],["y points",str(self.data[0].y_points)]],title_text="2D plot editor")
+
 		ret.run()
 		ret=ret.get_values()
 		if ret!=False:
@@ -456,7 +491,7 @@ class plot_widget(plot_widget_menu,plot_widget_matplotlib):
 			ribbon.math_invert_y_axis.triggered.connect(self.callback_toggle_invert_y)
 
 		return ribbon
-	#modes="matplotlib","gpvdm_graph", "band_graph"
+	#modes="matplotlib","g_graph", "band_graph"
 
 	def __init__(self,enable_toolbar=True,enable_3d=True,widget_mode="matplotlib",force_2d3d=False):
 		QWidget.__init__(self)
@@ -476,15 +511,38 @@ class plot_widget(plot_widget_menu,plot_widget_matplotlib):
 		self.last_plot=[]
 
 		self.main_vbox = QVBoxLayout()
-		self.fig = Figure(figsize=(2.5,2), dpi=100)
 
 		self.widget_mode=widget_mode
+
+		#if self.widget_mode=="matplotlib":
+		#	self.widget_mode="pyqtgraph"
+
 		if self.widget_mode=="band_graph":
 			self.canvas = band_graph2()
-		elif self.widget_mode=="gpvdm_graph":
-			from gpvdm_graph import gpvdm_graph 
-			self.canvas=gpvdm_graph()
+		elif self.widget_mode=="g_graph":
+			from g_graph import g_graph 
+			self.canvas=g_graph()
+		elif self.widget_mode=="circuit":
+			from circuit_editor import circuit_editor
+			self.canvas=circuit_editor(show_toolbar=False)
+			self.canvas.ersatzschaltbild.show_resistance_values=False
+			self.canvas.setMinimumSize(800, 450)
+		elif self.widget_mode=="pyqtgraph":
+			pg.setConfigOption('background', 'w')
+			pg.setConfigOption('foreground', 'k')
+			self.canvas = pg.PlotWidget()
+		elif self.widget_mode=="pyqtgraph_imageview":
+			pg.setConfigOption('background', 'w')
+			pg.setConfigOption('foreground', 'k')
+			self.plot_item = pg.PlotItem()
+			self.plot_item.getAxis('bottom').enableAutoSIPrefix(False)
+			self.plot_item.getAxis('left').enableAutoSIPrefix(False)
+			
+			self.canvas = pg.ImageView(view=self.plot_item)
+			self.canvas.ui.roiBtn.hide()
+			self.canvas.ui.menuBtn.hide()
 		else:
+			self.fig = Figure(figsize=(2.5,2), dpi=100)
 			self.canvas = FigureCanvas(self.fig)
 			self.canvas.figure.patch.set_facecolor("white")
 
@@ -496,9 +554,11 @@ class plot_widget(plot_widget_menu,plot_widget_matplotlib):
 
 		self.cb=None
 
+		self.plot_ribbon=self.build_toolbar(enable_3d)
+
 		if enable_toolbar==True:
-			self.plot_ribbon=self.build_toolbar(enable_3d)
-			self.main_vbox.addWidget(self.plot_ribbon)
+			if self.widget_mode!="circuit":
+				self.main_vbox.addWidget(self.plot_ribbon)
 
 		if force_2d3d=="3d":
 			self.open_gl_enabled=True
@@ -532,14 +592,14 @@ class plot_widget(plot_widget_menu,plot_widget_matplotlib):
 			if self.gl_plot==None:
 				from gl import glWidget
 				self.gl_plot=glWidget(self)
+				self.gl_plot.enable_views(["plot"])
 				self.gl_plot.draw_electrical_mesh=False
-				self.gl_plot.view_options.draw_device=True
-				self.gl_plot.enable_draw_ray_mesh=True
-				self.gl_plot.view_options.enable_draw_light_source=False
-				self.gl_plot.view_options.draw_rays=False
-				self.gl_plot.view_options.render_fdtd_grid=False
+				self.gl_plot.active_view.draw_device=True
+				self.gl_plot.active_view.draw_rays=False
+				self.gl_plot.active_view.render_fdtd_grid=False
 				self.gl_plot.scene_built=True
 				self.gl_plot.plot_graph=True
+				self.gl_plot.render_plot=True
 				self.main_vbox.insertWidget(1,self.gl_plot)
 				self.plot_ribbon.tb_video.addWidget(self.gl_plot.toolbar1)
 				#self.plot_ribbon.plot_toolbar.removeAction(self.matplotlib_nav_bar)

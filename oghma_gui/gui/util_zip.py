@@ -1,44 +1,47 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package util_zip
-#  Functions to manipulate zip files/.gpvdm files
+#  Functions to manipulate archive files
 #
 
 import os
 import shutil
 from tempfile import mkstemp
 import zipfile
-
 from cal_path import subtract_paths
 import time
-import glob
 import hashlib
-from update_file_info import update_file_info
-from libcrypt import libcrypt_decrypt
-from safe_delete import gpvdm_delete_file
+from safe_delete import safe_delete
+from bytes2str import bytes2str
 
 ## Copy a file from one archive to another.
 def archive_copy_file(dest_archive,dest_file_name,src_archive,file_name,dest="archive"):
-	lines=read_lines_from_archive(src_archive,file_name)
+
+	lines=zip_get_raw_data(os.path.join(os.path.dirname(src_archive),file_name),mode="l",archive=os.path.basename(src_archive))
 	if lines==False:
 		return False
 
@@ -54,7 +57,7 @@ def archive_make_empty(archive_path):
 
 ## List the content of an archive 
 def zip_lsdir(file_name,zf=None,sub_dir=None):
-	"""Input: path to a .gpvdm file"""
+	"""Input: path to an archive file"""
 	my_list=[]
 	my_dir=os.path.dirname(file_name)
 
@@ -79,11 +82,6 @@ def zip_lsdir(file_name,zf=None,sub_dir=None):
 		#print(items)
 		my_list=list(set(items))
 
-		#print(my_list)
-		#print(my_list[0])
-		#asdsa
-
-
 		if sub_dir!=None:
 			l=[]
 			level=sub_dir.count("/")
@@ -106,19 +104,20 @@ def zip_lsdir(file_name,zf=None,sub_dir=None):
 
 	return my_list
 
-def zip_get_raw_data(file_name,bytes=None):
+def zip_get_raw_data(file_name,bytes=None,mode="b",archive="sim.oghma"):
+	file_name=bytes2str(file_name)
+
 	found=False
-	lines=b""
+	read_data=b""
 
-	zip_file=os.path.join(os.path.dirname(file_name),"sim.gpvdm")
-
+	zip_file=os.path.join(os.path.dirname(file_name),archive)
 	name=os.path.basename(file_name)
 	if os.path.isfile(file_name)==True:
 		f = open(file_name, mode='rb')
 		if bytes==None:
-			lines = f.read()
+			read_data = f.read()
 		else:
-			lines = f.read(bytes)
+			read_data = f.read(bytes)
 		f.close()
 		found=True
 
@@ -126,32 +125,28 @@ def zip_get_raw_data(file_name,bytes=None):
 		zf = zipfile.ZipFile(zip_file, 'r')
 		items=zf.namelist()
 		if items.count(name)>0:
-			lines = zf.read(name)
+			read_data = zf.read(name)
 			found=True
 		zf.close()
 
 	if found==False:
 		return False
 
-	lines=libcrypt_decrypt(lines)
+	lines=[]
+
+	if mode=="l":
+		read_data=read_data.decode('utf-8')#.decode("utf-8") 
+		read_data=read_data.split("\n")
+
+		for i in range(0, len(read_data)):
+			lines.append(read_data[i].rstrip())
+
+		if lines[len(lines)-1]=='\n':
+			del lines[len(lines)-1]
+	elif mode=="b":
+		lines=read_data
+
 	return lines
-
-## Read lines from a file in an archive
-def zip_get_data_file(file_name):
-	lines=b""
-	found=True
-	lines=zip_get_raw_data(file_name)
-
-	if lines==False:
-		found=False
-
-	try:
-		lines=lines.decode('utf-8')
-		lines=[str.strip() for str in lines.splitlines()]#lines.split("\n")
-	except:
-		lines=[]
-		
-	return [found,lines]
 
 ## Replace a file in an archive.
 def replace_file_in_zip_archive(zip_file_name,target,lines,delete_first=True):
@@ -170,7 +165,6 @@ def replace_file_in_zip_archive(zip_file_name,target,lines,delete_first=True):
 
 		zf.close()
 
-		#print(">>>>>>>>>>>>>>>>>>>>",abs_path, zip_file_name)
 		return True
 	else:
 		return False
@@ -181,7 +175,22 @@ def zip_search_file(source,target):
 			return True
 	return False
 
+## Read lines from a file in an archive
+def zip_get_data_file(file_name):
+	lines=b""
+	found=True
+	lines=zip_get_raw_data(file_name)
 
+	if lines==False:
+		found=False
+
+	try:
+		lines=lines.decode('utf-8')
+		lines=[str.strip() for str in lines.splitlines()]#lines.split("\n")
+	except:
+		lines=[]
+		
+	return [found,lines]
 
 ## Remove a file from an archive
 def zip_remove_file(zip_file_name,target,act_only_on_archive=False):
@@ -224,7 +233,7 @@ def zip_remove_file(zip_file_name,target,act_only_on_archive=False):
 					return
 				except:
 					print("Waiting for the file to close: ",zip_file_name)
-					print("... file a bug report if gpvdm does not work because of this.")
+					print("... file a bug report if the software does not work because of this.")
 					time.sleep(1)
 				i=i+1
 			#failed three times to open the file, so try again and expect to fail
@@ -259,26 +268,6 @@ def write_lines_to_archive(archive_path,file_name,lines,mode="l",dest="archive")
 		return True
 	else:
 		return replace_file_in_zip_archive(archive_path,file_name,lines)
-
-## Move all .inp files into an archive, and remove them from the simulation directory.
-def archive_compress(archive_path):
-	if os.path.isfile(archive_path)==False:
-		archive_make_empty(archive_path)
-
-	if os.path.isfile(archive_path)==True:
-		lines=[]
-		dir_name=os.path.dirname(archive_path)
-		for file_name in os.listdir(dir_name):
-			full_name=os.path.join(dir_name,file_name)
-			if file_name.endswith(".inp")==True:
-				lines=read_lines_from_archive(archive_path,file_name,mode="b")
-				os.remove(full_name)
-				replace_file_in_zip_archive(archive_path,file_name,lines,delete_first=False)
-
-## Move a file to an archive.
-def archiv_move_file_to_archive(archive_path,file_name,base_dir):
-	archive_add_file(archive_path,file_name,base_dir)
-	os.remove(file_name)
 
 ## Add a file to an archive.
 def archive_add_file(archive_path,file_name,base_dir,clean_archive_of_old_files=True):
@@ -316,14 +305,18 @@ def archive_add_dir(archive_path,dir_name,base_dir, remove_src_dir=False,zf=None
 
 			if os.path.isfile(file_name):
 				if archive_path!=file_name:
-					f=open(file_name, mode='rb')
-					lines = f.read()
-					f.close()
-					
-					if os.path.basename(file_name) not in exclude:
-						name_of_file_in_archive=subtract_paths(base_dir,file_name)
-						zf.writestr(name_of_file_in_archive, lines)
-
+					try:
+						f=open(file_name, mode='rb')
+						lines = f.read()
+						f.close()
+						
+						if os.path.basename(file_name) not in exclude:
+							name_of_file_in_archive=subtract_paths(base_dir,file_name)
+							zf.writestr(name_of_file_in_archive, lines)
+					except:
+						print("Warning I can not open file:"+file_name)
+						print("The file may no longer exist")
+						pass
 
 	if close_file==True:
 		zf.close()
@@ -332,21 +325,7 @@ def archive_add_dir(archive_path,dir_name,base_dir, remove_src_dir=False,zf=None
 		if base_dir=="" or base_dir==dir_name or dir_name=="/" or dir_name=="/home/rod" or dir_name=="/home/rod/" or dir_name=="c:\\":	#paranoia
 			return
 
-		gpvdm_delete_file(dir_name,allow_dir_removal=True)
-
-def read_lines_from_file(file_name):
-	if os.path.isfile(file_name)==True:
-		f = open(file_name, mode='rb')
-		lines = f.read()
-		f.close()
-
-	try:
-		lines=lines.decode('utf-8')
-		lines=lines.split("\n")
-	except:
-		lines=[]
-		
-	return lines
+		safe_delete(dir_name,allow_dir_removal=True)
 
 
 def archive_get_file_time(zip_file_path,file_name):
@@ -366,70 +345,8 @@ def archive_get_file_time(zip_file_path,file_name):
 
 	return epoch
 
-## Read liens from an archive.
-def read_lines_from_archive(zip_file_path,file_name,mode="l"):
-	file_path=os.path.join(os.path.dirname(zip_file_path),file_name)
-
-	read_lines=[]
-	found=False
-
-	if os.path.isfile(file_path):	#for /a/b/c/sim.gpvdm a.dat, check /a/b/c/a.dat
-		f=open(file_path, mode='rb')
-		read_lines = f.read()
-		f.close()
-		found=True
-	
-	if found==False:					#for /a/b/c/sim.gpvdm a.dat, check /a/b/c/sim/a.dat
-		file_path=os.path.join(zip_file_path[:-4],file_name)
-		if os.path.isfile(file_path):
-			f=open(file_path, mode='rb')
-			read_lines = f.read()
-			f.close()
-			found=True
-
-	if found==False:
-		if os.path.isfile(zip_file_path):
-			zip_file_open_ok=True
-			try:
-				zf = zipfile.ZipFile(zip_file_path, 'r')
-			except:
-				zip_file_open_ok=False
-
-			if zip_file_open_ok==True:
-				if zip_search_file(zf,os.path.basename(file_path))==True:
-					read_lines = zf.read(file_name)
-					found=True
-				elif zip_search_file(zf,file_name)==True:
-					read_lines = zf.read(file_name)
-					found=True
-
-				zf.close()
-
-	if found==False:
-		return False
-
-	#print(">",file_path,"<",read_lines)
-	if mode=="l":
-		read_lines=read_lines.decode('utf-8')#.decode("utf-8") 
-		#read_lines=[str.strip() for str in read_lines.splitlines()]#read_lines.split("\n")
-		read_lines=read_lines.split("\n")
-
-		lines=[]
-
-		for i in range(0, len(read_lines)):
-			lines.append(read_lines[i].rstrip())
-
-		if lines[len(lines)-1]=='\n':
-			del lines[len(lines)-1]
-	elif mode=="b":
-		lines=read_lines
-
-
-	return lines
-
-
 ## This will unpack an acrhive
-def archive_decompress(zip_file_path,remove_gpvdm_file=True):
+def archive_decompress(zip_file_path,remove_archive=False):
 
 	if os.path.isfile(zip_file_path):
 		zf = zipfile.ZipFile(zip_file_path, 'r')
@@ -442,13 +359,8 @@ def archive_decompress(zip_file_path,remove_gpvdm_file=True):
 
 		zf.close()
 
-		os.remove(zip_file_path)
-
-		if remove_gpvdm_file==False:
-			dir_name=os.path.dirname(zip_file_path)
-			ver_file=os.path.join(dir_name,"ver.inp")
-			archive_make_empty(zip_file_path)
-			archiv_move_file_to_archive(zip_file_path,ver_file,dir_name)
+		if remove_archive==True:
+			os.remove(zip_file_path)
 
 	return
 
@@ -490,7 +402,7 @@ def extract_file_from_archive(dest,zip_file_path,file_name):
 			os.makedirs(os.path.join(dest,os.path.dirname(file_name)))
 
 		f=open(os.path.join(dest,file_name), mode='wb')
-		lines = f.write(read_lines)
+		f.write(read_lines)
 		f.close()
 
 	return True
@@ -510,7 +422,7 @@ def extract_dir_from_archive(dest,zip_file_path,dir_name,zf=None):
 
 			if items[i].endswith('/')==False:	#test if it is not a dir
 				f=open(output_file, mode='wb')
-				lines = f.write(read_lines)
+				f.write(read_lines)
 				f.close()
 
 ## Does the file exist in an archive.
@@ -533,88 +445,3 @@ def archive_isfile(zip_file_name,file_name):
 	return ret
 
 
-## Zip up an entire directory.
-def archive_zip_dir(path,extentions=[]):
-	#print("zipping: ",path)
-	all_files=[]
-	for root, dirs, files in os.walk(path):
-		for name in files:
-			file_name=os.path.join(root, name)
-			if len(extentions)==0:
-				all_files.append(file_name)
-			else:
-				ext=os.path.splitext(file_name)
-				if len(ext)>1:
-					if ext[1] in extentions:
-						all_files.append(file_name)
-
-	archive_path=path+".zip"
-	if os.path.isfile(archive_path)==True:
-		os.remove(archive_path)
-
-
-	zf = zipfile.ZipFile(archive_path, 'a',zipfile.ZIP_DEFLATED)
-	for file_name in all_files:
-		f=open(file_name, mode='rb')
-		lines = f.read()
-		f.close()
-
-		name_of_file_in_archive=subtract_paths(path,file_name)
-
-		zf.writestr(name_of_file_in_archive, lines)
-
-	zf.close()
-
-def archive_build_index_file(path,description="",target=None,ver="1.0"):
-	data=[]
-	for f in os.listdir(path):
-		file_name=os.path.join(path,f)
-		if f!="info.dat":
-
-			a=update_file_info()
-			a.file_name=f
-			a.description=description
-
-			if os.path.isfile(file_name)==True:
-				a.size=os.path.getsize(file_name)
-				hash_md5 = hashlib.md5()
-				file_han=open(file_name, "rb")
-				for chunk in iter(lambda: file_han.read(4096), b""):
-					hash_md5.update(chunk)
-				file_han.close()
-
-				a.md5=hash_md5.hexdigest()
-				a.ver=ver
-
-			if description!=None:
-				a.target=target
-			data.extend(str(a).split("\n"))
-	f=open(os.path.join(path,"info.dat"), mode='w')
-	for item in data:
-		f.write(item+"\n")
-
-	f.write("#ver\n")
-	f.write("1.0\n")
-	f.write("#end\n")
-
-	f.close()
-
-def archive_extract(dest_path,archive_path,call_back=None):
-	zf = zipfile.ZipFile(archive_path, 'r')
-	items=zf.namelist()
-	for i in range(0,len(items)):
-		f=items[i]
-		out_path=os.path.join(dest_path,f)
-		dir_name=os.path.dirname(out_path)
-		if os.path.isdir(dir_name)==False:
-			os.makedirs(dir_name)
-
-		data = zf.read(f)
-		if call_back!=None:
-			call_back(archive_path,int(100.0*(i/len(items))))
-
-		f=open(out_path, mode='wb')
-		lines = f.write(data)
-		f.close()
-
-	zf.close()

@@ -1,23 +1,28 @@
+# -*- coding: utf-8 -*-
 #
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package epitaxy_class
 #  The epitaxy class.
@@ -25,31 +30,28 @@
 
 import os
 import math
-from util import isnumber
 
 from cal_path import get_materials_path
 from cal_path import get_default_material_path
 
-from cal_path import get_sim_path
-from contacts_io import contacts_io
+from cal_path import sim_paths
+from json_contacts import json_contacts
 from shape import shape
 
 from gui_enable import gui_get
 if gui_get()==True:
 	#from file_watch import get_watch
-	from PyQt5.QtCore import pyqtSignal
-	from PyQt5.QtWidgets import QWidget
-from util_text import insert_tab
+	from PySide2.QtWidgets import QWidget
 from json_base import json_base
 from json_epi_interface import json_epi_interface
 from json_material_db_item import json_material_db_item
 
 class epi_layer(shape):
 	def __init__(self):
-		super().__init__()
+		super().__init__() 
 		self.var_list.append(["layer_type","other"])
 		self.var_list.append(["layer_interface",json_epi_interface()])
-		self.var_list.append(["solve_optical_problem",True])
+		self.var_list.append(["solve_optical_problem","yes_nk"])
 		self.var_list.append(["solve_thermal_problem",True])
 		self.var_list_build()
 		self.start=0.0
@@ -84,7 +86,8 @@ class epitaxy(json_base):
 		self.callbacks=[]
 		json_base.__init__(self,"epitaxy")
 		self.segments_name=["layers"]
-		self.var_list.append(["contacts",contacts_io()])
+		self.var_list.append(["contacts",json_contacts()])
+		self.var_list.append(["icon_","layers"])
 		self.var_list_build()
 
 		self.loaded=False
@@ -93,7 +96,7 @@ class epitaxy(json_base):
 		for i in range(0,len(self.layers)):
 			l=self.layers[i]
 			print("layer:"+str(i)+" "+str(l.name))
-			for s in l.shapes:
+			for s in l.segments:
 				print(s.name)
 
 	def dump(self):
@@ -107,7 +110,7 @@ class epitaxy(json_base):
 			found=False
 			name="newlayer"+str(count)
 			for l in self.layers:
-				if name==l.shape_name:
+				if name==l.name:
 					found=True
 					break
 
@@ -134,9 +137,9 @@ class epitaxy(json_base):
 		a=epi_layer()
 		a.dy=100e-9
 
-		a.shape_name=self.get_new_material_name()
+		a.name=self.get_new_material_name()
 
-		a.shapes=[]
+		a.segments=[]
 		a.color_r=1.0
 		a.color_g=0
 		a.color_b=0
@@ -171,23 +174,13 @@ class epitaxy(json_base):
 		for i in range(0,len(self.layers)):
 			lines.append("\t\"layer"+str(i)+"\": {")
 			lines.extend(self.layers[i].gen_json(include_bracket=False))
-			lines[-1]=lines[-1]+","
-			lines.append("\t\t\"layer_shapes\":"+str(len(self.layers[i].shapes))+",")
-			ns=0
-			for s in self.layers[i].shapes:
-				lines.append("\t\t\"shape"+str(ns)+"\": {")
-				insert_lines=s.shape_gen_json()
-				insert_tab(insert_lines,3)
-				lines.extend(insert_lines[1:])
-				lines[-1]=lines[-1]+","
-				ns=ns+1
-			lines[-1]=lines[-1][:-1]
+			lines.append("},")
 
-			lines.append("\t}")
-			lines[-1]=lines[-1]+","
+		lines[-1]=lines[-1][:-1]
+
+		lines[-1]=lines[-1]+","
 		lines.extend(self.contacts.gen_json())
 		lines.append("}")
-		#print(self.contacts.gen_json())
 		return lines
 
 
@@ -211,7 +204,7 @@ class epitaxy(json_base):
 			if obj!=None:
 				return obj
 
-			for s in l.shapes:
+			for s in l.segments:
 				obj=s.find_object_by_id(id)
 				if obj!=None:
 					return obj
@@ -233,7 +226,7 @@ class epitaxy(json_base):
 			if l.id==id:
 				return nl
 
-			for s in l.shapes:
+			for s in l.segments:
 				if s.id==id:
 					return nl
 
@@ -243,15 +236,15 @@ class epitaxy(json_base):
 
 	def find_shape_by_name(self,name):
 		for c in self.contacts.segments:
-			if c.shape_name==name:
+			if c.name==name:
 				return c
 
 		for l in self.layers:
-			if l.shape_name==name:
+			if l.name==name:
 				return l
 
-			for s in l.shapes:
-				if s.shape_name==name:
+			for s in l.segments:
+				if s.name==name:
 					return s
 
 		return None
@@ -279,7 +272,7 @@ class epitaxy(json_base):
 			if l.id==id:
 				ret.append(l)
 
-				for s in l.shapes:
+				for s in l.segments:
 					ret.append(s)
 					#return ret
 
@@ -306,18 +299,18 @@ class epitaxy(json_base):
 
 	def reload_shapes(self):
 		for a in self.layers:
-			for s in a.shapes:
+			for s in a.segments:
 				#print(s.file_name)
 				s.load(s.file_name)
 
 	def get_shapes_between_x(self,x0,x1):
-		shapes=[]
+		segments=[]
 		for layer in self.layers:
-			for s in layer.shapes:
+			for s in layer.segments:
 				for pos in s.expand_xyz0(layer):
 					if pos.x>x0 and pos.x<x1:
-						shapes.append(s)
-		return shapes
+						segments.append(s)
+		return segments
 
 	def add_callback(self,fn):
 		self.callbacks.append(fn)
@@ -346,13 +339,33 @@ class epitaxy(json_base):
 			a.cal_rgb()
 
 			#shape
-			a.shapes=[]
-			for ns in range(0,int(layer_json['layer_shapes'])):
-				my_shape=shape()
-				my_shape.decode_from_json(layer_json["shape"+str(ns)])
-				my_shape.moveable=True
-				a.shapes.append(my_shape)
+			a.segments=[]
+			use_segs=False
+			try:
+				segs=int(layer_json['layer_shapes'])
+				use_segs=False
+			except:
+				pass
 
+			try:
+				segs=int(layer_json['segments'])
+				use_segs=True
+			except:
+				pass
+
+			for ns in range(0,segs):
+				my_shape=shape()
+				if use_segs==True:
+					if "segment"+str(ns) in layer_json:
+						my_shape.decode_from_json(layer_json["segment"+str(ns)])
+						my_shape.moveable=True
+						a.segments.append(my_shape)
+				else:
+					if "shape"+str(ns) in layer_json:
+						my_shape.decode_from_json(layer_json["shape"+str(ns)])
+						my_shape.moveable=True
+						a.segments.append(my_shape)
+	
 			a.start=y_pos
 
 			y_pos=y_pos+a.dy

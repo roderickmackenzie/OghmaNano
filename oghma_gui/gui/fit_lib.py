@@ -1,40 +1,43 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package fit_lib
 #  This is the backend to handle fitting
 #
 
 
-import sys
 import os
 import shutil
 
 import i18n
 _ = i18n.language.gettext
-import zipfile
 from PIL import Image
 from util_latex import latex
 from token_lib import tokens
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 from fit_lib_anal_results import fit_lib_anal_results
 from search import find_sims
 
@@ -43,7 +46,6 @@ class fit_lib(fit_lib_anal_results):
 
 	def gen_plots(self,scan_dir,plot_file,copy_fit_file=True):
 		sims=find_sims(scan_dir)
-		
 		for s in sims:
 			dest_plot_file=os.path.join(s,plot_file)
 			dest_eps_file=os.path.join(s,plot_file)+".eps"
@@ -54,14 +56,14 @@ class fit_lib(fit_lib_anal_results):
 			final_jpg=os.path.join(scan_dir,os.path.basename(s)+".jpg")
 
 
-			data=gpvdm_data()
+			data=json_root()
 			data.load(os.path.join(s,"sim.json"))
 			
 			lx=latex()
 			lx.document_start()
 			lx.tab_start(["Parameter","Value","Units"])
 
-			for latex_line in data.light.dump_as_latex(token_lib=tokens()):
+			for latex_line in data.optical.light.dump_as_latex(token_lib=tokens()):
 				lx.tab_add_row([latex_line.text,"$"+latex_line.value+"$","$"+latex_line.units+"$"])
 
 			for latex_line in data.parasitic.dump_as_latex(token_lib=tokens()):
@@ -82,7 +84,7 @@ class fit_lib(fit_lib_anal_results):
 
 			for c in data.epi.contacts.segments:
 				for latex_line in c.dump_as_latex(token_lib=tokens()):
-					lx.tab_add_row([latex_line.text+" "+c.shape_name,"$"+latex_line.value+"$","$"+latex_line.units+"$"])
+					lx.tab_add_row([latex_line.text+" "+c.name,"$"+latex_line.value+"$","$"+latex_line.units+"$"])
 
 
 			lx.tab_end()
@@ -112,7 +114,6 @@ class fit_lib(fit_lib_anal_results):
 				pass
 
 	def gen_fitlog_plot(self,plot_file,scan_dir):
-		sims=[]
 		lines="plot "
 		for root, dirs, files in os.walk(scan_dir):
 			for name in files:

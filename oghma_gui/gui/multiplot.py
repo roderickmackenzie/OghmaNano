@@ -1,50 +1,52 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package multiplot
 #  This will generate multiplot files
 #
 
 
-import sys
 import os
-import shutil
 
 import i18n
 _ = i18n.language.gettext
 
-
-import zipfile
 from util_zip import archive_add_dir
 from scan_io import scan_list_simulations
 from cal_path import subtract_paths
 from inp import inp
 from gui_enable import gui_get
 from util import peek_data
-from cal_path import get_sim_path
+from cal_path import sim_paths
 from dat_file import dat_file
 from dat_files_to_gnuplot import dat_file_to_gnuplot_header
 from cal_path import subtract_paths
 if gui_get()==True:
 	from plot_window import plot_window
+from json_base import json_base
 
 class sim_dir:
 	def __init__(self):
@@ -90,7 +92,7 @@ class multiplot:
 
 						if add==True:
 							text=peek_data(full_name)
-							if text.startswith(b"#gpvdm"):
+							if text.startswith(b"#oghma"):
 								sim_data.files.append(rel_path)
 
 			self.sims.append(sim_data)
@@ -99,12 +101,13 @@ class multiplot:
 		path=os.path.dirname(file_name)
 		if os.path.isdir(path)==False:
 			os.makedirs(path)
-			f=inp()
-			f.lines=[]
-			f.lines.append("#gpvdm_file_type")
-			f.lines.append("multi_plot_dir")
-			f.lines.append("#end")
-			f.save_as(os.path.join(path,"mat.inp"),mode="l",dest="file")
+			data=json_base("multi_plot_dir")
+			data.include_name=False
+			data.var_list.append(["icon","multi_plot_dir"])
+			data.var_list.append(["item_type","multi_plot_dir"])
+			data.var_list.append(["hidden","False"])
+			data.var_list_build()
+			data.save_as(os.path.join(path,"data.json"))
 	
 	def gen_gnu_plot_files(self):
 		path=self.path
@@ -152,6 +155,7 @@ class multiplot:
 
 					#print("save to>",os.path.join(path,cur_file))
 					out_file=os.path.join(path,cur_file)
+
 					self.make_dirs(os.path.splitext(out_file)[0]+".plot")
 					f=inp()
 					f.lines=found_files
@@ -165,7 +169,7 @@ class multiplot:
 		window=plot_window()
 		labels=[]
 		for f in files:
-			rel_path=subtract_paths(get_sim_path(),f)
+			rel_path=subtract_paths(sim_paths.get_sim_path(),f)
 			rel_path=rel_path.replace("\\", "/")
 			labels.append(rel_path)
 		window.init(files,labels)

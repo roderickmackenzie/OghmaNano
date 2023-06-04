@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package gl_video_maker
 #  The main tab class, used to display material properties.
@@ -28,38 +33,35 @@ import os
 from token_lib import tokens
 from undo import undo_list_class
 from tab_base import tab_base
-from str2bool import str2bool
-from util import latex_to_html
 from help import help_window
 
-from PyQt5.QtCore import pyqtSignal
+from gQtCore import gSignal
 
-from PyQt5.QtWidgets import QTextEdit,QWidget, QScrollArea,QVBoxLayout,QLabel,QHBoxLayout,QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,QComboBox,QGridLayout,QLineEdit, QToolBar,QAction
-from PyQt5.QtCore import QSize, Qt
-from PyQt5.QtGui import QPixmap, QIcon
+from PySide2.QtWidgets import QTextEdit,QWidget, QScrollArea,QVBoxLayout,QLabel,QHBoxLayout,QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,QComboBox,QGridLayout,QLineEdit, QToolBar,QAction
+from gQtCore import QSize, Qt
+from PySide2.QtGui import QPixmap, QIcon
 
 from icon_lib import icon_get
 
-from PyQt5.QtCore import QTimer
+from gQtCore import QTimer
 
 import i18n
 _ = i18n.language.gettext
 
-import functools
 from error_dlg import error_dlg
 
 from json_viewer import json_viewer
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 from json_gl import json_gl_view
 from experiment import experiment
 from tab_gl_video_maker import tab_gl_video_maker
 
 class gl_video_maker(experiment):
 
-	changed = pyqtSignal()
+	changed = gSignal()
 
 	def __init__(self,gl_widget):
-		experiment.__init__(self,"tab_gl_video_maker",window_save_name="tab_gl_video_maker", window_title=_("Flyby video maker"),json_search_path="gpvdm_data().gl",icon="fly")
+		experiment.__init__(self,"tab_gl_video_maker",window_save_name="tab_gl_video_maker", window_title=_("Flyby video maker"),json_search_path="json_root().gl.flybys",icon="fly")
 
 		self.tb_start = QAction(icon_get("fly"), _("Set\nposition"), self)
 		self.ribbon.file.insertAction(self.ribbon.tb_rename,self.tb_start)
@@ -92,7 +94,7 @@ class gl_video_maker(experiment):
 		self.gl_widget.timer.start(25)
 
 	def switch_page(self):
-		tab = self.notebook.currentWidget()
+		self.notebook.currentWidget()
 		#self.tb_lasers.update(tab.data)
 
 
@@ -108,12 +110,12 @@ class gl_video_maker(experiment):
 		data.x_pos=self.gl_widget.views[0].x_pos
 		data.y_pos=self.gl_widget.views[0].y_pos
 		data.zoom=self.gl_widget.views[0].zoom
-		gpvdm_data().save()
+		json_root().save()
 		tab.tab.tab.update_values()
 
 
 	def callback_run(self):
-		data=gpvdm_data()
+		data=json_root()
 		if (self.gl_widget.width() % 2) != 0:
 			print("window width not divisible by two")
 			return
@@ -121,27 +123,27 @@ class gl_video_maker(experiment):
 			print("window height not divisible by two")
 			return
 
-		self.gl_widget.views[0].xRot=data.gl.segments[0].xRot
-		self.gl_widget.views[0].yRot=data.gl.segments[0].yRot
-		self.gl_widget.views[0].zRot=data.gl.segments[0].zRot
-		self.gl_widget.views[0].x_pos=data.gl.segments[0].x_pos
-		self.gl_widget.views[0].y_pos=data.gl.segments[0].y_pos
-		self.gl_widget.views[0].zoom=data.gl.segments[0].zoom
+		self.gl_widget.views[0].xRot=data.gl.fly_by.segments[0].xRot
+		self.gl_widget.views[0].yRot=data.gl.fly_by.segments[0].yRot
+		self.gl_widget.views[0].zRot=data.gl.fly_by.segments[0].zRot
+		self.gl_widget.views[0].x_pos=data.gl.fly_by.segments[0].x_pos
+		self.gl_widget.views[0].y_pos=data.gl.fly_by.segments[0].y_pos
+		self.gl_widget.views[0].zoom=data.gl.fly_by.segments[0].zoom
 		self.gl_widget.views[0].max_angle_shift=1.0
 
 		self.next=1
 		self.set_next_target()
 
 	def set_next_target(self):
-		data=gpvdm_data()
-		if self.next<len(data.gl.segments):
+		data=json_root()
+		if self.next<len(data.gl.fly_by.segments):
 
-			self.gl_widget.viewtarget.xRot=data.gl.segments[self.next].xRot
-			self.gl_widget.viewtarget.yRot=data.gl.segments[self.next].yRot
-			self.gl_widget.viewtarget.zRot=data.gl.segments[self.next].zRot
-			self.gl_widget.viewtarget.x_pos=data.gl.segments[self.next].x_pos
-			self.gl_widget.viewtarget.y_pos=data.gl.segments[self.next].y_pos
-			self.gl_widget.viewtarget.zoom=data.gl.segments[self.next].zoom
+			self.gl_widget.viewtarget.xRot=data.gl.fly_by.segments[self.next].xRot
+			self.gl_widget.viewtarget.yRot=data.gl.fly_by.segments[self.next].yRot
+			self.gl_widget.viewtarget.zRot=data.gl.fly_by.segments[self.next].zRot
+			self.gl_widget.viewtarget.x_pos=data.gl.fly_by.segments[self.next].x_pos
+			self.gl_widget.viewtarget.y_pos=data.gl.fly_by.segments[self.next].y_pos
+			self.gl_widget.viewtarget.zoom=data.gl.fly_by.segments[self.next].zoom
 			self.gl_widget.viewtarget.max_angle_shift=1.0
 			self.next=self.next+1
 

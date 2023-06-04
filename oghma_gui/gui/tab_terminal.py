@@ -1,42 +1,46 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package tab_terminal
 #  The terminal tab, used to display simulation progress.
 #
 
-import os
 
 from tab_base import tab_base
 
-from PyQt5.QtWidgets import QTabWidget,QTextEdit,QWidget,QHBoxLayout
-from PyQt5.QtCore import QProcess, Qt
-from PyQt5.QtGui import QPalette,QColor,QFont
+from PySide2.QtWidgets import QTabWidget,QTextEdit,QWidget,QHBoxLayout
+from gQtCore import QProcess, Qt
+from PySide2.QtGui import QPalette,QColor,QFont
 
 from QHTabBar import QHTabBar
 
 import multiprocessing
 import functools
 from cpu_usage import cpu_usage
-from win_lin import running_on_linux
+from win_lin import get_platform
 from hpc import hpc_class
 from global_objects import global_object_register
 from jobs import jobs_view
@@ -47,12 +51,12 @@ from cal_path import multiplatform_exe_command
 import shlex
 import subprocess
 import time
-from PyQt5.QtCore import pyqtSignal
+from gQtCore import gSignal
 from threading import Thread
-from gpvdm_local import gpvdm_local
+from json_local_root import json_local_root
 
 class QProcess2(QWidget):
-	readyRead = pyqtSignal()
+	readyRead = gSignal()
 	def __init__(self):
 		QWidget.__init__(self)
 		self.running=False
@@ -194,6 +198,7 @@ class tab_terminal(QWidget,tab_base):
 				cursor = self.terminals[i].textCursor()
 				self.terminals[i].clear()
 				cursor.insertHtml(_("Running: ")+command+"<br>")
+				cursor.insertHtml(path+"<br>")
 				self.process[i].setWorkingDirectory(path)
 
 				command=multiplatform_exe_command(command)
@@ -245,7 +250,7 @@ class tab_terminal(QWidget,tab_base):
 		#self.jview.load_data(self.myserver.cluster_jobs)
 		self.tab.addTab(self.jview,"Jobs list")
 
-		if gpvdm_local().gui_config.enable_betafeatures==True:
+		if json_local_root().gui_config.enable_betafeatures==True:
 			self.cluster=hpc_class()
 			self.tab.addTab(self.cluster,_("Nodes"))
 			global_object_register("cluster_tab",self.cluster)

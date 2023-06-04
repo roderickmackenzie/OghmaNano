@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package cluster_config_window
 #  A window used to configure the cluster done via ssh.
@@ -26,16 +31,12 @@
 import os
 
 #qt
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QSize, Qt, QTimer
-from PyQt5.uic import loadUi
-from PyQt5.QtWidgets import QMenu,QToolBar,QSizePolicy, QVBoxLayout, QTabWidget, QAbstractItemView, QListWidgetItem,QPushButton, QListView,QWidget,QListWidget,QAction
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import pyqtSignal
+from PySide2.QtGui import QIcon, QPixmap
+from gQtCore import QSize, Qt, QTimer, gSignal
+from PySide2.QtWidgets import QMenu,QToolBar,QSizePolicy, QVBoxLayout, QTabWidget, QAbstractItemView, QListWidgetItem,QPushButton, QListView,QWidget,QListWidget,QAction
 
 #cal_path
 from icon_lib import icon_get
-from cal_path import get_ui_path
 
 from tab import tab_class
 
@@ -44,9 +45,8 @@ from help import help_window
 from error_dlg import error_dlg
 
 from inp import inp_get_token_value
-from inp import inp_get_token_value_from_list
 from inp import inp_update_token_value
-from cal_path import get_sim_path
+from cal_path import sim_paths
 
 from QWidgetSavePos import QWidgetSavePos
 
@@ -60,16 +60,17 @@ _ = i18n.language.gettext
 import random
 
 from experiment import experiment
-from gpvdm_local import gpvdm_local
-from gpvdm_json import gpvdm_data
+from json_local_root import json_local_root
+from json_root import json_root
+from sim_name import sim_name
 
 class cluster_config_window(experiment):
 
 
 	def __init__(self,data=None):
-		data=gpvdm_local()
 		
-		experiment.__init__(self,window_save_name="cluster_window", window_title=_("Configure")+" (https://www.gpvdm.com)",name_of_tab_class="cluster_tab",json_search_path="gpvdm_data().cluster",icon="preferences-system")
+		
+		experiment.__init__(self,window_save_name="cluster_window", window_title=_("Configure")+sim_name.web_window_title,name_of_tab_class="cluster_tab",json_search_path="json_local_root().cluster",icon="preferences-system")
 
 		self.ribbon.addTab(self.cluser_ribbon_ssh(),_("SSH"))
 
@@ -84,6 +85,10 @@ class cluster_config_window(experiment):
 		self.notebook.currentChanged.connect(self.switch_page)
 		self.switch_page()
 
+		self.changed.connect(self.callback_save)
+
+	def callback_save(self):
+		print("save")
 
 	def cluser_ribbon_ssh(self):
 		toolbar = QToolBar()
@@ -121,11 +126,11 @@ class cluster_config_window(experiment):
 		return toolbar
 
 	def switch_page(self):
-		tab = self.notebook.currentWidget()
+		self.notebook.currentWidget()
 		#self.tb_lasers.update(tab.data)
 
 	def generate_keys(self):
-		data=gpvdm_local()
+		data=json_local_root()
 
 		tab = self.notebook.currentWidget()
 
@@ -143,18 +148,18 @@ class cluster_config_window(experiment):
 		tab = self.notebook.currentWidget()
 		file_name=tab.file_name
 
-		self.user_name=inp_get_token_value(os.path.join(get_sim_path(),file_name), "#cluster_user_name")
-		self.ip=inp_get_token_value(os.path.join(get_sim_path(),file_name), "#cluster_ip")
-		self.cluster_dir=inp_get_token_value(os.path.join(get_sim_path(),file_name), "#cluster_cluster_dir")
+		self.user_name=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),file_name), "#cluster_user_name")
+		self.ip=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),file_name), "#cluster_ip")
+		self.cluster_dir=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),file_name), "#cluster_cluster_dir")
 
 	def write_cluster_config(self):
 		tab = self.notebook.currentWidget()
 		file_name=tab.file_name
 
-		cluster_ip=inp_get_token_value(os.path.join(get_sim_path(),file_name), "#cluster_ip")
+		cluster_ip=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),file_name), "#cluster_ip")
 		inp_update_token_value(os.path.join(get_cluster_path(),"node.inp"),"#master_ip",cluster_ip)
 
-		cluster_ip=inp_get_token_value(os.path.join(get_sim_path(),file_name), "#nodes")
+		cluster_ip=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),file_name), "#nodes")
 		print(cluster_ip)
 		inp_update_token_value(os.path.join(get_cluster_path(),"node_list.inp"),"#node_list",cluster_ip)
 

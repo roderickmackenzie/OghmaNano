@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package gtkswitch
 #  Package to provide an equivlent to the gnome switch
@@ -26,26 +31,22 @@
 
 import os
 import math
-from PyQt5.QtWidgets import QMenu
-from PyQt5.QtCore import QSize, Qt , QPoint, QRect
-from PyQt5.QtWidgets import QWidget, QDialog
-from PyQt5.QtGui import QPainter,QFont,QColor,QPen,QPolygon
+from gQtCore import QSize, Qt , QPoint, QRect
+from PySide2.QtWidgets import QWidget, QDialog, QMenu
+from PySide2.QtGui import QPainter,QFont,QColor,QPen,QPolygon
 
-from PyQt5.QtCore import pyqtSignal
-from math import fabs
-from math import pow
-from math import sqrt
+from gQtCore import gSignal
+from math import fabs, pow, sqrt
 from cal_path import get_components_path
 from inp import inp
-from triangle import vec
-from gui_util import dlg_get_text
+from vec import vec
 
-from cal_path import get_sim_path
+from cal_path import sim_paths
 from gui_util import yes_no_dlg
 
 from json_dialog import json_dialog
 from json_circuit import json_component
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 from json_base import json_base
 
 class draw_object():
@@ -55,15 +56,8 @@ class draw_object():
 		self.type="l"
 		self.r=1.0
 		self.text=""
-
-
-def to_ohm(val):
-	if val<1000:
-		return str(val)+" Ohms"
-	elif val<1000000:
-		return str(val/1000)+" kOhms"
-	else:
-		return str(val/1e6)+" MOhms"
+		self.I=""
+		self.V=""
 
 class ersatzschaltbild(QWidget):
 
@@ -82,6 +76,8 @@ class ersatzschaltbild(QWidget):
 		self.init()
 		self.hover=json_component()
 		self.menu_build()
+		self.file_current_voltage=None
+		self.show_resistance_values=True
 
 	def objects_push(self):
 		self.origonal_objects=[]
@@ -163,7 +159,7 @@ class ersatzschaltbild(QWidget):
 					x1=o.x0*self.dx+draw_obj.v1.x
 					y1=o.y0*self.dy+draw_obj.v1.y
 
-					qp.drawLine(x0+self.shift_x, y0+self.shift_y, x1++self.shift_x, y1+self.shift_y)
+					qp.drawLine(x0+self.shift_x, y0+self.shift_y, x1+self.shift_x, y1+self.shift_y)
 				elif draw_obj.type=="c":
 					x0=o.x0*self.dx+draw_obj.v0.x-draw_obj.r/2.0
 					y0=o.y0*self.dy+draw_obj.v0.y-draw_obj.r/2.0
@@ -174,14 +170,36 @@ class ersatzschaltbild(QWidget):
 			pen = QPen(QColor(0, 0, 255), 1, Qt.SolidLine)
 			qp.setPen(pen)
 
-			if o.name=="resistor":
-				qp.drawText(o.x0*self.dx, o.y0*self.dy, str(o.R))
+			try:
+				if o.I!="":
+					qp.drawText(o.x0*self.dx-self.dx/2.5, o.y0*self.dy-self.dy/1.1, o.I)
+			except:
+				pass
+
+			try:
+				if o.V!="":
+					qp.drawText(o.x0*self.dx-self.dx/2.5, o.y0*self.dy-self.dy/1.4, o.V)
+			except:
+				pass
+			if self.show_resistance_values==True:
+				if o.comp=="resistor":
+					qp.drawText(o.x0*self.dx-self.dx/4.0, o.y0*self.dy-self.dy/8, self.resistance_to_text(o.R))
 			
 
-
-
+	def resistance_to_text(self,r):
+		if r<1e-3:
+			return str(round(r*1e6))+"u\u03A9"
+		elif r<1.0:
+			return str(round(r*1e3))+"m\u03A9"
+		elif r<1e3:
+			return str(round(r*1e0))+"\u03A9"
+		elif r<1e6:
+			return str(round(r*1e-3))+"k\u03A9"
+		else:
+			return str(round(r*1e-6))+"M\u03A9"
+		
 	def save(self):
-		data=gpvdm_data()
+		data=json_root()
 		data.circuit.circuit_diagram.segments=[]
 		for o in self.objects:
 			data.circuit.circuit_diagram.segments.append(o)
@@ -189,15 +207,33 @@ class ersatzschaltbild(QWidget):
 
 	def load(self):
 		self.objects=[]
-		data=gpvdm_data()
+		data=json_root()
 		for s in data.circuit.circuit_diagram.segments:
+			s.I=""
+			s.V=""
 			self.add_object(s)
 
+		if self.file_current_voltage!=None:
+			self.f=inp()
+			self.f.load_json(self.file_current_voltage)
+			segments=self.f.json['segments']
+			for i in range(0,segments):
+				s=self.f.json['segment'+str(i)]
+				uid=s['uid']
+				I=s['i']
+				v0=s['v0']
+				v1=s['v1']
+				self.objects[uid].I=str("{:.2e}".format(fabs(I)))+"A"
+				self.objects[uid].V=str("{:.2e}".format(fabs(v0-v1)))+"V"
+				self.objects[uid].V=self.objects[uid].V.replace("e+00","")
+				self.objects[uid].V=self.objects[uid].V.replace("e-0","e-")
+				self.objects[uid].I=self.objects[uid].I.replace("e-0","e-")
 		self.repaint()
 
 	def load_component(self,c):
 		f=inp()
-		f.load(os.path.join(get_components_path(),c.name+".inp"))
+		file_name=os.path.join(get_components_path(),c.comp+".inp")
+		f.load(file_name)
 		if f.lines==False:
 			return []
 
@@ -260,13 +296,14 @@ class ersatzschaltbild(QWidget):
 
 		return len(self.objects)-1
 
-	def add_object0(self,x0,y0,x1,y1,name):
+	def add_object0(self,x0,y0,x1,y1,comp):
 		component=json_component()
 		component.x0=x0
 		component.y0=y0
 		component.x1=x1
 		component.y1=y1
-		component.name=name
+		component.comp=comp
+		component.name=comp
 		component.lines=self.load_component(component)
 		self.objects.append(component)
 
@@ -339,7 +376,7 @@ class ersatzschaltbild(QWidget):
 
 		if self.editable==False:
 			return
-		data=gpvdm_data()
+		data=json_root()
 
 		if data.circuit.enabled==False:
 			result=yes_no_dlg(self,_("Are you sure you want to edit the circuit directly?  The circuit will no longer automaticly be updated as you change the layer structure, and the electrical parameters editor will be disabled.  Use can use the reset function in the circuit diagram editor to resore this functionality"))
@@ -364,38 +401,37 @@ class ersatzschaltbild(QWidget):
 					self.objects.pop(index)
 			else:
 				if index==-1:
-					c.name=self.selected
+					c.comp=self.selected
 					c.lines=self.load_component(c)
 					#if direction=="up":
 					#	self.rotate(c.lines)
 
 					self.objects.append(c)
 				else:
-					self.a=json_dialog(_("Component editor")+" "+str(index))
-
-					if self.objects[index].name=="resistor":
-						data=json_base("dlg")
+					self.a=json_dialog(_("Component")+": "+self.objects[index].name)
+					ret=None
+					data=json_base("dlg")
+					data.var_list.append(["comp",self.objects[index].comp])
+					data.var_list.append(["name0",self.objects[index].name])
+					if self.objects[index].comp=="resistor":
 						data.var_list.append(["com_R",self.objects[index].R])
 						data.var_list_build()
 						ret=self.a.run(data)
 						if ret==QDialog.Accepted:
 							self.objects[index].R=data.com_R
-					elif self.objects[index].name=="capacitor":
-						data=json_base("dlg")
+					elif self.objects[index].comp=="capacitor":
 						data.var_list.append(["com_C",self.objects[index].C])
 						data.var_list_build()
 						ret=self.a.run(data)
 						if ret==QDialog.Accepted:
 							self.objects[index].C=data.com_C
-					elif self.objects[index].name=="inductor":
-						data=json_base("dlg")
+					elif self.objects[index].comp=="inductor":
 						data.var_list.append(["com_L",self.objects[index].L])
 						data.var_list_build()
 						ret=self.a.run(data)
 						if ret==QDialog.Accepted:
 							self.objects[index].L=data.com_L
-					elif self.objects[index].name=="diode":
-						data=json_base("dlg")
+					elif self.objects[index].comp=="diode":
 						data.var_list.append(["com_nid",self.objects[index].nid])
 						data.var_list.append(["com_I0",self.objects[index].I0])
 						data.var_list.append(["com_layer",self.objects[index].layer])
@@ -407,8 +443,28 @@ class ersatzschaltbild(QWidget):
 							self.objects[index].I0=data.com_I0
 							self.objects[index].layer=data.com_layer
 							self.objects[index].Dphotoneff=data.Dphotoneff
-			self.repaint()
+					elif self.objects[index].comp=="power":
+						data.var_list.append(["com_a",self.objects[index].a])
+						data.var_list.append(["com_b",self.objects[index].b])
+						data.var_list.append(["com_c",self.objects[index].c])
+						data.var_list.append(["com_I0",self.objects[index].I0])
+						data.var_list.append(["com_layer",self.objects[index].layer])
+						data.var_list.append(["Dphotoneff",self.objects[index].Dphotoneff])
+						data.var_list_build()
+						ret=self.a.run(data)
+						if ret==QDialog.Accepted:
+							self.objects[index].I0=data.com_I0
+							self.objects[index].a=data.com_a
+							self.objects[index].b=data.com_b
+							self.objects[index].c=data.com_c
+							self.objects[index].layer=data.com_layer
+							self.objects[index].Dphotoneff=data.Dphotoneff
+					if ret==QDialog.Accepted:
+						self.objects[index].comp=data.comp
+						self.objects[index].name=data.name0
+
 			self.save()
+			self.load()
 
 		elif event.button() == Qt.RightButton:
             #do what you want here
@@ -429,7 +485,7 @@ class ersatzschaltbild(QWidget):
 		self.menu_update()
 
 	def menu_update(self):
-		data=gpvdm_data()
+		data=json_root()
 		if data.circuit.enabled==True:
 			self.menu_circuit_from_epitaxy.setChecked(False)
 			self.menu_circuit_freehand.setChecked(True)
@@ -441,7 +497,7 @@ class ersatzschaltbild(QWidget):
 		self.main_menu.exec_(event.globalPos())
 
 	def callback_toggle_diagram_src(self):
-		data=gpvdm_data()
+		data=json_root()
 		data.circuit.enabled=not data.circuit.enabled
 		self.menu_update()
 		data.save()

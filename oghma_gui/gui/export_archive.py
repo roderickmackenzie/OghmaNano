@@ -1,43 +1,44 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
-
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package export_archive
 #  Export the simulation to an archive.
 #
 
-#import sys
 import os
-#import glob
 import zipfile
-#from util_zip import archive_add_file
 from progress_class import progress_class
 from process_events import process_events
 from cal_path import remove_simpathfrompath
 
-from cal_path import get_sim_path
+from cal_path import sim_paths
 
 def export_archive(target,everything):
-	if target.endswith(".gpvdm")==False:
-		target=target+".gpvdm"
+	if target.endswith(".oghma")==False:
+		target=target+".oghma"
 
 	file_list=[]
 
@@ -47,15 +48,15 @@ def export_archive(target,everything):
 	process_events()
 
 	if everything==True:
-		for path, dirs, files in os.walk(get_sim_path()):
+		for path, dirs, files in os.walk(sim_paths.get_sim_path()):
 			for file_name in files:
-				if file_name.endswith(".inp") or file_name.endswith(".dat") or file_name.endswith(".gmat"):
+				if file_name.endswith(".inp") or file_name.endswith(".dat") or file_name.endswith(".csv"):
 					file_list.append(os.path.join(path,file_name))
 	else:
-		files=os.listdir(get_sim_path())
+		files=os.listdir(sim_paths.get_sim_path())
 		for file_name in files:
 			if file_name.endswith(".inp"):
-				file_list.append(os.path.join(get_sim_path(),file_name))
+				file_list.append(os.path.join(sim_paths.get_sim_path(),file_name))
 
 	zf = zipfile.ZipFile(target, 'a')
 
@@ -75,10 +76,10 @@ def export_archive(target,everything):
 				print(_("Can't open file ")+cur_file)
 
 			progress_window.set_fraction(float(i)/float(len(file_list)))
-			progress_window.set_text("Adding"+cur_file[len(get_sim_path()):])
+			progress_window.set_text("Adding"+cur_file[len(sim_paths.get_sim_path()):])
 			process_events()
 
-	src_zf = zipfile.ZipFile(os.path.join(get_sim_path(),"sim.gpvdm"), 'r')
+	src_zf = zipfile.ZipFile(os.path.join(sim_paths.get_sim_path(),"sim.oghma"), 'r')
 
 	for file_name in src_zf.namelist():
 		if file_name not in zf.namelist():

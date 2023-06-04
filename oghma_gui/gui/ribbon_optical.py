@@ -1,41 +1,42 @@
 # -*- coding: utf-8 -*-
 #
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package ribbon_electrical
 #  The configure ribbon.
 #
 
 
-import os
 from icon_lib import icon_get
 
 from cal_path import get_css_path
 
 #qt
-from PyQt5.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QSize, Qt,QFile,QIODevice
-from PyQt5.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QPushButton,QDialog,QFileDialog,QToolBar,QMessageBox, QLineEdit, QToolButton
-from PyQt5.QtWidgets import QTabWidget
+from PySide2.QtGui import QIcon
+from gQtCore import QSize, Qt,QFile,QIODevice
+from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QPushButton,QToolBar, QLineEdit, QToolButton, QTextEdit, QAction, QTabWidget, QMenu
 
 from config_window import class_config_window
 
@@ -43,13 +44,11 @@ from help import help_window
 
 from global_objects import global_object_register
 
-from gpvdm_open import gpvdm_open
+from g_open import g_open
 from QAction_lock import QAction_lock
-from gui_util import dlg_get_text
-
 from lock import get_lock
-from gpvdm_json import gpvdm_data
-from cal_path import gpvdm_paths
+from json_root import json_root
+from cal_path import sim_paths
 from ribbon_page import ribbon_page
 from ribbon_electrical import ribbon_page2
 from fx_selector import fx_selector
@@ -64,7 +63,9 @@ class ribbon_optical(ribbon_page2):
 		self.ray_trace_window=None
 		self.detectors_window=None
 		self.fdtd_window=None
-
+		self.mode_window=None
+		self.optical_mesh=None
+		self.transfer_matrix_window=None
 		pan=self.add_panel()
 		self.light_sources = QAction_lock("lighthouse", _("Light\nSources"), self,"ribbon_home_light_sources")
 		self.light_sources.clicked.connect(self.callback_light_sources)
@@ -75,15 +76,23 @@ class ribbon_optical(ribbon_page2):
 		self.lasers.clicked.connect(self.callback_configure_lasers)
 		pan.addAction(self.lasers)
 
-		self.sun=tb_item_sun()
+		if pan.iconSize().width()>24:
+			self.sun=tb_item_sun()
+		else:
+			self.sun=tb_item_sun(layout=QHBoxLayout())
+
 		pan.addWidget(self.sun)
 
 
 		pan.addSeparator()
 
+		self.transfer_matrix = QAction_lock("optics", _("Transfer\nMatrix"), self,"ribbon_home_optics")
+		self.transfer_matrix.clicked.connect(self.callback_transfer_matrix)
+		pan.addAction(self.transfer_matrix)
+
 		self.ray_trace = QAction_lock("ray", wrap_text(_("Ray tracing\neditor"),8), self,"ribbon_simulations_ray")
 		self.ray_trace.clicked.connect(self.callback_ray_tracing_window)
-		if gpvdm_paths.is_plugin("trace")==True:
+		if sim_paths.is_plugin("trace")==True:
 			pan.addAction(self.ray_trace)
 
 		self.detector = QAction_lock("ccd", _("Optical\nDetectors"), self,"ribbon_home_optics")
@@ -94,11 +103,27 @@ class ribbon_optical(ribbon_page2):
 		self.fdtd.clicked.connect(self.callback_fdtd)
 		pan.addAction(self.fdtd)
 
-		self.fx_box=fx_selector()
+		self.mode = QAction_lock("mode_fiber", _("Mode\nCalculator"), self,"ribbon_simulations_mode")
+		self.mode.clicked.connect(self.callback_mode)
+		pan.addAction(self.mode)
+
+		if pan.iconSize().width()>24:
+			self.fx_box=fx_selector()
+		else:
+			self.fx_box=fx_selector(layout=QHBoxLayout())
+		
 		self.fx_box.update()
 		global_object_register("main_fx_box",self.fx_box)
 
 		pan.addWidget(self.fx_box)
+
+		self.mesh = QAction_lock("mesh", _("Optical\nmesh"), self,"ribbon_config_mesh")
+		self.mesh.triggered.connect(self.callback_edit_mesh)
+		pan.addAction(self.mesh)
+
+		self.boundary = QAction_lock("boundary", _("Boundary\nConditions"), self,"ribbon_optical_boundary")
+		self.boundary.clicked.connect(self.callback_boundary)
+		pan.addAction(self.boundary)
 
 		self.lasers_window=None
 
@@ -111,21 +136,31 @@ class ribbon_optical(ribbon_page2):
 			del self.lasers_window
 			self.lasers_window=None
 
+		if self.transfer_matrix_window!=None:
+			del self.transfer_matrix_window
+			self.transfer_matrix_window=None
+
 		self.sun.update()
+		self.fx_box.update()
 
 	def setEnabled(self,val):
 		self.light_sources.setEnabled(val)
-		self.optics.setEnabled(val)
-		self.ray_trace.setEnabled(val)
-		self.sun.setEnabled(val)
 		self.lasers.setEnabled(val)
+		self.sun.setEnabled(val)
+		self.ray_trace.setEnabled(val)
+		self.detector.setEnabled(val)
 		self.fdtd.setEnabled(val)
+		self.mode.setEnabled(val)
+		self.fx_box.setEnabled(val)
+		self.boundary.setEnabled(val)
+		self.mesh.setEnabled(val)
+		self.transfer_matrix.setEnabled(val)
 
 	def callback_configure_lasers(self):
 		from lasers import lasers
-		data=gpvdm_data()
+		data=json_root()
 		if self.lasers_window==None:
-			self.lasers_window=lasers(data.lasers)
+			self.lasers_window=lasers(data.optical.lasers)
 
 		help_window().help_set_help(["lasers.png",_("<big><b>Laser setup</b></big><br> Use this window to set up your lasers.")])
 		if self.lasers_window.isVisible()==True:
@@ -133,7 +168,7 @@ class ribbon_optical(ribbon_page2):
 		else:
 			self.lasers_window.show()
 
-	def callback_light_sources(self, widget, data=None):
+	def callback_light_sources(self):
 		help_window().help_set_help(["lighthouse.png",_("<big><b>The light sources window</b></big><br>Use this window to setup optical sources for the transfer matrix, ray tracing and FDTD simulations.")])
 
 
@@ -184,4 +219,41 @@ class ribbon_optical(ribbon_page2):
 		else:
 			self.fdtd_window.show()
 
+	def callback_mode(self):
+		from window_mode import window_mode
+		if self.mode_window==None:
+			self.mode_window=window_mode()
 
+		help_window().help_set_help(["mode_fiber.png",_("<big><b>Mode calculator</b></big><br> Use this window to setup a the optical mode calculator.")])
+		if self.mode_window.isVisible()==True:
+			self.mode_window.hide()
+		else:
+			self.mode_window.show()
+
+	def callback_edit_mesh(self):
+		from window_mesh_editor import window_mesh_editor
+		help_window().help_set_help(["mesh.png",_("<big><b>Mesh editor</b></big>\nUse this window to setup the mesh, the window can also be used to change the dimensionality of the simulation.")])
+
+		if self.optical_mesh==None:
+			self.optical_mesh=window_mesh_editor(json_path_to_mesh="json_root().optical.mesh",window_title=_("Optical Mesh Editor"))
+		if self.optical_mesh.isVisible()==True:
+			self.optical_mesh.hide()
+		else:
+			self.optical_mesh.show()
+
+	def callback_boundary(self):
+		data=json_root()
+		self.config_window=class_config_window([data.optical.boundary],[_("Boundary conditions")],title=_("Boundary conditions"),icon="electrical")
+		self.config_window.show()
+
+	def callback_transfer_matrix(self):
+		help_window().help_set_help(["optics.png",_("<big><b>The optical simulation window</b></big><br>Use this window to perform optical simulations.  Click on the play button to run a simulation."),"media-playback-start",_("Click on the play button to run an optical simulation.  The results will be displayed in the tabs to the right."),"youtube",_("<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Tutorial video</b></big><br>Designing optical filters and reflective coatings.")])
+
+
+		if self.transfer_matrix_window==None:
+			from optics import class_optical
+			self.transfer_matrix_window=class_optical()
+			global_object_register("optics_force_redraw",self.transfer_matrix_window.force_redraw)
+			self.transfer_matrix_window.ribbon.update()
+
+		self.show_window(self.transfer_matrix_window)

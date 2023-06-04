@@ -1,23 +1,28 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package import_data_json
 #  Import data window.
@@ -28,30 +33,33 @@ import os
 from icon_lib import icon_get
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QSpinBox,QToolBar,QSizePolicy,QAction,QTabWidget,QTextEdit,QComboBox,QLabel,QLineEdit,QDialog,QCheckBox
-from PyQt5.QtGui import QPainter,QIcon
+from gQtCore import QSize, Qt 
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QSpinBox,QToolBar,QSizePolicy,QAction,QTabWidget,QTextEdit,QComboBox,QLabel,QLineEdit,QDialog,QCheckBox
+from PySide2.QtGui import QPainter,QIcon
 
 #windows
-from PyQt5.QtCore import pyqtSignal
+from gQtCore import gSignal
 
 from open_save_dlg import open_as_filter
 
 from dat_file import dat_file
 
-from PyQt5.QtCore import pyqtSignal
+from gQtCore import gSignal
 
 from QWidgetSavePos import QWidgetSavePos
 
 from util import wrap_text
-from cal_path import get_sim_path
+from cal_path import sim_paths
 
 from ribbon_import import ribbon_import
 
 from str2bool import str2bool
 from error_dlg import error_dlg
-from gpvdm_json import gpvdm_data
+from json_root import json_root
 from QWidgetSavePos import resize_window_to_be_sane
+from sim_name import sim_name
+from bytes2str import str2bytes
+from bytes2str import bytes2str
 
 class decoder:
 	def __init__(self):
@@ -67,7 +75,7 @@ class decoder:
 
 class import_data_json(QDialog):
 
-	changed = pyqtSignal()
+	changed = gSignal()
 
 	def combo_to_item(self,combo):
 		search=combo.currentText()
@@ -96,7 +104,6 @@ class import_data_json(QDialog):
 		self.data_units=data_combo.output_units
 		self.data_disp_mul=data_combo.mul_to_display
 
-		print(x_combo.output_description,data_combo.output_description)
 		self.set_xlabel(x_combo.output_description)
 		self.set_data_label(data_combo.output_description)
 		self.set_title(x_combo.output_description+" - "+data_combo.output_description)
@@ -129,7 +136,7 @@ class import_data_json(QDialog):
 		return val
 
 	def save_config(self):
-		data=gpvdm_data()
+		data=json_root()
 		x_combo=self.combo_to_item(self.x_combo)
 		data_combo=self.combo_to_item(self.data_combo)
 
@@ -137,9 +144,9 @@ class import_data_json(QDialog):
 		self.data.import_data_combo_pos=data_combo.index
 		self.data.import_x_spin=self.x_spin.value()
 		self.data.import_data_spin=self.data_spin.value()
-		self.data.import_title=self.title_entry.text()
+		self.data.import_title=str2bytes(self.title_entry.text())
 		self.data.import_xlabel=self.xlabel_entry.text()
-		self.data.import_data_label=self.data_label_entry.text()
+		self.data.import_data_label=str2bytes(self.data_label_entry.text())
 		self.data.import_area=float(self.area_entry.text())
 		self.data.import_data_invert=str2bool(self.data_invert.isChecked())
 		self.data.import_x_invert=str2bool(self.x_invert.isChecked())
@@ -159,9 +166,9 @@ class import_data_json(QDialog):
 		text=self.index_to_text(int(self.data.import_data_combo_pos))
 		self.data_combo.setCurrentText(text)
 
-		self.title_entry.setText(self.data.import_title)
-		self.xlabel_entry.setText(self.data.import_xlabel)
-		self.data_label_entry.setText(self.data.import_data_label)
+		self.title_entry.setText(bytes2str(self.data.import_title))
+		self.xlabel_entry.setText(bytes2str(self.data.import_xlabel))
+		self.data_label_entry.setText(bytes2str(self.data.import_data_label))
 		self.area_entry.setText(str(self.data.import_area))
 
 		self.x_spin.setValue(self.data.import_x_spin)
@@ -204,7 +211,7 @@ class import_data_json(QDialog):
 	def callback_tab_changed(self):
 		self.update()
 
-	def __init__(self,data,export_path=get_sim_path()):
+	def __init__(self,data,export_path=sim_paths.get_sim_path()):
 		QDialog.__init__(self)
 		self.data=data
 		self.export_path=export_path
@@ -213,7 +220,7 @@ class import_data_json(QDialog):
 
 		self.setWindowIcon(icon_get("import"))
 
-		self.setWindowTitle(_("Import data")+" (https://www.gpvdm.com)") 
+		self.setWindowTitle(_("Import data")+sim_name.web_window_title) 
 
 		self.main_vbox = QVBoxLayout()
 	
@@ -367,7 +374,7 @@ class import_data_json(QDialog):
 		self.area_label=QLabel(_("device area:"))
 		self.area_hbox.addWidget(self.area_label)
 		self.area_entry=QLineEdit()
-		self.area_entry.setText(str(round(gpvdm_data().mesh.mesh_x.get_len()*gpvdm_data().mesh.mesh_z.get_len()*100*100, 3)))
+		self.area_entry.setText(str(round(json_root().electrical_solver.mesh.mesh_x.get_len()*json_root().electrical_solver.mesh.mesh_z.get_len()*100*100, 3)))
 		self.area_hbox.addWidget(self.area_entry)
 		self.area_units=QLabel("cm2")
 		self.area_hbox.addWidget(self.area_units)
@@ -405,13 +412,13 @@ class import_data_json(QDialog):
 		else:
 			return False
 
-		data.title=self.get_title()
+		data.title=str2bytes(self.get_title())
 
-		data.y_label=self.get_xlabel()
-		data.data_label=self.get_data_label()
+		data.y_label=str2bytes(self.get_xlabel())
+		data.data_label=str2bytes(self.get_data_label())
 
-		data.y_units=self.x_units
-		data.data_units=self.data_units
+		data.y_units=str2bytes(self.x_units)
+		data.data_units=str2bytes(self.data_units)
 		
 		data.y_mul=self.x_disp_mul
 		data.data_mul=self.data_disp_mul
@@ -428,7 +435,6 @@ class import_data_json(QDialog):
 			x_scale=eval(self.x_mul_to_si)
 
 			val=data.data[0][0][i]
-			x_val=x_scale
 			dat=eval(data_combo.equation_to_si)
 
 			if self.x_invert.isChecked() == True:
@@ -447,7 +453,7 @@ class import_data_json(QDialog):
 		
 	def callback_import(self):
 		data=self.transform(self.data.import_file_path)
-		data.save(os.path.join(self.export_path,self.data.data_file))
+		data.save(os.path.join(self.export_path,bytes2str(self.data.data_file)))
 		self.accept()
 
 	def open_file(self):
@@ -748,7 +754,7 @@ class import_data_json(QDialog):
 		a.input_units="au"
 		a.output_description=_("Absorption")
 		a.output_units="m^{-1}"
-		a.equation_to_si="val*4*3.14159/x_val"
+		a.equation_to_si="val*4*3.14159/x_scale"
 		a.mul_to_display=1.0
 		a.need_area=False
 		a.index=23
@@ -785,6 +791,17 @@ class import_data_json(QDialog):
 		a.mul_to_display=1.0
 		a.need_area=False
 		a.index=26
+		self.items.append(a)
+
+		a=decoder()
+		a.input_description=_("Intensity")
+		a.input_units="nm^{-1}.Wm^{-2}"
+		a.output_description=_("Intensity")
+		a.output_units="m^{-1}.Wm^{-2}"
+		a.equation_to_si="val*1e9"
+		a.mul_to_display=1.0
+		a.need_area=False
+		a.index=33										#current max val
 		self.items.append(a)
 
 		a=decoder()

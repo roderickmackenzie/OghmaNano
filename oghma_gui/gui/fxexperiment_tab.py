@@ -1,44 +1,45 @@
-# 
-#   General-purpose Photovoltaic Device Model - a drift diffusion base/Shockley-Read-Hall
-#   model for 1st, 2nd and 3rd generation solar cells.
+# -*- coding: utf-8 -*-
+#
+#   OghmaNano - Organic and hybrid Material Nano Simulation tool
 #   Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
-#   
-#   https://www.gpvdm.com
-#   
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License v2.0, as published by
-#   the Free Software Foundation.
-#   
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#   
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#   
+#
+#   https://www.oghma-nano.com
+#
+#   Permission is hereby granted, free of charge, to any person obtaining a
+#   copy of this software and associated documentation files (the "Software"),
+#   to deal in the Software without restriction, including without limitation
+#   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+#   and/or sell copies of the Software, and to permit persons to whom the
+#   Software is furnished to do so, subject to the following conditions:
+#
+#   The above copyright notice and this permission notice shall be included
+#   in all copies or substantial portions of the Software.
+#
+#   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+#   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+#   SOFTWARE.
+#
 
 ## @package fxexperiment_tab
 #  fx experiment tab widget
 #
 
-import os
-from numpy import *
-from fxexperiment_mesh_tab import fxexperiment_mesh_tab
-from circuit import circuit
-
 import i18n
 _ = i18n.language.gettext
 
 #qt
-from PyQt5.QtCore import QSize, Qt 
-from PyQt5.QtWidgets import QWidget,QTabWidget,QTabWidget
-from PyQt5.QtGui import QPainter,QIcon
+from PySide2.QtWidgets import QTabWidget
 
 from tab import tab_class
 from css import css_apply
-from gpvdm_json import gpvdm_data
+from json_root import json_root
+
+from circuit import circuit
+from fxexperiment_mesh_tab import fxexperiment_mesh_tab
 
 class fxexperiment_tab(QTabWidget):
 
@@ -63,14 +64,14 @@ class fxexperiment_tab(QTabWidget):
 		self.config_tab=tab_class(self.data.config)
 		self.addTab(self.config_tab,_("Configure"))
 
-		if gpvdm_data().electrical_solver.solver_type!="circuit":
+		if json_root().electrical_solver.solver_type!="circuit":
 			self.circuit=circuit(self.data)
 			self.addTab(self.circuit,_("Circuit"))
 			self.circuit.load_type.changed.connect(self.config_tab.tab.hide_show_widgets)
 
 	def rename(self,tab_name):
-		self.data.english_name=tab_name
-		gpvdm_data().save()
+		self.data.name=tab_name
+		json_root().save()
 
 	def get_json_obj(self):
 		return self.data
