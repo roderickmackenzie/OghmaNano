@@ -30,13 +30,11 @@
 
 import os
 
-from cal_path import get_materials_path
-from cal_path import get_base_material_path
+from cal_path import sim_paths
 from decode_inode import decode_inode
 from inp import inp
-from json_material_db_item import json_material_db_item
 from bytes2str import str2bytes
-def find_db_items(mat_path=get_materials_path(),file_type="material"):
+def find_db_items(mat_path=sim_paths.get_materials_path(),file_type="material"):
 	ret=[]
 
 	for root, dirs, files in os.walk(mat_path):

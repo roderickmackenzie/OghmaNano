@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,9 +29,9 @@
 
 #ifndef h_exciton_fun
 #define h_exciton_fun
+#include <g_io.h>
 #include <complex.h>
 #include "advmath.h"
-#include "i.h"
 #include <sim_struct.h>
 #include <epitaxy_struct.h>
 #include <exciton.h>
@@ -45,7 +43,7 @@ int exciton_solve(struct simulation *sim, struct exciton *ex,struct device *dev)
 void exciton_load_config(struct simulation *sim,struct exciton *ex, struct device *dev);
 void exciton_load_config_file(struct simulation *sim,struct exciton *ex, struct json_obj *json_config);
 void exciton_setup_dump_dir(struct simulation *sim, char *path,struct exciton *ex);
-void exciton_dump(struct simulation *sim,char *path,struct exciton *ex);
+void exciton_dump(struct simulation *sim,struct device *dev, char *path,struct exciton *ex);
 void exciton_free_memory(struct simulation *sim,struct exciton *ex);
 void exciton_malloc(struct simulation *sim,struct exciton *ex);
 void exciton_cpy(struct simulation *sim,struct exciton *out,struct exciton *in);
@@ -62,7 +60,7 @@ void exciton_build_materials_arrays(struct simulation *sim,struct exciton *ex, s
 int exciton_sim_info(struct simulation *sim, struct exciton *ex,struct device *dev);
 
 //Exciton model
-long double exciton_get_error(struct exciton *ex);
+gdouble exciton_get_error(struct exciton *ex);
 int exciton_newton_solve(struct simulation *sim, struct exciton *ex,struct device *dev);
 void exciton_set_initial_distribution(struct exciton *ex);
 
@@ -71,5 +69,7 @@ void exciton_material_init(struct exciton_material *mat);
 void exciton_material_cpy(struct exciton_material *out,struct exciton_material *in);
 void exciton_material_free(struct exciton_material *mat);
 void exciton_material_load_from_json(struct simulation *sim,struct exciton_material *mat, struct json_obj *json_exciton_material);
-void exciton_cal_get_excitoning_sources_percent(struct simulation *sim,struct device *dev,struct exciton *ex,long double *H_joule,long double *H_recombination,long double *H_parasitic);
+void exciton_cal_get_excitoning_sources_percent(struct simulation *sim,struct device *dev,struct exciton *ex,gdouble *H_joule,gdouble *H_recombination,gdouble *H_parasitic);
+int exciton_find_interfaces(struct simulation *sim,struct exciton *ex, struct device *dev);
+int exciton_distribute_charge(struct simulation *sim,struct exciton *ex, struct device *dev);
 #endif

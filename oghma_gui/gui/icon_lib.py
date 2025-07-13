@@ -29,15 +29,13 @@
 #
 
 import os
-from cal_path import get_icon_path
 from win_lin import get_platform
-from cal_path import get_image_file_path
 from cal_path import sim_paths
-from json_local_root import json_local_root
+from json_c import json_local_root
 
 try:
 	from gQtCore import QSize, Qt
-	from PySide2.QtGui import QPainter,QIcon
+	from PySide2.QtGui import QPainter,QIcon,QPixmap, QImage
 except:
 	pass
 
@@ -60,13 +58,11 @@ class icon_data_base:
 
 	def load(self):
 		data=json_local_root()
-		use_theme=data.gui_config.gui_use_icon_theme
+		use_theme=data.get_token_value("gui_config","gui_use_icon_theme")
 
-		path_16=os.path.join(get_image_file_path(),"16x16")
-		path_32=os.path.join(get_image_file_path(),"32x32")
-		path_64=os.path.join(get_image_file_path(),"64x64")
+		path_64=os.path.join(sim_paths.get_image_file_path(),"64x64")
 
-		for f in os.listdir(path_32):
+		for f in os.listdir(path_64):
 			if f.endswith("png"):
 				my_icon=icon()
 				my_icon.name.append(f.split(".")[0])
@@ -75,21 +71,25 @@ class icon_data_base:
 				if get_platform()=="linux" and use_theme==True:
 					image=QIcon()
 					if image.hasThemeIcon(my_icon.name[0])==True:
-						my_icon.icon16x16=image.fromTheme(my_icon.name[0])
-						my_icon.icon32x32=image.fromTheme(my_icon.name[0])
 						my_icon.icon64x64=image.fromTheme(my_icon.name[0])
+						my_icon.icon32x32=my_icon.icon64x64
+						my_icon.icon16x16=my_icon.icon64x64
+
 						found=True
 				if found==False:
-					my_icon.icon16x16=QIcon(os.path.join(path_16,my_icon.file_name+".png"))
-					my_icon.icon32x32=QIcon(os.path.join(path_32,my_icon.file_name+".png"))
+					my_icon.icon16x16=QIcon(os.path.join(path_64,my_icon.file_name+".png"))
+					my_icon.icon32x32=QIcon(os.path.join(path_64,my_icon.file_name+".png"))
 					my_icon.icon64x64=QIcon(os.path.join(path_64,my_icon.file_name+".png"))
 
 				self.db[my_icon.name[0]]=my_icon
 
-		for line in data.icon_lib.var_list:
+		var_list=data.get_tokens_from_path("icon_lib")
+
+		for name in var_list:
+			value=data.get_token_value("icon_lib",name)
 			for token in self.db:
-				if line[1] == self.db[token].file_name:
-					self.db[token].name.append(line[0])
+				if value == self.db[token].file_name:
+					self.db[token].name.append(name)
 
 
 	def dump(self):
@@ -105,6 +105,13 @@ class icon_data_base:
 			elif size==64:
 				return self.db[token].icon64x64
 
+		if size==16:
+			return self.db['oghma_grey'].icon16x16
+		elif size==32:
+			return self.db['oghma_grey'].icon32x32
+		elif size==64:
+			return self.db['oghma_grey'].icon64x64
+
 		return False
 
 
@@ -116,7 +123,7 @@ def icon_get_db():
 	global icon_db
 	return icon_db
 
-def icon_get(token,size=64,sub_icon=None):
+def icon_get(token,size=64,sub_icon=None,grey_scale=False):
 	global icon_db
 	if sub_icon=="" or sub_icon==None:
 		sub_icon=None
@@ -124,11 +131,19 @@ def icon_get(token,size=64,sub_icon=None):
 	if token!=".png" and token.endswith(".png")==True:
 		token=token[:-4]
 
-	if sub_icon==None:
-		return icon_db.icon_get(token,size=size)
-
 	icon_ret=icon_db.icon_get(token,size=size)
 
+	if icon_ret!=False:
+		if grey_scale==True:
+			result = icon_ret.pixmap(QSize(size,size))
+			Q_image = QPixmap.toImage(result)
+
+			grayscale = Q_image.convertToFormat(QImage.Format_Grayscale8)
+			pixmap = QPixmap.fromImage(grayscale)
+			icon_ret=QIcon(pixmap.scaled(size,size))
+
+	if sub_icon==None:
+		return icon_ret
 
 	if icon_ret!=False:
 		if sub_icon!=None:

@@ -20,7 +20,7 @@
 		"import_area":0.104,
 		"import_data_invert":"False",
 		"import_x_invert":"False",
-		"data_file":"n.gmat"
+		"data_file":"n.csv"
 		},
 	"alpha_import": {
 		"import_file_path":"none",
@@ -34,12 +34,12 @@
 		"import_area":0.104,
 		"import_data_invert":"False",
 		"import_x_invert":"False",
-		"data_file":"alpha.gmat"
+		"data_file":"alpha.csv"
 		},
 	"electrical_constants": {
 		"material_blend":"False",
-		"Xi0":-3.0,
-		"Eg0":1.0,
+		"Xi0":-4.1,
+		"Eg0":1.65,
 		"Xi1":-3.0,
 		"Eg1":1.0
 		},
@@ -47,5 +47,10 @@
 		"thermal_kl":1.0,
 		"thermal_tau_e":1e-08,
 		"thermal_tau_h":1e-09
+		},
+	"lca": {
+		"lca_density":2400,
+		"lca_cost":0.47,
+		"lca_energy":37450374.430606
 		}
 	}

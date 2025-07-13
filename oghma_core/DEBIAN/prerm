@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Remove launcher symlink
+rm -f /usr/bin/oghma_nano
+
+# Optionally remove desktop and MIME entries (uncomment if needed)
+# rm -f /usr/share/applications/oghma.desktop
+# rm -f /usr/share/mime/packages/oghma-oghma.xml
+
+# Refresh the dynamic linker cache
+ldconfig
+
+exit 0

@@ -32,8 +32,6 @@
 import os
 from icon_lib import icon_get
 
-from cal_path import get_css_path
-
 #qt
 from PySide2.QtGui import QIcon
 from gQtCore import QSize, Qt,QFile,QIODevice
@@ -47,9 +45,9 @@ from inp import inp
 from cal_path import sim_paths
 from util import wrap_text
 
-from bibtex import bibtex
 from ribbon_page import ribbon_page
 from sim_name import sim_name
+from json_c import json_c
 
 class ribbon_information(ribbon_page):
 	def __init__(self):
@@ -68,10 +66,13 @@ class ribbon_information(ribbon_page):
 		self.hints.triggered.connect(self.callback_help)
 		self.addAction(self.hints)
 
-		self.hints = QAction(icon_get("internet-chat"), _("Interface\nLanguage"), self)
-		self.hints.triggered.connect(self.callback_language)
-		self.addAction(self.hints)
+		self.lang = QAction(icon_get("preferences-desktop-locale"), _("Interface\nLanguage"), self)
+		self.lang.triggered.connect(self.callback_language)
+		self.addAction(self.lang)
 
+		self.forum = QAction(icon_get("forum"), _("User\nForum"), self)
+		self.forum.triggered.connect(self.callback_forum)
+		self.addAction(self.forum)
 
 
 		self.paper = QAction(icon_get("pdf"), wrap_text(_("Assosiated paper"),8), self)
@@ -102,24 +103,22 @@ class ribbon_information(ribbon_page):
 
 
 	def callback_paper(self):
-		b=bibtex()
-		if b.load(os.path.join(sim_paths.get_sim_path(),"sim.bib"))==True:
-			ref=b.get_ref("simulation")
-			if ref!=False:
-				if r.url!="":
-					webbrowser.open(r.url)#
+		a=json_c("file_defined")
+		if a.load(os.path.join(sim_paths.get_sim_path(),"sim.bib"))==False:
+			return
+
+		text=a.bib_cite("simulation")
+		a.free()
+		if text!=None:
+			if r.url!="":
+				webbrowser.open(r.url)
 
 
 	def callback_on_line_help(self):
-		#print("here")
-		#self.a=cool_menu(self.ribbon.home.help.icon())
-		#self.a.show()
-		#self.a.setVisible(True)
-
-		#self.a.setFocusPolicy(Qt.StrongFocus)
-		#self.a.setFocus(True)
-		#self.a.hasFocus()
 		webbrowser.open(sim_name.web+"/docs.html")
+
+	def callback_forum(self):
+		webbrowser.open("https://www.oghma-nano.com/forum/")
 
 	def callback_help(self):
 		help_window().toggle_visible()
@@ -134,7 +133,7 @@ class ribbon_information(ribbon_page):
 		self.config_window.show()
 
 	def callback_simulation_notes(self):
-		help_window().help_set_help(["si.png",_("<big><b>Record notes about the simulation here</b></big><br>Use this window to make notes about the simulation.")])
+		help_window().help_set_help("si.png",_("<big><b>Record notes about the simulation here</b></big><br>Use this window to make notes about the simulation."))
 
 
 		if self.simulation_notes_window==None:

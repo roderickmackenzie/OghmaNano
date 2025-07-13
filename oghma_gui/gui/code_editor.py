@@ -30,11 +30,9 @@
 
 
 
-from cal_path import get_css_path
-
 #qt
 from PySide2.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
-from PySide2.QtGui import QIcon, QTextFormat,QTextOption
+from PySide2.QtGui import QIcon, QTextFormat,QTextOption,QTextCursor
 from gQtCore import QSize, Qt,QFile,QIODevice,QRect
 from PySide2.QtWidgets import QWidget,QSizePolicy, QPlainTextEdit,QVBoxLayout,QHBoxLayout, QPushButton,QDialog,QFileDialog,QToolBar, QMessageBox, QLineEdit, QToolButton
 from PySide2.QtWidgets import QTabWidget
@@ -52,15 +50,15 @@ from gQtCore import QFile, QRegExp, Qt
 from PySide2.QtGui import QFont, QSyntaxHighlighter, QTextCharFormat
 
 class QLineNumberArea(QWidget):
-    def __init__(self, editor):
-        super().__init__(editor)
-        self.codeEditor = editor
+	def __init__(self, editor):
+		super().__init__(editor)
+		self.codeEditor = editor
 
-    def sizeHint(self):
-        return QSize(self.editor.lineNumberAreaWidth(), 0)
+	def sizeHint(self):
+		return QSize(self.editor.lineNumberAreaWidth(), 0)
 
-    def paintEvent(self, event):
-        self.codeEditor.lineNumberAreaPaintEvent(event)
+	def paintEvent(self, event):
+		self.codeEditor.lineNumberAreaPaintEvent(event)
 
 
 class code_editor(QPlainTextEdit):
@@ -72,13 +70,78 @@ class code_editor(QPlainTextEdit):
 		self.updateRequest.connect(self.updateLineNumberArea)
 		self.cursorPositionChanged.connect(self.highlightCurrentLine)
 		self.updateLineNumberAreaWidth(0)
+		#self.setTabStopDistance(self.fontMetrics().horizontalAdvance(' ') * 4)  # Set tab width
+
+	def keyPressEvent(self, event):
+		cursor = self.textCursor()
+		selected_text = cursor.selection().toPlainText()
+
+		if event.key() == Qt.Key_Tab and not event.modifiers():
+			if selected_text:  # If there is selected text, indent all selected lines
+				self.indent_selection()
+			else:
+				cursor.insertText("\t")
+		elif event.key() == Qt.Key_Backtab:  # Shift+Tab
+			self.unindent_selection()
+		else:
+			super().keyPressEvent(event)
+
+	def indent_selection(self):
+		cursor = self.textCursor()
+		start = cursor.selectionStart()
+		end = cursor.selectionEnd()
+		cursor.beginEditBlock()
+		cursor.setPosition(start)
+
+		while cursor.position() <= end:
+			cursor.movePosition(QTextCursor.StartOfBlock)
+			cursor.insertText("\t")
+			cursor.movePosition(QTextCursor.NextBlock)
+			if cursor.position() > end:
+				break
+
+		cursor.endEditBlock()
+
+
+	def unindent_selection(self):
+		cursor = self.textCursor()
+		start = cursor.selectionStart()
+		end = cursor.selectionEnd()
+
+		doc = self.document()
+		start_block = doc.findBlock(start)
+		end_block = doc.findBlock(end)
+
+		cursor.beginEditBlock()
+
+		block = start_block
+		while block.isValid() and block.position() <= end_block.position():
+		    cursor.setPosition(block.position())
+		    cursor.movePosition(QTextCursor.StartOfBlock)
+		    
+		    # Check for tab or 4 spaces
+		    cursor.movePosition(QTextCursor.Right, QTextCursor.KeepAnchor, 1)
+		    text = cursor.selectedText()
+		    if text == "\t":
+		        cursor.removeSelectedText()
+		    else:
+		        cursor.movePosition(QTextCursor.StartOfBlock)
+		        cursor.movePosition(QTextCursor.Right, QTextCursor.KeepAnchor, 4)
+		        text = cursor.selectedText()
+		        if text == "    ":
+		            cursor.removeSelectedText()
+
+		    block = block.next()
+
+		cursor.endEditBlock()
+
 
 	def lineNumberAreaWidth(self):
 		digits = 1
 		max_value = max(1, self.blockCount())
 		while max_value >= 10:
-		    max_value /= 10
-		    digits += 1
+			max_value /= 10
+			digits += 1
 		space = 3 + self.fontMetrics().width('9') * digits
 		return space
 
@@ -87,11 +150,11 @@ class code_editor(QPlainTextEdit):
 
 	def updateLineNumberArea(self, rect, dy):
 		if dy:
-		    self.lineNumberArea.scroll(0, dy)
+			self.lineNumberArea.scroll(0, dy)
 		else:
-		    self.lineNumberArea.update(0, rect.y(), self.lineNumberArea.width(), rect.height())
+			self.lineNumberArea.update(0, rect.y(), self.lineNumberArea.width(), rect.height())
 		if rect.contains(self.viewport().rect()):
-		    self.updateLineNumberAreaWidth(0)
+			self.updateLineNumberAreaWidth(0)
 
 	def resizeEvent(self, event):
 		super().resizeEvent(event)
@@ -101,13 +164,13 @@ class code_editor(QPlainTextEdit):
 	def highlightCurrentLine(self):
 		extraSelections = []
 		if not self.isReadOnly():
-		    selection = QTextEdit.ExtraSelection()
-		    lineColor = QColor(Qt.yellow).lighter(160)
-		    selection.format.setBackground(lineColor)
-		    selection.format.setProperty(QTextFormat.FullWidthSelection, True)
-		    selection.cursor = self.textCursor()
-		    selection.cursor.clearSelection()
-		    extraSelections.append(selection)
+			selection = QTextEdit.ExtraSelection()
+			lineColor = QColor(Qt.yellow).lighter(160)
+			selection.format.setBackground(lineColor)
+			selection.format.setProperty(QTextFormat.FullWidthSelection, True)
+			selection.cursor = self.textCursor()
+			selection.cursor.clearSelection()
+			extraSelections.append(selection)
 		self.setExtraSelections(extraSelections)
 
 	def lineNumberAreaPaintEvent(self, event):
@@ -123,13 +186,13 @@ class code_editor(QPlainTextEdit):
 		# Just to make sure I use the right font
 		height = self.fontMetrics().height()
 		while block.isValid() and (top <= event.rect().bottom()):
-		    if block.isVisible() and (bottom >= event.rect().top()):
-		        number = str(blockNumber + 1)
-		        painter.setPen(Qt.black)
-		        painter.drawText(0, top, self.lineNumberArea.width(), height, Qt.AlignRight, number)
+			if block.isVisible() and (bottom >= event.rect().top()):
+				number = str(blockNumber + 1)
+				painter.setPen(Qt.black)
+				painter.drawText(0, top, self.lineNumberArea.width(), height, Qt.AlignRight, number)
 
-		    block = block.next()
-		    top = bottom
-		    bottom = top + self.blockBoundingRect(block).height()
-		    blockNumber += 1
+			block = block.next()
+			top = bottom
+			bottom = top + self.blockBoundingRect(block).height()
+			blockNumber += 1
 

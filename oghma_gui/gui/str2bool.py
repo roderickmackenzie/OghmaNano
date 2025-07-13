@@ -40,5 +40,5 @@ def str2bool(v):
 		if v.lower() in ("false","none"):
 			return False
 
-		return v.lower() in ("ja","yes", "true", "t", "1","right","complex")
+		return v.lower() in ("yes", "true", "1","right","complex")
 

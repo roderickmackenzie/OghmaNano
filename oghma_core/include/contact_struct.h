@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -33,6 +31,7 @@
 #ifndef contact_struct_h
 #define contact_struct_h
 
+#include <g_io.h>
 #include <shape_struct.h>
 
 struct contact
@@ -45,24 +44,29 @@ struct contact
 
 	char applied_voltage_type[100];
 	gdouble voltage;
-	long double voltage_want;
+	gdouble voltage_want;
 	gdouble voltage_last;
 	gdouble store;
-	long double np;
+	gdouble np;
 	int charge_type;
-	long double area;
+	double area;
 
 	char shape_file_name[100];
 	struct shape shape;
 
-	long double contact_resistance_sq;
-	long double shunt_resistance_sq;
+	gdouble contact_resistance_sq;
+	gdouble shunt_resistance_sq;
 
-	int type;
-	long double ve0;
-	long double vh0;
-	long double J;
-	long double i;
+	int majority_model;
+	int minority_model;
+	double majority_v0;
+	double minority_v0;
+	double majority_mu;
+	double minority_mu;
+	gdouble J;
+	gdouble i;
+
+	int level_y;
 
 };
 

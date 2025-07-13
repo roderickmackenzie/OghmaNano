@@ -37,8 +37,7 @@ from QComboBoxLang import QComboBoxLang
 
 #cal_path
 from cal_path import subtract_paths
-from cal_path import get_materials_path
-from json_root import json_root
+from json_c import json_tree_c
 
 import i18n
 _ = i18n.language.gettext
@@ -50,6 +49,7 @@ class g_probe_type(QWidget):
 
 	def __init__(self,file_box=True):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.raw_value="ground"
 		self.hbox=QHBoxLayout()
 
@@ -64,6 +64,7 @@ class g_probe_type(QWidget):
 		self.combobox.addItemLang("max_pos_y_val_slice",_("Max pos y-slice val"))
 		self.combobox.addItemLang("max_pos_y_val_slice0",_("Max pos y-slice STD-Left val"))
 		self.combobox.addItemLang("max_pos_y_val_slice1",_("Max pos y-slice STD-Right val"))
+		self.combobox.addItemLang("val_at_y",_("Value at x point"))
 		self.hbox.addWidget(self.combobox)
 
 		self.label_x=QLabel(_("x:"))
@@ -99,12 +100,17 @@ class g_probe_type(QWidget):
 		self.edit_z.blockSignals(True)
 
 		self.combobox.blockSignals(True)
-		cb_value=self.probe.probe_type
+		json_path=self.find_probe()
+		cb_value=self.bin.get_token_value(json_path,"probe_type")
 		self.combobox.setValue_using_english(cb_value)
 
-		self.edit_x.setText(str(self.probe.px))
-		self.edit_y.setText(str(self.probe.py))
-		self.edit_z.setText(str(self.probe.pz))
+		self.edit_x.setText(str(self.bin.get_token_value(json_path,"px")))
+		self.edit_z.setText(str(self.bin.get_token_value(json_path,"pz")))
+
+		if cb_value.startswith("val_at_y")==True:
+			self.edit_y.setText(str(self.bin.get_token_value(json_path,"py_double")))
+		else:
+			self.edit_y.setText(str(self.bin.get_token_value(json_path,"py")))
 
 		if cb_value=="point":
 			self.edit_x.setVisible(True)
@@ -124,6 +130,15 @@ class g_probe_type(QWidget):
 
 			self.edit_z.setVisible(True)
 			self.label_z.setVisible(True)
+		elif cb_value.startswith("val_at_y")==True:
+			self.edit_x.setVisible(False)
+			self.label_x.setVisible(False)
+
+			self.edit_y.setVisible(True)
+			self.label_y.setVisible(True)
+
+			self.edit_z.setVisible(False)
+			self.label_z.setVisible(False)
 		else:
 			self.edit_x.setVisible(False)
 			self.label_x.setVisible(False)
@@ -139,32 +154,34 @@ class g_probe_type(QWidget):
 		self.edit_y.blockSignals(False)
 		self.edit_z.blockSignals(False)
 
-
 	def callback_edit(self):
-		self.find_probe()
-		self.probe.probe_type=self.combobox.currentText_english()
-		self.probe.px=float(self.edit_x.text())
-		self.probe.py=float(self.edit_y.text())
-		self.probe.pz=float(self.edit_z.text())
+		json_path=self.find_probe()
+		cb_value=self.combobox.currentText_english()
+		self.bin.set_token_value(json_path,"probe_type",cb_value)
+		self.bin.set_token_value(json_path,"px",self.edit_x.text())
+		self.bin.set_token_value(json_path,"pz",self.edit_z.text())
+
+		if cb_value.startswith("val_at_y")==True:
+			self.bin.set_token_value(json_path,"py_double",self.edit_y.text())
+		else:
+			self.bin.set_token_value(json_path,"py",self.edit_y.text())
+
 		self.changed.emit()
 
 	def callback_combobox(self):
-		self.find_probe()
-		self.probe.probe_type=self.combobox.currentText_english()
+		json_path=self.find_probe()
+		self.bin.set_token_value(json_path,"probe_type",self.combobox.currentText_english())
 		self.update()
 		self.changed.emit()
 
 	def updateValue(self,uid):
 		self.uid=uid
-		self.find_probe()
+		
 		self.update()
 
 	def find_probe(self):
-		self.probe=None
-		for probe in json_root().dump.probes.segments:
-			for p in probe.probes.segments:
-				if self.uid==p.id:
-					self.probe=p
+		ret=self.bin.find_path_by_uid("dump.probes",self.uid)
+		return ret
 
 	def text(self):
 		return self.combobox.currentText_english()

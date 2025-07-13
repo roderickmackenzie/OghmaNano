@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -30,29 +28,35 @@
 */
 #ifndef detector_struct_h
 #define detector_struct_h
+#include <g_io.h>
 #include <enabled_libs.h>
-#include <vec.h>
-#include <i.h>
 #include <sim_struct.h>
-#include <triangle.h>
-#include <dim.h>
 #include <shape_struct.h>
 #include <object.h>
+#include <math_xy.h>
+#include <dim.h>
 
 struct detector
 {
-	int viewpoint_enabled;
-	double viewpoint_x0;
-	double viewpoint_y0;
-	double viewpoint_z0;
-	double viewpoint_dx;
-	double viewpoint_dz;
-
+	struct shape shape;
 	int viewpoint_nx;
 	int viewpoint_nz;
+	double tot;
+	struct math_xy detected_time;
 
+	struct dimensions dim;
+	double ***image;
+	double *emission;	//what is emitted
+	double *abs;		//what is absorbed
+	double *eff;		//efficency of the process
+
+	int dump_verbosity;
 };
 
-
+struct detectors
+{
+	struct detector *det;
+	int detectors;
+};
 
 #endif

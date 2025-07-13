@@ -1,0 +1,7320 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Roderick C. I. MacKenzie
+# This file is distributed under the same license as the oghmanano package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: oghmanano 8.0\n"
+"Report-Msgid-Bugs-To: roderick.mackenzie@oghma-nano.com\n"
+"POT-Creation-Date: 2024-05-02 11:45+0100\n"
+"PO-Revision-Date: 2024-05-02 16:45+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? "
+"1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+msgid "H_joule"
+msgstr "H_dżul"
+
+msgid "H_recombination"
+msgstr "H_rekombinacja"
+
+msgid "H_parasitic"
+msgstr "H_pasożytniczy"
+
+msgid "Single states"
+msgstr "Stany pojedyncze"
+
+msgid "time"
+msgstr "czas"
+
+msgid "Ns"
+msgstr "Ns"
+
+msgid "Triplet states"
+msgstr "Stany potrójne"
+
+msgid "Nt"
+msgstr "Nie"
+
+msgid "Singlets in donor"
+msgstr "Singlety u dawcy"
+
+msgid "Nsd"
+msgstr "Nsd"
+
+msgid "Triplet in donor"
+msgstr "Trójka u dawcy"
+
+msgid "Ntd"
+msgstr "Nd"
+
+msgid "Photon denisty"
+msgstr "Gęstość fotonów"
+
+msgid "Npho"
+msgstr "Nfo"
+
+msgid "file name not set\n"
+msgstr "nazwa pliku nie została ustawiona\n"
+
+msgid "Time"
+msgstr "Czas"
+
+msgid "Voltage"
+msgstr "Napięcie"
+
+msgid "Free electron generation rate"
+msgstr "Szybkość generacji swobodnych elektronów"
+
+msgid "Generation rate"
+msgstr "Wskaźnik generacji"
+
+msgid "Free hole generation rate"
+msgstr "Szybkość generowania wolnych otworów"
+
+msgid "SRH recombination free electrons -> trapped holes"
+msgstr "Wolne elektrony rekombinacji SRH -> uwięzione dziury"
+
+msgid "Recombination"
+msgstr "Rekombinacja"
+
+msgid "SRH recombination free holes -> trapped electrons"
+msgstr "Wolne dziury rekombinacyjne SRH -> uwięzione elektrony"
+
+msgid "Surface recombination on left contact"
+msgstr "Rekombinacja powierzchniowa przy lewym kontakcie"
+
+msgid "Surface recombination on right contact"
+msgstr "Rekombinacja powierzchniowa przy prawym kontakcie"
+
+msgid "Trapped electron density"
+msgstr "Uwięziona gęstość elektronów"
+
+msgid "Electron density"
+msgstr "Gęstość elektronów"
+
+msgid "Trapped hole density"
+msgstr "Gęstość uwięzionych dziur"
+
+msgid "Hole density"
+msgstr "Gęstość dziur"
+
+msgid "Free electron density"
+msgstr "Gęstość swobodnych elektronów"
+
+msgid "Free hole density"
+msgstr "Gęstość wolnych dziur"
+
+msgid "Total electron density"
+msgstr "Całkowita gęstość elektronowa"
+
+msgid "Total hole density"
+msgstr "Całkowita gęstość dziur"
+
+msgid "Electron mobility"
+msgstr "Mobilność elektronów"
+
+msgid "Mobility"
+msgstr "Mobilność"
+
+msgid "Hole mobility"
+msgstr "Mobilność dziury"
+
+msgid "Average electron and hole mobility"
+msgstr "Średnia ruchliwość elektronów i dziur"
+
+msgid "Total PL intensity"
+msgstr "Całkowita intensywność PL"
+
+msgid "Total PL Intensity"
+msgstr "Całkowita intensywność PL"
+
+msgid "PL intensity at given energy"
+msgstr "Intensywność PL przy danej energii"
+
+msgid "PL Intensity"
+msgstr "PL Intensywność"
+
+msgid "Voltage applied to diode"
+msgstr "Napięcie przyłożone do diody"
+
+msgid "band bend (percent)"
+msgstr "zagięcie pasma (procent)"
+
+msgid "band bend"
+msgstr "zagięcie pasma"
+
+msgid "percent"
+msgstr "procent"
+
+msgid "Dynamic quantum efficiency"
+msgstr "Dynamiczna wydajność kwantowa"
+
+msgid "Percent"
+msgstr "Procent"
+
+msgid "Drift current density"
+msgstr "Gęstość prądu dryfu"
+
+msgid "Position"
+msgstr "Pozycja"
+
+msgid "Electron current density (drift)"
+msgstr "Gęstość prądu elektronowego (dryft)"
+
+msgid "Diffusion current density"
+msgstr "Gęstość prądu dyfuzyjnego"
+
+msgid "position"
+msgstr "pozycja"
+
+msgid "Electron current density (diffusion)"
+msgstr "Gęstość prądu elektronowego (dyfuzja)"
+
+msgid "Diffusion+Drift current density"
+msgstr "Dyfuzja + gęstość prądu dryfu"
+
+msgid "Drift current density (x)"
+msgstr "Gęstość prądu dryfu (x)"
+
+msgid "Diffusion current density (x)"
+msgstr "Gęstość prądu dyfuzyjnego (x)"
+
+msgid "Hole current density (drift)"
+msgstr "Gęstość prądu otworu (dryft)"
+
+msgid "Hole current density (diffusion)"
+msgstr "Gęstość prądu dziury (dyfuzja)"
+
+msgid "Current density"
+msgstr "Gęstość prądu"
+
+msgid "Electron current density"
+msgstr "Gęstość prądu elektronowego"
+
+msgid "Hole current density"
+msgstr "Gęstość prądu dziury"
+
+msgid "Electron current density x"
+msgstr "Gęstość prądu elektronowego x"
+
+msgid "Total current density (Jn+Jp)"
+msgstr "Całkowita gęstość prądu (Jn+Jp)"
+
+msgid "|Jny|+|Jnx|"
+msgstr "|Jny|+|Jnx|"
+
+msgid "|Total current density|"
+msgstr "|Całkowita gęstość prądu|"
+
+msgid "|Jpy|+|Jpx|"
+msgstr "|Jpy|+|Jpx|"
+
+msgid "Free electron -> Free hole recombination rate"
+msgstr "Wolny elektron -> Szybkość rekombinacji swobodnej dziury"
+
+msgid "Free carrier recombination rate"
+msgstr "Bezpłatny współczynnik rekombinacji nośników"
+
+msgid "Free electron loss due to SRH processes (including trapping)"
+msgstr "Utrata swobodnych elektronów w wyniku procesów SRH (w tym pułapkowanie)"
+
+msgid "Free electron loss"
+msgstr "Swobodna utrata elektronów"
+
+msgid "Free hole loss due to SRH processes (including trapping)"
+msgstr "Utrata swobodnych otworów w wyniku procesów SRH (w tym pułapkowanie)"
+
+msgid "Free hole loss"
+msgstr "Swobodna utrata dziury"
+
+msgid "SRH relaxation free electrons -> trapped electrons"
+msgstr "Relaksacja SRH: elektrony wolne -> elektrony uwięzione"
+
+msgid "Relaxation"
+msgstr "Relaks"
+
+msgid "SRH relaxation free holes -> trapped holes"
+msgstr "SRH wolne otwory relaksacyjne -> dziury uwięzione"
+
+msgid "Singlet density (S1)"
+msgstr "Gęstość singletu (S1)"
+
+msgid "Singlet density"
+msgstr "Gęstość singletu"
+
+msgid "Triplet density  (T1)"
+msgstr "Gęstość trypletowa (T1)"
+
+msgid "Triplet density"
+msgstr "Gęstość trójek"
+
+msgid "Singlet CT (1C)"
+msgstr "Pojedynczy CT (1C)"
+
+msgid "Triplet CT (3C)"
+msgstr "Potrójny CT (3C)"
+
+msgid "Singlet S1 'IMREF'"
+msgstr "Singlet S1 „IMREF”"
+
+msgid "Singlet energy"
+msgstr "Energia singletu"
+
+msgid "Triplet T1 'IMREF'"
+msgstr "Trójka T1 „IMREF”"
+
+msgid "Triplet energy"
+msgstr "Energia potrójna"
+
+msgid "Singlet CT (1C) 'IMREF'"
+msgstr "Pojedynczy CT (1C) „IMREF”"
+
+msgid "Triplet CT (3C) 'IMREF'"
+msgstr "Potrójny CT (3C) „IMREF”"
+
+msgid "Singlet in donor density"
+msgstr "Singlet w gęstości dawców"
+
+msgid "Triplet in donor density"
+msgstr "Triplet w gęstości dawców"
+
+msgid "Ion density"
+msgstr "Gęstość jonów"
+
+msgid "Singlet 'IMREF'"
+msgstr "Singiel „IMREF”"
+
+msgid "Triplet 'IMREF'"
+msgstr "Trójka „IMREF”"
+
+msgid "Singlet in donor 'IMREF'"
+msgstr "Pojedynczy u dawcy „IMREF”"
+
+msgid "Triplet in donor 'IMREF'"
+msgstr "Trójka u dawcy „IMREF”"
+
+msgid "Ion energy"
+msgstr "Energia jonowa"
+
+msgid "Doping"
+msgstr "Doping"
+
+msgid "Doping density"
+msgstr "Gęstość dopingu"
+
+msgid "Free electron carrier density"
+msgstr "Gęstość nośnika swobodnych elektronów"
+
+msgid "Carrier density"
+msgstr "Gęstość nośnika"
+
+msgid "Free hole carrier density"
+msgstr "Gęstość nośnika swobodnej dziury"
+
+msgid "Trapped electron carrier density"
+msgstr "Gęstość uwięzionego nośnika elektronów"
+
+msgid "Trapped hole carrier density"
+msgstr "Gęstość nośnika uwięzionej dziury"
+
+msgid "Change in electron population"
+msgstr "Zmiana populacji elektronów"
+
+msgid "Total charge"
+msgstr "Łączna opłata"
+
+msgid "Change in total charge"
+msgstr "Zmiana całkowitego kosztu"
+
+msgid "Change in hole population"
+msgstr "Zmiana populacji dziur"
+
+msgid "Excess electron density"
+msgstr "Nadmierna gęstość elektronowa"
+
+msgid "x-position"
+msgstr "pozycja x"
+
+msgid "y-position"
+msgstr "pozycja y"
+
+msgid "z-position"
+msgstr "pozycja Z"
+
+msgid "Excess hole density"
+msgstr "Nadmierna gęstość otworów"
+
+msgid "Perovskite mobile ion density"
+msgstr "Gęstość jonów ruchomych perowskitu"
+
+msgid "Interface free-to-free recombination constant"
+msgstr "Stała rekombinacji międzyfazowej interfejsu"
+
+msgid "Electron tunneling though the interface"
+msgstr "Tunelowanie elektronów przez interfejs"
+
+msgid "Tunneling-e"
+msgstr "Tunelowanie-e"
+
+msgid "Hole tunneling though the interface"
+msgstr "Tunelowanie otworów przez interfejs"
+
+msgid "Tunneling-h"
+msgstr "Tunelowanie-h"
+
+msgid "Interface free-to-trap recombination constant"
+msgstr "Stała rekombinacji przejścia swobodnego do pułapki"
+
+msgid "Interface free-to-trap  recombination constant"
+msgstr "Stała rekombinacji przejścia swobodnego do pułapki"
+
+msgid "Interface recombination rate"
+msgstr "Szybkość rekombinacji interfejsu"
+
+msgid "Electron current density left contact (J_y0_n)"
+msgstr "Gęstość prądu elektronowego lewy styk (J_y0_n)"
+
+msgid "Hole current density left contact (J_y0_p)"
+msgstr "Gęstość prądu otworu, lewy styk (J_y0_p)"
+
+msgid "Electron current density right contact (J_y1_n)"
+msgstr "Prawy styk gęstości prądu elektronowego (J_y1_n)"
+
+msgid "Hole current density right contact (J_y1_p)"
+msgstr "Prawy styk gęstości prądu otworu (J_y1_p)"
+
+msgid "Electron drift current"
+msgstr "Prąd dryfu elektronów"
+
+msgid "Electron diffusion current"
+msgstr "Prąd dyfuzji elektronów"
+
+msgid "Hole drift current"
+msgstr "Prąd dryfu otworu"
+
+msgid "Hole diffusion current"
+msgstr "Prąd dyfuzyjny otworu"
+
+msgid " Hole diffusion current"
+msgstr "Prąd dyfuzyjny otworu"
+
+msgid "Electron drift+diffusion current"
+msgstr "Dryft elektronów + prąd dyfuzyjny"
+
+msgid "Hole diffusion+diffusion current"
+msgstr "Dyfuzja dziurowa + prąd dyfuzyjny"
+
+msgid "Jn at contacts"
+msgstr "Jn w kontaktach"
+
+msgid "Jp at contacts"
+msgstr "Jp w kontaktach"
+
+msgid "External Current"
+msgstr "Prąd zewnętrzny"
+
+msgid "Current"
+msgstr "Aktualny"
+
+msgid "Current density at contacts"
+msgstr "Gęstość prądu na stykach"
+
+msgid "Single states (S1)"
+msgstr "Stany pojedyncze (S1)"
+
+msgid "Triplet states (T1)"
+msgstr "Stany potrójne (T1)"
+
+msgid "Material fraction (x)"
+msgstr "Udział materiału (x)"
+
+msgid "Fraction"
+msgstr "Frakcja"
+
+msgid "Material fraction (y)"
+msgstr "Udział materiału (y)"
+
+msgid "LUMO"
+msgstr "LUMO"
+
+msgid "Electron Energy"
+msgstr "Energia elektronów"
+
+msgid "HOMO"
+msgstr "HOMO"
+
+msgid "Lattice temperature"
+msgstr "Temperatura sieci"
+
+msgid "Temperature"
+msgstr "Temperatura"
+
+msgid "Electron temperature"
+msgstr "Temperatura elektronu"
+
+msgid "Hole temperature"
+msgstr "Temperatura otworu"
+
+msgid "Band gap"
+msgstr "Przerwa w paśmie"
+
+msgid "Electron quasi Fermi-level"
+msgstr "Quasi-poziom elektronu Fermiego"
+
+msgid "Hole quasi Fermi-level"
+msgstr "Dziura quasi-poziom Fermiego"
+
+msgid "Potential"
+msgstr "Potencjał"
+
+msgid "Equlibrium Fermi-level"
+msgstr "Równowaga poziomu Fermiego"
+
+msgid "Energy"
+msgstr "Energia"
+
+msgid "Relative permittivity"
+msgstr "Względna przenikalność elektryczna"
+
+msgid "Joule heating from device"
+msgstr "Ogrzewanie Joule'a z urządzenia"
+
+msgid "Heating"
+msgstr "Ogrzewanie"
+
+msgid "Electron mobility z"
+msgstr "Mobilność elektronów z"
+
+msgid "Electron mobility x"
+msgstr "Mobilność elektronów x"
+
+msgid "Electron mobility y"
+msgstr "Mobilność elektronów y"
+
+msgid "Hole mobility z"
+msgstr "Ruchliwość otworu z"
+
+msgid "Hole mobility x"
+msgstr "Ruchliwość otworu x"
+
+msgid "Hole mobility y"
+msgstr "Ruchliwość otworu y"
+
+msgid "Average electron mobility"
+msgstr "Średnia ruchliwość elektronów"
+
+msgid "Recombination rate"
+msgstr "Szybkość rekombinacji"
+
+msgid "Auger recombination"
+msgstr "Rekombinacja Augera"
+
+msgid "Rate"
+msgstr "Wskaźnik"
+
+msgid "Trap fermi level"
+msgstr "Pułapka na poziomie Fermiego"
+
+msgid "Electron Fermi level"
+msgstr "Poziom elektronu Fermiego"
+
+msgid "Material number"
+msgstr "Numer materiału"
+
+msgid "Number"
+msgstr "Numer"
+
+msgid "Passivated"
+msgstr "Pasywowane"
+
+msgid "True/False"
+msgstr "Prawda fałsz"
+
+msgid "Current map of the bottom contact"
+msgstr "Aktualna mapa dolnego kontaktu"
+
+msgid "Resistance of bottom of device"
+msgstr "Opór dolnej części urządzenia"
+
+msgid "Running Ray tracer\n"
+msgstr "Uruchomiony Ray Tracer\n"
+
+msgid "pulse mode not known\n"
+msgstr "tryb impulsowy nieznany\n"
+
+msgid "pulse time"
+msgstr "czas pulsu"
+
+msgid "step"
+msgstr "krok"
+
+msgid "current density"
+msgstr "gęstość prądu"
+
+msgid "current"
+msgstr "aktualny"
+
+msgid "Volts"
+msgstr "Wolty"
+
+msgid "Photogeneration rate"
+msgstr "Szybkość fotogeneracji"
+
+msgid "Emission"
+msgstr "Emisja"
+
+msgid "Charge density"
+msgstr "Gęstość ładunku"
+
+msgid "Suns"
+msgstr "Słońca"
+
+msgid "Charge"
+msgstr "Opłata"
+
+msgid "ce mode not known\n"
+msgstr "Tryb ce nieznany\n"
+
+msgid "ce mode not known"
+msgstr "tryb ce nieznany"
+
+msgid "ce time"
+msgstr "ce czas"
+
+msgid "Simulated polynomial data"
+msgstr "Symulowane dane wielomianowe"
+
+msgid "x"
+msgstr "X"
+
+msgid "y"
+msgstr "y"
+
+msgid "Full transfer matrix based light model"
+msgstr "Model światła oparty na matrycy pełnego transferu"
+
+msgid "Generating mesh\n"
+msgstr "Generowanie siatki\n"
+
+msgid "The materials in your device are not configured to emit light\n"
+msgstr "Materiały w Twoim urządzeniu nie są skonfigurowane do emitowania światła\n"
+
+msgid "Real"
+msgstr "Prawdziwy"
+
+msgid "Imaginary"
+msgstr "Wyimaginowany"
+
+msgid "Re(i)"
+msgstr "Re(i)"
+
+msgid "Im(i)"
+msgstr "Jestem(i)"
+
+msgid "Frequency"
+msgstr "Częstotliwość"
+
+msgid "Real(i)"
+msgstr "Prawdziwe (i)"
+
+msgid "Capacitance"
+msgstr "Pojemność"
+
+msgid "1/C^2"
+msgstr "1/C^2"
+
+msgid "abs(i)"
+msgstr "abs(i)"
+
+msgid "phi(i)"
+msgstr "fi(i)"
+
+msgid "Phase"
+msgstr "Faza"
+
+msgid "Fit error modulation"
+msgstr "Dopasuj modulację błędu"
+
+msgid "Error"
+msgstr "Błąd"
+
+msgid "Fit error j/v"
+msgstr "Błąd dopasowania j/v"
+
+msgid "Resistance"
+msgstr "Opór"
+
+msgid "Solving EQE at"
+msgstr "Rozwiązywanie EQE w"
+
+msgid "out of memory!\n"
+msgstr "brak pamięci!\n"
+
+msgid "matrix is singular!\n"
+msgstr "macierz jest pojedyncza!\n"
+
+msgid "Running scanning probe microscopy\n"
+msgstr "Uruchamiam mikroskopię z sondą skanującą\n"
+
+msgid "no spm config file found"
+msgstr "nie znaleziono pliku konfiguracyjnego spm"
+
+msgid "Running JV simulation\n"
+msgstr "Uruchamiam symulację JV\n"
+
+msgid "Stopping because of Vexternal"
+msgstr "Zatrzymywanie z powodu Vexternal"
+
+msgid "Efficiency"
+msgstr "Efektywność"
+
+msgid "Voltage/Current across just the ideal diode"
+msgstr "Napięcie/prąd na idealnej diodzie"
+
+msgid "Applied Voltage"
+msgstr "Zastosowane napięcie"
+
+msgid "Recombination prefactor"
+msgstr "Prefaktor rekombinacji"
+
+msgid "Applied voltage"
+msgstr "Zastosowane napięcie"
+
+msgid "Excess carrier density"
+msgstr "Nadmierna gęstość nośnika"
+
+msgid "Excess charge density above equilibrium"
+msgstr "Nadmierna gęstość ładunku powyżej równowagi"
+
+msgid "Charge density with correction for surface charge"
+msgstr "Gęstość ładunku z poprawką na ładunek powierzchniowy"
+
+msgid "Total charge density"
+msgstr "Całkowita gęstość ładunku"
+
+msgid "EQE"
+msgstr "EQE"
+
+msgid "Light flux"
+msgstr "Strumień światła"
+
+msgid "Power in Optical emission/Electrical power in"
+msgstr "Moc w Emisja optyczna/Moc elektryczna w"
+
+msgid "Conductivity"
+msgstr "Przewodność"
+
+msgid "Holes on left contact"
+msgstr "Otwory na lewym styku"
+
+msgid "Electrons on left contact"
+msgstr "Elektrony na lewym kontakcie"
+
+msgid "Holes on right contact"
+msgstr "Otwory na prawym styku"
+
+msgid "Electrons on right contact"
+msgstr "Elektrony na prawym kontakcie"
+
+msgid "Generating electrical mesh\n"
+msgstr "Generowanie siatki elektrycznej\n"
+
+msgid "I can't solve the matrix because I don't have enough equations."
+msgstr "Nie potrafię rozwiązać macierzy, bo nie mam wystarczającej liczby równań."
+
+msgid "Wavelength"
+msgstr "Długość fali"
+
+msgid "Probe load configuration"
+msgstr "Konfiguracja obciążenia sondy"
+
+msgid "Probe calculate modes"
+msgstr "Tryby obliczania sondy"
+
+msgid "Probe free memory"
+msgstr "Wolna pamięć sondy"
+
+msgid "Photon generation rate"
+msgstr "Szybkość generacji fotonów"
+
+msgid "Average photon generation rate (xz-plane)"
+msgstr "Średni współczynnik generacji fotonów (płaszczyzna xz)"
+
+msgid "Photon generation rate  (xz-plane)"
+msgstr "Szybkość generacji fotonów (płaszczyzna xz)"
+
+msgid "Absorption"
+msgstr "Wchłanianie"
+
+msgid "Extended opticla absorption"
+msgstr "Rozszerzona absorpcja optyczna"
+
+#, python-format
+msgid "Cleaning cache index: %s\n"
+msgstr "Czyszczenie indeksu pamięci podręcznej: %s\n"
+
+msgid "Cache: checking cache free space\n"
+msgstr "Pamięć podręczna: sprawdzanie wolnego miejsca w pamięci podręcznej\n"
+
+msgid "Freeing memory from the exciton model\n"
+msgstr "Zwolnienie pamięci z modelu ekscytonowego\n"
+
+msgid "Mode E-field"
+msgstr "Tryb pola E"
+
+msgid "E-field"
+msgstr "Pole E"
+
+msgid "Refractive index"
+msgstr "Współczynnik załamania światła"
+
+msgid "Normalized photon ensity"
+msgstr "Znormalizowana intensywność fotonów"
+
+msgid "Photon density"
+msgstr "Gęstość fotonów"
+
+msgid "Mode Ey"
+msgstr "Tryb Ej"
+
+msgid "Ey"
+msgstr "Ej"
+
+msgid "E - Electric field"
+msgstr "E - Pole elektryczne"
+
+msgid "Job stalled. Time since last run:"
+msgstr "Praca utknęła w martwym punkcie. Czas od ostatniego uruchomienia:"
+
+msgid "Bytes, written"
+msgstr "Bajty, zapisane"
+
+msgid ", read"
+msgstr ", Czytać"
+
+msgid "Files, read"
+msgstr "Pliki, przeczytaj"
+
+msgid " written"
+msgstr "pisemny"
+
+msgid "I have shut down the server"
+msgstr "Zamknąłem serwer"
+
+msgid "Number of CPUs:"
+msgstr "Liczba procesorów:"
+
+msgid "Start time"
+msgstr "Czas rozpoczęcia"
+
+msgid "End time"
+msgstr "Koniec czasu"
+
+msgid "All jobs finished jobs"
+msgstr "Wszystkie prace zostały zakończone"
+
+msgid "I have finished all my jobs"
+msgstr "Skończyłem wszystkie prace"
+
+msgid "The server has detected a crash"
+msgstr "Serwer wykrył awarię"
+
+msgid "Hole generation rate"
+msgstr "Szybkość generowania otworów"
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie, Releced the MIT License"
+msgstr "Prawa autorskie (C) 2009-2022 Roderick C. I. MacKenzie, zrzekł się licencji MIT"
+
+msgid "options"
+msgstr "opcje"
+
+msgid "Options"
+msgstr "Opcje"
+
+msgid "Simulation root path"
+msgstr "Ścieżka główna symulacji"
+
+msgid "displays the current version"
+msgstr "wyświetla aktualną wersję"
+
+msgid "Dump know paths"
+msgstr "Zrzuć znane ścieżki"
+
+msgid "Forces a simulation mode."
+msgstr "Wymusza tryb symulacji."
+
+msgid "sets the number of CPUs"
+msgstr "ustawia liczbę procesorów"
+
+msgid "Runs the optimizer. Syntax --optimizer scan_name"
+msgstr "Uruchamia optymalizator. Składnia --optimizer nazwa_skanowania"
+
+msgid "Additional information about OghmaNano is available at https://www.Oghma-Nano.com."
+msgstr ""
+"Dodatkowe informacje na temat OghmaNano można znaleźć na stronie https://www.Oghma-Nano.com."
+
+msgid "Report bugs to: roderick.mackenzie@oghma-nano.com"
+msgstr "Zgłaszaj błędy na adres: roderick.mackenzie@oghma-nano.com"
+
+#, python-format
+msgid "oghma_core, Version %s\n"
+msgstr "oghma_core, wersja %s\n"
+
+msgid "OghmaNano (Organic and hybrid Material Nano Simulation tool) core."
+msgstr "Rdzeń OghmaNano (narzędzie do symulacji materiałów organicznych i hybrydowych)."
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2009-2022"
+msgstr "Prawa autorskie Roderick MacKenzie, opublikowane na licencji MIT 2009–2022"
+
+msgid "There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or\n"
+msgstr "NIE MA CAŁKOWICIE ŻADNEJ GWARANCJI; nawet ze względu na PRZYDATNOŚĆ HANDLOWĄ lub\n"
+
+msgid "FITNESS FOR A PARTICULAR PURPOSE.\n"
+msgstr "PRZYDATNOŚĆ DO OKREŚLONEGO CELU.\n"
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2010-2019"
+msgstr "Prawa autorskie Roderick MacKenzie, opublikowane na licencji MIT 2010-2019"
+
+msgid "OghmaNano - Organic and hybrid Material Nano Simulation tool"
+msgstr "OghmaNano – narzędzie do symulacji nano materiałów organicznych i hybrydowych"
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+msgstr "Copyright (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+
+msgid "Released under the MIT software license"
+msgstr "Wydane na licencji oprogramowania MIT"
+
+msgid "If you wish to collaborate in anyway please get in touch:\n"
+msgstr "Jeśli chcesz w jakikolwiek sposób współpracować, skontaktuj się z nami:\n"
+
+msgid "dll not loaded"
+msgstr "dll nie został załadowany"
+
+msgid "dll function outcoupling_dll_init not found\n"
+msgstr "dll nie znaleziono funkcji outcoupling_dll_init\n"
+
+msgid "dll function outcoupling_dll_solve_lam_slice not found\n"
+msgstr "dll nie znaleziono funkcji outcoupling_dll_solve_lam_slice\n"
+
+msgid "dll function outcoupling_dll_ver not found\n"
+msgstr "dll nie znaleziono funkcji outcoupling_dll_ver\n"
+
+msgid "Generation rate - position"
+msgstr "Szybkość wytwarzania - pozycja"
+
+msgid "Photons escape probability - position"
+msgstr "Fotony wymykają się prawdopodobieństwu - położenie"
+
+msgid "Photons escape probability"
+msgstr "Fotony wymykają się prawdopodobieństwu"
+
+msgid "Position - Photon density"
+msgstr "Pozycja - gęstość fotonów"
+
+msgid "Photon Escape Probability Wavelength Averaged"
+msgstr "Prawdopodobieństwo ucieczki fotonu Uśredniona długość fali"
+
+msgid "Escape probability"
+msgstr "Prawdopodobieństwo ucieczki"
+
+msgid "Photon escape probability"
+msgstr "Prawdopodobieństwo ucieczki fotonów"
+
+msgid "Running FDTD simulation @"
+msgstr "Uruchamianie symulacji FDTD @"
+
+msgid "Ex - Electric field"
+msgstr "Przykład – Pole elektryczne"
+
+msgid "Ey - Electric field"
+msgstr "Ey - Pole elektryczne"
+
+msgid "Ez - Electric field"
+msgstr "Ez - Pole elektryczne"
+
+msgid "Detectors"
+msgstr "Detektory"
+
+msgid "Hx - Magnetic field"
+msgstr "Hx - Pole magnetyczne"
+
+msgid "H-field"
+msgstr "Pole H"
+
+msgid "Hy - Magnetic field"
+msgstr "Hy - Pole magnetyczne"
+
+msgid "Hz - Magnetic field"
+msgstr "Hz - Pole magnetyczne"
+
+msgid "Power den"
+msgstr "Moc den"
+
+msgid "Tot power den"
+msgstr "Całkowita moc den"
+
+msgid "epsilon_r - Premitivity"
+msgstr "epsilon_r – Premitywność"
+
+msgid "Permitivity"
+msgstr "Przepuszczalność"
+
+msgid "sigma - ?"
+msgstr "sigma-?"
+
+msgid "sigma"
+msgstr "sigma"
+
+msgid "Math_2d output"
+msgstr "Dane wyjściowe Math_2d"
+
+msgid "Values"
+msgstr "Wartości"
+
+msgid "dll function dll_matrix_solve not found\n"
+msgstr "dll nie znaleziono funkcji dll_matrix_solve\n"
+
+msgid "dll function dll_matrix_solver_free not found\n"
+msgstr "dll nie znaleziono funkcji dll_matrix_solver_free\n"
+
+msgid "dll function dll_matrix_init not found\n"
+msgstr "dll nie znaleziono funkcji dll_matrix_init\n"
+
+msgid "Error closing dll"
+msgstr "Błąd podczas zamykania biblioteki dll"
+
+msgid "File not found\n"
+msgstr "Nie znaleziono pliku\n"
+
+#, python-format
+msgid "File access log written to %s\n"
+msgstr "Dziennik dostępu do pliku zapisany w %s\n"
+
+msgid "Equilibrium Fermi-level"
+msgstr "Równowaga poziomu Fermiego"
+
+msgid "dll function dll_complex_matrix_solver_free not found\n"
+msgstr "dll nie znaleziono funkcji dll_complex_matrix_solver_free\n"
+
+msgid "Deleting directory: "
+msgstr "Usuwanie katalogu:"
+
+msgid "Deleting directory"
+msgstr "Usuwanie katalogu"
+
+msgid "Solver initialization\n"
+msgstr "Inicjalizacja Solvera\n"
+
+msgid "dll_solve_cur not NULL\n"
+msgstr "dll_solve_cur nie NULL\n"
+
+msgid "dll function dll_solve_cur not found\n"
+msgstr "dll nie znaleziono funkcji dll_solve_cur\n"
+
+msgid "dll_solver_realloc not NULL\n"
+msgstr "dll_solver_realloc nie NULL\n"
+
+msgid "dll function dll_solver_realloc not found\n"
+msgstr "dll nie znaleziono funkcji dll_solver_realloc\n"
+
+msgid "dll_solver_free_memory not NULL\n"
+msgstr "dll_solver_free_memory nie ma wartości NULL\n"
+
+msgid "dll function dll_solver_free_memory not found\n"
+msgstr "dll nie znaleziono funkcji dll_solver_free_memory\n"
+
+msgid ">I don't understand the command"
+msgstr "> Nie rozumiem polecenia"
+
+msgid "Can not open file"
+msgstr "Nie można otworzyć pliku"
+
+#, python-brace-format
+msgid "Average mobility at V_{oc}"
+msgstr "Średnia mobilność w V_{oc}"
+
+msgid "Recombination rate at Voc"
+msgstr "Szybkość rekombinacji w Voc"
+
+#, python-brace-format
+msgid "Average mobility as J_{sc}"
+msgstr "Średnia mobilność jako J_{sc}"
+
+#, python-brace-format
+msgid "Electron mobility at J_{sc}"
+msgstr "Mobilność elektronów w J_{sc}"
+
+#, python-brace-format
+msgid "Hole mobility at J_{sc}"
+msgstr "Ruchliwość otworu w J_{sc}"
+
+#, python-brace-format
+msgid "Electron mobility at P_{max}"
+msgstr "Mobilność elektronów w P_{max}"
+
+#, python-brace-format
+msgid "Hole mobility at P_{max}"
+msgstr "Ruchliwość otworu w P_{max}"
+
+msgid "Recombination time constant at Voc"
+msgstr "Stała czasowa rekombinacji w Voc"
+
+msgid "Trapped electrons at Voc"
+msgstr "Uwięzione elektrony w Voc"
+
+msgid "Trapped holes at Voc"
+msgstr "Uwięzione dziury w Voc"
+
+msgid "Free electrons at Voc"
+msgstr "Swobodne elektrony w Voc"
+
+msgid "Free holes at Voc"
+msgstr "Wolne dziury w Voc"
+
+msgid "Total carriers (n+p)/2 at Voc"
+msgstr "Całkowita liczba przewoźników (n+p)/2 w Voc"
+
+#, python-brace-format
+msgid "Average mobility at P_{max}"
+msgstr "Średnia mobilność w P_{max}"
+
+msgid "<b>GPU</b>"
+msgstr "<b>GPU</b>"
+
+msgid "Max Cahce Size"
+msgstr "Maksymalny rozmiar Cahce"
+
+msgid "Minimum disk free"
+msgstr "Minimalny wolny dysk"
+
+msgid "Number of simulations to keep"
+msgstr "Liczba symulacji do zachowania"
+
+msgid "Enable cache"
+msgstr "Włącz pamięć podręczną"
+
+msgid "Cache path"
+msgstr "Ścieżka pamięci podręcznej"
+
+msgid "Name"
+msgstr "Nazwa"
+
+msgid "Resistor"
+msgstr "Rezystor"
+
+msgid "Capacitor"
+msgstr "Kondensator"
+
+msgid "Inductance"
+msgstr "Indukcyjność"
+
+msgid "I0"
+msgstr "I0"
+
+msgid "Ideality factor"
+msgstr "Czynnik idealności"
+
+msgid "Layer"
+msgstr "Warstwa"
+
+msgid "Single point"
+msgstr "Pojedyńczy punkt"
+
+msgid "Start intensity"
+msgstr "Intensywność startowa"
+
+msgid "Stop intensity"
+msgstr "Zatrzymaj intensywność"
+
+msgid "step multiplier"
+msgstr "mnożnik kroków"
+
+msgid "dx of Honeycomb"
+msgstr "dx plastra miodu"
+
+msgid "dy of Honeycomb"
+msgstr "dy z Honeycomb"
+
+msgid "Line width"
+msgstr "Szerokość linii"
+
+msgid "x shift"
+msgstr "x przesunięcie"
+
+msgid "y shift"
+msgstr "zmiana"
+
+msgid "Rotate"
+msgstr "Obracać się"
+
+msgid "Enable fit variable"
+msgstr "Włącz zmienną dopasowania"
+
+msgid "Select"
+msgstr "Wybierać"
+
+msgid "Shift experimental y"
+msgstr "Przesunięcie eksperymentalne y"
+
+msgid "Invert simulated data (y)"
+msgstr "Odwróć symulowane dane (y)"
+
+msgid "Subtract lowest point"
+msgstr "Odejmij najniższy punkt"
+
+msgid "Set first point to zero"
+msgstr "Ustaw pierwszy punkt na zero"
+
+msgid "Fit df(x)/dx"
+msgstr "Dopasuj df(x)/dx"
+
+msgid "Fit error multiplyer"
+msgstr "Dopasuj mnożnik błędu"
+
+msgid "Stall steps"
+msgstr "Zatrzymaj kroki"
+
+msgid "Fit define convergence"
+msgstr "Dopasowanie definiuje zbieżność"
+
+msgid "<b>Fit method</b>"
+msgstr "<b>Metoda dopasowania</b>"
+
+msgid "Fiting method"
+msgstr "Metoda dopasowania"
+
+msgid "Nelder–Mead (Downhill simplex)"
+msgstr "Nelder – Mead (zjazdowy simplex)"
+
+msgid "Thermal Annealing"
+msgstr "Wyżarzanie termiczne"
+
+msgid "Markov chain Monte Carlo (MCMC)"
+msgstr "Łańcuch Markowa Monte Carlo (MCMC)"
+
+msgid "Markov chain Monte Carlo (HMC)"
+msgstr "Łańcuch Markowa Monte Carlo (HMC)"
+
+msgid "No-U-Turn Sampler (NUTS)"
+msgstr "Próbnik bez zawracania (NUTS)"
+
+msgid "Newton"
+msgstr "Niuton"
+
+msgid "Broyden–Fletcher–Goldfarb–Shanno (BFGS)"
+msgstr "Broyden – Fletcher – Goldfarb – Shanno (BFGS)"
+
+msgid "Start simplex step multiplication"
+msgstr "Rozpocznij mnożenie krokowe simplex"
+
+msgid "Enable simplex reset steps"
+msgstr "Włącz proste kroki resetowania"
+
+msgid "Simplex reset steps"
+msgstr "Kroki resetowania Simplex"
+
+msgid "Disable reset at level"
+msgstr "Wyłącz resetowanie na poziomie"
+
+msgid "On stall randomize fit"
+msgstr "Na stoisku losowe dopasowanie"
+
+msgid "Number of iterations between random reset"
+msgstr "Liczba iteracji pomiędzy losowym resetowaniem"
+
+msgid "Sigma"
+msgstr "Sigmy"
+
+msgid "Dump every n steps"
+msgstr "Zrzucaj co n kroków"
+
+msgid "Leapfrog steps"
+msgstr "Kroki skaczącej żaby"
+
+msgid "Cooling constant"
+msgstr "Stałe chłodzenie"
+
+msgid "Annealing steps"
+msgstr "Etapy wyżarzania"
+
+msgid "Randomize variables at begining"
+msgstr "Na początku losuj zmienne"
+
+msgid "<b>Fit control</b>"
+msgstr "<b>Kontrola dopasowania</b>"
+
+msgid "Set error to zero before"
+msgstr "Wcześniej ustaw błąd na zero"
+
+msgid "Enable snapshots during fit"
+msgstr "Włącz migawki podczas dopasowania"
+
+msgid "Normalize data at x point"
+msgstr "Normalizuj dane w punkcie x"
+
+msgid "Random funciton"
+msgstr "Funkcja losowa"
+
+msgid "Mersenne Twister"
+msgstr "Mersenne’a Twistera"
+
+msgid "C rand"
+msgstr "C rand"
+
+msgid "Random initialization"
+msgstr "Losowa inicjalizacja"
+
+msgid "Wall clock"
+msgstr "zegar ścienny"
+
+msgid "Constant value"
+msgstr "Stała wartość"
+
+msgid "/dev/urandom"
+msgstr "/dev/urandom"
+
+msgid "Random seed value"
+msgstr "Losowa wartość początkowa"
+
+msgid "Add noise"
+msgstr "Dodać hałas"
+
+msgid "Noise level"
+msgstr "Poziom hałasu"
+
+msgid "a"
+msgstr "A"
+
+msgid "b"
+msgstr "B"
+
+msgid "c"
+msgstr "C"
+
+msgid "Range start x0"
+msgstr "Początek zakresu x0"
+
+msgid "Range stop x1"
+msgstr "Ogranicznik zasięgu x1"
+
+msgid "JV voltage step multiplyer"
+msgstr "Mnożnik stopnia napięcia JV"
+
+msgid "Maximum current density"
+msgstr "Maksymalna gęstość prądu"
+
+msgid "JV curve photon generation efficiency"
+msgstr "Efektywność generacji fotonów na krzywej JV"
+
+#, python-brace-format
+msgid "Average carrier density at P_{max}"
+msgstr "Średnia gęstość nośników przy P_{max}"
+
+msgid "Start voltage"
+msgstr "Napięcie początkowe"
+
+msgid "Stop voltage"
+msgstr "Zatrzymaj napięcie"
+
+msgid "Voltage step"
+msgstr "Krok napięcia"
+
+msgid "Points"
+msgstr "Zwrotnica"
+
+msgid "Detector input hist"
+msgstr "Hist. wejścia detektora"
+
+msgid "Counts"
+msgstr "Liczy"
+
+msgid "Detected light"
+msgstr "Wykryte światło"
+
+msgid "Efficiency of emission"
+msgstr "Efektywność emisji"
+
+msgid "Detector"
+msgstr "Detektor"
+
+msgid "Power"
+msgstr "Moc"
+
+msgid "Solving the initial electrostatic field."
+msgstr "Rozwiązanie początkowego pola elektrostatycznego."
+
+msgid "Electrostatic solver f()="
+msgstr "Solwent elektrostatyczny f()="
+
+msgid "Converged"
+msgstr "Zbieżne"
+
+msgid "Finding equilibrium conditions"
+msgstr "Znalezienie warunków równowagi"
+
+msgid "Finished finding equilibrium conditions"
+msgstr "Zakończono znajdowanie warunków równowagi"
+
+msgid "Finished generating DoS....\n"
+msgstr "Zakończono generowanie DoS....\n"
+
+msgid "load: config files"
+msgstr "załaduj: pliki konfiguracyjne"
+
+msgid "Intrinsic Fermi - position"
+msgstr "Wewnętrzny Fermi - stanowisko"
+
+msgid "LUMO energy - position"
+msgstr "Energia LUMO - pozycja"
+
+msgid "HOMO energy - position"
+msgstr "Energia HOMO - pozycja"
+
+msgid "Electron density - position"
+msgstr "Gęstość elektronów - pozycja"
+
+msgid "Hole density - position"
+msgstr "Gęstość otworów - pozycja"
+
+msgid "Potential - position"
+msgstr "Potencjał - pozycja"
+
+msgid "Loading electrical dll\n"
+msgstr "Ładowanie biblioteki Electrical DLL\n"
+
+msgid "dll function dll_run_simulation not found\n"
+msgstr "dll nie znaleziono funkcji dll_run_simulation\n"
+
+msgid "Electrical objects"
+msgstr "Obiekty elektryczne"
+
+msgid "Running simulation"
+msgstr "Symulacja biegania"
+
+msgid "Solved"
+msgstr "Rozwiązany"
+
+msgid "Equations"
+msgstr "Równania"
+
+msgid "I can't allocate a device with less than 1 mesh point."
+msgstr "Nie mogę przydzielić urządzenia z mniej niż 1 punktem siatki."
+
+msgid ""
+"You are asking me to simulate a device with more than 50000 mesh points, although I could do "
+"this I am not going to because it seems a bad idea to me."
+msgstr ""
+"Prosisz mnie o symulację urządzenia z ponad 50 000 punktów siatki, chociaż mógłbym to zrobić, "
+"ale nie zamierzam, ponieważ wydaje mi się to złym pomysłem."
+
+msgid "Current "
+msgstr "Aktualny"
+
+msgid "Voltage - Current density"
+msgstr "Napięcie - Gęstość prądu"
+
+msgid "Voltage - Current"
+msgstr "Napięcie - prąd"
+
+msgid "Time - Current density"
+msgstr "Czas - Gęstość prądu"
+
+msgid "Time - Voltage"
+msgstr "Czas - napięcie"
+
+msgid "Fit error"
+msgstr "Błąd dopasowania"
+
+msgid "Step"
+msgstr "Krok"
+
+msgid "au"
+msgstr "sie"
+
+msgid "Speed"
+msgstr "Prędkość"
+
+msgid "odes/s"
+msgstr "ody/y"
+
+msgid "Chain all"
+msgstr "Łańcuch wszystkich"
+
+msgid "Value"
+msgstr "Wartość"
+
+msgid "Chain accepted"
+msgstr "Łańcuch zaakceptowany"
+
+msgid "Hist chain accepted"
+msgstr "Zaakceptowano łańcuch Hist"
+
+msgid "Freeing memory from the heat model\n"
+msgstr "Zwalniam pamięć z modelu cieplnego\n"
+
+msgid "Loading file"
+msgstr "Ładowanie pliku"
+
+#, python-format
+msgid "Expected dos size is different from generated %d %d\n"
+msgstr "Oczekiwany rozmiar dawki różni się od wygenerowanego %d %d\n"
+
+#, python-format
+msgid "genndosfdgaus: I can not write to the file %s\n"
+msgstr "genndosfdgaus: Nie mogę zapisać do pliku %s\n"
+
+msgid "Computer cores:"
+msgstr "Rdzenie komputera:"
+
+msgid "Max threads:"
+msgstr "Maksymalna liczba wątków:"
+
+msgid "You must load the optical plugin before making the time mesh"
+msgstr "Przed utworzeniem siatki czasu należy załadować wtyczkę optyczną"
+
+msgid "The electrical mesh does not match the device length"
+msgstr "Siatka elektryczna nie jest dopasowana do długości urządzenia"
+
+msgid "Can't generate a mesh with zero points"
+msgstr "Nie można wygenerować siatki z punktami zerowymi"
+
+msgid "If you want to run perovskite in fx-domain send me an e-mail."
+msgstr "Jeśli chcesz uruchomić perowskit w domenie fx, wyślij mi e-mail."
+
+msgid "fxdomain mode not known"
+msgstr "Tryb fxdomain nieznany"
+
+msgid "Running frequency"
+msgstr "Częstotliwość pracy"
+
+msgid ""
+"Optical modulation will come in the next version.  If you want to use it drop me a mail..."
+msgstr ""
+"Modulacja optyczna pojawi się w następnej wersji. Jeśli chcesz skorzystać napisz do mnie "
+"maila..."
+
+msgid "fxdomain time"
+msgstr "czas domeny fx"
+
+msgid "Light intensity"
+msgstr "Natężenie światła"
+
+msgid "Ion density - position"
+msgstr "Gęstość jonów - pozycja"
+
+msgid "Ion free"
+msgstr "Wolny od jonów"
+
+msgid "Ion convergence="
+msgstr "Zbieżność jonów ="
+
+msgid "Ion diffusion"
+msgstr "Dyfuzja jonów"
+
+msgid "R spm"
+msgstr "R spm"
+
+msgid "Vlost spm"
+msgstr "Vlost sp"
+
+msgid "V spm"
+msgstr "V spm"
+
+msgid "Electrical circuit"
+msgstr "Obwód elektryczny"
+
+msgid "Circuit"
+msgstr "Okrążenie"
+
+msgid "Current vector plot"
+msgstr "Aktualny wykres wektorowy"
+
+msgid "Real refractive index"
+msgstr "Rzeczywisty współczynnik załamania światła"
+
+msgid "|Electric field|"
+msgstr "|Pole elektryczne|"
+
+msgid "Transmittance"
+msgstr "Przepuszczalność"
+
+msgid "Reflectance"
+msgstr "Odbicie"
+
+msgid "Solve optical slice at"
+msgstr "Rozwiąż plaster optyczny w"
+
+msgid "It was dark I did not solve any slices\n"
+msgstr "Było ciemno, nie rozwiązałem żadnych plasterków\n"
+
+msgid "Initializing optical model"
+msgstr "Inicjowanie modelu optycznego"
+
+msgid "dll function light_dll_init not found\n"
+msgstr "dll nie znaleziono funkcji light_dll_init\n"
+
+msgid "dll function light_dll_solve_lam_slice not found\n"
+msgstr "dll nie znaleziono funkcji light_dll_solve_lam_slice\n"
+
+msgid "dll function light_dll_ver not found\n"
+msgstr "dll nie znaleziono funkcji light_dll_ver\n"
+
+msgid "Power density of the optical spectra (no filter):"
+msgstr "Gęstość mocy widm optycznych (bez filtra):"
+
+msgid "File not found"
+msgstr "Nie znaleziono pliku"
+
+msgid "Light: Load filter"
+msgstr "Światło: Załaduj filtr"
+
+msgid "Refractive index - position"
+msgstr "Współczynnik załamania światła - pozycja"
+
+msgid "Absorption - position"
+msgstr "Absorpcja - pozycja"
+
+msgid "Photons absorbed - position"
+msgstr "Pochłonięte fotony - położenie"
+
+msgid "Photons absorbed"
+msgstr "Fotony pochłonięte"
+
+msgid "Position - Electric field (y+)"
+msgstr "Pozycja - pole elektryczne (y+)"
+
+msgid "Position - Electric field (y-)"
+msgstr "Pozycja — pole elektryczne (y-)"
+
+msgid "Freeing memory from the optical model\n"
+msgstr "Zwolnienie pamięci z modelu optycznego\n"
+
+msgid "Electron generation rate"
+msgstr "Szybkość generacji elektronów"
+
+msgid "Optical heating"
+msgstr "Ogrzewanie optyczne"
+
+msgid "Charge carrier generation rate"
+msgstr "Szybkość generowania nośnika ładunku"
+
+msgid "Copy"
+msgstr "Kopiuj"
+
+msgid "Copy as JSON"
+msgstr "Skopiuj jako JSON"
+
+msgid "Copy json/python path"
+msgstr "Skopiuj ścieżkę json/python"
+
+msgid "Copy ObjID"
+msgstr "Skopiuj identyfikator obiektu"
+
+msgid "Copy as LaTex"
+msgstr "Skopiuj jako LaTex"
+
+msgid "Copy as csv"
+msgstr "Skopiuj jako CSV"
+
+msgid "Paste"
+msgstr "Pasta"
+
+msgid "Reimport from database"
+msgstr "Ponowny import z bazy danych"
+
+msgid "Are you sure you want reimport the material values from:"
+msgstr "Czy na pewno chcesz ponownie zaimportować wartości materiałów z:"
+
+msgid "File not found:"
+msgstr "Nie znaleziono pliku:"
+
+msgid "Edit reference"
+msgstr "Edytuj odniesienie"
+
+msgid "Delete reference"
+msgstr "Usuń odniesienie"
+
+msgid "Add reference"
+msgstr "Dodaj odniesienie"
+
+msgid "This simulation"
+msgstr "Ta symulacja"
+
+msgid "Electrical parameter editor for shape"
+msgstr "Edytor parametrów elektrycznych dla kształtu"
+
+msgid "Reference"
+msgstr "Odniesienie"
+
+msgid "Bibliography editor"
+msgstr "Redaktor bibliografii"
+
+msgid "Electrical Mesh Editor"
+msgstr "Edytor siatki elektrycznej"
+
+msgid ""
+"Y\n"
+"Dimension"
+msgstr ""
+"Y\n"
+"Wymiar"
+
+msgid ""
+"X\n"
+"Dimension"
+msgstr ""
+
+msgid ""
+"Z\n"
+"Dimension"
+msgstr ""
+
+msgid ""
+"Configure\n"
+"mesh"
+msgstr ""
+"Skonfiguruj\n"
+"siatkę"
+
+msgid ""
+"Import from\n"
+"layer editor"
+msgstr ""
+"Importuj z\n"
+"edytora warstw"
+
+msgid "Remesh"
+msgstr "Przypomnij sobie"
+
+msgid "Configure mesh"
+msgstr "Skonfiguruj siatkę"
+
+msgid ""
+"Are you sure you want to overwrite the electrical mesh with a guessed mesh based on the layer "
+"structure?"
+msgstr ""
+"Czy na pewno chcesz zastąpić siatkę elektryczną siatką zgadywaną na podstawie struktury warstw?"
+
+msgid "New simulation"
+msgstr "Nowa symulacja"
+
+msgid ""
+"Open\n"
+"simulation"
+msgstr ""
+"Otwórz\n"
+"symulację"
+
+msgid ""
+"Export\n"
+"Zip"
+msgstr ""
+"Eksportuj\n"
+"Zip"
+
+msgid ""
+"Run\n"
+"simulation"
+msgstr ""
+"Uruchom\n"
+"symulację"
+
+msgid "Run simulation"
+msgstr "Uruchom symulację"
+
+msgid "Tutorials"
+msgstr "Poradniki"
+
+msgid "Manual"
+msgstr "podręcznik"
+
+msgid ""
+"Follow on\n"
+"Twitter"
+msgstr ""
+"Obserwuj\n"
+"Twittera"
+
+msgid ""
+"Subscribe\n"
+"on Youtube"
+msgstr ""
+"Subskrybuj\n"
+"ie Youtube"
+
+msgid "Getting started"
+msgstr "Rozpoczęcie"
+
+msgid "1D Simulations"
+msgstr "Symulacje 1D"
+
+msgid "Carrier trapping"
+msgstr "Zatrzymanie przewoźnika"
+
+msgid "2D electrical structures (OFETs)"
+msgstr "Struktury elektryczne 2D (OFET)"
+
+msgid "Large area devices/circuit models"
+msgstr "Urządzenia/modele obwodów wielkopowierzchniowych"
+
+msgid "OLEDs"
+msgstr "Diody OLED"
+
+msgid "Material databases"
+msgstr "Bazy materiałów"
+
+msgid "Scripting"
+msgstr "Skrypty"
+
+msgid "Frequency domain simulations"
+msgstr "Symulacje w dziedzinie częstotliwości"
+
+msgid "Transient simulations"
+msgstr "Symulacje przejściowe"
+
+msgid "Optical simulations"
+msgstr "Symulacje optyczne"
+
+msgid "Excitonic simulations"
+msgstr "Symulacje ekscytonowe"
+
+msgid "Fitting"
+msgstr "Dopasowywanie"
+
+msgid "Misc"
+msgstr "Różne"
+
+msgid "Basics"
+msgstr "Podstawy"
+
+msgid ""
+"<big><b>Now save the simulation</b></big><br>Now select where you would like to save the "
+"simulation directory."
+msgstr ""
+"<big><b>Teraz zapisz symulację</b></big><br>Teraz wybierz, gdzie chcesz zapisać katalog "
+"symulacji."
+
+msgid "password:"
+msgstr "hasło:"
+
+msgid "Wrong password"
+msgstr "Złe hasło"
+
+msgid ""
+"It's not a good idea to save the simulation in the installation directory.  Try saving it "
+"somewhere else, such as your desktop or home directory."
+msgstr ""
+"Zapisywanie symulacji w katalogu instalacyjnym nie jest dobrym pomysłem. Spróbuj zapisać go w "
+"innym miejscu, na przykład na komputerze lub w katalogu domowym."
+
+msgid "It's not a good idea to save the simulation in the oghma_local directory."
+msgstr "Zapisywanie symulacji w katalogu oghma_local nie jest dobrym pomysłem."
+
+msgid "That directory already exists.  Pick another name or delete the old one."
+msgstr "Ten katalog już istnieje. Wybierz inną nazwę lub usuń starą."
+
+msgid "Please select a device before clicking next"
+msgstr "Zanim klikniesz Dalej, wybierz urządzenie"
+
+msgid "Organic LED"
+msgstr "Organiczna dioda LED"
+
+msgid "Crystalline silicon solar cell"
+msgstr "Ogniwo słoneczne z krzemu krystalicznego"
+
+msgid "a-Si solar cell "
+msgstr "ogniwo słoneczne a-Si"
+
+msgid "polycrystalline silicon "
+msgstr "krzem polikrystaliczny"
+
+msgid "OFET "
+msgstr "OFET"
+
+msgid "Perovskite solar cell"
+msgstr "Perowskitowe ogniwo słoneczne"
+
+msgid "CIGS Solar cell"
+msgstr "CIGS Ogniwo słoneczne"
+
+msgid "Which type of device would you like to simulate?"
+msgstr "Jaki typ urządzenia chcesz symulować?"
+
+msgid "Double click to open"
+msgstr "Kliknij dwukrotnie, aby otworzyć"
+
+msgid "Close"
+msgstr "Zamknąć"
+
+msgid "Show hidden"
+msgstr "Pokaż ukryte"
+
+msgid "Object editor"
+msgstr "Edytor obiektów"
+
+msgid ""
+"Object\n"
+"enabled"
+msgstr ""
+"Obiekt\n"
+"włączony"
+
+msgid ""
+"Object\n"
+"disabled"
+msgstr "Obiekt\\wyłączony"
+
+msgid "About"
+msgstr "O"
+
+msgid "Written by Roderick MacKenzie 2012-2023, released under the MIT software license."
+msgstr "Napisane przez Rodericka MacKenziego 2012-2023, wydane na licencji oprogramowania MIT."
+
+msgid "Version "
+msgstr "Wersja"
+
+msgid ""
+" is a general-purpose tool for simulation of light harvesting devices. It was originally "
+"written to simulate organic solar cells and OLEDs, but it has recently been extended to "
+"simulate other devices including silicon based devices. Currently the model can sumulate:"
+msgstr ""
+"to narzędzie ogólnego przeznaczenia do symulacji urządzeń zbierających światło. Pierwotnie "
+"został napisany w celu symulowania organicznych ogniw słonecznych i diod OLED, ale ostatnio "
+"został rozszerzony w celu symulowania innych urządzeń, w tym urządzeń opartych na krzemie. "
+"Obecnie model może sumować:"
+
+msgid "Organic solar cells"
+msgstr "Organiczne ogniwa słoneczne"
+
+msgid "Organic LEDs"
+msgstr "Organiczne diody LED"
+
+msgid "Crystalline silicon solar cells"
+msgstr "Ogniwa słoneczne z krzemu krystalicznego"
+
+msgid "a-Si solar cells"
+msgstr "ogniwa słoneczne a-Si"
+
+msgid "CIGS solar cells"
+msgstr "Ogniwa słoneczne CIGS"
+
+msgid ""
+"The model solves both electron and hole drift-diffusion, and carrier continuity equations in "
+"position space to describe the movement of charge within the device. The model also solves "
+"Poisson's equation to calculate the internal electrostatic potential. Recombination and "
+"carrier trapping are described within the model using a Shockley-Read-Hall (SRH) formalism, "
+"the distribution of trap sates can be arbitrarily defined. All equations can be solved either "
+"in steady state or in time domain. A fuller description of the model can be found in the here, "
+"in the associated publications and in the manual."
+msgstr ""
+"Model rozwiązuje równania dryfu-dyfuzji elektronów i dziur oraz równania ciągłości nośnika w "
+"przestrzeni pozycji, aby opisać ruch ładunku w urządzeniu. Model rozwiązuje również równanie "
+"Poissona w celu obliczenia wewnętrznego potencjału elektrostatycznego. Rekombinację i "
+"pułapkowanie nośników opisano w modelu za pomocą formalizmu Shockleya-Read-Halla (SRH), a "
+"rozkład stanów pułapek można zdefiniować dowolnie. Wszystkie równania można rozwiązać w stanie "
+"ustalonym lub w dziedzinie czasu. Pełniejszy opis modelu znajdziesz tutaj, w powiązanych "
+"publikacjach oraz w instrukcji."
+
+msgid "Legal"
+msgstr "Prawny"
+
+msgid "Translations"
+msgstr "Tłumaczenia"
+
+msgid "Paths"
+msgstr "Ścieżki"
+
+msgid ""
+"Materials\n"
+"database"
+msgstr ""
+"Materiały\n"
+"baza danych"
+
+msgid ""
+"Optical\n"
+"database"
+msgstr "Baza danych optycznych"
+
+msgid ""
+"User\n"
+"data"
+msgstr "Dane użytkownika"
+
+msgid ""
+"Shape\n"
+"database"
+msgstr ""
+"Kształt\n"
+"baza danych"
+
+msgid ""
+"Filters\n"
+"database"
+msgstr ""
+"Filtry\n"
+"baza danych"
+
+msgid ""
+"Backup\n"
+"Simulaion"
+msgstr ""
+"Kopia zapasowa\n"
+"Symulacja"
+
+msgid ""
+"Solar spectrum\n"
+"generator"
+msgstr "Generator widma słonecznego"
+
+msgid "Add Material"
+msgstr "Dodaj materiał"
+
+msgid "Add Filter"
+msgstr "Dodaj filtr"
+
+msgid "Add Spectra"
+msgstr "Dodaj Spectrę"
+
+msgid "Add Shape"
+msgstr "Dodaj kształt"
+
+msgid "New backup"
+msgstr "Nowa kopia zapasowa"
+
+msgid "New backup:"
+msgstr "Nowa kopia zapasowa:"
+
+msgid "New backup name"
+msgstr "Nowa nazwa kopii zapasowej"
+
+msgid "Shape"
+msgstr "Kształt"
+
+msgid "<big><b>Shape file</b></big><br>"
+msgstr "<big><b>Plik kształtu</b></big><br>"
+
+msgid "Blur menu"
+msgstr "Rozmycie menu"
+
+msgid "Normalization editor"
+msgstr "Edytor normalizacji"
+
+msgid "Shape editor"
+msgstr "Edytor kształtów"
+
+msgid "Configure honeycomb"
+msgstr "Skonfiguruj plaster miodu"
+
+msgid "Configure photonic xtal"
+msgstr "Skonfiguruj Photonic Xtal"
+
+msgid "Configure photonic lens"
+msgstr "Skonfiguruj soczewkę fotoniczną"
+
+msgid "Configure saw wave"
+msgstr "Skonfiguruj falę piłową"
+
+msgid "Configure gaussian"
+msgstr "Skonfiguruj gaussa"
+
+msgid "Configure boundary"
+msgstr "Skonfiguruj granicę"
+
+msgid "Configure threshold"
+msgstr "Skonfiguruj próg"
+
+msgid "Configure"
+msgstr "Skonfiguruj"
+
+msgid "Show labels"
+msgstr "Pokaż etykiety"
+
+msgid "Show data"
+msgstr "Pokaż dane"
+
+msgid "Show axis"
+msgstr "Pokaż oś"
+
+msgid "Normalize layer width"
+msgstr "Normalizuj szerokość warstwy"
+
+msgid "Copy to clipboard"
+msgstr "Skopiuj do schowka"
+
+msgid "Save as SVG"
+msgstr "Zapisz jako SVG"
+
+msgid "Redraw"
+msgstr "Przerysować"
+
+msgid "Active layer"
+msgstr "Aktywna warstwa"
+
+msgid "From electrical parameters"
+msgstr "Z parametrów elektrycznych"
+
+msgid "From material db"
+msgstr "Z materiału db"
+
+msgid "<big><b>Spectra</b></big><br>"
+msgstr "<big><b>Widma</b></big><br>"
+
+msgid "Optical spectrum editor"
+msgstr "Edytor widma optycznego"
+
+msgid "Spectra"
+msgstr "Widma"
+
+msgid "Basic"
+msgstr "Podstawowy"
+
+msgid "Frequency mesh"
+msgstr "Siatka częstotliwości"
+
+msgid "Additional information about gpvdm is available at"
+msgstr "Dodatkowe informacje na temat gpvdm są dostępne pod adresem"
+
+msgid "Report bugs to:"
+msgstr "Zgłoś błędy do:"
+
+msgid "Deletes the content of all scan directories."
+msgstr "Usuwa zawartość wszystkich katalogów skanowania."
+
+msgid "Loads a simulation --load /path/containing/simulation/sim.oghma"
+msgstr "Ładuje symulację --load /path/containing/simulation/sim.oghma"
+
+msgid "Extract the sim.oghma archive --unpack"
+msgstr "Wyodrębnij archiwum sim.oghma --unpack"
+
+msgid "Extract the sim.oghma archive --pack"
+msgstr "Wyodrębnij archiwum sim.oghma --pack"
+
+msgid "Electrical parameter editor"
+msgstr "Edytor parametrów elektrycznych"
+
+msgid "Device"
+msgstr "Urządzenie"
+
+msgid ""
+"Simulation\n"
+"Notes"
+msgstr ""
+"Symulacja\n"
+"Notatki"
+
+msgid ""
+"Hints\n"
+"Window"
+msgstr ""
+"Wskazówki\n"
+"Okno"
+
+msgid ""
+"Interface\n"
+"Language"
+msgstr ""
+"Interfejs\n"
+"Język"
+
+msgid "Assosiated paper"
+msgstr "Powiązany papier"
+
+msgid "Documentation"
+msgstr "Dokumentacja"
+
+msgid "Language"
+msgstr "Język"
+
+msgid ""
+"<big><b>Record notes about the simulation here</b></big><br>Use this window to make notes "
+"about the simulation."
+msgstr ""
+"<big><b>Tutaj zapisz notatki na temat symulacji</b></big><br>Użyj tego okna, aby zrobić "
+"notatki na temat symulacji."
+
+msgid "Charge denisty (m^{-3})"
+msgstr "Gęstość ładunku (m^{-3})"
+
+msgid "Material gradient editor"
+msgstr "Edytor gradientów materiałów"
+
+msgid "Save"
+msgstr "Ratować"
+
+msgid "New scan"
+msgstr "Nowy skan"
+
+msgid "Delete scan"
+msgstr "Usuń skan"
+
+msgid "Clone scan"
+msgstr "Skanowanie klonów"
+
+msgid "Rename scan"
+msgstr "Zmień nazwę skanu"
+
+msgid "Clean all"
+msgstr "Wyczyść wszystko"
+
+msgid "Run all scans"
+msgstr "Uruchom wszystkie skany"
+
+msgid "Help"
+msgstr "Pomoc"
+
+msgid "Plot fits"
+msgstr "Fabuła pasuje"
+
+msgid "Run simulation no generation"
+msgstr "Uruchom symulację bez generowania"
+
+msgid "Run single fit"
+msgstr "Biegaj w pojedynkę"
+
+msgid "Clean unconverged simulation"
+msgstr "Czysta niezbieżna symulacja"
+
+msgid "Clean simulation output"
+msgstr "Czyste wyjście symulacji"
+
+msgid "Push unconverged to hpc"
+msgstr "Push niezbieżne do HPC"
+
+msgid "Change dir"
+msgstr "Zmień reż"
+
+msgid "Report"
+msgstr "Raport"
+
+msgid "Scan"
+msgstr "Skanowanie"
+
+msgid "Advanced"
+msgstr "Zaawansowany"
+
+msgid "JV experiment window"
+msgstr "Okno eksperymentu JV"
+
+msgid ""
+"Import data\n"
+"from file"
+msgstr ""
+"Importuj dane\n"
+"z pliku"
+
+msgid ""
+"From\n"
+"Equation"
+msgstr ""
+"Z\n"
+"Równania"
+
+msgid "Reference information"
+msgstr "Informacje referencyjne"
+
+msgid "Cost"
+msgstr "Koszt"
+
+msgid "Cost of material"
+msgstr "Koszt materiału"
+
+msgid "File"
+msgstr "Plik"
+
+msgid "Align and distribute"
+msgstr "Wyrównaj i rozprowadź"
+
+msgid "Left"
+msgstr "Lewy"
+
+msgid "Right"
+msgstr "Prawidłowy"
+
+msgid "Distribute"
+msgstr "Rozprowadzać"
+
+msgid "z"
+msgstr "z"
+
+msgid "Exciton simulation editor"
+msgstr "Edytor symulacji Exciton"
+
+msgid ""
+"From\n"
+"File"
+msgstr ""
+"Z\n"
+"pliku"
+
+msgid "Insert reference information"
+msgstr "Wstaw informacje referencyjne"
+
+msgid ""
+"Are you sure you want to edit the circuit directly?  The circuit will no longer automaticly be "
+"updated as you change the layer structure, and the electrical parameters editor will be "
+"disabled.  Use can use the reset function in the circuit diagram editor to resore this "
+"functionality"
+msgstr ""
+"Czy na pewno chcesz bezpośrednio edytować obwód? Obwód nie będzie już automatycznie "
+"aktualizowany po zmianie struktury warstw, a edytor parametrów elektrycznych zostanie "
+"wyłączony. Aby przywrócić tę funkcjonalność, można użyć funkcji resetowania w edytorze "
+"schematów obwodów"
+
+msgid "Component"
+msgstr "Część"
+
+msgid "Circuit diagram"
+msgstr "Schemat obwodu"
+
+msgid "Use epitaxy as base"
+msgstr "Użyj epitaksji jako podstawy"
+
+msgid "Free hand drawing"
+msgstr "Swobodny rysunek odręczny"
+
+msgid "Enabled"
+msgstr "Włączony"
+
+msgid "Variable"
+msgstr "Zmienny"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Maks"
+
+msgid "Random function"
+msgstr "Funkcja losowa"
+
+msgid "JSON Variable"
+msgstr "Zmienna JSON"
+
+msgid "FDTD Editor"
+msgstr "Redaktor FDTD"
+
+msgid "Configure hardware"
+msgstr "Skonfiguruj sprzęt"
+
+msgid ""
+"Hardware\n"
+"benchmark"
+msgstr ""
+"Sprzęt\n"
+"test porównawczy"
+
+msgid ""
+"RNG\n"
+"test"
+msgstr ""
+
+msgid ""
+"Clear\n"
+"Newton cache"
+msgstr ""
+"Wyczyść\n"
+"pamięć podręczną Newtona"
+
+msgid "CPU/GPU configuration"
+msgstr "Konfiguracja procesora/GPU"
+
+msgid "Newton cache"
+msgstr "Skrytka Newtona"
+
+msgid "Random numbers"
+msgstr "Losowe liczby"
+
+msgid "Electrostatic solver"
+msgstr "Rozwiązanie elektrostatyczne"
+
+msgid "Drift diffusion"
+msgstr "Dyfuzja dryfu"
+
+msgid "Simple circuit solver"
+msgstr "Proste rozwiązanie obwodu"
+
+msgid "Poission solver"
+msgstr "Rozwiązanie trucizn"
+
+msgid "Poission solver configuration"
+msgstr "Konfiguracja solwera trucizn"
+
+msgid "Newton solver"
+msgstr "Rozwiązanie Newtona"
+
+msgid "Exciton solver"
+msgstr "Rozwiązanie ekscytonu"
+
+msgid "Singlet solver"
+msgstr "Rozwiązanie singletu"
+
+msgid "Newton solver configuration"
+msgstr "Konfiguracja solwera Newtona"
+
+msgid "Configuration"
+msgstr "Konfiguracja"
+
+msgid "Circuit solver configuration"
+msgstr "Konfiguracja modułu rozwiązywania obwodów"
+
+msgid "Data imported from: "
+msgstr "Dane importowane z:"
+
+msgid "Layer editor"
+msgstr "Edytor warstw"
+
+msgid "Layer name"
+msgstr "Nazwa warstwy"
+
+msgid "Thicknes"
+msgstr "Grubości"
+
+msgid "Optical material"
+msgstr "Materiał optyczny"
+
+msgid "Layer type"
+msgstr "Typ warstwy"
+
+msgid ""
+"Solve optical\n"
+"problem"
+msgstr ""
+"Rozwiąż\n"
+"problem optyczny"
+
+msgid ""
+"Solve thermal\n"
+"problem"
+msgstr ""
+"Rozwiąż\n"
+"problem termiczny"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "start:"
+msgstr "początek:"
+
+msgid "stop:"
+msgstr "zatrzymywać się:"
+
+msgid "Red=not found in materials DB"
+msgstr "Czerwony=nie występuje w materiałach DB"
+
+msgid ""
+"Enable\n"
+"Drift Diff."
+msgstr ""
+"Włącz\n"
+"Różnicę dryfu."
+
+msgid ""
+"Enable\n"
+"Auger"
+msgstr ""
+"Włącz\n"
+"Ślider"
+
+msgid ""
+"Dynamic\n"
+"SRH traps"
+msgstr ""
+"Dynamiczne\n"
+"pułapki SRH"
+
+msgid "Min trap depth"
+msgstr "Minimalna głębokość pułapki"
+
+msgid "Max trap depth"
+msgstr "Maksymalna głębokość pułapki"
+
+msgid "Min Fermi level"
+msgstr "Minimalny poziom Fermiego"
+
+msgid "Fn points"
+msgstr "punkty Fn"
+
+msgid "Fermi integral points"
+msgstr "Punkty całkowe Fermiego"
+
+msgid ""
+"Equilibrium\n"
+"SRH traps"
+msgstr ""
+"Pułapki równowagowe\n"
+"SRH"
+
+msgid "Excitons"
+msgstr "Ekscytony"
+
+msgid ""
+"Excited\n"
+"states laser"
+msgstr ""
+"Podekscytowany\n"
+"stwierdza Laser"
+
+msgid "Photon rate equation"
+msgstr "Równanie szybkości fotonów"
+
+msgid ""
+"Excited\n"
+"states OPV"
+msgstr ""
+"Podekscytowany\n"
+"stwierdza OPV"
+
+msgid "Carrier density points"
+msgstr "Punkty gęstości nośnika"
+
+msgid "Fermi-dirac integral steps"
+msgstr "Stopnie całkowe Fermiego-Diraca"
+
+msgid "Minimum trap depth (eV):"
+msgstr "Minimalna głębokość pułapki (eV):"
+
+msgid "That's not a number.."
+msgstr "To nie jest liczba.."
+
+msgid "Maximum trap depth (eV):"
+msgstr "Maksymalna głębokość pułapki (eV):"
+
+msgid "Minimum fermi level (eV):"
+msgstr "Minimalny poziom Fermiego (eV):"
+
+msgid "Number of carrier density points to calculate:"
+msgstr "Liczba punktów gęstości nośnika do obliczenia:"
+
+msgid "Number of steps in the Fermi-dirac integral:"
+msgstr "Liczba kroków całki Fermiego-Diraca:"
+
+msgid "DoS Config"
+msgstr "Konfiguracja DoS"
+
+msgid "Dos Config"
+msgstr "Konfiguracja Dos"
+
+msgid ""
+"Light\n"
+"Sources"
+msgstr ""
+
+msgid ""
+"Lasers\n"
+"(fs)"
+msgstr ""
+"Lasery\n"
+"(fs)"
+
+msgid ""
+"Transfer\n"
+"Matrix"
+msgstr ""
+"Przenieś\n"
+"Macierz"
+
+msgid ""
+"Optical\n"
+"Outcoupling"
+msgstr ""
+"Optyczne\n"
+"Sprzęgło zewnętrzne"
+
+msgid ""
+"Ray tracing\n"
+"editor"
+msgstr "Śledzenie promieni\redytor"
+
+msgid ""
+"Optical\n"
+"Detectors"
+msgstr ""
+
+msgid ""
+"FDTD\n"
+"Simulation"
+msgstr ""
+"FDTD\n"
+"Symulacja"
+
+msgid ""
+"Mode\n"
+"Calculator"
+msgstr ""
+"Tryb\n"
+"Kalkulator"
+
+msgid ""
+"Optical\n"
+"thickness"
+msgstr "Grubość optyczna"
+
+msgid ""
+"Optical\n"
+"mesh"
+msgstr ""
+
+msgid ""
+"Boundary\n"
+"Conditions"
+msgstr ""
+
+msgid "<big><b>Laser setup</b></big><br> Use this window to set up your lasers."
+msgstr "<big><b>Konfiguracja lasera</b></big><br> Użyj tego okna, aby skonfigurować lasery."
+
+msgid ""
+"<big><b>The light sources window</b></big><br>Use this window to setup optical sources for the "
+"transfer matrix, ray tracing and FDTD simulations."
+msgstr ""
+"<big><b>Okno źródeł światła</b></big><br>Użyj tego okna do konfiguracji źródeł optycznych na "
+"potrzeby symulacji matrycy transferowej, śledzenia promieni i FDTD."
+
+msgid "<big><b>The ray tracing editor</b></big><br> Use this window to configure ray tracing."
+msgstr ""
+"<big><b>Edytor śledzenia promieni</b></big><br> To okno służy do konfigurowania śledzenia "
+"promieni."
+
+msgid ""
+"<big><b>The detectors window</b></big><br>Use this window to setup optical detectors.  These "
+"can be used for the ray tracing simulations."
+msgstr ""
+"<big><b>Okno detektorów</b></big><br>Użyj tego okna do konfiguracji detektorów optycznych. "
+"Można je wykorzystać do symulacji śledzenia promieni."
+
+msgid ""
+"<big><b>FDTD</b></big><br> Use this window to setup a finite difference time domain simulation."
+msgstr ""
+"<big><b>FDTD</b></big><br> Użyj tego okna do skonfigurowania symulacji w dziedzinie czasu ze "
+"skończoną różnicą."
+
+msgid ""
+"<big><b>Mode calculator</b></big><br> Use this window to setup a the optical mode calculator."
+msgstr ""
+"<big><b>Kalkulator trybu</b></big><br> To okno służy do konfiguracji kalkulatora trybu "
+"optycznego."
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh, the window can also be used to change the dimensionality of "
+"the simulation."
+msgstr ""
+"<big><b>Edytor siatki</b></big>\n"
+"Użyj tego okna do ustawienia siatki. Okna można również użyć do zmiany wymiaru symulacji."
+
+msgid "Optical Mesh Editor"
+msgstr "Edytor siatki optycznej"
+
+msgid "Boundary conditions"
+msgstr "Warunki brzegowe"
+
+msgid ""
+"<big><b>The optical simulation window</b></big><br>Use this window to perform optical "
+"simulations.  Click on the play button to run a simulation."
+msgstr ""
+"<big><b>Okno symulacji optycznej</b></big><br>Użyj tego okna do przeprowadzenia symulacji "
+"optycznych. Kliknij przycisk odtwarzania, aby uruchomić symulację."
+
+msgid ""
+"Click on the play button to run an optical simulation.  The results will be displayed in the "
+"tabs to the right."
+msgstr ""
+"Kliknij przycisk odtwarzania, aby uruchomić symulację optyczną. Wyniki zostaną wyświetlone w "
+"zakładkach po prawej stronie."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Tutorial video</b></"
+"big><br>Designing optical filters and reflective coatings."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Film instruktażowy</b></"
+"big><br>Projektowanie filtrów optycznych i powłok odblaskowych."
+
+msgid ""
+"<big><b>The optical outcoupling window</b></big><br>Use this window to calculate how much "
+"light escapes the device. This is useful whend designing OLEDs and other light emitting "
+"structures."
+msgstr ""
+"<big><b>Optyczne okno odsprzęgania</b></big><br>Użyj tego okna, aby obliczyć, ile światła "
+"ucieka z urządzenia. Jest to przydatne przy projektowaniu diod OLED i innych struktur "
+"emitujących światło."
+
+msgid ""
+"<big><b>Optical thickness</b></big><br>Usually the optical thickness of a layer will be taken "
+"from the layer structure set out in the layer editor. However, sometimes one wants to simulate "
+"very thick layers. This window will enable you to force the optical thickness to a value while "
+"maintaining it's physical thickness."
+msgstr ""
+"<big><b>Grubość optyczna</b></big><br>Zwykle grubość optyczna warstwy jest pobierana ze "
+"struktury warstw określonej w edytorze warstw. Czasami jednak chce się symulować bardzo grube "
+"warstwy. To okno umożliwia wymuszenie wartości grubości optycznej przy zachowaniu grubości "
+"fizycznej."
+
+msgid "Edit parasitic components"
+msgstr "Edytuj komponenty pasożytnicze"
+
+msgid "Parasitic components"
+msgstr "Składniki pasożytnicze"
+
+msgid "Registration window"
+msgstr "Okno rejestracji"
+
+msgid "Enter the license key below:"
+msgstr "Wprowadź klucz licencyjny poniżej:"
+
+msgid "Key"
+msgstr "Klucz"
+
+msgid "Can't open file "
+msgstr "Nie można otworzyć pliku"
+
+msgid "back"
+msgstr "z powrotem"
+
+msgid "home"
+msgstr "dom"
+
+msgid "Scanning probe microscopy editor"
+msgstr "Edytor mikroskopii z sondą skanującą"
+
+msgid "No files were given to load"
+msgstr "Nie podano żadnych plików do załadowania"
+
+msgid ""
+"3D\n"
+"Mode"
+msgstr ""
+
+msgid "New"
+msgstr "Nowy"
+
+msgid "Rename"
+msgstr "Przemianować"
+
+msgid "Run"
+msgstr "Uruchomić"
+
+msgid ""
+"Plot\n"
+"File"
+msgstr ""
+"Wykres\n"
+"Plik"
+
+msgid ""
+"View raw\n"
+"json"
+msgstr ""
+"Wyświetl surowy\n"
+"json"
+
+msgid "Cache path:"
+msgstr "Ścieżka pamięci podręcznej:"
+
+msgid "Newton cache used"
+msgstr "Używana pamięć podręczna Newtona"
+
+msgid "The cache directory does not exist"
+msgstr "Katalog pamięci podręcznej nie istnieje"
+
+msgid "The cache path needs to end in cache."
+msgstr "Ścieżka pamięci podręcznej musi kończyć się w pamięci podręcznej."
+
+msgid "The cache is empty"
+msgstr "Pamięć podręczna jest pusta"
+
+msgid "I have emptied the cache"
+msgstr "Opróżniłem pamięć podręczną"
+
+msgid "<big><b>Simulation finished!</b></big><br>Click on the plot icon to plot the results"
+msgstr "<big><b>Symulacja zakończona!</b></big><br>Kliknij ikonę wykresu, aby wykreślić wyniki"
+
+msgid "Ray trace editor"
+msgstr "Edytor śledzenia promieni"
+
+msgid "Fit configure"
+msgstr "Dopasuj konfigurację"
+
+msgid "Duplicate variables"
+msgstr "Zduplikowane zmienne"
+
+msgid "Fit variables"
+msgstr "Dopasuj zmienne"
+
+msgid "Fit rules"
+msgstr "Dopasuj zasady"
+
+msgid "Configure minimizer"
+msgstr "Skonfiguruj minimalizator"
+
+msgid "Generaton rate editor"
+msgstr "Edytor stawek generacji"
+
+msgid "Generation rate (m^{-3}s^{-1})"
+msgstr "Szybkość wytwarzania (m^{-3}s^{-1})"
+
+msgid "json id"
+msgstr "identyfikator Jsona"
+
+msgid "Reference manager"
+msgstr "Menedżer referencji"
+
+msgid ""
+"Layer\n"
+"editor"
+msgstr "Edytor warstw"
+
+msgid "Contacts"
+msgstr "Łączność"
+
+msgid ""
+"Electrical\n"
+"parameters"
+msgstr "Parametry elektryczne"
+
+msgid ""
+"Emission\n"
+"parameters"
+msgstr "Parametry emisji"
+
+msgid ""
+"Substrate\n"
+"xz-size"
+msgstr ""
+"Podłoże\n"
+"xz-rozmiar"
+
+msgid ""
+"<big><b>Contacts window</b></big>\n"
+"Use this window to change the layout of the contacts on the device"
+msgstr ""
+"<big><b>Okno kontaktów</b></big>\n"
+"Użyj tego okna, aby zmienić układ kontaktów na urządzeniu"
+
+msgid ""
+"<big><b>Device layers</b></big>\n"
+"Use this window to configure the structure of the device."
+msgstr ""
+"<big><b>Warstwy urządzenia</b></big>\n"
+"Użyj tego okna, aby skonfigurować strukturę urządzenia."
+
+msgid ""
+"<big><b>xz dimension editor</b></big>\n"
+"Use this window to configure the xz size of the device."
+msgstr ""
+"<big><b>edytor wymiarów xz</b></big>\n"
+"Użyj tego okna do skonfigurowania rozmiaru xz urządzenia."
+
+msgid ""
+"<big><b>Electrical parameters</b></big>\n"
+"Use this window to change the electrical parameters of each layer."
+msgstr ""
+"<big><b>Parametry elektryczne</b></big>\n"
+"Użyj tego okna, aby zmienić parametry elektryczne każdej warstwy."
+
+msgid ""
+"<big><b>Emission parameters</b></big>\n"
+"Use this window to set if a layer emits light or not.  You can choose between theoretically "
+"calculated emission spectra and imported experimental spectra."
+msgstr ""
+"<big><b>Parametry emisji</b></big>\n"
+"Użyj tego okna, aby określić, czy warstwa emituje światło, czy nie. Można wybierać pomiędzy "
+"teoretycznie obliczonymi widmami emisyjnymi a importowanymi widmami eksperymentalnymi."
+
+msgid "Frequency start"
+msgstr "Początek częstotliwości"
+
+msgid "Frequency stop"
+msgstr "Zatrzymanie częstotliwości"
+
+msgid "Max points"
+msgstr "Maksymalna liczba punktów"
+
+msgid "Multiply"
+msgstr "Zwielokrotniać"
+
+msgid "Paramter to change"
+msgstr "Parametr do zmiany"
+
+msgid "Parameter scan window"
+msgstr "Okno skanowania parametrów"
+
+msgid "Calculate"
+msgstr "Oblicz"
+
+msgid "Export spectrum"
+msgstr "Eksportuj widmo"
+
+msgid "Spectrum"
+msgstr "Widmo"
+
+msgid "mode Editor"
+msgstr "Edytor trybu"
+
+msgid "Edit contacts"
+msgstr "Edytuj kontakty"
+
+msgid "Top/Bottom"
+msgstr "Góra dół"
+
+msgid ""
+"Applied\n"
+"voltage"
+msgstr ""
+"Zastosowane\n"
+"napięcie"
+
+msgid "Start"
+msgstr "Początek"
+
+msgid "Width"
+msgstr "Szerokość"
+
+msgid "Contact resistance\n"
+msgstr "Rezystancja stykowa\n"
+
+msgid "Shunt resistance"
+msgstr "Rezystancja bocznikowa"
+
+msgid ""
+"Charge density/\n"
+"Fermi-offset"
+msgstr ""
+"Gęstość ładunku/\n"
+"Przesunięcie Fermiego"
+
+msgid ""
+"Majority\n"
+"carrier"
+msgstr ""
+"Większość\n"
+"przewoźnik"
+
+msgid "ve0 (m/s)"
+msgstr "ve0 (m/s)"
+
+msgid "vh0 (m/s)"
+msgstr "vh0 (m/s)"
+
+msgid ""
+"Physical\n"
+"model"
+msgstr ""
+
+msgid "Neural networks editor"
+msgstr "Edytor sieci neuronowych"
+
+msgid ""
+"Compile\n"
+"to json"
+msgstr ""
+"Skompiluj\n"
+"do formatu json"
+
+msgid "Reporting error...."
+msgstr "Zgłaszanie błędu...."
+
+msgid "Diode"
+msgstr "Dioda"
+
+msgid "Power law"
+msgstr "Prawo mocy"
+
+msgid "Barrier"
+msgstr "Bariera"
+
+msgid "Wire"
+msgstr "Drut"
+
+msgid "Ground"
+msgstr "Grunt"
+
+msgid "Voltage source"
+msgstr "Źródło napięcia"
+
+msgid "Pointer"
+msgstr "Wskaźnik"
+
+msgid "Scroll"
+msgstr "Zwój"
+
+msgid "Clean"
+msgstr "Czysty"
+
+msgid "Input vector"
+msgstr "Wektor wejściowy"
+
+msgid "Output vector"
+msgstr "Wektor wyjściowy"
+
+msgid "Enter the time at which the laser pulse will fire (-1) to turn it off"
+msgstr "Wprowadź czas, po którym nastąpi wyzwolenie impulsu lasera (-1), aby go wyłączyć"
+
+msgid "Sun"
+msgstr "Słońce"
+
+msgid "Laser"
+msgstr "Laser"
+
+msgid "fs Laser"
+msgstr "Laser laserowy"
+
+msgid "Enter the start time of the simulation"
+msgstr "Wprowadź godzinę rozpoczęcia symulacji"
+
+msgid "Length"
+msgstr "Długość"
+
+msgid "dt"
+msgstr "dt"
+
+msgid "Start Voltage"
+msgstr "Napięcie początkowe"
+
+msgid "Stop Voltage"
+msgstr "Zatrzymaj napięcie"
+
+msgid "step multiplyer"
+msgstr "mnożnik kroków"
+
+msgid "Sun start"
+msgstr "Początek słońca"
+
+msgid "Sun stop"
+msgstr "Przystanek słońca"
+
+msgid "Laser start"
+msgstr "Uruchomienie lasera"
+
+msgid "Laser stop"
+msgstr "Zatrzymanie lasera"
+
+msgid ""
+"Save\n"
+"video"
+msgstr ""
+"Zapisz\n"
+"wideo"
+
+msgid ""
+"Storyboard\n"
+"to clipboard"
+msgstr ""
+"Storyboard\n"
+"do schowka"
+
+msgid "Autoscale"
+msgstr "Automatyczne skalowanie"
+
+msgid "Set log scale y"
+msgstr "Ustaw skalę logu y"
+
+msgid "Set log scale x"
+msgstr "Ustaw skalę logu x"
+
+msgid "Plot"
+msgstr "Działka"
+
+msgid "Scale"
+msgstr "Skala"
+
+msgid "Video"
+msgstr "Wideo"
+
+msgid ""
+"Set\n"
+"Temperature"
+msgstr ""
+"Ustaw\n"
+"Temperaturę"
+
+msgid ""
+"Configure\n"
+"Model"
+msgstr ""
+"Skonfiguruj\n"
+"Model"
+
+msgid ""
+"Joule\n"
+"Heating"
+msgstr ""
+"Joule\n"
+"Ogrzewanie"
+
+msgid ""
+"Parasitic\n"
+"Heating"
+msgstr ""
+"Pasożytnicze\n"
+"Ogrzewanie"
+
+msgid ""
+"Optical\n"
+"Heating"
+msgstr ""
+"Optyczne\n"
+"Ogrzewanie"
+
+msgid ""
+"Recombination\n"
+"heating"
+msgstr ""
+"Rekombinacja\n"
+"ogrzewanie"
+
+msgid ""
+"Thermal\n"
+"parameters"
+msgstr "Parametry termiczne"
+
+msgid ""
+"Thermal\n"
+"mesh"
+msgstr ""
+
+msgid ""
+"<big><b>Thermal parameters</b></big>\n"
+"Use this window to change the thermal parameters of each layer."
+msgstr ""
+"<big><b>Parametry termiczne</b></big>\n"
+"Użyj tego okna, aby zmienić parametry termiczne każdej warstwy."
+
+msgid "Enter the new temperature"
+msgstr "Wprowadź nową temperaturę"
+
+msgid "Thermal boundary conditions"
+msgstr "Termiczne warunki brzegowe"
+
+msgid "Configure thermal model"
+msgstr "Skonfiguruj model termiczny"
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh."
+msgstr ""
+"<big><b>Edytor siatki</b></big>\n"
+"Użyj tego okna do ustawienia siatki."
+
+msgid "Thermal Mesh Editor"
+msgstr "Edytor siatki termicznej"
+
+msgid "Experimental data"
+msgstr "Dane eksperymentalne"
+
+msgid "Delta=Experiment - Simulation"
+msgstr "Delta=eksperyment - symulacja"
+
+msgid "Configure fit"
+msgstr "Skonfiguruj dopasowanie"
+
+msgid "Fit patch"
+msgstr "Dopasuj łatkę"
+
+msgid "Local duplicate"
+msgstr "Lokalny duplikat"
+
+msgid "Function"
+msgstr "Funkcjonować"
+
+msgid "JSON x"
+msgstr "JSON x"
+
+msgid "JSON y"
+msgstr "JSON r"
+
+msgid "Frequency domain experiment window"
+msgstr "Okno eksperymentu w dziedzinie częstotliwości"
+
+msgid "Thermal parameter editor"
+msgstr "Edytor parametrów termicznych"
+
+msgid "Device structure"
+msgstr "Struktura urządzenia"
+
+msgid ""
+"<big><b>The device structure tab</b></big><br> Use this tab to change the structure of the "
+"device, the layer thicknesses and to perform optical simulations.  You can also browse the "
+"materials data base and  edit the electrical mesh."
+msgstr ""
+"<big><b>Zakładka struktura urządzenia</b></big><br> Zakładka ta służy do zmiany struktury "
+"urządzenia, grubości warstw oraz do wykonywania symulacji optycznych. Można także przeglądać "
+"bazę materiałów i edytować siatkę elektryczną."
+
+msgid "Terminal"
+msgstr "Terminal"
+
+msgid ""
+"<big><b>The terminal window</b></big><br>The output of the model will be displayed in this "
+"window, watch this screen for debugging and convergence information."
+msgstr ""
+"<big><b>Okno terminala</b></big><br>W tym oknie zostaną wyświetlone dane wyjściowe modelu. "
+"Obejrzyj ten ekran, aby uzyskać informacje dotyczące debugowania i zbieżności."
+
+msgid "Tutorials/Documentation"
+msgstr "Poradniki/Dokumentacja"
+
+msgid ""
+"<big><b>Tutorials/Documentation</b></big><br>Here you can find tutorials, videos, worksheets, "
+"and talks about this software and simulating opto-electronic devices in general.  Although "
+"this software is easy to use with it's friendly interface, under the hood it is a highly "
+"complex model and powerful model, it is worth taking time to read the documentation to "
+"understand it.  This will enable you to get the most out of this software and your "
+"experimental data."
+msgstr ""
+"<big><b>Poradniki/Dokumentacja</b></big><br>Tutaj znajdziesz tutoriale, filmy, arkusze ćwiczeń "
+"i rozmowy na temat tego oprogramowania i ogólnie symulowania urządzeń optoelektronicznych. "
+"Chociaż to oprogramowanie jest łatwe w użyciu dzięki przyjaznemu interfejsowi, pod maską kryje "
+"się bardzo złożony model i potężny model, warto poświęcić trochę czasu na przeczytanie "
+"dokumentacji, aby ją zrozumieć. Umożliwi to maksymalne wykorzystanie tego oprogramowania i "
+"danych eksperymentalnych."
+
+msgid ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Watch the video</a></b></big><br> Performing "
+"my first solar cell simulation"
+msgstr ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Obejrzyj film</a></b></big><br> Wykonywanie "
+"mojej pierwszej symulacji ogniw słonecznych"
+
+msgid "Output"
+msgstr "Wyjście"
+
+msgid ""
+"<big><b>Output</b></big><br>This shows the root simulation directory, this is where the "
+"results are stored.  Double click on a file to see what is in it.."
+msgstr ""
+"<big><b>Wyjście</b></big><br>To pokazuje główny katalog symulacji, w którym przechowywane są "
+"wyniki. Kliknij dwukrotnie plik, aby zobaczyć, co w nim jest.."
+
+msgid "Information"
+msgstr "Informacja"
+
+msgid ""
+"<big><b>The fitting variables window</b></big><br> Use this window to select the variables use "
+"to perform the fit."
+msgstr ""
+"<big><b>Okno zmiennych dopasowujących</b></big><br> Użyj tego okna, aby wybrać zmienne używane "
+"do dopasowania."
+
+msgid "Fit the simulation to experimental data"
+msgstr "Dopasuj symulację do danych eksperymentalnych"
+
+msgid "Data sets"
+msgstr "Zestawy danych"
+
+msgid "Rename the fit:"
+msgstr "Zmień nazwę dopasowania:"
+
+msgid "Clone the experiment:"
+msgstr "Sklonuj eksperyment:"
+
+msgid "Export the simulation"
+msgstr "Eksportuj symulację"
+
+msgid "Zip file"
+msgstr "Plik zip"
+
+msgid "Are you sure you want to delete the experiment: "
+msgstr "Czy na pewno chcesz usunąć eksperyment:"
+
+msgid "Make a new fit:"
+msgstr "Zrób nowe dopasowanie:"
+
+msgid "Error function"
+msgstr "Funkcja błędu"
+
+msgid "Log scale"
+msgstr "Skala logarytmiczna"
+
+msgid "Open file"
+msgstr "Otwórz plik"
+
+msgid "Back"
+msgstr "Z powrotem"
+
+msgid "Home"
+msgstr "Dom"
+
+msgid "is not a number.."
+msgstr "nie jest liczbą.."
+
+msgid "Complex Density of states editor"
+msgstr "Edytor złożonej gęstości stanów"
+
+msgid "LUMO numerical"
+msgstr "Numeryczne LUMO"
+
+msgid "HOMO numerical"
+msgstr "Numeryczne HOMO"
+
+msgid "Please cite these papers:"
+msgstr "Proszę zacytować te opracowania:"
+
+msgid "If you publish a paper, book or thesis using results from "
+msgstr "Jeśli publikujesz artykuł, książkę lub pracę magisterską, korzystając z wyników z"
+
+msgid "This is not a valide e-mail address"
+msgstr "To nie jest prawidłowy adres e-mail"
+
+msgid "The e-mail addresses do not match."
+msgstr "Adresy e-mail nie zgadzają się."
+
+msgid "Please enter your first name."
+msgstr "Proszę podaj swoje imię."
+
+msgid "Please enter your surname."
+msgstr "Proszę wpisać swoje nazwisko."
+
+msgid "Please enter your Company/University."
+msgstr "Proszę podać swoją firmę/uczelnię."
+
+msgid "Please enter how you heard about OghmaNano."
+msgstr "Podaj, jak dowiedziałeś się o OghmaNano."
+
+msgid "Please enter what you plan on using OghmaNano for."
+msgstr "Wpisz, do czego planujesz używać OghmaNano."
+
+msgid "Your version of OghmaNano is too old to register, please download the latest version."
+msgstr "Twoja wersja OghmaNano jest zbyt stara, aby się zarejestrować. Pobierz najnowszą wersję."
+
+msgid "Please register to use OghmaNano. Thanks!"
+msgstr "Zarejestruj się, aby móc korzystać z OghmaNano. Dzięki!"
+
+msgid "First name"
+msgstr "Imię"
+
+msgid "Surname"
+msgstr "Nazwisko"
+
+msgid "Company/University"
+msgstr "Firma/Uniwersytet"
+
+msgid "E-mail"
+msgstr "E-mail"
+
+msgid "Confirm e-mail"
+msgstr "Potwierdź email"
+
+msgid "I heard about OghmaNano from:"
+msgstr "O OghmaNano usłyszałem od:"
+
+msgid "I am most interested in simulating:"
+msgstr "Najbardziej interesują mnie symulacje:"
+
+msgid " will not work until you register.  Would do you want to exit?"
+msgstr "nie będzie działać, dopóki się nie zarejestrujesz. Czy chcesz wyjść?"
+
+msgid "Suns v.s. Voc"
+msgstr "Słońca kontra głos"
+
+msgid "Light source (y0)"
+msgstr "Źródło światła (y0)"
+
+msgid "Light source"
+msgstr "Źródło światła"
+
+msgid "Filters (y0)"
+msgstr "Filtry (y0)"
+
+msgid "Filters"
+msgstr "Filtry"
+
+msgid "Run optical simulation"
+msgstr "Uruchom symulację optyczną"
+
+msgid ""
+"Transfer\n"
+"matrix"
+msgstr ""
+"Przenieś\n"
+"macierz"
+
+msgid ""
+"Transfer\n"
+"matrix FD"
+msgstr ""
+"Transfer\n"
+"macierzy FD"
+
+msgid ""
+"Exponential\n"
+"profile"
+msgstr ""
+
+msgid ""
+"Flat\n"
+"profile"
+msgstr ""
+"Płaski\n"
+"profil"
+
+msgid ""
+"From\n"
+"file"
+msgstr ""
+"Z\n"
+"pliku"
+
+msgid ""
+"From QE\n"
+"spectra"
+msgstr ""
+"Z QE\n"
+"spectra"
+
+msgid ""
+"Constant\n"
+"value"
+msgstr ""
+"Stała\n"
+"wartość"
+
+msgid "Edit constant"
+msgstr "Edytuj stałą"
+
+msgid "Optics"
+msgstr "Optyka"
+
+msgid ""
+"Machine\n"
+"Learning"
+msgstr ""
+"Maszyna\n"
+"Uczenie się"
+
+msgid ""
+"Edit\n"
+"Probes"
+msgstr ""
+"Edytuj\n"
+"Sondy"
+
+msgid ""
+"Parameter\n"
+"scan"
+msgstr ""
+"Parametr\n"
+"skan"
+
+msgid ""
+"Fit to\n"
+"experiment"
+msgstr ""
+"Dopasuj do\n"
+"eksperymentu"
+
+msgid ""
+"Json\n"
+"explorer"
+msgstr ""
+"Json\n"
+"odkrywca"
+
+msgid "Matlab paths"
+msgstr "Ścieżki Matlaba"
+
+msgid "Python paths"
+msgstr "Ścieżki Pythona"
+
+msgid ""
+"Script\n"
+"Editor"
+msgstr ""
+"Skrypt\n"
+"Edytor"
+
+msgid ""
+"<big><b>Probes window</b></big><br>Use this window to setup simulation probes, which can be "
+"used to extract values from the simulations at any given mesh point."
+msgstr ""
+"<big><b>Okno Sondy</b></big><br>Użyj tego okna do skonfigurowania sond symulacyjnych, których "
+"można użyć do wyodrębnienia wartości z symulacji w dowolnym punkcie siatki."
+
+msgid ""
+"<big><b>Machine learning window</b></big><br>Use this window to generate machine learning "
+"vectors"
+msgstr ""
+"<big><b>Okno uczenia maszynowego</b></big><br>Użyj tego okna do generowania wektorów uczenia "
+"maszynowego"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Very often it is useful to be able to systematically "
+"very a device parameter such as mobility or density of trap states.  This window allows you to "
+"do just that."
+msgstr ""
+"<big><b>Okno skanowania</b></big><br> Bardzo często przydatna jest możliwość systematycznego "
+"sprawdzania parametrów urządzenia, takich jak ruchliwość czy gęstość stanów pułapek. To okno "
+"pozwala właśnie to zrobić."
+
+msgid "Use the plus icon to add a new scan line to the list."
+msgstr "Użyj ikony plusa, aby dodać nową linię skanowania do listy."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Tutorial video</b></"
+"big><br>Using the parameter scan window."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Film instruktażowy</b></"
+"big><br>Korzystanie z okna skanowania parametrów ."
+
+msgid ""
+"<big><b>Fit window</b></big><br> Use this window to fit the simulation to experimental data.  "
+"The model uses advanced and optimized fitting algorithms to fit the model to your experimental "
+"data, so that material parameters such as mobilities and recombination rates can be extracted."
+msgstr ""
+"<big><b>Dopasuj okno</b></big><br> Użyj tego okna, aby dopasować symulację do danych "
+"eksperymentalnych. Model wykorzystuje zaawansowane i zoptymalizowane algorytmy dopasowania, "
+"aby dopasować go do danych eksperymentalnych, dzięki czemu można wyodrębnić parametry "
+"materiału, takie jak ruchliwość i szybkość rekombinacji."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Watch the tutorial video 1</"
+"b></big><br>Fitting the model to experimental data to extract mobility and recombination rate "
+"parameters."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Obejrzyj film instruktażowy 1</"
+"b></big><br>Dopasowanie modelu do dane eksperymentalne w celu wyodrębnienia parametrów "
+"mobilności i szybkości rekombinacji."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Watch the tutorial video 2</"
+"b></big><br>Fitting the model to large area solar cells"
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Obejrzyj film instruktażowy 2</"
+"b></big><br>Dopasowanie modelu do wielkopowierzchniowe ogniwa słoneczne"
+
+msgid "Run scan"
+msgstr "Uruchom skanowanie"
+
+msgid "Clean simulation"
+msgstr "Czysta symulacja"
+
+msgid "Fast Optimizer"
+msgstr "Szybki optymalizator"
+
+msgid "Build scan"
+msgstr "Skanowanie kompilacji"
+
+msgid "Rerun"
+msgstr "Ponowne odtworzenie"
+
+msgid "Archive simulations"
+msgstr "Symulacje archiwalne"
+
+msgid "Notes"
+msgstr "Notatki"
+
+msgid "Simulations"
+msgstr "Symulacje"
+
+msgid "New experiment"
+msgstr "Nowy eksperyment"
+
+msgid "Delete experiment"
+msgstr "Usuń eksperyment"
+
+msgid "Refresh"
+msgstr "Odświeżać"
+
+msgid "Clone experiment"
+msgstr "Eksperyment z klonem"
+
+msgid "Rename experiment"
+msgstr "Zmień nazwę eksperymentu"
+
+msgid ""
+"Export\n"
+"Data"
+msgstr ""
+"Eksportuj\n"
+"Dane"
+
+msgid "Import data"
+msgstr "Zaimportować dane"
+
+msgid "One itteration"
+msgstr "Jedna iteracja"
+
+msgid "Run fit"
+msgstr "Biegaj w formie"
+
+msgid ""
+"Fit this\n"
+"data set"
+msgstr ""
+"Dopasuj ten\n"
+"zestaw danych"
+
+msgid ""
+"Dont' fit this\n"
+"data set"
+msgstr ""
+"Nie pasują do tego\n"
+"zestawu danych"
+
+msgid "Mesh point"
+msgstr "Punkt siatki"
+
+msgid "Average"
+msgstr "Przeciętny"
+
+msgid "Max pos y-slice"
+msgstr "Maks. poz.-plasterek"
+
+msgid "Max pos y-slice STD-Left"
+msgstr "Maksymalna pozycja Y-plaster STD-Lewy"
+
+msgid "Max pos y-slice STD-Right"
+msgstr "Maks. poz. y-plaster STD-prawy"
+
+msgid "Max pos y-slice val"
+msgstr "Max poz.-plasterek val"
+
+msgid "Max pos y-slice STD-Left val"
+msgstr "Max poz. y-plaster STD-Lewa wartość"
+
+msgid "Max pos y-slice STD-Right val"
+msgstr "Max poz. y-plaster STD-Prawy val"
+
+msgid "x:"
+msgstr "X:"
+
+msgid "y:"
+msgstr "ty:"
+
+msgid "z:"
+msgstr "z:"
+
+msgid "Move up"
+msgstr "Podnieść"
+
+msgid "Move down"
+msgstr "Padnij"
+
+msgid "Add layer"
+msgstr "Dodaj warstwę"
+
+msgid "Add object inside"
+msgstr "Dodaj obiekt do środka"
+
+msgid "Delete"
+msgstr "Usuwać"
+
+msgid "Copy json"
+msgstr "Skopiuj jsona"
+
+msgid "Edit"
+msgstr "Edytować"
+
+msgid "Join mesh"
+msgstr "Dołącz do siatki"
+
+msgid "Group (Ctrl+G)"
+msgstr "Grupa (Ctrl+G)"
+
+msgid "Ungroup (Ctrl+U)"
+msgstr "Rozgrupuj (Ctrl+U)"
+
+msgid "Script"
+msgstr "Scenariusz"
+
+msgid "Copy path (Python)"
+msgstr "Skopiuj ścieżkę (Python)"
+
+msgid "View"
+msgstr "Pogląd"
+
+msgid "Show solid"
+msgstr "Pokaż solidność"
+
+msgid "Show mesh"
+msgstr "Pokaż siatkę"
+
+msgid "Show cut through x"
+msgstr "Pokaż przekrój przez x"
+
+msgid "Show cut through y"
+msgstr "Pokaż przekrój y"
+
+msgid "Hidden"
+msgstr "Ukryty"
+
+msgid "New shape name"
+msgstr "Nowa nazwa kształtu"
+
+msgid "Rename the layer:"
+msgstr "Zmień nazwę warstwy:"
+
+msgid ""
+"Thermal model\n"
+"enabled"
+msgstr ""
+"Model termiczny\n"
+"włączony"
+
+msgid ""
+"<big><b>Thermal solver switched on</b></big><br>The heat equation will be solved across the "
+"device"
+msgstr ""
+"<big><b>Włączono solwer termiczny</b></big><br>Równanie ciepła zostanie rozwiązane w całym "
+"urządzeniu"
+
+msgid ""
+"Iso-thermal\n"
+"model"
+msgstr ""
+
+msgid ""
+"<big><b>Isothermal mode</b></big><br>A single temperature will be assumed across the entire "
+"device."
+msgstr ""
+"<big><b>Tryb izotermiczny</b></big><br>W całym urządzeniu zostanie przyjęta jedna temperatura."
+
+msgid "Isothermal"
+msgstr "Izotermiczny"
+
+msgid "Add"
+msgstr "Dodać"
+
+msgid "Delete row"
+msgstr "Usuń wiersz"
+
+msgid "Laser start time"
+msgstr "Czas uruchomienia lasera"
+
+msgid "Simulation start time"
+msgstr "Czas rozpoczęcia symulacji"
+
+msgid "Loop"
+msgstr "Pętla"
+
+msgid "Time domain experiment window"
+msgstr "Okno eksperymentu w dziedzinie czasu"
+
+msgid "Simulation"
+msgstr "Symulacja"
+
+msgid "Config"
+msgstr "Konfig"
+
+msgid "Loop configuration"
+msgstr "Konfiguracja pętli"
+
+msgid "Random variables"
+msgstr "Zmienne losowe"
+
+msgid "Patch"
+msgstr "Skrawek"
+
+msgid "Duplicate"
+msgstr "Duplikować"
+
+msgid "Neural networks"
+msgstr "Sieci neuronowe"
+
+msgid "Compiled json written to "
+msgstr "Skompilowany plik json, do którego zapisano"
+
+msgid "Copying files and configuring"
+msgstr "Kopiowanie plików i konfiguracja"
+
+msgid "Finish time:"
+msgstr "Czas zakończenia:"
+
+msgid "Running"
+msgstr "Działanie"
+
+msgid "Cluster status"
+msgstr "Stan klastra"
+
+msgid "Constant bias"
+msgstr "Stała stronniczość"
+
+msgid "Change"
+msgstr "Zmiana"
+
+msgid "From file"
+msgstr "Z pliku"
+
+msgid ""
+"Export\n"
+"image"
+msgstr ""
+"Eksportuj\n"
+"obraz"
+
+msgid "<big><b>Filters</b></big><br>Use this tab to edit the optical filters"
+msgstr "<big><b>Filtry</b></big><br>Użyj tej karty, aby edytować filtry optyczne"
+
+msgid "Filter editor"
+msgstr "Edytor filtrów"
+
+msgid "Filter"
+msgstr "Filtr"
+
+msgid "Not a valid license number"
+msgstr "Nieprawidłowy numer licencji"
+
+msgid "This key has been used too many times."
+msgstr "Ten klucz został użyty zbyt wiele razy."
+
+msgid "This key has expired."
+msgstr "Ten klucz wygasł."
+
+msgid ""
+"This version of OghmaNano is too old to validate it's key, please download the latest version."
+msgstr "Ta wersja OghmaNano jest zbyt stara, aby zweryfikować klucz. Pobierz najnowszą wersję."
+
+msgid "Can't access the internet"
+msgstr "Nie można uzyskać dostępu do Internetu"
+
+msgid "Key manager"
+msgstr "Kluczowy menadżer"
+
+msgid "Data"
+msgstr "Dane"
+
+msgid ""
+"JV\n"
+"editor"
+msgstr "JV\redaktor"
+
+msgid ""
+"Time domain\n"
+"editor."
+msgstr "Dziedzina czasu\redaktor."
+
+msgid ""
+"FX domain\n"
+"editor"
+msgstr "Edytor domeny walutowej\redytor"
+
+msgid ""
+"CV\n"
+"editor"
+msgstr "Redaktor CV"
+
+msgid ""
+"Suns Voc\n"
+"editor"
+msgstr "Redaktor Suns Voc"
+
+msgid ""
+"Suns Jsc\n"
+"editor"
+msgstr "Suns Jsc\redaktor"
+
+msgid ""
+"CE\n"
+"editor"
+msgstr "CE\redaktor"
+
+msgid ""
+"PL\n"
+"editor"
+msgstr "PL\redaktor"
+
+msgid ""
+"Exciton\n"
+"editor"
+msgstr ""
+"Exciton\n"
+"redaktor"
+
+msgid ""
+"Quantum\n"
+"efficiency"
+msgstr ""
+"Kwantowa\n"
+"iewydajność"
+
+msgid ""
+"Electrical\n"
+"equilibrium"
+msgstr "Równowaga elektryczna"
+
+msgid ""
+"Polynomial\n"
+"editor"
+msgstr "Edytor wielomianów"
+
+msgid ""
+"Calculate\n"
+"the cost"
+msgstr ""
+"Oblicz\n"
+"koszt"
+
+msgid ""
+"scanning probe\n"
+"microscopy"
+msgstr ""
+"sonda skanująca\n"
+"mikroskopia"
+
+msgid ""
+"Output\n"
+"Files"
+msgstr ""
+"Dane wyjściowe\n"
+"Pliki"
+
+msgid ""
+"Simulation\n"
+"Hardware"
+msgstr ""
+"Symulacja\n"
+"Sprzęt"
+
+msgid ""
+"<big><b>The time mesh editor</b></big><br> To do time domain simulations one must define how "
+"voltage the light vary as a function of time.  This can be done in this window.  Also use this "
+"window to define the simulation length and time step."
+msgstr ""
+"<big><b>Edytor siatki czasu</b></big><br> Aby przeprowadzić symulację w dziedzinie czasu, "
+"należy zdefiniować, jak zmienia się napięcie światła w funkcji czasu. Można to zrobić w tym "
+"oknie. Użyj tego okna również do zdefiniowania długości symulacji i kroku czasowego."
+
+msgid ""
+"<big><b>Frequency domain mesh editor</b></big><br> Some times it is useful to do frequency "
+"domain simulations such as when simulating impedance spectroscopy.  This window will allow you "
+"to choose which frequencies will be simulated."
+msgstr ""
+"<big><b>Edytor siatki w dziedzinie częstotliwości</b></big><br> Czasami przydatne jest "
+"wykonanie symulacji w dziedzinie częstotliwości, na przykład podczas symulacji spektroskopii "
+"impedancyjnej. W tym oknie możesz wybrać, które częstotliwości będą symulowane."
+
+msgid ""
+"<big><b>Capacitance voltage editor</b></big><br> Use this editor to change serup capacitance "
+"voltage simulation."
+msgstr ""
+"<big><b>Edytor napięcia pojemnościowego</b></big><br> Użyj tego edytora, aby zmienić symulację "
+"napięcia pojemnościowego."
+
+msgid ""
+"<big><b>Scanning probe microscopy</b></big><br> Use this window to configure the scanning "
+"probe microscopy simulations."
+msgstr ""
+"<big><b>Mikroskopia z sondą skanującą</b></big><br> To okno służy do konfiguracji symulacji "
+"mikroskopii z sondą skanującą."
+
+msgid ""
+"<big><b>PL simulation editor</b></big><br> Use this window to configure the steady state "
+"photoluminescence simulation."
+msgstr ""
+"<big><b>Edytor symulacji PL</b></big><br> To okno służy do konfiguracji symulacji "
+"fotoluminescencji w stanie ustalonym."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Watch the youtube video</a></"
+"b></big><br>Watch the video on perfomring PL simulation."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Obejrzyj film w YouTube</a></"
+"b></big><br>Obejrzyj wideo na temat przeprowadzania symulacji PL."
+
+msgid ""
+"<big><b>Suns voc simulation editor</b></big><br> Use this window to select the step size and "
+"parameters of the JV simulations."
+msgstr ""
+"<big><b>Edytor symulacji Suns voc</b></big><br> To okno służy do wyboru wielkości kroku i "
+"parametrów symulacji JV."
+
+msgid ""
+"<big><b>Suns Jsc simulation editor</b></big><br> Use this window to select the step size and "
+"parameters of the JV simulations."
+msgstr ""
+"<big><b>Edytor symulacji Suns Jsc</b></big><br> To okno służy do wyboru wielkości kroku i "
+"parametrów symulacji JV."
+
+msgid ""
+"<big><b>Charge Extraction editor</b></big><br> This performs charge extraction experiments in "
+"time domain, accounting for recombination losses.  If you don’t mind about accounting for "
+"recombination losses on extraction just run a JV curve or a Suns-Voc simulation and use the "
+"charge.dat file."
+msgstr ""
+"<big><b>Edytor ekstrakcji ładunku</b></big><br> Wykonuje eksperymenty ekstrakcji ładunku w "
+"dziedzinie czasu, uwzględniając straty rekombinacyjne. Jeśli nie masz nic przeciwko "
+"rozliczaniu strat rekombinacyjnych podczas ekstrakcji, po prostu wykonaj krzywą JV lub "
+"symulację Suns-Voc i użyj pliku Charge.dat."
+
+msgid ""
+"<big><b>Costs window</b></big>\n"
+"Use this window to calculate the cost of the solar cell and the energy payback time."
+msgstr ""
+"<big><b>Okno kosztów</b></big>\n"
+"Użyj tego okna, aby obliczyć koszt ogniwa słonecznego i czas zwrotu energii."
+
+msgid "<big><b>JV simulation editor</b></big><br> Use this window to configure JV simulations."
+msgstr "<big><b>Edytor symulacji JV</b></big><br> To okno służy do konfigurowania symulacji JV."
+
+msgid ""
+"<big><b>Polynomial editor</b></big><br> Use this window to generate random date sets for "
+"resting the fitting model."
+msgstr ""
+"<big><b>Edytor wielomianów</b></big><br> Użyj tego okna, aby wygenerować losowe zestawy dat "
+"dla odłożenia dopasowanego modelu."
+
+msgid ""
+"<big><b>Exciton simulation editor</b></big><br> Use this window to configure exciton "
+"simulations."
+msgstr ""
+"<big><b>Edytor symulacji ekscytonu</b></big><br> To okno służy do konfigurowania symulacji "
+"ekscytonu."
+
+msgid ""
+"<big><b>Simulation hardware</b></big><br>Use this window to change how the model uses the "
+"computer's hardware."
+msgstr ""
+"<big><b>Sprzęt symulacyjny</b></big><br>Użyj tego okna, aby zmienić sposób, w jaki model "
+"wykorzystuje sprzęt komputera."
+
+msgid "Output files"
+msgstr "Pliki wyjściowe"
+
+msgid "Banned files and tokens"
+msgstr "Zakazane pliki i tokeny"
+
+msgid "Probes"
+msgstr "Sondy"
+
+msgid "File name"
+msgstr "Nazwa pliku"
+
+msgid "Probe"
+msgstr "Sonda"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Now using the drop down menu in the prameter to change "
+"'column', select the device parameter you wish to vary, an example may be dos0/Electron "
+"Mobility. Now enter the values you would like it to scan oveer in the  'Values', an example "
+"could be '1e-3 1e-4 1e-5 1e-6'.  And hit the double arrorw to run the simulation."
+msgstr ""
+"<big><b>Okno skanowania</b></big><br> Teraz korzystając z menu rozwijanego w parametrze, aby "
+"zmienić „kolumnę”, wybierz parametr urządzenia, który chcesz zmienić, na przykład może to być "
+"dos0/ Mobilność elektronów. Teraz wprowadź wartości, które chcesz przeskanować w "
+"„Wartościach”, na przykład „1e-3 1e-4 1e-5 1e-6”. I naciśnij podwójną strzałkę, aby uruchomić "
+"symulację."
+
+msgid "Neural network editor"
+msgstr "Edytor sieci neuronowych"
+
+msgid "ML Input vector"
+msgstr "ML Wektor wejściowy"
+
+msgid "ML Output vector"
+msgstr "ML Wektor wyjściowy"
+
+msgid "Optimizer"
+msgstr "Optymalizator"
+
+msgid "Scan - Configure Optimizer"
+msgstr "Skanuj — skonfiguruj Optymalizator"
+
+msgid "Solar Spectrum Generator"
+msgstr "Generator widma słonecznego"
+
+msgid "Show energies"
+msgstr "Pokaż energie"
+
+msgid "Plot token values"
+msgstr "Wykreśl wartości znaczników"
+
+msgid "Suns Jsc simulation editor"
+msgstr "Edytor symulacji firmy Suns Jsc"
+
+msgid "Disabled"
+msgstr "Wyłączony"
+
+msgid ""
+"Ray\n"
+"trace"
+msgstr "Śledzenie promieni"
+
+msgid ""
+"Perfect\n"
+"outcoupling"
+msgstr ""
+"Idealne\n"
+"sprzężenie"
+
+msgid "time mesh"
+msgstr "siatka czasu"
+
+msgid "Explore the simulation data structure"
+msgstr "Poznaj strukturę danych symulacyjnych"
+
+msgid "Interface editor"
+msgstr "Edytor interfejsu"
+
+msgid "Sim name"
+msgstr "Imię Sima"
+
+msgid "Vectors"
+msgstr "Wektory"
+
+msgid "Cluster get data"
+msgstr "Klaster pobiera dane"
+
+msgid "Copy src to cluster"
+msgstr "Skopiuj src do klastra"
+
+msgid "Make on cluster"
+msgstr "Zrób w klastrze"
+
+msgid "Clean cluster"
+msgstr "Wyczyść klaster"
+
+msgid "Kill all cluster code"
+msgstr "Zabij cały kod klastra"
+
+msgid "Sync"
+msgstr "Synchronizuj"
+
+msgid "Cluster"
+msgstr "Grupa"
+
+msgid "3D object viewer"
+msgstr "Przeglądarka obiektów 3D"
+
+msgid "Machine learning"
+msgstr "Nauczanie maszynowe"
+
+msgid ""
+"Build\n"
+"vectors"
+msgstr ""
+"Twórz\n"
+"wektory"
+
+msgid ""
+"Norm\n"
+"vectors"
+msgstr ""
+"Wektory\n"
+"normowe"
+
+msgid ""
+"Run\n"
+"Generator"
+msgstr ""
+"Uruchom\n"
+"Generator"
+
+msgid "Clean files"
+msgstr "Czyste pliki"
+
+msgid "Generator"
+msgstr "Generator"
+
+msgid "Clone"
+msgstr "Klon"
+
+msgid "Building simulations: "
+msgstr "Symulacje budynków:"
+
+msgid "Building vectors: "
+msgstr "Wektory budowlane:"
+
+msgid "The directory does not exist: "
+msgstr "Katalog nie istnieje:"
+
+msgid "Loading"
+msgstr "Ładowanie"
+
+msgid "Rename:"
+msgstr "Przemianować:"
+
+msgid "Clone:"
+msgstr "Klon:"
+
+msgid "Are you sure you want to delete : "
+msgstr "Czy jesteś pewien, że chcesz usunąć :"
+
+msgid "Make a new:"
+msgstr "Zrób nowy:"
+
+msgid "Delete file"
+msgstr "Usunąć plik"
+
+msgid "Clone object"
+msgstr "Klonuj obiekt"
+
+msgid "New shape name:"
+msgstr "Nowa nazwa kształtu:"
+
+msgid "I cant write to:"
+msgstr "Nie mogę napisać do:"
+
+msgid ""
+"This means either the disk is full or your system administrator has not given you write "
+"permissions to that location."
+msgstr ""
+"Oznacza to, że dysk jest zapełniony lub administrator systemu nie przyznał Ci uprawnień do "
+"zapisu w tej lokalizacji."
+
+msgid "Merge shapes to new"
+msgstr "Połącz kształty z nowymi"
+
+msgid "name"
+msgstr "nazwa"
+
+msgid "path"
+msgstr "ścieżka"
+
+msgid "ip"
+msgstr "ip"
+
+msgid "start"
+msgstr "początek"
+
+msgid "stop"
+msgstr "zatrzymywać się"
+
+msgid "CPUs"
+msgstr "Procesory"
+
+msgid "status"
+msgstr "status"
+
+msgid "Adding: "
+msgstr "Dodawanie:"
+
+msgid "No sim dir name"
+msgstr "Brak nazwy katalogu sim"
+
+msgid ""
+"I can't load flat_list.inp.  This usually means there is a problem with how you have set up "
+"your scan."
+msgstr ""
+"Nie mogę załadować pliku flat_list.inp. Zwykle oznacza to, że wystąpił problem z konfiguracją "
+"skanowania."
+
+msgid "Problem loading file."
+msgstr "Problem z ładowaniem pliku."
+
+msgid "Problem generating tree."
+msgstr "Problem z generowaniem drzewa."
+
+msgid "Lambda stop"
+msgstr "Zatrzymanie lambdy"
+
+msgid "File containing generation rate"
+msgstr "Plik zawierający szybkość generacji"
+
+msgid "Photon efficiency"
+msgstr "Wydajność fotonów"
+
+msgid "QE spectra file"
+msgstr "Plik widm QE"
+
+msgid "Incoherent wavelengths"
+msgstr "Niespójne długości fal"
+
+msgid "Mesh layers must equal device layers"
+msgstr "Warstwy siatki muszą być równe warstwom urządzenia"
+
+msgid "Light spectrum"
+msgstr "Spektrum światła"
+
+msgid "Light multiplyer"
+msgstr "Mnożnik światła"
+
+msgid "Photo current density"
+msgstr "Gęstość prądu fotograficznego"
+
+msgid "Photo current"
+msgstr "Aktualne zdjęcie"
+
+msgid "Invert"
+msgstr "Odwracać"
+
+msgid "Optical filter material"
+msgstr "Materiał filtra optycznego"
+
+msgid "dB"
+msgstr "dB"
+
+msgid "Degrees"
+msgstr "Stopni"
+
+msgid "n"
+msgstr "N"
+
+msgid "Illuminate from"
+msgstr "Oświetlaj od"
+
+msgid "Top (y0)"
+msgstr "Góra (y0)"
+
+msgid "Bottom (y1)"
+msgstr "Dół (y1)"
+
+msgid "Left (x0)"
+msgstr "Lewy (x0)"
+
+msgid "Right (x1)"
+msgstr "Prawo (x1)"
+
+msgid "Front (z0)"
+msgstr "Przód (z0)"
+
+msgid "Back (z1)"
+msgstr "Tył (z1)"
+
+msgid "xyz"
+msgstr "xyz"
+
+msgid "Log fit"
+msgstr "Dopasowanie dziennika"
+
+msgid "Opperation"
+msgstr "Operacja"
+
+msgid "Enable vector"
+msgstr "Włącz wektor"
+
+msgid "Edit patch"
+msgstr "Edytuj poprawkę"
+
+msgid "Edit vectors"
+msgstr "Edytuj wektory"
+
+msgid "Number of archives"
+msgstr "Liczba archiwów"
+
+msgid "Simulations per archive"
+msgstr "Symulacje według archiwum"
+
+msgid "Random distribution"
+msgstr "Losowa dystrybucja"
+
+msgid "Log"
+msgstr "Dziennik"
+
+msgid "Linear"
+msgstr "Liniowy"
+
+msgid "Archive path"
+msgstr "Ścieżka archiwalna"
+
+msgid "Vector file name"
+msgstr "Nazwa pliku wektorowego"
+
+msgid "Crash time"
+msgstr "Czas awarii"
+
+msgid "Build vectors when done"
+msgstr "Po zakończeniu utwórz wektory"
+
+msgid "ML Output Vector"
+msgstr "Wektor wyjściowy ML"
+
+msgid "ML Input Vector"
+msgstr "Wektor wejściowy ML"
+
+msgid "file"
+msgstr "plik"
+
+msgid "Experimental file"
+msgstr "Plik eksperymentalny"
+
+msgid "multiplier"
+msgstr "mnożnik"
+
+msgid "Multiplier"
+msgstr "Mnożnik"
+
+msgid "json_src"
+msgstr "json_src"
+
+msgid "json_dest"
+msgstr "json_dest"
+
+msgid "Laser wavelength"
+msgstr "Długość fali lasera"
+
+msgid "Length of pulse"
+msgstr "Długość impulsu"
+
+msgid "Spot size x"
+msgstr "Rozmiar plamki x"
+
+msgid "Spot size y"
+msgstr "Rozmiar plamki y"
+
+msgid "Energy in pulse"
+msgstr "Energia w pulsie"
+
+msgid "Efficiency of photons"
+msgstr "Wydajność fotonów"
+
+msgid "Solve optical problem"
+msgstr "Rozwiąż problem optyczny"
+
+msgid "Yes - n/k"
+msgstr "Tak - nie dotyczy"
+
+msgid "Yes - k"
+msgstr "Tak – k"
+
+msgid "No"
+msgstr "NIE"
+
+msgid "Yes"
+msgstr "Tak"
+
+msgid "contact"
+msgstr "kontakt"
+
+msgid "active layer"
+msgstr "warstwa aktywna"
+
+msgid "other"
+msgstr "Inny"
+
+msgid "Optical thickness"
+msgstr "Grubość optyczna"
+
+msgid "Free carrier statistics"
+msgstr "Bezpłatne statystyki przewoźników"
+
+msgid "Maxwell Boltzmann - analytic"
+msgstr "Maxwell Boltzmann – analityk"
+
+msgid "Maxwell Boltzmann - numerical+analytic"
+msgstr "Maxwell Boltzmann - numeryczny+analityczny"
+
+msgid "Maxwell Boltzmann - full numerical"
+msgstr "Maxwell Boltzmann - pełna liczba"
+
+msgid "Ferm-Dirac - numerical"
+msgstr "Ferm-Dirac - numeryczny"
+
+msgid "<b>Free carriers</b>"
+msgstr "<b>Bezpłatni przewoźnicy</b>"
+
+msgid "Effective density of free electron states (@300K)"
+msgstr "Efektywna gęstość stanów wolnych elektronów (@300K)"
+
+msgid "Effective density of free hole states (@300K)"
+msgstr "Efektywna gęstość stanów wolnych dziur (@300K)"
+
+msgid "Enable T dependent free carrier mob"
+msgstr "Włącz mob bezpłatnych przewoźników zależnych od T"
+
+msgid "Enable \\u03BB power in free to free recombination"
+msgstr "Włącz moc \\u03BB w wolnej rekombinacji"
+
+msgid "Show excited singlet states"
+msgstr "Pokaż wzbudzone stany singletowe"
+
+msgid "<b>Equilibrium SRH traps</b>"
+msgstr "<b>Pułapki równowagowe SRH</b>"
+
+#, python-brace-format
+msgid "n_{1}"
+msgstr "n_{1}"
+
+#, python-brace-format
+msgid "p_{1}"
+msgstr "p_{1}"
+
+#, python-brace-format
+msgid "tau_{n}"
+msgstr "tau_{n}"
+
+#, python-brace-format
+msgid "tau_{p}"
+msgstr "tau_{p}"
+
+msgid "<b>Non-equilibrium SRH traps</b>"
+msgstr "<b>Nierównowagowe pułapki SRH</b>"
+
+msgid "Number of traps"
+msgstr "Liczba pułapek"
+
+msgid "DoS distribution"
+msgstr "Dystrybucja DoS"
+
+msgid "Complex"
+msgstr "Złożony"
+
+msgid "Exponential"
+msgstr "Wykładniczy"
+
+msgid "Electron trap density"
+msgstr "Gęstość pułapki elektronowej"
+
+msgid "Hole trap density"
+msgstr "Gęstość pułapki dziurowej"
+
+msgid "Electron tail slope"
+msgstr "Nachylenie ogona elektronowego"
+
+msgid "Hole tail slope"
+msgstr "Nachylenie ogona otworu"
+
+msgid "Free electron to Trapped electron"
+msgstr "Elektron swobodny do elektronu uwięzionego"
+
+msgid "Trapped electron to Free hole"
+msgstr "Uwięziony elektron do wolnej dziury"
+
+msgid "Trapped hole to Free electron"
+msgstr "Uwięziona dziura do wolnego elektronu"
+
+msgid "Free hole to Trapped hole"
+msgstr "Otwór wolny do otworu uwięzionego"
+
+msgid "Enable/Disable"
+msgstr "Włącz/wyłącz"
+
+msgid "<b>Excitons</b>"
+msgstr "<b>Ekscytony</b>"
+
+msgid "Scattering length"
+msgstr "Długość rozproszenia"
+
+msgid "Life time"
+msgstr "Dożywotni"
+
+#, python-brace-format
+msgid "k_{pl}"
+msgstr "k_{pl}"
+
+#, python-brace-format
+msgid "k_{fret}"
+msgstr ""
+
+#, python-brace-format
+msgid "k_{alpha}"
+msgstr ""
+
+#, python-brace-format
+msgid "k_{dis}"
+msgstr "k_{dis}"
+
+msgid "Max itterations"
+msgstr "Maksymalna liczba iteracji"
+
+msgid "Convergence error"
+msgstr "Błąd zbieżności"
+
+#, python-brace-format
+msgid "Boundary condition for y_{min}"
+msgstr "Warunek brzegowy dla y_{min}"
+
+msgid "Dirichlet"
+msgstr "Dirichleta"
+
+msgid "ABC"
+msgstr "ABC"
+
+msgid "Periodic"
+msgstr "Okresowy"
+
+#, python-brace-format
+msgid "Boundary condition for y_{max}"
+msgstr "Warunek brzegowy dla y_{max}"
+
+#, python-brace-format
+msgid "Boundary condition for x_{min}"
+msgstr "Warunek brzegowy dla x_{min}"
+
+#, python-brace-format
+msgid "Boundary condition for x_{max}"
+msgstr "Warunek brzegowy dla x_{max}"
+
+#, python-brace-format
+msgid "Boundary condition for z_{min}"
+msgstr "Warunek brzegowy dla z_{min}"
+
+#, python-brace-format
+msgid "Boundary condition for z_{max}"
+msgstr "Warunek brzegowy dla z_{max}"
+
+msgid "Neumann (==0)"
+msgstr "Neumanna (==0)"
+
+msgid "Heatsink"
+msgstr "Radiator"
+
+#, python-brace-format
+msgid "Exciton density at y_{min}"
+msgstr "Gęstość ekscytonu przy y_{min}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{min}"
+msgstr "Przewodność radiatora y_{min}"
+
+#, python-brace-format
+msgid "Heat sink length y_{min}"
+msgstr "Długość radiatora y_{min}"
+
+#, python-brace-format
+msgid "Exciton density at y_{max}"
+msgstr "Gęstość ekscytonów przy y_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{max}"
+msgstr "Przewodność radiatora y_{max}"
+
+#, python-brace-format
+msgid "Heat sink length y_{max}"
+msgstr "Długość radiatora y_{max}"
+
+#, python-brace-format
+msgid "Exciton density at x_{min}"
+msgstr "Gęstość ekscytonu przy x_{min}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{min}"
+msgstr "Przewodność radiatora x_{min}"
+
+#, python-brace-format
+msgid "Heat sink length x_{min}"
+msgstr "Długość radiatora x_{min}"
+
+#, python-brace-format
+msgid "Exciton density at x_{max}"
+msgstr "Gęstość ekscytonu przy x_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{max}"
+msgstr "Przewodność radiatora x_{max}"
+
+#, python-brace-format
+msgid "Heat sink length x_{max}"
+msgstr "Długość radiatora x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{min}"
+msgstr "Temperatura urządzenia przy z_{min}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{min}"
+msgstr "Przewodność radiatora z_{min}"
+
+#, python-brace-format
+msgid "Heat sink length z_{min}"
+msgstr "Długość radiatora z_{min}"
+
+#, python-brace-format
+msgid "Exciton density at z_{max}"
+msgstr "Gęstość ekscytonów przy z_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{max}"
+msgstr "Przewodność radiatora z_{max}"
+
+#, python-brace-format
+msgid "Heat sink length z_{max}"
+msgstr "Długość radiatora z_{max}"
+
+msgid "<b>Auger recombination</b>"
+msgstr "<b>Rekombinacja ślimaka</b>"
+
+#, python-brace-format
+msgid "Auger C_{n}"
+msgstr "Ślimak C_{n}"
+
+#, python-brace-format
+msgid "Auger C_{p}"
+msgstr "Ślimak C_{p}"
+
+msgid "Start temperature"
+msgstr "Temperatura początkowa"
+
+msgid "Stop temperature"
+msgstr "Zatrzymaj temperaturę"
+
+msgid "Temperature steps"
+msgstr "Stopnie temperatury"
+
+msgid "Perovskite ion density"
+msgstr "Gęstość jonów perowskitu"
+
+msgid "Doping density (x=0)"
+msgstr "Gęstość domieszkowania (x=0)"
+
+msgid "Doping density (x=max)"
+msgstr "Gęstość domieszkowania (x=max)"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} Recombination rate constant"
+msgstr "n_{free} do p_{free} Stała szybkości rekombinacji"
+
+msgid "<b>Electrostatics</b>"
+msgstr "<b>Elektrostatyka</b>"
+
+msgid "Eg"
+msgstr "Np"
+
+msgid "Xi"
+msgstr "Xi"
+
+msgid "<b>Excited states</b>"
+msgstr "<b>Stany podekscytowania</b>"
+
+msgid "Forster transfer rate"
+msgstr "Szybkość transferu Forstera"
+
+msgid "Host singlet-exciton decay rate"
+msgstr "Szybkość zaniku singletu-ekscytonu gospodarza"
+
+msgid "Host inter-system crossing rate"
+msgstr "Szybkość przejścia między systemami hosta"
+
+msgid "Host singlet-singlet annihilation (SSA) rate"
+msgstr "Współczynnik anihilacji singlet-singlet gospodarza (SSA)."
+
+msgid "Host singlet-polaron annihilation (SPA) rate"
+msgstr "Szybkość anihilacji singletu i polaronu gospodarza (SPA)."
+
+msgid "Host singlet-triplet annihilation (STA) rate"
+msgstr "Szybkość anihilacji singlet-triplet gospodarza (STA)."
+
+msgid "Dexter transfer rate"
+msgstr "Szybkość transferu Dextera"
+
+msgid "Host triplet decay rate"
+msgstr "Szybkość zaniku tripletu gospodarza"
+
+msgid "Host triplet-polaron annihilation (TPA) rate"
+msgstr "Szybkość anihilacji tripletów-polaronów gospodarza (TPA)."
+
+msgid "Host triplet-triplet annihilation (TTA) rate"
+msgstr "Szybkość anihilacji tripletów-tripletów gospodarza (TTA)."
+
+msgid "Dopant singlet-exciton decay rate"
+msgstr "Szybkość rozpadu singletu-ekscytonu domieszki"
+
+msgid "Dopant inter-system crossing rate"
+msgstr "Szybkość przenikania domieszki między systemami"
+
+msgid "Dopant singlet-polaron annihilation (SPA) rate"
+msgstr "Szybkość anihilacji domieszki i polaronu (SPA)."
+
+msgid "Dopant singlet-triplet annihilation (STA) rate"
+msgstr "Szybkość anihilacji singlet-triplet domieszki (STA)."
+
+msgid "Dopant singlet-singlet annihilation (SSA) rate"
+msgstr "Szybkość anihilacji singlet-singlet domieszki (SSA)."
+
+msgid "Dopant triplet decay rate"
+msgstr "Szybkość rozpadu tripletu domieszki"
+
+msgid "Dopant triplet-triplet annihilation (TTA) rate"
+msgstr "Szybkość anihilacji tripletów domieszki (TTA)."
+
+msgid "Dopant triplet-polaron annihilation (TPA) rate"
+msgstr "Szybkość anihilacji tripletów domieszki-polaronu (TPA)."
+
+msgid "Confinement factor"
+msgstr "Czynnik ograniczający"
+
+msgid "Dopant concentration"
+msgstr "Stężenie domieszki"
+
+msgid "Spectral overlap"
+msgstr "Nakładanie się widm"
+
+#, python-brace-format
+msgid "k_{RISC} Reverse Inter-System crossing rate"
+msgstr "k_{RISC} Odwrotna szybkość przejścia między systemami"
+
+#, python-brace-format
+msgid "\\u03C3_{em} Stimulated Emission cross section"
+msgstr "\\u03C3_{em} Przekrój poprzeczny emisji wymuszonej"
+
+#, python-brace-format
+msgid "\\u03C3_{t1tn} Triplet Absorption cross section"
+msgstr "\\u03C3_{t1tn} Przekrój poprzeczny absorpcji potrójnej"
+
+msgid "\\u03C3_{n,p} Polaron Absorption cross section"
+msgstr "\\u03C3_{n,p} Przekrój poprzeczny Polaronu Absorpcyjnego"
+
+msgid "e-h separation distance"
+msgstr "e-h odległość separacji"
+
+msgid "<b>Photon rate equation</b>"
+msgstr "<b>Równanie szybkości fotonów</b>"
+
+msgid "Spontaneous emission factor"
+msgstr "Współczynnik emisji spontanicznej"
+
+msgid "Cavity photon decay rate"
+msgstr "Szybkość zaniku fotonów wnękowych"
+
+msgid "Density of guest molecules"
+msgstr "Gęstość cząsteczek gościa"
+
+msgid "\\u03BE Stimulated emission gain coefficient"
+msgstr "\\u03BE Współczynnik wzmocnienia emisji stymulowanej"
+
+msgid "<b>Excited states for OPV</b>"
+msgstr "<b>Stan wzbudzenia dla OPV</b>"
+
+#, python-brace-format
+msgid "Decay of singlets to 1C (k_{ds})"
+msgstr "Rozpad singletów do 1C (k_{ds})"
+
+#, python-brace-format
+msgid "Inter system crossing (k_{isc})"
+msgstr "Przejście międzysystemowe (k_{isc})"
+
+#, python-brace-format
+msgid "Reverse inter system crossing (k_{risc})"
+msgstr "Odwrotne przejście między systemami (k_{risc})"
+
+#, python-brace-format
+msgid "Triplet-triplet annihilation (k_{tta})"
+msgstr "Anihilacja triplet-triplet (k_{tta})"
+
+#, python-brace-format
+msgid "Singlet-triplet annihilation (k_{sta})"
+msgstr "Anihilacja singlet-triplet (k_{sta})"
+
+#, python-brace-format
+msgid "Singlet-singlet annihilation (k_{ssa})"
+msgstr "Anihilacja singlet-singlet (k_{ssa})"
+
+msgid "Alpha fraction (alpha)"
+msgstr "Frakcja alfa (alfa)"
+
+#, python-brace-format
+msgid "Singlet to ground state (k_{fs})"
+msgstr "Singlet do stanu podstawowego (k_{fs})"
+
+#, python-brace-format
+msgid "Decay of triplets (k_{dt})"
+msgstr "Rozpad trojaczków (k_{dt})"
+
+#, python-brace-format
+msgid "Triplet to ground state (k_{ft})"
+msgstr "Triplet do stanu podstawowego (k_{ft})"
+
+#, python-brace-format
+msgid "Decay of 3C to np (k_{dct})"
+msgstr "Rozpad 3C do np (k_{dct})"
+
+msgid "Inter system crossing CT (k_{isc ct})"
+msgstr "Przejście międzysystemowe CT (k_{isc ct})"
+
+msgid "Reverse inter system crossing CT (k_{risc ct})"
+msgstr "Odwrotne przejście międzysystemowe CT (k_{risc ct})"
+
+#, python-brace-format
+msgid "3C and 1C to ground state (k_{f})"
+msgstr "3C i 1C do stanu podstawowego (k_{f})"
+
+msgid "Blended material"
+msgstr "Mieszany materiał"
+
+#, python-brace-format
+msgid "Eg_{0}"
+msgstr "Np._{0}"
+
+#, python-brace-format
+msgid "Xi_{0}"
+msgstr "Xi_{0}"
+
+#, python-brace-format
+msgid "Eg_{1}"
+msgstr "Np._{1}"
+
+#, python-brace-format
+msgid "Xi_{1}"
+msgstr "Xi_{1}"
+
+msgid "Thermal conductivity"
+msgstr "Przewodność cieplna"
+
+msgid "Electron relaxation time"
+msgstr "Czas relaksacji elektronów"
+
+msgid "Hole relaxation time"
+msgstr "Czas relaksu dziury"
+
+msgid "Density"
+msgstr "Gęstość"
+
+msgid "Cost per Kg"
+msgstr "Koszt za kg"
+
+msgid "Energy per Kg"
+msgstr "Energia na kg"
+
+msgid "Link"
+msgstr "Połączyć"
+
+msgid "Shunt resistivity"
+msgstr "Rezystywność bocznika"
+
+msgid "Series resistivity"
+msgstr "Rezystywność szeregowa"
+
+msgid "Series resistivity z"
+msgstr "Rezystywność szeregowa z"
+
+msgid "Series resistivity x"
+msgstr "Rezystywność szeregowa x"
+
+msgid "Series resistivity y"
+msgstr "Rezystywność szeregowa y"
+
+msgid "Layer ideality factor"
+msgstr "Współczynnik idealności warstwy"
+
+msgid "Reverse bias current"
+msgstr "Prąd polaryzacji odwrotnej"
+
+msgid ""
+"Enable optical charge\n"
+"carrier generation"
+msgstr ""
+"Włącz generowanie\n"
+"nośnika ładunku optycznego"
+
+msgid "Scan section"
+msgstr "Sekcja skanowania"
+
+msgid "Whole device"
+msgstr "Całe urządzenie"
+
+msgid "Box section"
+msgstr "Sekcja pudełkowa"
+
+msgid "x-Scan"
+msgstr "x-skan"
+
+msgid "x-start"
+msgstr "początek x"
+
+msgid "z-start"
+msgstr "początek Z"
+
+msgid "x-stop"
+msgstr "przystanek x"
+
+msgid "z-stop"
+msgstr "przystanek z"
+
+msgid "Dump only at end"
+msgstr "Zrzucić dopiero na końcu"
+
+msgid "Shape type"
+msgstr "Typ kształtu"
+
+msgid "Rotate around y-axis"
+msgstr "Obróć wokół osi Y"
+
+msgid "y-axis"
+msgstr "oś y"
+
+msgid "x-axis"
+msgstr "oś x"
+
+msgid "Rotate around x-axis"
+msgstr "Obróć wokół osi X"
+
+msgid "dx of the object"
+msgstr "dx obiektu"
+
+msgid "dy of the object"
+msgstr "dy obiektu"
+
+msgid "dz of the object"
+msgstr "dz obiektu"
+
+msgid "dx padding"
+msgstr "wyściółka dx"
+
+msgid "padding"
+msgstr "wyściółka"
+
+msgid "dy padding"
+msgstr "wyściółka"
+
+msgid "dz padding"
+msgstr "dopełnienie dz"
+
+msgid "Number of objects x"
+msgstr "Liczba obiektów x"
+
+msgid "Number of objects"
+msgstr "Liczba obiektów"
+
+msgid "Number of objects y"
+msgstr "Liczba obiektów y"
+
+msgid "Number of objects z"
+msgstr "Liczba obiektów z"
+
+msgid "<b>Object</b>"
+msgstr "<b>Obiekt</b>"
+
+msgid "<b>Attributes</b>"
+msgstr "<b>Atrybuty</b>"
+
+msgid "x offset"
+msgstr "przesunięcie x"
+
+msgid "Offset"
+msgstr "Zrównoważyć"
+
+msgid "y offset"
+msgstr "y przesunięcie"
+
+msgid "z offset"
+msgstr "przesunięcie z"
+
+msgid "Web page link"
+msgstr "Link do strony internetowej"
+
+msgid "Text label"
+msgstr "Etykieta tekstowa"
+
+msgid "Texture"
+msgstr "Tekstura"
+
+msgid ""
+"Circuit model\n"
+"parameters"
+msgstr ""
+"Model obwodu\n"
+"parametry"
+
+msgid "Color"
+msgstr "Kolor"
+
+msgid "Interface model"
+msgstr "Model interfejsu"
+
+msgid "None"
+msgstr "Nic"
+
+msgid "Free-to-Free"
+msgstr "Bezpłatne"
+
+msgid "Free-to-trap (SRH)"
+msgstr "Wolny od pułapek (SRH)"
+
+msgid "Recombination constant"
+msgstr "Stała rekombinacji"
+
+msgid "Interface doping LHS"
+msgstr "Doping interfejsu LHS"
+
+msgid "Doping LHS"
+msgstr "Doping LHS"
+
+msgid "Electron tunneling"
+msgstr "Tunelowanie elektronów"
+
+msgid "Electron tunneling (T)"
+msgstr "Tunelowanie elektronów (T)"
+
+msgid "Hole tunneling"
+msgstr "Tunelowanie otworów"
+
+msgid "Hole tunneling (T)"
+msgstr "Tunelowanie otworów (T)"
+
+msgid "Interface doping RHS"
+msgstr "Doping interfejsu RHS"
+
+msgid "Doping RHS"
+msgstr "Doping RHS"
+
+msgid "startime"
+msgstr "czas rozpoczęcia"
+
+msgid "ea_factor"
+msgstr "ea_factor"
+
+msgid "Np"
+msgstr "Np"
+
+msgid "den"
+msgstr "legowisko"
+
+msgid "externalv"
+msgstr "zewnętrzny w"
+
+msgid "dt_neg_time"
+msgstr "dt_neg_time"
+
+msgid "dt_mull"
+msgstr "dt_mull"
+
+msgid "stark"
+msgstr "sztywny"
+
+msgid "lasereff"
+msgstr "laseref"
+
+msgid "sim_contacts"
+msgstr "sim_kontakty"
+
+msgid "Website"
+msgstr "Strona internetowa"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Journal"
+msgstr "Dziennik"
+
+msgid "Title"
+msgstr "Tytuł"
+
+msgid "Volume"
+msgstr "Tom"
+
+msgid "Pages"
+msgstr "Strony"
+
+msgid "Year"
+msgstr "Rok"
+
+msgid "DOI"
+msgstr "DOI"
+
+msgid "Book title"
+msgstr "Tytuł książki"
+
+msgid "Publisher"
+msgstr "Wydawca"
+
+msgid "ISBN"
+msgstr "ISBN"
+
+msgid "Scraped text"
+msgstr "Zdrapany tekst"
+
+#, python-brace-format
+msgid "R_{short}"
+msgstr ""
+
+#, python-brace-format
+msgid "V_{bias}"
+msgstr ""
+
+msgid "Efficiency of light"
+msgstr "Wydajność światła"
+
+msgid "subtract DC"
+msgstr "odejmij DC"
+
+msgid "External load resistor"
+msgstr "Zewnętrzny rezystor obciążenia"
+
+msgid "Material type"
+msgstr "Typ materiału"
+
+msgid "Organic"
+msgstr "Organiczny"
+
+msgid "Oxide"
+msgstr "Tlenek"
+
+msgid "Inorganic"
+msgstr "Nieorganiczny"
+
+msgid "Metal"
+msgstr "Metal"
+
+msgid "Other"
+msgstr "Inny"
+
+msgid "Transparency"
+msgstr "Przezroczystość"
+
+msgid "Privicy options"
+msgstr "Opcje prywatności"
+
+msgid "Public - everyone"
+msgstr "Publiczne – wszyscy"
+
+msgid "Public - within org"
+msgstr "Publiczne – w obrębie organizacji"
+
+msgid "Private - never publish"
+msgstr "Prywatne – nigdy nie publikuj"
+
+msgid "Change log"
+msgstr "Zmień dziennik"
+
+msgid ""
+"Use external\n"
+"voltage as stop"
+msgstr ""
+"Użyj zewnętrznego\n"
+"napięcia jako zatrzymania"
+
+msgid "<b>Output</b>"
+msgstr "<b>Wyjście</b>"
+
+msgid "Dump trap distribution"
+msgstr "Dystrybucja pułapek zrzutowych"
+
+msgid "False"
+msgstr "FAŁSZ"
+
+msgid "Energy space map"
+msgstr "Mapa przestrzeni energetycznej"
+
+msgid "Single mesh point"
+msgstr "Pojedynczy punkt siatki"
+
+#, python-brace-format
+msgid "V_{oc}"
+msgstr "V_{oc}"
+
+#, python-brace-format
+msgid "V_{bi}"
+msgstr "V_{bi}"
+
+msgid "Power conversion efficiency (PCE)"
+msgstr "Efektywność konwersji mocy (PCE)"
+
+msgid "Fill factor"
+msgstr "Współczynnik wypełnienia"
+
+msgid "Max power"
+msgstr "maksymalna moc"
+
+msgid "Voltage at max power"
+msgstr "Napięcie przy maksymalnej mocy"
+
+msgid "Current density at max power"
+msgstr "Gęstość prądu przy maksymalnej mocy"
+
+msgid "Current density at Voc"
+msgstr "Gęstość prądu w Voc"
+
+#, python-brace-format
+msgid "J_{sc}"
+msgstr "J_{sc}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free P_{max}"
+msgstr "Theta_{SRH} - bezpłatnie P_{max}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free-trap P_{max}"
+msgstr "Theta_{SRH} - pułapka wolna P_{max}"
+
+msgid "Recombination time constant"
+msgstr "Stała czasowa rekombinacji"
+
+msgid "Device capacitance"
+msgstr "Pojemność urządzenia"
+
+msgid "Photos absorbed in active layer"
+msgstr "Zdjęcia zaabsorbowane w warstwie aktywnej"
+
+msgid "Peak height Rp"
+msgstr "Wysokość szczytowa Rp"
+
+msgid "RMS height Rq"
+msgstr "Wysokość RMS Rq"
+
+msgid "Average height Ra"
+msgstr "Średni wzrost Ra"
+
+msgid "dV step"
+msgstr "krok dV"
+
+msgid "Left hole density"
+msgstr "Gęstość lewego otworu"
+
+msgid "Left electron density"
+msgstr "Lewa gęstość elektronowa"
+
+msgid "Right hole density"
+msgstr "Prawidłowa gęstość dziur"
+
+msgid "Right electron density"
+msgstr "Właściwa gęstość elektronów"
+
+msgid "Built in potential"
+msgstr "Wbudowany potencjał"
+
+msgid "Electron affinity left"
+msgstr "Pozostało powinowactwo elektronowe"
+
+msgid "Electron affinity right"
+msgstr "Powinowactwo elektronowe prawidłowe"
+
+msgid "<b>CPU</b>"
+msgstr "<b>Procesor</b>"
+
+msgid "Number of threads used by the backend"
+msgstr "Liczba wątków używanych przez backend"
+
+msgid "No threading"
+msgstr "Bez gwintowania"
+
+msgid "Maximum number of core instances"
+msgstr "Maksymalna liczba instancji podstawowych"
+
+msgid "Path to source code"
+msgstr "Ścieżka do kodu źródłowego"
+
+msgid "Path to compiled libs for cluster"
+msgstr "Ścieżka do skompilowanych bibliotek dla klastra"
+
+msgid "Make command"
+msgstr "Wydaj polecenie"
+
+msgid "exe name"
+msgstr "nazwa pliku exe"
+
+msgid "Store DoS on disk"
+msgstr "Przechowuj DoS na dysku"
+
+msgid "Remote cluster directory"
+msgstr "Katalog zdalnego klastra"
+
+msgid "Remote node list"
+msgstr "Lista zdalnych węzłów"
+
+msgid "IV"
+msgstr "IV"
+
+msgid "x-triangles"
+msgstr "trójkąty x"
+
+msgid "y-triangles"
+msgstr "y-trójkąty"
+
+msgid "Method"
+msgstr "metoda"
+
+msgid "Node reduce"
+msgstr "Węzeł zmniejsza się"
+
+msgid "No reduce"
+msgstr "Żadnej redukcji"
+
+msgid "Min allowable angle"
+msgstr "Minimalny dopuszczalny kąt"
+
+msgid "Gaussian blur"
+msgstr "rozmycie Gaussa"
+
+msgid "Percent of histogram to ignore"
+msgstr "Procent histogramu do zignorowania"
+
+msgid "Sigma of gaussian"
+msgstr "Sigma Gaussa"
+
+msgid "Gaussian offset x"
+msgstr "Przesunięcie Gaussa x"
+
+msgid "Gaussian offset y"
+msgstr "Przesunięcie Gaussa y"
+
+msgid "Threshold value"
+msgstr "Wartość progowa"
+
+msgid "dr"
+msgstr "dr"
+
+msgid "dx"
+msgstr "dx"
+
+msgid "dy"
+msgstr "dy"
+
+msgid "offset"
+msgstr "zrównoważyć"
+
+msgid "Lens type"
+msgstr "Typ obiektywu"
+
+msgid "Convex"
+msgstr "Wypukły"
+
+msgid "Concave"
+msgstr "Wklęsły"
+
+msgid "Lens size"
+msgstr "Rozmiar obiektywu"
+
+msgid "length"
+msgstr "długość"
+
+msgid "Waveform"
+msgstr "Przebieg"
+
+msgid "Square"
+msgstr "Kwadrat"
+
+msgid "Saw wave"
+msgstr "Widziałem falę"
+
+msgid "pixels"
+msgstr "pikseli"
+
+msgid "Boundary x0"
+msgstr "Granica x0"
+
+msgid "Boundary x1"
+msgstr "Granica x1"
+
+msgid "Boundary y0"
+msgstr "Granica y0"
+
+msgid "Boundary y1"
+msgstr "Granica y1"
+
+msgid "<b>Fist iteration</b>"
+msgstr "<b>Pierwsza iteracja</b>"
+
+msgid "Max Electrical iterations (first step)"
+msgstr "Liczba iteracji Max Electrical (pierwszy krok)"
+
+msgid "Electrical clamp (first step)"
+msgstr "Zacisk elektryczny (pierwszy krok)"
+
+msgid "Desired solver error (first step)"
+msgstr "Pożądany błąd rozwiązania (pierwszy krok)"
+
+msgid "<b>Later iterations</b>"
+msgstr "<b>Późniejsze iteracje</b>"
+
+msgid "Max electrical iterations"
+msgstr "Maksymalna liczba iteracji elektrycznych"
+
+msgid "Electrical clamp"
+msgstr "Zacisk elektryczny"
+
+msgid "Desired solver error"
+msgstr "Żądany błąd rozwiązania"
+
+msgid "<b>Exit strategy</b>"
+msgstr "<b>Strategia wyjścia</b>"
+
+msgid "Newton minimum iterations"
+msgstr "Minimalne iteracje Newtona"
+
+msgid "<b>Solver type</b>"
+msgstr "<b>Typ rozwiązania</b>"
+
+msgid "dll name"
+msgstr "nazwa biblioteki dll"
+
+msgid "Complex matrix solver to use"
+msgstr "Złożony moduł rozwiązywania macierzy do użycia"
+
+msgid "Quit on convergence problem"
+msgstr "Porzuć problem zbieżności"
+
+msgid "Quit on inverted Fermi-level"
+msgstr "Zakończ na odwróconym poziomie Fermiego"
+
+msgid "Circuit diagram mode"
+msgstr "Tryb schematu obwodu"
+
+msgid "Hand drawn"
+msgstr "Ręcznie rysowane"
+
+msgid "From layer structure"
+msgstr "Ze struktury warstwowej"
+
+msgid "From electrical mesh"
+msgstr "Z siatki elektrycznej"
+
+msgid "Poisson solver max iterations"
+msgstr "Maksymalne iteracje rozwiązania Poissona"
+
+msgid "Poisson clamping"
+msgstr "Zaciśnięcie Poissona"
+
+msgid "Enable poisson solver"
+msgstr "Włącz rozwiązanie Poissona"
+
+msgid "Output verbosity to disk"
+msgstr "Wyjściowa szczegółowość na dysk"
+
+msgid "Nothing"
+msgstr "Nic"
+
+msgid "Write everything to disk"
+msgstr "Zapisz wszystko na dysku"
+
+msgid "Matrix solver"
+msgstr "Rozwiązanie macierzy"
+
+msgid "Newton solver to use"
+msgstr "Solver Newtona do użycia"
+
+msgid "Slotboom T0"
+msgstr "Slotboom T0"
+
+msgid "Slotboom D0"
+msgstr "Slotboom D0"
+
+msgid "Slotboom n0"
+msgstr "Slotboom nr 0"
+
+msgid "Calculate current at"
+msgstr "Oblicz prąd o godz"
+
+msgid "Mid point"
+msgstr "Punkt środkowy"
+
+msgid "Solve Kirchhoff's current law in Newton solver"
+msgstr "Rozwiąż obecne prawo Kirchhoffa w rozwiązaniu Newtona"
+
+msgid "filename"
+msgstr "Nazwa pliku"
+
+msgid "log x"
+msgstr "zaloguj x"
+
+msgid "log y"
+msgstr "zaloguj się"
+
+msgid "Keep sign for log y "
+msgstr "Zachowaj znak dla dziennika y"
+
+msgid "Point to normalize"
+msgstr "Wskaż normalizację"
+
+msgid "Fit against simulation"
+msgstr "Dopasuj do symulacji"
+
+msgid "File or token banned"
+msgstr "Zablokowany plik lub token"
+
+msgid "EQE Voltage"
+msgstr "Napięcie EQE"
+
+msgid "Optical power"
+msgstr "Moc optyczna"
+
+msgid "Single optical power"
+msgstr "Pojedyncza moc optyczna"
+
+msgid "Optical power start"
+msgstr "Uruchomienie mocy optycznej"
+
+msgid "Optical power stop"
+msgstr "Zatrzymanie mocy optycznej"
+
+msgid "Use electrical DoS at low energy"
+msgstr "Używaj elektrycznego DoS przy niskim zużyciu energii"
+
+msgid "Max iterations "
+msgstr "Maksymalna liczba iteracji"
+
+msgid "Stop error"
+msgstr "Zatrzymaj błąd"
+
+msgid "Number of x eigenmodes"
+msgstr "Liczba x modów własnych"
+
+msgid "Number of y eigenmodes"
+msgstr "Liczba y trybów własnych"
+
+msgid "TE/TM"
+msgstr "TE/TM"
+
+msgid "Transverse Electric (TE)"
+msgstr "Poprzeczny elektryczny (TE)"
+
+msgid "Transverse Magnetic (TM)"
+msgstr "Poprzeczny magnetyczny (TM)"
+
+msgid "Find only fundamental"
+msgstr "Znajdź tylko podstawowe"
+
+msgid "Thermal model type"
+msgstr "Typ modelu termicznego"
+
+msgid "Hydrodynamic"
+msgstr "Hydrodynamiczny"
+
+msgid "Lattice heat"
+msgstr "Ciepło sieciowe"
+
+#, python-brace-format
+msgid "Device temperature at y_{min}"
+msgstr "Temperatura urządzenia w y_{min}"
+
+#, python-brace-format
+msgid "Device temperature at y_{max}"
+msgstr "Temperatura urządzenia w y_{max}"
+
+#, python-brace-format
+msgid "Device temperature at x_{min}"
+msgstr "Temperatura urządzenia przy x_{min}"
+
+#, python-brace-format
+msgid "Device temperature at x_{max}"
+msgstr "Temperatura urządzenia przy x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{max}"
+msgstr "Temperatura urządzenia przy z_{max}"
+
+msgid "Lattice heat model"
+msgstr "Kratowy model ciepła"
+
+msgid "Electron heat model"
+msgstr "Model ciepła elektronów"
+
+msgid "Hole heat model"
+msgstr "Model cieplny otworu"
+
+msgid "Max thermal solver iterations"
+msgstr "Maksymalna liczba iteracji rozwiązania termicznego"
+
+msgid "Desired thermal error"
+msgstr "Pożądany błąd termiczny"
+
+msgid "Force use of thermal mesh"
+msgstr "Wymuś użycie siatki termicznej"
+
+msgid "Minimum device temperature"
+msgstr "Minimalna temperatura urządzenia"
+
+msgid "Maximum device temperature"
+msgstr "Maksymalna temperatura urządzenia"
+
+msgid "Thermal mesh points"
+msgstr "Punkty siatki termicznej"
+
+msgid "Interpolate"
+msgstr "Interpolować"
+
+msgid "Constant"
+msgstr "Stały"
+
+#, python-brace-format
+msgid "Boundary value for y_{min}"
+msgstr "Wartość graniczna dla y_{min}"
+
+#, python-brace-format
+msgid "Boundary value for y_{max}"
+msgstr "Wartość graniczna dla y_{max}"
+
+#, python-brace-format
+msgid "Boundary value for x_{min}"
+msgstr "Wartość graniczna dla x_{min}"
+
+#, python-brace-format
+msgid "Boundary value for x_{max}"
+msgstr "Wartość graniczna dla x_{max}"
+
+msgid "Couple to electrical solver"
+msgstr "Połączenie z rozwiązaniem elektrycznym"
+
+msgid "Dump slices"
+msgstr "Zrzuć plasterki"
+
+msgid "Dump dynamic"
+msgstr "Zrzuć dynamikę"
+
+msgid "Write out band structure"
+msgstr "Zapisz strukturę pasma"
+
+msgid "Write newton solver convergence to disk"
+msgstr "Zapisz zbieżność solwera Newtona na dysku"
+
+msgid "Print poisson solver convergence"
+msgstr "Wydrukuj zbieżność rozwiązania Poissona"
+
+msgid "Normalize output x-time to one"
+msgstr "Normalizuj wyjściowy czas x do jednego"
+
+msgid "Dump the built in voltage."
+msgstr "Zrzuć wbudowane napięcie."
+
+msgid "Dump optical probe spectrum"
+msgstr "Zrzuć widmo sondy optycznej"
+
+msgid "Write file access log to disk."
+msgstr "Zapisz dziennik dostępu do plików na dysku."
+
+msgid "Write headers to output files"
+msgstr "Zapisz nagłówki do plików wyjściowych"
+
+msgid "Write first guess to equations"
+msgstr "Zapisz pierwsze przypuszczenie do równań"
+
+msgid "Log verbocity"
+msgstr "Rejestruj szczegółowość"
+
+msgid "Screen"
+msgstr "Ekran"
+
+msgid "Disk"
+msgstr "Dysk"
+
+msgid "Screen and disk"
+msgstr "Ekran i dysk"
+
+msgid "PL dump Energy"
+msgstr "PL zrzut energii"
+
+msgid "Clean up DoS cache files"
+msgstr "Wyczyść pliki pamięci podręcznej DoS"
+
+msgid "Write binary data where possible"
+msgstr "Jeśli to możliwe, zapisuj dane binarne"
+
+msgid "Probe enabled"
+msgstr "Sonda włączona"
+
+msgid "Probe type"
+msgstr "Typ sondy"
+
+msgid "Device state"
+msgstr "Stan urządzenia"
+
+msgid "Voc"
+msgstr "głos"
+
+msgid "Jsc"
+msgstr "Jsc"
+
+msgid "<b>Run control</b>"
+msgstr "<b>Uruchom kontrolę</b>"
+
+msgid "<b>Solver control</b>"
+msgstr "<b>Kontrola Solvera</b>"
+
+msgid "Dump absorption profile"
+msgstr "Profil absorpcji zrzutu"
+
+msgid "Run the ray tracer"
+msgstr "Uruchom ray tracing"
+
+msgid "When called"
+msgstr "Kiedy zadzwoniono"
+
+msgid "Once per simulation"
+msgstr "Raz na symulację"
+
+msgid "Each simulation step"
+msgstr "Każdy krok symulacji"
+
+msgid "Every nth simulation step"
+msgstr "Co n-ty krok symulacji"
+
+msgid "Each n steps"
+msgstr "Każde n kroków"
+
+msgid "Theta steps"
+msgstr "Kroki Thety"
+
+msgid "Theta start"
+msgstr "Początek Thety"
+
+msgid "Theta stop"
+msgstr "Przystanek Theta"
+
+msgid "Phi steps"
+msgstr "Kroki Phi"
+
+msgid "Phi start"
+msgstr "Początek Phi"
+
+msgid "Phi stop"
+msgstr "Phi przestań"
+
+msgid "Escape bins"
+msgstr "Kosze ewakuacyjne"
+
+msgid "Emit from"
+msgstr "Emituj z"
+
+msgid "Center of each layer"
+msgstr "Środek każdej warstwy"
+
+msgid "Each electrical mesh point"
+msgstr "Każdy punkt siatki elektrycznej"
+
+msgid "Center of y slice"
+msgstr "Środek plasterka y"
+
+msgid "Super sample x"
+msgstr "Super próbka x"
+
+msgid "Super sample x points"
+msgstr "Super próbka x punktów"
+
+msgid "<b>Ray tracing</b>"
+msgstr "<b>Śledzenie promieni</b>"
+
+msgid "Minimum ray intensity"
+msgstr "Minimalne natężenie promienia"
+
+msgid "Maximum number of bounces"
+msgstr "Maksymalna liczba odbić"
+
+msgid "Simulate transmitted rays"
+msgstr "Symuluj transmitowane promienie"
+
+msgid "Simulate reflected rays"
+msgstr "Symuluj promienie odbite"
+
+msgid "Mesh points x"
+msgstr "Punkty siatki x"
+
+msgid "Mesh points z"
+msgstr "Punkty siatki z"
+
+msgid "<b>Detector</b>"
+msgstr "<b>Detektor</b>"
+
+msgid "LED extraction efficiency"
+msgstr "Wydajność ekstrakcji LED"
+
+msgid "Series resistance"
+msgstr "Rezystancja szeregowa"
+
+msgid "Other layers"
+msgstr "Inne warstwy"
+
+msgid "debug (ignore)"
+msgstr "debugować (ignorować)"
+
+msgid "Contact charge density"
+msgstr "Gęstość ładunku kontaktowego"
+
+msgid "Contact position"
+msgstr "Pozycja kontaktowa"
+
+msgid "top"
+msgstr "szczyt"
+
+msgid "bottom"
+msgstr "spód"
+
+msgid "right"
+msgstr "Prawidłowy"
+
+msgid "left"
+msgstr "lewy"
+
+msgid "Charge type"
+msgstr "Rodzaj opłaty"
+
+msgid "Electron"
+msgstr "Elektron"
+
+msgid "Hole"
+msgstr "Otwór"
+
+msgid "Physical model"
+msgstr "Model fizyczny"
+
+msgid "Ohmic"
+msgstr "Omowy"
+
+msgid "Schottky"
+msgstr "Schottky’ego"
+
+msgid "Automatic remesh x"
+msgstr "Automatyczne ponowne łączenie x"
+
+msgid "Automatic remesh y"
+msgstr "Automatyczne zapamiętywanie y"
+
+msgid "Automatic remesh z"
+msgstr "Automatyczne zapamiętywanie z"
+
+msgid "Left/Right"
+msgstr "Lewo prawo"
+
+msgid "Mesh dy"
+msgstr "Siatka dy"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} photon generation efficiency"
+msgstr "efektywność generowania fotonów od n_{free} do p_{free}"
+
+#, python-brace-format
+msgid "n_{free} to n_{trap} photon generation efficiency"
+msgstr "Wydajność generowania fotonów od n_{free} do n_{trap}"
+
+#, python-brace-format
+msgid "n_{trap} to p_{free} photon generation efficiency"
+msgstr "efektywność generowania fotonów od n_{trap} do p_{free}"
+
+#, python-brace-format
+msgid "p_{trap} to n_{free} photon generation efficiency"
+msgstr "wydajność generowania fotonów od p_{trap} do n_{free}"
+
+#, python-brace-format
+msgid "p_{free} to p_{trap} photon generation efficiency"
+msgstr "wydajność generowania fotonów od p_{free} do p_{trap}"
+
+msgid "Experimental emission spectra"
+msgstr "Eksperymentalne widma emisyjne"
+
+msgid "Icon"
+msgstr "Ikona"
+
+msgid "Experimental emission efficiency"
+msgstr "Eksperymentalna efektywność emisji"
+
+msgid "Use experimental emission spectra"
+msgstr "Skorzystaj z eksperymentalnych widm emisyjnych"
+
+msgid "Free-to-free emission"
+msgstr "Emisja bezpłatna"
+
+msgid "Free-to-trap emission"
+msgstr "Emisja wolna od pułapek"
+
+#, python-brace-format
+msgid "V_{external}"
+msgstr ""
+
+msgid "Load resistor"
+msgstr "Rezystor obciążenia"
+
+msgid "fx domain mesh points"
+msgstr "punkty siatki domeny fx"
+
+msgid "Cycles to simulate"
+msgstr "Cykle do symulacji"
+
+msgid "Voltage modulation depth"
+msgstr "Głębokość modulacji napięcia"
+
+msgid "Excite with"
+msgstr "Ekscytuj się"
+
+msgid "Light"
+msgstr "Światło"
+
+msgid "Measure"
+msgstr "Mierzyć"
+
+msgid "Light modulation depth"
+msgstr "Głębokość modulacji światła"
+
+msgid "Run fit after simulation"
+msgstr "Biegnij w formie po symulacji"
+
+msgid "Periods to fit"
+msgstr "Okresy pasujące"
+
+msgid "Normalize transfer functon by light intensity"
+msgstr "Normalizuj funkcję przenoszenia według natężenia światła"
+
+msgid "Re(J)"
+msgstr "Re(J)"
+
+msgid "Im(J)"
+msgstr "Jestem (J)"
+
+msgid "fx"
+msgstr "fx"
+
+msgid "di"
+msgstr "di"
+
+msgid "dmodulation"
+msgstr "dmodulacja"
+
+msgid "dphase"
+msgstr "faza"
+
+msgid "Simulation type"
+msgstr "Typ symulacji"
+
+msgid "Large signal"
+msgstr "Duży sygnał"
+
+msgid "Fourier"
+msgstr "Fouriera"
+
+msgid "Node list"
+msgstr "Lista węzłów"
+
+msgid "Initialization vector"
+msgstr "Wektor inicjujący"
+
+msgid "Cryptographic key"
+msgstr "Klucz kryptograficzny"
+
+msgid "Intensity of the sun"
+msgstr "Intensywność słońca"
+
+msgid "#saturation_n0"
+msgstr "#nasycenie_n0"
+
+msgid "#saturation_rate"
+msgstr "#wskaźnik_nasycenia"
+
+msgid "Absorption of material"
+msgstr "Absorpcja materiału"
+
+msgid "Simulation mode"
+msgstr "Tryb symulacji"
+
+msgid "start voltage"
+msgstr "napięcie początkowe"
+
+msgid "Max voltage"
+msgstr "Maksymalne napięcie"
+
+msgid "Invert output"
+msgstr "Odwróć wyjście"
+
+msgid "Use capacitor"
+msgstr "Użyj kondensatora"
+
+msgid "External C"
+msgstr "Zewnętrzne C"
+
+msgid "External R"
+msgstr "Zewnętrzny r"
+
+msgid "Resistance of scope"
+msgstr "Opór zasięgu"
+
+msgid "Photon Flux"
+msgstr "Strumień fotonów"
+
+msgid "device width"
+msgstr "szerokość urządzenia"
+
+msgid "device breadth"
+msgstr "szerokość urządzenia"
+
+msgid "Start light intensity"
+msgstr "Rozpocznij intensywność światła"
+
+msgid "Stop light intensity"
+msgstr "Zatrzymaj intensywność światła"
+
+msgid "Numer of steps"
+msgstr "Liczba kroków"
+
+msgid "CE light on time"
+msgstr "Światło CE na czas"
+
+msgid "CE light off time"
+msgstr "Czas wyłączenia światła CE"
+
+msgid "Automatic world size"
+msgstr "Automatyczny rozmiar świata"
+
+msgid "World fills mesh"
+msgstr "Świat wypełnia siatkę"
+
+msgid "x0"
+msgstr "x0"
+
+msgid "x1"
+msgstr "x1"
+
+msgid "y0"
+msgstr "y0"
+
+msgid "y1"
+msgstr "y1"
+
+msgid "z0"
+msgstr "z0"
+
+msgid "z1"
+msgstr "z1"
+
+msgid "margin x0"
+msgstr "margines x0"
+
+msgid "margin x1"
+msgstr "margines x1"
+
+msgid "margin y0"
+msgstr "margines y0"
+
+msgid "margin y1"
+msgstr "margines y1"
+
+msgid "margin z0"
+msgstr "margines z0"
+
+msgid "margin z1"
+msgstr "margines z1"
+
+msgid "Active layer width"
+msgstr "Aktywna szerokość warstwy"
+
+msgid "Reset time to zero each cycle"
+msgstr "Resetuj czas do zera w każdym cyklu"
+
+msgid "OpenCL GPU acceleration"
+msgstr "Przyspieszenie GPU OpenCL"
+
+msgid "GPU name"
+msgstr "Nazwa procesora graficznego"
+
+msgid "<b>Excitation type</b>"
+msgstr "<b>Typ pobudzenia</b>"
+
+msgid "FDTD Slice"
+msgstr "Kawałek FDTD"
+
+msgid "Sin"
+msgstr "Grzech"
+
+msgid "Pulse"
+msgstr "Puls"
+
+msgid "Start wavelength"
+msgstr "Długość fali początkowej"
+
+msgid "Stop wavelength"
+msgstr "Zatrzymaj długość fali"
+
+msgid "Wavelength steps"
+msgstr "Kroki długości fali"
+
+msgid "Pulse length"
+msgstr "Długość impulsu"
+
+msgid "Excite Ex"
+msgstr "Podekscytuj eks"
+
+msgid "Excite Ey"
+msgstr "Podekscytuj Ey"
+
+msgid "Excite Ez"
+msgstr "Podnieć Eza"
+
+msgid "<b>FDTD mesh</b>"
+msgstr "<b>Siatka FDTD</b>"
+
+msgid "zy"
+msgstr "zy"
+
+msgid "zx"
+msgstr "zx"
+
+msgid "xy"
+msgstr "xy"
+
+msgid "Mesh points y"
+msgstr "Punkty siatki y"
+
+msgid "Use gnuplot to visualize"
+msgstr "Użyj gnuplot do wizualizacji"
+
+msgid "<b>Simulation time</b>"
+msgstr "<b>Czas symulacji</b>"
+
+msgid "Stop time"
+msgstr "Zatrzymaj czas"
+
+msgid "Max steps"
+msgstr "Maksymalna liczba kroków"
+
+msgid "Key results"
+msgstr "Kluczowe wyniki"
+
+msgid "Write everything to disk every 2nd step"
+msgstr "Zapisuj wszystko na dysk co drugi krok"
+
+msgid "Write everything to disk every 5th step"
+msgstr "Zapisuj wszystko na dysk co 5 krok"
+
+msgid "Write everything to disk every 10th step"
+msgstr "Zapisuj wszystko na dysk co 10 krok"
+
+msgid "Output verbosity to screen"
+msgstr "Wyświetlaj szczegółowość wyjściową na ekranie"
+
+msgid "Show lots"
+msgstr "Pokaż wiele"
+
+msgid "Show key results"
+msgstr "Pokaż kluczowe wyniki"
+
+msgid "Solver output verbosity"
+msgstr "Szczegółowość wyników Solvera"
+
+msgid "As answers are found"
+msgstr "W miarę znajdowania odpowiedzi"
+
+msgid "Each step"
+msgstr "Każdy krok"
+
+msgid "Source"
+msgstr "Źródło"
+
+msgid "x rotation"
+msgstr "x obrót"
+
+msgid "y rotation"
+msgstr "y obrót"
+
+msgid "z rotation"
+msgstr "obrót z"
+
+msgid "x pos"
+msgstr "x poz"
+
+msgid "y pos"
+msgstr "poz"
+
+msgid "zoom"
+msgstr "Powiększenie"
+
+msgid "The following erros/warning were found while running the simulations:"
+msgstr "Podczas uruchamiania symulacji znaleziono następujące błędy/ostrzeżenia:"
+
+msgid "Output vectors for "
+msgstr "Wektory wyjściowe dla"
+
+msgid "ML Token"
+msgstr "Token ML"
+
+msgid "Symmetric"
+msgstr "Symetryczny"
+
+msgid "Asymmetric"
+msgstr "Asymetryczny"
+
+msgid "Gaussian"
+msgstr "Gaussa"
+
+msgid "Lorentzian"
+msgstr "Lorentzian"
+
+msgid "Colors"
+msgstr "Zabarwienie"
+
+msgid "Save as"
+msgstr "Zapisz jako"
+
+msgid "Save as image"
+msgstr "Zapisz jako obraz"
+
+msgid "Save as gobj"
+msgstr "Zapisz jako gobj"
+
+msgid "Optical"
+msgstr "Optyczny"
+
+msgid "Show photons"
+msgstr "Pokaż fotony"
+
+msgid "FDTD grid"
+msgstr "Siatka FDTD"
+
+msgid "Optical mode"
+msgstr "Tryb optyczny"
+
+msgid "Rays"
+msgstr "Promienie"
+
+msgid "Solid rays"
+msgstr "Stałe promienie"
+
+msgid "Show detectors"
+msgstr "Pokaż detektory"
+
+msgid "Electrical mesh"
+msgstr "Siatka elektryczna"
+
+msgid "Show device"
+msgstr "Pokaż urządzenie"
+
+msgid "Grid"
+msgstr "Siatka"
+
+msgid "Coordinates"
+msgstr "Współrzędne"
+
+msgid "Show text"
+msgstr "Pokaż tekst"
+
+msgid "Show Dimensions"
+msgstr "Pokaż wymiary"
+
+msgid "Show plot"
+msgstr "Pokaż fabułę"
+
+msgid "Transparent objects"
+msgstr "Przezroczyste obiekty"
+
+msgid "Ray tracing mesh"
+msgstr "Siatka do śledzenia promieni"
+
+msgid "Show world box"
+msgstr "Pokaż pole świata"
+
+msgid "Lock view"
+msgstr "Zablokuj widok"
+
+msgid "Show gl lights"
+msgstr "Pokaż światła gl"
+
+msgid "Show buttons"
+msgstr "Pokaż przyciski"
+
+msgid "Stars"
+msgstr "Gwiazdy"
+
+msgid "Font"
+msgstr "Czcionka"
+
+msgid "Background color"
+msgstr "Kolor tła"
+
+msgid "Interface background color"
+msgstr "Kolor tła interfejsu"
+
+msgid "Interface text color"
+msgstr "Kolor tekstu interfejsu"
+
+msgid "Objects"
+msgstr "Obiekty"
+
+msgid "New free object"
+msgstr "Nowy darmowy obiekt"
+
+msgid "New light source"
+msgstr "Nowe źródło światła"
+
+msgid "New detector"
+msgstr "Nowy wykrywacz"
+
+msgid "Rescale"
+msgstr "Przeskaluj"
+
+msgid "Object tree"
+msgstr "Drzewo obiektów"
+
+msgid "Copy image"
+msgstr "Skopiuj obraz"
+
+msgid "Object tree viewer"
+msgstr "Przeglądarka drzewa obiektów"
+
+msgid "Device view"
+msgstr "Widok urządzenia"
+
+msgid "Charge extraction experiment window"
+msgstr "Okno eksperymentu z ekstrakcją ładunku"
+
+msgid "Python Equation"
+msgstr "Równanie Pythona"
+
+msgid "You've made a mistake in the equation, use w for wavelength. "
+msgstr "Popełniłeś błąd w równaniu, użyj w jako długości fali."
+
+msgid "Are you sure you wisht to import this, it will overwrite "
+msgstr "Czy na pewno chcesz to zaimportować, zostanie to zastąpione"
+
+msgid "Equation editor"
+msgstr "Edytor równań"
+
+msgid ""
+"Import\n"
+"into model"
+msgstr ""
+"Importuj\n"
+"do modelu"
+
+msgid "Add section"
+msgstr "Dodaj sekcję"
+
+msgid "Delete section"
+msgstr "Usuń sekcję"
+
+msgid ""
+"Your version of OghmaNano is now out of date. To continue using OghmaNano please download a "
+"new version at https://www.oghma-nano.com."
+msgstr ""
+"Twoja wersja OghmaNano jest już nieaktualna. Aby kontynuować korzystanie z OghmaNano, pobierz "
+"nową wersję ze strony https://www.oghma-nano.com."
+
+msgid "<big><b>Update available!</b></big><br>Download it now from <a href=\""
+msgstr "<big><b>Aktualizacja dostępna!</b></big><br>Pobierz ją teraz z <a href=\""
+
+msgid "Optical detectors editor"
+msgstr "Edytor detektorów optycznych"
+
+msgid "Na"
+msgstr "Nie"
+
+msgid "Nd"
+msgstr "Nd"
+
+msgid "Ions"
+msgstr "Jony"
+
+msgid "Doping/Mobilie ion profile editor"
+msgstr "Edytor profili jonów dopingowych/mobilnych"
+
+msgid "New emission spectra name:"
+msgstr "Nowa nazwa widm emisyjnych:"
+
+msgid "New emission spectra name"
+msgstr "Nowa nazwa widm emisyjnych"
+
+msgid "New spectra name:"
+msgstr "Nowa nazwa widma:"
+
+msgid "New spectra name"
+msgstr "Nowa nazwa widma"
+
+msgid "New material name:"
+msgstr "Nowa nazwa materiału:"
+
+msgid "New material name"
+msgstr "Nowa nazwa materiału"
+
+msgid "I cant write to: "
+msgstr "Nie mogę napisać do:"
+
+msgid "New filter name:"
+msgstr "Nowa nazwa filtra:"
+
+msgid "New filter name"
+msgstr "Nowa nazwa filtra"
+
+msgid "New directory name:"
+msgstr "Nowa nazwa katalogu:"
+
+msgid "New directory"
+msgstr "Nowy katalog"
+
+msgid "Save a the simulation as"
+msgstr "Zapisz symulację jako"
+
+msgid "Directory"
+msgstr "Informator"
+
+msgid "Simulation information"
+msgstr "Informacje o symulacji"
+
+msgid "yz"
+msgstr "yz"
+
+msgid "xz"
+msgstr "xz"
+
+msgid "Orthographic"
+msgstr "Pisowniany"
+
+msgid "Fly"
+msgstr "Latać"
+
+msgid "Running job "
+msgstr "Bieżąca praca"
+
+msgid "The file to import:"
+msgstr "Plik do importu:"
+
+msgid "The imported file, the numbers should now be in SI units"
+msgstr "W zaimportowanym pliku liczby powinny być teraz podane w jednostkach SI"
+
+msgid "x units:"
+msgstr "x jednostki:"
+
+msgid "y units:"
+msgstr "y jednostki:"
+
+msgid "Title:"
+msgstr "Tytuł:"
+
+msgid "x-label:"
+msgstr "etykieta x:"
+
+msgid "x-column:"
+msgstr "kolumna x:"
+
+msgid "y-label:"
+msgstr "etykieta y:"
+
+msgid "y-column:"
+msgstr "kolumna y:"
+
+msgid "device area:"
+msgstr "obszar urządzenia:"
+
+msgid "Can not load file "
+msgstr "Nie można załadować pliku"
+
+msgid "I can't read the file: "
+msgstr "Nie mogę odczytać pliku:"
+
+msgid ""
+"I can only read plain text files such as csv formats. I can not read binary files such as "
+"excel documents."
+msgstr ""
+"Mogę czytać tylko zwykłe pliki tekstowe, takie jak formaty CSV. Nie mogę odczytać plików "
+"binarnych, takich jak dokumenty Excel."
+
+msgid "Photonenergy"
+msgstr "Fotoenergia"
+
+msgid "J"
+msgstr "J"
+
+msgid "IMPS Re(Z)"
+msgstr "IMPS Re(Z)"
+
+msgid "IMPS Im(Z)"
+msgstr "IMP Im(Z)"
+
+msgid "IMVS Re(Z)"
+msgstr "IMVS Re(Z)"
+
+msgid "IMVS Im(Z)"
+msgstr "IMVS Im(Z)"
+
+msgid "Amps"
+msgstr "Ampery"
+
+msgid "Amps - no convert"
+msgstr "Ampery - bez konwersji"
+
+msgid "I"
+msgstr "I"
+
+msgid "-Voltage"
+msgstr "-Napięcie"
+
+msgid "Angular frequency"
+msgstr "Częstotliwość kątowa"
+
+msgid "Attenuation coefficient"
+msgstr "Współczynnik tłumienia"
+
+msgid "Intensity"
+msgstr "Intensywność"
+
+msgid "mA"
+msgstr "mama"
+
+msgid "Simulation notes"
+msgstr "Notatki symulacyjne"
+
+msgid "Bibtex reference"
+msgstr "Referencje Bibtex"
+
+msgid "Simulation Notes"
+msgstr "Uwagi dotyczące symulacji"
+
+msgid "Simulation snapshots"
+msgstr "Migawki symulacji"
+
+msgid "Running: "
+msgstr "Działanie:"
+
+msgid "I could not find a free cpu to run the command on"
+msgstr "Nie mogłem znaleźć wolnego procesora, na którym można uruchomić polecenie"
+
+msgid "CPU"
+msgstr "procesor"
+
+msgid "Nodes"
+msgstr "Węzły"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Generate keys"
+msgstr "Wygeneruj klucze"
+
+msgid "Install to cluster"
+msgstr "Zainstaluj w klastrze"
+
+msgid "Boot cluster"
+msgstr "Klaster rozruchowy"
+
+msgid "Stop cluster"
+msgstr "Zatrzymaj klaster"
+
+msgid "Remove from cluster"
+msgstr "Usuń z klastra"
+
+msgid "CV experiment window"
+msgstr "Okno eksperymentu CV"
+
+msgid ""
+"Doping/\n"
+"Ions"
+msgstr ""
+"Doping/\n"
+"Jony"
+
+msgid ""
+"Material\n"
+"Gradients"
+msgstr ""
+"Materiał\n"
+"Gradienty"
+
+msgid "Interfaces"
+msgstr "Interfejsy"
+
+msgid ""
+"Parasitic\n"
+" components"
+msgstr ""
+
+msgid ""
+"Mobile\n"
+"Ion solver"
+msgstr ""
+"Mobilny\n"
+"Rozwiązywacz jonów"
+
+msgid ""
+"Electrical\n"
+"mesh"
+msgstr ""
+
+msgid ""
+"<big><b>Interface editor</b></big>\n"
+"Use this window to edit how electrical interfaces behave."
+msgstr ""
+"<big><b>Edytor interfejsów</b></big>\n"
+"Użyj tego okna, aby edytować zachowanie interfejsów elektrycznych."
+
+msgid "Electrical boundary conditions"
+msgstr "Elektryczne warunki brzegowe"
+
+msgid "Excitonic boundary conditions"
+msgstr "Ekscytonowe warunki brzegowe"
+
+msgid ""
+"<big><b>Doping window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr ""
+"<big><b>Okno dopingu</b></big>\n"
+"Użyj tego okna, aby dodać doping do symulacji"
+
+msgid ""
+"<big><b>Gradients window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr ""
+"<big><b>Okno Gradienty</b></big>\n"
+"Użyj tego okna, aby dodać domieszkę do symulacji"
+
+msgid ""
+"<big><b>Parasitic components</b></big>\n"
+"Use this window to edit the shunt and series resistance."
+msgstr ""
+"<big><b>Komponenty pasożytnicze</b></big>\n"
+"Użyj tego okna do edycji bocznika i rezystancji szeregowej."
+
+msgid "Load type"
+msgstr "Typ obciążenia"
+
+msgid "Multiplyer"
+msgstr "Mnożnik"
+
+msgid ""
+"External\n"
+"interface:"
+msgstr ""
+"Zewnętrzny\n"
+"interfejs:"
+
+msgid ""
+"External\n"
+"Reflection"
+msgstr ""
+"Zewnętrzne\n"
+"Odbicie"
+
+msgid "Reflective interface editor"
+msgstr "Odblaskowy edytor interfejsu"
+
+msgid "Connect to cluster"
+msgstr "Połącz się z klastrem"
+
+msgid "Connect"
+msgstr "Łączyć"
+
+msgid "Disconnect"
+msgstr "Rozłączyć się"
+
+msgid "Cancel"
+msgstr "Anulować"
+
+msgid ""
+"<big><b>The device structure tab</b></big>\n"
+" Use this tab to change the structure of the device, the layer thicknesses and to perform "
+"optical simulations.  You can also browse the materials data base and  edit the electrical "
+"mesh."
+msgstr ""
+"<big><b>Zakładka struktura urządzenia</b></big>\n"
+" Za pomocą tej zakładki można zmieniać strukturę urządzenia, grubości warstw oraz "
+"przeprowadzać symulacje optyczne. Można także przeglądać bazę materiałów i edytować siatkę "
+"elektryczną."
+
+msgid "<big><b>Update available!</b></big><br>"
+msgstr "<big><b>Dostępna aktualizacja!</b></big><br>"
+
+msgid "File to plot"
+msgstr "Plik do wydrukowania"
+
+msgid "Plot type"
+msgstr "Typ działki"
+
+msgid "Play"
+msgstr "Grać"
+
+msgid "Snapshot slider"
+msgstr "Suwak migawki"
+
+msgid "Fit variables duplicate window"
+msgstr "Dopasuj zduplikowane okno do zmiennych"
+
+msgid "Destination"
+msgstr "Miejsce docelowe"
+
+msgid "Source (JSON)"
+msgstr "Źródło (JSON)"
+
+msgid "Destination (JSON)"
+msgstr "Miejsce docelowe (JSON)"
+
+msgid "Open data file"
+msgstr "Otwórz plik danych"
+
+msgid "Load/Import"
+msgstr "Załaduj/Importuj"
+
+msgid "Next"
+msgstr "Następny"
+
+msgid "Online help"
+msgstr "Pomoc online"
+
+msgid "On line help"
+msgstr "Pomoc online"
+
+msgid "Hide"
+msgstr "Ukrywać"
+
+msgid "OghmaNano in your language!"
+msgstr "OghmaNano w Twoim języku!"
+
+msgid "OghmaNano translated by:"
+msgstr "OghmaNano przetłumaczone przez:"
+
+msgid "Dimension editor"
+msgstr "Edytor wymiarów"
+
+msgid "Substrate xz size"
+msgstr "Podłoże o rozmiarze xz"
+
+msgid "World size"
+msgstr "Światowy rozmiar"
+
+msgid "Select simulation parameter"
+msgstr "Wybierz parametr symulacji"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "No row selected in the scan window, can't insert the selection"
+msgstr "W oknie skanowania nie wybrano żadnego wiersza. Nie można wstawić zaznaczenia"
+
+msgid "New material"
+msgstr "Nowy materiał"
+
+msgid "New spectra"
+msgstr "Nowe widma"
+
+msgid "New shape"
+msgstr "Nowy kształt"
+
+msgid "New filter"
+msgstr "Nowy filtr"
+
+msgid "Unpack archive"
+msgstr "Rozpakuj archiwum"
+
+msgid "Clone the file to be called:"
+msgstr "Sklonuj plik, który ma zostać wywołany:"
+
+msgid "The file name already exists"
+msgstr "Nazwa pliku już istnieje"
+
+msgid "Rename the simulation to be called:"
+msgstr "Zmień nazwę symulacji na:"
+
+msgid "Are you sure you want to delete the files ?"
+msgstr "Czy na pewno chcesz usunąć pliki?"
+
+msgid "You should now have a sim.json file in: "
+msgstr "Powinieneś teraz mieć plik sim.json w:"
+
+msgid "Open this directory to see it."
+msgstr "Otwórz ten katalog, aby go zobaczyć."
+
+msgid "Image"
+msgstr "Obraz"
+
+msgid "Gnuplot"
+msgstr "Gnuplot"
+
+msgid "Csv"
+msgstr "Csv"
+
+msgid "Text file (txt)"
+msgstr "Plik tekstowy (txt)"
+
+msgid "MS Excel (xlsx)"
+msgstr "MS Excel (xlsx)"
+
+msgid "Graph"
+msgstr "Wykres"
+
+msgid "Show title"
+msgstr "Pokaż Tytuł"
+
+msgid "Show key"
+msgstr "Pokaż klucz"
+
+msgid "Light source editor"
+msgstr "Edytor źródeł światła"
+
+msgid "Rebuild"
+msgstr "Odbudować"
+
+msgid "Electrical parameters"
+msgstr "Parametry elektryczne"
+
+msgid ""
+"<big><b>Electrical parameters</b></big><br>Use this tab to configure the electrical parameters "
+"for the material."
+msgstr ""
+"<big><b>Parametry elektryczne</b></big><br>Na tej karcie możesz skonfigurować parametry "
+"elektryczne materiału."
+
+msgid "<big><b>Absorption</b></big><br>"
+msgstr "<big><b>Wchłanianie</b></big><br>"
+
+msgid "<big><b>Refractive index</b></big><br>"
+msgstr "<big><b>Współczynnik załamania światła</b></big><br>"
+
+msgid "<big><b>Emission spectrum</b></big><br>Use this tab to edit the emission spectrum."
+msgstr "<big><b>Widmo emisji</b></big><br>Na tej karcie możesz edytować widmo emisji."
+
+msgid "Material editor"
+msgstr "Redaktor materiałów"
+
+msgid "Thermal parameters"
+msgstr "Parametry termiczne"
+
+msgid "Life cycle"
+msgstr "Koło życia"
+
+msgid "Refractive index (n)"
+msgstr "Współczynnik załamania światła (n)"
+
+msgid "k"
+msgstr "k"
+
+msgid "Don't run me as root!!"
+msgstr "Nie uruchamiaj mnie jako root!!"
+
+msgid "I can't run from inside a zip file!"
+msgstr "Nie mogę uruchomić z pliku zip!"
+
+msgid ""
+"<big><b>New simulation!</b></big><br> Now selected the type of device you would like to "
+"simulate."
+msgstr ""
+"<big><b>Nowa symulacja!</b></big><br> Teraz wybrałeś typ urządzenia, które chcesz symulować."
+
+msgid ""
+"<big><b>Now run the simulation</b></big><br> Click on the play icon to start a simulation."
+msgstr ""
+"<big><b>Teraz uruchom symulację</b></big><br> Kliknij ikonę odtwarzania, aby rozpocząć "
+"symulację."
+
+msgid ""
+"<big><b>Hi!</b></big><br> I'm the on-line help system :).  If you have any questions or find "
+"any bugs please send them to <a href=\"mailto:"
+msgstr ""
+"<big><b>Witam!</b></big><br> Jestem systemem pomocy on-line :). Jeśli masz jakieś pytania lub "
+"znajdziesz jakieś błędy, wyślij je na adres <a href=\"mailto:"
+
+msgid "Click on the new icon to make a new simulation directory."
+msgstr "Kliknij nową ikonę, aby utworzyć nowy katalog symulacji."
+
+msgid "Open an existing simulation"
+msgstr "Otwórz istniejącą symulację"
+
+msgid ""
+"To open this file I need to rename it to have a .oghma extention. Do you want me to do that?. "
+"I would rename the file: "
+msgstr ""
+"Aby otworzyć ten plik, muszę zmienić jego nazwę, aby mieć rozszerzenie .oghma. Chcesz, żebym "
+"to zrobił?. Zmieniłbym nazwę pliku:"
+
+msgid "The simulation directory has been deleted."
+msgstr "Katalog symulacji został usunięty."
+
+msgid "Desktop"
+msgstr "Pulpit"
+
+msgid "Downloads"
+msgstr "Pliki do pobrania"
+
+msgid ""
+"<big><b>Examine the results in time domain</b></big><br> After you have run a simulation in "
+"time domain, if is often nice to be able to step through the simulation and look at the "
+"results.  This is what this window does.  Use the slider bar to move through the simulation.  "
+"When you are simulating a JV curve, the slider sill step through voltage points rather than "
+"time points."
+msgstr ""
+"<big><b>Sprawdź wyniki w dziedzinie czasu</b></big><br> Po przeprowadzeniu symulacji w "
+"dziedzinie czasu często miło jest móc przejść przez nią i przyjrzeć się wynikom . To właśnie "
+"robi to okno. Użyj suwaka, aby poruszać się po symulacji. Kiedy symulujesz krzywą JV, suwak "
+"przesuwa się pomiędzy punktami napięcia, a nie punktami czasu."
+
+msgid ""
+"Are you sure you want restore this file from the backup, it will overwrite all files in the "
+"simulation directory?"
+msgstr ""
+"Czy na pewno chcesz przywrócić ten plik z kopii zapasowej, spowoduje to zastąpienie wszystkich "
+"plików w katalogu symulacji?"
+
+msgid "title"
+msgstr "tytuł"
+
+msgid "x axis"
+msgstr "oś x"
+
+msgid "y axis"
+msgstr "oś Y"
+
+msgid "equilibrium"
+msgstr "równowaga"
+
+msgid "This contains the simulation output at 0V in the dark."
+msgstr "Zawiera wyjście symulacyjne przy 0 V w ciemności."
+
+msgid "Attenuation"
+msgstr "Osłabienie"
+
+msgid "Luminescence editor"
+msgstr "Edytor luminescencji"
+
+msgid ""
+"Optical\n"
+"Emission"
+msgstr ""
+
+msgid ""
+"<big><b>Luminescence</b></big>\n"
+"If you set 'Turn on luminescence' to true, the simulation will assume recombination is a "
+"raditave process and intergrate it to produce Voltage-Light intensity curves (lv.dat).  Each "
+"number in the tab tells the model how efficient each recombination mechanism is at producing "
+"photons."
+msgstr ""
+"<big><b>Luminescencja</b></big>\n"
+"Jeśli ustawisz opcję „Włącz luminescencję” na wartość true, w symulacji założy się, że "
+"rekombinacja jest procesem radiacyjnym i zintegruje ją, tworząc krzywe natężenia światła i "
+"napięcia (lv.dat ). Każda liczba na karcie informuje model, jak skuteczny jest każdy mechanizm "
+"rekombinacji w wytwarzaniu fotonów."
+
+msgid "All"
+msgstr "Wszystko"
+
+msgid "Wavelengths"
+msgstr "Długości fal"
+
+msgid "Electrical equilibrium solver"
+msgstr "Rozwiązanie równowagi elektrycznej"
+
+msgid "Polynomial data generator"
+msgstr "Generator danych wielomianowych"
+
+msgid "Laser editor"
+msgstr "Edytor laserowy"
+
+msgid "Youtube channel"
+msgstr "kanał Youtube"
+
+msgid "Quit"
+msgstr "Zrezygnować"
+
+msgid ""
+"Stop\n"
+"simulation"
+msgstr ""
+"Zatrzymaj\n"
+"symulację"
+
+msgid "Thickness"
+msgstr "Grubość"
+
+msgid "Mesh Auto"
+msgstr "Automatyczna siatka"
+
+msgid "Stop"
+msgstr "Zatrzymywać się"
+
+msgid "Step multiply"
+msgstr "Krok pomnóż"
+
+msgid "points"
+msgstr "zwrotnica"
+
+msgid "Mesh points"
+msgstr "Punkty siatki"
+
+msgid "PL experiment window"
+msgstr "Okno eksperymentu PL"
+
+msgid "Script editor"
+msgstr "Edytor skryptów"
+
+msgid "Rename the script:"
+msgstr "Zmień nazwę skryptu:"
+
+msgid "active"
+msgstr "aktywny"
+
+msgid "Flyby video maker"
+msgstr "Kreator wideo Flyby"
+
+msgid ""
+"Set\n"
+"position"
+msgstr ""
+"Ustaw\n"
+"pozycję"
+
+msgid "Goto"
+msgstr "Iść do"
+
+msgid "window width not divisible by two"
+msgstr "szerokość okna niepodzielna przez dwa"
+
+msgid "window height not divisible by two"
+msgstr "wysokość okna niepodzielna przez dwa"
+
+msgid "and "
+msgstr "I"
+
+msgid " more."
+msgstr "więcej."
+
+msgid "Should I delete these files?:\n"
+msgstr "Czy powinienem usunąć te pliki?:\n"
+
+msgid "command line tool"
+msgstr "narzędzie wiersza poleceń"
+
+msgid "Prints the used paths"
+msgstr "Drukuje używane ścieżki"
+
+msgid "www.pvlighthouse.com.au sync"
+msgstr "synchronizacja www.pvlighthouse.com.au"
+
+msgid "Load new image"
+msgstr "Załaduj nowy obraz"
+
+msgid ""
+"Original\n"
+"image"
+msgstr ""
+"Oryginalny\n"
+"obraz"
+
+msgid ""
+"Generate\n"
+"Image"
+msgstr ""
+"Wygeneruj\n"
+"Obraz"
+
+msgid ""
+"Show\n"
+"Mesh"
+msgstr ""
+"Pokaż\n"
+"siatkę"
+
+msgid ""
+"Edit\n"
+"Mesh"
+msgstr ""
+"Edytuj\n"
+"Siatkę"
+
+msgid ""
+"Build\n"
+"Mesh"
+msgstr ""
+"Utwórz\n"
+"siatkę"
+
+msgid ""
+"Generate\n"
+"Honeycomb"
+msgstr ""
+"Wygeneruj\n"
+"Plaster miodu"
+
+msgid ""
+"Generate\n"
+"Xtal"
+msgstr ""
+"Wygeneruj\n"
+"Xtal"
+
+msgid ""
+"Generate\n"
+"lens"
+msgstr ""
+"Wygeneruj\n"
+"soczewkę"
+
+msgid ""
+"Generate\n"
+"Gaussian"
+msgstr ""
+"Wygeneruj\n"
+"Gaussa"
+
+msgid ""
+"Saw\n"
+"wave"
+msgstr ""
+"Widziałem\n"
+"falę"
+
+msgid "Blur"
+msgstr "Plama"
+
+msgid "Edit blur"
+msgstr "Edytuj rozmycie"
+
+msgid ""
+"Normalize\n"
+"y"
+msgstr ""
+"Normalizuj\n"
+"y"
+
+msgid "Edit histogram"
+msgstr "Edytuj histogram"
+
+msgid ""
+"Normalize\n"
+"z"
+msgstr ""
+"Normalizuj\n"
+"z"
+
+msgid "Threshold"
+msgstr "Próg"
+
+msgid "Boundary"
+msgstr "Granica"
+
+msgid "Apply"
+msgstr "Stosować"
+
+msgid "2D Image"
+msgstr "Obraz 2D"
+
+msgid "I don't know how to process this type of file!"
+msgstr "Nie wiem, jak przetworzyć tego typu plik!"
+
+msgid " <a href=\""
+msgstr "<a href=\""
+
+msgid "Can not connect to cluster."
+msgstr "Nie można połączyć się z klastrem."
+
+msgid "Editors"
+msgstr "Redaktorzy"
+
+msgid ""
+"<big><b>Simulation Editors</b></big><br> Use this tab to edit the simulation you wish to "
+"perform, you can choose from steady state measurments such as JV curve/Suns-Voc, time domain "
+"or frequency domain.  You can also choose to use advanced optical models to understand your "
+"data."
+msgstr ""
+"<big><b>Edytory symulacji</b></big><br> Użyj tej karty, aby edytować symulację, którą chcesz "
+"przeprowadzić. Możesz wybierać spośród pomiarów stanu ustalonego, takich jak krzywa JV/Słońce-"
+"Voc, dziedzina czasu lub dziedzina częstotliwości. Możesz także skorzystać z zaawansowanych "
+"modeli optycznych, aby zrozumieć swoje dane."
+
+msgid ""
+"<big><b>Configure</b></big><br> Use this tab to control advanced features of the simulation, "
+"such as finite difference mesh, amount of data written to disk, and the configuration of the "
+"back end numerical solvers."
+msgstr ""
+"<big><b>Konfiguruj</b></big><br> Użyj tej zakładki, aby kontrolować zaawansowane funkcje "
+"symulacji, takie jak siatka różnic skończonych, ilość danych zapisywanych na dysku i "
+"konfiguracja zaplecza numerycznego rozwiązujący."
+
+msgid ""
+"<big><b>Simulation type</b></big><br> Use this tab to select which simulation mode the model "
+"runs in, select between steady state, time domain, frequency domain and optical simulations."
+msgstr ""
+"<big><b>Typ symulacji</b></big><br> Użyj tej zakładki, aby wybrać tryb symulacji, w którym "
+"działa model, wybrać pomiędzy symulacją stanu ustalonego, dziedziną czasu, dziedziną "
+"częstotliwości i symulacją optyczną."
+
+msgid "Databases"
+msgstr "Bazy danych"
+
+msgid ""
+"<big><b>Databases</b></big><br> Use this tab to explore the materials and optical data bases, "
+"you can add and download more materials/optical models using the tools here."
+msgstr ""
+"<big><b>Bazy danych</b></big><br> Użyj tej zakładki, aby przeglądać bazy danych materiałów i "
+"optycznych. Możesz dodawać i pobierać więcej materiałów/modeli optycznych, korzystając z "
+"dostępnych tutaj narzędzi."
+
+msgid ""
+"<big><b>Information</b></big><br> Access extra information about the model in this tab, there "
+"are lots of tutorial videos on YouTube, follow on Twitter for the latest updates."
+msgstr ""
+"<big><b>Informacje</b></big><br> W tej zakładce możesz uzyskać dostęp do dodatkowych "
+"informacji o modelu. Na YouTube znajduje się wiele filmów instruktażowych, a najnowsze "
+"aktualizacje znajdziesz na Twitterze."
+
+msgid "Automation"
+msgstr "Automatyzacja"
+
+msgid "Electrical"
+msgstr "Elektryczny"
+
+msgid "Thermal"
+msgstr "Termiczny"
+
+msgid "<big><b>Simulation mode changed</b></big><br>"
+msgstr "<big><b>Zmieniono tryb symulacji</b></big><br>"
+
+msgid "Key not found"
+msgstr "Klucz nie odnaleziony"
+
+msgid "User not found"
+msgstr "Użytkownik nie znaleziony"
+
+msgid ""
+"This version of the software is too old to validate it's key, please download the latest "
+"version."
+msgstr ""
+"Ta wersja oprogramowania jest zbyt stara, aby potwierdzić klucz. Pobierz najnowszą wersję."
+
+msgid "OghmaNano trial"
+msgstr "Próba OghmaNano"
+
+msgid "Optical simulation editor"
+msgstr "Edytor symulacji optycznych"
+
+msgid "Photon distribution"
+msgstr "Rozkład fotonów"
+
+msgid "Photon distribution absorbed"
+msgstr "Pochłonięty rozkład fotonów"
+
+msgid "m"
+msgstr "M"
+
+msgid "cm"
+msgstr "cm"
+
+msgid "mm"
+msgstr "mm"
+
+msgid "um"
+msgstr "hm"
+
+msgid "nm"
+msgstr "nm"
+
+msgid "pm"
+msgstr "po południu"
+
+msgid "fm"
+msgstr "fm"
+
+msgid "Optical thickness editor"
+msgstr "Edytor grubości optycznej"
+
+msgid "File or token to ban"
+msgstr "Plik lub token do zablokowania"
+
+msgid "Laser:"
+msgstr "Laser:"
+
+msgid "Export"
+msgstr "Eksport"
+
+msgid "Cost and energy payback calculator"
+msgstr "Kalkulator kosztów i zwrotu energii"
+
+msgid "Re-calcualte"
+msgstr "Oblicz ponownie"
+
+msgid "material"
+msgstr "materiał"
+
+msgid "Mass"
+msgstr "Masa"
+
+msgid "Optical outcoupling"
+msgstr "Wyjście optyczne"
+
+msgid "Photon distribution (norm)"
+msgstr "Rozkład fotonów (norma)"
+
+msgid "Escape probability (1D in y)"
+msgstr "Prawdopodobieństwo ucieczki (1D w y)"
+
+msgid "You have not selected any parameters to scan through.  Use the add button."
+msgstr "Nie wybrałeś żadnych parametrów do skanowania. Skorzystaj z przycisku dodawania."
+
+msgid "Parameter scan editor"
+msgstr "Edytor skanowania parametrów"
+
+msgid "Parameter to scan"
+msgstr "Parametr do skanowania"
+
+msgid "JSON Variable 0"
+msgstr "Zmienna JSON 0"
+
+msgid "JSON Variable 1"
+msgstr "Zmienna JSON 1"
+
+msgid ""
+"<big><b>Fast optimizer</b></big><br>When the fast optimizer is enabled simulation results are "
+"not written to disk and instead only key paramters are saved in a csv file. Using a "
+"spreadsheet you can then search/sort for the desired device parameters. This enables very fast "
+"parameter optimization of layer thicknesses."
+msgstr ""
+"<big><b>Szybki optymalizator</b></big><br>Gdy włączony jest szybki optymalizator, wyniki "
+"symulacji nie są zapisywane na dysku, a jedynie kluczowe parametry zapisywane są w pliku csv. "
+"Za pomocą arkusza kalkulacyjnego możesz następnie wyszukiwać/sortować żądane parametry "
+"urządzenia. Umożliwia to bardzo szybką optymalizację parametrów grubości warstw."
+
+msgid "Quantum efficiency editor"
+msgstr ""

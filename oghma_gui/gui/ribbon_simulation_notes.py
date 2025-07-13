@@ -31,8 +31,6 @@
 
 import os
 
-from cal_path import get_css_path
-
 #qt
 from PySide2.QtGui import QIcon
 from gQtCore import QSize, Qt,QFile,QIODevice
@@ -96,7 +94,7 @@ class ribbon_simulation_notes(ribbon_base):
 		w=self.file()
 		self.addTab(w,_("File"))
 
-		sheet=self.readStyleSheet(os.path.join(get_css_path(),"style.css"))
+		sheet=self.readStyleSheet(os.path.join(sim_paths.get_css_path(),"style.css"))
 		if sheet!=None:
 			sheet=str(sheet,'utf-8')
 			self.setStyleSheet(sheet)

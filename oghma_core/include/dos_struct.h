@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -32,6 +30,9 @@
 
 #ifndef dos_struct_h
 #define dos_struct_h
+#include <g_io.h>
+#include <rpn_struct.h>
+#include <dos_an.h>
 
 struct dos_cache_obj
 {
@@ -57,86 +58,92 @@ struct dosconfig
 	int dos_number;
 	int dostype;
 	int dos_free_carrier_stats;
-	long double Nt;
-	long double Et;
-	long double nstart;
-	long double nstop;
+	gdouble Nt;
+	gdouble Et;
+	gdouble nstart;
+	gdouble nstop;
 	int npoints;
 
-	long double Tstart;
-	long double Tstop;
-	int Tsteps;
 	int traps;
-	long double dband;
-	long double detrap;
+	gdouble dband;
+	gdouble detrap;
 	int srh_bands;
-	long double srh_start;
-	long double srh_stop;
+	gdouble srh_start;
+	gdouble srh_stop;
 
 
-	long double srh_sigman;
-	long double srh_sigmap; 
-	long double srh_vth;
-	long double Nc;
-	long double Nv;
-	long double me;
-	long double mh;
+	gdouble srh_sigman;
+	gdouble srh_sigmap; 
+	gdouble srh_vth;
+	gdouble Nc;
+	gdouble Nv;
+	gdouble me;
+	gdouble mh;
 
-	long double Eg;
-	long double Xi;
-	long double epsilonr;
-	long double Na0;
-	long double Na1;
-	long double Nd0;
-	long double Nd1;
+	struct rpn_equation Eg;
+	struct rpn_equation Xi;
+	double epsilonr;
 
 	int Esteps;
+	struct dos_an_data my_dos_an;
 
-	//outside binary dos file
-
-
-	long double ion_density;
-	long double ion_mobility;
 };
 
 struct dos
 {
 	int enabled;
-	long double *x;
+	gdouble *x;
 	int xlen;
 	int tlen;
 	int srh_bands;
-	long double *t;
-	long double *srh_E;
-	long double *srh_den;
-	long double **c;
-	long double **w;
-	long double ***srh_r1;
-	long double ***srh_r2;
-	long double ***srh_r3;
-	long double ***srh_r4;
-	long double ***srh_c;
+	gdouble *t;
+	gdouble *srh_E;
+	gdouble *srh_den;
+	gdouble **c;
+	gdouble **w;
+	gdouble ***srh_r1;
+	gdouble ***srh_r2;
+	gdouble ***srh_r3;
+	gdouble ***srh_r4;
+	gdouble ***srh_c;
 	struct dosconfig config;
 
-	long double muz;
-	long double mux;
-	long double muy;
+	int dd_enabled;
+	struct rpn_equation muz;
+	struct rpn_equation mux;
+	struct rpn_equation muy;
+	int mobility_symmetric;
+
+	//Thermal dependent mobility
+	int mu_tdep_enable;
+	double mu_delta;
 
 	//Auger
 	int auger_enabled;
-	long double Cn;
-	long double Cp;
+	gdouble Cn;
+	gdouble Cp;
 
 	//SS SRH
 	int ss_srh_enabled;
-	long double n1;
-	long double p1;
-	long double tau_n;
-	long double tau_p;
+	gdouble n1;
+	gdouble p1;
+	gdouble tau_n;
+	gdouble tau_p;
 
-	long double B;
+	//recombination
+	double B;
+	int f2f_lambda_enable;
+	double f2f_lambda;
 
-	int mobility_symmetric;
+	//Doping
+	double Na0;
+	double Na1;
+	double Nd0;
+	double Nd1;
+
+	//Peorvskite
+	double ion_density;
+	double ion_mobility;
 };
 
 

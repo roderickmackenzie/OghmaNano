@@ -28,140 +28,100 @@
 #  The gl_views class for the OpenGL display.
 #
 
+import os
 from gQtCore import QTimer
-from json_gl import json_gl_view
-from json_root import json_root
 import ctypes
+from bytes2str import str2bytes,bytes2str
 
 class gl_views():
 
 	def __init__(self):
-
-
-		self.viewtarget=json_gl_view()
-
-		self.viewtarget.xRot=0.0
-		self.viewtarget.yRot=0.0
-		self.viewtarget.zRot=0.0
-		self.viewtarget.x_pos=-2.0
-		self.viewtarget.y_pos=-1.7
-		self.viewtarget.zoom=-8.0
-
 		self.timer_save_files=False
 		self.timer_save_files_number=0
 		self.timer_end_callback=None
-		self.enabled_veiws=["3d"]
-		self.find_active_view()
-
-
-	def enable_views(self,views):
-		self.enabled_veiws=[]
-		for v in views:
-			self.enabled_veiws.append(v)
-		self.find_active_view()
-
-	def find_active_view(self):
-		for v in json_root().gl.views.segments:
-			if v.name in self.enabled_veiws:
-				self.active_view=v
-				self.gl_main.active_view=ctypes.addressof(v)
-
-	def view_move_to_xy(self):
 		self.enable_views(["3d"])
-		self.rebuild_scene()
-		self.viewtarget.set_xy()
+
+	def enable_views(self,names,by_hash=False):
+		self.lib.gl_views_disable_all(ctypes.byref(self.gl_main))
+		for name in names:
+			if by_hash==False:
+				self.lib.gl_views_enable_by_name(ctypes.byref(self.gl_main),ctypes.c_char_p(str2bytes(name)))
+			else:
+				self.lib.gl_views_enable_by_hash(ctypes.byref(self.gl_main),ctypes.c_char_p(str2bytes(name)))
+			
+	def view_move_to_xy(self):
+		if self.lib.gl_views_is_view(ctypes.byref(self.gl_main),ctypes.c_char_p(str2bytes("3d")))==0:
+			self.enable_views(["3d"])
+
+		if self.lib.gl_views_count_enabled(ctypes.byref(self.gl_main))!=1:
+			return
+
+		self.build_scene()
+		self.lib.gl_view_set_xy(ctypes.byref(self.gl_main.view_target))
 		self.timer=QTimer()
 		self.timer.timeout.connect(self.ftimer_target)
 		self.timer.start(25)
 
 	def view_move_to_yz(self):
-		self.enable_views(["3d"])
-		self.rebuild_scene()
-		self.viewtarget.set_yz()
+		if self.lib.gl_views_is_view(ctypes.byref(self.gl_main),ctypes.c_char_p(str2bytes("3d")))==0:
+			self.enable_views(["3d"])
+
+		if self.lib.gl_views_count_enabled(ctypes.byref(self.gl_main))!=1:
+			return
+
+		self.build_scene()
+		self.lib.gl_view_set_yz(ctypes.byref(self.gl_main.view_target))
 		self.timer=QTimer()
 		self.timer.timeout.connect(self.ftimer_target)
 		self.timer.start(25)
 
 	def view_move_to_xz(self):
-		self.enable_views(["3d"])
-		self.rebuild_scene()
-		self.viewtarget.set_xz()
+		if self.lib.gl_views_is_view(ctypes.byref(self.gl_main),ctypes.c_char_p(str2bytes("3d")))==0:
+			self.enable_views(["3d"])
+
+		if self.lib.gl_views_count_enabled(ctypes.byref(self.gl_main))!=1:
+			return
+
+		self.build_scene()
+		self.lib.gl_view_set_xz(ctypes.byref(self.gl_main.view_target))
 		self.timer=QTimer()
 		self.timer.timeout.connect(self.ftimer_target)
 		self.timer.start(25)
 
 	def view_move_to_orthographic(self):
-		self.enable_views(["3d_small","xy","xz","yz"])
-		self.rebuild_scene()
-		json_root().save()
+		self.enable_views(["3d_small_0_0","3d_small_0_1","3d_small_1_0","3d_small_1_1"])
+		self.bin.save()
 		self.force_redraw()
 
-	def view_push(self):
-		self.stored_views=[]
-		for v in json_root().gl.views.segments:
-			self.stored_views.append(v)
-
-	def view_pop(self):
-		json_root().gl.views.segments=[]
-		for v in json_root().gl.views.segments:
-			self.view.append(v)
-		
 	def my_timer(self):
-		#self.xRot =self.xRot + 2
-		for v in json_root().gl.views.segments:
-			v.yRot =v.yRot + 2
-		#self.zRot =self.zRot + 5
-		
+		self.lib.gl_view_rotate_all(ctypes.byref(self.gl_main))
 		self.update()
 
-
 	def ftimer_target(self):
-		stopped=0
-		for v in json_root().gl.views.segments:
-			stop=v.shift(self.viewtarget)
-			if stop==True:
-				stopped=stopped+1
+		if self.lib.gl_views_move_all_to_target(ctypes.byref(self.gl_main))==0:
+			self.timer.stop()
+			if self.timer_end_callback!=None:
+				self.timer_end_callback()
 
-			self.update()
-			if self.timer_save_files==True:
-				if os.path.isdir("flyby")==False:
-					os.mkdir("flyby")
+		self.update()
+		if self.timer_save_files==True:
+			if os.path.isdir("flyby")==False:
+				os.mkdir("flyby")
 
-				self.grabFrameBuffer().save(os.path.join("flyby",str(self.timer_save_files_number)+".jpg"))
-				self.timer_save_files_number=self.timer_save_files_number+1
-
-			if stopped==len(json_root().gl.views.segments):
-				self.timer.stop()
-				if self.timer_end_callback!=None:
-					self.timer_end_callback()
-
-	def view_count_enabled(self):
-		enabled=0
-		for v in json_root().gl.views.segments:
-			if v.enabled==True:
-				enabled=enabled+1
-
-		return enabled
+			self.grabFrameBuffer().save(os.path.join("flyby",str(self.timer_save_files_number)+".jpg"))
+			self.timer_save_files_number=self.timer_save_files_number+1
 
 	def fzoom_timer(self):
-		for v in json_root().gl.views.segments:
-			v.zoom =v.zoom+4.0
-			if v.zoom>16.0:
-				self.timer.stop()
-			self.update()
+		if self.lib.gl_views_zoom(ctypes.byref(self.gl_main))==-1:
+			self.timer.stop()
+		self.update()
 
 	def start_rotate(self):
 		self.timer=QTimer()
 		self.timer.timeout.connect(self.my_timer)
-		self.timer.start(50)
-
+		self.timer.start(25)
 
 	def view_dump(self):
-		for v in json_root().gl.views.segments:
-			print("xRot=",v.xRot)
-			print("yRot=",v.yRot)
-			print("zRot=",v.zRot)
-			print("x_pos=",v.x_pos)
-			print("y_pos=",v.y_pos)
-			print("zoom=",v.zoom)
+		self.lib.gl_views_dump(ctypes.byref(self.gl_main))
+
 

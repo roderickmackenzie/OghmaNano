@@ -37,28 +37,24 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QAbstractItemView
 from PySide2.QtGui import QPainter,QIcon
 from g_tab import g_tab
-
 from help import help_window
-
-
-from cal_path import get_materials_path
+from cal_path import sim_paths
 from QWidgetSavePos import QWidgetSavePos
 from help import QAction_help
-from json_root import json_root
-from json_material_db_item import json_material_db_item
-from json_base import json_base
+from json_c import json_tree_c
+from json_c import json_c
 
 class cost(QWidgetSavePos):
 
 
 	def __init__(self):
 		QWidgetSavePos.__init__(self,"cost")
+		self.bin=json_tree_c()
 		self.setFixedSize(900, 600)
 		self.setWindowIcon(icon_get("jv"))
 
 		self.setWindowTitle(_("Cost and energy payback calculator")) 
 		
-
 		self.main_vbox = QVBoxLayout()
 
 		toolbar=QToolBar()
@@ -72,19 +68,14 @@ class cost(QWidgetSavePos):
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		toolbar.addWidget(spacer)
 
-
 		self.help = QAction_help()
 		toolbar.addAction(self.help)
 
 		self.main_vbox.addWidget(toolbar)
 
-
 		self.tab= g_tab()
 
 		self.main_vbox.addWidget(self.tab)
-
-
-
 		self.setLayout(self.main_vbox)
 
 		self.update()
@@ -102,33 +93,36 @@ class cost(QWidgetSavePos):
 
 		energy_tot=0.0
 		cost_tot=0.0
-		epi=json_root().epi
-		for l in epi.layers:
-			
-			volume=l.dy*1.0*1.0
-			name=l.optical_material
-			mat_file=os.path.join(get_materials_path(),l.optical_material,"data.json")
-			data=json_material_db_item()
+		segments=self.bin.get_token_value("epitaxy","segments")
+		for s in range(0,segments):
+			path="epitaxy.segment"+str(s)
+			dy=self.bin.get_token_value(path,"dy")
+			optical_material=self.bin.get_token_value(path,"optical_material")
+			volume=dy*1.0*1.0
+
+			mat_file=os.path.join(sim_paths.get_materials_path(),optical_material,"data.json")
+			data=json_c("material_db")
 			data.load(mat_file)
+			density=data.get_token_value("lca","lca_density")
+			cost_per_kg=data.get_token_value("lca","lca_cost")
+			energy_per_kg=data.get_token_value("lca","lca_energy")
+			data.free()
 
-			density = data.lca.lca_density
 			mass=density*volume
-
-			cost_per_kg = data.lca.lca_cost
 			cost=mass*cost_per_kg
-
-			energy_per_kg = data.lca.lca_energy
 			energy=energy_per_kg*mass
 
-			self.tab.add([name,str(volume),str(mass),str(cost),str(energy)])
+			self.tab.add([optical_material,str(volume),str(mass),str(cost),str(energy)])
 
 			energy_tot=energy_tot+energy
 			cost_tot=cost_tot+cost
 
-		sim_info=json_base("decode")
-		sim_info.import_from_file("sim_info.dat")
+		sim_info=json_c("file_defined")
+		sim_info.load(os.path.join(sim_paths.get_sim_path(),"sim_info.dat"))
 
-		pce=sim_info.pce
+		pce=data.get_token_value("","pce")
+		sim_info.free()
+
 		payback_time=-1.0
 		if pce!=None:
 			pce=float(pce)

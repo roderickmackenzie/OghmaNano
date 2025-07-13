@@ -29,9 +29,6 @@
 #
 
 import os
-#from numpy import *
-from cal_path import get_image_file_path
-
 import i18n
 _ = i18n.language.gettext
 
@@ -41,47 +38,57 @@ from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,Q
 from PySide2.QtGui import QPainter,QIcon,QCursor
 
 from open_save_dlg import open_as_filter
-
-
 from icon_lib import icon_get
 from cal_path import sim_paths
-
 from plot_widget import plot_widget
+from json_c import json_tree_c
 
 class fit_window_plot_real(QWidget):
 
-	def update(self):
-		self.draw_graph()
-
-	def draw_graph(self):
-		plot_labels=["Experimental"]
-		data_files=[os.path.join(sim_paths.get_sim_path(),self.data.import_config.data_file)]
-		pre, ext = os.path.splitext(self.data.config.sim_data)
-		sim_data_file=os.path.join(sim_paths.get_sim_path(),"sim",self.data.config.fit_name,pre+".best")
-		#print(sim_data_file)
-		if os.path.isfile(sim_data_file)==True:
-			plot_labels.append("Simulated")
-			data_files.append(sim_data_file)
-
-
-		self.plot.load_data(data_files)
-		self.plot.set_labels(plot_labels)
-		self.label.setText(_("Data imported from: ")+self.data.import_config.import_file_path+" col:"+str(self.data.import_config.import_x_spin)+" "+str(self.data.import_config.import_data_spin))
-		self.plot.do_plot()
-
-	def __init__(self,data):
+	def __init__(self,uid):
 		QWidget.__init__(self)
-
-		self.data=data
+		self.bin=json_tree_c()
+		self.uid=uid
 		self.ax1=None
 		self.show_key=True
 		
 		self.hbox=QVBoxLayout()
 
 		self.label=QLabel()
-		self.plot=plot_widget(enable_toolbar=False,widget_mode="pyqtgraph")
+		self.plot=plot_widget(enable_toolbar=False,widget_mode="graph")
 		self.draw_graph()
 
 		self.hbox.addWidget(self.plot)
 		self.hbox.addWidget(self.label)
 		self.setLayout(self.hbox)
+
+	def update(self):
+		self.draw_graph()
+
+	def draw_graph(self):
+		plot_labels=["Experimental"]
+		json_path=self.refind_json_path()
+		data_file=self.bin.get_token_value(json_path+".import_config","data_file")
+		import_file_path=self.bin.get_token_value(json_path+".import_config","import_file_path")
+		import_x_spin=self.bin.get_token_value(json_path+".import_config","import_x_spin")
+		import_data_spin=self.bin.get_token_value(json_path+".import_config","import_data_spin")
+		sim_data=self.bin.get_token_value(json_path+".config","sim_data")
+		name=self.bin.get_token_value(json_path,"name")
+
+		data_files=[os.path.join(sim_paths.get_sim_path(),data_file)]
+		pre, ext = os.path.splitext(sim_data)
+		sim_data_file=os.path.join(sim_paths.get_sim_path(),"sim",name,pre+".best")
+		#print(sim_data_file)
+		if os.path.isfile(sim_data_file)==True:
+			plot_labels.append("Simulated")
+			data_files.append(sim_data_file)
+
+		self.plot.load_data(data_files)
+		self.plot.set_labels(plot_labels)
+		self.label.setText(_("Data imported from: ")+import_file_path+" col:"+str(import_x_spin)+" "+str(import_data_spin))
+		self.plot.do_plot()
+
+	def refind_json_path(self):
+		ret=self.bin.find_path_by_uid("fits.fits",self.uid)
+		return ret
+

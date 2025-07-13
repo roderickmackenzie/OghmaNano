@@ -39,14 +39,14 @@ from gQtCore import gSignal
 from inp import inp
 from cal_path import sim_paths
 import os
-from json_base import json_base
-from json_local_root import json_local_root
+from json_c import json_local_root
 
 class QComboBoxOpenCL(QComboBox):
 	
 	def __init__(self):
 		QComboBox.__init__(self)
-		local=json_local_root()
+		self.bin_local=json_local_root()
+		device=self.bin_local.get_token_value("opencl","device")
 		self.f=inp()
 		path=os.path.join(sim_paths.get_user_settings_dir(),"opencl_devices.json")
 		if self.f.load_json(path)!=False:
@@ -56,15 +56,14 @@ class QComboBoxOpenCL(QComboBox):
 
 		all_items  = [self.itemText(i) for i in range(self.count())]
 		for i in range(0,len(all_items)):
-			if all_items[i] == local.opencl.device:
+			if all_items[i] == device:
 				self.setCurrentIndex(i)
 				break
 
 		self.currentIndexChanged.connect(self.callback_changed)
 
 	def callback_changed(self):
-		local=json_local_root()
-		local.opencl.device=self.currentText()
-		local.save()
+		self.bin_local.set_token_value("opencl","device",self.currentText())
+		self.bin_local.save()
 
 

@@ -36,7 +36,7 @@ from icon_lib import icon_get
 from PIL import Image, ImageFilter,ImageOps, ImageDraw
 from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget, QDialog, QMenu
-from PySide2.QtGui import QPainter,QIcon,QPixmap,QPen,QColor
+from PySide2.QtGui import QPainter,QIcon,QPixmap,QPen,QColor, QImage
 
 #python modules
 
@@ -55,13 +55,13 @@ from dat_file import dat_file
 
 from gQtCore import gSignal
 from PIL import Image, ImageFilter,ImageOps 
-from PIL.ImageQt import ImageQt
 from inp import inp
 
 from PySide2.QtWidgets import QApplication
 import time
 import shutil
 from vec import vec
+import ctypes
 
 class shape_image_flat_view(QWidget):
 	changed = gSignal()
@@ -69,7 +69,7 @@ class shape_image_flat_view(QWidget):
 	def __init__(self,path,config):
 		super().__init__()
 		self.path=path
-		self.config=config
+		self.bin=config.bin
 		self.image_in=os.path.join(self.path,"image.png")
 		self.image_out=os.path.join(self.path,"image_out.png")
 		self.setGeometry(30, 30, 500, 300)
@@ -85,19 +85,30 @@ class shape_image_flat_view(QWidget):
 		if self.im==None:
 			return
 
-		if self.config.mesh.mesh_show==True:
+		mesh_show=self.bin.get_token_value("mesh","mesh_show")
+		if mesh_show==True:
 			width, height = self.im.size
 			self.dat_file.load(os.path.join(self.path,"shape.inp"),raw_data=True)
 			if self.dat_file.data!=None:
 				if self.dat_file.y_len>0:
-					a=vec()
-					min_vec=self.dat_file.gl_triangles_get_min()
-					self.dat_file.gl_triangles_sub_vec(min_vec)
-					max_vec=self.dat_file.gl_triangles_get_max()
-					self.dat_file.gl_triangles_div_vec(max_vec)
+					self.bin.lib.dat_file_triangles_norm(ctypes.byref(self.dat_file))
 
+	def pil2pixmap(self, im):
+		if im.mode == "RGB":
+			r, g, b = im.split()
+			im = Image.merge("RGB", (b, g, r))
+		elif  im.mode == "RGBA":
+			r, g, b, a = im.split()
+			im = Image.merge("RGBA", (b, g, r, a))
+		elif im.mode == "L":
+			im = im.convert("RGBA")
 
+		im2 = im.convert("RGBA")
+		data = im2.tobytes("raw", "RGBA")
+		qim = QImage(data, im.size[0], im.size[1], QImage.Format_ARGB32)
+		pixmap = QPixmap.fromImage(qim)
 
+		return pixmap
 
 	def force_update(self):
 		self.load_image()
@@ -142,9 +153,7 @@ class shape_image_flat_view(QWidget):
 		painter = QPainter(self)
 
 		width, height = self.im.size
-		#print(type(self.im))
-		qim = ImageQt(self.im)
-		pixmap = QPixmap.fromImage(qim)
+		pixmap = self.pil2pixmap(self.im)#QPixmap.fromImage(qim)
 		#self.im=pixmap.toImage()
 		x_mul=self.height()
 		z_mul=self.width()
@@ -156,7 +165,8 @@ class shape_image_flat_view(QWidget):
 		if self.dat_file.valid_data==False:
 			return
 
-		if self.config.mesh.mesh_show==True:
+		mesh_show=self.bin.get_token_value("mesh","mesh_show")
+		if mesh_show==True:
 			if self.dat_file.data==None:
 				self.build_mesh()
 

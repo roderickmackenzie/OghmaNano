@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=OghmaNano
+Icon=/usr/share/oghma_gui/images/application-oghma.svg
+Type=Application
+MimeType=application/oghma;
+Exec=/usr/bin/oghma %F
+Terminal=true
+Categories=GTK;GNOME;Education;

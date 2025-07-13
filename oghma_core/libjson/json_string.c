@@ -60,32 +60,80 @@ void json_string_free(struct json_string *in)
 	json_string_init(in);
 }
 
-void json_cat_str(struct json_string *buf,char *data)
+void json_string_cat(struct json_string *buf,char *data)
 {
-	int n=0;
+	char *array;
 	int str_len=strlen(data);
-	int extend=1024*1000;
+	int new_len=0;
 	int bytes_left=buf->len-buf->pos;
-	int bytes_left_after=bytes_left-str_len;
-	if (bytes_left_after<extend)
+
+	if (bytes_left<str_len+1)
 	{
-		buf->len+=extend*2;
-		buf->data=realloc(buf->data,buf->len*sizeof(char));
-		//printf("alloca\n");
+		if (buf->len > 0)
+		{
+			new_len = buf->len;
+		}else
+		{
+			new_len = 512;
+		}
+
+        while (new_len - buf->pos < str_len + 1)
+        {
+            new_len *= 2;
+        }
+
+		buf->data=realloc(buf->data,new_len*sizeof(char));
+		buf->len=new_len;
+
 	}
-	n=sprintf((buf->data+buf->pos),"%s",data);
+
+	array=(buf->data+buf->pos);
+
+	memcpy(array, data, str_len);
+	array[str_len]=0;
+	buf->pos += str_len;
+
 	if (buf->compact==TRUE)
 	{
-		if (n>2)
+		if (str_len>2)
 		{
-			if (buf->data[buf->pos+n-1]=='\n')
+			if (buf->data[buf->pos-1]=='\n')
 			{
-				buf->data[buf->pos+n-1]=0;
-				n--;
+				buf->data[buf->pos-1]=0;
+				buf->pos--;
 			}
 		}
 	}
-	buf->pos+=n;
 
 }
 
+int json_string_cat_char(struct json_string *buf,char in_data)
+{
+	char data[2];
+	data[0]=in_data;
+	data[1]=0;
+	json_string_cat(buf,data);
+	return 0;
+}
+
+int json_string_del_last_chars(struct json_string *buf,int n)
+{
+	if ((buf->pos-n)>=0)
+	{
+		buf->data[buf->pos-n]=0;
+		buf->pos-=n;
+	}
+
+	return 0;
+}
+
+int json_string_clear(struct json_string *buf)
+{
+	buf->pos=0;
+	if (buf->len>0)
+	{
+		buf->data[0]=0;
+	}
+	
+	return 0;
+}

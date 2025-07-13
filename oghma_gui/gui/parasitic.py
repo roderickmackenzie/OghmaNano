@@ -37,17 +37,17 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget
 from PySide2.QtGui import QPainter,QIcon
 
-
 from QWidgetSavePos import QWidgetSavePos
 from help import help_window
 from cal_path import sim_paths
-from json_root import json_root
+from json_c import json_tree_c
 from help import QAction_help
 
 class parasitic(QWidgetSavePos):
 
 	def __init__(self):
 		QWidgetSavePos.__init__(self,"parasitic")
+		self.bin=json_tree_c()
 		self.setFixedSize(900, 600)
 		self.setWindowIcon(icon_get("parasitic"))
 
@@ -76,29 +76,20 @@ class parasitic(QWidgetSavePos):
 
 		self.main_vbox.addWidget(self.notebook)
 
-		data=json_root()
-		files=[data.parasitic]
-		description=[_("Parasitic components")]
-
-
-		for i in range(0,len(files)):
-			tab=tab_class(files[i])
-			self.notebook.addTab(tab,description[i])
-
+		tab=tab_class("parasitic")
+		self.notebook.addTab(tab,_("Parasitic components"))
 
 		self.setLayout(self.main_vbox)
 		
-		json_root().add_call_back(self.update_values)
+		self.bin.add_call_back(self.update_values)
 		self.destroyed.connect(self.doSomeDestruction)
 
 	def doSomeDestruction(self):
-		json_root().remove_call_back(self.update_values)
+		self.bin.remove_call_back(self.update_values)
 
 	def update_values(self):
-		data=json_root()
 		for i in range(0,self.notebook.count()):
 			w=self.notebook.widget(i)
-			w.tab.template_widget=data.parasitic
 			w.tab.update_values()
 
 

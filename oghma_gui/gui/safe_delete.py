@@ -51,6 +51,12 @@ def can_i_delete(file_name):
 		return True
 	elif file_name.startswith(sim_paths.get_backup_path()):
 		return True
+	elif file_name.startswith(sim_paths.get_tmp_path_fast()):
+		return True
+	elif file_name.startswith(sim_paths.get_tmp_path()):
+		return True
+	elif file_name.startswith(sim_paths.get_morphology_path()):
+		return True
 	return False
 
 def safe_delete(path,allow_dir_removal=False):

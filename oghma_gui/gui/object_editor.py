@@ -39,23 +39,21 @@ from help import help_window
 from QWidgetSavePos import QWidgetSavePos
 from css import css_apply
 
-from epitaxy import get_epi
 from util import wrap_text
 
-from shape import shape
 from cal_path import sim_paths
 
 from dlg_get_text2 import dlg_get_text2
 from gui_util import yes_no_dlg
 from tick_cross import tick_cross
-from json_viewer import json_viewer
-from json_root import json_root
-import copy
+from json_viewer_bin import json_viewer_bin
 from help import QAction_help
 from bytes2str import bytes2str
+from json_c import json_tree_c
+import ctypes
+from object_editor_base import object_editor_base
 
-class object_editor(QWidgetSavePos):
-
+class object_editor(QWidgetSavePos,object_editor_base):
 
 	def __init__(self,gl_forece_redraw):
 		QWidgetSavePos.__init__(self,"object_editor")
@@ -116,7 +114,6 @@ class object_editor(QWidgetSavePos):
 		self.main_vbox.addWidget(self.status_bar)
 
 		self.setLayout(self.main_vbox)
-		self.epi=get_epi()
 
 	def load(self,ids):
 		i=0
@@ -125,124 +122,101 @@ class object_editor(QWidgetSavePos):
 
 		self.root_id=ids[0]
 
-		for id in ids:
-			s=json_root().find_object_by_id(id)
-			my_tab=json_viewer()
-			my_tab.populate(s)
-
+		for uid in ids:
+			json_path=self.bin.find_path_by_uid("",uid)
+			name=self.bin.get_token_value(json_path,"name")
+			my_tab=json_viewer_bin(self.bin)
+			my_tab.populate(json_path,uid=uid)
 			my_tab.changed.connect(self.callback_edit)
-
-			name=s.name
-
 			self.notebook.addTab(my_tab,name)	
+
 			i=i+1
+		return
+
+		#This needs to be added back in when we add groups
+		all_g_ids=[]
+		for id in ids:
+			groups=json_root().world.groups.get_groups(id)
+	
+			for g_id in groups:
+				if all_g_ids.count(g_id)==0:
+					g=json_root().find_object_by_id(g_id)
+					my_tab=json_viewer()
+					my_tab.populate(g)
+
+					my_tab.changed.connect(self.callback_edit)
+
+					name=g.name
+					self.notebook.addTab(my_tab,name)
+					all_g_ids.append(g_id)
+					i=i+1
 
 	def callback_edit(self,item):
-		data=json_root()
 		self.notebook.currentWidget()
-		data.save()
-		if item=="shape_type":
+		self.bin.save()
+		if item=="shape_type" or item=="obj_type":
 			self.force_redraw(level="reload_rebuild")
 		else:
 			self.force_redraw()
 
 	def callback_enable_disable(self):
-		data=json_root()
 		tab = self.notebook.currentWidget()
 		if tab!=None:
 			tab.setEnabled(self.enable.enabled)
-			s=tab.template_widget
-			s.enabled=self.enable.enabled
-			data.save()
+			json_path=self.bin.find_path_by_uid("",tab.uid)
+			self.bin.set_token_value(json_path,"enabled",self.enable.enabled)
+			self.bin.save()
 			self.force_redraw()
-			
 
 	def changed_click(self):
 		tab = self.notebook.currentWidget()
 		if tab!=None:
-			s=tab.template_widget
-			tab.setEnabled(s.enabled)
-			self.enable.setState(s.enabled)
-			self.status_bar.showMessage(s.name+" "+bytes2str(s.id))
+			json_path=self.bin.find_path_by_uid("",tab.uid)
+			enabled=self.bin.get_token_value(json_path,"enabled")
+			name=self.bin.get_token_value(json_path,"name")
+			tab.setEnabled(enabled)
+			self.enable.setState(enabled)
+			self.status_bar.showMessage(name+" "+bytes2str(tab.uid))
 
-			if self.notebook.currentIndex()==0:
-				self.tb_delete.setEnabled(False)
-				self.tb_clone.setEnabled(False)
-			else:
-				self.tb_delete.setEnabled(True)
-				self.tb_clone.setEnabled(True)
+			#if self.notebook.currentIndex()==0:
+			#self.tb_delete.setEnabled(False)
+			#self.tb_clone.setEnabled(False)
+			#else:
+			#self.tb_delete.setEnabled(True)
+			#self.tb_clone.setEnabled(True)
 
 	def callback_add_shape(self):
-		data=json_root()
-		obj=json_root().find_object_by_id(self.root_id)
-		s=shape()
-		s.dx=obj.dx/2.0
-		s.dy=obj.dy/2.0
-		s.dz=obj.dz/2.0
-		s.moveable=True
-		obj.segments.append(s)
-		my_tab=json_viewer()
-		my_tab.populate(s)
-		my_tab.changed.connect(self.callback_edit)
-		self.notebook.addTab(my_tab,s.name)
-		my_tab.changed.connect(self.callback_edit)
-		self.force_redraw(level="reload_rebuild")
-		data.save()
+		json_path=self.add_new_shape_to_object(self.root_id)
+		if json_path!=None:
+			name=self.bin.get_token_value(json_path,"name")
+			uid=self.bin.get_token_value(json_path,"id")
+			my_tab=json_viewer_bin(self.bin)
+			my_tab.populate(json_path,uid=uid)
+			self.notebook.addTab(my_tab,name)
+			my_tab.changed.connect(self.callback_edit)
 
 	def callback_rename_shape(self):
-		data=json_root()
 		tab = self.notebook.currentWidget()
-
-		new_sim_name=dlg_get_text2( "Rename the object:", tab.template_widget.name,"rename.png")
-
-		new_sim_name=new_sim_name.ret
-
-		if new_sim_name!=None:
-			tab.template_widget.name=new_sim_name
+		new_name=self.rename_object(tab.uid)
+		if new_name!=None:
 			index=self.notebook.currentIndex() 
-			self.notebook.setTabText(index, new_sim_name)
-			data.save()
+			self.notebook.setTabText(index, new_name)
 
 
 	def callback_clone_shape(self):
 		tab = self.notebook.currentWidget()
-		name=tab.template_widget.name+"_new"
+		json_path=self.clone_object(tab.uid)
+		name=self.bin.get_token_value(json_path,"name")
+		uid=self.bin.get_token_value(json_path,"id")
 
-		new_sim_name=dlg_get_text2( "Clone the object:", name,"clone.png")
-		new_sim_name=new_sim_name.ret
-
-		if new_sim_name!=None:
-			obj=json_root().find_object_by_id(self.root_id)
-			for s in obj.segments:
-				if s.name==tab.template_widget.name:
-					my_shape=copy.deepcopy(s)
-					my_shape.name=new_sim_name
-					my_shape.update_random_ids()
-					obj.segments.append(my_shape)
-					
-					my_tab=json_viewer()
-					my_tab.populate(my_shape)
-					self.notebook.addTab(my_tab,my_shape.name)
-					my_tab.changed.connect(self.callback_edit)
-					self.force_redraw()
+		my_tab=json_viewer_bin(self.bin)
+		my_tab.populate(json_path,uid=uid)
+		my_tab.changed.connect(self.callback_edit)
+		self.notebook.addTab(my_tab,name)
 
 	def callback_delete_shape(self):
-		data=json_root()
 		tab = self.notebook.currentWidget()
-		name=tab.template_widget.name
-		
-		response=yes_no_dlg(self,"Do you really want to the object: "+name)
-
-		if response == True:
-
-			index=self.notebook.currentIndex() 
-			self.notebook.removeTab(index)
-			obj=json_root().find_object_by_id(self.root_id)
-			for i in range(0,len(obj.segments)):
-				if obj.segments[i].name==tab.template_widget.name:
-					obj.segments.pop(i)
-					data.save()
-					break
-
-		self.force_redraw()
+		self.delete_object([tab.uid])
+		index=self.notebook.currentIndex() 
+		self.notebook.removeTab(index)
 

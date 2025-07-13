@@ -31,7 +31,7 @@
 
 import os
 
-from cal_path import get_css_path
+from cal_path import sim_paths
 
 #qt
 from PySide2.QtGui import QIcon
@@ -90,7 +90,7 @@ class ribbon_solar(ribbon_base):
 		self.addTab(w,_("Spectrum"))
 
 
-		sheet=self.readStyleSheet(os.path.join(get_css_path(),"style.css"))
+		sheet=self.readStyleSheet(os.path.join(sim_paths.get_css_path(),"style.css"))
 		if sheet!=None:
 			sheet=str(sheet,'utf-8')
 			self.setStyleSheet(sheet)

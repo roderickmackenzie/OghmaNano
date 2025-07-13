@@ -39,19 +39,19 @@ from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,Q
 from PySide2.QtGui import QPainter,QIcon
 
 #window
-from experiment import experiment
-from json_root import json_root
+from experiment_bin import experiment_bin
 from play import play
 from server import server_get
 from cal_path import sim_paths
 from icon_lib import icon_get
+from json_c import json_tree_c
 
-class window_light_src(experiment):
+class window_light_src(experiment_bin):
 
 	def __init__(self,data=None):
-		experiment.__init__(self,window_save_name="window_light_src", window_title=_("Light source editor"),name_of_tab_class="tab_light_src",json_search_path="json_root().optical.light_sources.lights")
+		experiment_bin.__init__(self,window_save_name="window_light_src", window_title=_("Light source editor"),name_of_tab_class="tab_light_src",json_search_path="optical.light_sources.lights")
+		self.bin=json_tree_c()
 
-		self.base_json_obj="from json_light_sources import json_light_source"
 		self.notebook.currentChanged.connect(self.switch_page)
 
 		self.run = play(self,"optics_ribbon_run",run_text=_("Rebuild"))
@@ -66,10 +66,9 @@ class window_light_src(experiment):
 
 
 	def callback_run(self):
-		data=json_root()
-		self.dump_verbosity=data.optical.light.dump_verbosity
-		data.optical.light.dump_verbosity=1
-		data.save()
+		self.dump_verbosity=self.bin.get_token_value("optical.light","dump_verbosity")
+		self.bin.set_token_value("optical.light","dump_verbosity",1)
+		self.bin.save()
 
 		self.my_server=server_get()
 		self.my_server.clear_cache()
@@ -78,7 +77,6 @@ class window_light_src(experiment):
 		self.my_server.start()
 
 	def callback_sim_finished(self):
-		data=json_root()
-		data.optical.light.dump_verbosity=self.dump_verbosity
-		data.save()
+		self.bin.set_token_value("optical.light","dump_verbosity",self.dump_verbosity)
+		self.bin.save()
 		self.update()

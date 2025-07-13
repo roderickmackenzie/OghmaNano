@@ -1,0 +1,9 @@
+{
+	"icon":"prism",
+	"sub_icon":"folder",
+	"name":"Ray\ntracing",
+	"hide_this_json_file": "True",
+	"item_type":"dir",
+	"view_type":"list",
+	"status":"public"
+}

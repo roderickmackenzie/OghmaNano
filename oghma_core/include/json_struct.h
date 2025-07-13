@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,18 +29,45 @@
 
 #ifndef json_struct_h
 #define json_struct_h
+#include <g_io.h>
+
+enum JsonType {
+    JSON_INT = 0,
+    JSON_BOOL,
+    JSON_DOUBLE,
+    JSON_STRING,
+    JSON_LONG_LONG,
+    JSON_UNKNOWN_DATA,
+    JSON_NODE,
+    JSON_TEMPLATE,
+    JSON_RANDOM_ID,
+    JSON_STRING_HEX,
+    JSON_DAT_FILE
+};
+
+
+#define JSON_PRIVATE    0x01
+
+
+struct json_dump_settings
+{
+	int show_private;
+	int show_templates;
+};
 
 struct json_obj
 {
-	char type;
-	char name[100];
+	char name[40];
 	int len;
 	int max_len;
 	void *objs;
 
 	char *data;
 	int data_len;
-	int node;
+	char data_type;
+	unsigned char data_flags;
+
+	void *json_template;
 };
 
 struct json_string
@@ -57,12 +82,27 @@ struct json
 {
 	char *raw_data;
 	long raw_data_len;
-	int pos;
+	long pos;
 	int level;
-	char path[PATH_MAX];
+	char path[OGHMA_PATH_MAX];
 	struct json_obj obj;
-	char file_path[PATH_MAX];
 	int compact;
+	char file_path[OGHMA_PATH_MAX];
+	int is_template;
+	struct json_obj bib_template;
+	int triangles_loaded;
+	int bib_file;
+	int yml_file;
+};
+
+struct json_segment_counter
+{
+	int i;
+	int max;
+	struct json_obj *segments;
+	char path[OGHMA_PATH_MAX];
+	char item[100];
+	char item_path[OGHMA_PATH_MAX];
 };
 
 #endif

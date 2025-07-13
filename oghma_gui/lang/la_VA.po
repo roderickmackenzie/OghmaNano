@@ -1,0 +1,7227 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Roderick C. I. MacKenzie
+# This file is distributed under the same license as the oghmanano package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: oghmanano 8.0\n"
+"Report-Msgid-Bugs-To: roderick.mackenzie@oghma-nano.com\n"
+"POT-Creation-Date: 2024-05-02 11:45+0100\n"
+"PO-Revision-Date: 2024-05-13 14:58+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? "
+"1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+msgid "H_joule"
+msgstr "H_joule"
+
+msgid "H_recombination"
+msgstr "H_recombination"
+
+msgid "H_parasitic"
+msgstr "H_parasitic"
+
+msgid "Single states"
+msgstr "Unius status"
+
+msgid "time"
+msgstr "tempus"
+
+msgid "Ns"
+msgstr "Ns"
+
+msgid "Triplet states"
+msgstr "Triplet civitatibus"
+
+msgid "Nt"
+msgstr "Nt"
+
+msgid "Singlets in donor"
+msgstr "Singlets in donatorem"
+
+msgid "Nsd"
+msgstr "Nsd"
+
+msgid "Triplet in donor"
+msgstr "Triplex in donatorem"
+
+msgid "Ntd"
+msgstr "Ntd"
+
+msgid "Photon denisty"
+msgstr "Photon denisty"
+
+msgid "Npho"
+msgstr "Npho"
+
+msgid "file name not set\n"
+msgstr ""
+
+msgid "Time"
+msgstr "Tempus"
+
+msgid "Voltage"
+msgstr "Voltage"
+
+msgid "Free electron generation rate"
+msgstr "Free electronic generation rate"
+
+msgid "Generation rate"
+msgstr "Generation rate"
+
+msgid "Free hole generation rate"
+msgstr "Free generation rate foraminis"
+
+msgid "SRH recombination free electrons -> trapped holes"
+msgstr "SRH recombinationem liberum electrons -> capti foramina"
+
+msgid "Recombination"
+msgstr "Recombinatio"
+
+msgid "SRH recombination free holes -> trapped electrons"
+msgstr "SRH recombinationem foramina -> capti electrons"
+
+msgid "Surface recombination on left contact"
+msgstr "Superficiem recombinationem in sinistro contactu"
+
+msgid "Surface recombination on right contact"
+msgstr "Superficiem recombinationem in ius contactum"
+
+msgid "Trapped electron density"
+msgstr "Capti electronic density"
+
+msgid "Electron density"
+msgstr "Electron density"
+
+msgid "Trapped hole density"
+msgstr "Inlaqueaverunt density foraminis"
+
+msgid "Hole density"
+msgstr "cavum densitatis"
+
+msgid "Free electron density"
+msgstr "Free electronic density"
+
+msgid "Free hole density"
+msgstr "Free density foraminis"
+
+msgid "Total electron density"
+msgstr "Totalis density electronic"
+
+msgid "Total hole density"
+msgstr "Totalis density foraminis"
+
+msgid "Electron mobility"
+msgstr "Electron mobilitatem"
+
+msgid "Mobility"
+msgstr "Mobilitas"
+
+msgid "Hole mobility"
+msgstr "foraminis mobilitatem"
+
+msgid "Average electron and hole mobility"
+msgstr "Mediocris electronica et foraminis mobilitatem"
+
+msgid "Total PL intensity"
+msgstr "Summa PL intensio"
+
+msgid "Total PL Intensity"
+msgstr "Totalis PL magnitudo"
+
+msgid "PL intensity at given energy"
+msgstr "PL intensio data industria"
+
+msgid "PL Intensity"
+msgstr "PL magnitudo"
+
+msgid "Voltage applied to diode"
+msgstr "Voltage applicantur ad diode"
+
+msgid "band bend (percent)"
+msgstr "Cohors flectere (percent)"
+
+msgid "band bend"
+msgstr "cohortis flexuram"
+
+msgid "percent"
+msgstr "percent"
+
+msgid "Dynamic quantum efficiency"
+msgstr "Dynamic quantum efficientiam"
+
+msgid "Percent"
+msgstr "Cento"
+
+msgid "Drift current density"
+msgstr "Current density pereffluamus"
+
+msgid "Position"
+msgstr "Position"
+
+msgid "Electron current density (drift)"
+msgstr "Electron density current (egisse)"
+
+msgid "Diffusion current density"
+msgstr "Densitas currentis diffusio"
+
+msgid "position"
+msgstr "positione"
+
+msgid "Electron current density (diffusion)"
+msgstr "Electron current densitas (diffusion)"
+
+msgid "Diffusion+Drift current density"
+msgstr "Diffusio+Drift current density"
+
+msgid "Drift current density (x)"
+msgstr "Pereffluamus densitatem current (x)"
+
+msgid "Diffusion current density (x)"
+msgstr "Diffusio densitatis currentis (x)"
+
+msgid "Hole current density (drift)"
+msgstr "Foraminis current densitas (drift)"
+
+msgid "Hole current density (diffusion)"
+msgstr "Foramen current densitas (diffusion)"
+
+msgid "Current density"
+msgstr "Current density"
+
+msgid "Electron current density"
+msgstr "Electron current densitas"
+
+msgid "Hole current density"
+msgstr "Vena density foraminis"
+
+msgid "Electron current density x"
+msgstr "electronica densitas currentis x *"
+
+msgid "Total current density (Jn+Jp)"
+msgstr "Summa densitatis currentis (Io+Jp)"
+
+msgid "|Jny|+|Jnx|"
+msgstr "|Jny|+|Jnx|"
+
+msgid "|Total current density|"
+msgstr "|Total current density|"
+
+msgid "|Jpy|+|Jpx|"
+msgstr "|Jpy|+|Jpx|"
+
+msgid "Free electron -> Free hole recombination rate"
+msgstr "Free electronica -> Free recombinationem rate foraminis"
+
+msgid "Free carrier recombination rate"
+msgstr "Free carrier remixtura rate"
+
+msgid "Free electron loss due to SRH processes (including trapping)"
+msgstr "Free electronic damnum propter SRH processibus (including captanda)"
+
+msgid "Free electron loss"
+msgstr "Free electronic damnum"
+
+msgid "Free hole loss due to SRH processes (including trapping)"
+msgstr "Free foramen damnum propter SRH processibus (including captanda)"
+
+msgid "Free hole loss"
+msgstr "Free foraminis damnum"
+
+msgid "SRH relaxation free electrons -> trapped electrons"
+msgstr "SRH relaxatio electrons gratis -> capti electrons"
+
+msgid "Relaxation"
+msgstr "Relaxatio"
+
+msgid "SRH relaxation free holes -> trapped holes"
+msgstr "SRH relaxatio foraminum -> capti foramina"
+
+msgid "Singlet density (S1)"
+msgstr "Singlet densitas (S1)"
+
+msgid "Singlet density"
+msgstr "Singlet density"
+
+msgid "Triplet density  (T1)"
+msgstr "Triplex densitatis (T1)"
+
+msgid "Triplet density"
+msgstr "Triplex densitas"
+
+msgid "Singlet CT (1C)"
+msgstr "Singlet CT (1C)"
+
+msgid "Triplet CT (3C)"
+msgstr "Triplex CT (3C)"
+
+msgid "Singlet S1 'IMREF'"
+msgstr "Singlet S1 'IMREF'"
+
+msgid "Singlet energy"
+msgstr "Singlet industria"
+
+msgid "Triplet T1 'IMREF'"
+msgstr "Triplex T1 'IMREF'"
+
+msgid "Triplet energy"
+msgstr "Triplex navitas"
+
+msgid "Singlet CT (1C) 'IMREF'"
+msgstr "Singlet CT (1C) 'IMREF'"
+
+msgid "Triplet CT (3C) 'IMREF'"
+msgstr "Triplex CT (3C) 'IMREF'"
+
+msgid "Singlet in donor density"
+msgstr "Singlet in donatorem density"
+
+msgid "Triplet in donor density"
+msgstr "Triplet in density donatoris"
+
+msgid "Ion density"
+msgstr "Ion density"
+
+msgid "Singlet 'IMREF'"
+msgstr "Singlet 'IMREF'"
+
+msgid "Triplet 'IMREF'"
+msgstr "Triplex 'IMREF'"
+
+msgid "Singlet in donor 'IMREF'"
+msgstr "Singlet in donatoris IMREF'"
+
+msgid "Triplet in donor 'IMREF'"
+msgstr "Triplet in donatoris IMREF'"
+
+msgid "Ion energy"
+msgstr "Ion navitas"
+
+msgid "Doping"
+msgstr "Doping"
+
+msgid "Doping density"
+msgstr "Doping density"
+
+msgid "Free electron carrier density"
+msgstr "Free electronica carrier density"
+
+msgid "Carrier density"
+msgstr "Tabellarius density"
+
+msgid "Free hole carrier density"
+msgstr "Free density foraminis carrier"
+
+msgid "Trapped electron carrier density"
+msgstr "Capti electronica carrier density"
+
+msgid "Trapped hole carrier density"
+msgstr "Capti foraminis carrier density"
+
+msgid "Change in electron population"
+msgstr "Mutatio in electronica population"
+
+msgid "Total charge"
+msgstr "Summa crimen"
+
+msgid "Change in total charge"
+msgstr "Mutatio in summa crimen"
+
+msgid "Change in hole population"
+msgstr "Mutatio in foraminis population"
+
+msgid "Excess electron density"
+msgstr "Excessus electronic density"
+
+msgid "x-position"
+msgstr "x-situ"
+
+msgid "y-position"
+msgstr "y-positione"
+
+msgid "z-position"
+msgstr "z-positio"
+
+msgid "Excess hole density"
+msgstr "Excessus densitatis foraminis"
+
+msgid "Perovskite mobile ion density"
+msgstr "Perovskite mobilis Ion density"
+
+msgid "Interface free-to-free recombination constant"
+msgstr "Interface liberum ad liberum recombinationem constant"
+
+msgid "Electron tunneling though the interface"
+msgstr "Electron cuniculo quamquam interface"
+
+msgid "Tunneling-e"
+msgstr "Tunneling-e"
+
+msgid "Hole tunneling though the interface"
+msgstr "Etsi effosso foramine interface"
+
+msgid "Tunneling-h"
+msgstr "cuniculis-h"
+
+msgid "Interface free-to-trap recombination constant"
+msgstr "Interface liberum ad captionem recombinationem constant"
+
+msgid "Interface free-to-trap  recombination constant"
+msgstr "Interface liberum ad captionem recombinationem constant"
+
+msgid "Interface recombination rate"
+msgstr "Interface recombinationem rate"
+
+msgid "Electron current density left contact (J_y0_n)"
+msgstr "Electron current densitas contactum reliquit (J_y0_n)"
+
+msgid "Hole current density left contact (J_y0_p)"
+msgstr "Foramen vena densitatis contactum reliquit (J_y0_p)"
+
+msgid "Electron current density right contact (J_y1_n)"
+msgstr "Electron current densitas contactum rectum (J_y1_n)"
+
+msgid "Hole current density right contact (J_y1_p)"
+msgstr "Foramen vena densitatis jus contactum (J_y1_p)"
+
+msgid "Electron drift current"
+msgstr "Electron summa current"
+
+msgid "Electron diffusion current"
+msgstr "electronica diffusio current"
+
+msgid "Hole drift current"
+msgstr "Summa current foraminis"
+
+msgid "Hole diffusion current"
+msgstr "Foramen diffusionis currentis"
+
+msgid " Hole diffusion current"
+msgstr "Foramen diffusionis currentis"
+
+msgid "Electron drift+diffusion current"
+msgstr "Electron summa+diffusione current"
+
+msgid "Hole diffusion+diffusion current"
+msgstr "Foramen diffusionis+diffusionis currentis"
+
+msgid "Jn at contacts"
+msgstr "Io ad contactus"
+
+msgid "Jp at contacts"
+msgstr "Jp ad contactus"
+
+msgid "External Current"
+msgstr "Externi Current"
+
+msgid "Current"
+msgstr "Current"
+
+msgid "Current density at contacts"
+msgstr "Current densitas in contactibus"
+
+msgid "Single states (S1)"
+msgstr "Unius status (S1)"
+
+msgid "Triplet states (T1)"
+msgstr "Triplex civitatibus (T1)"
+
+msgid "Material fraction (x)"
+msgstr "Materia fractionis (x)"
+
+msgid "Fraction"
+msgstr "Fractio"
+
+msgid "Material fraction (y)"
+msgstr "Materia fractionis (y)"
+
+msgid "LUMO"
+msgstr "LUMO"
+
+msgid "Electron Energy"
+msgstr "Electron Energy"
+
+msgid "HOMO"
+msgstr "HOMO"
+
+msgid "Lattice temperature"
+msgstr "cancellos temperatus"
+
+msgid "Temperature"
+msgstr "Temperature"
+
+msgid "Electron temperature"
+msgstr "Electron temperatus"
+
+msgid "Hole temperature"
+msgstr "Foramen temperatus"
+
+msgid "Band gap"
+msgstr "Band gap"
+
+msgid "Electron quasi Fermi-level"
+msgstr "Electron quasi Fermi-level"
+
+msgid "Hole quasi Fermi-level"
+msgstr "Foramen quasi Fermi-gradum"
+
+msgid "Potential"
+msgstr "Potentia"
+
+msgid "Equlibrium Fermi-level"
+msgstr "Aequilibrium Fermi-level"
+
+msgid "Energy"
+msgstr "Energy"
+
+msgid "Relative permittivity"
+msgstr "Relativum permittivity"
+
+msgid "Joule heating from device"
+msgstr "Joule calefactio ex fabrica"
+
+msgid "Heating"
+msgstr "Heating"
+
+msgid "Electron mobility z"
+msgstr "Electron mobilitatem z *"
+
+msgid "Electron mobility x"
+msgstr "Electron mobilitatem x *"
+
+msgid "Electron mobility y"
+msgstr "Electron mobilitatem y *"
+
+msgid "Hole mobility z"
+msgstr "Mobilitate foraminis z *"
+
+msgid "Hole mobility x"
+msgstr "* Mobilitate foraminis x"
+
+msgid "Hole mobility y"
+msgstr "* y mobilitatem foraminis"
+
+msgid "Average electron mobility"
+msgstr "Mediocris electronic mobilitas"
+
+msgid "Recombination rate"
+msgstr "Recombinationem rate"
+
+msgid "Auger recombination"
+msgstr "Auger recombinationem"
+
+msgid "Rate"
+msgstr "Rate"
+
+msgid "Trap fermi level"
+msgstr "Captionem fermi level"
+
+msgid "Electron Fermi level"
+msgstr "Electron Fermi level"
+
+msgid "Material number"
+msgstr "Materia numerus"
+
+msgid "Number"
+msgstr "Numerus"
+
+msgid "Passivated"
+msgstr "passivated"
+
+msgid "True/False"
+msgstr "Verum falsum"
+
+msgid "Current map of the bottom contact"
+msgstr "Current tabula in fundo contactum"
+
+msgid "Resistance of bottom of device"
+msgstr "Resistentia fundo fabrica"
+
+msgid "Running Ray tracer\n"
+msgstr "Running Ray tracer\n"
+
+msgid "pulse mode not known\n"
+msgstr ""
+
+msgid "pulse time"
+msgstr "pulsus tempore"
+
+msgid "step"
+msgstr "step"
+
+msgid "current density"
+msgstr "current density"
+
+msgid "current"
+msgstr "current"
+
+msgid "Volts"
+msgstr "Volts"
+
+msgid "Photogeneration rate"
+msgstr "Photogeneration rate"
+
+msgid "Emission"
+msgstr "Emissio"
+
+msgid "Charge density"
+msgstr "Praecipe density"
+
+msgid "Suns"
+msgstr "soles"
+
+msgid "Charge"
+msgstr "Crimen"
+
+msgid "ce mode not known\n"
+msgstr ""
+
+msgid "ce mode not known"
+msgstr "ce modus non notum"
+
+msgid "ce time"
+msgstr "ce tempus"
+
+msgid "Simulated polynomial data"
+msgstr "Simulata integra notitia"
+
+msgid "x"
+msgstr "x*"
+
+msgid "y"
+msgstr "y*"
+
+msgid "Full transfer matrix based light model"
+msgstr "Plena translatio matrix substructio lucis exemplum"
+
+msgid "Generating mesh\n"
+msgstr "Reticulum generans \n"
+
+msgid "The materials in your device are not configured to emit light\n"
+msgstr "Materiae in tuom non felis emittere lucem\n"
+
+msgid "Real"
+msgstr "Verus"
+
+msgid "Imaginary"
+msgstr "Imaginaria"
+
+msgid "Re(i)"
+msgstr "Re(i)"
+
+msgid "Im(i)"
+msgstr "Im(i)"
+
+msgid "Frequency"
+msgstr "Frequentia"
+
+msgid "Real(i)"
+msgstr "Verus (i)"
+
+msgid "Capacitance"
+msgstr "Capacitance"
+
+msgid "1/C^2"
+msgstr "1/C^2"
+
+msgid "abs(i)"
+msgstr "abs(i)"
+
+msgid "phi(i)"
+msgstr "phi(i)"
+
+msgid "Phase"
+msgstr "Phase"
+
+msgid "Fit error modulation"
+msgstr "Error apta modulationis"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Fit error j/v"
+msgstr "Fit error j/v*"
+
+msgid "Resistance"
+msgstr "Resistentia"
+
+msgid "Solving EQE at"
+msgstr "EQE solvendo at"
+
+msgid "out of memory!\n"
+msgstr ""
+
+msgid "matrix is singular!\n"
+msgstr ""
+
+msgid "Running scanning probe microscopy\n"
+msgstr ""
+
+msgid "no spm config file found"
+msgstr "nulla spm aboutconfig file found"
+
+msgid "Running JV simulation\n"
+msgstr "Running JV simulation\n"
+
+msgid "Stopping because of Vexternal"
+msgstr "Restitit propter Vexternal"
+
+msgid "Efficiency"
+msgstr "Efficientia"
+
+msgid "Voltage/Current across just the ideal diode"
+msgstr "Voltage / Current per iustus ratio diode"
+
+msgid "Applied Voltage"
+msgstr "Acta intentione"
+
+msgid "Recombination prefactor"
+msgstr "Recombinationem prefactor"
+
+msgid "Applied voltage"
+msgstr "applicata voltage"
+
+msgid "Excess carrier density"
+msgstr "Excessus carrier density"
+
+msgid "Excess charge density above equilibrium"
+msgstr "Excessus crimen densitatis supra aequilibrium"
+
+msgid "Charge density with correction for surface charge"
+msgstr "Crimen density cum correctione ad superficiem crimen"
+
+msgid "Total charge density"
+msgstr "Totalis crimen density"
+
+msgid "EQE"
+msgstr "EQE"
+
+msgid "Light flux"
+msgstr "lux fluxum"
+
+msgid "Power in Optical emission/Electrical power in"
+msgstr "Virtus in Optical emissionem / Electrical power in"
+
+msgid "Conductivity"
+msgstr "Conductivity"
+
+msgid "Holes on left contact"
+msgstr "Pertusum in sinistro contactu"
+
+msgid "Electrons on left contact"
+msgstr "Electrons in sinistra contactus"
+
+msgid "Holes on right contact"
+msgstr "Pertusum in ius contactum"
+
+msgid "Electrons on right contact"
+msgstr "Electrons in ius contactum"
+
+msgid "Generating electrical mesh\n"
+msgstr "Reticulum electrica generans \n"
+
+msgid "I can't solve the matrix because I don't have enough equations."
+msgstr "Matricem solvere non possum quia aequationes satis non habeo."
+
+msgid "Wavelength"
+msgstr "Necem"
+
+msgid "Probe load configuration"
+msgstr "Specillum onus configuratione"
+
+msgid "Probe calculate modes"
+msgstr "Probe calculare modos"
+
+msgid "Probe free memory"
+msgstr "Liberum memoria specillum"
+
+msgid "Photon generation rate"
+msgstr "Photon generation rate"
+
+msgid "Average photon generation rate (xz-plane)"
+msgstr "Mediocris photon generationis rate (xz-planum)"
+
+msgid "Photon generation rate  (xz-plane)"
+msgstr "Photon generation rate (xz-planum)"
+
+msgid "Absorption"
+msgstr "effusio"
+
+msgid "Extended opticla absorption"
+msgstr "Opticla effusio extensa"
+
+#, python-format
+msgid "Cleaning cache index: %s\n"
+msgstr "Cache index purgatio: %s\n"
+
+msgid "Cache: checking cache free space\n"
+msgstr ""
+
+msgid "Freeing memory from the exciton model\n"
+msgstr ""
+
+msgid "Mode E-field"
+msgstr "Modus E-agri"
+
+msgid "E-field"
+msgstr "E-field"
+
+msgid "Refractive index"
+msgstr "Refractivus index"
+
+msgid "Normalized photon ensity"
+msgstr "Normalised photon ensity"
+
+msgid "Photon density"
+msgstr "Photon density"
+
+msgid "Mode Ey"
+msgstr "Modus Ey"
+
+msgid "Ey"
+msgstr "Ey"
+
+msgid "E - Electric field"
+msgstr "E - campus Electric"
+
+msgid "Job stalled. Time since last run:"
+msgstr "Iob stabulari. Tempus ab ultimo detegere;"
+
+msgid "Bytes, written"
+msgstr "Bytes, scriptum"
+
+msgid ", read"
+msgstr ", legere"
+
+msgid "Files, read"
+msgstr "Files, lege"
+
+msgid " written"
+msgstr "scriptum"
+
+msgid "I have shut down the server"
+msgstr "Ego clauseruntque in calculonis servi"
+
+msgid "Number of CPUs:"
+msgstr "Numerus CPUs:"
+
+msgid "Start time"
+msgstr "Satus tempus"
+
+msgid "End time"
+msgstr "Tempus finis"
+
+msgid "All jobs finished jobs"
+msgstr "Omnes jobs perfecti jobs"
+
+msgid "I have finished all my jobs"
+msgstr "Consummavi omnia jobs"
+
+msgid "The server has detected a crash"
+msgstr "In server ruina deprehendit"
+
+msgid "Hole generation rate"
+msgstr "Foraminis generatio rate"
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie, Releced the MIT License"
+msgstr "Copyright (C) 2009-2022 Roderick C. I. MacKenzie, Remisit MIT Licentiam"
+
+msgid "options"
+msgstr "optiones"
+
+msgid "Options"
+msgstr "Optiones"
+
+msgid "Simulation root path"
+msgstr "Simulatio radix iter"
+
+msgid "displays the current version"
+msgstr "ostendit emendationem"
+
+msgid "Dump know paths"
+msgstr "Effundite semitas cognoscere"
+
+msgid "Forces a simulation mode."
+msgstr "Modus simulationis cogit."
+
+msgid "sets the number of CPUs"
+msgstr "eros numerum ponit"
+
+msgid "Runs the optimizer. Syntax --optimizer scan_name"
+msgstr "Fugit ipsum. Syntax --optimizer scan_name"
+
+msgid "Additional information about OghmaNano is available at https://www.Oghma-Nano.com."
+msgstr "Additional information about OghmaNano is available at https://www.Oghma-Nano.com."
+
+msgid "Report bugs to: roderick.mackenzie@oghma-nano.com"
+msgstr "Renuntiatio cimices ad: roderick.mackenzie@oghma-nano.com"
+
+#, python-format
+msgid "oghma_core, Version %s\n"
+msgstr "oghma_core, Version %s\n"
+
+msgid "OghmaNano (Organic and hybrid Material Nano Simulation tool) core."
+msgstr "OghmaNano (Materia Organicum et hybridum Nano instrumentum simulationis) nucleus."
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2009-2022"
+msgstr "Copyright Rodericus MacKenzie, dimissus sub MIT License 2009-2022"
+
+msgid "There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or\n"
+msgstr ""
+
+msgid "FITNESS FOR A PARTICULAR PURPOSE.\n"
+msgstr ""
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2010-2019"
+msgstr "Copyright Rodericus MacKenzie, dimissus sub MIT License 2010-2019"
+
+msgid "OghmaNano - Organic and hybrid Material Nano Simulation tool"
+msgstr "OghmaNano - Materia Organica et hybrid Nano Simulatio tool"
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+msgstr "Copyright (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+
+msgid "Released under the MIT software license"
+msgstr "Dimissi sub MIT software licentia"
+
+msgid "If you wish to collaborate in anyway please get in touch:\n"
+msgstr "Si vis cooperari usquam in tactu da:\n"
+
+msgid "dll not loaded"
+msgstr "dll non loaded"
+
+msgid "dll function outcoupling_dll_init not found\n"
+msgstr ""
+
+msgid "dll function outcoupling_dll_solve_lam_slice not found\n"
+msgstr ""
+
+msgid "dll function outcoupling_dll_ver not found\n"
+msgstr ""
+
+msgid "Generation rate - position"
+msgstr "Generation rate - position"
+
+msgid "Photons escape probability - position"
+msgstr "Photons probabilitatem effugere - positione"
+
+msgid "Photons escape probability"
+msgstr "Photos evadere probabile"
+
+msgid "Position - Photon density"
+msgstr "Positio - Photon density"
+
+msgid "Photon Escape Probability Wavelength Averaged"
+msgstr "Photon Effugere Probabilitas Necem Averaged"
+
+msgid "Escape probability"
+msgstr "Probabiliter effugere"
+
+msgid "Photon escape probability"
+msgstr "Foton effugium probabilitatis"
+
+msgid "Running FDTD simulation @"
+msgstr "Running FDTD simulation @"
+
+msgid "Ex - Electric field"
+msgstr "Ex - campus Electric"
+
+msgid "Ey - Electric field"
+msgstr "Ey - Electric field"
+
+msgid "Ez - Electric field"
+msgstr "Ez - Electric field"
+
+msgid "Detectors"
+msgstr "Detectors"
+
+msgid "Hx - Magnetic field"
+msgstr "Hx - Agrum Magneticum"
+
+msgid "H-field"
+msgstr "H-agri"
+
+msgid "Hy - Magnetic field"
+msgstr "Hy - Agrum Magneticum"
+
+msgid "Hz - Magnetic field"
+msgstr "Hz - Agrum Magneticum"
+
+msgid "Power den"
+msgstr "Potentia den"
+
+msgid "Tot power den"
+msgstr "Tot potentia den"
+
+msgid "epsilon_r - Premitivity"
+msgstr "epsilon_r - Premitivity"
+
+msgid "Permitivity"
+msgstr "permissio"
+
+msgid "sigma - ?"
+msgstr "sigma - ?"
+
+msgid "sigma"
+msgstr "sigma"
+
+msgid "Math_2d output"
+msgstr "Math_2d output"
+
+msgid "Values"
+msgstr "Values ​​"
+
+msgid "dll function dll_matrix_solve not found\n"
+msgstr ""
+
+msgid "dll function dll_matrix_solver_free not found\n"
+msgstr ""
+
+msgid "dll function dll_matrix_init not found\n"
+msgstr ""
+
+msgid "Error closing dll"
+msgstr "Error claudendo dll"
+
+msgid "File not found\n"
+msgstr ""
+
+#, python-format
+msgid "File access log written to %s\n"
+msgstr "File accessum iniuriarum scriptum ad %s\n"
+
+msgid "Equilibrium Fermi-level"
+msgstr "Aequilibrium Fermi-level"
+
+msgid "dll function dll_complex_matrix_solver_free not found\n"
+msgstr ""
+
+msgid "Deleting directory: "
+msgstr "Deletio directorium:"
+
+msgid "Deleting directory"
+msgstr "Deletio Directory"
+
+msgid "Solver initialization\n"
+msgstr ""
+
+msgid "dll_solve_cur not NULL\n"
+msgstr ""
+
+msgid "dll function dll_solve_cur not found\n"
+msgstr ""
+
+msgid "dll_solver_realloc not NULL\n"
+msgstr ""
+
+msgid "dll function dll_solver_realloc not found\n"
+msgstr ""
+
+msgid "dll_solver_free_memory not NULL\n"
+msgstr ""
+
+msgid "dll function dll_solver_free_memory not found\n"
+msgstr ""
+
+msgid ">I don't understand the command"
+msgstr "> Non intelligitis mandatum"
+
+msgid "Can not open file"
+msgstr "Non possumus aperire file"
+
+#, python-brace-format
+msgid "Average mobility at V_{oc}"
+msgstr "Mediocris mobilitas in V_{oc}"
+
+msgid "Recombination rate at Voc"
+msgstr "Recombinationem rate ad Voc"
+
+#, python-brace-format
+msgid "Average mobility as J_{sc}"
+msgstr "Mediocris mobilitas sicut J_{sc}"
+
+#, python-brace-format
+msgid "Electron mobility at J_{sc}"
+msgstr "Mobilitas electronica apud J_{sc}"
+
+#, python-brace-format
+msgid "Hole mobility at J_{sc}"
+msgstr "Mobilitate foraminis ad J_{sc}"
+
+#, python-brace-format
+msgid "Electron mobility at P_{max}"
+msgstr "Mobilitas electronica apud P_{max}"
+
+#, python-brace-format
+msgid "Hole mobility at P_{max}"
+msgstr "Foramen mobilitatis ad P_{max}"
+
+msgid "Recombination time constant at Voc"
+msgstr "Recombinatio temporis constantis apud Voc"
+
+msgid "Trapped electrons at Voc"
+msgstr "Capti electrons ad Voc"
+
+msgid "Trapped holes at Voc"
+msgstr "Capti foramina ad Voc"
+
+msgid "Free electrons at Voc"
+msgstr "Free electrons at Voc"
+
+msgid "Free holes at Voc"
+msgstr "Free foramina ad Voc"
+
+msgid "Total carriers (n+p)/2 at Voc"
+msgstr "Totalis portantium (n+p)/2 ad Voc"
+
+#, python-brace-format
+msgid "Average mobility at P_{max}"
+msgstr "Mediocris mobilitas in P_{max}"
+
+msgid "<b>GPU</b>"
+msgstr "<b>GPU</b>"
+
+msgid "Max Cahce Size"
+msgstr "Max Cahce Location"
+
+msgid "Minimum disk free"
+msgstr "Minimum orbis gratis"
+
+msgid "Number of simulations to keep"
+msgstr "Numerus simulationum ut"
+
+msgid "Enable cache"
+msgstr "Admitte cache"
+
+msgid "Cache path"
+msgstr "Cache iter"
+
+msgid "Name"
+msgstr "Nomen"
+
+msgid "Resistor"
+msgstr "Resistor"
+
+msgid "Capacitor"
+msgstr "Capacitor"
+
+msgid "Inductance"
+msgstr "Inductione"
+
+msgid "I0"
+msgstr "I0"
+
+msgid "Ideality factor"
+msgstr "ideality factor"
+
+msgid "Layer"
+msgstr "Layer"
+
+msgid "Single point"
+msgstr "Unius punctus"
+
+msgid "Start intensity"
+msgstr "Satus intensionem"
+
+msgid "Stop intensity"
+msgstr "Subsisto intensio"
+
+msgid "step multiplier"
+msgstr "gradus multiplicator"
+
+msgid "dx of Honeycomb"
+msgstr "dx de Honeycomb"
+
+msgid "dy of Honeycomb"
+msgstr "dy de honeycomb"
+
+msgid "Line width"
+msgstr "Linea latitudo"
+
+msgid "x shift"
+msgstr "x trabea"
+
+msgid "y shift"
+msgstr "y subcinctus"
+
+msgid "Rotate"
+msgstr "Rotate"
+
+msgid "Enable fit variable"
+msgstr "Admitte fit variabilis"
+
+msgid "Select"
+msgstr "Lego"
+
+msgid "Shift experimental y"
+msgstr "Derivare experimentalem y *"
+
+msgid "Invert simulated data (y)"
+msgstr "Data simulata invertere (y)"
+
+msgid "Subtract lowest point"
+msgstr "Subtrahe punctum ultimum"
+
+msgid "Set first point to zero"
+msgstr "Primum punctum pone nulla est"
+
+msgid "Fit df(x)/dx"
+msgstr "Fit df(x)/dx"
+
+msgid "Fit error multiplyer"
+msgstr "Fit error multiplicator"
+
+msgid "Stall steps"
+msgstr "armenti gradus"
+
+msgid "Fit define convergence"
+msgstr "Fit definias concursum"
+
+msgid "<b>Fit method</b>"
+msgstr "<b>Vit methodus</b>"
+
+msgid "Fiting method"
+msgstr "Modus opportunus"
+
+msgid "Nelder–Mead (Downhill simplex)"
+msgstr "Nelder-Mead (Exin simplex)"
+
+msgid "Thermal Annealing"
+msgstr "Scelerisque Annealing"
+
+msgid "Markov chain Monte Carlo (MCMC)"
+msgstr "Markov catena Monte Carlo (MCMC)"
+
+msgid "Markov chain Monte Carlo (HMC)"
+msgstr "Markov catena Monte Carlo (HMC)"
+
+msgid "No-U-Turn Sampler (NUTS)"
+msgstr "Non-U-Turn Sampler (NUTS)"
+
+msgid "Newton"
+msgstr "Newton"
+
+msgid "Broyden–Fletcher–Goldfarb–Shanno (BFGS)"
+msgstr "Broyden-Fletcher-Goldfarb-Shanno (BFGS)"
+
+msgid "Start simplex step multiplication"
+msgstr "Incipit simplex gradus multiplicationis"
+
+msgid "Enable simplex reset steps"
+msgstr "Admitte simplex reset gradus"
+
+msgid "Simplex reset steps"
+msgstr "Simplex reset gradibus"
+
+msgid "Disable reset at level"
+msgstr "Inactivare reset gradu \""
+
+msgid "On stall randomize fit"
+msgstr "In armenti randomize fit"
+
+msgid "Number of iterations between random reset"
+msgstr "Numerus iterations temere inter reset"
+
+msgid "Sigma"
+msgstr "Sigma"
+
+msgid "Dump every n steps"
+msgstr "Effundite omnibus n gradibus"
+
+msgid "Leapfrog steps"
+msgstr "Leapfrog gradus"
+
+msgid "Cooling constant"
+msgstr "Frigus assidue"
+
+msgid "Annealing steps"
+msgstr "Annealing gradibus"
+
+msgid "Randomize variables at begining"
+msgstr "Randomize variables a principio"
+
+msgid "<b>Fit control</b>"
+msgstr "<b>Vit imperium</b>"
+
+msgid "Set error to zero before"
+msgstr "Set nullus ante errorem"
+
+msgid "Enable snapshots during fit"
+msgstr "Admitte snapshots in fit"
+
+msgid "Normalize data at x point"
+msgstr "Data ad normalize punctum x"
+
+msgid "Random funciton"
+msgstr "Random funciton"
+
+msgid "Mersenne Twister"
+msgstr "Mersenna Twister"
+
+msgid "C rand"
+msgstr "C rand"
+
+msgid "Random initialization"
+msgstr "Random initialization"
+
+msgid "Wall clock"
+msgstr "murum horologium"
+
+msgid "Constant value"
+msgstr "Constans valorem"
+
+msgid "/dev/urandom"
+msgstr "/dev/urandom"
+
+msgid "Random seed value"
+msgstr "Random valorem semen"
+
+msgid "Add noise"
+msgstr "sonitus addere"
+
+msgid "Noise level"
+msgstr "sonitus gradu"
+
+msgid "a"
+msgstr "a"
+
+msgid "b"
+msgstr "b"
+
+msgid "c"
+msgstr "c*"
+
+msgid "Range start x0"
+msgstr "Satus range x0"
+
+msgid "Range stop x1"
+msgstr "Range subsisto x1"
+
+msgid "JV voltage step multiplyer"
+msgstr "Vicarius voltage gradus multiplicator"
+
+msgid "Maximum current density"
+msgstr "Maxime current density"
+
+msgid "JV curve photon generation efficiency"
+msgstr "Vicarius curvae photon generationis efficientiam"
+
+#, python-brace-format
+msgid "Average carrier density at P_{max}"
+msgstr "Mediocris tabellarius densitatis in P_{max}"
+
+msgid "Start voltage"
+msgstr "Satus voltage"
+
+msgid "Stop voltage"
+msgstr "Subsisto voltage"
+
+msgid "Voltage step"
+msgstr "Voltage gradus"
+
+msgid "Points"
+msgstr "Puncta"
+
+msgid "Detector input hist"
+msgstr "Detector input hist"
+
+msgid "Counts"
+msgstr "Comites"
+
+msgid "Detected light"
+msgstr "detecta lux"
+
+msgid "Efficiency of emission"
+msgstr "Emissionis efficientiam"
+
+msgid "Detector"
+msgstr "Detector"
+
+msgid "Power"
+msgstr "Potestas"
+
+msgid "Solving the initial electrostatic field."
+msgstr "Campum electrostaticum initialem solvendo."
+
+msgid "Electrostatic solver f()="
+msgstr "Electrostatic solver f()="
+
+msgid "Converged"
+msgstr "concurrebant"
+
+msgid "Finding equilibrium conditions"
+msgstr "Inveniens aequilibrium conditionibus"
+
+msgid "Finished finding equilibrium conditions"
+msgstr "Inventis conditionibus perfectum aequilibrium"
+
+msgid "Finished generating DoS....\n"
+msgstr "Complevit generans DoS....\n"
+
+msgid "load: config files"
+msgstr "onus: aboutconfig files"
+
+msgid "Intrinsic Fermi - position"
+msgstr "Intrinsic Fermi - position"
+
+msgid "LUMO energy - position"
+msgstr "LUMO energia"
+
+msgid "HOMO energy - position"
+msgstr "HOMO navitas - position"
+
+msgid "Electron density - position"
+msgstr "Electron density - positione"
+
+msgid "Hole density - position"
+msgstr "Densitas foraminis - positione"
+
+msgid "Potential - position"
+msgstr "Potential - positione"
+
+msgid "Loading electrical dll\n"
+msgstr ""
+
+msgid "dll function dll_run_simulation not found\n"
+msgstr ""
+
+msgid "Electrical objects"
+msgstr "Res electricae"
+
+msgid "Running simulation"
+msgstr "Simulatio currit"
+
+msgid "Solved"
+msgstr "Solvitur"
+
+msgid "Equations"
+msgstr "Aequationes"
+
+msgid "I can't allocate a device with less than 1 mesh point."
+msgstr "Non possum minus quam I reticulum collocant in fabrica punctum."
+
+msgid ""
+"You are asking me to simulate a device with more than 50000 mesh points, although I could do "
+"this I am not going to because it seems a bad idea to me."
+msgstr ""
+"Quaeris me machinam cum pluribus quam 50000 punctorum reticulis simulare, hoc tamen facere non "
+"possum, quia malam opinionem mihi esse videtur."
+
+msgid "Current "
+msgstr "Current"
+
+msgid "Voltage - Current density"
+msgstr "Voltage - Current densitas"
+
+msgid "Voltage - Current"
+msgstr "Voltage - Current"
+
+msgid "Time - Current density"
+msgstr "Tempus - Current densitas"
+
+msgid "Time - Voltage"
+msgstr "Tempus - Voltage"
+
+msgid "Fit error"
+msgstr "Fit error"
+
+msgid "Step"
+msgstr "Gradus"
+
+msgid "au"
+msgstr "au"
+
+msgid "Speed"
+msgstr "Celeritas"
+
+msgid "odes/s"
+msgstr "odes / s *"
+
+msgid "Chain all"
+msgstr "catena omnia"
+
+msgid "Value"
+msgstr "Precium"
+
+msgid "Chain accepted"
+msgstr "Catena accepit"
+
+msgid "Hist chain accepted"
+msgstr "Catena accepit Hist"
+
+msgid "Freeing memory from the heat model\n"
+msgstr ""
+
+msgid "Loading file"
+msgstr "Loading file"
+
+#, python-format
+msgid "Expected dos size is different from generated %d %d\n"
+msgstr "Expectata dos magnitudine differt a generatae %d%d\n"
+
+#, python-format
+msgid "genndosfdgaus: I can not write to the file %s\n"
+msgstr ""
+
+msgid "Computer cores:"
+msgstr "Computatrum nuclei:"
+
+msgid "Max threads:"
+msgstr "Stamina max:"
+
+msgid "You must load the optical plugin before making the time mesh"
+msgstr "Oportet te onerare plugin optical ante tempus reticulum faciens"
+
+msgid "The electrical mesh does not match the device length"
+msgstr "Electrical reticulum non congruit ratio longitudinis"
+
+msgid "Can't generate a mesh with zero points"
+msgstr "Non potest generare reticulum cum nulla puncta"
+
+msgid "If you want to run perovskite in fx-domain send me an e-mail."
+msgstr "Si vis perovskite currere in fx-domain, mitte mihi electronicam."
+
+msgid "fxdomain mode not known"
+msgstr "fxdomain modus non notum"
+
+msgid "Running frequency"
+msgstr "Currentem frequentiam"
+
+msgid ""
+"Optical modulation will come in the next version.  If you want to use it drop me a mail..."
+msgstr "Modulatio optica in versione altera veniet. Si vis ea uti mihi mail stilla ..."
+
+msgid "fxdomain time"
+msgstr "fxdomain tempore"
+
+msgid "Light intensity"
+msgstr "lux intensio"
+
+msgid "Ion density - position"
+msgstr "Ion density - position"
+
+msgid "Ion free"
+msgstr "Liber Ion"
+
+msgid "Ion convergence="
+msgstr "Ion concursus ="
+
+msgid "Ion diffusion"
+msgstr "Ion diffusio"
+
+msgid "R spm"
+msgstr "R spm"
+
+msgid "Vlost spm"
+msgstr "Vlost spm"
+
+msgid "V spm"
+msgstr "V spm"
+
+msgid "Electrical circuit"
+msgstr "Circuitus electrica"
+
+msgid "Circuit"
+msgstr "Circuitus"
+
+msgid "Current vector plot"
+msgstr "Vena vector insidias"
+
+msgid "Real refractive index"
+msgstr "Verus index refractivus"
+
+msgid "|Electric field|"
+msgstr "|Electric field|"
+
+msgid "Transmittance"
+msgstr "Transmittance"
+
+msgid "Reflectance"
+msgstr "Reflexio"
+
+msgid "Solve optical slice at"
+msgstr "Solve optical scalpere ad"
+
+msgid "It was dark I did not solve any slices\n"
+msgstr "Tenebris erat non purus quis solvere \n"
+
+msgid "Initializing optical model"
+msgstr "Optical exemplar initializing"
+
+msgid "dll function light_dll_init not found\n"
+msgstr ""
+
+msgid "dll function light_dll_solve_lam_slice not found\n"
+msgstr ""
+
+msgid "dll function light_dll_ver not found\n"
+msgstr ""
+
+msgid "Power density of the optical spectra (no filter):"
+msgstr "Densitas potentia spectris optici (non sparguntur);"
+
+msgid "File not found"
+msgstr "File non inveni"
+
+msgid "Light: Load filter"
+msgstr "Lux: Load filter"
+
+msgid "Refractive index - position"
+msgstr "Refractivus index - positio"
+
+msgid "Absorption - position"
+msgstr "effusio - positio"
+
+msgid "Photons absorbed - position"
+msgstr "Photos absorberi - position"
+
+msgid "Photons absorbed"
+msgstr "Photos absorberi"
+
+msgid "Position - Electric field (y+)"
+msgstr "Positio - campus Electric (y+)"
+
+msgid "Position - Electric field (y-)"
+msgstr "Position - Electric field (y-)"
+
+msgid "Freeing memory from the optical model\n"
+msgstr ""
+
+msgid "Electron generation rate"
+msgstr "Electron generation rate"
+
+msgid "Optical heating"
+msgstr "Optical calefactio"
+
+msgid "Charge carrier generation rate"
+msgstr "Crimen carrier generationis rate"
+
+msgid "Copy"
+msgstr "Copy"
+
+msgid "Copy as JSON"
+msgstr "Effingo ut JSON"
+
+msgid "Copy json/python path"
+msgstr "Effingo json / Python iter"
+
+msgid "Copy ObjID"
+msgstr "Exemplar ObjID"
+
+msgid "Copy as LaTex"
+msgstr "Effingo quod LaTex"
+
+msgid "Copy as csv"
+msgstr "Effingo ut csv"
+
+msgid "Paste"
+msgstr "Crustulum"
+
+msgid "Reimport from database"
+msgstr "Reimport from database"
+
+msgid "Are you sure you want reimport the material values from:"
+msgstr "Certus esne valores materiales e remittere:"
+
+msgid "File not found:"
+msgstr "File non inveni:"
+
+msgid "Edit reference"
+msgstr "Edit reference"
+
+msgid "Delete reference"
+msgstr "Delere reference"
+
+msgid "Add reference"
+msgstr "Addere reference"
+
+msgid "This simulation"
+msgstr "Haec simulatio"
+
+msgid "Electrical parameter editor for shape"
+msgstr "Electrical parametri editor in figura"
+
+msgid "Reference"
+msgstr "Reference"
+
+msgid "Bibliography editor"
+msgstr "Bibliography editor"
+
+msgid "Electrical Mesh Editor"
+msgstr "Electrical Mesh Editor"
+
+msgid ""
+"Y\n"
+"Dimension"
+msgstr ""
+"Y\n"
+"Dimension"
+
+msgid ""
+"X\n"
+"Dimension"
+msgstr ""
+"X\n"
+"Dimension"
+
+msgid ""
+"Z\n"
+"Dimension"
+msgstr ""
+"Z\n"
+"Dimension"
+
+msgid ""
+"Configure\n"
+"mesh"
+msgstr "Configurare nmesh"
+
+msgid ""
+"Import from\n"
+"layer editor"
+msgstr "Import e \nlayer editor"
+
+msgid "Remesh"
+msgstr "Remesh"
+
+msgid "Configure mesh"
+msgstr "Configurare reticulum"
+
+msgid ""
+"Are you sure you want to overwrite the electrical mesh with a guessed mesh based on the layer "
+"structure?"
+msgstr ""
+"Certus esne vis electrica reticulum rescribere cum coniecta reticulum ex structurae lavacro?"
+
+msgid "New simulation"
+msgstr "Nova simulatio"
+
+msgid ""
+"Open\n"
+"simulation"
+msgstr "Apertum \nsimulation"
+
+msgid ""
+"Export\n"
+"Zip"
+msgstr ""
+"Export\n"
+"Zip"
+
+msgid ""
+"Run\n"
+"simulation"
+msgstr "Curre \nsimulation"
+
+msgid "Run simulation"
+msgstr "Simulatio currere"
+
+msgid "Tutorials"
+msgstr "Tutorials"
+
+msgid "Manual"
+msgstr "Manual"
+
+msgid ""
+"Follow on\n"
+"Twitter"
+msgstr ""
+"Sequere in \n"
+"Twitter"
+
+msgid ""
+"Subscribe\n"
+"on Youtube"
+msgstr ""
+"Subscribe\n"
+"on Youtube"
+
+msgid "Getting started"
+msgstr "Incipere"
+
+msgid "1D Simulations"
+msgstr "1D simulationes"
+
+msgid "Carrier trapping"
+msgstr "Tabellarius captanda"
+
+msgid "2D electrical structures (OFETs)"
+msgstr "2D electrica structurae (OFETs)"
+
+msgid "Large area devices/circuit models"
+msgstr "Magna area cogitationes / exempla circuitu"
+
+msgid "OLEDs"
+msgstr "OLEDs"
+
+msgid "Material databases"
+msgstr "Material databases"
+
+msgid "Scripting"
+msgstr "Scripting"
+
+msgid "Frequency domain simulations"
+msgstr "Frequentia domain simulationes"
+
+msgid "Transient simulations"
+msgstr "Simulationes transiens"
+
+msgid "Optical simulations"
+msgstr "Optical simulationes"
+
+msgid "Excitonic simulations"
+msgstr "Excitonic simulationes"
+
+msgid "Fitting"
+msgstr "Decens"
+
+msgid "Misc"
+msgstr "Misc"
+
+msgid "Basics"
+msgstr "Basics"
+
+msgid ""
+"<big><b>Now save the simulation</b></big><br>Now select where you would like to save the "
+"simulation directory."
+msgstr ""
+"<big><b>Nunc serva simulationem</b></big><br> Nunc elige ubi velis simulationem presul servare."
+
+msgid "password:"
+msgstr "tesserae:"
+
+msgid "Wrong password"
+msgstr "Nefas password"
+
+msgid ""
+"It's not a good idea to save the simulation in the installation directory.  Try saving it "
+"somewhere else, such as your desktop or home directory."
+msgstr ""
+"Non est bona idea simulationem servare in directorio institutionis. Conare eam alibi salvare, "
+"ut in escritorio tuo vel in directorio domus."
+
+msgid "It's not a good idea to save the simulation in the oghma_local directory."
+msgstr "Non est utilem simulationem servare in directorio oghma_locali."
+
+msgid "That directory already exists.  Pick another name or delete the old one."
+msgstr "Iam illa presul exstat. Alterum nomen delige vel vetus dele."
+
+msgid "Please select a device before clicking next"
+msgstr "Placere eligere fabrica ante clicking altera"
+
+msgid "Organic LED"
+msgstr "Organicum LED"
+
+msgid "Crystalline silicon solar cell"
+msgstr "Crystallina siliconis cellula solaris"
+
+msgid "a-Si solar cell "
+msgstr "a-Si cellula solaris"
+
+msgid "polycrystalline silicon "
+msgstr "polycrystalline Pii"
+
+msgid "OFET "
+msgstr "OFET"
+
+msgid "Perovskite solar cell"
+msgstr "Perovskita cellula solaris"
+
+msgid "CIGS Solar cell"
+msgstr "CIGS cellula solaris"
+
+msgid "Which type of device would you like to simulate?"
+msgstr "Quod genus fabrica velis simulare?"
+
+msgid "Double click to open"
+msgstr "Geminus click to open"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Show hidden"
+msgstr "Ostende absconditum"
+
+msgid "Object editor"
+msgstr "Object editor"
+
+msgid ""
+"Object\n"
+"enabled"
+msgstr "Object \nenabled"
+
+msgid ""
+"Object\n"
+"disabled"
+msgstr "Object \ndisabled"
+
+msgid "About"
+msgstr "De"
+
+msgid "Written by Roderick MacKenzie 2012-2023, released under the MIT software license."
+msgstr "Scripsit Rodericus MacKenzie 2012-2023, dimissus sub licentia programmandi MIT."
+
+msgid "Version "
+msgstr "Version"
+
+msgid ""
+" is a general-purpose tool for simulation of light harvesting devices. It was originally "
+"written to simulate organic solar cells and OLEDs, but it has recently been extended to "
+"simulate other devices including silicon based devices. Currently the model can sumulate:"
+msgstr ""
+"est instrumentum generale-propositum simulationis luminis messe machinas. Scriptum est "
+"principio ad cellulas solares et OLEDs organicas simulare, sed nuper extensum est ut alias "
+"machinis Pii fundatis machinis simulat. Exemplar in statu sumulare potest:"
+
+msgid "Organic solar cells"
+msgstr "Cellulae solares organicae"
+
+msgid "Organic LEDs"
+msgstr "Organicum LEDs"
+
+msgid "Crystalline silicon solar cells"
+msgstr "Pii crystallini cellulae solares"
+
+msgid "a-Si solar cells"
+msgstr "a-Si cellulae solaris"
+
+msgid "CIGS solar cells"
+msgstr "CIGS cellulae solares"
+
+msgid ""
+"The model solves both electron and hole drift-diffusion, and carrier continuity equations in "
+"position space to describe the movement of charge within the device. The model also solves "
+"Poisson's equation to calculate the internal electrostatic potential. Recombination and "
+"carrier trapping are described within the model using a Shockley-Read-Hall (SRH) formalism, "
+"the distribution of trap sates can be arbitrarily defined. All equations can be solved either "
+"in steady state or in time domain. A fuller description of the model can be found in the here, "
+"in the associated publications and in the manual."
+msgstr ""
+"Exemplar tam electronici quam foraminis calliditate diffusionem solvit, et tabellarius "
+"aequationes continuitatis in spatio positionis ad motum criminis intra machinam describendum. "
+"Exemplar etiam aequationem Poisson solvit ad potentiam electrostaticam internam computandam. "
+"Recombinatio et tabellarius captanda describuntur intra exemplum usus formalismi Shockley-Read-"
+"Hall (SRH) , distributio laquei laquei libere definiri potest. Omnes aequationes vel in statu "
+"stabili vel tempore dominico solvi possunt. Plenior exemplaris descriptio hic reperiri potest, "
+"in adiunctis publicationibus et in manualibus."
+
+msgid "Legal"
+msgstr "Legal"
+
+msgid "Translations"
+msgstr "Translations"
+
+msgid "Paths"
+msgstr "semitae"
+
+msgid ""
+"Materials\n"
+"database"
+msgstr "Materials \ndatabase"
+
+msgid ""
+"Optical\n"
+"database"
+msgstr ""
+"Optical \n"
+"database"
+
+msgid ""
+"User\n"
+"data"
+msgstr ""
+"User\n"
+"data"
+
+msgid ""
+"Shape\n"
+"database"
+msgstr "Figura \ndatabase"
+
+msgid ""
+"Filters\n"
+"database"
+msgstr "Filtra ndatabase"
+
+msgid ""
+"Backup\n"
+"Simulaion"
+msgstr "Tergum \nSimulaion"
+
+msgid ""
+"Solar spectrum\n"
+"generator"
+msgstr ""
+"Solaris spectrum \n"
+"generator"
+
+msgid "Add Material"
+msgstr "Add Material"
+
+msgid "Add Filter"
+msgstr "Filtrum addere"
+
+msgid "Add Spectra"
+msgstr "Add Spectra"
+
+msgid "Add Shape"
+msgstr "Adde figura"
+
+msgid "New backup"
+msgstr "Novum tergum"
+
+msgid "New backup:"
+msgstr "Novum tergum:"
+
+msgid "New backup name"
+msgstr "Novum tergum nomen"
+
+msgid "Shape"
+msgstr "Figura"
+
+msgid "<big><b>Shape file</b></big><br>"
+msgstr "<magnus><b> fasciculus figurae</b></big><br>"
+
+msgid "Blur menu"
+msgstr "LABES menu"
+
+msgid "Normalization editor"
+msgstr "Normalization editor"
+
+msgid "Shape editor"
+msgstr "Figura editor"
+
+msgid "Configure honeycomb"
+msgstr "Configurare favum"
+
+msgid "Configure photonic xtal"
+msgstr "Configurare photonic xtal"
+
+msgid "Configure photonic lens"
+msgstr "Configurare photonic lens"
+
+msgid "Configure saw wave"
+msgstr "Configure vidit fluctus"
+
+msgid "Configure gaussian"
+msgstr "Configurare gaussian"
+
+msgid "Configure boundary"
+msgstr "Configurare terminus"
+
+msgid "Configure threshold"
+msgstr "Configurare limina"
+
+msgid "Configure"
+msgstr "Configurare"
+
+msgid "Show labels"
+msgstr "Ostendere pittacia"
+
+msgid "Show data"
+msgstr "Monstrare data"
+
+msgid "Show axis"
+msgstr "Ostende axis"
+
+msgid "Normalize layer width"
+msgstr "Normalize accumsan latitudine"
+
+msgid "Copy to clipboard"
+msgstr "Ad effingo Clipboard"
+
+msgid "Save as SVG"
+msgstr "Serva ut SVG"
+
+msgid "Redraw"
+msgstr "Redraw"
+
+msgid "Active layer"
+msgstr "Active iacuit"
+
+msgid "From electrical parameters"
+msgstr "Ex electrica parametri"
+
+msgid "From material db"
+msgstr "Ex materia DB *"
+
+msgid "<big><b>Spectra</b></big><br>"
+msgstr "<big><b>spectra</b></big><br>"
+
+msgid "Optical spectrum editor"
+msgstr "Optical spectrum editor"
+
+msgid "Spectra"
+msgstr "Spectra"
+
+msgid "Basic"
+msgstr "Basic"
+
+msgid "Frequency mesh"
+msgstr "frequentia reticulum"
+
+msgid "Additional information about gpvdm is available at"
+msgstr "Additional information about gpvdm is available at"
+
+msgid "Report bugs to:"
+msgstr "Report bugs ad:"
+
+msgid "Deletes the content of all scan directories."
+msgstr "Delet contentum omnium directoriis scan."
+
+msgid "Loads a simulation --load /path/containing/simulation/sim.oghma"
+msgstr "Simulatio onerat --load /path/continens/simulatio/sim.oghma"
+
+msgid "Extract the sim.oghma archive --unpack"
+msgstr "Extract sim.oghma archivum --unpack"
+
+msgid "Extract the sim.oghma archive --pack"
+msgstr "Extract sim.oghma archivum --pack"
+
+msgid "Electrical parameter editor"
+msgstr "Electrical parametri editor"
+
+msgid "Device"
+msgstr "Device"
+
+msgid ""
+"Simulation\n"
+"Notes"
+msgstr ""
+"Simulatio \n"
+"Notes"
+
+msgid ""
+"Hints\n"
+"Window"
+msgstr ""
+"innuit\n"
+"Window"
+
+msgid ""
+"Interface\n"
+"Language"
+msgstr ""
+"Interface\n"
+"Language"
+
+msgid "Assosiated paper"
+msgstr "Assisated charta"
+
+msgid "Documentation"
+msgstr "Documentation"
+
+msgid "Language"
+msgstr "Lingua"
+
+msgid ""
+"<big><b>Record notes about the simulation here</b></big><br>Use this window to make notes "
+"about the simulation."
+msgstr ""
+"<big><b>Recordare de simulatione hic notat</b></big><br> Hac fenestra utere ut notas facias de "
+"simulatione."
+
+msgid "Charge denisty (m^{-3})"
+msgstr "Crimen denisty (m^{-3})"
+
+msgid "Material gradient editor"
+msgstr "Materia CLIVUS editor"
+
+msgid "Save"
+msgstr "salvare"
+
+msgid "New scan"
+msgstr "Novum scan"
+
+msgid "Delete scan"
+msgstr "Delere scan"
+
+msgid "Clone scan"
+msgstr "Clone scan"
+
+msgid "Rename scan"
+msgstr "Rename scan"
+
+msgid "Clean all"
+msgstr "Omnes emundare"
+
+msgid "Run all scans"
+msgstr "Curre omnia lustrat"
+
+msgid "Help"
+msgstr "Auxilium"
+
+msgid "Plot fits"
+msgstr "insidiamini Vices"
+
+msgid "Run simulation no generation"
+msgstr "Simulatio currere non est generatio"
+
+msgid "Run single fit"
+msgstr "Currere unum fit"
+
+msgid "Clean unconverged simulation"
+msgstr "Mundus sine unverged simulation"
+
+msgid "Clean simulation output"
+msgstr "Mundus simulation output"
+
+msgid "Push unconverged to hpc"
+msgstr "Dis unconvered ad hpc"
+
+msgid "Change dir"
+msgstr "Mutatio dir"
+
+msgid "Report"
+msgstr "Report"
+
+msgid "Scan"
+msgstr "Scan"
+
+msgid "Advanced"
+msgstr "Provecta"
+
+msgid "JV experiment window"
+msgstr "JV experimentum fenestra"
+
+msgid ""
+"Import data\n"
+"from file"
+msgstr "Inferre data\\itam file"
+
+msgid ""
+"From\n"
+"Equation"
+msgstr ""
+"Ex \n"
+"Equation"
+
+msgid "Reference information"
+msgstr "Relatio notitia"
+
+msgid "Cost"
+msgstr "Pretium"
+
+msgid "Cost of material"
+msgstr "Sumptus materiales"
+
+msgid "File"
+msgstr "File"
+
+msgid "Align and distribute"
+msgstr "Conlineare et distribuere"
+
+msgid "Left"
+msgstr "left"
+
+msgid "Right"
+msgstr "ius"
+
+msgid "Distribute"
+msgstr "Distribuere"
+
+msgid "z"
+msgstr "z*"
+
+msgid "Exciton simulation editor"
+msgstr "Exciton simulation editor"
+
+msgid ""
+"From\n"
+"File"
+msgstr ""
+"Ex \n"
+"File"
+
+msgid "Insert reference information"
+msgstr "Inserta referat notitia"
+
+msgid ""
+"Are you sure you want to edit the circuit directly?  The circuit will no longer automaticly be "
+"updated as you change the layer structure, and the electrical parameters editor will be "
+"disabled.  Use can use the reset function in the circuit diagram editor to resore this "
+"functionality"
+msgstr ""
+"Certusne esne me circuitionem directe recensere vis? Ambitus non amplius automatice "
+"renovabitur ut structuram lavacrum mutes, ac parametri electrica editor debilis erit. Uti "
+"potest functione resetis uti in diagrammate circum editore ad hanc functionality reponendam"
+
+msgid "Component"
+msgstr "Component"
+
+msgid "Circuit diagram"
+msgstr "Ambitus tabula"
+
+msgid "Use epitaxy as base"
+msgstr "Utere epitaxy ut basis"
+
+msgid "Free hand drawing"
+msgstr "Free manu drawing"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "Variable"
+msgstr "Variabilis"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Max"
+
+msgid "Random function"
+msgstr "Random munus"
+
+msgid "JSON Variable"
+msgstr "JSON Variabilis"
+
+msgid "FDTD Editor"
+msgstr "FDTD Editor"
+
+msgid "Configure hardware"
+msgstr "Configurare hardware"
+
+msgid ""
+"Hardware\n"
+"benchmark"
+msgstr ""
+"Hardware\n"
+"benchmark"
+
+msgid ""
+"RNG\n"
+"test"
+msgstr "RNG\test"
+
+msgid ""
+"Clear\n"
+"Newton cache"
+msgstr "Patet \nNewton cache"
+
+msgid "CPU/GPU configuration"
+msgstr "CPU / GPU configuratione"
+
+msgid "Newton cache"
+msgstr "Newton cache"
+
+msgid "Random numbers"
+msgstr "Random numeris"
+
+msgid "Electrostatic solver"
+msgstr "Electrostatic solver"
+
+msgid "Drift diffusion"
+msgstr "Summa diffusionis"
+
+msgid "Simple circuit solver"
+msgstr "Simplex circuitus solver"
+
+msgid "Poission solver"
+msgstr "venenum solver"
+
+msgid "Poission solver configuration"
+msgstr "Venenum solver configuratione"
+
+msgid "Newton solver"
+msgstr "Newtonus solver"
+
+msgid "Exciton solver"
+msgstr "Exciton solver"
+
+msgid "Singlet solver"
+msgstr "Singlet solver"
+
+msgid "Newton solver configuration"
+msgstr "Newtonus solver configuratione"
+
+msgid "Configuration"
+msgstr "Configurationis"
+
+msgid "Circuit solver configuration"
+msgstr "Circuit solver configuratione"
+
+msgid "Data imported from: "
+msgstr "Data inde:"
+
+msgid "Layer editor"
+msgstr "Accumsan editor"
+
+msgid "Layer name"
+msgstr "accumsan nomen tuum"
+
+msgid "Thicknes"
+msgstr "Thicknes"
+
+msgid "Optical material"
+msgstr "Materia optica"
+
+msgid "Layer type"
+msgstr "Accumsan type"
+
+msgid ""
+"Solve optical\n"
+"problem"
+msgstr "Solve optical \nproblem"
+
+msgid ""
+"Solve thermal\n"
+"problem"
+msgstr "Scelerisque solve \nproblem"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "start:"
+msgstr "initium:"
+
+msgid "stop:"
+msgstr "prohibere:"
+
+msgid "Red=not found in materials DB"
+msgstr "Red = non in materiae DB *"
+
+msgid ""
+"Enable\n"
+"Drift Diff."
+msgstr "Admitte Diff."
+
+msgid ""
+"Enable\n"
+"Auger"
+msgstr "Admitte nAuger"
+
+msgid ""
+"Dynamic\n"
+"SRH traps"
+msgstr ""
+"Dynamic\n"
+"SRH laqueos"
+
+msgid "Min trap depth"
+msgstr "Min captionem profundum"
+
+msgid "Max trap depth"
+msgstr "Max captionem profundum"
+
+msgid "Min Fermi level"
+msgstr "Min Fermi level"
+
+msgid "Fn points"
+msgstr "Fn puncta"
+
+msgid "Fermi integral points"
+msgstr "Fermi puncta integra"
+
+msgid ""
+"Equilibrium\n"
+"SRH traps"
+msgstr "Aequilibrium nSRH insidias"
+
+msgid "Excitons"
+msgstr "Excitons"
+
+msgid ""
+"Excited\n"
+"states laser"
+msgstr "Laser nstates"
+
+msgid "Photon rate equation"
+msgstr "Foton rate aequationis"
+
+msgid ""
+"Excited\n"
+"states OPV"
+msgstr ""
+"Excitatur \n"
+"states OPV"
+
+msgid "Carrier density points"
+msgstr "Density puncta carrier"
+
+msgid "Fermi-dirac integral steps"
+msgstr "Gradus integrales Fermi-dirac"
+
+msgid "Minimum trap depth (eV):"
+msgstr "Captionem minimam profunditatem (eV);"
+
+msgid "That's not a number.."
+msgstr "Non est numerus .."
+
+msgid "Maximum trap depth (eV):"
+msgstr "Maximum captionem profundum (eV);"
+
+msgid "Minimum fermi level (eV):"
+msgstr "Minimum fermi level (eV);"
+
+msgid "Number of carrier density points to calculate:"
+msgstr "Numerus tabellarius densitatis puncta computare:"
+
+msgid "Number of steps in the Fermi-dirac integral:"
+msgstr "Gradus numeri in integro Fermi-dirac;"
+
+msgid "DoS Config"
+msgstr "DoS Mando"
+
+msgid "Dos Config"
+msgstr "Dos Mando"
+
+msgid ""
+"Light\n"
+"Sources"
+msgstr "Lux \nSources"
+
+msgid ""
+"Lasers\n"
+"(fs)"
+msgstr ""
+"Lasers\n"
+"(fs)"
+
+msgid ""
+"Transfer\n"
+"Matrix"
+msgstr "Transfer \nMatrix"
+
+msgid ""
+"Optical\n"
+"Outcoupling"
+msgstr "Optical \nOutcoupling"
+
+msgid ""
+"Ray tracing\n"
+"editor"
+msgstr ""
+"Ray typum \n"
+"editor"
+
+msgid ""
+"Optical\n"
+"Detectors"
+msgstr ""
+"Optical \n"
+"Detectors"
+
+msgid ""
+"FDTD\n"
+"Simulation"
+msgstr ""
+"FDTD\n"
+"Simulation"
+
+msgid ""
+"Mode\n"
+"Calculator"
+msgstr ""
+"Modus\n"
+"Calculator"
+
+msgid ""
+"Optical\n"
+"thickness"
+msgstr "Optical \nthickness"
+
+msgid ""
+"Optical\n"
+"mesh"
+msgstr "Optical \nmesh"
+
+msgid ""
+"Boundary\n"
+"Conditions"
+msgstr ""
+"Terminus \n"
+"Conditions"
+
+msgid "<big><b>Laser setup</b></big><br> Use this window to set up your lasers."
+msgstr "<magnus><b>Laser setup</b></big><br> Hac fenestra utere ut laseres erigas."
+
+msgid ""
+"<big><b>The light sources window</b></big><br>Use this window to setup optical sources for the "
+"transfer matrix, ray tracing and FDTD simulations."
+msgstr ""
+"<big><b>Fontes lucidi fenestra</b></big><br> Hac fenestra utere ut fontes optici habeat ad "
+"transferendum matricem, radium typum et simulationes FDTD."
+
+msgid "<big><b>The ray tracing editor</b></big><br> Use this window to configure ray tracing."
+msgstr ""
+"<magnus><b> editor typum radius</b></big><br> Hac fenestra utere ad typum radium configurandum."
+
+msgid ""
+"<big><b>The detectors window</b></big><br>Use this window to setup optical detectors.  These "
+"can be used for the ray tracing simulations."
+msgstr ""
+"<big><b>Detectors fenestra</b></big><br> Hac fenestra utere ut detectores habeat opticos. Haec "
+"adhiberi possunt ad typum radiorum simulationum."
+
+msgid ""
+"<big><b>FDTD</b></big><br> Use this window to setup a finite difference time domain simulation."
+msgstr ""
+"<big><b>FDTD</b></big><br> Hac fenestra utere ut definitam differentiam temporis dominii "
+"simulatio habeat."
+
+msgid ""
+"<big><b>Mode calculator</b></big><br> Use this window to setup a the optical mode calculator."
+msgstr ""
+"<big><b>Modus calculator</b></big><br> Hac fenestra utere ut modum optici calculatoris habeat."
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh, the window can also be used to change the dimensionality of "
+"the simulation."
+msgstr ""
+"<big><b>Mesh editor</b></big>\\ Hac fenestra ut reticulum habeat, fenestra adhiberi potest "
+"etiam ad mutare dimensionalitatem simulationis."
+
+msgid "Optical Mesh Editor"
+msgstr "Optical Mesh Editor"
+
+msgid "Boundary conditions"
+msgstr "Terminus conditionibus"
+
+msgid ""
+"<big><b>The optical simulation window</b></big><br>Use this window to perform optical "
+"simulations.  Click on the play button to run a simulation."
+msgstr ""
+"<big><b> fenestra simulationis optica</b></big><br> Hac fenestra utere ad simulationes opticas "
+"faciendas. Click in ludo puga simulationem currendi."
+
+msgid ""
+"Click on the play button to run an optical simulation.  The results will be displayed in the "
+"tabs to the right."
+msgstr "Click in ludo puga simulatio optica currere. Eventus in tabs ad dextram ostendentur."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Tutorial video</b></"
+"big><br>Designing optical filters and reflective coatings."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Video tutoris</b></big><br> "
+"Filtra optica designans et lineamenta reflexiva."
+
+msgid ""
+"<big><b>The optical outcoupling window</b></big><br>Use this window to calculate how much "
+"light escapes the device. This is useful whend designing OLEDs and other light emitting "
+"structures."
+msgstr ""
+"<big><b>fenestrae cooptatio optica</b></big><br> Hac fenestra utere ad computandum quantum "
+"levis machinam effugiat. Hoc est utile quando OLEDs et alia luce emittens structuras designans."
+
+msgid ""
+"<big><b>Optical thickness</b></big><br>Usually the optical thickness of a layer will be taken "
+"from the layer structure set out in the layer editor. However, sometimes one wants to simulate "
+"very thick layers. This window will enable you to force the optical thickness to a value while "
+"maintaining it's physical thickness."
+msgstr ""
+"<big><b> Crassitudo optica</b></big><br> Plerumque crassitudo optica iacuit e structura in "
+"tabulato editore posita. Sed interdum quis velit crassum stratis simulare. Haec fenestra "
+"efficiet ut crassitudinem opticam ad valorem cogas, servato crassitudine corporis."
+
+msgid "Edit parasitic components"
+msgstr "Recensere partes parasiticae"
+
+msgid "Parasitic components"
+msgstr "Parasiticum components"
+
+msgid "Registration window"
+msgstr "Adnotatione fenestra"
+
+msgid "Enter the license key below:"
+msgstr "Intra key licentia infra:"
+
+msgid "Key"
+msgstr "Clavis"
+
+msgid "Can't open file "
+msgstr "Non possumus aperire file"
+
+msgid "back"
+msgstr "retro"
+
+msgid "home"
+msgstr "home"
+
+msgid "Scanning probe microscopy editor"
+msgstr "ENARRATIO microscopio specillum editor"
+
+msgid "No files were given to load"
+msgstr "Nulla files data sunt ad onus"
+
+msgid ""
+"3D\n"
+"Mode"
+msgstr ""
+"3D\n"
+"Mode"
+
+msgid "New"
+msgstr "novus"
+
+msgid "Rename"
+msgstr "Rename"
+
+msgid "Run"
+msgstr "Curre"
+
+msgid ""
+"Plot\n"
+"File"
+msgstr ""
+"Plot\n"
+"File"
+
+msgid ""
+"View raw\n"
+"json"
+msgstr "Visum rudis \njson"
+
+msgid "Cache path:"
+msgstr "Cache iter:"
+
+msgid "Newton cache used"
+msgstr "Newton cache usus est"
+
+msgid "The cache directory does not exist"
+msgstr "Latibulum non est"
+
+msgid "The cache path needs to end in cache."
+msgstr "Semita latibulum in cache terminare debet."
+
+msgid "The cache is empty"
+msgstr "Latibulum vacuum est"
+
+msgid "I have emptied the cache"
+msgstr "Exinanivi cache"
+
+msgid "<big><b>Simulation finished!</b></big><br>Click on the plot icon to plot the results"
+msgstr "<magnus><b>simulatio finita!</b></big><br>Click iconem in insidias eventus machinari"
+
+msgid "Ray trace editor"
+msgstr "Ray vestigium editor"
+
+msgid "Fit configure"
+msgstr "Configurare fit"
+
+msgid "Duplicate variables"
+msgstr "Duplicare variables"
+
+msgid "Fit variables"
+msgstr "Fit variables"
+
+msgid "Fit rules"
+msgstr "fit praecepta"
+
+msgid "Configure minimizer"
+msgstr "Configurare minimzer"
+
+msgid "Generaton rate editor"
+msgstr "Generaton rate editor"
+
+msgid "Generation rate (m^{-3}s^{-1})"
+msgstr "Generatio rate (m^{-3}s^{-1})"
+
+msgid "json id"
+msgstr "json id"
+
+msgid "Reference manager"
+msgstr "Reference procurator"
+
+msgid ""
+"Layer\n"
+"editor"
+msgstr ""
+"Layer\n"
+"editor"
+
+msgid "Contacts"
+msgstr "Contactus"
+
+msgid ""
+"Electrical\n"
+"parameters"
+msgstr ""
+"Electrical \n"
+"parameters"
+
+msgid ""
+"Emission\n"
+"parameters"
+msgstr ""
+"Emissio \n"
+"parameters"
+
+msgid ""
+"Substrate\n"
+"xz-size"
+msgstr "Substratum \nxz-size"
+
+msgid ""
+"<big><b>Contacts window</b></big>\n"
+"Use this window to change the layout of the contacts on the device"
+msgstr ""
+"<magnus><b>Noti fenestra</b></big>\\ Hac fenestra ad mutandum notorum extensionem in fabrica"
+
+msgid ""
+"<big><b>Device layers</b></big>\n"
+"Use this window to configure the structure of the device."
+msgstr ""
+"<big><b>Device stratorum</b></big>\n"
+"estra hac fenestra ad structuram machinae configurandam."
+
+msgid ""
+"<big><b>xz dimension editor</b></big>\n"
+"Use this window to configure the xz size of the device."
+msgstr ""
+"<big><b>xz editor dimensio</b></big>\\ Hac fenestra ad xz magnitudinem machinae configuratur."
+
+msgid ""
+"<big><b>Electrical parameters</b></big>\n"
+"Use this window to change the electrical parameters of each layer."
+msgstr ""
+"<big><b>parametri electrica</b></big>\n"
+"e hac fenestra mutandi parametri electrica cuiusque lavacri."
+
+msgid ""
+"<big><b>Emission parameters</b></big>\n"
+"Use this window to set if a layer emits light or not.  You can choose between theoretically "
+"calculated emission spectra and imported experimental spectra."
+msgstr ""
+"<big><b>Emissiones parametri</b></big>\\ Hac fenestra ad pone si iacuit lucem emittit vel non. "
+"Potes eligere inter theoretice spectram emissionem computatam et spectram experimentalem "
+"importatam."
+
+msgid "Frequency start"
+msgstr "Frequency satus"
+
+msgid "Frequency stop"
+msgstr "Frequency stop"
+
+msgid "Max points"
+msgstr "Max puncta"
+
+msgid "Multiply"
+msgstr "Multiplicamini"
+
+msgid "Paramter to change"
+msgstr "Paramter mutandi"
+
+msgid "Parameter scan window"
+msgstr "Parameter scan fenestra"
+
+msgid "Calculate"
+msgstr "Computare"
+
+msgid "Export spectrum"
+msgstr "Spectrum exportare"
+
+msgid "Spectrum"
+msgstr "Spectrum"
+
+msgid "mode Editor"
+msgstr "modus Editor"
+
+msgid "Edit contacts"
+msgstr "Contactus recensere"
+
+msgid "Top/Bottom"
+msgstr "Top/Bottom"
+
+msgid ""
+"Applied\n"
+"voltage"
+msgstr "De \nvoltage"
+
+msgid "Start"
+msgstr "Satus"
+
+msgid "Width"
+msgstr "Latitudo"
+
+msgid "Contact resistance\n"
+msgstr ""
+
+msgid "Shunt resistance"
+msgstr "resistentia shunt"
+
+msgid ""
+"Charge density/\n"
+"Fermi-offset"
+msgstr ""
+"Crimen density/\n"
+"Fermi-offset"
+
+msgid ""
+"Majority\n"
+"carrier"
+msgstr "Maior pars \ncarrier"
+
+msgid "ve0 (m/s)"
+msgstr "ve0 (m/s)"
+
+msgid "vh0 (m/s)"
+msgstr "vh0 (m/s)"
+
+msgid ""
+"Physical\n"
+"model"
+msgstr ""
+"Physica \n"
+"model"
+
+msgid "Neural networks editor"
+msgstr "Neural retiacula editor"
+
+msgid ""
+"Compile\n"
+"to json"
+msgstr ""
+"Compile \n"
+"to json"
+
+msgid "Reporting error...."
+msgstr "Reporting error...."
+
+msgid "Diode"
+msgstr "Diode"
+
+msgid "Power law"
+msgstr "Lex potestas"
+
+msgid "Barrier"
+msgstr "Obex"
+
+msgid "Wire"
+msgstr "Filum"
+
+msgid "Ground"
+msgstr "Humus"
+
+msgid "Voltage source"
+msgstr "Voltage fons"
+
+msgid "Pointer"
+msgstr "Indicium"
+
+msgid "Scroll"
+msgstr "volumen"
+
+msgid "Clean"
+msgstr "Tersus"
+
+msgid "Input vector"
+msgstr "Input vector"
+
+msgid "Output vector"
+msgstr "Output vector"
+
+msgid "Enter the time at which the laser pulse will fire (-1) to turn it off"
+msgstr "Intra tempus quo pulsus laser incendet (-1) ut avertat"
+
+msgid "Sun"
+msgstr "solis"
+
+msgid "Laser"
+msgstr "Laser"
+
+msgid "fs Laser"
+msgstr "fs Laser"
+
+msgid "Enter the start time of the simulation"
+msgstr "Intra tempus simulationis initium"
+
+msgid "Length"
+msgstr "Longitudo"
+
+msgid "dt"
+msgstr "dt"
+
+msgid "Start Voltage"
+msgstr "Satus intentione"
+
+msgid "Stop Voltage"
+msgstr "Subsisto intentione"
+
+msgid "step multiplyer"
+msgstr "gradus multiplicator"
+
+msgid "Sun start"
+msgstr "Sol satus"
+
+msgid "Sun stop"
+msgstr "Sol stop"
+
+msgid "Laser start"
+msgstr "Laser satus"
+
+msgid "Laser stop"
+msgstr "Laser stop"
+
+msgid ""
+"Save\n"
+"video"
+msgstr ""
+"Salvum \n"
+"video"
+
+msgid ""
+"Storyboard\n"
+"to clipboard"
+msgstr "Storyboard \nto clipboard"
+
+msgid "Autoscale"
+msgstr "Autoscale"
+
+msgid "Set log scale y"
+msgstr "Set iniuriarum magnitudine y *"
+
+msgid "Set log scale x"
+msgstr "Pone iniuriarum scale x *"
+
+msgid "Plot"
+msgstr "Insidiarum"
+
+msgid "Scale"
+msgstr "Scale"
+
+msgid "Video"
+msgstr "Video"
+
+msgid ""
+"Set\n"
+"Temperature"
+msgstr ""
+"Set \n"
+"Temperature"
+
+msgid ""
+"Configure\n"
+"Model"
+msgstr ""
+"Configurare \n"
+"Model"
+
+msgid ""
+"Joule\n"
+"Heating"
+msgstr "Joule nHeating"
+
+msgid ""
+"Parasitic\n"
+"Heating"
+msgstr ""
+"Parasiticus\n"
+"Heating"
+
+msgid ""
+"Optical\n"
+"Heating"
+msgstr "Optical \nHeating"
+
+msgid ""
+"Recombination\n"
+"heating"
+msgstr "Recombinationem \nheating"
+
+msgid ""
+"Thermal\n"
+"parameters"
+msgstr "Scelerisque nparameters"
+
+msgid ""
+"Thermal\n"
+"mesh"
+msgstr "Scelerisque nmesh"
+
+msgid ""
+"<big><b>Thermal parameters</b></big>\n"
+"Use this window to change the thermal parameters of each layer."
+msgstr ""
+"<big><b>parametri scelerisque</b></big>\nusquam hac fenestra sunt parametri scelerisque "
+"cuiusque tabulati mutare."
+
+msgid "Enter the new temperature"
+msgstr "Intra novum temperatus"
+
+msgid "Thermal boundary conditions"
+msgstr "Scelerisque terminus conditionibus"
+
+msgid "Configure thermal model"
+msgstr "Configurare scelerisque exemplar"
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh."
+msgstr "<big><b>Mesh editor</b></big>\\ Hac fenestra ut reticulum habeat."
+
+msgid "Thermal Mesh Editor"
+msgstr "Scelerisque Mesh Editor"
+
+msgid "Experimental data"
+msgstr "Experimentalis notitia"
+
+msgid "Delta=Experiment - Simulation"
+msgstr "Delta = Experimentum - Simulatio"
+
+msgid "Configure fit"
+msgstr "Configurare fit"
+
+msgid "Fit patch"
+msgstr "Fit patch"
+
+msgid "Local duplicate"
+msgstr "Locus duplicatus"
+
+msgid "Function"
+msgstr "Officium"
+
+msgid "JSON x"
+msgstr "JSON x"
+
+msgid "JSON y"
+msgstr "JSON y"
+
+msgid "Frequency domain experiment window"
+msgstr "Frequentia domain experimentum fenestra"
+
+msgid "Thermal parameter editor"
+msgstr "Scelerisque parametri editor"
+
+msgid "Device structure"
+msgstr "Fabrica compages"
+
+msgid ""
+"<big><b>The device structure tab</b></big><br> Use this tab to change the structure of the "
+"device, the layer thicknesses and to perform optical simulations.  You can also browse the "
+"materials data base and  edit the electrical mesh."
+msgstr ""
+"<big><b> De fabrica structura tab</b></big><br> Hac tab utere ad structuram machinae, "
+"crassitudinis lavacrum et ad simulationes opticas faciendas. Potes etiam materias datas basi "
+"percurrere et reticulum electricam edit."
+
+msgid "Terminal"
+msgstr "Terminal"
+
+msgid ""
+"<big><b>The terminal window</b></big><br>The output of the model will be displayed in this "
+"window, watch this screen for debugging and convergence information."
+msgstr ""
+"<big><b>fenestra terminalis</b></big><br>exputatio exemplaris in hac fenestra ostendetur, hoc "
+"velum speculare ad informationes debugging et concursus."
+
+msgid "Tutorials/Documentation"
+msgstr "Tutorials / Documentation"
+
+msgid ""
+"<big><b>Tutorials/Documentation</b></big><br>Here you can find tutorials, videos, worksheets, "
+"and talks about this software and simulating opto-electronic devices in general.  Although "
+"this software is easy to use with it's friendly interface, under the hood it is a highly "
+"complex model and powerful model, it is worth taking time to read the documentation to "
+"understand it.  This will enable you to get the most out of this software and your "
+"experimental data."
+msgstr ""
+"<big><b>Tutorialia/Documenta</b></big><br> Hic invenire potes tutorials, videos, officinas et "
+"colloquia de hac programmate et simulando machinas opto-electronic in genere. Licet haec "
+"programmatio faciliter utatur cum amicabili instrumento, sub cucullo valde multiplex est "
+"exemplar ac validum exemplar, idoneum tempus est ut documenta capiat. Hoc te permittet ut "
+"maxime ex hoc programmate et notitia experimentali accipias."
+
+msgid ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Watch the video</a></b></big><br> Performing "
+"my first solar cell simulation"
+msgstr ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Vade vide</a></b></big><br> Faciens me primum "
+"simulationem cellae solaris"
+
+msgid "Output"
+msgstr "Output"
+
+msgid ""
+"<big><b>Output</b></big><br>This shows the root simulation directory, this is where the "
+"results are stored.  Double click on a file to see what is in it.."
+msgstr ""
+"<big><b>Output</b></big><br> Hinc ostendit directorium simulationis radix, hoc est ubi "
+"reponuntur eventus. Geminus click in tabella vide quid in ea sit."
+
+msgid "Information"
+msgstr "Informationes"
+
+msgid ""
+"<big><b>The fitting variables window</b></big><br> Use this window to select the variables use "
+"to perform the fit."
+msgstr ""
+"<magnus><b>Decens variabilium fenestrarum</b></big><br> Hac fenestra utere ad eligendas "
+"variabiles usus ad apta perficienda."
+
+msgid "Fit the simulation to experimental data"
+msgstr "Simulatio fit ad experimentum notitia"
+
+msgid "Data sets"
+msgstr "Data sets"
+
+msgid "Rename the fit:"
+msgstr "Rename apta;"
+
+msgid "Clone the experiment:"
+msgstr "Clone experimentum:"
+
+msgid "Export the simulation"
+msgstr "Simulatio export"
+
+msgid "Zip file"
+msgstr "Zip file"
+
+msgid "Are you sure you want to delete the experiment: "
+msgstr "Visne experimentum delere:"
+
+msgid "Make a new fit:"
+msgstr "Fac novum idoneum:"
+
+msgid "Error function"
+msgstr "Error munus"
+
+msgid "Log scale"
+msgstr "Log scale"
+
+msgid "Open file"
+msgstr "Aperi file"
+
+msgid "Back"
+msgstr "Retro"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "is not a number.."
+msgstr "non est numerus .."
+
+msgid "Complex Density of states editor"
+msgstr "Complexum densitas civitatum editor"
+
+msgid "LUMO numerical"
+msgstr "LUMO numeralis"
+
+msgid "HOMO numerical"
+msgstr "HOMO numeralis"
+
+msgid "Please cite these papers:"
+msgstr "Quaeso chartas hasce:"
+
+msgid "If you publish a paper, book or thesis using results from "
+msgstr "Si chartam edis, libro vel thesi utendo proventuum e"
+
+msgid "This is not a valide e-mail address"
+msgstr "Hoc non est valida inscriptio electronica"
+
+msgid "The e-mail addresses do not match."
+msgstr "Inscriptiones e-mail non aequant."
+
+msgid "Please enter your first name."
+msgstr "Please enter your praenomen."
+
+msgid "Please enter your surname."
+msgstr "Please enter your cognomen."
+
+msgid "Please enter your Company/University."
+msgstr "Please enter your Company/University."
+
+msgid "Please enter how you heard about OghmaNano."
+msgstr "Quaeso, intra quomodo audisti de OghmaNano."
+
+msgid "Please enter what you plan on using OghmaNano for."
+msgstr "Quaeso, intra quod moliris uti pro OghmaNano."
+
+msgid "Your version of OghmaNano is too old to register, please download the latest version."
+msgstr "Tua versio OghmaNano nimis antiqua est quam subcriptio, versionem novissimam fac, sis."
+
+msgid "Please register to use OghmaNano. Thanks!"
+msgstr "Please register to use OghmaNano. Gratias!"
+
+msgid "First name"
+msgstr "Praenomen"
+
+msgid "Surname"
+msgstr "Surname"
+
+msgid "Company/University"
+msgstr "Company/University"
+
+msgid "E-mail"
+msgstr "E-mail"
+
+msgid "Confirm e-mail"
+msgstr "Confirmare e-mail"
+
+msgid "I heard about OghmaNano from:"
+msgstr "Audivi de OghmaNano ex:"
+
+msgid "I am most interested in simulating:"
+msgstr "Ego sum maxime interested in simulando;"
+
+msgid " will not work until you register.  Would do you want to exit?"
+msgstr "non operabitur donec subcriptio. Visne exire?"
+
+msgid "Suns v.s. Voc"
+msgstr "soles v.s. Voc"
+
+msgid "Light source (y0)"
+msgstr "Lux fons (y0)"
+
+msgid "Light source"
+msgstr "Lux fons"
+
+msgid "Filters (y0)"
+msgstr "Filtra (y0)"
+
+msgid "Filters"
+msgstr "Filtra"
+
+msgid "Run optical simulation"
+msgstr "Optical currere simulation"
+
+msgid ""
+"Transfer\n"
+"matrix"
+msgstr "Transfer \nmatrix"
+
+msgid ""
+"Transfer\n"
+"matrix FD"
+msgstr ""
+"Transfer\n"
+"matrix FD"
+
+msgid ""
+"Exponential\n"
+"profile"
+msgstr ""
+"Exponentialis \n"
+"profile"
+
+msgid ""
+"Flat\n"
+"profile"
+msgstr ""
+"Flat\n"
+"profile"
+
+msgid ""
+"From\n"
+"file"
+msgstr ""
+"Ex \n"
+"file"
+
+msgid ""
+"From QE\n"
+"spectra"
+msgstr ""
+"Ex QE\n"
+"spectra"
+
+msgid ""
+"Constant\n"
+"value"
+msgstr ""
+"Constant\n"
+"value"
+
+msgid "Edit constant"
+msgstr "Edit constant"
+
+msgid "Optics"
+msgstr "Optica"
+
+msgid ""
+"Machine\n"
+"Learning"
+msgstr "Apparatus nLearning"
+
+msgid ""
+"Edit\n"
+"Probes"
+msgstr ""
+"Edit\n"
+"Probes"
+
+msgid ""
+"Parameter\n"
+"scan"
+msgstr ""
+"Parameter\n"
+"scan"
+
+msgid ""
+"Fit to\n"
+"experiment"
+msgstr "Fit ut \\ experimentum"
+
+msgid ""
+"Json\n"
+"explorer"
+msgstr "Json explorator"
+
+msgid "Matlab paths"
+msgstr "Matlab semitae"
+
+msgid "Python paths"
+msgstr "Python gressus"
+
+msgid ""
+"Script\n"
+"Editor"
+msgstr ""
+"Script\n"
+"Editor"
+
+msgid ""
+"<big><b>Probes window</b></big><br>Use this window to setup simulation probes, which can be "
+"used to extract values from the simulations at any given mesh point."
+msgstr ""
+"<big><b>Probes fenestra</b></big><br> Hac fenestra utere ut simulationum rimatur habeatque "
+"quae ad valores extrahere possunt ex simulationibus in quovis reticulo dato."
+
+msgid ""
+"<big><b>Machine learning window</b></big><br>Use this window to generate machine learning "
+"vectors"
+msgstr ""
+"<magnus><b>Machina fenestra discendi</b></big><br> Hac fenestra utere ad machinam discendi "
+"vectors generandam"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Very often it is useful to be able to systematically "
+"very a device parameter such as mobility or density of trap states.  This window allows you to "
+"do just that."
+msgstr ""
+"<big><b>fenestram scan</b></big><br> Saepius utile est ut parametri ratiocinari admodum possit "
+"ut mobilitas vel densitas laquei civitatum. Haec fenestra tibi permittit ut id facias."
+
+msgid "Use the plus icon to add a new scan line to the list."
+msgstr "Plus icon utere ut novam scan lineam ad indicem addere."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Tutorial video</b></"
+"big><br>Using the parameter scan window."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Videi tutoris</b></big><br>per "
+"fenestram parametri ."
+
+msgid ""
+"<big><b>Fit window</b></big><br> Use this window to fit the simulation to experimental data.  "
+"The model uses advanced and optimized fitting algorithms to fit the model to your experimental "
+"data, so that material parameters such as mobilities and recombination rates can be extracted."
+msgstr ""
+"<big><b>Fenestra apta</b></big><br> Hac fenestra utere ut simulatio ad notitias experimentales "
+"aptus sit. Exemplar usus algorithmos provectos et optimized aptat ad exemplar data "
+"experimentali tuo, ita ut parametri materiales sicut mobilitates et recombinationes rates "
+"extrahi possint."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Watch the tutorial video 1</"
+"b></big><br>Fitting the model to experimental data to extract mobility and recombination rate "
+"parameters."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Vigilate video doceo 1</b></"
+"big><br> Decens exemplar ad experimentalis notitia extrahere mobilitatem et recombinationem "
+"rate parametri."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Watch the tutorial video 2</"
+"b></big><br>Fitting the model to large area solar cells"
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Vigilare video 2</b></big><br> "
+"Decens exemplar ad magna area cellulas solares"
+
+msgid "Run scan"
+msgstr "Currere scan"
+
+msgid "Clean simulation"
+msgstr "Mundus simulatio"
+
+msgid "Fast Optimizer"
+msgstr "Fast Optimizer"
+
+msgid "Build scan"
+msgstr "Aedificate scan"
+
+msgid "Rerun"
+msgstr "Rerun"
+
+msgid "Archive simulations"
+msgstr "Archive simulationes"
+
+msgid "Notes"
+msgstr "Notae"
+
+msgid "Simulations"
+msgstr "Simulationes"
+
+msgid "New experiment"
+msgstr "Novum experimentum"
+
+msgid "Delete experiment"
+msgstr "Delere experimentum"
+
+msgid "Refresh"
+msgstr "Renovare"
+
+msgid "Clone experiment"
+msgstr "Clone experimentum"
+
+msgid "Rename experiment"
+msgstr "Rename experimentum"
+
+msgid ""
+"Export\n"
+"Data"
+msgstr ""
+"Export\n"
+"Data"
+
+msgid "Import data"
+msgstr "Importo data"
+
+msgid "One itteration"
+msgstr "unus itteration"
+
+msgid "Run fit"
+msgstr "Curre fit"
+
+msgid ""
+"Fit this\n"
+"data set"
+msgstr "Hoc fit \\ set ndata"
+
+msgid ""
+"Dont' fit this\n"
+"data set"
+msgstr "Dont apta hoc \\ set ndata"
+
+msgid "Mesh point"
+msgstr "Mesh punctum"
+
+msgid "Average"
+msgstr "Mediocris"
+
+msgid "Max pos y-slice"
+msgstr "Max pos y-slice"
+
+msgid "Max pos y-slice STD-Left"
+msgstr "Max pos y scalpere STD-Left"
+
+msgid "Max pos y-slice STD-Right"
+msgstr "Max pos y scalpere STD-ius"
+
+msgid "Max pos y-slice val"
+msgstr "Max pos y-slice val"
+
+msgid "Max pos y-slice STD-Left val"
+msgstr "Max pos y-slice STD-Left val"
+
+msgid "Max pos y-slice STD-Right val"
+msgstr "Max pos y-slice Std-ius val"
+
+msgid "x:"
+msgstr "x:"
+
+msgid "y:"
+msgstr "y:"
+
+msgid "z:"
+msgstr "z:"
+
+msgid "Move up"
+msgstr "Movere"
+
+msgid "Move down"
+msgstr "Movere"
+
+msgid "Add layer"
+msgstr "Add accumsan"
+
+msgid "Add object inside"
+msgstr "Adde quod intus"
+
+msgid "Delete"
+msgstr "Delere"
+
+msgid "Copy json"
+msgstr "Effingo json"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Join mesh"
+msgstr "Iungere reticulum"
+
+msgid "Group (Ctrl+G)"
+msgstr "Coetus (Ctrl+G)"
+
+msgid "Ungroup (Ctrl+U)"
+msgstr "Noli ordinare (CtrlTab + U)"
+
+msgid "Script"
+msgstr "Script"
+
+msgid "Copy path (Python)"
+msgstr "Exemplar iter (Python)"
+
+msgid "View"
+msgstr "Visum"
+
+msgid "Show solid"
+msgstr "Ostende solidum"
+
+msgid "Show mesh"
+msgstr "Ostende reticulum"
+
+msgid "Show cut through x"
+msgstr "Ostende sectis per x *"
+
+msgid "Show cut through y"
+msgstr "Ostende interficiam per y *"
+
+msgid "Hidden"
+msgstr "Occultus"
+
+msgid "New shape name"
+msgstr "Nova figura nominis"
+
+msgid "Rename the layer:"
+msgstr "Rename lavacrum:"
+
+msgid ""
+"Thermal model\n"
+"enabled"
+msgstr "Scelerisque exemplar \nenabled"
+
+msgid ""
+"<big><b>Thermal solver switched on</b></big><br>The heat equation will be solved across the "
+"device"
+msgstr ""
+"<magnus><b>Scelerisque solver switched in</b></big><br> Aequatio caloris per cogitationem "
+"solvetur"
+
+msgid ""
+"Iso-thermal\n"
+"model"
+msgstr "Iso-scelerisque \nmodel"
+
+msgid ""
+"<big><b>Isothermal mode</b></big><br>A single temperature will be assumed across the entire "
+"device."
+msgstr "<big><b>modus isothermal</b></big><br> Per totam machinam una temperies ponetur."
+
+msgid "Isothermal"
+msgstr "Isothermal"
+
+msgid "Add"
+msgstr "Add"
+
+msgid "Delete row"
+msgstr "Delete row"
+
+msgid "Laser start time"
+msgstr "Satus tempus laser"
+
+msgid "Simulation start time"
+msgstr "Simulatio incipit tempus"
+
+msgid "Loop"
+msgstr "Loop"
+
+msgid "Time domain experiment window"
+msgstr "Tempus domain experimentum fenestra"
+
+msgid "Simulation"
+msgstr "simulatio"
+
+msgid "Config"
+msgstr "Mando"
+
+msgid "Loop configuration"
+msgstr "configuratione loop"
+
+msgid "Random variables"
+msgstr "Random variables"
+
+msgid "Patch"
+msgstr "patch"
+
+msgid "Duplicate"
+msgstr "Duplicare"
+
+msgid "Neural networks"
+msgstr "Neural networks"
+
+msgid "Compiled json written to "
+msgstr "Composuit json scriptum to"
+
+msgid "Copying files and configuring"
+msgstr "Effingo lima ac Vestibulum"
+
+msgid "Finish time:"
+msgstr "Tempus consummare:"
+
+msgid "Running"
+msgstr "Running"
+
+msgid "Cluster status"
+msgstr "Botrus status"
+
+msgid "Constant bias"
+msgstr "Assiduus bias"
+
+msgid "Change"
+msgstr "Mutatio"
+
+msgid "From file"
+msgstr "Ex file"
+
+msgid ""
+"Export\n"
+"image"
+msgstr "Export nimage"
+
+msgid "<big><b>Filters</b></big><br>Use this tab to edit the optical filters"
+msgstr "<magnus><b> Filtra</b></big><br> Hac tab utere ad filtras opticas emendo"
+
+msgid "Filter editor"
+msgstr "Saccare editorem"
+
+msgid "Filter"
+msgstr "Filtrum"
+
+msgid "Not a valid license number"
+msgstr "Non valet licentia numerus"
+
+msgid "This key has been used too many times."
+msgstr "Haec clavis nimis multis temporibus adhibita est."
+
+msgid "This key has expired."
+msgstr "Haec clavis expiravit."
+
+msgid ""
+"This version of OghmaNano is too old to validate it's key, please download the latest version."
+msgstr ""
+"Haec versio OghmaNano nimis antiqua est ut clavis eius convalidetur, versionem novissimam fac "
+"quaeso."
+
+msgid "Can't access the internet"
+msgstr "Penitus accedere non possunt"
+
+msgid "Key manager"
+msgstr "Key procurator"
+
+msgid "Data"
+msgstr "Data"
+
+msgid ""
+"JV\n"
+"editor"
+msgstr ""
+"JV\n"
+"editor"
+
+msgid ""
+"Time domain\n"
+"editor."
+msgstr "Tempus domain neditor."
+
+msgid ""
+"FX domain\n"
+"editor"
+msgstr ""
+"FX domain\n"
+"editor"
+
+msgid ""
+"CV\n"
+"editor"
+msgstr ""
+"CV\n"
+"editor"
+
+msgid ""
+"Suns Voc\n"
+"editor"
+msgstr ""
+"soles Voc\n"
+"editor"
+
+msgid ""
+"Suns Jsc\n"
+"editor"
+msgstr ""
+"soles Jsc\n"
+"editor"
+
+msgid ""
+"CE\n"
+"editor"
+msgstr ""
+"CE\n"
+"editor"
+
+msgid ""
+"PL\n"
+"editor"
+msgstr ""
+"PL \n"
+"editor"
+
+msgid ""
+"Exciton\n"
+"editor"
+msgstr ""
+"Exciton\n"
+"editor"
+
+msgid ""
+"Quantum\n"
+"efficiency"
+msgstr ""
+"Quantum\n"
+"efficiency"
+
+msgid ""
+"Electrical\n"
+"equilibrium"
+msgstr "Electrical nequilibrium"
+
+msgid ""
+"Polynomial\n"
+"editor"
+msgstr "Polynomial neditor"
+
+msgid ""
+"Calculate\n"
+"the cost"
+msgstr "Adice \nthe pretium"
+
+msgid ""
+"scanning probe\n"
+"microscopy"
+msgstr "intuens probe \nmicroscopy"
+
+msgid ""
+"Output\n"
+"Files"
+msgstr ""
+"Output\n"
+"Files"
+
+msgid ""
+"Simulation\n"
+"Hardware"
+msgstr "Simulatio nHardware"
+
+msgid ""
+"<big><b>The time mesh editor</b></big><br> To do time domain simulations one must define how "
+"voltage the light vary as a function of time.  This can be done in this window.  Also use this "
+"window to define the simulation length and time step."
+msgstr ""
+"<big><b>Tempus reticulum editor</b></big><br> Ad simulationes temporis regiones faciendas "
+"definire oportet quomodo voltatio lucis varietur ut temporis munus. Hoc in hac fenestra fieri "
+"potest. Etiam hac fenestra simulationem longitudinis et temporis gradus definire."
+
+msgid ""
+"<big><b>Frequency domain mesh editor</b></big><br> Some times it is useful to do frequency "
+"domain simulations such as when simulating impedance spectroscopy.  This window will allow you "
+"to choose which frequencies will be simulated."
+msgstr ""
+"<big><b>frequentia domain editorem reticulum</b></big><br> Aliquando utile est facere "
+"simulationes frequentiae domain sicut cum spectroscopia impedientia simulantia. Haec fenestra "
+"permittet te eligere, quae frequentiae simulandae erunt."
+
+msgid ""
+"<big><b>Capacitance voltage editor</b></big><br> Use this editor to change serup capacitance "
+"voltage simulation."
+msgstr ""
+"<big><b>Horator voltage capacitantia</b></big><br> Hoc editore utere ad mutationem serup "
+"capacitatis voltage simulationis."
+
+msgid ""
+"<big><b>Scanning probe microscopy</b></big><br> Use this window to configure the scanning "
+"probe microscopy simulations."
+msgstr ""
+"<big><b>Aspiciendo explorationem microscopiam</b></big><br> Hac fenestra utere ad icones "
+"microscopiae intuens configurare."
+
+msgid ""
+"<big><b>PL simulation editor</b></big><br> Use this window to configure the steady state "
+"photoluminescence simulation."
+msgstr ""
+"<big><b>PL editor simulationis</b></big><br> Hac fenestra utere ad statum photoluminescentiae "
+"simulationem configurandam."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Watch the youtube video</a></"
+"b></big><br>Watch the video on perfomring PL simulation."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Vigilate video youtube</a></"
+"b></big><br>Watch video de faciendo PL simulationem."
+
+msgid ""
+"<big><b>Suns voc simulation editor</b></big><br> Use this window to select the step size and "
+"parameters of the JV simulations."
+msgstr ""
+"<big><b>soles voc simulationis editor</b></big><br> Hac fenestra utere ad gradum magnitudinis "
+"et parametri Vicarii simulationum eligere."
+
+msgid ""
+"<big><b>Suns Jsc simulation editor</b></big><br> Use this window to select the step size and "
+"parameters of the JV simulations."
+msgstr ""
+"<big><b>soles Jsc simulation editor</b></big><br> Hac fenestra utere ad gradum magnitudinis et "
+"parametri Vicarii simulationum eligere."
+
+msgid ""
+"<big><b>Charge Extraction editor</b></big><br> This performs charge extraction experiments in "
+"time domain, accounting for recombination losses.  If you don’t mind about accounting for "
+"recombination losses on extraction just run a JV curve or a Suns-Voc simulation and use the "
+"charge.dat file."
+msgstr ""
+"<big><b>extractionis crimen editor</b></big><br> Hoc crimen extractionis experimentorum in "
+"tempore dominico praestat, ac recombinationem damna reddens. Si non sapis de recombinatione "
+"damna de extractione ratiocinandi modo curvam JV vel Suns-Voc simulationem detegere et lima "
+"lima utere."
+
+msgid ""
+"<big><b>Costs window</b></big>\n"
+"Use this window to calculate the cost of the solar cell and the energy payback time."
+msgstr ""
+"<magna><b>Astra fenestra</b></big>\\ Hac fenestra computare sumptus cellae solaris et tempus "
+"energiae solvendi."
+
+msgid "<big><b>JV simulation editor</b></big><br> Use this window to configure JV simulations."
+msgstr ""
+"<big><b>JV simulation editor</b></big><br> Hac fenestra utere ad JV simulationes configurandas."
+
+msgid ""
+"<big><b>Polynomial editor</b></big><br> Use this window to generate random date sets for "
+"resting the fitting model."
+msgstr ""
+"<big><b> editor Polynomialis</b></big><br> Hac fenestra utere ad generandum tempus temere "
+"ponendo ad exemplar aptae restinguendae."
+
+msgid ""
+"<big><b>Exciton simulation editor</b></big><br> Use this window to configure exciton "
+"simulations."
+msgstr ""
+"<big><b>Exciton simulationis editor</b></big><br> Hac fenestra utere ad simulationes excitonas "
+"configurandas."
+
+msgid ""
+"<big><b>Simulation hardware</b></big><br>Use this window to change how the model uses the "
+"computer's hardware."
+msgstr ""
+"<magnus><b>simulatio hardware</b></big><br> Hac fenestra utere ad mutandum quomodo exemplar "
+"hardware computatoris utitur."
+
+msgid "Output files"
+msgstr "Output files"
+
+msgid "Banned files and tokens"
+msgstr "Interdictum files et signa"
+
+msgid "Probes"
+msgstr "Probes"
+
+msgid "File name"
+msgstr "File nomen"
+
+msgid "Probe"
+msgstr "Probe"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Now using the drop down menu in the prameter to change "
+"'column', select the device parameter you wish to vary, an example may be dos0/Electron "
+"Mobility. Now enter the values you would like it to scan oveer in the  'Values', an example "
+"could be '1e-3 1e-4 1e-5 1e-6'.  And hit the double arrorw to run the simulation."
+msgstr ""
+"<big><b>Fenestra scan</b></big><br> Nunc utens in prametris utens gutta deorsum ad mutare "
+"'columnam', elige moduli fabrica quod variare volueris, exemplum dos0/ esse potest. Electron "
+"Mobility. Nunc valores intrant, quos in \"Valores\" evehi velis, exemplum esse potuit '1e-3 "
+"1e-4 1e-5 1e-6'. Et ast duplex arrorw simulatio currere."
+
+msgid "Neural network editor"
+msgstr "Neural network editor"
+
+msgid "ML Input vector"
+msgstr "ML Input vector"
+
+msgid "ML Output vector"
+msgstr "ML Output vector"
+
+msgid "Optimizer"
+msgstr "Optimizer"
+
+msgid "Scan - Configure Optimizer"
+msgstr "Scan - Configure Optimizer"
+
+msgid "Solar Spectrum Generator"
+msgstr "Solaris Imaginis Generator"
+
+msgid "Show energies"
+msgstr "Ostende vires"
+
+msgid "Plot token values"
+msgstr "Insidiamini indicium values"
+
+msgid "Suns Jsc simulation editor"
+msgstr "Simulatio soles Jsc editor"
+
+msgid "Disabled"
+msgstr "debilitatum"
+
+msgid ""
+"Ray\n"
+"trace"
+msgstr ""
+"Ray\n"
+"trace"
+
+msgid ""
+"Perfect\n"
+"outcoupling"
+msgstr "Perfectum \noutcoupling"
+
+msgid "time mesh"
+msgstr "tempus reticulum"
+
+msgid "Explore the simulation data structure"
+msgstr "Explorarent simulationis notitia structuram"
+
+msgid "Interface editor"
+msgstr "Interface editor"
+
+msgid "Sim name"
+msgstr "Sim name"
+
+msgid "Vectors"
+msgstr "Vectors"
+
+msgid "Cluster get data"
+msgstr "Botri adepto notitia"
+
+msgid "Copy src to cluster"
+msgstr "Effingo src ad botrum portassent"
+
+msgid "Make on cluster"
+msgstr "Fac in botro"
+
+msgid "Clean cluster"
+msgstr "Botrus mundus"
+
+msgid "Kill all cluster code"
+msgstr "Occide omnes botrum portassent codice"
+
+msgid "Sync"
+msgstr "Sync"
+
+msgid "Cluster"
+msgstr "Botrus"
+
+msgid "3D object viewer"
+msgstr "3D object videntium"
+
+msgid "Machine learning"
+msgstr "Apparatus doctrina"
+
+msgid ""
+"Build\n"
+"vectors"
+msgstr "Ædificate \nvectors"
+
+msgid ""
+"Norm\n"
+"vectors"
+msgstr ""
+"Norm\n"
+"vectors"
+
+msgid ""
+"Run\n"
+"Generator"
+msgstr ""
+"Curre \n"
+"Generator"
+
+msgid "Clean files"
+msgstr "Tersus files"
+
+msgid "Generator"
+msgstr "Generator"
+
+msgid "Clone"
+msgstr "Clone"
+
+msgid "Building simulations: "
+msgstr "Simulationes aedificans:"
+
+msgid "Building vectors: "
+msgstr "Vectors aedificationem:"
+
+msgid "The directory does not exist: "
+msgstr "Directorium non est:"
+
+msgid "Loading"
+msgstr "Loading"
+
+msgid "Rename:"
+msgstr "Rename:"
+
+msgid "Clone:"
+msgstr "Clone:"
+
+msgid "Are you sure you want to delete : "
+msgstr "Visne delere :"
+
+msgid "Make a new:"
+msgstr "Fac novum;"
+
+msgid "Delete file"
+msgstr "Delere file"
+
+msgid "Clone object"
+msgstr "Clone object"
+
+msgid "New shape name:"
+msgstr "Figura nova nominis:"
+
+msgid "I cant write to:"
+msgstr "Ego Cant scribere:"
+
+msgid ""
+"This means either the disk is full or your system administrator has not given you write "
+"permissions to that location."
+msgstr ""
+"Hoc modo vel orbis plenus est vel administrator systematis tui non dedit licentiam scribendi "
+"ad illum locum."
+
+msgid "Merge shapes to new"
+msgstr "Merge formas novas"
+
+msgid "name"
+msgstr "nomen"
+
+msgid "path"
+msgstr "iter"
+
+msgid "ip"
+msgstr "ip"
+
+msgid "start"
+msgstr "satus"
+
+msgid "stop"
+msgstr "prohibere"
+
+msgid "CPUs"
+msgstr "CPUs"
+
+msgid "status"
+msgstr "status"
+
+msgid "Adding: "
+msgstr "Addens:"
+
+msgid "No sim dir name"
+msgstr "Non sim nomine dir"
+
+msgid ""
+"I can't load flat_list.inp.  This usually means there is a problem with how you have set up "
+"your scan."
+msgstr "Non possum load flat_list.inp. Solet significat difficultas quam posuisti scan tuum."
+
+msgid "Problem loading file."
+msgstr "Problema onerant fasciculi."
+
+msgid "Problem generating tree."
+msgstr "Queritur lignum generans."
+
+msgid "Lambda stop"
+msgstr "Labda stop"
+
+msgid "File containing generation rate"
+msgstr "Tabularium continens generationis rate"
+
+msgid "Photon efficiency"
+msgstr "Photon efficientiam"
+
+msgid "QE spectra file"
+msgstr "QE spectra fasciculi"
+
+msgid "Incoherent wavelengths"
+msgstr "aequalitatem cohaerens"
+
+msgid "Mesh layers must equal device layers"
+msgstr "Mesh stratis aequare fabrica stratis"
+
+msgid "Light spectrum"
+msgstr "Lumen spectrum"
+
+msgid "Light multiplyer"
+msgstr "Lux multiplicator"
+
+msgid "Photo current density"
+msgstr "Photo current densitas"
+
+msgid "Photo current"
+msgstr "Photo current"
+
+msgid "Invert"
+msgstr "Invert"
+
+msgid "Optical filter material"
+msgstr "Optical materia filter"
+
+msgid "dB"
+msgstr "dB*"
+
+msgid "Degrees"
+msgstr "Gradus"
+
+msgid "n"
+msgstr "n"
+
+msgid "Illuminate from"
+msgstr "Illuminare a"
+
+msgid "Top (y0)"
+msgstr "Top (y0)"
+
+msgid "Bottom (y1)"
+msgstr "Bottom (y1)"
+
+msgid "Left (x0)"
+msgstr "Reliquit (x0)"
+
+msgid "Right (x1)"
+msgstr "Recte (x1)"
+
+msgid "Front (z0)"
+msgstr "Front (z0)"
+
+msgid "Back (z1)"
+msgstr "Retro (z1)"
+
+msgid "xyz"
+msgstr "xyz"
+
+msgid "Log fit"
+msgstr "Log fit"
+
+msgid "Opperation"
+msgstr "Operatio"
+
+msgid "Enable vector"
+msgstr "Admitte vector"
+
+msgid "Edit patch"
+msgstr "Recensere panni rudis"
+
+msgid "Edit vectors"
+msgstr "Edit vector"
+
+msgid "Number of archives"
+msgstr "Numerus tabularum"
+
+msgid "Simulations per archive"
+msgstr "Simulationes per archivum"
+
+msgid "Random distribution"
+msgstr "Random distribution"
+
+msgid "Log"
+msgstr "Log"
+
+msgid "Linear"
+msgstr "Linear"
+
+msgid "Archive path"
+msgstr "Archive iter"
+
+msgid "Vector file name"
+msgstr "Nomen file vector"
+
+msgid "Crash time"
+msgstr "Cras tempus"
+
+msgid "Build vectors when done"
+msgstr "Cum aedificare vector factum"
+
+msgid "ML Output Vector"
+msgstr "ML Output Vector"
+
+msgid "ML Input Vector"
+msgstr "ML Input Vector"
+
+msgid "file"
+msgstr "file"
+
+msgid "Experimental file"
+msgstr "Fasciculus experimentalis"
+
+msgid "multiplier"
+msgstr "multiplicator"
+
+msgid "Multiplier"
+msgstr "Multiplicatio"
+
+msgid "json_src"
+msgstr "json_src"
+
+msgid "json_dest"
+msgstr "json_dest"
+
+msgid "Laser wavelength"
+msgstr "laser adsum"
+
+msgid "Length of pulse"
+msgstr "Longitudo pulsus"
+
+msgid "Spot size x"
+msgstr "Macula magnitudine x *"
+
+msgid "Spot size y"
+msgstr "Macula magnitudine y *"
+
+msgid "Energy in pulse"
+msgstr "Energy in pulsus"
+
+msgid "Efficiency of photons"
+msgstr "Efficaciam photons"
+
+msgid "Solve optical problem"
+msgstr "Solve problema optical"
+
+msgid "Yes - n/k"
+msgstr "Ita - n/k"
+
+msgid "Yes - k"
+msgstr "Ita - k"
+
+msgid "No"
+msgstr "No"
+
+msgid "Yes"
+msgstr "Ita"
+
+msgid "contact"
+msgstr "contactus"
+
+msgid "active layer"
+msgstr "active iacuit"
+
+msgid "other"
+msgstr "alius"
+
+msgid "Optical thickness"
+msgstr "Optical crassitudine"
+
+msgid "Free carrier statistics"
+msgstr "Free carrier Statistics"
+
+msgid "Maxwell Boltzmann - analytic"
+msgstr "Maxwell Boltzmann - analytic"
+
+msgid "Maxwell Boltzmann - numerical+analytic"
+msgstr "Maxwell Boltzmann - numeralis+analyticus"
+
+msgid "Maxwell Boltzmann - full numerical"
+msgstr "Maxwell Boltzmann - plenus numeralis"
+
+msgid "Ferm-Dirac - numerical"
+msgstr "Ferm-Dirac - numeralis"
+
+msgid "<b>Free carriers</b>"
+msgstr "<b>Free portatores</b>"
+
+msgid "Effective density of free electron states (@300K)"
+msgstr "Efficax densitas liberorum electronicarum civitatum (@ 300K)"
+
+msgid "Effective density of free hole states (@300K)"
+msgstr "Densitas efficax civitatibus liberae foraminis (@ 300K)"
+
+msgid "Enable T dependent free carrier mob"
+msgstr "Admitte T dependens liberum vehiculum turba"
+
+msgid "Enable \\u03BB power in free to free recombination"
+msgstr "Admitte u03BB potestatem liberam ad recombinationem \\"
+
+msgid "Show excited singlet states"
+msgstr "Monstra civitatibus excitatur singlet"
+
+msgid "<b>Equilibrium SRH traps</b>"
+msgstr "<b>Equilibrium SRH insidiae</b>"
+
+#, python-brace-format
+msgid "n_{1}"
+msgstr "n_{1}"
+
+#, python-brace-format
+msgid "p_{1}"
+msgstr "p_{1}"
+
+#, python-brace-format
+msgid "tau_{n}"
+msgstr "tau_{n}"
+
+#, python-brace-format
+msgid "tau_{p}"
+msgstr "tau_{p}"
+
+msgid "<b>Non-equilibrium SRH traps</b>"
+msgstr "<b>Non aequilibrium SRH insidiae</b>"
+
+msgid "Number of traps"
+msgstr "Numerum insidiarum"
+
+msgid "DoS distribution"
+msgstr "DoS distribution"
+
+msgid "Complex"
+msgstr "Complexa"
+
+msgid "Exponential"
+msgstr "Exponentialis"
+
+msgid "Electron trap density"
+msgstr "Electron captionem density"
+
+msgid "Hole trap density"
+msgstr "Foraminis captionem density"
+
+msgid "Electron tail slope"
+msgstr "Cauda electronica fastigio"
+
+msgid "Hole tail slope"
+msgstr "Foramen cauda fastigio"
+
+msgid "Free electron to Trapped electron"
+msgstr "Free electronic ut Capti electronico"
+
+msgid "Trapped electron to Free hole"
+msgstr "Capti electronic ad Free foraminis"
+
+msgid "Trapped hole to Free electron"
+msgstr "Capti foraminis ad Free electronic"
+
+msgid "Free hole to Trapped hole"
+msgstr "Capti foraminis ad liberum foraminis"
+
+msgid "Enable/Disable"
+msgstr "Admitte / inactivare"
+
+msgid "<b>Excitons</b>"
+msgstr "<b>Excitons</b>"
+
+msgid "Scattering length"
+msgstr "Dispergat longitudo"
+
+msgid "Life time"
+msgstr "Vita"
+
+#, python-brace-format
+msgid "k_{pl}"
+msgstr "k_{pl}"
+
+#, python-brace-format
+msgid "k_{fret}"
+msgstr "k_{fret}"
+
+#, python-brace-format
+msgid "k_{alpha}"
+msgstr "k_{alpha}"
+
+#, python-brace-format
+msgid "k_{dis}"
+msgstr "k_{dis}"
+
+msgid "Max itterations"
+msgstr "Max itterations"
+
+msgid "Convergence error"
+msgstr "Concursus error"
+
+#, python-brace-format
+msgid "Boundary condition for y_{min}"
+msgstr "Terminus condicionis pro y_{min}"
+
+msgid "Dirichlet"
+msgstr "Dirichlet"
+
+msgid "ABC"
+msgstr "ABC"
+
+msgid "Periodic"
+msgstr "Periodic"
+
+#, python-brace-format
+msgid "Boundary condition for y_{max}"
+msgstr "Terminus condicio pro y_{max}"
+
+#, python-brace-format
+msgid "Boundary condition for x_{min}"
+msgstr "Terminus condicionis pro x_{min}"
+
+#, python-brace-format
+msgid "Boundary condition for x_{max}"
+msgstr "Terminus condicionis pro x_{max}"
+
+#, python-brace-format
+msgid "Boundary condition for z_{min}"
+msgstr "Terminus condicionis z_{min}"
+
+#, python-brace-format
+msgid "Boundary condition for z_{max}"
+msgstr "Terminus conditio pro z_{max}"
+
+msgid "Neumann (==0)"
+msgstr "Neumann (==0)"
+
+msgid "Heatsink"
+msgstr "Heatsink"
+
+#, python-brace-format
+msgid "Exciton density at y_{min}"
+msgstr "Exciton densitatis ad y_{min}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{min}"
+msgstr "Conductivity of heat sink y_{min}"
+
+#, python-brace-format
+msgid "Heat sink length y_{min}"
+msgstr "Calor submersa longitudo y_{min}"
+
+#, python-brace-format
+msgid "Exciton density at y_{max}"
+msgstr "Exciton densitatis ad y_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{max}"
+msgstr "Conductivity of heat sink y_{max}"
+
+#, python-brace-format
+msgid "Heat sink length y_{max}"
+msgstr "Calor submersa longitudo y_{max}"
+
+#, python-brace-format
+msgid "Exciton density at x_{min}"
+msgstr "Exciton densitatis ad x_{min}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{min}"
+msgstr "Conductus caloris subsidere x_{min}"
+
+#, python-brace-format
+msgid "Heat sink length x_{min}"
+msgstr "Calor submersa longitudo x_{min}"
+
+#, python-brace-format
+msgid "Exciton density at x_{max}"
+msgstr "Exciton densitas in x_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{max}"
+msgstr "Conductivity of heat sink x_{max}"
+
+#, python-brace-format
+msgid "Heat sink length x_{max}"
+msgstr "Calor submersa longitudo x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{min}"
+msgstr "Fabrica temperatura in z_{min}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{min}"
+msgstr "Conductus caloris subsidere z_{min}"
+
+#, python-brace-format
+msgid "Heat sink length z_{min}"
+msgstr "Subsidere calor longitudo z_{min}"
+
+#, python-brace-format
+msgid "Exciton density at z_{max}"
+msgstr "Exciton densitas in z_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{max}"
+msgstr "Conductivity caloris subsidere z_{max}"
+
+#, python-brace-format
+msgid "Heat sink length z_{max}"
+msgstr "Calor submersa longitudo z_{max}"
+
+msgid "<b>Auger recombination</b>"
+msgstr "<b>Auger recombinatio</b>"
+
+#, python-brace-format
+msgid "Auger C_{n}"
+msgstr "Auger C_{n}"
+
+#, python-brace-format
+msgid "Auger C_{p}"
+msgstr "Auger C_{p}"
+
+msgid "Start temperature"
+msgstr "Satus temperatus"
+
+msgid "Stop temperature"
+msgstr "Subsisto temperatus"
+
+msgid "Temperature steps"
+msgstr "Gradus temperatus"
+
+msgid "Perovskite ion density"
+msgstr "Perovskite Ion density"
+
+msgid "Doping density (x=0)"
+msgstr "Doping densitas (x = 0)"
+
+msgid "Doping density (x=max)"
+msgstr "Doping density (x = max)"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} Recombination rate constant"
+msgstr ""
+
+msgid "<b>Electrostatics</b>"
+msgstr "<b>Electrostaticae</b>"
+
+msgid "Eg"
+msgstr "Eg"
+
+msgid "Xi"
+msgstr "Xi"
+
+msgid "<b>Excited states</b>"
+msgstr "<b>Civitas concitatae</b>"
+
+msgid "Forster transfer rate"
+msgstr "Forsterus translatio rate"
+
+msgid "Host singlet-exciton decay rate"
+msgstr "Exercitum singlet-exciton rate labe"
+
+msgid "Host inter-system crossing rate"
+msgstr "Hospes inter-ratio transitus rate"
+
+msgid "Host singlet-singlet annihilation (SSA) rate"
+msgstr "Host singlet-singlet annihilatio (SSA) rate"
+
+msgid "Host singlet-polaron annihilation (SPA) rate"
+msgstr "Hosti singlet-polaron annihilatio (SPA) rate"
+
+msgid "Host singlet-triplet annihilation (STA) rate"
+msgstr "Exercitus singlet-triplet annihilatio (STA) rate"
+
+msgid "Dexter transfer rate"
+msgstr "Dextera Domini fecit virtutem transferendi rate"
+
+msgid "Host triplet decay rate"
+msgstr "Hostiam tergeminusque labe rate"
+
+msgid "Host triplet-polaron annihilation (TPA) rate"
+msgstr "Hostia tergemina-polaron annihilatio (TPA) rate"
+
+msgid "Host triplet-triplet annihilation (TTA) rate"
+msgstr "Hostiam tergeminam tergeminusque annihilatio (TTA) rate"
+
+msgid "Dopant singlet-exciton decay rate"
+msgstr "Dopant singlet-exciton rate labe"
+
+msgid "Dopant inter-system crossing rate"
+msgstr "Dopant inter-ratio transitus rate"
+
+msgid "Dopant singlet-polaron annihilation (SPA) rate"
+msgstr "Dopant singlet-polaron annihilatio (SPA) rate"
+
+msgid "Dopant singlet-triplet annihilation (STA) rate"
+msgstr "Dopant singlet-triplet annihilatio (STA) rate"
+
+msgid "Dopant singlet-singlet annihilation (SSA) rate"
+msgstr "Dopant singlet-singlet annihilatio (SATB)"
+
+msgid "Dopant triplet decay rate"
+msgstr "Dopant tergeminusque labe rate"
+
+msgid "Dopant triplet-triplet annihilation (TTA) rate"
+msgstr "Dopant tergeminusque annihilatio (TTA) rate"
+
+msgid "Dopant triplet-polaron annihilation (TPA) rate"
+msgstr "Dopant tergeminus-polaron annihilatio (TPA) rate"
+
+msgid "Confinement factor"
+msgstr "claustri factor"
+
+msgid "Dopant concentration"
+msgstr "Dopant concentration"
+
+msgid "Spectral overlap"
+msgstr "LINO"
+
+#, python-brace-format
+msgid "k_{RISC} Reverse Inter-System crossing rate"
+msgstr "k_{RISC} Reverse inter-Ratio transitus rate"
+
+#, python-brace-format
+msgid "\\u03C3_{em} Stimulated Emission cross section"
+msgstr "\\u03C3_{em} sectionem transversalem emissionem Stimulated"
+
+#, python-brace-format
+msgid "\\u03C3_{t1tn} Triplet Absorption cross section"
+msgstr "\\u03C3_{t1tn} Absorptio Triplet sectionem transversalem"
+
+msgid "\\u03C3_{n,p} Polaron Absorption cross section"
+msgstr "\\u03C3_{n,p} Polaron Absorptio sectionis transversalis"
+
+msgid "e-h separation distance"
+msgstr "e-h distantiam"
+
+msgid "<b>Photon rate equation</b>"
+msgstr "<b>Photon aequatio rate</b>"
+
+msgid "Spontaneous emission factor"
+msgstr "Spontaneus emissio factor"
+
+msgid "Cavity photon decay rate"
+msgstr "Cavitas photon labe rate"
+
+msgid "Density of guest molecules"
+msgstr "Densitas hospitum moleculis"
+
+msgid "\\u03BE Stimulated emission gain coefficient"
+msgstr "\\ u03BE Stimulated emissionem quaestum coefficientem"
+
+msgid "<b>Excited states for OPV</b>"
+msgstr "<b>Civitas in OPV excitatur</b>"
+
+#, python-brace-format
+msgid "Decay of singlets to 1C (k_{ds})"
+msgstr "Corruptio singlets ad 1C (k_{ds})"
+
+#, python-brace-format
+msgid "Inter system crossing (k_{isc})"
+msgstr "Inter systema transitus (k_{isc})"
+
+#, python-brace-format
+msgid "Reverse inter system crossing (k_{risc})"
+msgstr "Reverse systema inter transitum (k_{risc})"
+
+#, python-brace-format
+msgid "Triplet-triplet annihilation (k_{tta})"
+msgstr "Triplex annihilatio (k_{tta})"
+
+#, python-brace-format
+msgid "Singlet-triplet annihilation (k_{sta})"
+msgstr "Singlet triplet annihilatio (k_{sta})"
+
+#, python-brace-format
+msgid "Singlet-singlet annihilation (k_{ssa})"
+msgstr "Singulus-singulus annihilatio (k_{ssa})"
+
+msgid "Alpha fraction (alpha)"
+msgstr "Alpha fraction (alpha)"
+
+#, python-brace-format
+msgid "Singlet to ground state (k_{fs})"
+msgstr "Singulus ad terram publicam (k_{fs})"
+
+#, python-brace-format
+msgid "Decay of triplets (k_{dt})"
+msgstr "Triticum tergeminorum (k_{dt})"
+
+#, python-brace-format
+msgid "Triplet to ground state (k_{ft})"
+msgstr "Tergeminus ad terram publicam (k_{ft})"
+
+#, python-brace-format
+msgid "Decay of 3C to np (k_{dct})"
+msgstr "Labe 3C ad np (k_{dct})"
+
+msgid "Inter system crossing CT (k_{isc ct})"
+msgstr "Inter systema transitus CT (k_{isc ct})"
+
+msgid "Reverse inter system crossing CT (k_{risc ct})"
+msgstr "Reverse systematis inter transitum CT (k_{risc ct})"
+
+#, python-brace-format
+msgid "3C and 1C to ground state (k_{f})"
+msgstr "3C et 1C ad terram publicam (k_{f})"
+
+msgid "Blended material"
+msgstr "Materia mixta"
+
+#, python-brace-format
+msgid "Eg_{0}"
+msgstr "Eg_{0}"
+
+#, python-brace-format
+msgid "Xi_{0}"
+msgstr "Xi_{0}"
+
+#, python-brace-format
+msgid "Eg_{1}"
+msgstr "Eg_{1}"
+
+#, python-brace-format
+msgid "Xi_{1}"
+msgstr "Xi_{1}"
+
+msgid "Thermal conductivity"
+msgstr "Scelerisque conductivity"
+
+msgid "Electron relaxation time"
+msgstr "Electron relaxatio temporis"
+
+msgid "Hole relaxation time"
+msgstr "Relaxatio foraminis tempus"
+
+msgid "Density"
+msgstr "Density"
+
+msgid "Cost per Kg"
+msgstr "Pretium per Kg"
+
+msgid "Energy per Kg"
+msgstr "Energy per Kg"
+
+msgid "Link"
+msgstr "Link"
+
+msgid "Shunt resistivity"
+msgstr "Shunt resistivity"
+
+msgid "Series resistivity"
+msgstr "Series resistivity"
+
+msgid "Series resistivity z"
+msgstr "Series resistivity z"
+
+msgid "Series resistivity x"
+msgstr "Series resistivity x"
+
+msgid "Series resistivity y"
+msgstr "Series resistivity y *"
+
+msgid "Layer ideality factor"
+msgstr "Accumsan ideality factor"
+
+msgid "Reverse bias current"
+msgstr "Praeiudicia current"
+
+msgid ""
+"Enable optical charge\n"
+"carrier generation"
+msgstr "Admitte crimen optical \ncarrier generation"
+
+msgid "Scan section"
+msgstr "Scan sectionem"
+
+msgid "Whole device"
+msgstr "Totum fabrica"
+
+msgid "Box section"
+msgstr "Arca sectionis"
+
+msgid "x-Scan"
+msgstr "x-Scan"
+
+msgid "x-start"
+msgstr "x-initium"
+
+msgid "z-start"
+msgstr "z-satus"
+
+msgid "x-stop"
+msgstr "x-stop"
+
+msgid "z-stop"
+msgstr "z-stop"
+
+msgid "Dump only at end"
+msgstr "Effundite solum ad finem"
+
+msgid "Shape type"
+msgstr "figura genus"
+
+msgid "Rotate around y-axis"
+msgstr "Gyrari circa y-axis"
+
+msgid "y-axis"
+msgstr "y-axis"
+
+msgid "x-axis"
+msgstr "x-axis"
+
+msgid "Rotate around x-axis"
+msgstr "Circumaxi x-axis"
+
+msgid "dx of the object"
+msgstr "dx objecti"
+
+msgid "dy of the object"
+msgstr "dy objecti"
+
+msgid "dz of the object"
+msgstr "dz obiecti"
+
+msgid "dx padding"
+msgstr "dx Nullam"
+
+msgid "padding"
+msgstr "Nullam"
+
+msgid "dy padding"
+msgstr "dy Nullam"
+
+msgid "dz padding"
+msgstr "dz Nullam"
+
+msgid "Number of objects x"
+msgstr "Numerus obiecti x *"
+
+msgid "Number of objects"
+msgstr "Numerus obiecti"
+
+msgid "Number of objects y"
+msgstr "Numerus obiecti y *"
+
+msgid "Number of objects z"
+msgstr "Numerus obiecti z *"
+
+msgid "<b>Object</b>"
+msgstr "<b>Object</b>"
+
+msgid "<b>Attributes</b>"
+msgstr "<b>Attributa</b>"
+
+msgid "x offset"
+msgstr "x offset"
+
+msgid "Offset"
+msgstr "Offset"
+
+msgid "y offset"
+msgstr "y offset"
+
+msgid "z offset"
+msgstr "z offset"
+
+msgid "Web page link"
+msgstr "Pagina interretialis link"
+
+msgid "Text label"
+msgstr "Textus titulus"
+
+msgid "Texture"
+msgstr "Textura"
+
+msgid ""
+"Circuit model\n"
+"parameters"
+msgstr "Circuitus exemplar \nparameters"
+
+msgid "Color"
+msgstr "Color"
+
+msgid "Interface model"
+msgstr "Interface exemplum"
+
+msgid "None"
+msgstr "Nullus"
+
+msgid "Free-to-Free"
+msgstr "Liberum ad liberum"
+
+msgid "Free-to-trap (SRH)"
+msgstr "Liberum ad captionem (SRH)"
+
+msgid "Recombination constant"
+msgstr "Recombinationem constant"
+
+msgid "Interface doping LHS"
+msgstr "Interface doping LHS"
+
+msgid "Doping LHS"
+msgstr "Doping LHS"
+
+msgid "Electron tunneling"
+msgstr "Electron cuniculis"
+
+msgid "Electron tunneling (T)"
+msgstr "Electron cuniculo (T)"
+
+msgid "Hole tunneling"
+msgstr "Foraminis cuniculis"
+
+msgid "Hole tunneling (T)"
+msgstr "Foramen effossum (T)"
+
+msgid "Interface doping RHS"
+msgstr "Interface doping RHS"
+
+msgid "Doping RHS"
+msgstr "Doping RHS"
+
+msgid "startime"
+msgstr "startime"
+
+msgid "ea_factor"
+msgstr "ea_factor"
+
+msgid "Np"
+msgstr "Np"
+
+msgid "den"
+msgstr "den"
+
+msgid "externalv"
+msgstr "externalv"
+
+msgid "dt_neg_time"
+msgstr "dt_neg_time"
+
+msgid "dt_mull"
+msgstr "dt_mull"
+
+msgid "stark"
+msgstr "summae"
+
+msgid "lasereff"
+msgstr "lasereff"
+
+msgid "sim_contacts"
+msgstr "sim_contacts \""
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Author"
+msgstr "Author"
+
+msgid "Journal"
+msgstr "Journal"
+
+msgid "Title"
+msgstr "Titulus"
+
+msgid "Volume"
+msgstr "Magnitudo"
+
+msgid "Pages"
+msgstr "Paginae"
+
+msgid "Year"
+msgstr "Annus"
+
+msgid "DOI"
+msgstr "DOI'"
+
+msgid "Book title"
+msgstr "Liber titulus"
+
+msgid "Publisher"
+msgstr "Publisher"
+
+msgid "ISBN"
+msgstr "ISBN"
+
+msgid "Scraped text"
+msgstr "Scrap text"
+
+#, python-brace-format
+msgid "R_{short}"
+msgstr ""
+
+#, python-brace-format
+msgid "V_{bias}"
+msgstr ""
+
+msgid "Efficiency of light"
+msgstr "Effectus lucis"
+
+msgid "subtract DC"
+msgstr "DC subtrahe"
+
+msgid "External load resistor"
+msgstr "Externe onus resistor"
+
+msgid "Material type"
+msgstr "Materia genus"
+
+msgid "Organic"
+msgstr "Organic"
+
+msgid "Oxide"
+msgstr "Oxide"
+
+msgid "Inorganic"
+msgstr "Inorganic"
+
+msgid "Metal"
+msgstr "Metal"
+
+msgid "Other"
+msgstr "Other"
+
+msgid "Transparency"
+msgstr "Perspicuus"
+
+msgid "Privicy options"
+msgstr "Optiones Privacy"
+
+msgid "Public - everyone"
+msgstr "Publica - omnis"
+
+msgid "Public - within org"
+msgstr "Publica - intra org"
+
+msgid "Private - never publish"
+msgstr "Privatus - numquam publish"
+
+msgid "Change log"
+msgstr "Mutatio log"
+
+msgid ""
+"Use external\n"
+"voltage as stop"
+msgstr "Utere externum \nvoltage ut subsisto"
+
+msgid "<b>Output</b>"
+msgstr "<b>Output</b>"
+
+msgid "Dump trap distribution"
+msgstr "Effundite captionem distribution"
+
+msgid "False"
+msgstr "Falsus"
+
+msgid "Energy space map"
+msgstr "Energy spatium map"
+
+msgid "Single mesh point"
+msgstr "Unum punctum reticulum"
+
+#, python-brace-format
+msgid "V_{oc}"
+msgstr "V_{oc}"
+
+#, python-brace-format
+msgid "V_{bi}"
+msgstr "V_{bi}"
+
+msgid "Power conversion efficiency (PCE)"
+msgstr "Virtus conversionis efficientia (PCE)"
+
+msgid "Fill factor"
+msgstr "Imple factor"
+
+msgid "Max power"
+msgstr "Max potentia"
+
+msgid "Voltage at max power"
+msgstr "Voltage ad max potentia"
+
+msgid "Current density at max power"
+msgstr "Current densitas in max potentia"
+
+msgid "Current density at Voc"
+msgstr "Current densitas ad Voc"
+
+#, python-brace-format
+msgid "J_{sc}"
+msgstr "J_{sc}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free P_{max}"
+msgstr "Theta_{SRH} - liberum P_{max}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free-trap P_{max}"
+msgstr "Theta_{SRH} - liberum captionem P_{max}"
+
+msgid "Recombination time constant"
+msgstr "Recombinationem temporis constantem"
+
+msgid "Device capacitance"
+msgstr "capacitatem machinam"
+
+msgid "Photos absorbed in active layer"
+msgstr "Photos intenta accumsan activae"
+
+msgid "Peak height Rp"
+msgstr "Apicem altitudo Rp*"
+
+msgid "RMS height Rq"
+msgstr "RMS altitudo Rq *"
+
+msgid "Average height Ra"
+msgstr "Mediocris altitudo Ra"
+
+msgid "dV step"
+msgstr "dV gradus"
+
+msgid "Left hole density"
+msgstr "density sinistram foraminis"
+
+msgid "Left electron density"
+msgstr "Sinistro electronic density"
+
+msgid "Right hole density"
+msgstr "Density ius foraminis"
+
+msgid "Right electron density"
+msgstr "Ius electronic density"
+
+msgid "Built in potential"
+msgstr "Built in potential"
+
+msgid "Electron affinity left"
+msgstr "Electron affinitas sinistra"
+
+msgid "Electron affinity right"
+msgstr "Electron affinitatis ius"
+
+msgid "<b>CPU</b>"
+msgstr "<b>CPU</b>"
+
+msgid "Number of threads used by the backend"
+msgstr "Quot staminum usus est in backend"
+
+msgid "No threading"
+msgstr "Non threading"
+
+msgid "Maximum number of core instances"
+msgstr "Maximus numerus core instantiarum"
+
+msgid "Path to source code"
+msgstr "Iter ad source codice"
+
+msgid "Path to compiled libs for cluster"
+msgstr "Iter compilavit libs ad botrum portassent"
+
+msgid "Make command"
+msgstr "Fac imperium"
+
+msgid "exe name"
+msgstr "exe nomen"
+
+msgid "Store DoS on disk"
+msgstr "Copia DoS in orbe"
+
+msgid "Remote cluster directory"
+msgstr "Botrus remotis Directory"
+
+msgid "Remote node list"
+msgstr "Nodi remota list"
+
+msgid "IV"
+msgstr "IV"
+
+msgid "x-triangles"
+msgstr "x-triangulas"
+
+msgid "y-triangles"
+msgstr "y triangula"
+
+msgid "Method"
+msgstr "Methodus"
+
+msgid "Node reduce"
+msgstr "Node reducere"
+
+msgid "No reduce"
+msgstr "Non minuere"
+
+msgid "Min allowable angle"
+msgstr "Min licita anguli"
+
+msgid "Gaussian blur"
+msgstr "LABES Gaussian"
+
+msgid "Percent of histogram to ignore"
+msgstr "Cento Mearum ignorare"
+
+msgid "Sigma of gaussian"
+msgstr "Sigma gaussian"
+
+msgid "Gaussian offset x"
+msgstr "Gaussian offset x *"
+
+msgid "Gaussian offset y"
+msgstr "* y Gaussian offset"
+
+msgid "Threshold value"
+msgstr "Limen valorem"
+
+msgid "dr"
+msgstr "dr*"
+
+msgid "dx"
+msgstr "dx"
+
+msgid "dy"
+msgstr "dy*"
+
+msgid "offset"
+msgstr "offset"
+
+msgid "Lens type"
+msgstr "Lens genus"
+
+msgid "Convex"
+msgstr "Convex"
+
+msgid "Concave"
+msgstr "concavum"
+
+msgid "Lens size"
+msgstr "Lens magnitudine"
+
+msgid "length"
+msgstr "longitudo"
+
+msgid "Waveform"
+msgstr "Waveform"
+
+msgid "Square"
+msgstr "Quadratus"
+
+msgid "Saw wave"
+msgstr "Vidit fluctus"
+
+msgid "pixels"
+msgstr "elementa"
+
+msgid "Boundary x0"
+msgstr "terminus x0"
+
+msgid "Boundary x1"
+msgstr "Terminus x1"
+
+msgid "Boundary y0"
+msgstr "terminus y0"
+
+msgid "Boundary y1"
+msgstr "terminus y1"
+
+msgid "<b>Fist iteration</b>"
+msgstr "<b>Pugnus iteratio</b>"
+
+msgid "Max Electrical iterations (first step)"
+msgstr "Max Electrical iterations (primum gradum)"
+
+msgid "Electrical clamp (first step)"
+msgstr "Fibulae electrica (primus gradus)"
+
+msgid "Desired solver error (first step)"
+msgstr "Optatus solver error (primus gradus)"
+
+msgid "<b>Later iterations</b>"
+msgstr "<b>Postea iterationes</b>"
+
+msgid "Max electrical iterations"
+msgstr "Max electrica iterations"
+
+msgid "Electrical clamp"
+msgstr "Fibulae electrica"
+
+msgid "Desired solver error"
+msgstr "Optatus solver error"
+
+msgid "<b>Exit strategy</b>"
+msgstr "<b>Exitus belli</b>"
+
+msgid "Newton minimum iterations"
+msgstr "Newtonus minimum iterations"
+
+msgid "<b>Solver type</b>"
+msgstr "<b>Solver genus</b>"
+
+msgid "dll name"
+msgstr "dll nomen eius"
+
+msgid "Complex matrix solver to use"
+msgstr "Complexum matrix solver ad usum"
+
+msgid "Quit on convergence problem"
+msgstr "Quit in concursu problema"
+
+msgid "Quit on inverted Fermi-level"
+msgstr "Quit inverso Fermi-gradu"
+
+msgid "Circuit diagram mode"
+msgstr "Circuit tabula modus"
+
+msgid "Hand drawn"
+msgstr "Manus instructa"
+
+msgid "From layer structure"
+msgstr "A accumsan structure"
+
+msgid "From electrical mesh"
+msgstr "Ex electrica reticulum"
+
+msgid "Poisson solver max iterations"
+msgstr "Poisson solver max iterations"
+
+msgid "Poisson clamping"
+msgstr "Poisson clamping"
+
+msgid "Enable poisson solver"
+msgstr "Admitte venenum solver"
+
+msgid "Output verbosity to disk"
+msgstr "Output verbositate ad disci"
+
+msgid "Nothing"
+msgstr "Nihil"
+
+msgid "Write everything to disk"
+msgstr "Scribere omnia ad disci"
+
+msgid "Matrix solver"
+msgstr "Matrix solver"
+
+msgid "Newton solver to use"
+msgstr "Newtonus solver ut"
+
+msgid "Slotboom T0"
+msgstr "Slotboom T0"
+
+msgid "Slotboom D0"
+msgstr "Slotboom D0"
+
+msgid "Slotboom n0"
+msgstr "Slotboom n0"
+
+msgid "Calculate current at"
+msgstr "Adice current at"
+
+msgid "Mid point"
+msgstr "Proin punctum"
+
+msgid "Solve Kirchhoff's current law in Newton solver"
+msgstr "Lege lata Kirchhoff solve in Newton solver"
+
+msgid "filename"
+msgstr "file nomen"
+
+msgid "log x"
+msgstr "log x *"
+
+msgid "log y"
+msgstr "log y *"
+
+msgid "Keep sign for log y "
+msgstr "Signum enim y * custodi log"
+
+msgid "Point to normalize"
+msgstr "Ad designandum normalize"
+
+msgid "Fit against simulation"
+msgstr "Simulatio fit contra"
+
+msgid "File or token banned"
+msgstr "File seu indicium interdictum"
+
+msgid "EQE Voltage"
+msgstr "EQE Voltage"
+
+msgid "Optical power"
+msgstr "Optical potentia"
+
+msgid "Single optical power"
+msgstr "Una potentia optica"
+
+msgid "Optical power start"
+msgstr "Virtus optical satus"
+
+msgid "Optical power stop"
+msgstr "Optical potestas subsisto"
+
+msgid "Use electrical DoS at low energy"
+msgstr "Uti electrica DoS humilis industria"
+
+msgid "Max iterations "
+msgstr "Max iterations"
+
+msgid "Stop error"
+msgstr "Subsisto error"
+
+msgid "Number of x eigenmodes"
+msgstr "Numerus x eigenmodes"
+
+msgid "Number of y eigenmodes"
+msgstr "Numerus y eigenmodes"
+
+msgid "TE/TM"
+msgstr "TE/TM"
+
+msgid "Transverse Electric (TE)"
+msgstr "Transverse Electric (TE)"
+
+msgid "Transverse Magnetic (TM)"
+msgstr "Magnetica transversa (TM)"
+
+msgid "Find only fundamental"
+msgstr "Invenies solum fundamentales"
+
+msgid "Thermal model type"
+msgstr "Scelerisque exemplar genus"
+
+msgid "Hydrodynamic"
+msgstr "Hydrodynamic"
+
+msgid "Lattice heat"
+msgstr "calor cancellos"
+
+#, python-brace-format
+msgid "Device temperature at y_{min}"
+msgstr "Fabrica temperatus ad y_{min}"
+
+#, python-brace-format
+msgid "Device temperature at y_{max}"
+msgstr "Fabrica temperatus ad y_{max}"
+
+#, python-brace-format
+msgid "Device temperature at x_{min}"
+msgstr "Fabrica temperatura in x_{min}"
+
+#, python-brace-format
+msgid "Device temperature at x_{max}"
+msgstr "Fabrica temperatura in x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{max}"
+msgstr "Fabrica temperatura in z_{max}"
+
+msgid "Lattice heat model"
+msgstr "Calor cancellos exemplum"
+
+msgid "Electron heat model"
+msgstr "Electron calor exemplar"
+
+msgid "Hole heat model"
+msgstr "Foraminis calor exemplum"
+
+msgid "Max thermal solver iterations"
+msgstr "Max scelerisque solver iterations"
+
+msgid "Desired thermal error"
+msgstr "Optatus scelerisque error"
+
+msgid "Force use of thermal mesh"
+msgstr "Vis usu reticulum scelerisque"
+
+msgid "Minimum device temperature"
+msgstr "Minimum fabrica temperatus"
+
+msgid "Maximum device temperature"
+msgstr "Maximum fabrica temperatus"
+
+msgid "Thermal mesh points"
+msgstr "Scelerisque reticulum puncta"
+
+msgid "Interpolate"
+msgstr "Interpolate"
+
+msgid "Constant"
+msgstr "Constant"
+
+#, python-brace-format
+msgid "Boundary value for y_{min}"
+msgstr "Valor terminus pro y_{min}"
+
+#, python-brace-format
+msgid "Boundary value for y_{max}"
+msgstr "Valor terminus pro y_{max}"
+
+#, python-brace-format
+msgid "Boundary value for x_{min}"
+msgstr "Valor terminus pro x_{min}"
+
+#, python-brace-format
+msgid "Boundary value for x_{max}"
+msgstr "Valor terminus pro x_{max}"
+
+msgid "Couple to electrical solver"
+msgstr "Duobus ad electrica solver"
+
+msgid "Dump slices"
+msgstr "Effundite crustae"
+
+msgid "Dump dynamic"
+msgstr "Effundite dynamic"
+
+msgid "Write out band structure"
+msgstr "Cohors structuram perscribere"
+
+msgid "Write newton solver convergence to disk"
+msgstr "Scribere newton solver concursum ad disci"
+
+msgid "Print poisson solver convergence"
+msgstr "Print venenum solver concursum"
+
+msgid "Normalize output x-time to one"
+msgstr "Normalize output x-tempus ad unum"
+
+msgid "Dump the built in voltage."
+msgstr "Effundite constructum in intentione."
+
+msgid "Dump optical probe spectrum"
+msgstr "Effundite optical specillum spectrum"
+
+msgid "Write file access log to disk."
+msgstr "Scribere file accessum stipes in disco."
+
+msgid "Write headers to output files"
+msgstr "Scribere capitis ad output files"
+
+msgid "Write first guess to equations"
+msgstr "Scribere prima coniectura ad aequationes"
+
+msgid "Log verbocity"
+msgstr "Log verbocity"
+
+msgid "Screen"
+msgstr "Screen"
+
+msgid "Disk"
+msgstr "Orbis"
+
+msgid "Screen and disk"
+msgstr "Screen ac disci"
+
+msgid "PL dump Energy"
+msgstr "PL TUBER Energy"
+
+msgid "Clean up DoS cache files"
+msgstr "Tersus sursum DoS cache files"
+
+msgid "Write binary data where possible"
+msgstr "Scribere binarii notitia ubi fieri"
+
+msgid "Probe enabled"
+msgstr "probe para"
+
+msgid "Probe type"
+msgstr "Specillum type"
+
+msgid "Device state"
+msgstr "Device statum"
+
+msgid "Voc"
+msgstr "Voc"
+
+msgid "Jsc"
+msgstr "Jsc"
+
+msgid "<b>Run control</b>"
+msgstr "<b>Contra imperium</b>"
+
+msgid "<b>Solver control</b>"
+msgstr "<b>Solver imperium</b>"
+
+msgid "Dump absorption profile"
+msgstr "Effundite effusio profile"
+
+msgid "Run the ray tracer"
+msgstr "Radius currunt tracer"
+
+msgid "When called"
+msgstr "cum dicitur"
+
+msgid "Once per simulation"
+msgstr "Cum per simulation"
+
+msgid "Each simulation step"
+msgstr "Quisque simulation gradus"
+
+msgid "Every nth simulation step"
+msgstr "Omnis nisi simulation gradum"
+
+msgid "Each n steps"
+msgstr "Quisque n gradibus"
+
+msgid "Theta steps"
+msgstr "Theta gradus"
+
+msgid "Theta start"
+msgstr "Theta satus"
+
+msgid "Theta stop"
+msgstr "Theta stop"
+
+msgid "Phi steps"
+msgstr "Phi gradus"
+
+msgid "Phi start"
+msgstr "Phi satus"
+
+msgid "Phi stop"
+msgstr "Phi stop"
+
+msgid "Escape bins"
+msgstr "bins evadere"
+
+msgid "Emit from"
+msgstr "Emittere a"
+
+msgid "Center of each layer"
+msgstr "Centrum uniuscuiusque tabulatum"
+
+msgid "Each electrical mesh point"
+msgstr "Quisque reticulum electrica punctum"
+
+msgid "Center of y slice"
+msgstr "Centrum y scalpere"
+
+msgid "Super sample x"
+msgstr "Super sample x *"
+
+msgid "Super sample x points"
+msgstr "Super sample x puncta"
+
+msgid "<b>Ray tracing</b>"
+msgstr "<b>Rayum repetens</b>"
+
+msgid "Minimum ray intensity"
+msgstr "Minimum ray intensio"
+
+msgid "Maximum number of bounces"
+msgstr "Numerus maximus resilit"
+
+msgid "Simulate transmitted rays"
+msgstr "Simulate radios traducitur"
+
+msgid "Simulate reflected rays"
+msgstr "Simulate radiorum reflectitur"
+
+msgid "Mesh points x"
+msgstr "Mesh puncta x *"
+
+msgid "Mesh points z"
+msgstr "Mesh puncta z *"
+
+msgid "<b>Detector</b>"
+msgstr "<b>Detector</b>"
+
+msgid "LED extraction efficiency"
+msgstr "DUXERIT extraction efficientiam"
+
+msgid "Series resistance"
+msgstr "Series resistentia"
+
+msgid "Other layers"
+msgstr "Aliae stratae"
+
+msgid "debug (ignore)"
+msgstr "lusione (ignorare)"
+
+msgid "Contact charge density"
+msgstr "Contactus crimen densitatis"
+
+msgid "Contact position"
+msgstr "Contact situ"
+
+msgid "top"
+msgstr "top"
+
+msgid "bottom"
+msgstr "imo"
+
+msgid "right"
+msgstr "ius"
+
+msgid "left"
+msgstr "left"
+
+msgid "Charge type"
+msgstr "Genus crimen"
+
+msgid "Electron"
+msgstr "Electron"
+
+msgid "Hole"
+msgstr "Foramen"
+
+msgid "Physical model"
+msgstr "Exemplar corporis"
+
+msgid "Ohmic"
+msgstr "Ohmic"
+
+msgid "Schottky"
+msgstr "Schottky"
+
+msgid "Automatic remesh x"
+msgstr "Lorem remesh x *"
+
+msgid "Automatic remesh y"
+msgstr "Lorem remesh y *"
+
+msgid "Automatic remesh z"
+msgstr "Lorem remesh z *"
+
+msgid "Left/Right"
+msgstr "Left / Vox"
+
+msgid "Mesh dy"
+msgstr "Mesh dy"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "n_{free} to n_{trap} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "n_{trap} to p_{free} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "p_{trap} to n_{free} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "p_{free} to p_{trap} photon generation efficiency"
+msgstr ""
+
+msgid "Experimental emission spectra"
+msgstr "Emissio spectris experimentalis"
+
+msgid "Icon"
+msgstr "Icon"
+
+msgid "Experimental emission efficiency"
+msgstr "Emissionem efficientiam experimentalem"
+
+msgid "Use experimental emission spectra"
+msgstr "Utere experimentalem emissionem spectris"
+
+msgid "Free-to-free emission"
+msgstr "Liberum ad liberum emissionem"
+
+msgid "Free-to-trap emission"
+msgstr "Liberum ad captionem emissionem"
+
+#, python-brace-format
+msgid "V_{external}"
+msgstr ""
+
+msgid "Load resistor"
+msgstr "onus resistor"
+
+msgid "fx domain mesh points"
+msgstr "fx domain puncta reticulum"
+
+msgid "Cycles to simulate"
+msgstr "Cycles simulare"
+
+msgid "Voltage modulation depth"
+msgstr "Altitudo intentione modulationis"
+
+msgid "Excite with"
+msgstr "Excita cum"
+
+msgid "Light"
+msgstr "lux"
+
+msgid "Measure"
+msgstr "mensura"
+
+msgid "Light modulation depth"
+msgstr "Altitudo lux modulationis"
+
+msgid "Run fit after simulation"
+msgstr "Currere fit cum simulatione"
+
+msgid "Periods to fit"
+msgstr "Tempora aptare"
+
+msgid "Normalize transfer functon by light intensity"
+msgstr "Normalize translationis functon per lucem intensio"
+
+msgid "Re(J)"
+msgstr "Re(J)"
+
+msgid "Im(J)"
+msgstr "Im(J)"
+
+msgid "fx"
+msgstr "fx"
+
+msgid "di"
+msgstr "di"
+
+msgid "dmodulation"
+msgstr "dmodulation"
+
+msgid "dphase"
+msgstr "dphase"
+
+msgid "Simulation type"
+msgstr "Simulatio genus"
+
+msgid "Large signal"
+msgstr "Signum magnum"
+
+msgid "Fourier"
+msgstr "Fourier"
+
+msgid "Node list"
+msgstr "Nodi album"
+
+msgid "Initialization vector"
+msgstr "Initialization vector"
+
+msgid "Cryptographic key"
+msgstr "Clavis cryptographic"
+
+msgid "Intensity of the sun"
+msgstr "Sol vehementia"
+
+msgid "#saturation_n0"
+msgstr "#saturation_n0"
+
+msgid "#saturation_rate"
+msgstr "#saturation_rate"
+
+msgid "Absorption of material"
+msgstr "Effusio materiae"
+
+msgid "Simulation mode"
+msgstr "Simulatio modus"
+
+msgid "start voltage"
+msgstr "incipit voltage"
+
+msgid "Max voltage"
+msgstr "Max voltage"
+
+msgid "Invert output"
+msgstr "Invertere output"
+
+msgid "Use capacitor"
+msgstr "Utere capacitor"
+
+msgid "External C"
+msgstr "Externi C"
+
+msgid "External R"
+msgstr "Externi R"
+
+msgid "Resistance of scope"
+msgstr "Resistentia scope"
+
+msgid "Photon Flux"
+msgstr "Photon Flux"
+
+msgid "device width"
+msgstr "width fabrica"
+
+msgid "device breadth"
+msgstr "latitudinem fabrica"
+
+msgid "Start light intensity"
+msgstr "Satus lucis intensionem"
+
+msgid "Stop light intensity"
+msgstr "Subsisto lux intensio"
+
+msgid "Numer of steps"
+msgstr "Numerus gradus"
+
+msgid "CE light on time"
+msgstr "CE lux in tempore"
+
+msgid "CE light off time"
+msgstr "CE lux off tempus"
+
+msgid "Automatic world size"
+msgstr "Lorem mundi magnitudine"
+
+msgid "World fills mesh"
+msgstr "Mundus reticulum implet"
+
+msgid "x0"
+msgstr "x0"
+
+msgid "x1"
+msgstr "x1"
+
+msgid "y0"
+msgstr "y0"
+
+msgid "y1"
+msgstr "y1"
+
+msgid "z0"
+msgstr "z0"
+
+msgid "z1"
+msgstr "z1"
+
+msgid "margin x0"
+msgstr "margine x0"
+
+msgid "margin x1"
+msgstr "margine x1"
+
+msgid "margin y0"
+msgstr "margine y0"
+
+msgid "margin y1"
+msgstr "margine y1"
+
+msgid "margin z0"
+msgstr "margine z0"
+
+msgid "margin z1"
+msgstr "margine z1"
+
+msgid "Active layer width"
+msgstr "Active iacuit latitudine"
+
+msgid "Reset time to zero each cycle"
+msgstr "Quisque tempus nulla Reset exolvuntur"
+
+msgid "OpenCL GPU acceleration"
+msgstr "OpenCL GPU acceleratio"
+
+msgid "GPU name"
+msgstr "GPU nomen"
+
+msgid "<b>Excitation type</b>"
+msgstr "<b>Excitationis genus</b>"
+
+msgid "FDTD Slice"
+msgstr "FDTD Slice"
+
+msgid "Sin"
+msgstr "Sin"
+
+msgid "Pulse"
+msgstr "Pulsus"
+
+msgid "Start wavelength"
+msgstr "Satus adsum"
+
+msgid "Stop wavelength"
+msgstr "Subsisto adsum"
+
+msgid "Wavelength steps"
+msgstr "Necem gradus"
+
+msgid "Pulse length"
+msgstr "Pulsus longitudinem"
+
+msgid "Excite Ex"
+msgstr "Excita Ex"
+
+msgid "Excite Ey"
+msgstr "Excita Ey"
+
+msgid "Excite Ez"
+msgstr "Excita Ez"
+
+msgid "<b>FDTD mesh</b>"
+msgstr "<b>FDTD reticulum</b>"
+
+msgid "zy"
+msgstr "zy"
+
+msgid "zx"
+msgstr "zx*"
+
+msgid "xy"
+msgstr "xy*"
+
+msgid "Mesh points y"
+msgstr "Mesh puncta y *"
+
+msgid "Use gnuplot to visualize"
+msgstr "Gnuplot uti ad visualize"
+
+msgid "<b>Simulation time</b>"
+msgstr "<b>Simulatio temporis</b>"
+
+msgid "Stop time"
+msgstr "Subsisto tempore"
+
+msgid "Max steps"
+msgstr "Max gradus"
+
+msgid "Key results"
+msgstr "Eventus key"
+
+msgid "Write everything to disk every 2nd step"
+msgstr "Scribere omnia ad orbem omnem 2nd gradum"
+
+msgid "Write everything to disk every 5th step"
+msgstr "Scribere omnia ad disci omnem 5th gradum"
+
+msgid "Write everything to disk every 10th step"
+msgstr "Scribere omnia ad orbem omnem 10th gradus"
+
+msgid "Output verbosity to screen"
+msgstr "Output verbositate ad screen"
+
+msgid "Show lots"
+msgstr "Ostende lots"
+
+msgid "Show key results"
+msgstr "Ostendere clavem eventus"
+
+msgid "Solver output verbosity"
+msgstr "Solver output verbositas"
+
+msgid "As answers are found"
+msgstr "Ut responsa inveniantur"
+
+msgid "Each step"
+msgstr "Quisque gradus"
+
+msgid "Source"
+msgstr "Source"
+
+msgid "x rotation"
+msgstr "x gyrationis"
+
+msgid "y rotation"
+msgstr "y gyrationis"
+
+msgid "z rotation"
+msgstr "z gyrationis"
+
+msgid "x pos"
+msgstr "x pos"
+
+msgid "y pos"
+msgstr "y pos *"
+
+msgid "zoom"
+msgstr "zoom"
+
+msgid "The following erros/warning were found while running the simulations:"
+msgstr "Errores sequentes admonitiones inventae sunt dum simulationes currit;"
+
+msgid "Output vectors for "
+msgstr "Output vector for"
+
+msgid "ML Token"
+msgstr "ML Token"
+
+msgid "Symmetric"
+msgstr "Symmetric"
+
+msgid "Asymmetric"
+msgstr "Asymmetric"
+
+msgid "Gaussian"
+msgstr "Gaussian"
+
+msgid "Lorentzian"
+msgstr "Lorentzian"
+
+msgid "Colors"
+msgstr "Colorum"
+
+msgid "Save as"
+msgstr "Salvum as"
+
+msgid "Save as image"
+msgstr "Servo ut imaginem"
+
+msgid "Save as gobj"
+msgstr "Servo ut gobj"
+
+msgid "Optical"
+msgstr "Optical"
+
+msgid "Show photons"
+msgstr "Monstrare photons"
+
+msgid "FDTD grid"
+msgstr "FDTD malesuada euismod"
+
+msgid "Optical mode"
+msgstr "Optical modus"
+
+msgid "Rays"
+msgstr "Radii"
+
+msgid "Solid rays"
+msgstr "Solidae radii"
+
+msgid "Show detectors"
+msgstr "Ostende detectors"
+
+msgid "Electrical mesh"
+msgstr "Electrical reticulum"
+
+msgid "Show device"
+msgstr "Ostende fabrica"
+
+msgid "Grid"
+msgstr "Eget"
+
+msgid "Coordinates"
+msgstr "Coordinates"
+
+msgid "Show text"
+msgstr "Ostendere textum"
+
+msgid "Show Dimensions"
+msgstr "Ostendere Dimensiones"
+
+msgid "Show plot"
+msgstr "Ostende insidias"
+
+msgid "Transparent objects"
+msgstr "Perspicuus obiecti"
+
+msgid "Ray tracing mesh"
+msgstr "Ray typum reticulumque"
+
+msgid "Show world box"
+msgstr "Monstra mundum arca"
+
+msgid "Lock view"
+msgstr "View cincinno"
+
+msgid "Show gl lights"
+msgstr "Ostende gl luminaria"
+
+msgid "Show buttons"
+msgstr "Bullae monstrare"
+
+msgid "Stars"
+msgstr "Stellae"
+
+msgid "Font"
+msgstr "Font"
+
+msgid "Background color"
+msgstr "Background color"
+
+msgid "Interface background color"
+msgstr "Interface background color"
+
+msgid "Interface text color"
+msgstr "Interface text color"
+
+msgid "Objects"
+msgstr "Objects"
+
+msgid "New free object"
+msgstr "Novum objectum liberum"
+
+msgid "New light source"
+msgstr "Novus fons lucis"
+
+msgid "New detector"
+msgstr "Novus detector"
+
+msgid "Rescale"
+msgstr "Rescale"
+
+msgid "Object tree"
+msgstr "Object arbor"
+
+msgid "Copy image"
+msgstr "Effingo imaginem"
+
+msgid "Object tree viewer"
+msgstr "Object lignum videntium"
+
+msgid "Device view"
+msgstr "Device sententia"
+
+msgid "Charge extraction experiment window"
+msgstr "Extraction experimentum crimen fenestra"
+
+msgid "Python Equation"
+msgstr "Python Equation"
+
+msgid "You've made a mistake in the equation, use w for wavelength. "
+msgstr "Errasti in aequatione, utere w pro esse."
+
+msgid "Are you sure you wisht to import this, it will overwrite "
+msgstr "Tu certe vis hoc importare, rescribe"
+
+msgid "Equation editor"
+msgstr "Equationis editor"
+
+msgid ""
+"Import\n"
+"into model"
+msgstr ""
+"Importo exemplar \n"
+"into"
+
+msgid "Add section"
+msgstr "Adde sectionem"
+
+msgid "Delete section"
+msgstr "Delere sectionem"
+
+msgid ""
+"Your version of OghmaNano is now out of date. To continue using OghmaNano please download a "
+"new version at https://www.oghma-nano.com."
+msgstr ""
+"Tua versio OghmaNano nunc exoleta est. Pergere utendo OghmaNano quaeso novam versionem in "
+"https://www.oghma-nano.com excipe."
+
+msgid "<big><b>Update available!</b></big><br>Download it now from <a href=\""
+msgstr "<a href=\" Renovare <a href=\""
+
+msgid "Optical detectors editor"
+msgstr "Optical detectors editor"
+
+msgid "Na"
+msgstr "Na"
+
+msgid "Nd"
+msgstr "Nd"
+
+msgid "Ions"
+msgstr "iones"
+
+msgid "Doping/Mobilie ion profile editor"
+msgstr "Doping / mobile ion editor"
+
+msgid "New emission spectra name:"
+msgstr "Nova emissione spectris nomen est;"
+
+msgid "New emission spectra name"
+msgstr "Nova emissione spectris nomen"
+
+msgid "New spectra name:"
+msgstr "Novum nomen spectris;"
+
+msgid "New spectra name"
+msgstr "Novum spectris nomen"
+
+msgid "New material name:"
+msgstr "Nomen materiale novum:"
+
+msgid "New material name"
+msgstr "Nova materia nomen"
+
+msgid "I cant write to: "
+msgstr "Ego Cant scribere:"
+
+msgid "New filter name:"
+msgstr "Novum nomen colum:"
+
+msgid "New filter name"
+msgstr "Novum nomen filter"
+
+msgid "New directory name:"
+msgstr "Nomen indicis novi:"
+
+msgid "New directory"
+msgstr "Novus presul"
+
+msgid "Save a the simulation as"
+msgstr "Servare simulationem sicut"
+
+msgid "Directory"
+msgstr "Directorium"
+
+msgid "Simulation information"
+msgstr "Simulatio notitia"
+
+msgid "yz"
+msgstr "yz*"
+
+msgid "xz"
+msgstr "xz"
+
+msgid "Orthographic"
+msgstr "Orthographica"
+
+msgid "Fly"
+msgstr "volare"
+
+msgid "Running job "
+msgstr "Currens officium"
+
+msgid "The file to import:"
+msgstr "Tabella importare:"
+
+msgid "The imported file, the numbers should now be in SI units"
+msgstr "Fasciculus importatus, numeri iam in SI unitates erunt"
+
+msgid "x units:"
+msgstr "x unitates;"
+
+msgid "y units:"
+msgstr "y unitates;"
+
+msgid "Title:"
+msgstr "Titulus:"
+
+msgid "x-label:"
+msgstr "x-titulus:"
+
+msgid "x-column:"
+msgstr "x-columna;"
+
+msgid "y-label:"
+msgstr "y-pittacium:"
+
+msgid "y-column:"
+msgstr "y-columna;"
+
+msgid "device area:"
+msgstr "regio fabrica:"
+
+msgid "Can not load file "
+msgstr "Non potest load file"
+
+msgid "I can't read the file: "
+msgstr "Non possum legere tabella:"
+
+msgid ""
+"I can only read plain text files such as csv formats. I can not read binary files such as "
+"excel documents."
+msgstr ""
+"Tantum textum planum legere possum ut formas csv formatas. Tabularii binarii ut documenta "
+"excellunt, legere non possum."
+
+msgid "Photonenergy"
+msgstr "Photonenergy"
+
+msgid "J"
+msgstr "J"
+
+msgid "IMPS Re(Z)"
+msgstr "IMPS Re(Z)"
+
+msgid "IMPS Im(Z)"
+msgstr "IMPS Im (Z)"
+
+msgid "IMVS Re(Z)"
+msgstr "IMVS Re(Z)"
+
+msgid "IMVS Im(Z)"
+msgstr "IMVS Im(Z)"
+
+msgid "Amps"
+msgstr "Amps"
+
+msgid "Amps - no convert"
+msgstr "Amps - no convert"
+
+msgid "I"
+msgstr "ego"
+
+msgid "-Voltage"
+msgstr "-Voltage"
+
+msgid "Angular frequency"
+msgstr "Angularis frequentia"
+
+msgid "Attenuation coefficient"
+msgstr "Attenuatio coefficientis"
+
+msgid "Intensity"
+msgstr "magnitudo"
+
+msgid "mA"
+msgstr "ma"
+
+msgid "Simulation notes"
+msgstr "Simulatio notas"
+
+msgid "Bibtex reference"
+msgstr "Bibtex reference"
+
+msgid "Simulation Notes"
+msgstr "Simulatio Praecipua"
+
+msgid "Simulation snapshots"
+msgstr "Simulatio snapshots"
+
+msgid "Running: "
+msgstr "Running:"
+
+msgid "I could not find a free cpu to run the command on"
+msgstr "Non potui invenire liberum imperium currere CPU"
+
+msgid "CPU"
+msgstr "cpu"
+
+msgid "Nodes"
+msgstr "Noctes"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Generate keys"
+msgstr "Claves generate"
+
+msgid "Install to cluster"
+msgstr "Install ut botrum portassent"
+
+msgid "Boot cluster"
+msgstr "Botrus tabernus"
+
+msgid "Stop cluster"
+msgstr "Botrus subsisto"
+
+msgid "Remove from cluster"
+msgstr "Aufer a botrum portassent"
+
+msgid "CV experiment window"
+msgstr "CV fenestra experimentum"
+
+msgid ""
+"Doping/\n"
+"Ions"
+msgstr ""
+"Doping/\n"
+"Ions"
+
+msgid ""
+"Material\n"
+"Gradients"
+msgstr "Materia \nGradients"
+
+msgid "Interfaces"
+msgstr "Interfaces"
+
+msgid ""
+"Parasitic\n"
+" components"
+msgstr ""
+"Parasiticus\n"
+" components"
+
+msgid ""
+"Mobile\n"
+"Ion solver"
+msgstr "Mobile \nIon solver"
+
+msgid ""
+"Electrical\n"
+"mesh"
+msgstr ""
+"Electrical\n"
+"mesh"
+
+msgid ""
+"<big><b>Interface editor</b></big>\n"
+"Use this window to edit how electrical interfaces behave."
+msgstr ""
+"<magnus><b>Interface editor</b></big>\\ Hac fenestra ut emendo quomodo interfaces electricas "
+"se habeat."
+
+msgid "Electrical boundary conditions"
+msgstr "Electrical terminus conditionibus"
+
+msgid "Excitonic boundary conditions"
+msgstr "Excitonic terminus conditionibus"
+
+msgid ""
+"<big><b>Doping window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr "<magnus><b>doping fenestra</b></big>\\ hac fenestra doping ad simulationem adde"
+
+msgid ""
+"<big><b>Gradients window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr "<magnus><b> fenestra graduum</b></big>\\ hac fenestra doping ad simulationem adde"
+
+msgid ""
+"<big><b>Parasitic components</b></big>\n"
+"Use this window to edit the shunt and series resistance."
+msgstr ""
+"<big><b>partium Parasiticarum</b></big>\\Numquam hac fenestra ad resistentiam shunt ac seriem "
+"emendo."
+
+msgid "Load type"
+msgstr "Genus onus"
+
+msgid "Multiplyer"
+msgstr "Multipleer"
+
+msgid ""
+"External\n"
+"interface:"
+msgstr "Externi ninterface:"
+
+msgid ""
+"External\n"
+"Reflection"
+msgstr ""
+"Externi\n"
+"Reflection"
+
+msgid "Reflective interface editor"
+msgstr "Editor reflective interface"
+
+msgid "Connect to cluster"
+msgstr "Coniungere ad botrum portassent"
+
+msgid "Connect"
+msgstr "Connect"
+
+msgid "Disconnect"
+msgstr "Disconnect"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid ""
+"<big><b>The device structure tab</b></big>\n"
+" Use this tab to change the structure of the device, the layer thicknesses and to perform "
+"optical simulations.  You can also browse the materials data base and  edit the electrical "
+"mesh."
+msgstr ""
+"<big><b>De fabrica structura tab</b></big>\n"
+" Hac tab utere ad structuram machinae, crassitudinis lavacrum et ad simulationes opticas "
+"faciendas. Potes etiam materias datas basi percurrere et reticulum electricam edit."
+
+msgid "<big><b>Update available!</b></big><br>"
+msgstr "<magnus><b>Renova available!</b></big><br>"
+
+msgid "File to plot"
+msgstr "File ad insidias"
+
+msgid "Plot type"
+msgstr "Genus insidias"
+
+msgid "Play"
+msgstr "Play"
+
+msgid "Snapshot slider"
+msgstr "Snapshot labor lapsus"
+
+msgid "Fit variables duplicate window"
+msgstr "Variables fit duplicata fenestra"
+
+msgid "Destination"
+msgstr "Destination"
+
+msgid "Source (JSON)"
+msgstr "Source (JSON)"
+
+msgid "Destination (JSON)"
+msgstr "Destinatio (JSON)"
+
+msgid "Open data file"
+msgstr "Aperta notitia lima"
+
+msgid "Load/Import"
+msgstr "Load/Import"
+
+msgid "Next"
+msgstr "deinde"
+
+msgid "Online help"
+msgstr "Online auxilium"
+
+msgid "On line help"
+msgstr "In linea auxilium"
+
+msgid "Hide"
+msgstr "Celare"
+
+msgid "OghmaNano in your language!"
+msgstr "OghmaNano in lingua tua!"
+
+msgid "OghmaNano translated by:"
+msgstr "OghmaNano translata est:"
+
+msgid "Dimension editor"
+msgstr "Dimension editor"
+
+msgid "Substrate xz size"
+msgstr "Substratum xz magnitudine"
+
+msgid "World size"
+msgstr "Magnitudo mundi"
+
+msgid "Select simulation parameter"
+msgstr "Lego simulation parametri"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "No row selected in the scan window, can't insert the selection"
+msgstr "Nullus ordo in fenestra photographica delectus, electionem inserere non potest"
+
+msgid "New material"
+msgstr "Nova materia"
+
+msgid "New spectra"
+msgstr "Nova spectra"
+
+msgid "New shape"
+msgstr "Nova figura"
+
+msgid "New filter"
+msgstr "Novum colum"
+
+msgid "Unpack archive"
+msgstr "Unpack archivum"
+
+msgid "Clone the file to be called:"
+msgstr "Clone tabella vocari;"
+
+msgid "The file name already exists"
+msgstr "Iam exstat tabella nomen tuum"
+
+msgid "Rename the simulation to be called:"
+msgstr "Simulatio secunda nomine appellanda est;"
+
+msgid "Are you sure you want to delete the files ?"
+msgstr "Visne vero tabulas delere?"
+
+msgid "You should now have a sim.json file in: "
+msgstr "Nunc fasciculum sim.json habere debes:"
+
+msgid "Open this directory to see it."
+msgstr "Aperi directorium hoc videre."
+
+msgid "Image"
+msgstr "Image"
+
+msgid "Gnuplot"
+msgstr "Gnuplot"
+
+msgid "Csv"
+msgstr "Csv"
+
+msgid "Text file (txt)"
+msgstr "Fasciculus textuum (txt)"
+
+msgid "MS Excel (xlsx)"
+msgstr "MS Praecedo (xlsx)"
+
+msgid "Graph"
+msgstr "Aliquam lacinia purus"
+
+msgid "Show title"
+msgstr "Ostendere titulum"
+
+msgid "Show key"
+msgstr "Ostende clavis"
+
+msgid "Light source editor"
+msgstr "Lucis fons editor"
+
+msgid "Rebuild"
+msgstr "Reficere"
+
+msgid "Electrical parameters"
+msgstr "Electrical parametri"
+
+msgid ""
+"<big><b>Electrical parameters</b></big><br>Use this tab to configure the electrical parameters "
+"for the material."
+msgstr ""
+"<big><b>parametris electricis</b></big><br> Hac tab utere ad parametri electrica configurare "
+"ad materiam."
+
+msgid "<big><b>Absorption</b></big><br>"
+msgstr "<big><b>Absorptio</b></big><br>"
+
+msgid "<big><b>Refractive index</b></big><br>"
+msgstr "<magnus><b> index refractivus</b></big><br>"
+
+msgid "<big><b>Emission spectrum</b></big><br>Use this tab to edit the emission spectrum."
+msgstr "<big><b>Emissio spectrum</b></big><br> Hac tab utere ad spectrum emissionem emendo."
+
+msgid "Material editor"
+msgstr "Materia editor"
+
+msgid "Thermal parameters"
+msgstr "Mauris scelerisque"
+
+msgid "Life cycle"
+msgstr "Vitae cyclum"
+
+msgid "Refractive index (n)"
+msgstr "Index refractivus (n)."
+
+msgid "k"
+msgstr "k"
+
+msgid "Don't run me as root!!"
+msgstr "Noli me ut radix currens!"
+
+msgid "I can't run from inside a zip file!"
+msgstr "Intrare fasciculi avi non possum currere!"
+
+msgid ""
+"<big><b>New simulation!</b></big><br> Now selected the type of device you would like to "
+"simulate."
+msgstr "<big><b>Nova simulatio!</b></big><br> Nunc genus machinis delegit quod simulare velis."
+
+msgid ""
+"<big><b>Now run the simulation</b></big><br> Click on the play icon to start a simulation."
+msgstr ""
+"<big><b> Nunc simulatio currite</b></big><br> Clica in fabula icon ut simulationem incipias."
+
+msgid ""
+"<big><b>Hi!</b></big><br> I'm the on-line help system :).  If you have any questions or find "
+"any bugs please send them to <a href=\"mailto:"
+msgstr ""
+"<magnus><b>Salve!</b></big><br> Ego sum systematis adiutorii ratio :). Si quas quaestiones "
+"habes vel cimices invenias, eas mitte ad <a href=\" mailto:"
+
+msgid "Click on the new icon to make a new simulation directory."
+msgstr "Preme novam iconem ad novam simulationem presul."
+
+msgid "Open an existing simulation"
+msgstr "Aperi existentium simulation"
+
+msgid ""
+"To open this file I need to rename it to have a .oghma extention. Do you want me to do that?. "
+"I would rename the file: "
+msgstr ""
+"Ad hanc limam aperiendam opus est me nominare eam ut extensio .oghma habere possit. Vin' me id "
+"facere ?. Ut rename lima:"
+
+msgid "The simulation directory has been deleted."
+msgstr "Simulatio indicem deleta est."
+
+msgid "Desktop"
+msgstr "Desktop"
+
+msgid "Downloads"
+msgstr "Downloads"
+
+msgid ""
+"<big><b>Examine the results in time domain</b></big><br> After you have run a simulation in "
+"time domain, if is often nice to be able to step through the simulation and look at the "
+"results.  This is what this window does.  Use the slider bar to move through the simulation.  "
+"When you are simulating a JV curve, the slider sill step through voltage points rather than "
+"time points."
+msgstr ""
+"<big><b>Quaere eventus in tempore domicilii</b></big><br> Postquam simulationem in tempore "
+"dominico cucurristi, si saepe delicatus est ut per simulationem ingredi possit et eventus "
+"intueri . Haec fenestra facit. Bar lapsus utere ut per simulationem moveat. Cum curvam JV "
+"simulas, peccatum lapsus per puncta intentionis gradum magis quam puncta temporis."
+
+msgid ""
+"Are you sure you want restore this file from the backup, it will overwrite all files in the "
+"simulation directory?"
+msgstr ""
+"Certus esne hunc fasciculum ex tergum restituere, scribet omnia lima in directorio "
+"simulationis?"
+
+msgid "title"
+msgstr "titulus"
+
+msgid "x axis"
+msgstr "x axis"
+
+msgid "y axis"
+msgstr "y axis"
+
+msgid "equilibrium"
+msgstr "aequilibrium"
+
+msgid "This contains the simulation output at 0V in the dark."
+msgstr "Hoc continet simulationem output in 0V in tenebris."
+
+msgid "Attenuation"
+msgstr "Attenuation"
+
+msgid "Luminescence editor"
+msgstr "Luminiscence editor"
+
+msgid ""
+"Optical\n"
+"Emission"
+msgstr "Optical nEmission"
+
+msgid ""
+"<big><b>Luminescence</b></big>\n"
+"If you set 'Turn on luminescence' to true, the simulation will assume recombination is a "
+"raditave process and intergrate it to produce Voltage-Light intensity curves (lv.dat).  Each "
+"number in the tab tells the model how efficient each recombination mechanism is at producing "
+"photons."
+msgstr ""
+"<big><b>Luminescentiam</b></big>\n"
+" Si ad verum pones 'luminem converte', simulatio recombinatio assumet processum raditivum et "
+"intergratum ad intensionem curvarum voltage-Lum producendam (lv.dat. ). Unusquisque numerus in "
+"tabe narrat exemplar quomodo efficiens unaquaeque recombinatio mechanismus est ad photons "
+"producendos."
+
+msgid "All"
+msgstr "Omnis"
+
+msgid "Wavelengths"
+msgstr "Wavelengths"
+
+msgid "Electrical equilibrium solver"
+msgstr "Aequilibrium electrica solver"
+
+msgid "Polynomial data generator"
+msgstr "Data generantis polynomial"
+
+msgid "Laser editor"
+msgstr "Laser editor"
+
+msgid "Youtube channel"
+msgstr "Youtube channel"
+
+msgid "Quit"
+msgstr "Quit"
+
+msgid ""
+"Stop\n"
+"simulation"
+msgstr "Subsisto \nsimulation"
+
+msgid "Thickness"
+msgstr "Crassitudo"
+
+msgid "Mesh Auto"
+msgstr "Mesh Auto"
+
+msgid "Stop"
+msgstr "prohibere"
+
+msgid "Step multiply"
+msgstr "Gradus multiplicamini"
+
+msgid "points"
+msgstr "puncta"
+
+msgid "Mesh points"
+msgstr "Mesh puncta"
+
+msgid "PL experiment window"
+msgstr "PL fenestra experimentum"
+
+msgid "Script editor"
+msgstr "Scriptor editor"
+
+msgid "Rename the script:"
+msgstr "Rename scriptum:"
+
+msgid "active"
+msgstr "active"
+
+msgid "Flyby video maker"
+msgstr "Flyby video factorem"
+
+msgid ""
+"Set\n"
+"position"
+msgstr "Set \nposition"
+
+msgid "Goto"
+msgstr "Goto"
+
+msgid "window width not divisible by two"
+msgstr "fenestra latitudo non divisibilis per duos"
+
+msgid "window height not divisible by two"
+msgstr "fenestrae altitudinis non divisibilis duobus"
+
+msgid "and "
+msgstr "et"
+
+msgid " more."
+msgstr "magis."
+
+msgid "Should I delete these files?:\n"
+msgstr ""
+
+msgid "command line tool"
+msgstr "order versus instrumentum"
+
+msgid "Prints the used paths"
+msgstr "Procer viae usus"
+
+msgid "www.pvlighthouse.com.au sync"
+msgstr "www.pvlighthouse.com.au sync"
+
+msgid "Load new image"
+msgstr "Load novam imaginem"
+
+msgid ""
+"Original\n"
+"image"
+msgstr "Original \nimage"
+
+msgid ""
+"Generate\n"
+"Image"
+msgstr "Generate nImage"
+
+msgid ""
+"Show\n"
+"Mesh"
+msgstr "Ostende \nMesh"
+
+msgid ""
+"Edit\n"
+"Mesh"
+msgstr ""
+"Edit\n"
+"Mesh"
+
+msgid ""
+"Build\n"
+"Mesh"
+msgstr "Ædificate \nMesh"
+
+msgid ""
+"Generate\n"
+"Honeycomb"
+msgstr ""
+"Generate \n"
+"Honeycomb"
+
+msgid ""
+"Generate\n"
+"Xtal"
+msgstr ""
+"Generare \n"
+"Xtal"
+
+msgid ""
+"Generate\n"
+"lens"
+msgstr "Generare \nlens"
+
+msgid ""
+"Generate\n"
+"Gaussian"
+msgstr "Generate nGaussian"
+
+msgid ""
+"Saw\n"
+"wave"
+msgstr "Vidit \nwave"
+
+msgid "Blur"
+msgstr "Blur"
+
+msgid "Edit blur"
+msgstr "Edit blur"
+
+msgid ""
+"Normalize\n"
+"y"
+msgstr "Normalize \ny"
+
+msgid "Edit histogram"
+msgstr "Edit histogram"
+
+msgid ""
+"Normalize\n"
+"z"
+msgstr "Normalize \nz *"
+
+msgid "Threshold"
+msgstr "Limen"
+
+msgid "Boundary"
+msgstr "Terminus"
+
+msgid "Apply"
+msgstr "Applicare"
+
+msgid "2D Image"
+msgstr "2D Image"
+
+msgid "I don't know how to process this type of file!"
+msgstr "Nescio quomodo hoc genus documenti computetur!"
+
+msgid " <a href=\""
+msgstr "<a href=\""
+
+msgid "Can not connect to cluster."
+msgstr "Botrus coniungere potest."
+
+msgid "Editors"
+msgstr "Editores"
+
+msgid ""
+"<big><b>Simulation Editors</b></big><br> Use this tab to edit the simulation you wish to "
+"perform, you can choose from steady state measurments such as JV curve/Suns-Voc, time domain "
+"or frequency domain.  You can also choose to use advanced optical models to understand your "
+"data."
+msgstr ""
+"<magnus><b>simulatio Editorum</b></big><br> Hac tab utere ut emendo simulationem quam vis "
+"praestare, eligere potes e mensuris stabilis civitatis sicut curvae JV/Suns-Voc, temporis "
+"dominii vel frequentia domicilii. Potes etiam uti exemplaribus opticis provectis ad notitias "
+"tuas intelligendas."
+
+msgid ""
+"<big><b>Configure</b></big><br> Use this tab to control advanced features of the simulation, "
+"such as finite difference mesh, amount of data written to disk, and the configuration of the "
+"back end numerical solvers."
+msgstr ""
+"<big><b>Configure</b></big><br> Hac tab utere ad imperium provectae simulationis lineamenta, "
+"qualia sunt reticula differentia finita, copia notitiarum ad orbem scripta, et conformatio "
+"extremitatis posterioris numeralis. solvers."
+
+msgid ""
+"<big><b>Simulation type</b></big><br> Use this tab to select which simulation mode the model "
+"runs in, select between steady state, time domain, frequency domain and optical simulations."
+msgstr ""
+"<big><b>simulatio generis</b></big><br> Hac tab utere ut eligere, cuius simulationis exemplar "
+"incurrit, eligere inter statum stabilem, tempus domain, frequentiam domain et simulationes "
+"opticas."
+
+msgid "Databases"
+msgstr "Databases"
+
+msgid ""
+"<big><b>Databases</b></big><br> Use this tab to explore the materials and optical data bases, "
+"you can add and download more materials/optical models using the tools here."
+msgstr ""
+"<big><b>Databases</b></big><br> Hac tab utere ad exploranda materias et datas opticas bases, "
+"plura exempla materiae/opticarum instrumentorum hic utendo addere et deponi potes."
+
+msgid ""
+"<big><b>Information</b></big><br> Access extra information about the model in this tab, there "
+"are lots of tutorial videos on YouTube, follow on Twitter for the latest updates."
+msgstr ""
+"<big><b>Information</b></big><br> Accessus extra informationem de exemplari in hac tab, sunt "
+"multae videos de YouTube tutorial, sequere in Twitter pro latest updates."
+
+msgid "Automation"
+msgstr "Automation"
+
+msgid "Electrical"
+msgstr "Electrical"
+
+msgid "Thermal"
+msgstr "Scelerisque"
+
+msgid "<big><b>Simulation mode changed</b></big><br>"
+msgstr "<magnus><b>simulatio modus mutavit</b></big><br>"
+
+msgid "Key not found"
+msgstr "Key non inveni"
+
+msgid "User not found"
+msgstr "User non inveni"
+
+msgid ""
+"This version of the software is too old to validate it's key, please download the latest "
+"version."
+msgstr ""
+"Haec versio programmatis nimis antiqua est ut clavis eius convalidetur, novissimam versionem "
+"depone quaeso."
+
+msgid "OghmaNano trial"
+msgstr "OghmaNano iudicium"
+
+msgid "Optical simulation editor"
+msgstr "Optical simulation editor"
+
+msgid "Photon distribution"
+msgstr "Photon distribution"
+
+msgid "Photon distribution absorbed"
+msgstr "Photon distributio absorptus"
+
+msgid "m"
+msgstr "m"
+
+msgid "cm"
+msgstr "cm"
+
+msgid "mm"
+msgstr "mm"
+
+msgid "um"
+msgstr "um"
+
+msgid "nm"
+msgstr "nm"
+
+msgid "pm"
+msgstr "pm*"
+
+msgid "fm"
+msgstr "fm"
+
+msgid "Optical thickness editor"
+msgstr "Crassitudine optical editor"
+
+msgid "File or token to ban"
+msgstr "File seu indicium ban"
+
+msgid "Laser:"
+msgstr "Laser:"
+
+msgid "Export"
+msgstr "Exportare"
+
+msgid "Cost and energy payback calculator"
+msgstr "Sumptus et industria payback calculator"
+
+msgid "Re-calcualte"
+msgstr "Re-calculate"
+
+msgid "material"
+msgstr "materia"
+
+msgid "Mass"
+msgstr "Mass"
+
+msgid "Optical outcoupling"
+msgstr "Optical outcoupling"
+
+msgid "Photon distribution (norm)"
+msgstr "Photon distributio (norm)"
+
+msgid "Escape probability (1D in y)"
+msgstr "Probabilitas evadere (1D in y)"
+
+msgid "You have not selected any parameters to scan through.  Use the add button."
+msgstr "Nullam non lorem lectus ut per. Utere addendi deprimendo."
+
+msgid "Parameter scan editor"
+msgstr "Parameter scan editor"
+
+msgid "Parameter to scan"
+msgstr "Parameter ad scan"
+
+msgid "JSON Variable 0"
+msgstr "JSON Variabilis 0"
+
+msgid "JSON Variable 1"
+msgstr "JSON Variabilis 1"
+
+msgid ""
+"<big><b>Fast optimizer</b></big><br>When the fast optimizer is enabled simulation results are "
+"not written to disk and instead only key paramters are saved in a csv file. Using a "
+"spreadsheet you can then search/sort for the desired device parameters. This enables very fast "
+"parameter optimization of layer thicknesses."
+msgstr ""
+"<big><b>Fast optimizer</b></big><br>Cum velocius optimizer efficitur, simulationes eventus non "
+"scribuntur in disco et pro soli parametri clavis in tabula csv salvantur. Expansione uti potes "
+"tum quaerere/solum pro parametris desideratis fabrica. Hoc maxime efficit celerrimus parametri "
+"optimizationis accumsan crassitudinum."
+
+msgid "Quantum efficiency editor"
+msgstr ""

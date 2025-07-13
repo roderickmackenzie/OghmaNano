@@ -68,6 +68,9 @@ d = Dialog(dialog="dialog")
 # Dialog.set_background_title() requires pythondialog 2.13 or later
 d.set_background_title("https://www.oghma-nano.com build configure, Roderick MacKenzie 2018")
 
+#from db_publish import publish_database_to_web
+#publish_database_to_web(d,True)
+#exit(0)
 
 while(1):
 	menu=[]

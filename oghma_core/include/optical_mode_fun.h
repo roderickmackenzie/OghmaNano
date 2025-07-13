@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solardevs.
-// The model can simulate OLEDs, Perovskite devs, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -25,7 +23,6 @@
 // SOFTWARE.
 // 
 
-
 /** @file optical_mode_fun.h
 	@brief Mode solver functions
 */
@@ -33,6 +30,7 @@
 
 #ifndef h_optical_mode_fun
 #define h_optical_mode_fun
+#include <g_io.h>
 #include <enabled_libs.h>
 #include "advmath.h"
 #include <sim_struct.h>
@@ -44,7 +42,20 @@ int mode_free(struct simulation *sim,struct optical_mode *in);
 void mode_init(struct simulation *sim,struct optical_mode *in);
 int mode_dump(struct simulation *sim,struct device *dev,struct optical_mode *in,char *path);
 int mode_cpy(struct simulation *sim,struct optical_mode *out,struct optical_mode *in);
-int mode_load(struct simulation *sim,struct optical_mode *in,struct device *dev);
-int mode_norm(struct simulation *sim,struct optical_mode *in,long double density);
-
+int mode_cal_photon_density(struct simulation *sim,struct optical_mode *in, double ***E);
+void mode_cal_gamma(struct simulation *sim,struct device *dev, struct optical_mode *mode);
+void mode_to_device(struct simulation *sim,struct device *dev, struct optical_mode *mode);
+int mode_load_config(struct simulation *sim,struct optical_mode *mode,struct device *dev);
+int mode_malloc(struct simulation *sim,struct optical_mode *mode);
+int optical_mode_build_mesh(struct simulation *sim,struct optical_mode *mode,struct device *dev);
+int mode_set_materal_params(struct simulation *sim,struct optical_mode *mode,struct device *dev);
+int mode_solve(struct simulation *sim,struct optical_mode *mode,struct device *dev, int x0, int y0);
+double mode_build_matrix(struct simulation *sim,struct optical_mode *mode,struct matrix *mx, struct device *dev, int build_matrix,double *beta_out);
+int mode_search(struct simulation *sim,struct optical_mode *mode,struct device *dev);
+int is_eigenvalue(struct optical_mode *mode,double val);
+void mode_guess(struct simulation *sim,struct device *dev,struct optical_mode *mode, int x0, int y0);
+void mode_dump_snapshot(struct simulation *sim,char *output_path, struct optical_mode *mode,int step);
+void mode_norm(struct simulation *sim, struct optical_mode *mode,double Nph);
+int mode_solve_for_00(struct simulation *sim,struct optical_mode *mode,struct device *dev);
+double mode_build_matrix_TM(struct simulation *sim,struct optical_mode *mode,struct matrix *mx, struct device *dev, int build_matrix, double *beta_out);
 #endif

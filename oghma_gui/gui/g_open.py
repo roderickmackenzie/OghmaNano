@@ -40,12 +40,14 @@ from dir_viewer import dir_viewer
 from util import wrap_text
 from QWidgetSavePos import QWidgetSavePos
 from sim_name import sim_name
+from bytes2str import str2bytes
+from bytes2str import bytes2str
 
 import i18n
 _ = i18n.language.gettext
 
 class g_open_base(QVBoxLayout):
-	def __init__(self,path,act_as_browser=True,big_toolbar=False,title=_("Open file")):
+	def __init__(self,path,act_as_browser=True,big_toolbar=False,title=_("Open file"),fake_dir_structure=None):
 		QVBoxLayout.__init__(self)
 		self.act_as_browser=act_as_browser
 		self.show_directories=True
@@ -69,9 +71,9 @@ class g_open_base(QVBoxLayout):
 		self.addWidget(self.toolbar)
 
 		if self.act_as_browser==False:
-			self.viewer=dir_viewer(path,open_own_files=False)
+			self.viewer=dir_viewer(path,open_own_files=False,fake_dir_structure=fake_dir_structure)
 		else:
-			self.viewer=dir_viewer(path)
+			self.viewer=dir_viewer(path,fake_dir_structure=fake_dir_structure)
 
 		self.viewer.set_directory_view(True)
 		self.addWidget(self.viewer)
@@ -86,31 +88,30 @@ class g_open_base(QVBoxLayout):
 
 
 	def on_home_clicked(self, widget):
-		self.viewer.path = self.root_dir
+		self.viewer.data.path = str2bytes(self.root_dir)
 		self.change_path()
 		
 
 	def change_path(self):
-		self.path_widget.setText(self.viewer.path)
+		self.path_widget.setText(bytes2str(self.viewer.data.path))
 
 		self.viewer.fill_store()
 		sensitive = True
-		print(self.viewer.path,self.root_dir)
-		if self.viewer.path == self.root_dir:
+		if bytes2str(self.viewer.data.path) == self.root_dir:
 			sensitive = False
 
 		self.up.setEnabled(sensitive)
 
 	def on_up_clicked(self, widget):
-		self.viewer.set_path(os.path.dirname(self.viewer.path))
+		self.viewer.set_path(os.path.dirname(self.viewer.data.path))
 		self.change_path()
 		self.viewer.fill_store()
 
 class g_open(QDialog):
 
-	def __init__(self,path,act_as_browser=True,big_toolbar=False,title=_("Open file")):
+	def __init__(self,path,act_as_browser=True,big_toolbar=False,title=_("Open file"),fake_dir_structure=None):
 		QDialog.__init__(self)
-		self.vbox=g_open_base(path,act_as_browser=act_as_browser,big_toolbar=big_toolbar)
+		self.vbox=g_open_base(path,act_as_browser=act_as_browser,big_toolbar=big_toolbar,fake_dir_structure=fake_dir_structure)
 		self.setLayout(self.vbox)
 		self.resize(800,500)
 		self.setWindowTitle(title+sim_name.web_window_title)
@@ -118,6 +119,11 @@ class g_open(QDialog):
 
 		if act_as_browser==False:
 			self.vbox.viewer.accept.connect(self.callback_accept)
+
+		#self.setWindowFlags(Qt.Dialog | Qt.WindowCloseButtonHint)
+		#self.setModal(False)
+		#self.setWindowModality(Qt.NonModal)
+
 		self.show()
 
 	def callback_accept(self):

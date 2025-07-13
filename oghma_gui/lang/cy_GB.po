@@ -1,0 +1,7332 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Roderick C. I. MacKenzie
+# This file is distributed under the same license as the oghmanano package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: oghmanano 8.0\n"
+"Report-Msgid-Bugs-To: roderick.mackenzie@oghma-nano.com\n"
+"POT-Creation-Date: 2024-05-02 11:45+0100\n"
+"PO-Revision-Date: 2024-05-02 17:21+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : "
+"2);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+msgid "H_joule"
+msgstr "H_joule"
+
+msgid "H_recombination"
+msgstr "H_ailgyfuniad"
+
+msgid "H_parasitic"
+msgstr "H_parasitig"
+
+msgid "Single states"
+msgstr "Taleithiau sengl"
+
+msgid "time"
+msgstr "amser"
+
+msgid "Ns"
+msgstr "Ns"
+
+msgid "Triplet states"
+msgstr "Taleithiau tripledi"
+
+msgid "Nt"
+msgstr "Nt"
+
+msgid "Singlets in donor"
+msgstr "Singlets yn rhoddwr"
+
+msgid "Nsd"
+msgstr "Nsd"
+
+msgid "Triplet in donor"
+msgstr "Tripled yn rhoddwr"
+
+msgid "Ntd"
+msgstr "Ntd"
+
+msgid "Photon denisty"
+msgstr "Gwaddod ffoton"
+
+msgid "Npho"
+msgstr "Npho"
+
+msgid "file name not set\n"
+msgstr "enw ffeil heb ei osod\n"
+
+msgid "Time"
+msgstr "Amser"
+
+msgid "Voltage"
+msgstr "foltedd"
+
+msgid "Free electron generation rate"
+msgstr "Cyfradd cynhyrchu electronau am ddim"
+
+msgid "Generation rate"
+msgstr "Cyfradd cynhyrchu"
+
+msgid "Free hole generation rate"
+msgstr "Cyfradd cynhyrchu tyllau am ddim"
+
+msgid "SRH recombination free electrons -> trapped holes"
+msgstr "electronau ailgyfuniad SRH -> tyllau wedi'u dal"
+
+msgid "Recombination"
+msgstr "Ailgyfuniad"
+
+msgid "SRH recombination free holes -> trapped electrons"
+msgstr "Tyllau di-ailgyfuniad SRH -> electronau wedi'u dal"
+
+msgid "Surface recombination on left contact"
+msgstr "Ailgyfuniad wyneb ar gyswllt chwith"
+
+msgid "Surface recombination on right contact"
+msgstr "Ailgyfuniad wyneb ar gyswllt cywir"
+
+msgid "Trapped electron density"
+msgstr "Dwysedd electronau wedi'i ddal"
+
+msgid "Electron density"
+msgstr "Dwysedd electronau"
+
+msgid "Trapped hole density"
+msgstr "Dwysedd twll wedi'i ddal"
+
+msgid "Hole density"
+msgstr "Dwysedd twll"
+
+msgid "Free electron density"
+msgstr "Dwysedd electron am ddim"
+
+msgid "Free hole density"
+msgstr "Dwysedd twll am ddim"
+
+msgid "Total electron density"
+msgstr "Cyfanswm dwysedd electronau"
+
+msgid "Total hole density"
+msgstr "Cyfanswm dwysedd y twll"
+
+msgid "Electron mobility"
+msgstr "Symudedd electronig"
+
+msgid "Mobility"
+msgstr "Symudedd"
+
+msgid "Hole mobility"
+msgstr "Symudedd twll"
+
+msgid "Average electron and hole mobility"
+msgstr "Symudedd electron a thyllau ar gyfartaledd"
+
+msgid "Total PL intensity"
+msgstr "Cyfanswm dwyster PL"
+
+msgid "Total PL Intensity"
+msgstr "Dwysedd PL Cyfanswm"
+
+msgid "PL intensity at given energy"
+msgstr "PL dwyster ar egni penodol"
+
+msgid "PL Intensity"
+msgstr "PL Dwysedd"
+
+msgid "Voltage applied to diode"
+msgstr "Foltedd wedi'i gymhwyso i ddeuod"
+
+msgid "band bend (percent)"
+msgstr "tro band (canran)"
+
+msgid "band bend"
+msgstr "tro band"
+
+msgid "percent"
+msgstr "cant"
+
+msgid "Dynamic quantum efficiency"
+msgstr "Effeithlonrwydd cwantwm deinamig"
+
+msgid "Percent"
+msgstr "Canran"
+
+msgid "Drift current density"
+msgstr "Dwysedd cerrynt drifft"
+
+msgid "Position"
+msgstr "Swydd"
+
+msgid "Electron current density (drift)"
+msgstr "Dwysedd cerrynt electron (drifft)"
+
+msgid "Diffusion current density"
+msgstr "Dwysedd cerrynt tryledu"
+
+msgid "position"
+msgstr "sefyllfa"
+
+msgid "Electron current density (diffusion)"
+msgstr "Dwysedd cerrynt electron (trylediad)"
+
+msgid "Diffusion+Drift current density"
+msgstr "Trylediad+Dwysedd cerrynt drifft"
+
+msgid "Drift current density (x)"
+msgstr "Dwysedd cerrynt drifft (x)"
+
+msgid "Diffusion current density (x)"
+msgstr "Dwysedd cerrynt tryledu (x)"
+
+msgid "Hole current density (drift)"
+msgstr "Dwysedd cerrynt twll (drifft)"
+
+msgid "Hole current density (diffusion)"
+msgstr "Dwysedd cerrynt twll (trylediad)"
+
+msgid "Current density"
+msgstr "Dwysedd presennol"
+
+msgid "Electron current density"
+msgstr "Dwysedd cerrynt electron"
+
+msgid "Hole current density"
+msgstr "Dwysedd cerrynt twll"
+
+msgid "Electron current density x"
+msgstr "Dwysedd cerrynt electron x"
+
+msgid "Total current density (Jn+Jp)"
+msgstr "Cyfanswm y dwysedd cyfredol (Jn+Jp)"
+
+msgid "|Jny|+|Jnx|"
+msgstr "|Jny|+|Jnx|"
+
+msgid "|Total current density|"
+msgstr "|Dwysedd cerrynt cyfan|"
+
+msgid "|Jpy|+|Jpx|"
+msgstr "|Jpy|+|Jpx|"
+
+msgid "Free electron -> Free hole recombination rate"
+msgstr "Electron am ddim -> Cyfradd ailgyfuno twll am ddim"
+
+msgid "Free carrier recombination rate"
+msgstr "Cyfradd ailgyfuno cludwyr am ddim"
+
+msgid "Free electron loss due to SRH processes (including trapping)"
+msgstr "Colli electronau am ddim oherwydd prosesau SRH (gan gynnwys trapio)"
+
+msgid "Free electron loss"
+msgstr "Colli electronau am ddim"
+
+msgid "Free hole loss due to SRH processes (including trapping)"
+msgstr "Colli tyllau am ddim oherwydd prosesau SRH (gan gynnwys trapio)"
+
+msgid "Free hole loss"
+msgstr "Colli twll am ddim"
+
+msgid "SRH relaxation free electrons -> trapped electrons"
+msgstr "Electronau rhydd ymlacio SRH -> electronau wedi'u dal"
+
+msgid "Relaxation"
+msgstr "Ymlacio"
+
+msgid "SRH relaxation free holes -> trapped holes"
+msgstr "Tyllau rhydd ymlacio SRH -> tyllau wedi'u dal"
+
+msgid "Singlet density (S1)"
+msgstr "Dwysedd Singlet (S1)"
+
+msgid "Singlet density"
+msgstr "Dwysedd Singlet"
+
+msgid "Triplet density  (T1)"
+msgstr "Dwysedd tripledi (T1)"
+
+msgid "Triplet density"
+msgstr "Dwysedd tripledi"
+
+msgid "Singlet CT (1C)"
+msgstr "Singlet CT (1C)"
+
+msgid "Triplet CT (3C)"
+msgstr "Tripled CT (3C)"
+
+msgid "Singlet S1 'IMREF'"
+msgstr "Singlet S1 'IMREF'"
+
+msgid "Singlet energy"
+msgstr "Egni Singlet"
+
+msgid "Triplet T1 'IMREF'"
+msgstr "Tripled T1 'IMREF'"
+
+msgid "Triplet energy"
+msgstr "Egni tripledi"
+
+msgid "Singlet CT (1C) 'IMREF'"
+msgstr "Singlet CT (1C) 'IMREF'"
+
+msgid "Triplet CT (3C) 'IMREF'"
+msgstr "Tripled CT (3C) 'IMREF'"
+
+msgid "Singlet in donor density"
+msgstr "Singlet mewn dwysedd rhoddwr"
+
+msgid "Triplet in donor density"
+msgstr "Tripled mewn dwysedd rhoddwr"
+
+msgid "Ion density"
+msgstr "Dwysedd Ion"
+
+msgid "Singlet 'IMREF'"
+msgstr "Singlet 'IMREF'"
+
+msgid "Triplet 'IMREF'"
+msgstr "Tripled 'IMREF'"
+
+msgid "Singlet in donor 'IMREF'"
+msgstr "Singlet yn rhoddwr 'IMREF'"
+
+msgid "Triplet in donor 'IMREF'"
+msgstr "Tripled yn rhoddwr 'IMREF'"
+
+msgid "Ion energy"
+msgstr "Egni Ion"
+
+msgid "Doping"
+msgstr "Cyffuriau"
+
+msgid "Doping density"
+msgstr "Dwysedd cyffuriau"
+
+msgid "Free electron carrier density"
+msgstr "Dwysedd cludwr electron am ddim"
+
+msgid "Carrier density"
+msgstr "Dwysedd cludwr"
+
+msgid "Free hole carrier density"
+msgstr "Dwysedd cludwr twll am ddim"
+
+msgid "Trapped electron carrier density"
+msgstr "Dwysedd cludwr electron wedi'i ddal"
+
+msgid "Trapped hole carrier density"
+msgstr "Dwysedd cludwr twll wedi'i ddal"
+
+msgid "Change in electron population"
+msgstr "Newid yn y boblogaeth electronau"
+
+msgid "Total charge"
+msgstr "Cyfanswm y tâl"
+
+msgid "Change in total charge"
+msgstr "Newid yng nghyfanswm y tâl"
+
+msgid "Change in hole population"
+msgstr "Newid yn y boblogaeth tyllau"
+
+msgid "Excess electron density"
+msgstr "Dwysedd electronau gormodol"
+
+msgid "x-position"
+msgstr "x-sefyllfa"
+
+msgid "y-position"
+msgstr "y-sefyllfa"
+
+msgid "z-position"
+msgstr "z-sefyllfa"
+
+msgid "Excess hole density"
+msgstr "Dwysedd twll gormodol"
+
+msgid "Perovskite mobile ion density"
+msgstr "Dwysedd ïon symudol Perovskite"
+
+msgid "Interface free-to-free recombination constant"
+msgstr "Rhyngwyneb am ddim-i-rhad ac am ddim recombination cyson"
+
+msgid "Electron tunneling though the interface"
+msgstr "Twnelu electronig trwy'r rhyngwyneb"
+
+msgid "Tunneling-e"
+msgstr "Twnelu-e"
+
+msgid "Hole tunneling though the interface"
+msgstr "Twnelu twll er y rhyngwyneb"
+
+msgid "Tunneling-h"
+msgstr "Twnelu-h"
+
+msgid "Interface free-to-trap recombination constant"
+msgstr "Rhyngwyneb ailgyfuniad rhydd-i-trap cyson"
+
+msgid "Interface free-to-trap  recombination constant"
+msgstr "Rhyngwyneb ailgyfuniad rhydd-i-trap cyson"
+
+msgid "Interface recombination rate"
+msgstr "Cyfradd ailgyfuno rhyngwyneb"
+
+msgid "Electron current density left contact (J_y0_n)"
+msgstr "Cyswllt chwith dwysedd cerrynt electron (J_y0_n)"
+
+msgid "Hole current density left contact (J_y0_p)"
+msgstr "Dwysedd cerrynt twll chwith cyswllt (J_y0_p)"
+
+msgid "Electron current density right contact (J_y1_n)"
+msgstr "Cyswllt cywir dwysedd cerrynt electron (J_y1_n)"
+
+msgid "Hole current density right contact (J_y1_p)"
+msgstr "Cyswllt cywir dwysedd cerrynt twll (J_y1_p)"
+
+msgid "Electron drift current"
+msgstr "Cerrynt drifft electron"
+
+msgid "Electron diffusion current"
+msgstr "Cerrynt trylediad electron"
+
+msgid "Hole drift current"
+msgstr "Cerrynt drifft twll"
+
+msgid "Hole diffusion current"
+msgstr "Cerrynt tryledu twll"
+
+msgid " Hole diffusion current"
+msgstr "Cerrynt tryledu twll"
+
+msgid "Electron drift+diffusion current"
+msgstr "Drifft electron + cerrynt tryledu"
+
+msgid "Hole diffusion+diffusion current"
+msgstr "Trylediad twll + cerrynt tryledu"
+
+msgid "Jn at contacts"
+msgstr "Jn mewn cysylltiadau"
+
+msgid "Jp at contacts"
+msgstr "Jp yn y cysylltiadau"
+
+msgid "External Current"
+msgstr "Cerrynt Allanol"
+
+msgid "Current"
+msgstr "Cyfredol"
+
+msgid "Current density at contacts"
+msgstr "Dwysedd cyfredol mewn cysylltiadau"
+
+msgid "Single states (S1)"
+msgstr "Taleithiau sengl (S1)"
+
+msgid "Triplet states (T1)"
+msgstr "Cyflyrau tripledi (T1)"
+
+msgid "Material fraction (x)"
+msgstr "Ffracsiwn materol (x)"
+
+msgid "Fraction"
+msgstr "Ffracsiwn"
+
+msgid "Material fraction (y)"
+msgstr "Ffracsiwn materol (y)"
+
+msgid "LUMO"
+msgstr "LUMO"
+
+msgid "Electron Energy"
+msgstr "Ynni Electron"
+
+msgid "HOMO"
+msgstr "HOMO"
+
+msgid "Lattice temperature"
+msgstr "Tymheredd dellt"
+
+msgid "Temperature"
+msgstr "Tymheredd"
+
+msgid "Electron temperature"
+msgstr "Tymheredd electronau"
+
+msgid "Hole temperature"
+msgstr "Tymheredd twll"
+
+msgid "Band gap"
+msgstr "Bwlch band"
+
+msgid "Electron quasi Fermi-level"
+msgstr "Electron lled Fermi-lefel"
+
+msgid "Hole quasi Fermi-level"
+msgstr "Twll lled Fermi-lefel"
+
+msgid "Potential"
+msgstr "Potensial"
+
+msgid "Equlibrium Fermi-level"
+msgstr "Ecwilibriwm Fermi-lefel"
+
+msgid "Energy"
+msgstr "Egni"
+
+msgid "Relative permittivity"
+msgstr "Caniatâd cymharol"
+
+msgid "Joule heating from device"
+msgstr "Joule gwresogi o ddyfais"
+
+msgid "Heating"
+msgstr "Gwresogi"
+
+msgid "Electron mobility z"
+msgstr "Symudedd electron z"
+
+msgid "Electron mobility x"
+msgstr "Symudedd electron x"
+
+msgid "Electron mobility y"
+msgstr "Symudedd electronau y"
+
+msgid "Hole mobility z"
+msgstr "Symudedd twll z"
+
+msgid "Hole mobility x"
+msgstr "Symudedd twll x"
+
+msgid "Hole mobility y"
+msgstr "Symudedd twll y"
+
+msgid "Average electron mobility"
+msgstr "Symudedd electronau cyfartalog"
+
+msgid "Recombination rate"
+msgstr "Cyfradd ailgyfuniad"
+
+msgid "Auger recombination"
+msgstr "Ailgyfuniad Auger"
+
+msgid "Rate"
+msgstr "Cyfradd"
+
+msgid "Trap fermi level"
+msgstr "Trap lefel fermi"
+
+msgid "Electron Fermi level"
+msgstr "Lefel Fermi electron"
+
+msgid "Material number"
+msgstr "Rhif deunydd"
+
+msgid "Number"
+msgstr "Rhif"
+
+msgid "Passivated"
+msgstr "Passivated"
+
+msgid "True/False"
+msgstr "Gwir/Gau"
+
+msgid "Current map of the bottom contact"
+msgstr "Map cyfredol o'r cyswllt gwaelod"
+
+msgid "Resistance of bottom of device"
+msgstr "Gwrthwynebiad gwaelod y ddyfais"
+
+msgid "Running Ray tracer\n"
+msgstr "Yn rhedeg Ray tracer\n"
+
+msgid "pulse mode not known\n"
+msgstr "Nid yw modd pwls yn hysbys\n"
+
+msgid "pulse time"
+msgstr "amser curiad y galon"
+
+msgid "step"
+msgstr "cam"
+
+msgid "current density"
+msgstr "dwysedd presennol"
+
+msgid "current"
+msgstr "presennol"
+
+msgid "Volts"
+msgstr "Foltau"
+
+msgid "Photogeneration rate"
+msgstr "Cyfradd ffotograffiaeth"
+
+msgid "Emission"
+msgstr "Allyriad"
+
+msgid "Charge density"
+msgstr "Dwysedd codi tâl"
+
+msgid "Suns"
+msgstr "Haul"
+
+msgid "Charge"
+msgstr "Tâl"
+
+msgid "ce mode not known\n"
+msgstr "Modd ce ddim yn hysbys\n"
+
+msgid "ce mode not known"
+msgstr "ce modd anhysbys"
+
+msgid "ce time"
+msgstr "ce amser"
+
+msgid "Simulated polynomial data"
+msgstr "Efelychu data polynomaidd"
+
+msgid "x"
+msgstr "x"
+
+msgid "y"
+msgstr "y"
+
+msgid "Full transfer matrix based light model"
+msgstr "Model golau wedi'i seilio ar fatrics trosglwyddo llawn"
+
+msgid "Generating mesh\n"
+msgstr "Cynhyrchu rhwyll\n"
+
+msgid "The materials in your device are not configured to emit light\n"
+msgstr "Nid yw'r deunyddiau yn eich dyfais wedi'u ffurfweddu i allyrru golau\n"
+
+msgid "Real"
+msgstr "Go iawn"
+
+msgid "Imaginary"
+msgstr "Dychmygol"
+
+msgid "Re(i)"
+msgstr "re(i)"
+
+msgid "Im(i)"
+msgstr "dwi(i)"
+
+msgid "Frequency"
+msgstr "Amlder"
+
+msgid "Real(i)"
+msgstr "real(i)"
+
+msgid "Capacitance"
+msgstr "Cynhwysedd"
+
+msgid "1/C^2"
+msgstr "1/C^2"
+
+msgid "abs(i)"
+msgstr "abs(i)"
+
+msgid "phi(i)"
+msgstr "phi(i)"
+
+msgid "Phase"
+msgstr "Cyfnod"
+
+msgid "Fit error modulation"
+msgstr "Fit modiwleiddio gwall"
+
+msgid "Error"
+msgstr "Gwall"
+
+msgid "Fit error j/v"
+msgstr "Gwall ffitio j/v"
+
+msgid "Resistance"
+msgstr "Gwrthsafiad"
+
+msgid "Solving EQE at"
+msgstr "Datrys EQE yn"
+
+msgid "out of memory!\n"
+msgstr "allan o gof!\n"
+
+msgid "matrix is singular!\n"
+msgstr "matrics yn unigol!\n"
+
+msgid "Running scanning probe microscopy\n"
+msgstr "Rhedeg microsgopeg stiliwr sganio\n"
+
+msgid "no spm config file found"
+msgstr "ni chanfuwyd ffeil ffurfweddu sbm"
+
+msgid "Running JV simulation\n"
+msgstr "Yn rhedeg efelychiad JV\n"
+
+msgid "Stopping because of Vexternal"
+msgstr "Stopio oherwydd Vexternal"
+
+msgid "Efficiency"
+msgstr "Effeithlonrwydd"
+
+msgid "Voltage/Current across just the ideal diode"
+msgstr "Foltedd/Cyfredol ar draws y deuod delfrydol yn unig"
+
+msgid "Applied Voltage"
+msgstr "Foltedd Cymhwysol"
+
+msgid "Recombination prefactor"
+msgstr "Rhagffactor ailgyfuniad"
+
+msgid "Applied voltage"
+msgstr "Foltedd cymhwysol"
+
+msgid "Excess carrier density"
+msgstr "Dwysedd cludwr gormodol"
+
+msgid "Excess charge density above equilibrium"
+msgstr "Dwysedd tâl gormodol uwchlaw ecwilibriwm"
+
+msgid "Charge density with correction for surface charge"
+msgstr "Dwysedd codi tâl gyda chywiro ar gyfer tâl wyneb"
+
+msgid "Total charge density"
+msgstr "Cyfanswm dwysedd tâl"
+
+msgid "EQE"
+msgstr "EQE"
+
+msgid "Light flux"
+msgstr "Fflwcs ysgafn"
+
+msgid "Power in Optical emission/Electrical power in"
+msgstr "Pŵer mewn allyriadau optegol / pŵer trydanol i mewn"
+
+msgid "Conductivity"
+msgstr "Dargludedd"
+
+msgid "Holes on left contact"
+msgstr "Tyllau ar y cyswllt chwith"
+
+msgid "Electrons on left contact"
+msgstr "Electronau ar y cyswllt chwith"
+
+msgid "Holes on right contact"
+msgstr "Tyllau ar y cyswllt cywir"
+
+msgid "Electrons on right contact"
+msgstr "Electronau ar y cyswllt cywir"
+
+msgid "Generating electrical mesh\n"
+msgstr "Cynhyrchu rhwyll drydan\n"
+
+msgid "I can't solve the matrix because I don't have enough equations."
+msgstr "Ni allaf ddatrys y matrics oherwydd nid oes gennyf ddigon o hafaliadau."
+
+msgid "Wavelength"
+msgstr "Tonfedd"
+
+msgid "Probe load configuration"
+msgstr "Profi ffurfweddiad llwyth"
+
+msgid "Probe calculate modes"
+msgstr "Probe cyfrifo moddau"
+
+msgid "Probe free memory"
+msgstr "Archwiliwch y cof am ddim"
+
+msgid "Photon generation rate"
+msgstr "Cyfradd cynhyrchu ffoton"
+
+msgid "Average photon generation rate (xz-plane)"
+msgstr "Cyfradd cynhyrchu ffoton ar gyfartaledd (xz-plane)"
+
+msgid "Photon generation rate  (xz-plane)"
+msgstr "Cyfradd cynhyrchu ffoton (xz-plane)"
+
+msgid "Absorption"
+msgstr "Amsugno"
+
+msgid "Extended opticla absorption"
+msgstr "Amsugniad opteg estynedig"
+
+#, python-format
+msgid "Cleaning cache index: %s\n"
+msgstr "Glanhau mynegai celc: %s\n"
+
+msgid "Cache: checking cache free space\n"
+msgstr "Cache: gwirio gofod heb storfa\n"
+
+msgid "Freeing memory from the exciton model\n"
+msgstr "Rhyddhau cof o'r model exciton\n"
+
+msgid "Mode E-field"
+msgstr "Modd E-faes"
+
+msgid "E-field"
+msgstr "E-faes"
+
+msgid "Refractive index"
+msgstr "Mynegai plygiannol"
+
+msgid "Normalized photon ensity"
+msgstr "ensity ffoton normaleiddio"
+
+msgid "Photon density"
+msgstr "Dwysedd ffoton"
+
+msgid "Mode Ey"
+msgstr "Modd Ey"
+
+msgid "Ey"
+msgstr "Ey"
+
+msgid "E - Electric field"
+msgstr "E - Maes trydan"
+
+msgid "Job stalled. Time since last run:"
+msgstr "Stopiodd Job. Amser ers y rhediad diwethaf:"
+
+msgid "Bytes, written"
+msgstr "Bytes, wedi ei ysgrifennu"
+
+msgid ", read"
+msgstr ", darllen"
+
+msgid "Files, read"
+msgstr "Ffeiliau, darllenwch"
+
+msgid " written"
+msgstr "ysgrifenedig"
+
+msgid "I have shut down the server"
+msgstr "Rwyf wedi cau'r gweinydd"
+
+msgid "Number of CPUs:"
+msgstr "Nifer y CPUs:"
+
+msgid "Start time"
+msgstr "Amser cychwyn"
+
+msgid "End time"
+msgstr "Amser gorffen"
+
+msgid "All jobs finished jobs"
+msgstr "Swyddi gorffenedig i gyd"
+
+msgid "I have finished all my jobs"
+msgstr "Rwyf wedi gorffen fy holl swyddi"
+
+msgid "The server has detected a crash"
+msgstr "Mae'r gweinydd wedi canfod damwain"
+
+msgid "Hole generation rate"
+msgstr "Cyfradd cynhyrchu twll"
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie, Releced the MIT License"
+msgstr "Hawlfraint (C) 2009-2022 Roderick C. I. MacKenzie, Wedi Dileu Trwydded MIT"
+
+msgid "options"
+msgstr "opsiynau"
+
+msgid "Options"
+msgstr "Opsiynau"
+
+msgid "Simulation root path"
+msgstr "Llwybr gwraidd efelychiad"
+
+msgid "displays the current version"
+msgstr "yn dangos y fersiwn gyfredol"
+
+msgid "Dump know paths"
+msgstr "Dympio llwybrau gwybod"
+
+msgid "Forces a simulation mode."
+msgstr "Yn gorfodi modd efelychu."
+
+msgid "sets the number of CPUs"
+msgstr "yn gosod nifer y CPUs"
+
+msgid "Runs the optimizer. Syntax --optimizer scan_name"
+msgstr "Yn rhedeg y optimizer. Cystrawen --optimizer scan_name"
+
+msgid "Additional information about OghmaNano is available at https://www.Oghma-Nano.com."
+msgstr "Mae gwybodaeth ychwanegol am OghmaNano ar gael yn https://www.Oghma-Nano.com."
+
+msgid "Report bugs to: roderick.mackenzie@oghma-nano.com"
+msgstr "Riportiwch chwilod i: roderick.mackenzie@oghma-nano.com"
+
+#, python-format
+msgid "oghma_core, Version %s\n"
+msgstr "oghma_core, Fersiwn %s\n"
+
+msgid "OghmaNano (Organic and hybrid Material Nano Simulation tool) core."
+msgstr "OghmaNano (offeryn Nano Deunydd Organig a hybrid Efelychu) craidd."
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2009-2022"
+msgstr "Hawlfraint Roderick MacKenzie, a ryddhawyd o dan Drwydded MIT 2009-2022"
+
+msgid "There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or\n"
+msgstr "NID OES UNRHYW WARANT; ddim hyd yn oed ar gyfer MERCHANTABILITY neu\n"
+
+msgid "FITNESS FOR A PARTICULAR PURPOSE.\n"
+msgstr "FFITRWYDD AT DDIBEN ARBENNIG.\n"
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2010-2019"
+msgstr "Hawlfraint Roderick MacKenzie, a ryddhawyd o dan Drwydded MIT 2010-2019"
+
+msgid "OghmaNano - Organic and hybrid Material Nano Simulation tool"
+msgstr "OghmaNano - Offeryn Efelychu Nano Deunydd Organig a hybrid"
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+msgstr "Hawlfraint (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+
+msgid "Released under the MIT software license"
+msgstr "Wedi'i ryddhau o dan drwydded meddalwedd MIT"
+
+msgid "If you wish to collaborate in anyway please get in touch:\n"
+msgstr "Os hoffech chi gydweithio mewn unrhyw ffordd cysylltwch â ni:\n"
+
+msgid "dll not loaded"
+msgstr "dll heb ei lwytho"
+
+msgid "dll function outcoupling_dll_init not found\n"
+msgstr "dll swyddogaeth outcoupling_dll_init heb ei ganfod\n"
+
+msgid "dll function outcoupling_dll_solve_lam_slice not found\n"
+msgstr "dll swyddogaeth outcoupling_dll_solve_lam_slice heb ei ganfod\n"
+
+msgid "dll function outcoupling_dll_ver not found\n"
+msgstr "dll swyddogaeth outcoupling_dll_ver heb ei ganfod\n"
+
+msgid "Generation rate - position"
+msgstr "Cyfradd cynhyrchu - sefyllfa"
+
+msgid "Photons escape probability - position"
+msgstr "Mae ffotonau yn dianc rhag tebygolrwydd - safle"
+
+msgid "Photons escape probability"
+msgstr "Mae ffotonau yn dianc rhag tebygolrwydd"
+
+msgid "Position - Photon density"
+msgstr "Safle - Dwysedd ffoton"
+
+msgid "Photon Escape Probability Wavelength Averaged"
+msgstr "Tebygolrwydd Dianc Ffoton Tonfedd Cyfartalog"
+
+msgid "Escape probability"
+msgstr "Tebygolrwydd dianc"
+
+msgid "Photon escape probability"
+msgstr "Tebygolrwydd dianc ffoton"
+
+msgid "Running FDTD simulation @"
+msgstr "Rhedeg efelychiad FDTD @"
+
+msgid "Ex - Electric field"
+msgstr "Ex - Maes trydan"
+
+msgid "Ey - Electric field"
+msgstr "Ey - Maes trydan"
+
+msgid "Ez - Electric field"
+msgstr "Ez - Maes trydan"
+
+msgid "Detectors"
+msgstr "Synwyr"
+
+msgid "Hx - Magnetic field"
+msgstr "Hx - Maes magnetig"
+
+msgid "H-field"
+msgstr "H-faes"
+
+msgid "Hy - Magnetic field"
+msgstr "Hy - Maes magnetig"
+
+msgid "Hz - Magnetic field"
+msgstr "Hz - Maes magnetig"
+
+msgid "Power den"
+msgstr "Ffau pŵer"
+
+msgid "Tot power den"
+msgstr "ffau pŵer tot"
+
+msgid "epsilon_r - Premitivity"
+msgstr "epsilon_r - Rhagflaenoldeb"
+
+msgid "Permitivity"
+msgstr "Caniatâd"
+
+msgid "sigma - ?"
+msgstr "sigma - ?"
+
+msgid "sigma"
+msgstr "sigma"
+
+msgid "Math_2d output"
+msgstr "Math_2d allbwn"
+
+msgid "Values"
+msgstr "Gwerthoedd"
+
+msgid "dll function dll_matrix_solve not found\n"
+msgstr "dll swyddogaeth dll_matrix_solve heb ei chanfod\n"
+
+msgid "dll function dll_matrix_solver_free not found\n"
+msgstr "dll swyddogaeth dll_matrix_solver_free heb ei chanfod\n"
+
+msgid "dll function dll_matrix_init not found\n"
+msgstr "dll swyddogaeth dll_matrix_init heb ei chanfod\n"
+
+msgid "Error closing dll"
+msgstr "Gwall wrth gau dll"
+
+msgid "File not found\n"
+msgstr "Ffeil heb ei chanfod\n"
+
+#, python-format
+msgid "File access log written to %s\n"
+msgstr "Log mynediad ffeil wedi'i ysgrifennu i %s\n"
+
+msgid "Equilibrium Fermi-level"
+msgstr "Ecwilibriwm Fermi-lefel"
+
+msgid "dll function dll_complex_matrix_solver_free not found\n"
+msgstr "swyddogaeth dll dll_complex_matrix_solver_free heb ei ganfod\n"
+
+msgid "Deleting directory: "
+msgstr "Wrthi'n dileu cyfeiriadur:"
+
+msgid "Deleting directory"
+msgstr "Wrthi'n dileu cyfeiriadur"
+
+msgid "Solver initialization\n"
+msgstr "Cychwyn y datrysiad\n"
+
+msgid "dll_solve_cur not NULL\n"
+msgstr "dll_solve_cur nid NULL\n"
+
+msgid "dll function dll_solve_cur not found\n"
+msgstr "dll swyddogaeth dll_solve_cur heb ei chanfod\n"
+
+msgid "dll_solver_realloc not NULL\n"
+msgstr "dll_solver_realloc nid NULL\n"
+
+msgid "dll function dll_solver_realloc not found\n"
+msgstr "swyddogaeth dll dll_solver_realloc heb ei chanfod\n"
+
+msgid "dll_solver_free_memory not NULL\n"
+msgstr "dll_solver_free_memory nid NULL\n"
+
+msgid "dll function dll_solver_free_memory not found\n"
+msgstr "dll swyddogaeth dll_solver_free_memory heb ei ganfod\n"
+
+msgid ">I don't understand the command"
+msgstr "> Dydw i ddim yn deall y gorchymyn"
+
+msgid "Can not open file"
+msgstr "Methu agor ffeil"
+
+#, python-brace-format
+msgid "Average mobility at V_{oc}"
+msgstr "Symudedd cyfartalog yn V_{oc}"
+
+msgid "Recombination rate at Voc"
+msgstr "Cyfradd ailgyfuno yn Voc"
+
+#, python-brace-format
+msgid "Average mobility as J_{sc}"
+msgstr "Symudedd cyfartalog fel J_{sc}"
+
+#, python-brace-format
+msgid "Electron mobility at J_{sc}"
+msgstr "Symudedd electronau yn J_{sc}"
+
+#, python-brace-format
+msgid "Hole mobility at J_{sc}"
+msgstr "Symudedd twll yn J_{sc}"
+
+#, python-brace-format
+msgid "Electron mobility at P_{max}"
+msgstr "Symudedd electron yn P_{max}"
+
+#, python-brace-format
+msgid "Hole mobility at P_{max}"
+msgstr "Symudedd twll yn P_{max}"
+
+msgid "Recombination time constant at Voc"
+msgstr "Amser ailgyfuno cyson yn Voc"
+
+msgid "Trapped electrons at Voc"
+msgstr "Electronau wedi'u dal yn Voc"
+
+msgid "Trapped holes at Voc"
+msgstr "Tyllau yn gaeth yn Voc"
+
+msgid "Free electrons at Voc"
+msgstr "Electronau am ddim yn Voc"
+
+msgid "Free holes at Voc"
+msgstr "Tyllau am ddim yn Voc"
+
+msgid "Total carriers (n+p)/2 at Voc"
+msgstr "Cyfanswm y cludwyr (n+p)/2 yn Voc"
+
+#, python-brace-format
+msgid "Average mobility at P_{max}"
+msgstr "Symudedd cyfartalog yn P_{max}"
+
+msgid "<b>GPU</b>"
+msgstr "<b>GPU</b>"
+
+msgid "Max Cahce Size"
+msgstr "Maint Cahce Uchaf"
+
+msgid "Minimum disk free"
+msgstr "Isafswm heb ddisg"
+
+msgid "Number of simulations to keep"
+msgstr "Nifer yr efelychiadau i'w cadw"
+
+msgid "Enable cache"
+msgstr "Galluogi storfa"
+
+msgid "Cache path"
+msgstr "Llwybr storfa"
+
+msgid "Name"
+msgstr "Enw"
+
+msgid "Resistor"
+msgstr "Gwrthydd"
+
+msgid "Capacitor"
+msgstr "Cynhwysydd"
+
+msgid "Inductance"
+msgstr "Anwythiad"
+
+msgid "I0"
+msgstr "I0"
+
+msgid "Ideality factor"
+msgstr "Ffactor delfrydedd"
+
+msgid "Layer"
+msgstr "Haen"
+
+msgid "Single point"
+msgstr "Pwynt sengl"
+
+msgid "Start intensity"
+msgstr "Dechrau dwyster"
+
+msgid "Stop intensity"
+msgstr "Stopiwch ddwyster"
+
+msgid "step multiplier"
+msgstr "lluosydd cam"
+
+msgid "dx of Honeycomb"
+msgstr "dx o Honeycomb"
+
+msgid "dy of Honeycomb"
+msgstr "dy of Honeycomb"
+
+msgid "Line width"
+msgstr "Lled llinell"
+
+msgid "x shift"
+msgstr "x sifft"
+
+msgid "y shift"
+msgstr "y shifft"
+
+msgid "Rotate"
+msgstr "Cylchdroi"
+
+msgid "Enable fit variable"
+msgstr "Galluogi newidyn ffit"
+
+msgid "Select"
+msgstr "Dewiswch"
+
+msgid "Shift experimental y"
+msgstr "Shift arbrofol y"
+
+msgid "Invert simulated data (y)"
+msgstr "Gwrthdroi data efelychiadol (y)"
+
+msgid "Subtract lowest point"
+msgstr "Tynnu pwynt isaf"
+
+msgid "Set first point to zero"
+msgstr "Gosodwch y pwynt cyntaf i sero"
+
+msgid "Fit df(x)/dx"
+msgstr "Ffitio df(x)/dx"
+
+msgid "Fit error multiplyer"
+msgstr "Gosod lluosydd gwall"
+
+msgid "Stall steps"
+msgstr "Stondin grisiau"
+
+msgid "Fit define convergence"
+msgstr "Ffit diffinio cydgyfeirio"
+
+msgid "<b>Fit method</b>"
+msgstr "<b>Dull ffitio</b>"
+
+msgid "Fiting method"
+msgstr "Dull gosod"
+
+msgid "Nelder–Mead (Downhill simplex)"
+msgstr "Nelder-Mead (simplix Downhill)"
+
+msgid "Thermal Annealing"
+msgstr "Anelio thermol"
+
+msgid "Markov chain Monte Carlo (MCMC)"
+msgstr "cadwyn Markov Monte Carlo (MCMC)"
+
+msgid "Markov chain Monte Carlo (HMC)"
+msgstr "cadwyn Markov Monte Carlo (HMC)"
+
+msgid "No-U-Turn Sampler (NUTS)"
+msgstr "Samplwr Dim Tro pedol (NUTS)"
+
+msgid "Newton"
+msgstr "Newton"
+
+msgid "Broyden–Fletcher–Goldfarb–Shanno (BFGS)"
+msgstr "Broyden-Fletcher-Goldfarb- Shanno (BFGS)"
+
+msgid "Start simplex step multiplication"
+msgstr "Dechrau lluosi cam simplex"
+
+msgid "Enable simplex reset steps"
+msgstr "Galluogi camau ailosod simplex"
+
+msgid "Simplex reset steps"
+msgstr "Camau ailosod Simplex"
+
+msgid "Disable reset at level"
+msgstr "Analluogi ailosod ar lefel"
+
+msgid "On stall randomize fit"
+msgstr "Ar stondin randomize ffit"
+
+msgid "Number of iterations between random reset"
+msgstr "Nifer yr iteriadau rhwng ailosodiad ar hap"
+
+msgid "Sigma"
+msgstr "Sigma"
+
+msgid "Dump every n steps"
+msgstr "Taflwch bob n cam"
+
+msgid "Leapfrog steps"
+msgstr "Camau llamu"
+
+msgid "Cooling constant"
+msgstr "Oeri cyson"
+
+msgid "Annealing steps"
+msgstr "Camau anelio"
+
+msgid "Randomize variables at begining"
+msgstr "Ar hap newidynnau ar y dechrau"
+
+msgid "<b>Fit control</b>"
+msgstr "<b>Rheoli ffit</b>"
+
+msgid "Set error to zero before"
+msgstr "Gosod gwall i sero o'r blaen"
+
+msgid "Enable snapshots during fit"
+msgstr "Galluogi cipluniau yn ystod ffit"
+
+msgid "Normalize data at x point"
+msgstr "Normaleiddio data ar x pwynt"
+
+msgid "Random funciton"
+msgstr "Funciton ar hap"
+
+msgid "Mersenne Twister"
+msgstr "Mersenne Twister"
+
+msgid "C rand"
+msgstr "C ran"
+
+msgid "Random initialization"
+msgstr "Cychwyn ar hap"
+
+msgid "Wall clock"
+msgstr "cloc wal"
+
+msgid "Constant value"
+msgstr "Gwerth cyson"
+
+msgid "/dev/urandom"
+msgstr "/dev/wrandom"
+
+msgid "Random seed value"
+msgstr "Gwerth hadau ar hap"
+
+msgid "Add noise"
+msgstr "Ychwanegu sŵn"
+
+msgid "Noise level"
+msgstr "Lefel sŵn"
+
+msgid "a"
+msgstr "a"
+
+msgid "b"
+msgstr "b"
+
+msgid "c"
+msgstr "c"
+
+msgid "Range start x0"
+msgstr "Ystod dechrau x0"
+
+msgid "Range stop x1"
+msgstr "Ystod stop x1"
+
+msgid "JV voltage step multiplyer"
+msgstr "Lluosydd cam foltedd JV"
+
+msgid "Maximum current density"
+msgstr "Dwysedd cyfredol uchaf"
+
+msgid "JV curve photon generation efficiency"
+msgstr "Effeithlonrwydd cynhyrchu ffoton cromlin JV"
+
+#, python-brace-format
+msgid "Average carrier density at P_{max}"
+msgstr "Dwysedd cludwr cyfartalog yn P_{max}"
+
+msgid "Start voltage"
+msgstr "Cychwyn foltedd"
+
+msgid "Stop voltage"
+msgstr "Stopio foltedd"
+
+msgid "Voltage step"
+msgstr "Cam foltedd"
+
+msgid "Points"
+msgstr "Pwyntiau"
+
+msgid "Detector input hist"
+msgstr "Hist mewnbwn synhwyrydd"
+
+msgid "Counts"
+msgstr "Cyfri"
+
+msgid "Detected light"
+msgstr "Golau wedi'i ganfod"
+
+msgid "Efficiency of emission"
+msgstr "Effeithlonrwydd allyriadau"
+
+msgid "Detector"
+msgstr "Synhwyrydd"
+
+msgid "Power"
+msgstr "Grym"
+
+msgid "Solving the initial electrostatic field."
+msgstr "Datrys y maes electrostatig cychwynnol."
+
+msgid "Electrostatic solver f()="
+msgstr "Datrysydd electrostatig f()="
+
+msgid "Converged"
+msgstr "Cydgyfeiriedig"
+
+msgid "Finding equilibrium conditions"
+msgstr "Dod o hyd i amodau ecwilibriwm"
+
+msgid "Finished finding equilibrium conditions"
+msgstr "Wedi gorffen dod o hyd i amodau ecwilibriwm"
+
+msgid "Finished generating DoS....\n"
+msgstr "Wedi gorffen cynhyrchu DoS...\n"
+
+msgid "load: config files"
+msgstr "llwyth: ffurfweddu ffeiliau"
+
+msgid "Intrinsic Fermi - position"
+msgstr "Fermi gynhenid - safle"
+
+msgid "LUMO energy - position"
+msgstr "LUMO ynni - sefyllfa"
+
+msgid "HOMO energy - position"
+msgstr "Ynni HOMO - sefyllfa"
+
+msgid "Electron density - position"
+msgstr "Dwysedd electron - safle"
+
+msgid "Hole density - position"
+msgstr "Dwysedd twll - sefyllfa"
+
+msgid "Potential - position"
+msgstr "Potensial - sefyllfa"
+
+msgid "Loading electrical dll\n"
+msgstr "Wrthi'n llwytho dll trydanol\n"
+
+msgid "dll function dll_run_simulation not found\n"
+msgstr "dll swyddogaeth dll_run_efelychu heb ei ganfod\n"
+
+msgid "Electrical objects"
+msgstr "Gwrthrychau trydanol"
+
+msgid "Running simulation"
+msgstr "Efelychiad rhedeg"
+
+msgid "Solved"
+msgstr "Wedi'i ddatrys"
+
+msgid "Equations"
+msgstr "Hafaliadau"
+
+msgid "I can't allocate a device with less than 1 mesh point."
+msgstr "Ni allaf ddyrannu dyfais gyda llai nag 1 pwynt rhwyll."
+
+msgid ""
+"You are asking me to simulate a device with more than 50000 mesh points, although I could do this "
+"I am not going to because it seems a bad idea to me."
+msgstr ""
+"Rydych yn gofyn imi efelychu dyfais gyda mwy na 50000 o bwyntiau rhwyll, er y gallwn wneud hyn "
+"nid wyf yn mynd iddo oherwydd mae'n ymddangos yn syniad gwael i mi."
+
+msgid "Current "
+msgstr "Cyfredol"
+
+msgid "Voltage - Current density"
+msgstr "Foltedd - Dwysedd cyfredol"
+
+msgid "Voltage - Current"
+msgstr "Foltedd - Cyfredol"
+
+msgid "Time - Current density"
+msgstr "Amser - Dwysedd cyfredol"
+
+msgid "Time - Voltage"
+msgstr "Amser - Foltedd"
+
+msgid "Fit error"
+msgstr "Gwall ffitio"
+
+msgid "Step"
+msgstr "Cam"
+
+msgid "au"
+msgstr "au"
+
+msgid "Speed"
+msgstr "Cyflymder"
+
+msgid "odes/s"
+msgstr "awd/au"
+
+msgid "Chain all"
+msgstr "Cadwyn i gyd"
+
+msgid "Value"
+msgstr "Gwerth"
+
+msgid "Chain accepted"
+msgstr "Derbyniwyd cadwyn"
+
+msgid "Hist chain accepted"
+msgstr "Derbyniwyd ei gadwyn"
+
+msgid "Freeing memory from the heat model\n"
+msgstr "Rhyddhau cof o'r model gwres\n"
+
+msgid "Loading file"
+msgstr "Wrthi'n llwytho ffeil"
+
+#, python-format
+msgid "Expected dos size is different from generated %d %d\n"
+msgstr ""
+
+#, python-format
+msgid "genndosfdgaus: I can not write to the file %s\n"
+msgstr "genndosfdgaus: Ni allaf ysgrifennu at y ffeil %s\n"
+
+msgid "Computer cores:"
+msgstr "creiddiau cyfrifiadurol:"
+
+msgid "Max threads:"
+msgstr "Edau mwyaf:"
+
+msgid "You must load the optical plugin before making the time mesh"
+msgstr "Rhaid i chi lwytho'r ategyn optegol cyn gwneud y rhwyll amser"
+
+msgid "The electrical mesh does not match the device length"
+msgstr "Nid yw'r rhwyll drydanol yn cyfateb i hyd y ddyfais"
+
+msgid "Can't generate a mesh with zero points"
+msgstr "Methu cynhyrchu rhwyll gyda sero pwyntiau"
+
+msgid "If you want to run perovskite in fx-domain send me an e-mail."
+msgstr "Os ydych chi eisiau rhedeg perovskite yn fx-domain anfonwch e-bost ataf."
+
+msgid "fxdomain mode not known"
+msgstr "Nid yw modd fxdomain yn hysbys"
+
+msgid "Running frequency"
+msgstr "Amlder rhedeg"
+
+msgid "Optical modulation will come in the next version.  If you want to use it drop me a mail..."
+msgstr ""
+"Bydd modiwleiddio optegol yn dod yn y fersiwn nesaf. Os ydych chi am ei ddefnyddio gyrrwch e-bost "
+"ataf..."
+
+msgid "fxdomain time"
+msgstr "amser fxdomain"
+
+msgid "Light intensity"
+msgstr "Dwysedd golau"
+
+msgid "Ion density - position"
+msgstr "Dwysedd Ion - sefyllfa"
+
+msgid "Ion free"
+msgstr "Ion yn rhydd"
+
+msgid "Ion convergence="
+msgstr "Cydgyfeiriant ion ="
+
+msgid "Ion diffusion"
+msgstr "trylediad Ion"
+
+msgid "R spm"
+msgstr "R sbm"
+
+msgid "Vlost spm"
+msgstr "Vlost spm"
+
+msgid "V spm"
+msgstr "V sbm"
+
+msgid "Electrical circuit"
+msgstr "Cylched trydanol"
+
+msgid "Circuit"
+msgstr "Cylchdaith"
+
+msgid "Current vector plot"
+msgstr "Plot fector cyfredol"
+
+msgid "Real refractive index"
+msgstr "Mynegai plygiannol go iawn"
+
+msgid "|Electric field|"
+msgstr "|Maes trydan|"
+
+msgid "Transmittance"
+msgstr "Trosglwyddiad"
+
+msgid "Reflectance"
+msgstr "Myfyrdod"
+
+msgid "Solve optical slice at"
+msgstr "Datrys sleisen optegol yn"
+
+msgid "It was dark I did not solve any slices\n"
+msgstr "Roedd hi'n dywyll wnes i ddim datrys unrhyw dafelli\n"
+
+msgid "Initializing optical model"
+msgstr "Cychwyn model optegol"
+
+msgid "dll function light_dll_init not found\n"
+msgstr "dll function light_dll_init heb ei ganfod\n"
+
+msgid "dll function light_dll_solve_lam_slice not found\n"
+msgstr "dll function light_dll_solve_lam_slice heb ei ganfod\n"
+
+msgid "dll function light_dll_ver not found\n"
+msgstr "dll function light_dll_ver heb ei ganfod\n"
+
+msgid "Power density of the optical spectra (no filter):"
+msgstr "Dwysedd pŵer y sbectra optegol (dim hidlydd):"
+
+msgid "File not found"
+msgstr "Ffeil heb ei chanfod"
+
+msgid "Light: Load filter"
+msgstr "Golau: Llwytho hidlydd"
+
+msgid "Refractive index - position"
+msgstr "Mynegai plygiannol - safle"
+
+msgid "Absorption - position"
+msgstr "Amsugno - sefyllfa"
+
+msgid "Photons absorbed - position"
+msgstr "Ffotonau wedi'u hamsugno - safle"
+
+msgid "Photons absorbed"
+msgstr "Ffotonau wedi'u hamsugno"
+
+msgid "Position - Electric field (y+)"
+msgstr "Safle - Maes trydan (y+)"
+
+msgid "Position - Electric field (y-)"
+msgstr "Safle - Maes trydan (y-)"
+
+msgid "Freeing memory from the optical model\n"
+msgstr "Rhyddhau cof o'r model optegol\n"
+
+msgid "Electron generation rate"
+msgstr "Cyfradd cynhyrchu electronau"
+
+msgid "Optical heating"
+msgstr "Gwresogi optegol"
+
+msgid "Charge carrier generation rate"
+msgstr "Tâl cyfradd cynhyrchu cludwyr"
+
+msgid "Copy"
+msgstr "Copi"
+
+msgid "Copy as JSON"
+msgstr "Copïwch fel JSON"
+
+msgid "Copy json/python path"
+msgstr "Copïo llwybr json/python"
+
+msgid "Copy ObjID"
+msgstr "Copïo ObjID"
+
+msgid "Copy as LaTex"
+msgstr "Copïwch fel LaTex"
+
+msgid "Copy as csv"
+msgstr "Copïwch fel csv"
+
+msgid "Paste"
+msgstr "Gludo"
+
+msgid "Reimport from database"
+msgstr "Mewnforio o gronfa ddata"
+
+msgid "Are you sure you want reimport the material values from:"
+msgstr "A ydych chi'n siŵr eich bod am ailgyflwyno'r gwerthoedd materol o:"
+
+msgid "File not found:"
+msgstr "Ffeil heb ei chanfod:"
+
+msgid "Edit reference"
+msgstr "Golygu cyfeirnod"
+
+msgid "Delete reference"
+msgstr "Dileu cyfeiriad"
+
+msgid "Add reference"
+msgstr "Ychwanegu cyfeirnod"
+
+msgid "This simulation"
+msgstr "Mae'r efelychiad hwn"
+
+msgid "Electrical parameter editor for shape"
+msgstr "Golygydd paramedr trydanol ar gyfer siâp"
+
+msgid "Reference"
+msgstr "Cyfeiriad"
+
+msgid "Bibliography editor"
+msgstr "Golygydd llyfryddiaeth"
+
+msgid "Electrical Mesh Editor"
+msgstr "Golygydd Rhwyll Trydanol"
+
+msgid ""
+"Y\n"
+"Dimension"
+msgstr ""
+"Y\n"
+"Dimensiwn"
+
+msgid ""
+"X\n"
+"Dimension"
+msgstr ""
+"X\n"
+"Dimensiwn"
+
+msgid ""
+"Z\n"
+"Dimension"
+msgstr ""
+"Z\n"
+"Dimensiwn"
+
+msgid ""
+"Configure\n"
+"mesh"
+msgstr ""
+"Ffurfweddu\n"
+"rhwyll"
+
+msgid ""
+"Import from\n"
+"layer editor"
+msgstr ""
+"Mewnforio o olygydd\n"
+"layer"
+
+msgid "Remesh"
+msgstr "Remesh"
+
+msgid "Configure mesh"
+msgstr "Ffurfweddu rhwyll"
+
+msgid ""
+"Are you sure you want to overwrite the electrical mesh with a guessed mesh based on the layer "
+"structure?"
+msgstr ""
+"Ydych chi'n siŵr eich bod am drosysgrifo'r rhwyll drydanol gyda rhwyll ddyfalu yn seiliedig ar "
+"strwythur yr haen?"
+
+msgid "New simulation"
+msgstr "Efelychiad newydd"
+
+msgid ""
+"Open\n"
+"simulation"
+msgstr ""
+"Agor\n"
+"efelychiad"
+
+msgid ""
+"Export\n"
+"Zip"
+msgstr ""
+"Allforio\n"
+"Zip"
+
+msgid ""
+"Run\n"
+"simulation"
+msgstr ""
+"Rhedeg\n"
+"efelychiad"
+
+msgid "Run simulation"
+msgstr "Rhedeg efelychiad"
+
+msgid "Tutorials"
+msgstr "Tiwtorialau"
+
+msgid "Manual"
+msgstr "Llawlyfr"
+
+msgid ""
+"Follow on\n"
+"Twitter"
+msgstr ""
+"Dilynwch\n"
+"Twitter"
+
+msgid ""
+"Subscribe\n"
+"on Youtube"
+msgstr ""
+"Tanysgrifio\n"
+"on Youtube"
+
+msgid "Getting started"
+msgstr "Dechrau arni"
+
+msgid "1D Simulations"
+msgstr "Efelychiadau 1D"
+
+msgid "Carrier trapping"
+msgstr "Trapio cludwr"
+
+msgid "2D electrical structures (OFETs)"
+msgstr "Strwythurau trydanol 2D (OFETs)"
+
+msgid "Large area devices/circuit models"
+msgstr "Dyfeisiau ardal fawr/modelau cylched"
+
+msgid "OLEDs"
+msgstr "OLEDs"
+
+msgid "Material databases"
+msgstr "Cronfeydd data deunydd"
+
+msgid "Scripting"
+msgstr "Sgriptio"
+
+msgid "Frequency domain simulations"
+msgstr "Efelychiadau parth amlder"
+
+msgid "Transient simulations"
+msgstr "Efelychiadau dros dro"
+
+msgid "Optical simulations"
+msgstr "Efelychiadau optegol"
+
+msgid "Excitonic simulations"
+msgstr "Efelychiadau excitonig"
+
+msgid "Fitting"
+msgstr "Ffitio"
+
+msgid "Misc"
+msgstr "Amryw"
+
+msgid "Basics"
+msgstr "Hanfodion"
+
+msgid ""
+"<big><b>Now save the simulation</b></big><br>Now select where you would like to save the "
+"simulation directory."
+msgstr ""
+"<big><b>Nawr cadwch yr efelychiad</b></big><br>Nawr dewiswch ble yr hoffech gadw'r cyfeiriadur "
+"efelychiad."
+
+msgid "password:"
+msgstr "cyfrinair:"
+
+msgid "Wrong password"
+msgstr "Cyfrinair anghywir"
+
+msgid ""
+"It's not a good idea to save the simulation in the installation directory.  Try saving it "
+"somewhere else, such as your desktop or home directory."
+msgstr ""
+"Nid yw'n syniad da cadw'r efelychiad yn y cyfeiriadur gosod. Ceisiwch ei gadw yn rhywle arall, "
+"fel eich bwrdd gwaith neu gyfeiriadur cartref."
+
+msgid "It's not a good idea to save the simulation in the oghma_local directory."
+msgstr "Nid yw'n syniad da cadw'r efelychiad yn y cyfeiriadur oghma_local."
+
+msgid "That directory already exists.  Pick another name or delete the old one."
+msgstr "Mae'r cyfeiriadur hwnnw eisoes yn bodoli. Dewiswch enw arall neu dilëwch yr hen un."
+
+msgid "Please select a device before clicking next"
+msgstr "Dewiswch ddyfais cyn clicio nesaf"
+
+msgid "Organic LED"
+msgstr "LED organig"
+
+msgid "Crystalline silicon solar cell"
+msgstr "Cell solar silicon crisialog"
+
+msgid "a-Si solar cell "
+msgstr "cell solar a-Si"
+
+msgid "polycrystalline silicon "
+msgstr "silicon polycrystalline"
+
+msgid "OFET "
+msgstr "OFET"
+
+msgid "Perovskite solar cell"
+msgstr "Cell solar Perovskite"
+
+msgid "CIGS Solar cell"
+msgstr "Cell solar CIGS"
+
+msgid "Which type of device would you like to simulate?"
+msgstr "Pa fath o ddyfais hoffech chi ei hefelychu?"
+
+msgid "Double click to open"
+msgstr "Cliciwch ddwywaith i agor"
+
+msgid "Close"
+msgstr "Cau"
+
+msgid "Show hidden"
+msgstr "Dangos cudd"
+
+msgid "Object editor"
+msgstr "Golygydd gwrthrych"
+
+msgid ""
+"Object\n"
+"enabled"
+msgstr ""
+
+msgid ""
+"Object\n"
+"disabled"
+msgstr ""
+"Gwrthrych\n"
+"anabl"
+
+msgid "About"
+msgstr "Ynghylch"
+
+msgid "Written by Roderick MacKenzie 2012-2023, released under the MIT software license."
+msgstr "Ysgrifennwyd gan Roderick MacKenzie 2012-2023, a ryddhawyd o dan drwydded meddalwedd MIT."
+
+msgid "Version "
+msgstr "Fersiwn"
+
+msgid ""
+" is a general-purpose tool for simulation of light harvesting devices. It was originally written "
+"to simulate organic solar cells and OLEDs, but it has recently been extended to simulate other "
+"devices including silicon based devices. Currently the model can sumulate:"
+msgstr ""
+"yn offeryn pwrpas cyffredinol ar gyfer efelychu dyfeisiau cynaeafu golau. Fe'i hysgrifennwyd yn "
+"wreiddiol i efelychu celloedd solar organig ac OLEDs, ond yn ddiweddar fe'i hymestynnwyd i "
+"efelychu dyfeisiau eraill gan gynnwys dyfeisiau sy'n seiliedig ar silicon. Ar hyn o bryd gall y "
+"model grynhoi:"
+
+msgid "Organic solar cells"
+msgstr "Celloedd solar organig"
+
+msgid "Organic LEDs"
+msgstr "LEDs organig"
+
+msgid "Crystalline silicon solar cells"
+msgstr "Celloedd solar silicon crisialog"
+
+msgid "a-Si solar cells"
+msgstr "celloedd solar a-Si"
+
+msgid "CIGS solar cells"
+msgstr "Celloedd solar CIGS"
+
+msgid ""
+"The model solves both electron and hole drift-diffusion, and carrier continuity equations in "
+"position space to describe the movement of charge within the device. The model also solves "
+"Poisson's equation to calculate the internal electrostatic potential. Recombination and carrier "
+"trapping are described within the model using a Shockley-Read-Hall (SRH) formalism, the "
+"distribution of trap sates can be arbitrarily defined. All equations can be solved either in "
+"steady state or in time domain. A fuller description of the model can be found in the here, in "
+"the associated publications and in the manual."
+msgstr ""
+"Mae'r model yn datrys y ddau electron a drifft-trylediad twll, a hafaliadau parhad cludwr yn y "
+"gofod safle i ddisgrifio symudiad gwefr o fewn y ddyfais. Mae'r model hefyd yn datrys hafaliad "
+"Poisson i gyfrifo'r potensial electrostatig mewnol. Disgrifir ailgyfuniad a thrapio cludwyr yn y "
+"model gan ddefnyddio ffurfioldeb Shockley-Read-Hall (SRH), gellir diffinio dosbarthiad sates trap "
+"yn fympwyol. Gellir datrys pob hafaliad naill ai mewn cyflwr cyson neu mewn parth amser. Ceir "
+"disgrifiad llawnach o'r model yn y fan hon , yn y cyhoeddiadau cysylltiedig ac yn y llawlyfr."
+
+msgid "Legal"
+msgstr "Cyfreithiol"
+
+msgid "Translations"
+msgstr "Cyfieithiadau"
+
+msgid "Paths"
+msgstr "Llwybrau"
+
+msgid ""
+"Materials\n"
+"database"
+msgstr ""
+"Deunyddiau\n"
+"cronfa ddata"
+
+msgid ""
+"Optical\n"
+"database"
+msgstr ""
+"Optegol\n"
+"cronfa ddata"
+
+msgid ""
+"User\n"
+"data"
+msgstr ""
+"Defnyddiwr\n"
+"data"
+
+msgid ""
+"Shape\n"
+"database"
+msgstr ""
+"Siâp\n"
+"cronfa ddata"
+
+msgid ""
+"Filters\n"
+"database"
+msgstr ""
+"Hidlau\n"
+"cronfa ddata"
+
+msgid ""
+"Backup\n"
+"Simulaion"
+msgstr ""
+"Copi wrth gefn\n"
+"Efelychu"
+
+msgid ""
+"Solar spectrum\n"
+"generator"
+msgstr ""
+"Sbectrwm solar\n"
+"generadur"
+
+msgid "Add Material"
+msgstr "Ychwanegu Deunydd"
+
+msgid "Add Filter"
+msgstr "Ychwanegu Hidlydd"
+
+msgid "Add Spectra"
+msgstr "Ychwanegu Spectra"
+
+msgid "Add Shape"
+msgstr "Ychwanegu Siâp"
+
+msgid "New backup"
+msgstr "Copi wrth gefn newydd"
+
+msgid "New backup:"
+msgstr "Copi wrth gefn newydd:"
+
+msgid "New backup name"
+msgstr "Enw wrth gefn newydd"
+
+msgid "Shape"
+msgstr "Siâp"
+
+msgid "<big><b>Shape file</b></big><br>"
+msgstr "<big><b>Siâp ffeil</b></big><br>"
+
+msgid "Blur menu"
+msgstr "Dewislen niwlio"
+
+msgid "Normalization editor"
+msgstr "Golygydd normaleiddio"
+
+msgid "Shape editor"
+msgstr "Golygydd siâp"
+
+msgid "Configure honeycomb"
+msgstr "Ffurfweddu diliau"
+
+msgid "Configure photonic xtal"
+msgstr "Ffurfweddu xtal ffotonig"
+
+msgid "Configure photonic lens"
+msgstr "Ffurfweddu lens ffotonig"
+
+msgid "Configure saw wave"
+msgstr "Ffurfweddu ton llif"
+
+msgid "Configure gaussian"
+msgstr "Ffurfweddu gaussian"
+
+msgid "Configure boundary"
+msgstr "Ffurfweddu ffin"
+
+msgid "Configure threshold"
+msgstr "Ffurfweddu trothwy"
+
+msgid "Configure"
+msgstr "Ffurfweddu"
+
+msgid "Show labels"
+msgstr "Dangos labeli"
+
+msgid "Show data"
+msgstr "Dangos data"
+
+msgid "Show axis"
+msgstr "Dangos echel"
+
+msgid "Normalize layer width"
+msgstr "Normaleiddio lled haen"
+
+msgid "Copy to clipboard"
+msgstr "Copïo I'r clipfwrdd"
+
+msgid "Save as SVG"
+msgstr "Arbedwch fel SVG"
+
+msgid "Redraw"
+msgstr "Ail-lunio"
+
+msgid "Active layer"
+msgstr "Haen weithredol"
+
+msgid "From electrical parameters"
+msgstr "O baramedrau trydanol"
+
+msgid "From material db"
+msgstr "O ddeunydd db"
+
+msgid "<big><b>Spectra</b></big><br>"
+msgstr "<big><b>Sbectra</b></big><br>"
+
+msgid "Optical spectrum editor"
+msgstr "Golygydd sbectrwm optegol"
+
+msgid "Spectra"
+msgstr "Sbectra"
+
+msgid "Basic"
+msgstr "Syml"
+
+msgid "Frequency mesh"
+msgstr "Rhwyll amlder"
+
+msgid "Additional information about gpvdm is available at"
+msgstr "Mae gwybodaeth ychwanegol am gpvdm ar gael yn"
+
+msgid "Report bugs to:"
+msgstr "Rhoi gwybod am fygiau i:"
+
+msgid "Deletes the content of all scan directories."
+msgstr "Yn dileu cynnwys yr holl gyfeiriaduron sgan."
+
+msgid "Loads a simulation --load /path/containing/simulation/sim.oghma"
+msgstr "Yn llwytho efelychiad --load /path/containing/simulation/sim.oghma"
+
+msgid "Extract the sim.oghma archive --unpack"
+msgstr "Echdynnu'r archif sim.oghma --unpack"
+
+msgid "Extract the sim.oghma archive --pack"
+msgstr "Echdynnu --pecyn archif sim.oghma"
+
+msgid "Electrical parameter editor"
+msgstr "Golygydd paramedr trydanol"
+
+msgid "Device"
+msgstr "Dyfais"
+
+msgid ""
+"Simulation\n"
+"Notes"
+msgstr ""
+"Efelychu\n"
+"Nodiadau"
+
+msgid ""
+"Hints\n"
+"Window"
+msgstr ""
+"Awgrymiadau\n"
+"Ffenestr"
+
+msgid ""
+"Interface\n"
+"Language"
+msgstr ""
+"Rhyngwyneb\n"
+"Iaith"
+
+msgid "Assosiated paper"
+msgstr "Papur cysylltiedig"
+
+msgid "Documentation"
+msgstr "Dogfennaeth"
+
+msgid "Language"
+msgstr "Iaith"
+
+msgid ""
+"<big><b>Record notes about the simulation here</b></big><br>Use this window to make notes about "
+"the simulation."
+msgstr ""
+"<big><b>Cofnodwch nodiadau am yr efelychiad yma</b></big><br>Defnyddiwch y ffenestr hon i wneud "
+"nodiadau am yr efelychiad."
+
+msgid "Charge denisty (m^{-3})"
+msgstr "Gwaddod gwefr (m^{-3})"
+
+msgid "Material gradient editor"
+msgstr "Golygydd graddiant deunydd"
+
+msgid "Save"
+msgstr "Arbed"
+
+msgid "New scan"
+msgstr "Sgan newydd"
+
+msgid "Delete scan"
+msgstr "Dileu sgan"
+
+msgid "Clone scan"
+msgstr "Sgan clôn"
+
+msgid "Rename scan"
+msgstr "Ail-enwi sgan"
+
+msgid "Clean all"
+msgstr "Glanhewch y cyfan"
+
+msgid "Run all scans"
+msgstr "Rhedeg pob sgan"
+
+msgid "Help"
+msgstr "Help"
+
+msgid "Plot fits"
+msgstr "Plot yn ffitio"
+
+msgid "Run simulation no generation"
+msgstr "Rhedeg efelychiad dim cenhedlaeth"
+
+msgid "Run single fit"
+msgstr "Rhedeg ffit sengl"
+
+msgid "Clean unconverged simulation"
+msgstr "Efelychiad glân heb ei gydgyfeirio"
+
+msgid "Clean simulation output"
+msgstr "Allbwn efelychu glân"
+
+msgid "Push unconverged to hpc"
+msgstr "Gwthiwch heb ei gydgyfeirio i hpc"
+
+msgid "Change dir"
+msgstr "Newid cyfeiriad"
+
+msgid "Report"
+msgstr "Adroddiad"
+
+msgid "Scan"
+msgstr "Sgan"
+
+msgid "Advanced"
+msgstr "Uwch"
+
+msgid "JV experiment window"
+msgstr "Ffenestr arbrawf JV"
+
+msgid ""
+"Import data\n"
+"from file"
+msgstr ""
+"Mewnforio data\n"
+"o ffeil"
+
+msgid ""
+"From\n"
+"Equation"
+msgstr ""
+"O\n"
+"Equation"
+
+msgid "Reference information"
+msgstr "Gwybodaeth gyfeirio"
+
+msgid "Cost"
+msgstr "Cost"
+
+msgid "Cost of material"
+msgstr "Cost deunydd"
+
+msgid "File"
+msgstr "Ffeil"
+
+msgid "Align and distribute"
+msgstr "Alinio a dosbarthu"
+
+msgid "Left"
+msgstr "Chwith"
+
+msgid "Right"
+msgstr "Iawn"
+
+msgid "Distribute"
+msgstr "Dosbarthu"
+
+msgid "z"
+msgstr "z"
+
+msgid "Exciton simulation editor"
+msgstr "Golygydd efelychu Exciton"
+
+msgid ""
+"From\n"
+"File"
+msgstr ""
+"O\n"
+"Ffeil"
+
+msgid "Insert reference information"
+msgstr "Mewnosod gwybodaeth gyfeirio"
+
+msgid ""
+"Are you sure you want to edit the circuit directly?  The circuit will no longer automaticly be "
+"updated as you change the layer structure, and the electrical parameters editor will be "
+"disabled.  Use can use the reset function in the circuit diagram editor to resore this "
+"functionality"
+msgstr ""
+"Ydych chi'n siŵr eich bod am olygu'r gylched yn uniongyrchol? Ni fydd y gylched yn cael ei "
+"diweddaru'n awtomatig mwyach wrth i chi newid strwythur yr haen, a bydd y golygydd paramedrau "
+"trydanol yn anabl. Gall defnydd ddefnyddio'r swyddogaeth ailosod yn y golygydd diagram cylched i "
+"adfer y swyddogaeth hon"
+
+msgid "Component"
+msgstr "Cydran"
+
+msgid "Circuit diagram"
+msgstr "Diagram cylched"
+
+msgid "Use epitaxy as base"
+msgstr "Defnyddiwch epitaxy fel sylfaen"
+
+msgid "Free hand drawing"
+msgstr "Lluniadu llaw am ddim"
+
+msgid "Enabled"
+msgstr "Galluogwyd"
+
+msgid "Variable"
+msgstr "Amrywiol"
+
+msgid "Min"
+msgstr "Minnau"
+
+msgid "Max"
+msgstr "Max"
+
+msgid "Random function"
+msgstr "Swyddogaeth ar hap"
+
+msgid "JSON Variable"
+msgstr "JSON Amrywiol"
+
+msgid "FDTD Editor"
+msgstr "Golygydd FDTD"
+
+msgid "Configure hardware"
+msgstr "Ffurfweddu caledwedd"
+
+msgid ""
+"Hardware\n"
+"benchmark"
+msgstr ""
+"Caledwedd\n"
+"meincnod"
+
+msgid ""
+"RNG\n"
+"test"
+msgstr ""
+"RNG\n"
+"prawf"
+
+msgid ""
+"Clear\n"
+"Newton cache"
+msgstr ""
+"Clirio'r storfa\n"
+"Newton"
+
+msgid "CPU/GPU configuration"
+msgstr "Cyfluniad CPU/GPU"
+
+msgid "Newton cache"
+msgstr "cache Newton"
+
+msgid "Random numbers"
+msgstr "Rhifau ar hap"
+
+msgid "Electrostatic solver"
+msgstr "Datrysydd electrostatig"
+
+msgid "Drift diffusion"
+msgstr "Trylediad drifft"
+
+msgid "Simple circuit solver"
+msgstr "Datrysydd cylched syml"
+
+msgid "Poission solver"
+msgstr "Datryswr Poission"
+
+msgid "Poission solver configuration"
+msgstr "Cyfluniad datryswr Poission"
+
+msgid "Newton solver"
+msgstr "Datrysydd Newton"
+
+msgid "Exciton solver"
+msgstr "Datrysydd Exciton"
+
+msgid "Singlet solver"
+msgstr "Datrysydd Singlet"
+
+msgid "Newton solver configuration"
+msgstr "Cyfluniad datryswr Newton"
+
+msgid "Configuration"
+msgstr "Cyfluniad"
+
+msgid "Circuit solver configuration"
+msgstr "Cyfluniad datryswr cylched"
+
+msgid "Data imported from: "
+msgstr "Data wedi'i fewnforio o:"
+
+msgid "Layer editor"
+msgstr "Golygydd haen"
+
+msgid "Layer name"
+msgstr "Enw haen"
+
+msgid "Thicknes"
+msgstr "Trwchus"
+
+msgid "Optical material"
+msgstr "Deunydd optegol"
+
+msgid "Layer type"
+msgstr "Math haen"
+
+msgid ""
+"Solve optical\n"
+"problem"
+msgstr "Datrys problem optegol"
+
+msgid ""
+"Solve thermal\n"
+"problem"
+msgstr ""
+
+msgid "ID"
+msgstr "ID"
+
+msgid "start:"
+msgstr "dechrau:"
+
+msgid "stop:"
+msgstr "stopio:"
+
+msgid "Red=not found in materials DB"
+msgstr "Coch=heb ei ganfod mewn deunyddiau DB"
+
+msgid ""
+"Enable\n"
+"Drift Diff."
+msgstr ""
+"Galluogi\n"
+"Drifft Diff."
+
+msgid ""
+"Enable\n"
+"Auger"
+msgstr ""
+"Galluogi\n"
+"Auger"
+
+msgid ""
+"Dynamic\n"
+"SRH traps"
+msgstr ""
+"Trapiau deinamig\n"
+"SRH"
+
+msgid "Min trap depth"
+msgstr "Min dyfnder trap"
+
+msgid "Max trap depth"
+msgstr "Dyfnder trap mwyaf"
+
+msgid "Min Fermi level"
+msgstr "Isafswm Fermi lefel"
+
+msgid "Fn points"
+msgstr "Pwyntiau Fn"
+
+msgid "Fermi integral points"
+msgstr "Fermi pwyntiau annatod"
+
+msgid ""
+"Equilibrium\n"
+"SRH traps"
+msgstr ""
+"Trapiau ecwilibriwm\n"
+"SRH"
+
+msgid "Excitons"
+msgstr "Cyffro"
+
+msgid ""
+"Excited\n"
+"states laser"
+msgstr ""
+"Wedi cyffroi\n"
+"yn datgan laser"
+
+msgid "Photon rate equation"
+msgstr "Hafaliad cyfradd ffoton"
+
+msgid ""
+"Excited\n"
+"states OPV"
+msgstr ""
+"Wedi cyffroi\n"
+"yn datgan OPV"
+
+msgid "Carrier density points"
+msgstr "Pwyntiau dwysedd cludwr"
+
+msgid "Fermi-dirac integral steps"
+msgstr "Camau annatod Fermi-dirac"
+
+msgid "Minimum trap depth (eV):"
+msgstr "Isafswm dyfnder trap (eV):"
+
+msgid "That's not a number.."
+msgstr "Nid yw hynny'n rhif.."
+
+msgid "Maximum trap depth (eV):"
+msgstr "Uchafswm dyfnder y trap (eV):"
+
+msgid "Minimum fermi level (eV):"
+msgstr "Isafswm lefel fermi (eV):"
+
+msgid "Number of carrier density points to calculate:"
+msgstr "Nifer y pwyntiau dwysedd cludwr i'w cyfrifo:"
+
+msgid "Number of steps in the Fermi-dirac integral:"
+msgstr "Nifer y camau yn rhan annatod Fermi-dirac:"
+
+msgid "DoS Config"
+msgstr "Ffurfwedd DoS"
+
+msgid "Dos Config"
+msgstr "Dos Config"
+
+msgid ""
+"Light\n"
+"Sources"
+msgstr ""
+"Golau\n"
+"Ffynonellau"
+
+msgid ""
+"Lasers\n"
+"(fs)"
+msgstr ""
+"Laserau\n"
+"(fs)"
+
+msgid ""
+"Transfer\n"
+"Matrix"
+msgstr ""
+"Trosglwyddo\n"
+"Matrics"
+
+msgid ""
+"Optical\n"
+"Outcoupling"
+msgstr ""
+"Optegol\n"
+"Outcoupling"
+
+msgid ""
+"Ray tracing\n"
+"editor"
+msgstr ""
+
+msgid ""
+"Optical\n"
+"Detectors"
+msgstr ""
+
+msgid ""
+"FDTD\n"
+"Simulation"
+msgstr ""
+"FDTD\n"
+"Efelychiad"
+
+msgid ""
+"Mode\n"
+"Calculator"
+msgstr ""
+"Modd\n"
+"Cyfrifiannell"
+
+msgid ""
+"Optical\n"
+"thickness"
+msgstr "Trwch optegol"
+
+msgid ""
+"Optical\n"
+"mesh"
+msgstr ""
+"Optegol\n"
+"rhwyll"
+
+msgid ""
+"Boundary\n"
+"Conditions"
+msgstr ""
+"Ffin\n"
+"Amodau"
+
+msgid "<big><b>Laser setup</b></big><br> Use this window to set up your lasers."
+msgstr "<big><b>Gosodiad laser</b></big><br> Defnyddiwch y ffenestr hon i osod eich laserau."
+
+msgid ""
+"<big><b>The light sources window</b></big><br>Use this window to setup optical sources for the "
+"transfer matrix, ray tracing and FDTD simulations."
+msgstr ""
+"<big><b>Y ffenestr ffynonellau golau</b></big><br>Defnyddiwch y ffenestr hon i osod ffynonellau "
+"optegol ar gyfer y matrics trosglwyddo, olrhain pelydrau ac efelychiadau FDTD."
+
+msgid "<big><b>The ray tracing editor</b></big><br> Use this window to configure ray tracing."
+msgstr ""
+"<big><b>Golygydd olrhain pelydr</b></big><br> Defnyddiwch y ffenestr hon i ffurfweddu olrhain "
+"pelydrau."
+
+msgid ""
+"<big><b>The detectors window</b></big><br>Use this window to setup optical detectors.  These can "
+"be used for the ray tracing simulations."
+msgstr ""
+"<big><b>Ffenestr y datgelydd</b></big><br>Defnyddiwch y ffenestr hon i osod synwyryddion optegol. "
+"Gellir defnyddio'r rhain ar gyfer yr efelychiadau olrhain pelydr."
+
+msgid ""
+"<big><b>FDTD</b></big><br> Use this window to setup a finite difference time domain simulation."
+msgstr ""
+"<big><b>FDTD</b></big><br> Defnyddiwch y ffenestr hon i osod efelychiad parth amser gwahaniaeth "
+"cyfyngedig."
+
+msgid ""
+"<big><b>Mode calculator</b></big><br> Use this window to setup a the optical mode calculator."
+msgstr ""
+"<big><b>Cyfrifiannell modd</b></big><br> Defnyddiwch y ffenestr hon i osod cyfrifiannell modd "
+"optegol."
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh, the window can also be used to change the dimensionality of "
+"the simulation."
+msgstr ""
+"<big><b>Golygydd rhwyll</b></big>\n"
+"Defnyddiwch y ffenestr hon i osod y rhwyll, gellir defnyddio'r ffenestr hefyd i newid maint yr "
+"efelychiad."
+
+msgid "Optical Mesh Editor"
+msgstr "Golygydd rhwyll optegol"
+
+msgid "Boundary conditions"
+msgstr "Amodau terfyn"
+
+msgid ""
+"<big><b>The optical simulation window</b></big><br>Use this window to perform optical "
+"simulations.  Click on the play button to run a simulation."
+msgstr ""
+"<big><b>Y ffenestr efelychu optegol</b></big><br>Defnyddiwch y ffenestr hon i wneud efelychiadau "
+"optegol. Cliciwch ar y botwm chwarae i redeg efelychiad."
+
+msgid ""
+"Click on the play button to run an optical simulation.  The results will be displayed in the tabs "
+"to the right."
+msgstr ""
+"Cliciwch ar y botwm chwarae i redeg efelychiad optegol. Bydd y canlyniadau yn cael eu harddangos "
+"yn y tabiau ar y dde."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Tutorial video</b></"
+"big><br>Designing optical filters and reflective coatings."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Fideo tiwtorial</b></"
+"big><br>Dylunio hidlwyr optegol a haenau adlewyrchol."
+
+msgid ""
+"<big><b>The optical outcoupling window</b></big><br>Use this window to calculate how much light "
+"escapes the device. This is useful whend designing OLEDs and other light emitting structures."
+msgstr ""
+"<big><b>Y ffenestr allgyplu optegol</b></big><br>Defnyddiwch y ffenestr hon i gyfrifo faint o "
+"olau sy'n dianc o'r ddyfais. Mae hyn yn ddefnyddiol wrth ddylunio OLEDs a strwythurau eraill sy'n "
+"allyrru golau."
+
+msgid ""
+"<big><b>Optical thickness</b></big><br>Usually the optical thickness of a layer will be taken "
+"from the layer structure set out in the layer editor. However, sometimes one wants to simulate "
+"very thick layers. This window will enable you to force the optical thickness to a value while "
+"maintaining it's physical thickness."
+msgstr ""
+"<big><b>Trwch optegol</b></big><br>Fel arfer bydd trwch optegol haen yn cael ei gymryd o'r "
+"strwythur haen a nodir yn y golygydd haenau. Fodd bynnag, weithiau mae rhywun eisiau efelychu "
+"haenau trwchus iawn. Bydd y ffenestr hon yn eich galluogi i orfodi'r trwch optegol i werth wrth "
+"gynnal ei drwch corfforol."
+
+msgid "Edit parasitic components"
+msgstr "Golygu cydrannau parasitig"
+
+msgid "Parasitic components"
+msgstr "Cydrannau parasitig"
+
+msgid "Registration window"
+msgstr "Ffenestr gofrestru"
+
+msgid "Enter the license key below:"
+msgstr "Rhowch allwedd y drwydded isod:"
+
+msgid "Key"
+msgstr "Allwedd"
+
+msgid "Can't open file "
+msgstr "Methu agor ffeil"
+
+msgid "back"
+msgstr "yn ol"
+
+msgid "home"
+msgstr "cartref"
+
+msgid "Scanning probe microscopy editor"
+msgstr "Golygydd microsgopeg stiliwr sganio"
+
+msgid "No files were given to load"
+msgstr "Ni roddwyd unrhyw ffeiliau i'w llwytho"
+
+msgid ""
+"3D\n"
+"Mode"
+msgstr ""
+"3D\n"
+"Modd"
+
+msgid "New"
+msgstr "Newydd"
+
+msgid "Rename"
+msgstr "Ailenwi"
+
+msgid "Run"
+msgstr "Rhedeg"
+
+msgid ""
+"Plot\n"
+"File"
+msgstr ""
+"Plot\n"
+"Ffeil"
+
+msgid ""
+"View raw\n"
+"json"
+msgstr ""
+"Gweld amrwd\n"
+"json"
+
+msgid "Cache path:"
+msgstr "Llwybr storfa:"
+
+msgid "Newton cache used"
+msgstr "Defnyddiwyd cache Newton"
+
+msgid "The cache directory does not exist"
+msgstr "Nid yw'r cyfeiriadur cache yn bodoli"
+
+msgid "The cache path needs to end in cache."
+msgstr "Mae angen i'r llwybr celc ddod i ben mewn storfa."
+
+msgid "The cache is empty"
+msgstr "Mae'r storfa yn wag"
+
+msgid "I have emptied the cache"
+msgstr "Rwyf wedi gwagio'r storfa"
+
+msgid "<big><b>Simulation finished!</b></big><br>Click on the plot icon to plot the results"
+msgstr ""
+"<big><b>Efelychiad wedi gorffen!</b></big><br>Cliciwch ar eicon y plot i blotio'r canlyniadau"
+
+msgid "Ray trace editor"
+msgstr "Golygydd olrhain Ray"
+
+msgid "Fit configure"
+msgstr "Ffurfweddiad ffit"
+
+msgid "Duplicate variables"
+msgstr "Newidynnau dyblyg"
+
+msgid "Fit variables"
+msgstr "Ffitiwch newidynnau"
+
+msgid "Fit rules"
+msgstr "Rheolau ffit"
+
+msgid "Configure minimizer"
+msgstr "Ffurfweddu minimydd"
+
+msgid "Generaton rate editor"
+msgstr "Golygydd cyfradd Generaton"
+
+msgid "Generation rate (m^{-3}s^{-1})"
+msgstr "Cyfradd cynhyrchu (m^{-3}s^{-1})"
+
+msgid "json id"
+msgstr "json id"
+
+msgid "Reference manager"
+msgstr "Rheolwr cyfeirio"
+
+msgid ""
+"Layer\n"
+"editor"
+msgstr ""
+
+msgid "Contacts"
+msgstr "Cysylltiadau"
+
+msgid ""
+"Electrical\n"
+"parameters"
+msgstr ""
+"Trydanol\n"
+"paramedrau"
+
+msgid ""
+"Emission\n"
+"parameters"
+msgstr ""
+"Allyriad\n"
+"paramedrau"
+
+msgid ""
+"Substrate\n"
+"xz-size"
+msgstr ""
+"Swbstrad\n"
+"xz-maint"
+
+msgid ""
+"<big><b>Contacts window</b></big>\n"
+"Use this window to change the layout of the contacts on the device"
+msgstr ""
+"<big><b>Ffenestr cysylltiadau</b></big>\n"
+"Defnyddiwch y ffenestr hon i newid cynllun y cysylltiadau ar y ddyfais"
+
+msgid ""
+"<big><b>Device layers</b></big>\n"
+"Use this window to configure the structure of the device."
+msgstr ""
+"<big><b>Haenau dyfais</b></big>\n"
+"Defnyddiwch y ffenestr hon i ffurfweddu strwythur y ddyfais."
+
+msgid ""
+"<big><b>xz dimension editor</b></big>\n"
+"Use this window to configure the xz size of the device."
+msgstr ""
+"<big><b>golygydd dimensiwn xz</b></big>\n"
+"Defnyddiwch y ffenestr hon i ffurfweddu maint xz y ddyfais."
+
+msgid ""
+"<big><b>Electrical parameters</b></big>\n"
+"Use this window to change the electrical parameters of each layer."
+msgstr ""
+"<big><b>Paramedrau trydanol</b></big>\n"
+"Defnyddiwch y ffenestr hon i newid paramedrau trydanol pob haen."
+
+msgid ""
+"<big><b>Emission parameters</b></big>\n"
+"Use this window to set if a layer emits light or not.  You can choose between theoretically "
+"calculated emission spectra and imported experimental spectra."
+msgstr ""
+"<big><b>Paramedrau allyriadau</b></big>\n"
+"Defnyddiwch y ffenestr hon i osod a yw haen yn allyrru golau ai peidio. Gallwch ddewis rhwng "
+"sbectra allyriadau a gyfrifwyd yn ddamcaniaethol a sbectra arbrofol a fewnforir."
+
+msgid "Frequency start"
+msgstr "Dechrau amlder"
+
+msgid "Frequency stop"
+msgstr "Stopio amledd"
+
+msgid "Max points"
+msgstr "Uchafswm pwyntiau"
+
+msgid "Multiply"
+msgstr "Lluoswch"
+
+msgid "Paramter to change"
+msgstr "Paramedr i newid"
+
+msgid "Parameter scan window"
+msgstr "Ffenestr sgan paramedr"
+
+msgid "Calculate"
+msgstr "Cyfrifwch"
+
+msgid "Export spectrum"
+msgstr "Sbectrwm allforio"
+
+msgid "Spectrum"
+msgstr "Sbectrwm"
+
+msgid "mode Editor"
+msgstr "modd Golygydd"
+
+msgid "Edit contacts"
+msgstr "Golygu cysylltiadau"
+
+msgid "Top/Bottom"
+msgstr "Brig/Gwaelod"
+
+msgid ""
+"Applied\n"
+"voltage"
+msgstr ""
+"Cymhwysol\n"
+"foltedd"
+
+msgid "Start"
+msgstr "Dechrau"
+
+msgid "Width"
+msgstr "Lled"
+
+msgid "Contact resistance\n"
+msgstr "Gwrthiant cyswllt\n"
+
+msgid "Shunt resistance"
+msgstr "Gwrthiant siynt"
+
+msgid ""
+"Charge density/\n"
+"Fermi-offset"
+msgstr ""
+"Dwysedd gwefr/\n"
+"Fermi-offset"
+
+msgid ""
+"Majority\n"
+"carrier"
+msgstr ""
+"Mwyafrif\n"
+"cludwr"
+
+msgid "ve0 (m/s)"
+msgstr "ve0 (m/e)"
+
+msgid "vh0 (m/s)"
+msgstr "vh0 (m/e)"
+
+msgid ""
+"Physical\n"
+"model"
+msgstr ""
+"Corfforol\n"
+"model"
+
+msgid "Neural networks editor"
+msgstr "Golygydd rhwydweithiau nerfol"
+
+msgid ""
+"Compile\n"
+"to json"
+msgstr ""
+"Llunio\n"
+"i json"
+
+msgid "Reporting error...."
+msgstr "Gwall wrth adrodd...."
+
+msgid "Diode"
+msgstr "Deuod"
+
+msgid "Power law"
+msgstr "Cyfraith pŵer"
+
+msgid "Barrier"
+msgstr "Rhwystr"
+
+msgid "Wire"
+msgstr "Gwifren"
+
+msgid "Ground"
+msgstr "Ground"
+
+msgid "Voltage source"
+msgstr "Ffynhonnell foltedd"
+
+msgid "Pointer"
+msgstr "Pwyntiwr"
+
+msgid "Scroll"
+msgstr "Sgroliwch"
+
+msgid "Clean"
+msgstr "Glan"
+
+msgid "Input vector"
+msgstr "Fector mewnbwn"
+
+msgid "Output vector"
+msgstr "Fector allbwn"
+
+msgid "Enter the time at which the laser pulse will fire (-1) to turn it off"
+msgstr "Nodwch yr amser y bydd y pwls laser yn tanio (-1) i'w ddiffodd"
+
+msgid "Sun"
+msgstr "Haul"
+
+msgid "Laser"
+msgstr "Laser"
+
+msgid "fs Laser"
+msgstr "fs Laser"
+
+msgid "Enter the start time of the simulation"
+msgstr "Rhowch amser cychwyn yr efelychiad"
+
+msgid "Length"
+msgstr "Hyd"
+
+msgid "dt"
+msgstr "dt"
+
+msgid "Start Voltage"
+msgstr "Foltedd Cychwyn"
+
+msgid "Stop Voltage"
+msgstr "Stopio Voltage"
+
+msgid "step multiplyer"
+msgstr "lluosydd cam"
+
+msgid "Sun start"
+msgstr "Cychwyn haul"
+
+msgid "Sun stop"
+msgstr "Stop haul"
+
+msgid "Laser start"
+msgstr "Dechrau laser"
+
+msgid "Laser stop"
+msgstr "Stopio laser"
+
+msgid ""
+"Save\n"
+"video"
+msgstr ""
+"Cadw\n"
+"fideo"
+
+msgid ""
+"Storyboard\n"
+"to clipboard"
+msgstr ""
+"Bwrdd stori\n"
+"i'r clipfwrdd"
+
+msgid "Autoscale"
+msgstr "Graddfa awtomatig"
+
+msgid "Set log scale y"
+msgstr "Gosod graddfa log y"
+
+msgid "Set log scale x"
+msgstr "Gosod graddfa log x"
+
+msgid "Plot"
+msgstr "Plot"
+
+msgid "Scale"
+msgstr "Graddfa"
+
+msgid "Video"
+msgstr "Fideo"
+
+msgid ""
+"Set\n"
+"Temperature"
+msgstr ""
+"Gosod\n"
+"Tymheredd"
+
+msgid ""
+"Configure\n"
+"Model"
+msgstr ""
+"Ffurfweddu\n"
+"Model"
+
+msgid ""
+"Joule\n"
+"Heating"
+msgstr ""
+"Joule\n"
+"Gwresogi"
+
+msgid ""
+"Parasitic\n"
+"Heating"
+msgstr ""
+"Parasitig\n"
+"Gwresogi"
+
+msgid ""
+"Optical\n"
+"Heating"
+msgstr ""
+"Optegol\n"
+"Gwresogi"
+
+msgid ""
+"Recombination\n"
+"heating"
+msgstr ""
+"Ailgyfuniad\n"
+"gwresogi"
+
+msgid ""
+"Thermal\n"
+"parameters"
+msgstr ""
+"Thermol\n"
+"paramedrau"
+
+msgid ""
+"Thermal\n"
+"mesh"
+msgstr ""
+"Thermol\n"
+"rhwyll"
+
+msgid ""
+"<big><b>Thermal parameters</b></big>\n"
+"Use this window to change the thermal parameters of each layer."
+msgstr ""
+"<big><b>Paramedrau thermol</b></big>\n"
+"Defnyddiwch y ffenestr hon i newid paramedrau thermol pob haen."
+
+msgid "Enter the new temperature"
+msgstr "Rhowch y tymheredd newydd"
+
+msgid "Thermal boundary conditions"
+msgstr "Amodau ffin thermol"
+
+msgid "Configure thermal model"
+msgstr "Ffurfweddu model thermol"
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh."
+msgstr ""
+"<big><b>Golygydd rhwyll</b></big>\n"
+"Defnyddiwch y ffenestr hon i osod y rhwyll."
+
+msgid "Thermal Mesh Editor"
+msgstr "Golygydd rhwyll thermol"
+
+msgid "Experimental data"
+msgstr "Data arbrofol"
+
+msgid "Delta=Experiment - Simulation"
+msgstr "Delta=Arbrawf - Efelychu"
+
+msgid "Configure fit"
+msgstr "Ffurfweddu ffit"
+
+msgid "Fit patch"
+msgstr "Ffit clwt"
+
+msgid "Local duplicate"
+msgstr "Lleol dyblyg"
+
+msgid "Function"
+msgstr "Swyddogaeth"
+
+msgid "JSON x"
+msgstr "JSON x"
+
+msgid "JSON y"
+msgstr "JSON y"
+
+msgid "Frequency domain experiment window"
+msgstr "Ffenestr arbrawf parth amlder"
+
+msgid "Thermal parameter editor"
+msgstr "Golygydd paramedr thermol"
+
+msgid "Device structure"
+msgstr "Strwythur dyfais"
+
+msgid ""
+"<big><b>The device structure tab</b></big><br> Use this tab to change the structure of the "
+"device, the layer thicknesses and to perform optical simulations.  You can also browse the "
+"materials data base and  edit the electrical mesh."
+msgstr ""
+"<big><b>Tab strwythur y ddyfais</b></big><br> Defnyddiwch y tab hwn i newid strwythur y ddyfais, "
+"trwch yr haenau ac i berfformio efelychiadau optegol. Gallwch hefyd bori'r gronfa ddata "
+"deunyddiau a golygu'r rhwyll drydanol."
+
+msgid "Terminal"
+msgstr "Terfynell"
+
+msgid ""
+"<big><b>The terminal window</b></big><br>The output of the model will be displayed in this "
+"window, watch this screen for debugging and convergence information."
+msgstr ""
+"<big><b>Y ffenestr derfynell</b></big><br>Bydd allbwn y model yn cael ei ddangos yn y ffenestr "
+"hon, gwyliwch y sgrin hon am wybodaeth dadfygio a chydgyfeirio."
+
+msgid "Tutorials/Documentation"
+msgstr "Tiwtorialau/Dogfennau"
+
+msgid ""
+"<big><b>Tutorials/Documentation</b></big><br>Here you can find tutorials, videos, worksheets, and "
+"talks about this software and simulating opto-electronic devices in general.  Although this "
+"software is easy to use with it's friendly interface, under the hood it is a highly complex model "
+"and powerful model, it is worth taking time to read the documentation to understand it.  This "
+"will enable you to get the most out of this software and your experimental data."
+msgstr ""
+"<big><b>Tiwtorialau/Dogfennau</b></big><br>Yma gallwch ddod o hyd i diwtorialau, fideos, taflenni "
+"gwaith, a sgyrsiau am y feddalwedd hon ac efelychu dyfeisiau opto-electronig yn gyffredinol. Er "
+"bod y feddalwedd hon yn hawdd i'w defnyddio gyda'i rhyngwyneb cyfeillgar, o dan y cwfl mae'n "
+"fodel hynod gymhleth a phwerus, mae'n werth cymryd amser i ddarllen y ddogfennaeth i'w ddeall. "
+"Bydd hyn yn eich galluogi i gael y gorau o'r feddalwedd hon a'ch data arbrofol."
+
+msgid ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Watch the video</a></b></big><br> Performing my "
+"first solar cell simulation"
+msgstr ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Gwyliwch y fideo</a></b></big><br> Yn perfformio "
+"fy efelychiad cell solar cyntaf"
+
+msgid "Output"
+msgstr "Allbwn"
+
+msgid ""
+"<big><b>Output</b></big><br>This shows the root simulation directory, this is where the results "
+"are stored.  Double click on a file to see what is in it.."
+msgstr ""
+"<big><b>Allbwn</b></big><br>Mae hwn yn dangos y cyfeiriadur gwraidd efelychiad, dyma lle mae'r "
+"canlyniadau'n cael eu storio. Cliciwch ddwywaith ar ffeil i weld beth sydd ynddi.."
+
+msgid "Information"
+msgstr "Gwybodaeth"
+
+msgid ""
+"<big><b>The fitting variables window</b></big><br> Use this window to select the variables use to "
+"perform the fit."
+msgstr ""
+"<big><b>Ffenestr y newidynnau gosod</b></big><br> Defnyddiwch y ffenestr hon i ddewis y "
+"newidynnau a ddefnyddir i berfformio'r ffit."
+
+msgid "Fit the simulation to experimental data"
+msgstr "Gosodwch yr efelychiad i ddata arbrofol"
+
+msgid "Data sets"
+msgstr "Setiau data"
+
+msgid "Rename the fit:"
+msgstr "Ail-enwi'r ffit:"
+
+msgid "Clone the experiment:"
+msgstr "Cloniwch yr arbrawf:"
+
+msgid "Export the simulation"
+msgstr "Allforio'r efelychiad"
+
+msgid "Zip file"
+msgstr "Ffeil zip"
+
+msgid "Are you sure you want to delete the experiment: "
+msgstr "Ydych chi'n siŵr eich bod am ddileu'r arbrawf:"
+
+msgid "Make a new fit:"
+msgstr "Gwneud ffit newydd:"
+
+msgid "Error function"
+msgstr "Gwall swyddogaeth"
+
+msgid "Log scale"
+msgstr "Graddfa log"
+
+msgid "Open file"
+msgstr "Agor ffeil"
+
+msgid "Back"
+msgstr "Yn ol"
+
+msgid "Home"
+msgstr "Cartref"
+
+msgid "is not a number.."
+msgstr "nid yw'n rhif.."
+
+msgid "Complex Density of states editor"
+msgstr "Dwysedd Cymhleth golygydd taleithiau"
+
+msgid "LUMO numerical"
+msgstr "rhifiadol LUMO"
+
+msgid "HOMO numerical"
+msgstr "rhifiadol HOMO"
+
+msgid "Please cite these papers:"
+msgstr "Dyfynnwch y papurau hyn:"
+
+msgid "If you publish a paper, book or thesis using results from "
+msgstr "Os byddwch yn cyhoeddi papur, llyfr neu draethawd ymchwil gan ddefnyddio canlyniadau o"
+
+msgid "This is not a valide e-mail address"
+msgstr "Nid yw hwn yn gyfeiriad e-bost dilys"
+
+msgid "The e-mail addresses do not match."
+msgstr "Nid yw'r cyfeiriadau e-bost yn cyfateb."
+
+msgid "Please enter your first name."
+msgstr "Rhowch eich enw cyntaf."
+
+msgid "Please enter your surname."
+msgstr "Rhowch eich cyfenw."
+
+msgid "Please enter your Company/University."
+msgstr "Nodwch eich Cwmni/Prifysgol."
+
+msgid "Please enter how you heard about OghmaNano."
+msgstr "Nodwch sut y clywsoch chi am OghmaNano."
+
+msgid "Please enter what you plan on using OghmaNano for."
+msgstr "Nodwch yr hyn rydych chi'n bwriadu defnyddio OghmaNano ar ei gyfer."
+
+msgid "Your version of OghmaNano is too old to register, please download the latest version."
+msgstr "Mae eich fersiwn chi o OghmaNano yn rhy hen i gofrestru, lawrlwythwch y fersiwn diweddaraf."
+
+msgid "Please register to use OghmaNano. Thanks!"
+msgstr "Cofrestrwch i ddefnyddio OghmaNano. Diolch!"
+
+msgid "First name"
+msgstr "Enw cyntaf"
+
+msgid "Surname"
+msgstr "Cyfenw"
+
+msgid "Company/University"
+msgstr "Cwmni/Prifysgol"
+
+msgid "E-mail"
+msgstr "E-bost"
+
+msgid "Confirm e-mail"
+msgstr "Cadarnhau Ebost"
+
+msgid "I heard about OghmaNano from:"
+msgstr "Clywais am OghmaNano gan:"
+
+msgid "I am most interested in simulating:"
+msgstr "Mae gen i ddiddordeb mawr mewn efelychu:"
+
+msgid " will not work until you register.  Would do you want to exit?"
+msgstr "ni fydd yn gweithio nes i chi gofrestru. Hoffech chi adael?"
+
+msgid "Suns v.s. Voc"
+msgstr "Haul v.s. Llais"
+
+msgid "Light source (y0)"
+msgstr "Ffynhonnell golau (y0)"
+
+msgid "Light source"
+msgstr "Ffynhonnell golau"
+
+msgid "Filters (y0)"
+msgstr "Hidlau (y0)"
+
+msgid "Filters"
+msgstr "Hidlau"
+
+msgid "Run optical simulation"
+msgstr "Rhedeg efelychiad optegol"
+
+msgid ""
+"Transfer\n"
+"matrix"
+msgstr ""
+"Trosglwyddo\n"
+"matrics"
+
+msgid ""
+"Transfer\n"
+"matrix FD"
+msgstr ""
+"Trosglwyddo\n"
+"matrics FD"
+
+msgid ""
+"Exponential\n"
+"profile"
+msgstr ""
+"esbonyddol\n"
+"proffil"
+
+msgid ""
+"Flat\n"
+"profile"
+msgstr ""
+"Fflat\n"
+"proffil"
+
+msgid ""
+"From\n"
+"file"
+msgstr ""
+"O\n"
+"ffeil"
+
+msgid ""
+"From QE\n"
+"spectra"
+msgstr ""
+"O QE\n"
+"spectra"
+
+msgid ""
+"Constant\n"
+"value"
+msgstr ""
+
+msgid "Edit constant"
+msgstr "Golygu cyson"
+
+msgid "Optics"
+msgstr "Opteg"
+
+msgid ""
+"Machine\n"
+"Learning"
+msgstr ""
+"Peiriant\n"
+"Dysgu"
+
+msgid ""
+"Edit\n"
+"Probes"
+msgstr ""
+"Golygu\n"
+"Probes"
+
+msgid ""
+"Parameter\n"
+"scan"
+msgstr ""
+"Paramedr\n"
+"sgan"
+
+msgid ""
+"Fit to\n"
+"experiment"
+msgstr ""
+"Ffitio i\n"
+"arbrawf"
+
+msgid ""
+"Json\n"
+"explorer"
+msgstr ""
+"Json\n"
+"explorer"
+
+msgid "Matlab paths"
+msgstr "Llwybrau Matlab"
+
+msgid "Python paths"
+msgstr "Llwybrau Python"
+
+msgid ""
+"Script\n"
+"Editor"
+msgstr ""
+"Sgript\n"
+"Golygydd"
+
+msgid ""
+"<big><b>Probes window</b></big><br>Use this window to setup simulation probes, which can be used "
+"to extract values from the simulations at any given mesh point."
+msgstr ""
+"<big><b>Ffenestr profi</b></big><br>Defnyddiwch y ffenestr hon i osod stilwyr efelychiad, y "
+"gellir eu defnyddio i echdynnu gwerthoedd o'r efelychiadau ar unrhyw bwynt rhwyll penodol."
+
+msgid ""
+"<big><b>Machine learning window</b></big><br>Use this window to generate machine learning vectors"
+msgstr ""
+"<big><b>Ffenestr dysgu peiriant</b></big><br>Defnyddiwch y ffenestr hon i gynhyrchu fectorau "
+"dysgu peirianyddol"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Very often it is useful to be able to systematically very a "
+"device parameter such as mobility or density of trap states.  This window allows you to do just "
+"that."
+msgstr ""
+"<big><b>Y ffenestr sgan</b></big><br> Yn aml iawn mae'n ddefnyddiol gallu gosod paramedr dyfais "
+"fel symudedd neu ddwysedd cyflyrau trap yn systematig. Mae'r ffenestr hon yn caniatáu ichi wneud "
+"hynny."
+
+msgid "Use the plus icon to add a new scan line to the list."
+msgstr "Defnyddiwch yr eicon plws i ychwanegu llinell sgan newydd at y rhestr."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Tutorial video</b></big><br>Using "
+"the parameter scan window."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Fideo tiwtorial</b></"
+"big><br>Defnyddio'r ffenestr sgan paramedr ."
+
+msgid ""
+"<big><b>Fit window</b></big><br> Use this window to fit the simulation to experimental data.  The "
+"model uses advanced and optimized fitting algorithms to fit the model to your experimental data, "
+"so that material parameters such as mobilities and recombination rates can be extracted."
+msgstr ""
+"<big><b>Ffit window</b></big><br> Defnyddiwch y ffenestr hon i ffitio'r efelychiad i ddata "
+"arbrofol. Mae'r model yn defnyddio algorithmau gosod uwch ac wedi'u hoptimeiddio i ffitio'r model "
+"i'ch data arbrofol, fel y gellir echdynnu paramedrau deunydd megis symudedd a chyfraddau "
+"ailgyfuno."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Watch the tutorial video 1</b></"
+"big><br>Fitting the model to experimental data to extract mobility and recombination rate "
+"parameters."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Gwyliwch y fideo tiwtorial 1</b></"
+"big><br>Gosod y model i data arbrofol i dynnu paramedrau symudedd a chyfradd ailgyfuno."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Watch the tutorial video 2</b></"
+"big><br>Fitting the model to large area solar cells"
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Gwyliwch y fideo tiwtorial 2</b></"
+"big><br>Gosod y model i celloedd solar ardal fawr"
+
+msgid "Run scan"
+msgstr "Rhedeg sgan"
+
+msgid "Clean simulation"
+msgstr "Efelychiad glân"
+
+msgid "Fast Optimizer"
+msgstr "Optimizer Cyflym"
+
+msgid "Build scan"
+msgstr "Adeiladu sgan"
+
+msgid "Rerun"
+msgstr "Ailredeg"
+
+msgid "Archive simulations"
+msgstr "Efelychiadau archif"
+
+msgid "Notes"
+msgstr "Nodiadau"
+
+msgid "Simulations"
+msgstr "Efelychiadau"
+
+msgid "New experiment"
+msgstr "Arbrawf newydd"
+
+msgid "Delete experiment"
+msgstr "Dileu arbrawf"
+
+msgid "Refresh"
+msgstr "Adnewyddu"
+
+msgid "Clone experiment"
+msgstr "Arbrawf clôn"
+
+msgid "Rename experiment"
+msgstr "Ail-enwi arbrawf"
+
+msgid ""
+"Export\n"
+"Data"
+msgstr ""
+"Allforio\n"
+"Data"
+
+msgid "Import data"
+msgstr "Mewnforio data"
+
+msgid "One itteration"
+msgstr "Un iteriad"
+
+msgid "Run fit"
+msgstr "Rhedeg yn heini"
+
+msgid ""
+"Fit this\n"
+"data set"
+msgstr ""
+"Gosodwch y\n"
+"set ddata hon"
+
+msgid ""
+"Dont' fit this\n"
+"data set"
+msgstr "Ddim yn ffitio'r set ddata hon"
+
+msgid "Mesh point"
+msgstr "Pwynt rhwyll"
+
+msgid "Average"
+msgstr "Cyfartaledd"
+
+msgid "Max pos y-slice"
+msgstr "Max pos y-slice"
+
+msgid "Max pos y-slice STD-Left"
+msgstr "Uchafswm pos y-sleis STD-Chwith"
+
+msgid "Max pos y-slice STD-Right"
+msgstr "Max pos y-slice STD-Dde"
+
+msgid "Max pos y-slice val"
+msgstr "Max pos y-slice val"
+
+msgid "Max pos y-slice STD-Left val"
+msgstr "Uchafswm pos y-sleis STD-Chwith val"
+
+msgid "Max pos y-slice STD-Right val"
+msgstr "Max pos y-slice STD-Right val"
+
+msgid "x:"
+msgstr "x:"
+
+msgid "y:"
+msgstr "y:"
+
+msgid "z:"
+msgstr "z:"
+
+msgid "Move up"
+msgstr "Symud i fyny"
+
+msgid "Move down"
+msgstr "Symud i lawr"
+
+msgid "Add layer"
+msgstr "Ychwanegu haen"
+
+msgid "Add object inside"
+msgstr "Ychwanegu gwrthrych y tu mewn"
+
+msgid "Delete"
+msgstr "Dileu"
+
+msgid "Copy json"
+msgstr "Copi json"
+
+msgid "Edit"
+msgstr "Golygu"
+
+msgid "Join mesh"
+msgstr "Ymunwch â rhwyll"
+
+msgid "Group (Ctrl+G)"
+msgstr "Grŵp (Ctrl+G)"
+
+msgid "Ungroup (Ctrl+U)"
+msgstr "Dadgrwpio (Ctrl+U)"
+
+msgid "Script"
+msgstr "Sgript"
+
+msgid "Copy path (Python)"
+msgstr "Copïo llwybr (Python)"
+
+msgid "View"
+msgstr "Golwg"
+
+msgid "Show solid"
+msgstr "Dangos solet"
+
+msgid "Show mesh"
+msgstr "Dangos rhwyll"
+
+msgid "Show cut through x"
+msgstr "Dangos toriad trwy x"
+
+msgid "Show cut through y"
+msgstr "Dangos torri trwy y"
+
+msgid "Hidden"
+msgstr "Cudd"
+
+msgid "New shape name"
+msgstr "Enw siâp newydd"
+
+msgid "Rename the layer:"
+msgstr "Ail-enwi'r haen:"
+
+msgid ""
+"Thermal model\n"
+"enabled"
+msgstr ""
+
+msgid ""
+"<big><b>Thermal solver switched on</b></big><br>The heat equation will be solved across the device"
+msgstr ""
+"<big><b> Datrysydd thermol wedi'i droi ymlaen</b></big><br>Bydd yr hafaliad gwres yn cael ei "
+"ddatrys ar draws y ddyfais"
+
+msgid ""
+"Iso-thermal\n"
+"model"
+msgstr ""
+"Iso-thermol\n"
+"model"
+
+msgid ""
+"<big><b>Isothermal mode</b></big><br>A single temperature will be assumed across the entire "
+"device."
+msgstr "<big><b>Modd isothermol</b></big><br>Cymerir tymheredd sengl ar draws y ddyfais gyfan."
+
+msgid "Isothermal"
+msgstr "Isothermol"
+
+msgid "Add"
+msgstr "Ychwanegu"
+
+msgid "Delete row"
+msgstr "Dileu rhes"
+
+msgid "Laser start time"
+msgstr "Amser cychwyn laser"
+
+msgid "Simulation start time"
+msgstr "Amser cychwyn yr efelychiad"
+
+msgid "Loop"
+msgstr "Dolen"
+
+msgid "Time domain experiment window"
+msgstr "Ffenestr arbrawf parth amser"
+
+msgid "Simulation"
+msgstr "Efelychiad"
+
+msgid "Config"
+msgstr "Config"
+
+msgid "Loop configuration"
+msgstr "Cyfluniad dolen"
+
+msgid "Random variables"
+msgstr "Newidynnau ar hap"
+
+msgid "Patch"
+msgstr "Patch"
+
+msgid "Duplicate"
+msgstr "Dyblyg"
+
+msgid "Neural networks"
+msgstr "Rhwydweithiau nerfol"
+
+msgid "Compiled json written to "
+msgstr "Lluniwyd json wedi ei ysgrifennu at"
+
+msgid "Copying files and configuring"
+msgstr "Copïo ffeiliau a ffurfweddu"
+
+msgid "Finish time:"
+msgstr "Amser gorffen:"
+
+msgid "Running"
+msgstr "Rhedeg"
+
+msgid "Cluster status"
+msgstr "Statws clwstwr"
+
+msgid "Constant bias"
+msgstr "Gogwydd cyson"
+
+msgid "Change"
+msgstr "Newid"
+
+msgid "From file"
+msgstr "O ffeil"
+
+msgid ""
+"Export\n"
+"image"
+msgstr ""
+"Allforio\n"
+"delwedd"
+
+msgid "<big><b>Filters</b></big><br>Use this tab to edit the optical filters"
+msgstr "<big><b>Hidlyddion</b></big><br>Defnyddiwch y tab hwn i olygu'r hidlyddion optegol"
+
+msgid "Filter editor"
+msgstr "Golygydd hidlo"
+
+msgid "Filter"
+msgstr "Hidlo"
+
+msgid "Not a valid license number"
+msgstr "Ddim yn rhif trwydded dilys"
+
+msgid "This key has been used too many times."
+msgstr "Mae'r allwedd hon wedi'i defnyddio gormod o weithiau."
+
+msgid "This key has expired."
+msgstr "Mae'r allwedd hon wedi dod i ben."
+
+msgid ""
+"This version of OghmaNano is too old to validate it's key, please download the latest version."
+msgstr ""
+"Mae'r fersiwn hon o OghmaNano yn rhy hen i ddilysu ei allwedd, lawrlwythwch y fersiwn diweddaraf."
+
+msgid "Can't access the internet"
+msgstr "Methu cael mynediad i'r rhyngrwyd"
+
+msgid "Key manager"
+msgstr "Rheolwr allweddol"
+
+msgid "Data"
+msgstr "Data"
+
+msgid ""
+"JV\n"
+"editor"
+msgstr ""
+
+msgid ""
+"Time domain\n"
+"editor."
+msgstr ""
+
+msgid ""
+"FX domain\n"
+"editor"
+msgstr ""
+
+msgid ""
+"CV\n"
+"editor"
+msgstr ""
+
+msgid ""
+"Suns Voc\n"
+"editor"
+msgstr ""
+
+msgid ""
+"Suns Jsc\n"
+"editor"
+msgstr ""
+
+msgid ""
+"CE\n"
+"editor"
+msgstr ""
+
+msgid ""
+"PL\n"
+"editor"
+msgstr ""
+
+msgid ""
+"Exciton\n"
+"editor"
+msgstr ""
+
+msgid ""
+"Quantum\n"
+"efficiency"
+msgstr ""
+
+msgid ""
+"Electrical\n"
+"equilibrium"
+msgstr ""
+"Trydanol\n"
+"equilibrium"
+
+msgid ""
+"Polynomial\n"
+"editor"
+msgstr ""
+
+msgid ""
+"Calculate\n"
+"the cost"
+msgstr ""
+"Cyfrifwch\n"
+"y gost"
+
+msgid ""
+"scanning probe\n"
+"microscopy"
+msgstr ""
+"chwiliwr sganio\n"
+"microsgopeg"
+
+msgid ""
+"Output\n"
+"Files"
+msgstr ""
+"Allbwn\n"
+"Ffeiliau"
+
+msgid ""
+"Simulation\n"
+"Hardware"
+msgstr ""
+"Efelychu\n"
+"Caledwedd"
+
+msgid ""
+"<big><b>The time mesh editor</b></big><br> To do time domain simulations one must define how "
+"voltage the light vary as a function of time.  This can be done in this window.  Also use this "
+"window to define the simulation length and time step."
+msgstr ""
+"<big><b>Golygydd y rhwyll amser</b></big><br> I wneud efelychiadau parth amser rhaid diffinio sut "
+"mae foltedd y golau yn amrywio fel ffwythiant amser. Gellir gwneud hyn yn y ffenestr hon. "
+"Defnyddiwch y ffenestr hon hefyd i ddiffinio hyd yr efelychiad a'r cam amser."
+
+msgid ""
+"<big><b>Frequency domain mesh editor</b></big><br> Some times it is useful to do frequency domain "
+"simulations such as when simulating impedance spectroscopy.  This window will allow you to choose "
+"which frequencies will be simulated."
+msgstr ""
+"<big><b>Golygydd rhwyll parth amlder</b></big><br> Weithiau mae'n ddefnyddiol gwneud efelychiadau "
+"parth amlder megis wrth efelychu sbectrosgopeg rhwystriant. Bydd y ffenestr hon yn caniatáu ichi "
+"ddewis pa amleddau fydd yn cael eu hefelychu."
+
+msgid ""
+"<big><b>Capacitance voltage editor</b></big><br> Use this editor to change serup capacitance "
+"voltage simulation."
+msgstr ""
+"<big><b>Golygydd foltedd cynhwysedd</b></big><br> Defnyddiwch y golygydd hwn i newid efelychiad "
+"foltedd cynhwysedd serup."
+
+msgid ""
+"<big><b>Scanning probe microscopy</b></big><br> Use this window to configure the scanning probe "
+"microscopy simulations."
+msgstr ""
+"<big><b>microsgopeg stiliwr sganio</b></big><br> Defnyddiwch y ffenestr hon i ffurfweddu "
+"efelychiadau microsgopeg y stiliwr sganio."
+
+msgid ""
+"<big><b>PL simulation editor</b></big><br> Use this window to configure the steady state "
+"photoluminescence simulation."
+msgstr ""
+"<big><b>golygydd efelychiad PL</b></big><br> Defnyddiwch y ffenestr hon i ffurfweddu'r efelychiad "
+"ffotooleuedd cyflwr cyson."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Watch the youtube video</a></b></"
+"big><br>Watch the video on perfomring PL simulation."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Gwyliwch y fideo youtube</a></b></"
+"big><br>Gwylio y fideo ar berfformio efelychiad PL."
+
+msgid ""
+"<big><b>Suns voc simulation editor</b></big><br> Use this window to select the step size and "
+"parameters of the JV simulations."
+msgstr ""
+"<big><b>Golygydd efelychu Suns voc</b></big><br> Defnyddiwch y ffenestr hon i ddewis maint cam a "
+"pharamedrau'r efelychiadau JV."
+
+msgid ""
+"<big><b>Suns Jsc simulation editor</b></big><br> Use this window to select the step size and "
+"parameters of the JV simulations."
+msgstr ""
+"<big><b>Golygydd efelychu Suns Jsc</b></big><br> Defnyddiwch y ffenestr hon i ddewis maint cam a "
+"pharamedrau'r efelychiadau JV."
+
+msgid ""
+"<big><b>Charge Extraction editor</b></big><br> This performs charge extraction experiments in "
+"time domain, accounting for recombination losses.  If you don’t mind about accounting for "
+"recombination losses on extraction just run a JV curve or a Suns-Voc simulation and use the "
+"charge.dat file."
+msgstr ""
+"<big><b>Golygydd Echdynnu Tâl</b></big><br> Mae hwn yn perfformio arbrofion echdynnu gwefr yn y "
+"parth amser, gan gyfrif am golledion ailgyfuniad. Os nad oes ots gennych am gyfrif am golledion "
+"ailgyfuniad wrth echdynnu, rhedwch gromlin JV neu efelychiad Suns-Voc a defnyddiwch y ffeil "
+"charge.dat."
+
+msgid ""
+"<big><b>Costs window</b></big>\n"
+"Use this window to calculate the cost of the solar cell and the energy payback time."
+msgstr ""
+"<big><b>Ffenestr costau</b></big>\n"
+"Defnyddiwch y ffenestr hon i gyfrifo cost y gell solar a'r amser talu'n ôl am ynni."
+
+msgid "<big><b>JV simulation editor</b></big><br> Use this window to configure JV simulations."
+msgstr ""
+"<big><b>Golygydd efelychiad JV</b></big><br> Defnyddiwch y ffenestr hon i ffurfweddu efelychiadau "
+"JV."
+
+msgid ""
+"<big><b>Polynomial editor</b></big><br> Use this window to generate random date sets for resting "
+"the fitting model."
+msgstr ""
+"<big><b>Golygydd polynomaidd</b></big><br> Defnyddiwch y ffenestr hon i gynhyrchu setiau "
+"dyddiadau ar hap ar gyfer gorffwys y model gosod."
+
+msgid ""
+"<big><b>Exciton simulation editor</b></big><br> Use this window to configure exciton simulations."
+msgstr ""
+"<big><b>Golygydd efelychu exciton</b></big><br> Defnyddiwch y ffenestr hon i ffurfweddu "
+"efelychiadau exciton."
+
+msgid ""
+"<big><b>Simulation hardware</b></big><br>Use this window to change how the model uses the "
+"computer's hardware."
+msgstr ""
+"<big><b>Caledwedd efelychu</b></big><br>Defnyddiwch y ffenestr hon i newid sut mae'r model yn "
+"defnyddio caledwedd y cyfrifiadur."
+
+msgid "Output files"
+msgstr "Ffeiliau allbwn"
+
+msgid "Banned files and tokens"
+msgstr "Ffeiliau a thocynnau wedi'u gwahardd"
+
+msgid "Probes"
+msgstr "Holwyr"
+
+msgid "File name"
+msgstr "Enw ffeil"
+
+msgid "Probe"
+msgstr "Holi"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Now using the drop down menu in the prameter to change "
+"'column', select the device parameter you wish to vary, an example may be dos0/Electron Mobility. "
+"Now enter the values you would like it to scan oveer in the  'Values', an example could be '1e-3 "
+"1e-4 1e-5 1e-6'.  And hit the double arrorw to run the simulation."
+msgstr ""
+"<big><b>Y ffenestr sganio</b></big><br> Gan ddefnyddio'r gwymplen yn y pramedr i newid 'colofn', "
+"dewiswch y paramedr dyfais yr hoffech ei amrywio, gall enghraifft fod yn dos0/ Symudedd Electron. "
+"Nawr nodwch y gwerthoedd yr hoffech iddo eu sganio drosodd yn y 'Gwerthoedd', gallai enghraifft "
+"fod yn '1e-3 1e-4 1e-5 1e-6'. A tharo'r saeth ddwbl i redeg yr efelychiad."
+
+msgid "Neural network editor"
+msgstr "Golygydd rhwydwaith nerfol"
+
+msgid "ML Input vector"
+msgstr "Fector mewnbwn ML"
+
+msgid "ML Output vector"
+msgstr "ML Fector allbwn"
+
+msgid "Optimizer"
+msgstr "Optimizer"
+
+msgid "Scan - Configure Optimizer"
+msgstr "Sgan - Ffurfweddu Optimizer"
+
+msgid "Solar Spectrum Generator"
+msgstr "Cynhyrchydd Sbectrwm Solar"
+
+msgid "Show energies"
+msgstr "Dangos egni"
+
+msgid "Plot token values"
+msgstr "Plotiwch werthoedd tocyn"
+
+msgid "Suns Jsc simulation editor"
+msgstr "Golygydd efelychu Suns Jsc"
+
+msgid "Disabled"
+msgstr "Anabl"
+
+msgid ""
+"Ray\n"
+"trace"
+msgstr ""
+"Ray\n"
+"olion"
+
+msgid ""
+"Perfect\n"
+"outcoupling"
+msgstr ""
+"Perffaith\n"
+"outcoupling"
+
+msgid "time mesh"
+msgstr "rhwyll amser"
+
+msgid "Explore the simulation data structure"
+msgstr "Archwiliwch y strwythur data efelychu"
+
+msgid "Interface editor"
+msgstr "Golygydd rhyngwyneb"
+
+msgid "Sim name"
+msgstr "Enw Sim"
+
+msgid "Vectors"
+msgstr "Fectorau"
+
+msgid "Cluster get data"
+msgstr "Clwstwr yn cael data"
+
+msgid "Copy src to cluster"
+msgstr "Copïo src i'r clwstwr"
+
+msgid "Make on cluster"
+msgstr "Gwneud ar clwstwr"
+
+msgid "Clean cluster"
+msgstr "Clwstwr glân"
+
+msgid "Kill all cluster code"
+msgstr "Lladd pob cod clwstwr"
+
+msgid "Sync"
+msgstr "Cysoni"
+
+msgid "Cluster"
+msgstr "Clwstwr"
+
+msgid "3D object viewer"
+msgstr "Gwyliwr gwrthrych 3D"
+
+msgid "Machine learning"
+msgstr "Dysgu peiriant"
+
+msgid ""
+"Build\n"
+"vectors"
+msgstr ""
+"Adeiladu\n"
+"vectors"
+
+msgid ""
+"Norm\n"
+"vectors"
+msgstr ""
+"Norm\n"
+"vectors"
+
+msgid ""
+"Run\n"
+"Generator"
+msgstr ""
+"Rhedeg\n"
+"Generator"
+
+msgid "Clean files"
+msgstr "Glanhau ffeiliau"
+
+msgid "Generator"
+msgstr "Generadur"
+
+msgid "Clone"
+msgstr "Clôn"
+
+msgid "Building simulations: "
+msgstr "Efelychiadau adeiladu:"
+
+msgid "Building vectors: "
+msgstr "Fectorau adeiladu:"
+
+msgid "The directory does not exist: "
+msgstr "Nid yw'r cyfeiriadur yn bodoli:"
+
+msgid "Loading"
+msgstr "Llwytho"
+
+msgid "Rename:"
+msgstr "Ailenwi:"
+
+msgid "Clone:"
+msgstr "Clôn:"
+
+msgid "Are you sure you want to delete : "
+msgstr "Ydych chi'n siŵr eich bod am ddileu :"
+
+msgid "Make a new:"
+msgstr "Gwnewch un newydd:"
+
+msgid "Delete file"
+msgstr "Dileu ffeil"
+
+msgid "Clone object"
+msgstr "Gwrthrych clôn"
+
+msgid "New shape name:"
+msgstr "Enw siâp newydd:"
+
+msgid "I cant write to:"
+msgstr "Ni allaf ysgrifennu at:"
+
+msgid ""
+"This means either the disk is full or your system administrator has not given you write "
+"permissions to that location."
+msgstr ""
+"Mae hyn yn golygu naill ai bod y ddisg yn llawn neu nad yw gweinyddwr eich system wedi rhoi "
+"caniatâd ysgrifennu i chi i'r lleoliad hwnnw."
+
+msgid "Merge shapes to new"
+msgstr "Cyfuno siapiau i rai newydd"
+
+msgid "name"
+msgstr "enw"
+
+msgid "path"
+msgstr "llwybr"
+
+msgid "ip"
+msgstr "ip"
+
+msgid "start"
+msgstr "dechrau"
+
+msgid "stop"
+msgstr "stopio"
+
+msgid "CPUs"
+msgstr "CPUs"
+
+msgid "status"
+msgstr "statws"
+
+msgid "Adding: "
+msgstr "Wrthi'n ychwanegu:"
+
+msgid "No sim dir name"
+msgstr "Dim enw dir sim"
+
+msgid ""
+"I can't load flat_list.inp.  This usually means there is a problem with how you have set up your "
+"scan."
+msgstr ""
+"Ni allaf lwytho flat_list.inp. Mae hyn fel arfer yn golygu bod problem gyda sut rydych chi wedi "
+"gosod eich sgan."
+
+msgid "Problem loading file."
+msgstr "Problem wrth lwytho ffeil."
+
+msgid "Problem generating tree."
+msgstr "Problem cynhyrchu coed."
+
+msgid "Lambda stop"
+msgstr "Stop Lambda"
+
+msgid "File containing generation rate"
+msgstr "Ffeil yn cynnwys cyfradd cynhyrchu"
+
+msgid "Photon efficiency"
+msgstr "Effeithlonrwydd ffoton"
+
+msgid "QE spectra file"
+msgstr "Ffeil sbectra QE"
+
+msgid "Incoherent wavelengths"
+msgstr "Tonfeddi anghydlynol"
+
+msgid "Mesh layers must equal device layers"
+msgstr "Rhaid i haenau rhwyll gyfartal haenau dyfais"
+
+msgid "Light spectrum"
+msgstr "Sbectrwm golau"
+
+msgid "Light multiplyer"
+msgstr "Lluosydd ysgafn"
+
+msgid "Photo current density"
+msgstr "Llun dwysedd presennol"
+
+msgid "Photo current"
+msgstr "Llun cyfredol"
+
+msgid "Invert"
+msgstr "Gwrthdro"
+
+msgid "Optical filter material"
+msgstr "Deunydd hidlo optegol"
+
+msgid "dB"
+msgstr "dB"
+
+msgid "Degrees"
+msgstr "Graddau"
+
+msgid "n"
+msgstr "n"
+
+msgid "Illuminate from"
+msgstr "Goleuo o"
+
+msgid "Top (y0)"
+msgstr "Uchaf (y0)"
+
+msgid "Bottom (y1)"
+msgstr "Gwaelod (y1)"
+
+msgid "Left (x0)"
+msgstr "Chwith (x0)"
+
+msgid "Right (x1)"
+msgstr "Dde (x1)"
+
+msgid "Front (z0)"
+msgstr "blaen (z0)"
+
+msgid "Back (z1)"
+msgstr "Yn ôl (z1)"
+
+msgid "xyz"
+msgstr "xyz"
+
+msgid "Log fit"
+msgstr "Log ffit"
+
+msgid "Opperation"
+msgstr "Gweithrediad"
+
+msgid "Enable vector"
+msgstr "Galluogi fector"
+
+msgid "Edit patch"
+msgstr "Golygu darn"
+
+msgid "Edit vectors"
+msgstr "Golygu fectorau"
+
+msgid "Number of archives"
+msgstr "Nifer yr archifau"
+
+msgid "Simulations per archive"
+msgstr "Efelychiadau fesul archif"
+
+msgid "Random distribution"
+msgstr "Dosbarthu ar hap"
+
+msgid "Log"
+msgstr "Log"
+
+msgid "Linear"
+msgstr "Llinol"
+
+msgid "Archive path"
+msgstr "Llwybr archif"
+
+msgid "Vector file name"
+msgstr "Enw ffeil fector"
+
+msgid "Crash time"
+msgstr "Amser damwain"
+
+msgid "Build vectors when done"
+msgstr "Adeiladu fectorau pan wneir hynny"
+
+msgid "ML Output Vector"
+msgstr "Fector Allbwn ML"
+
+msgid "ML Input Vector"
+msgstr "Fector Mewnbwn ML"
+
+msgid "file"
+msgstr "ffeil"
+
+msgid "Experimental file"
+msgstr "Ffeil arbrofol"
+
+msgid "multiplier"
+msgstr "lluosydd"
+
+msgid "Multiplier"
+msgstr "Lluosydd"
+
+msgid "json_src"
+msgstr "json_src"
+
+msgid "json_dest"
+msgstr "json_dest"
+
+msgid "Laser wavelength"
+msgstr "Tonfedd laser"
+
+msgid "Length of pulse"
+msgstr "Hyd curiad y galon"
+
+msgid "Spot size x"
+msgstr "Maint y sbot x"
+
+msgid "Spot size y"
+msgstr "Maint sbot y"
+
+msgid "Energy in pulse"
+msgstr "Egni mewn pwls"
+
+msgid "Efficiency of photons"
+msgstr "Effeithlonrwydd ffotonau"
+
+msgid "Solve optical problem"
+msgstr "Datrys problem optegol"
+
+msgid "Yes - n/k"
+msgstr "Ydw - n/k"
+
+msgid "Yes - k"
+msgstr "Bydd — k"
+
+msgid "No"
+msgstr "Nac ydw"
+
+msgid "Yes"
+msgstr "Oes"
+
+msgid "contact"
+msgstr "cyswllt"
+
+msgid "active layer"
+msgstr "haen weithredol"
+
+msgid "other"
+msgstr "arall"
+
+msgid "Optical thickness"
+msgstr "Trwch optegol"
+
+msgid "Free carrier statistics"
+msgstr "Ystadegau cludwyr am ddim"
+
+msgid "Maxwell Boltzmann - analytic"
+msgstr "Maxwell Boltzmann - dadansoddol"
+
+msgid "Maxwell Boltzmann - numerical+analytic"
+msgstr "Maxwell Boltzmann - rhifiadol+dadansoddol"
+
+msgid "Maxwell Boltzmann - full numerical"
+msgstr "Maxwell Boltzmann - rhifiadol llawn"
+
+msgid "Ferm-Dirac - numerical"
+msgstr "Ferm-Dirac - rhifiadol"
+
+msgid "<b>Free carriers</b>"
+msgstr "<b>Cludwyr am ddim</b>"
+
+msgid "Effective density of free electron states (@300K)"
+msgstr "Dwysedd effeithiol o gyflyrau electronau rhydd (@300K)"
+
+msgid "Effective density of free hole states (@300K)"
+msgstr "Dwysedd effeithiol o gyflyrau twll am ddim (@300K)"
+
+msgid "Enable T dependent free carrier mob"
+msgstr "Galluogi cludwyr rhydd dibynnol T"
+
+msgid "Enable \\u03BB power in free to free recombination"
+msgstr "Galluogi pŵer \\u03BB mewn ailgyfuniad rhydd i rydd"
+
+msgid "Show excited singlet states"
+msgstr "Dangos cyflyrau sengl cyffrous"
+
+msgid "<b>Equilibrium SRH traps</b>"
+msgstr "<b>Trapiau SRH ecwilibriwm</b>"
+
+#, python-brace-format
+msgid "n_{1}"
+msgstr "n_{1}"
+
+#, python-brace-format
+msgid "p_{1}"
+msgstr "p_{1}"
+
+#, python-brace-format
+msgid "tau_{n}"
+msgstr "tau_{n}"
+
+#, python-brace-format
+msgid "tau_{p}"
+msgstr "tau_{p}"
+
+msgid "<b>Non-equilibrium SRH traps</b>"
+msgstr "<b>Trapiau SRH di-gydbwysedd</b>"
+
+msgid "Number of traps"
+msgstr "Nifer y trapiau"
+
+msgid "DoS distribution"
+msgstr "DoS dosbarthu"
+
+msgid "Complex"
+msgstr "Cymhleth"
+
+msgid "Exponential"
+msgstr "Esbonyddol"
+
+msgid "Electron trap density"
+msgstr "Dwysedd trap electron"
+
+msgid "Hole trap density"
+msgstr "Dwysedd trap twll"
+
+msgid "Electron tail slope"
+msgstr "Llethr cynffon electron"
+
+msgid "Hole tail slope"
+msgstr "Llethr cynffon twll"
+
+msgid "Free electron to Trapped electron"
+msgstr "Electron rhydd i electron Trapped"
+
+msgid "Trapped electron to Free hole"
+msgstr "Electron gaeth i twll Rhydd"
+
+msgid "Trapped hole to Free electron"
+msgstr "Twll wedi'i ddal i electron rhydd"
+
+msgid "Free hole to Trapped hole"
+msgstr "Twll rhydd i dwll Trapped"
+
+msgid "Enable/Disable"
+msgstr "Galluogi Analluogi"
+
+msgid "<b>Excitons</b>"
+msgstr "<b>excitons</b>"
+
+msgid "Scattering length"
+msgstr "Hyd gwasgariad"
+
+msgid "Life time"
+msgstr "Amser bywyd"
+
+#, python-brace-format
+msgid "k_{pl}"
+msgstr ""
+
+#, python-brace-format
+msgid "k_{fret}"
+msgstr "k_{fret}"
+
+#, python-brace-format
+msgid "k_{alpha}"
+msgstr "k_{alpha}"
+
+#, python-brace-format
+msgid "k_{dis}"
+msgstr "k_{dis}"
+
+msgid "Max itterations"
+msgstr "Uchafswm iteriadau"
+
+msgid "Convergence error"
+msgstr "Gwall cydgyfeiriant"
+
+#, python-brace-format
+msgid "Boundary condition for y_{min}"
+msgstr ""
+
+msgid "Dirichlet"
+msgstr "Dirichlet"
+
+msgid "ABC"
+msgstr "ABC"
+
+msgid "Periodic"
+msgstr "Cyfnodol"
+
+#, python-brace-format
+msgid "Boundary condition for y_{max}"
+msgstr "Cyflwr terfyn ar gyfer y_{max}"
+
+#, python-brace-format
+msgid "Boundary condition for x_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Boundary condition for x_{max}"
+msgstr "Cyflwr terfyn ar gyfer x_{max}"
+
+#, python-brace-format
+msgid "Boundary condition for z_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Boundary condition for z_{max}"
+msgstr "Cyflwr terfyn ar gyfer z_{max}"
+
+msgid "Neumann (==0)"
+msgstr "Neumann (==0)"
+
+msgid "Heatsink"
+msgstr "Tanc gwres"
+
+#, python-brace-format
+msgid "Exciton density at y_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Heat sink length y_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Exciton density at y_{max}"
+msgstr "Dwysedd exciton ar y_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{max}"
+msgstr "Dargludedd sinc gwres y_{max}"
+
+#, python-brace-format
+msgid "Heat sink length y_{max}"
+msgstr "Hyd sinc gwres y_{max}"
+
+#, python-brace-format
+msgid "Exciton density at x_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Heat sink length x_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Exciton density at x_{max}"
+msgstr "Dwysedd exciton ar x_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{max}"
+msgstr "Dargludedd sinc gwres x_{max}"
+
+#, python-brace-format
+msgid "Heat sink length x_{max}"
+msgstr "Hyd sinc gwres x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Heat sink length z_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Exciton density at z_{max}"
+msgstr "Dwysedd exciton ar z_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{max}"
+msgstr "Dargludedd sinc gwres z_{max}"
+
+#, python-brace-format
+msgid "Heat sink length z_{max}"
+msgstr "Hyd sinc gwres z_{max}"
+
+msgid "<b>Auger recombination</b>"
+msgstr "<b>Auger ailgyfuniad</b>"
+
+#, python-brace-format
+msgid "Auger C_{n}"
+msgstr "Aug C_{n}"
+
+#, python-brace-format
+msgid "Auger C_{p}"
+msgstr "Aug C_{p}"
+
+msgid "Start temperature"
+msgstr "Tymheredd cychwyn"
+
+msgid "Stop temperature"
+msgstr "Stopio tymheredd"
+
+msgid "Temperature steps"
+msgstr "Camau tymheredd"
+
+msgid "Perovskite ion density"
+msgstr "Dwysedd ïon perovskite"
+
+msgid "Doping density (x=0)"
+msgstr "Dwysedd cyffuriau (x=0)"
+
+msgid "Doping density (x=max)"
+msgstr "Dwysedd cyffuriau (x=max)"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} Recombination rate constant"
+msgstr ""
+
+msgid "<b>Electrostatics</b>"
+msgstr "<b>Electrostatig</b>"
+
+msgid "Eg"
+msgstr "ae"
+
+msgid "Xi"
+msgstr "xi"
+
+msgid "<b>Excited states</b>"
+msgstr "<b>Cyflyrau cyffrous</b>"
+
+msgid "Forster transfer rate"
+msgstr "Cyfradd trosglwyddo Forster"
+
+msgid "Host singlet-exciton decay rate"
+msgstr "Cyfradd dadfeiliad singlet-exciton gwesteiwr"
+
+msgid "Host inter-system crossing rate"
+msgstr "Cyfradd croesi rhyng-system gwesteiwr"
+
+msgid "Host singlet-singlet annihilation (SSA) rate"
+msgstr "Cyfradd difodi singlet-singlet (SSA) gwesteiwr"
+
+msgid "Host singlet-polaron annihilation (SPA) rate"
+msgstr "Cyfradd difodi singlet-polaron (SPA) gwesteiwr"
+
+msgid "Host singlet-triplet annihilation (STA) rate"
+msgstr "Cyfradd difodi tripledi sengl gwesteiwr (STA)."
+
+msgid "Dexter transfer rate"
+msgstr "Cyfradd trosglwyddo Dexter"
+
+msgid "Host triplet decay rate"
+msgstr "Cyfradd dadfeiliad tripledi gwesteiwr"
+
+msgid "Host triplet-polaron annihilation (TPA) rate"
+msgstr "Cyfradd difodi tripledi-polaron gwesteiwr (TPA)."
+
+msgid "Host triplet-triplet annihilation (TTA) rate"
+msgstr "Cyfradd difodi tripledi gwesteiwr (TTA)."
+
+msgid "Dopant singlet-exciton decay rate"
+msgstr "Cyfradd dadfeiliad singlet-exciton dopant"
+
+msgid "Dopant inter-system crossing rate"
+msgstr "Cyfradd croesi rhyng-system Dopant"
+
+msgid "Dopant singlet-polaron annihilation (SPA) rate"
+msgstr "Cyfradd difodi singlet-polaron (SPA) dopant"
+
+msgid "Dopant singlet-triplet annihilation (STA) rate"
+msgstr "Cyfradd dileu sengl-tripledi dopant (STA)."
+
+msgid "Dopant singlet-singlet annihilation (SSA) rate"
+msgstr "Cyfradd difodi singlet-singlet (SSA) dopant"
+
+msgid "Dopant triplet decay rate"
+msgstr "Cyfradd dadfeiliad tripledi dopant"
+
+msgid "Dopant triplet-triplet annihilation (TTA) rate"
+msgstr "Cyfradd difodi tripledi dopant (TTA)."
+
+msgid "Dopant triplet-polaron annihilation (TPA) rate"
+msgstr "Cyfradd difodi tripledi-polaron dopant (TPA)."
+
+msgid "Confinement factor"
+msgstr "Ffactor cyfyngu"
+
+msgid "Dopant concentration"
+msgstr "Crynodiad dopant"
+
+msgid "Spectral overlap"
+msgstr "Gorgyffwrdd sbectrol"
+
+#, python-brace-format
+msgid "k_{RISC} Reverse Inter-System crossing rate"
+msgstr "k_{RISC} Cyfradd groesi Rhyng-System Gwrthdroi"
+
+#, python-brace-format
+msgid "\\u03C3_{em} Stimulated Emission cross section"
+msgstr "\\u03C3_{em} Trawstoriad Allyriad wedi'i Ysgogi"
+
+#, python-brace-format
+msgid "\\u03C3_{t1tn} Triplet Absorption cross section"
+msgstr "\\u03C3_{t1tn} Trawstoriad Amsugno Tripled"
+
+msgid "\\u03C3_{n,p} Polaron Absorption cross section"
+msgstr "\\u03C3_{n,p} Trawstoriad Amsugno Polaron"
+
+msgid "e-h separation distance"
+msgstr "e-h pellter gwahanu"
+
+msgid "<b>Photon rate equation</b>"
+msgstr "<b>Haliad cyfradd ffoto</b>"
+
+msgid "Spontaneous emission factor"
+msgstr "Ffactor allyriadau digymell"
+
+msgid "Cavity photon decay rate"
+msgstr "Cyfradd pydredd ffotonau ceudod"
+
+msgid "Density of guest molecules"
+msgstr "Dwysedd moleciwlau gwadd"
+
+msgid "\\u03BE Stimulated emission gain coefficient"
+msgstr "\\u03BE Cyfernod cynnydd allyriadau ysgogol"
+
+msgid "<b>Excited states for OPV</b>"
+msgstr "<b>Cyflyrau cyffrous ar gyfer OPV</b>"
+
+#, python-brace-format
+msgid "Decay of singlets to 1C (k_{ds})"
+msgstr "Dirywiad senglau i 1C (k_{ds})"
+
+#, python-brace-format
+msgid "Inter system crossing (k_{isc})"
+msgstr "Croesfan rhyng-system (k_{isc})"
+
+#, python-brace-format
+msgid "Reverse inter system crossing (k_{risc})"
+msgstr "Gwrthdroi croesfan rhwng systemau (k_{risc})"
+
+#, python-brace-format
+msgid "Triplet-triplet annihilation (k_{tta})"
+msgstr "Difodiad tripledi-tripled (k_{tta})"
+
+#, python-brace-format
+msgid "Singlet-triplet annihilation (k_{sta})"
+msgstr "Diddymu tripledi sengl (k_{sta})"
+
+#, python-brace-format
+msgid "Singlet-singlet annihilation (k_{ssa})"
+msgstr "Diddymiad Singlet-singlet (k_{ssa})"
+
+msgid "Alpha fraction (alpha)"
+msgstr "Ffracsiwn alffa (alffa)"
+
+#, python-brace-format
+msgid "Singlet to ground state (k_{fs})"
+msgstr "Singlet i gyflwr gwaelod (k_{fs})"
+
+#, python-brace-format
+msgid "Decay of triplets (k_{dt})"
+msgstr "Dirywiad tripledi (k_{dt})"
+
+#, python-brace-format
+msgid "Triplet to ground state (k_{ft})"
+msgstr "Tripled i gyflwr gwaelod (k_{ft})"
+
+#, python-brace-format
+msgid "Decay of 3C to np (k_{dct})"
+msgstr "Pydredd 3C i np (k_{dct})"
+
+msgid "Inter system crossing CT (k_{isc ct})"
+msgstr "Croesi CT rhyng-system (k_{isc ct})"
+
+msgid "Reverse inter system crossing CT (k_{risc ct})"
+msgstr "Gwrthdroi croesfan rhwng systemau CT (k_{risc ct})"
+
+#, python-brace-format
+msgid "3C and 1C to ground state (k_{f})"
+msgstr "3C ac 1C i gyflwr gwaelod (k_{f})"
+
+msgid "Blended material"
+msgstr "Deunydd cymysg"
+
+#, python-brace-format
+msgid "Eg_{0}"
+msgstr "Ee_{0}"
+
+#, python-brace-format
+msgid "Xi_{0}"
+msgstr "Xi_{0}"
+
+#, python-brace-format
+msgid "Eg_{1}"
+msgstr "Ee_{1}"
+
+#, python-brace-format
+msgid "Xi_{1}"
+msgstr "Xi_{1}"
+
+msgid "Thermal conductivity"
+msgstr "Dargludedd thermol"
+
+msgid "Electron relaxation time"
+msgstr "Amser ymlacio electron"
+
+msgid "Hole relaxation time"
+msgstr "Amser ymlacio twll"
+
+msgid "Density"
+msgstr "Dwysedd"
+
+msgid "Cost per Kg"
+msgstr "Cost fesul Kg"
+
+msgid "Energy per Kg"
+msgstr "Ynni fesul Kg"
+
+msgid "Link"
+msgstr "Dolen"
+
+msgid "Shunt resistivity"
+msgstr "Gwrthedd siyntio"
+
+msgid "Series resistivity"
+msgstr "Gwrthedd cyfres"
+
+msgid "Series resistivity z"
+msgstr "Cyfres gwrthedd z"
+
+msgid "Series resistivity x"
+msgstr "Gwrthedd cyfres x"
+
+msgid "Series resistivity y"
+msgstr "Gwrthedd cyfres y"
+
+msgid "Layer ideality factor"
+msgstr "Ffactor delfrydedd haen"
+
+msgid "Reverse bias current"
+msgstr "Cerrynt bias gwrthdro"
+
+msgid ""
+"Enable optical charge\n"
+"carrier generation"
+msgstr ""
+"Galluogi gwefr optegol\n"
+"cynhyrchu cludwr"
+
+msgid "Scan section"
+msgstr "Sganio adran"
+
+msgid "Whole device"
+msgstr "Dyfais gyfan"
+
+msgid "Box section"
+msgstr "Adran blwch"
+
+msgid "x-Scan"
+msgstr "x-Sgan"
+
+msgid "x-start"
+msgstr "x-dechrau"
+
+msgid "z-start"
+msgstr "z-dechrau"
+
+msgid "x-stop"
+msgstr "x-stop"
+
+msgid "z-stop"
+msgstr "z-stop"
+
+msgid "Dump only at end"
+msgstr "Dympiwch yn unig ar y diwedd"
+
+msgid "Shape type"
+msgstr "Math o siâp"
+
+msgid "Rotate around y-axis"
+msgstr "Cylchdroi o amgylch echelin-y"
+
+msgid "y-axis"
+msgstr "y-echel"
+
+msgid "x-axis"
+msgstr "echel x"
+
+msgid "Rotate around x-axis"
+msgstr "Cylchdroi o amgylch echelin-x"
+
+msgid "dx of the object"
+msgstr "dx o'r gwrthrych"
+
+msgid "dy of the object"
+msgstr "dy y gwrthddrych"
+
+msgid "dz of the object"
+msgstr "dz o'r gwrthrych"
+
+msgid "dx padding"
+msgstr "padin dx"
+
+msgid "padding"
+msgstr "padin"
+
+msgid "dy padding"
+msgstr "dy padin"
+
+msgid "dz padding"
+msgstr "dz padin"
+
+msgid "Number of objects x"
+msgstr "Nifer y gwrthrychau x"
+
+msgid "Number of objects"
+msgstr "Nifer o wrthrychau"
+
+msgid "Number of objects y"
+msgstr "Nifer y gwrthrychau y"
+
+msgid "Number of objects z"
+msgstr "Nifer y gwrthrychau z"
+
+msgid "<b>Object</b>"
+msgstr "<b>Gwrthrych</b>"
+
+msgid "<b>Attributes</b>"
+msgstr "<b>Priodoleddau</b>"
+
+msgid "x offset"
+msgstr "x gwrthbwyso"
+
+msgid "Offset"
+msgstr "Gwrthbwyso"
+
+msgid "y offset"
+msgstr "y gwrthbwyso"
+
+msgid "z offset"
+msgstr "z gwrthbwyso"
+
+msgid "Web page link"
+msgstr "Dolen i dudalen we"
+
+msgid "Text label"
+msgstr "Label testun"
+
+msgid "Texture"
+msgstr "Gwead"
+
+msgid ""
+"Circuit model\n"
+"parameters"
+msgstr ""
+"Model cylched\n"
+"paramedrau"
+
+msgid "Color"
+msgstr "Lliw"
+
+msgid "Interface model"
+msgstr "Model rhyngwyneb"
+
+msgid "None"
+msgstr "Dim"
+
+msgid "Free-to-Free"
+msgstr "Rhydd-i-Rydd"
+
+msgid "Free-to-trap (SRH)"
+msgstr "Rhydd-i-fagl (SRH)"
+
+msgid "Recombination constant"
+msgstr "Ailgyfuniad cyson"
+
+msgid "Interface doping LHS"
+msgstr "Cyffuriau rhyngwyneb LHS"
+
+msgid "Doping LHS"
+msgstr "Cyffuriau LHS"
+
+msgid "Electron tunneling"
+msgstr "Twnelu electronig"
+
+msgid "Electron tunneling (T)"
+msgstr "Twnelu electronig (T)"
+
+msgid "Hole tunneling"
+msgstr "Twnelu twll"
+
+msgid "Hole tunneling (T)"
+msgstr "Twnelu tyllau (T)"
+
+msgid "Interface doping RHS"
+msgstr "RHS dopio rhyngwyneb"
+
+msgid "Doping RHS"
+msgstr "Cyffuriau RHS"
+
+msgid "startime"
+msgstr "amser seren"
+
+msgid "ea_factor"
+msgstr "ea_ffactor"
+
+msgid "Np"
+msgstr "Np"
+
+msgid "den"
+msgstr "ffau"
+
+msgid "externalv"
+msgstr "allanolv"
+
+msgid "dt_neg_time"
+msgstr "dt_neg_amser"
+
+msgid "dt_mull"
+msgstr "dt_mull"
+
+msgid "stark"
+msgstr "llwm"
+
+msgid "lasereff"
+msgstr "lasereff"
+
+msgid "sim_contacts"
+msgstr "sim_cysylltiadau"
+
+msgid "Website"
+msgstr "Gwefan"
+
+msgid "Author"
+msgstr "Awdur"
+
+msgid "Journal"
+msgstr "Dyddlyfr"
+
+msgid "Title"
+msgstr "Teitl"
+
+msgid "Volume"
+msgstr "Cyfrol"
+
+msgid "Pages"
+msgstr "Tudalennau"
+
+msgid "Year"
+msgstr "Blwyddyn"
+
+msgid "DOI"
+msgstr "DOI"
+
+msgid "Book title"
+msgstr "Teitl y llyfr"
+
+msgid "Publisher"
+msgstr "Cyhoeddwr"
+
+msgid "ISBN"
+msgstr "ISBN"
+
+msgid "Scraped text"
+msgstr "Testun wedi'i grafu"
+
+#, python-brace-format
+msgid "R_{short}"
+msgstr ""
+
+#, python-brace-format
+msgid "V_{bias}"
+msgstr ""
+
+msgid "Efficiency of light"
+msgstr "Effeithlonrwydd golau"
+
+msgid "subtract DC"
+msgstr "tynnu DC"
+
+msgid "External load resistor"
+msgstr "Gwrthydd llwyth allanol"
+
+msgid "Material type"
+msgstr "Math o ddeunydd"
+
+msgid "Organic"
+msgstr "Organig"
+
+msgid "Oxide"
+msgstr "Ocsid"
+
+msgid "Inorganic"
+msgstr "Anorganig"
+
+msgid "Metal"
+msgstr "Metel"
+
+msgid "Other"
+msgstr "Arall"
+
+msgid "Transparency"
+msgstr "Tryloywder"
+
+msgid "Privicy options"
+msgstr "Opsiynau preifatrwydd"
+
+msgid "Public - everyone"
+msgstr "Cyhoeddus - pawb"
+
+msgid "Public - within org"
+msgstr "Cyhoeddus - o fewn org"
+
+msgid "Private - never publish"
+msgstr "Preifat - peidiwch byth â chyhoeddi"
+
+msgid "Change log"
+msgstr "Newid log"
+
+msgid ""
+"Use external\n"
+"voltage as stop"
+msgstr ""
+"Defnyddiwch\n"
+"foltedd allanol fel stop"
+
+msgid "<b>Output</b>"
+msgstr "<b>Allbwn</b>"
+
+msgid "Dump trap distribution"
+msgstr "Dosbarthiad trap dympio"
+
+msgid "False"
+msgstr "Gau"
+
+msgid "Energy space map"
+msgstr "Map gofod ynni"
+
+msgid "Single mesh point"
+msgstr "Pwynt rhwyll sengl"
+
+#, python-brace-format
+msgid "V_{oc}"
+msgstr "V_{oc}"
+
+#, python-brace-format
+msgid "V_{bi}"
+msgstr "V_{bi}"
+
+msgid "Power conversion efficiency (PCE)"
+msgstr "Effeithlonrwydd trosi pŵer (PCE)"
+
+msgid "Fill factor"
+msgstr "Ffactor llenwi"
+
+msgid "Max power"
+msgstr "Uchafswm pŵer"
+
+msgid "Voltage at max power"
+msgstr "Foltedd ar y pŵer mwyaf"
+
+msgid "Current density at max power"
+msgstr "Dwysedd cyfredol ar bŵer uchaf"
+
+msgid "Current density at Voc"
+msgstr "Dwysedd presennol Voc"
+
+#, python-brace-format
+msgid "J_{sc}"
+msgstr "J_{sc}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free P_{max}"
+msgstr "Theta_{SRH} - P_{max} am ddim"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free-trap P_{max}"
+msgstr "Theta_{SRH} - trap rhydd P_{max}"
+
+msgid "Recombination time constant"
+msgstr "Cyson amser ailgyfuno"
+
+msgid "Device capacitance"
+msgstr "Cynhwysedd dyfais"
+
+msgid "Photos absorbed in active layer"
+msgstr "Lluniau wedi'u hamsugno mewn haen weithredol"
+
+msgid "Peak height Rp"
+msgstr "Uchder brig Rp"
+
+msgid "RMS height Rq"
+msgstr "RMS uchder Rq"
+
+msgid "Average height Ra"
+msgstr "Uchder cyfartalog Ra"
+
+msgid "dV step"
+msgstr "dV cam"
+
+msgid "Left hole density"
+msgstr "Dwysedd twll chwith"
+
+msgid "Left electron density"
+msgstr "Dwysedd electronau chwith"
+
+msgid "Right hole density"
+msgstr "Dwysedd twll cywir"
+
+msgid "Right electron density"
+msgstr "Dwysedd electronau cywir"
+
+msgid "Built in potential"
+msgstr "Wedi'i adeiladu mewn potensial"
+
+msgid "Electron affinity left"
+msgstr "Affinedd electron ar ôl"
+
+msgid "Electron affinity right"
+msgstr "Hawl affinedd electron"
+
+msgid "<b>CPU</b>"
+msgstr "<b>CPU</b>"
+
+msgid "Number of threads used by the backend"
+msgstr "Nifer yr edafedd a ddefnyddir gan y backend"
+
+msgid "No threading"
+msgstr "Dim edafu"
+
+msgid "Maximum number of core instances"
+msgstr "Uchafswm nifer yr achosion craidd"
+
+msgid "Path to source code"
+msgstr "Llwybr i'r cod ffynhonnell"
+
+msgid "Path to compiled libs for cluster"
+msgstr "Llwybr i libs cryno ar gyfer clwstwr"
+
+msgid "Make command"
+msgstr "Gwnewch orchymyn"
+
+msgid "exe name"
+msgstr "enw exe"
+
+msgid "Store DoS on disk"
+msgstr "Storio DoS ar ddisg"
+
+msgid "Remote cluster directory"
+msgstr "Cyfeiriadur clwstwr o bell"
+
+msgid "Remote node list"
+msgstr "Rhestr nodau pell"
+
+msgid "IV"
+msgstr "IV"
+
+msgid "x-triangles"
+msgstr "x-trionglau"
+
+msgid "y-triangles"
+msgstr "y-trionglau"
+
+msgid "Method"
+msgstr "Dull"
+
+msgid "Node reduce"
+msgstr "Lleihau nod"
+
+msgid "No reduce"
+msgstr "Dim gostyngiad"
+
+msgid "Min allowable angle"
+msgstr "Isafswm ongl a ganiateir"
+
+msgid "Gaussian blur"
+msgstr "Gaussian aneglur"
+
+msgid "Percent of histogram to ignore"
+msgstr "Canran yr histogram i'w anwybyddu"
+
+msgid "Sigma of gaussian"
+msgstr "Sigma o gaussian"
+
+msgid "Gaussian offset x"
+msgstr "Gaussian gwrthbwyso x"
+
+msgid "Gaussian offset y"
+msgstr "Gaussian wrthbwyso y"
+
+msgid "Threshold value"
+msgstr "Gwerth trothwy"
+
+msgid "dr"
+msgstr "dr"
+
+msgid "dx"
+msgstr "dx"
+
+msgid "dy"
+msgstr "dy"
+
+msgid "offset"
+msgstr "gwrthbwyso"
+
+msgid "Lens type"
+msgstr "Math o lens"
+
+msgid "Convex"
+msgstr "Amgrwm"
+
+msgid "Concave"
+msgstr "ceugrwm"
+
+msgid "Lens size"
+msgstr "Maint y lens"
+
+msgid "length"
+msgstr "hyd"
+
+msgid "Waveform"
+msgstr "Tonffurf"
+
+msgid "Square"
+msgstr "Sgwâr"
+
+msgid "Saw wave"
+msgstr "Gwelodd don"
+
+msgid "pixels"
+msgstr "picsel"
+
+msgid "Boundary x0"
+msgstr "Ffin x0"
+
+msgid "Boundary x1"
+msgstr "Ffin x1"
+
+msgid "Boundary y0"
+msgstr "Ffin y0"
+
+msgid "Boundary y1"
+msgstr "Ffin y1"
+
+msgid "<b>Fist iteration</b>"
+msgstr "<b>Iteriad cyntaf</b>"
+
+msgid "Max Electrical iterations (first step)"
+msgstr "Uchafswm iteriadau trydanol (cam cyntaf)"
+
+msgid "Electrical clamp (first step)"
+msgstr "Clamp trydanol (cam cyntaf)"
+
+msgid "Desired solver error (first step)"
+msgstr "Gwall datryswr dymunol (cam cyntaf)"
+
+msgid "<b>Later iterations</b>"
+msgstr "<b>Iteriadau diweddarach</b>"
+
+msgid "Max electrical iterations"
+msgstr "Uchafswm iteriadau trydanol"
+
+msgid "Electrical clamp"
+msgstr "Clamp trydanol"
+
+msgid "Desired solver error"
+msgstr "Gwall datryswr dymunol"
+
+msgid "<b>Exit strategy</b>"
+msgstr "<b>Strategaeth ymadael</b>"
+
+msgid "Newton minimum iterations"
+msgstr "Isafswm iteriadau Newton"
+
+msgid "<b>Solver type</b>"
+msgstr "<b>Math o ddatrysydd</b>"
+
+msgid "dll name"
+msgstr "enw dll"
+
+msgid "Complex matrix solver to use"
+msgstr "Datrysydd matrics cymhleth i'w ddefnyddio"
+
+msgid "Quit on convergence problem"
+msgstr "Rhoi'r gorau iddi ar broblem cydgyfeirio"
+
+msgid "Quit on inverted Fermi-level"
+msgstr "Rhoi'r gorau iddi ar lefel Fermi gwrthdro"
+
+msgid "Circuit diagram mode"
+msgstr "Modd diagram cylched"
+
+msgid "Hand drawn"
+msgstr "Wedi'i dynnu â llaw"
+
+msgid "From layer structure"
+msgstr "O strwythur haen"
+
+msgid "From electrical mesh"
+msgstr "O rwyll trydanol"
+
+msgid "Poisson solver max iterations"
+msgstr "Datryswr Poisson iteriadau max"
+
+msgid "Poisson clamping"
+msgstr "Clampio Poisson"
+
+msgid "Enable poisson solver"
+msgstr "Galluogi datryswr poisson"
+
+msgid "Output verbosity to disk"
+msgstr "Allbwn verbosity i ddisg"
+
+msgid "Nothing"
+msgstr "Dim byd"
+
+msgid "Write everything to disk"
+msgstr "Ysgrifennwch bopeth ar ddisg"
+
+msgid "Matrix solver"
+msgstr "Datrysydd matrics"
+
+msgid "Newton solver to use"
+msgstr "Datrysydd Newton i'w ddefnyddio"
+
+msgid "Slotboom T0"
+msgstr "Slotboom T0"
+
+msgid "Slotboom D0"
+msgstr "Slotboom D0"
+
+msgid "Slotboom n0"
+msgstr "Slotboom n0"
+
+msgid "Calculate current at"
+msgstr "Cyfrifwch y cerrynt yn"
+
+msgid "Mid point"
+msgstr "Pwynt canol"
+
+msgid "Solve Kirchhoff's current law in Newton solver"
+msgstr "Datrys cyfraith gyfredol Kirchhoff yn Newton solver"
+
+msgid "filename"
+msgstr "enw ffeil"
+
+msgid "log x"
+msgstr "log x"
+
+msgid "log y"
+msgstr "log y"
+
+msgid "Keep sign for log y "
+msgstr "Cadw arwydd ar gyfer log y"
+
+msgid "Point to normalize"
+msgstr "Pwynt i normaleiddio"
+
+msgid "Fit against simulation"
+msgstr "Ffit yn erbyn efelychiad"
+
+msgid "File or token banned"
+msgstr "Ffeil neu docyn wedi'i wahardd"
+
+msgid "EQE Voltage"
+msgstr "Foltedd EQE"
+
+msgid "Optical power"
+msgstr "Pŵer optegol"
+
+msgid "Single optical power"
+msgstr "Pŵer optegol sengl"
+
+msgid "Optical power start"
+msgstr "Cychwyn pŵer optegol"
+
+msgid "Optical power stop"
+msgstr "Stop pŵer optegol"
+
+msgid "Use electrical DoS at low energy"
+msgstr "Defnyddiwch DoS trydanol ar ynni isel"
+
+msgid "Max iterations "
+msgstr "Max iteriadau"
+
+msgid "Stop error"
+msgstr "Stopio gwall"
+
+msgid "Number of x eigenmodes"
+msgstr "Nifer x eigenmodes"
+
+msgid "Number of y eigenmodes"
+msgstr "Nifer y eigenmodes"
+
+msgid "TE/TM"
+msgstr "TE/TM"
+
+msgid "Transverse Electric (TE)"
+msgstr "Trydan Trawsnewidiol (TE)"
+
+msgid "Transverse Magnetic (TM)"
+msgstr "Magnetig Trawsnewidiol (TM)"
+
+msgid "Find only fundamental"
+msgstr "Dod o hyd i sylfaenol yn unig"
+
+msgid "Thermal model type"
+msgstr "Math model thermol"
+
+msgid "Hydrodynamic"
+msgstr "Hydrodynamig"
+
+msgid "Lattice heat"
+msgstr "Gwres delltog"
+
+#, python-brace-format
+msgid "Device temperature at y_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Device temperature at y_{max}"
+msgstr "Tymheredd dyfais ar y_{max}"
+
+#, python-brace-format
+msgid "Device temperature at x_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Device temperature at x_{max}"
+msgstr "Tymheredd dyfais ar x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{max}"
+msgstr "Tymheredd dyfais ar z_{max}"
+
+msgid "Lattice heat model"
+msgstr "Model gwres delltog"
+
+msgid "Electron heat model"
+msgstr "Model gwres electro"
+
+msgid "Hole heat model"
+msgstr "Model gwres twll"
+
+msgid "Max thermal solver iterations"
+msgstr "Max iteriadau datryswr thermol"
+
+msgid "Desired thermal error"
+msgstr "Gwall thermol dymunol"
+
+msgid "Force use of thermal mesh"
+msgstr "Gorfodi defnydd o rwyll thermol"
+
+msgid "Minimum device temperature"
+msgstr "Isafswm tymheredd dyfais"
+
+msgid "Maximum device temperature"
+msgstr "Uchafswm tymheredd y ddyfais"
+
+msgid "Thermal mesh points"
+msgstr "Pwyntiau rhwyll thermol"
+
+msgid "Interpolate"
+msgstr "Rhyngosod"
+
+msgid "Constant"
+msgstr "Cyson"
+
+#, python-brace-format
+msgid "Boundary value for y_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Boundary value for y_{max}"
+msgstr "Gwerth terfyn ar gyfer y_{max}"
+
+#, python-brace-format
+msgid "Boundary value for x_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Boundary value for x_{max}"
+msgstr "Gwerth terfyn ar gyfer x_{max}"
+
+msgid "Couple to electrical solver"
+msgstr "Pâr i ddatryswr trydanol"
+
+msgid "Dump slices"
+msgstr "Taflwch sleisys"
+
+msgid "Dump dynamic"
+msgstr "Dymp deinamig"
+
+msgid "Write out band structure"
+msgstr "Ysgrifennwch strwythur y bandiau"
+
+msgid "Write newton solver convergence to disk"
+msgstr "Ysgrifennu cydgyfeiriant datryswr newton i ddisg"
+
+msgid "Print poisson solver convergence"
+msgstr "Argraffu cydgyfeirio datryswr poisson"
+
+msgid "Normalize output x-time to one"
+msgstr "Normaleiddio allbwn x-amser i un"
+
+msgid "Dump the built in voltage."
+msgstr "Gwaredwch y foltedd adeiledig."
+
+msgid "Dump optical probe spectrum"
+msgstr "Dympio sbectrwm stiliwr optegol"
+
+msgid "Write file access log to disk."
+msgstr "Ysgrifennu log mynediad ffeil i ddisg."
+
+msgid "Write headers to output files"
+msgstr "Ysgrifennu penawdau i ffeiliau allbwn"
+
+msgid "Write first guess to equations"
+msgstr "Ysgrifennwch y dyfalu cyntaf i hafaliadau"
+
+msgid "Log verbocity"
+msgstr "Log verbocity"
+
+msgid "Screen"
+msgstr "Sgrin"
+
+msgid "Disk"
+msgstr "Disg"
+
+msgid "Screen and disk"
+msgstr "Sgrin a disg"
+
+msgid "PL dump Energy"
+msgstr "PL dymp Ynni"
+
+msgid "Clean up DoS cache files"
+msgstr "Glanhau ffeiliau storfa DoS"
+
+msgid "Write binary data where possible"
+msgstr "Ysgrifennu data deuaidd lle bo modd"
+
+msgid "Probe enabled"
+msgstr "Profi wedi'i alluogi"
+
+msgid "Probe type"
+msgstr "Math o stiliwr"
+
+msgid "Device state"
+msgstr "Cyflwr dyfais"
+
+msgid "Voc"
+msgstr "Llais"
+
+msgid "Jsc"
+msgstr "Jsc"
+
+msgid "<b>Run control</b>"
+msgstr "<b>Rhedeg rheolydd</b>"
+
+msgid "<b>Solver control</b>"
+msgstr "<b>Rheoli datrysiadau</b>"
+
+msgid "Dump absorption profile"
+msgstr "Proffil amsugno dympio"
+
+msgid "Run the ray tracer"
+msgstr "Rhedeg y tracer pelydr"
+
+msgid "When called"
+msgstr "Pan gafodd ei alw"
+
+msgid "Once per simulation"
+msgstr "Unwaith fesul efelychiad"
+
+msgid "Each simulation step"
+msgstr "Pob cam efelychiad"
+
+msgid "Every nth simulation step"
+msgstr "Pob nfed cam efelychiad"
+
+msgid "Each n steps"
+msgstr "Mae pob n cam"
+
+msgid "Theta steps"
+msgstr "Camau Theta"
+
+msgid "Theta start"
+msgstr "Theta dechrau"
+
+msgid "Theta stop"
+msgstr "Theta stop"
+
+msgid "Phi steps"
+msgstr "camau Phi"
+
+msgid "Phi start"
+msgstr "Phi dechrau"
+
+msgid "Phi stop"
+msgstr "Phi stop"
+
+msgid "Escape bins"
+msgstr "Biniau dianc"
+
+msgid "Emit from"
+msgstr "Allyrru o"
+
+msgid "Center of each layer"
+msgstr "Canol pob haen"
+
+msgid "Each electrical mesh point"
+msgstr "Pob pwynt rhwyll trydanol"
+
+msgid "Center of y slice"
+msgstr "Canol y sleisen"
+
+msgid "Super sample x"
+msgstr "Super sampl x"
+
+msgid "Super sample x points"
+msgstr "Super sampl x pwyntiau"
+
+msgid "<b>Ray tracing</b>"
+msgstr "<b> Olrhain pelydr</b>"
+
+msgid "Minimum ray intensity"
+msgstr "Isafswm dwysedd pelydr"
+
+msgid "Maximum number of bounces"
+msgstr "Uchafswm nifer y bownsio"
+
+msgid "Simulate transmitted rays"
+msgstr "Efelychu pelydrau a drosglwyddir"
+
+msgid "Simulate reflected rays"
+msgstr "Efelychu pelydrau a adlewyrchir"
+
+msgid "Mesh points x"
+msgstr "Pwyntiau rhwyll x"
+
+msgid "Mesh points z"
+msgstr "Rhwyll pwyntiau z"
+
+msgid "<b>Detector</b>"
+msgstr "<b>Canfodydd</b>"
+
+msgid "LED extraction efficiency"
+msgstr "Effeithlonrwydd echdynnu LED"
+
+msgid "Series resistance"
+msgstr "Gwrthiant cyfres"
+
+msgid "Other layers"
+msgstr "Haenau eraill"
+
+msgid "debug (ignore)"
+msgstr "dadfygio (anwybyddu)"
+
+msgid "Contact charge density"
+msgstr "Dwysedd tâl cyswllt"
+
+msgid "Contact position"
+msgstr "Safle cyswllt"
+
+msgid "top"
+msgstr "brig"
+
+msgid "bottom"
+msgstr "gwaelod"
+
+msgid "right"
+msgstr "iawn"
+
+msgid "left"
+msgstr "chwith"
+
+msgid "Charge type"
+msgstr "Math o dâl"
+
+msgid "Electron"
+msgstr "Electron"
+
+msgid "Hole"
+msgstr "Twll"
+
+msgid "Physical model"
+msgstr "Model corfforol"
+
+msgid "Ohmic"
+msgstr "Ohmig"
+
+msgid "Schottky"
+msgstr "Schottky"
+
+msgid "Automatic remesh x"
+msgstr "Remesh awtomatig x"
+
+msgid "Automatic remesh y"
+msgstr "Remesh awtomatig y"
+
+msgid "Automatic remesh z"
+msgstr "Remesh awtomatig z"
+
+msgid "Left/Right"
+msgstr "Chwith/Dde"
+
+msgid "Mesh dy"
+msgstr "Rhwyll dy"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "n_{free} to n_{trap} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "n_{trap} to p_{free} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "p_{trap} to n_{free} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "p_{free} to p_{trap} photon generation efficiency"
+msgstr ""
+
+msgid "Experimental emission spectra"
+msgstr "Sbectra allyriadau arbrofol"
+
+msgid "Icon"
+msgstr "Eicon"
+
+msgid "Experimental emission efficiency"
+msgstr "Effeithlonrwydd allyriadau arbrofol"
+
+msgid "Use experimental emission spectra"
+msgstr "Defnyddio sbectra allyriadau arbrofol"
+
+msgid "Free-to-free emission"
+msgstr "Allyriadau rhad ac am ddim"
+
+msgid "Free-to-trap emission"
+msgstr "Allyriad rhydd-i-trap"
+
+#, python-brace-format
+msgid "V_{external}"
+msgstr ""
+
+msgid "Load resistor"
+msgstr "Gwrthydd llwyth"
+
+msgid "fx domain mesh points"
+msgstr "pwyntiau rhwyll parth fx"
+
+msgid "Cycles to simulate"
+msgstr "Beiciau i'w hefelychu"
+
+msgid "Voltage modulation depth"
+msgstr "Dyfnder modiwleiddio foltedd"
+
+msgid "Excite with"
+msgstr "Cyffro gyda"
+
+msgid "Light"
+msgstr "Ysgafn"
+
+msgid "Measure"
+msgstr "Mesur"
+
+msgid "Light modulation depth"
+msgstr "Dyfnder modiwleiddio golau"
+
+msgid "Run fit after simulation"
+msgstr "Rhedeg heini ar ôl efelychu"
+
+msgid "Periods to fit"
+msgstr "Cyfnodau i ffitio"
+
+msgid "Normalize transfer functon by light intensity"
+msgstr "Normaleiddio functon trosglwyddo yn ôl dwyster golau"
+
+msgid "Re(J)"
+msgstr "Re(J)"
+
+msgid "Im(J)"
+msgstr "Im(J)"
+
+msgid "fx"
+msgstr "fx"
+
+msgid "di"
+msgstr "di"
+
+msgid "dmodulation"
+msgstr "dmodyliad"
+
+msgid "dphase"
+msgstr "dphas"
+
+msgid "Simulation type"
+msgstr "Math o efelychiad"
+
+msgid "Large signal"
+msgstr "Arwydd mawr"
+
+msgid "Fourier"
+msgstr "Pedwarier"
+
+msgid "Node list"
+msgstr "Rhestr nodau"
+
+msgid "Initialization vector"
+msgstr "Fector cychwyniad"
+
+msgid "Cryptographic key"
+msgstr "Allwedd cryptograffig"
+
+msgid "Intensity of the sun"
+msgstr "Dwysedd yr haul"
+
+msgid "#saturation_n0"
+msgstr "#dirlawnder_n0"
+
+msgid "#saturation_rate"
+msgstr "#cyfradd_dirlawnder"
+
+msgid "Absorption of material"
+msgstr "Amsugno deunydd"
+
+msgid "Simulation mode"
+msgstr "Modd efelychu"
+
+msgid "start voltage"
+msgstr "foltedd cychwyn"
+
+msgid "Max voltage"
+msgstr "Foltedd uchaf"
+
+msgid "Invert output"
+msgstr "Allbwn gwrthdro"
+
+msgid "Use capacitor"
+msgstr "Defnyddiwch gynhwysydd"
+
+msgid "External C"
+msgstr "C allanol"
+
+msgid "External R"
+msgstr "R allanol"
+
+msgid "Resistance of scope"
+msgstr "Gwrthwynebiad cwmpas"
+
+msgid "Photon Flux"
+msgstr "Fflwcs Ffoton"
+
+msgid "device width"
+msgstr "lled dyfais"
+
+msgid "device breadth"
+msgstr "ehangder dyfais"
+
+msgid "Start light intensity"
+msgstr "Dechrau arddwysedd golau"
+
+msgid "Stop light intensity"
+msgstr "Stopiwch arddwysedd golau"
+
+msgid "Numer of steps"
+msgstr "Nifer o gamau"
+
+msgid "CE light on time"
+msgstr "CE golau ar amser"
+
+msgid "CE light off time"
+msgstr "CE golau oddi ar amser"
+
+msgid "Automatic world size"
+msgstr "Maint byd awtomatig"
+
+msgid "World fills mesh"
+msgstr "Byd yn llenwi rhwyll"
+
+msgid "x0"
+msgstr "x0"
+
+msgid "x1"
+msgstr "x1"
+
+msgid "y0"
+msgstr "y0"
+
+msgid "y1"
+msgstr "y1"
+
+msgid "z0"
+msgstr "z0"
+
+msgid "z1"
+msgstr "z1"
+
+msgid "margin x0"
+msgstr "ymyl x0"
+
+msgid "margin x1"
+msgstr "ymyl x1"
+
+msgid "margin y0"
+msgstr "ymyl y0"
+
+msgid "margin y1"
+msgstr "ymyl y1"
+
+msgid "margin z0"
+msgstr "ymyl z0"
+
+msgid "margin z1"
+msgstr "ymyl z1"
+
+msgid "Active layer width"
+msgstr "Lled haen gweithredol"
+
+msgid "Reset time to zero each cycle"
+msgstr "Ailosod amser i sero bob cylch"
+
+msgid "OpenCL GPU acceleration"
+msgstr "Cyflymiad GPU OpenCL"
+
+msgid "GPU name"
+msgstr "Enw GPU"
+
+msgid "<b>Excitation type</b>"
+msgstr "<b>Math o gyffro</b>"
+
+msgid "FDTD Slice"
+msgstr "Sleisen FDTD"
+
+msgid "Sin"
+msgstr "Pechod"
+
+msgid "Pulse"
+msgstr "Pwls"
+
+msgid "Start wavelength"
+msgstr "Dechrau tonfedd"
+
+msgid "Stop wavelength"
+msgstr "Stopiwch donfedd"
+
+msgid "Wavelength steps"
+msgstr "Camau tonfedd"
+
+msgid "Pulse length"
+msgstr "Hyd curiad y galon"
+
+msgid "Excite Ex"
+msgstr "Cyffro Ex"
+
+msgid "Excite Ey"
+msgstr "Cyffrowch Ey"
+
+msgid "Excite Ez"
+msgstr "Cyffrowch Ez"
+
+msgid "<b>FDTD mesh</b>"
+msgstr "<b>rhwyll FDTD</b>"
+
+msgid "zy"
+msgstr "zy"
+
+msgid "zx"
+msgstr "zx"
+
+msgid "xy"
+msgstr "xy"
+
+msgid "Mesh points y"
+msgstr "Pwyntiau rhwyll y"
+
+msgid "Use gnuplot to visualize"
+msgstr "Defnyddiwch gnuplot i ddelweddu"
+
+msgid "<b>Simulation time</b>"
+msgstr "<b>Amser efelychu</b>"
+
+msgid "Stop time"
+msgstr "Amser stopio"
+
+msgid "Max steps"
+msgstr "Camau mwyaf"
+
+msgid "Key results"
+msgstr "Canlyniadau allweddol"
+
+msgid "Write everything to disk every 2nd step"
+msgstr "Ysgrifennwch bopeth ar ddisg bob 2il gam"
+
+msgid "Write everything to disk every 5th step"
+msgstr "Ysgrifennwch bopeth ar ddisg bob 5ed cam"
+
+msgid "Write everything to disk every 10th step"
+msgstr "Ysgrifennwch bopeth ar ddisg bob 10fed cam"
+
+msgid "Output verbosity to screen"
+msgstr "Allbwn verbosity i sgrin"
+
+msgid "Show lots"
+msgstr "Dangos llawer"
+
+msgid "Show key results"
+msgstr "Dangos canlyniadau allweddol"
+
+msgid "Solver output verbosity"
+msgstr "verbosity allbwn Datryswr"
+
+msgid "As answers are found"
+msgstr "Wrth i atebion ddod o hyd"
+
+msgid "Each step"
+msgstr "Pob cam"
+
+msgid "Source"
+msgstr "Ffynhonnell"
+
+msgid "x rotation"
+msgstr "x cylchdro"
+
+msgid "y rotation"
+msgstr "y cylchdro"
+
+msgid "z rotation"
+msgstr "z cylchdro"
+
+msgid "x pos"
+msgstr "x post"
+
+msgid "y pos"
+msgstr "y pos"
+
+msgid "zoom"
+msgstr "chwyddo"
+
+msgid "The following erros/warning were found while running the simulations:"
+msgstr "Canfuwyd y gwallau/rhybudd canlynol wrth redeg yr efelychiadau:"
+
+msgid "Output vectors for "
+msgstr "Fectorau allbwn ar gyfer"
+
+msgid "ML Token"
+msgstr "Tocyn ML"
+
+msgid "Symmetric"
+msgstr "Cymesuredd"
+
+msgid "Asymmetric"
+msgstr "Anghymesur"
+
+msgid "Gaussian"
+msgstr "Gaussian"
+
+msgid "Lorentzian"
+msgstr "Lorenzian"
+
+msgid "Colors"
+msgstr "Lliwiau"
+
+msgid "Save as"
+msgstr "Arbed fel"
+
+msgid "Save as image"
+msgstr "Cadw fel delwedd"
+
+msgid "Save as gobj"
+msgstr "Arbed fel gobj"
+
+msgid "Optical"
+msgstr "Optegol"
+
+msgid "Show photons"
+msgstr "Dangos ffotonau"
+
+msgid "FDTD grid"
+msgstr "grid FDTD"
+
+msgid "Optical mode"
+msgstr "Modd optegol"
+
+msgid "Rays"
+msgstr "Pelydrau"
+
+msgid "Solid rays"
+msgstr "Pelydrau solet"
+
+msgid "Show detectors"
+msgstr "Dangos synwyryddion"
+
+msgid "Electrical mesh"
+msgstr "Rhwyll trydanol"
+
+msgid "Show device"
+msgstr "Dangos dyfais"
+
+msgid "Grid"
+msgstr "Grid"
+
+msgid "Coordinates"
+msgstr "Cyfesurynnau"
+
+msgid "Show text"
+msgstr "Dangos testun"
+
+msgid "Show Dimensions"
+msgstr "Dangos Dimensiynau"
+
+msgid "Show plot"
+msgstr "Dangos plot"
+
+msgid "Transparent objects"
+msgstr "Gwrthrychau tryloyw"
+
+msgid "Ray tracing mesh"
+msgstr "Rhwyll olrhain Ray"
+
+msgid "Show world box"
+msgstr "Dangos blwch byd"
+
+msgid "Lock view"
+msgstr "Golygfa clo"
+
+msgid "Show gl lights"
+msgstr "Dangos gl goleuadau"
+
+msgid "Show buttons"
+msgstr "Dangos botymau"
+
+msgid "Stars"
+msgstr "Sêr"
+
+msgid "Font"
+msgstr "Ffont"
+
+msgid "Background color"
+msgstr "Lliw cefndir"
+
+msgid "Interface background color"
+msgstr "Lliw cefndir y rhyngwyneb"
+
+msgid "Interface text color"
+msgstr "Lliw testun rhyngwyneb"
+
+msgid "Objects"
+msgstr "Gwrthrychau"
+
+msgid "New free object"
+msgstr "Gwrthrych newydd am ddim"
+
+msgid "New light source"
+msgstr "Ffynhonnell golau newydd"
+
+msgid "New detector"
+msgstr "Synhwyrydd newydd"
+
+msgid "Rescale"
+msgstr "Ailraddio"
+
+msgid "Object tree"
+msgstr "Coeden gwrthrych"
+
+msgid "Copy image"
+msgstr "Copïo delwedd"
+
+msgid "Object tree viewer"
+msgstr "Gwyliwr coed gwrthrych"
+
+msgid "Device view"
+msgstr "Golwg dyfais"
+
+msgid "Charge extraction experiment window"
+msgstr "Ffenestr arbrawf echdynnu gwefr"
+
+msgid "Python Equation"
+msgstr "Hafaliad Python"
+
+msgid "You've made a mistake in the equation, use w for wavelength. "
+msgstr "Rydych chi wedi gwneud camgymeriad yn yr hafaliad, defnyddiwch w ar gyfer tonfedd."
+
+msgid "Are you sure you wisht to import this, it will overwrite "
+msgstr "A ydych yn siŵr eich bod am fewnforio hwn, bydd yn trosysgrifo"
+
+msgid "Equation editor"
+msgstr "Golygydd hafaliad"
+
+msgid ""
+"Import\n"
+"into model"
+msgstr ""
+"Mewnforio\n"
+" i'r model"
+
+msgid "Add section"
+msgstr "Ychwanegu adran"
+
+msgid "Delete section"
+msgstr "Dileu adran"
+
+msgid ""
+"Your version of OghmaNano is now out of date. To continue using OghmaNano please download a new "
+"version at https://www.oghma-nano.com."
+msgstr ""
+"Mae eich fersiwn chi o OghmaNano bellach wedi dyddio. I barhau i ddefnyddio OghmaNano "
+"lawrlwythwch fersiwn newydd o https://www.oghma-nano.com."
+
+msgid "<big><b>Update available!</b></big><br>Download it now from <a href=\""
+msgstr "<big><b>Diweddariad ar gael!</b></big><br>Lawrlwythwch ef nawr o <a href=\""
+
+msgid "Optical detectors editor"
+msgstr "Golygydd synwyryddion optegol"
+
+msgid "Na"
+msgstr "Na"
+
+msgid "Nd"
+msgstr "Nd"
+
+msgid "Ions"
+msgstr "Ions"
+
+msgid "Doping/Mobilie ion profile editor"
+msgstr "Golygydd proffil ïon Doping/Mobilie"
+
+msgid "New emission spectra name:"
+msgstr "Enw sbectra allyriadau newydd:"
+
+msgid "New emission spectra name"
+msgstr "Enw sbectra allyriadau newydd"
+
+msgid "New spectra name:"
+msgstr "Enw sbectra newydd:"
+
+msgid "New spectra name"
+msgstr "Enw sbectra newydd"
+
+msgid "New material name:"
+msgstr "Enw deunydd newydd:"
+
+msgid "New material name"
+msgstr "Enw deunydd newydd"
+
+msgid "I cant write to: "
+msgstr "Ni allaf ysgrifennu at:"
+
+msgid "New filter name:"
+msgstr "Enw hidlydd newydd:"
+
+msgid "New filter name"
+msgstr "Enw hidlydd newydd"
+
+msgid "New directory name:"
+msgstr "Enw cyfeiriadur newydd:"
+
+msgid "New directory"
+msgstr "Cyfeiriadur newydd"
+
+msgid "Save a the simulation as"
+msgstr "Arbed yr efelychiad fel"
+
+msgid "Directory"
+msgstr "Cyfeiriadur"
+
+msgid "Simulation information"
+msgstr "Gwybodaeth efelychu"
+
+msgid "yz"
+msgstr "yz"
+
+msgid "xz"
+msgstr "xz"
+
+msgid "Orthographic"
+msgstr "Orthograffig"
+
+msgid "Fly"
+msgstr "Hedfan"
+
+msgid "Running job "
+msgstr "Swydd rhedeg"
+
+msgid "The file to import:"
+msgstr "Y ffeil i'w mewnforio:"
+
+msgid "The imported file, the numbers should now be in SI units"
+msgstr "Y ffeil a fewnforiwyd, dylai'r niferoedd nawr fod mewn unedau SI"
+
+msgid "x units:"
+msgstr "x uned:"
+
+msgid "y units:"
+msgstr "unedau y:"
+
+msgid "Title:"
+msgstr "Teitl:"
+
+msgid "x-label:"
+msgstr "label-x:"
+
+msgid "x-column:"
+msgstr "x-colofn:"
+
+msgid "y-label:"
+msgstr "y-label:"
+
+msgid "y-column:"
+msgstr "y-colofn:"
+
+msgid "device area:"
+msgstr "ardal dyfais:"
+
+msgid "Can not load file "
+msgstr "Methu llwytho ffeil"
+
+msgid "I can't read the file: "
+msgstr "Ni allaf ddarllen y ffeil:"
+
+msgid ""
+"I can only read plain text files such as csv formats. I can not read binary files such as excel "
+"documents."
+msgstr ""
+"Dim ond ffeiliau testun plaen fel fformatau csv y gallaf eu darllen. Ni allaf ddarllen ffeiliau "
+"deuaidd fel dogfennau excel."
+
+msgid "Photonenergy"
+msgstr "Ffotonynni"
+
+msgid "J"
+msgstr "J"
+
+msgid "IMPS Re(Z)"
+msgstr "IMPS Re(Z)"
+
+msgid "IMPS Im(Z)"
+msgstr "IMPS Im(Z)"
+
+msgid "IMVS Re(Z)"
+msgstr "IMVS Re(Z)"
+
+msgid "IMVS Im(Z)"
+msgstr "IMVS Im(Z)"
+
+msgid "Amps"
+msgstr "Amps"
+
+msgid "Amps - no convert"
+msgstr "Amps - dim trosi"
+
+msgid "I"
+msgstr "i"
+
+msgid "-Voltage"
+msgstr "-Foltedd"
+
+msgid "Angular frequency"
+msgstr "Amledd onglog"
+
+msgid "Attenuation coefficient"
+msgstr "Cyfernod gwanhau"
+
+msgid "Intensity"
+msgstr "Dwysedd"
+
+msgid "mA"
+msgstr "mA"
+
+msgid "Simulation notes"
+msgstr "Nodiadau efelychu"
+
+msgid "Bibtex reference"
+msgstr "Cyfeirnod Bibtex"
+
+msgid "Simulation Notes"
+msgstr "Nodiadau Efelychiad"
+
+msgid "Simulation snapshots"
+msgstr "Cipluniau efelychu"
+
+msgid "Running: "
+msgstr "Yn rhedeg:"
+
+msgid "I could not find a free cpu to run the command on"
+msgstr "Ni allwn ddod o hyd i cpu am ddim i redeg y gorchymyn arno"
+
+msgid "CPU"
+msgstr "CPU"
+
+msgid "Nodes"
+msgstr "Nodau"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Generate keys"
+msgstr "Cynhyrchu allweddi"
+
+msgid "Install to cluster"
+msgstr "Gosod i glwstwr"
+
+msgid "Boot cluster"
+msgstr "Clwstwr esgidiau"
+
+msgid "Stop cluster"
+msgstr "Stopiwch clwstwr"
+
+msgid "Remove from cluster"
+msgstr "Tynnwch o'r clwstwr"
+
+msgid "CV experiment window"
+msgstr "Ffenestr arbrawf CV"
+
+msgid ""
+"Doping/\n"
+"Ions"
+msgstr ""
+"Cyffuriau/\n"
+"Ionau"
+
+msgid ""
+"Material\n"
+"Gradients"
+msgstr ""
+"Deunydd\n"
+"Graddiannau"
+
+msgid "Interfaces"
+msgstr "Rhyngwynebau"
+
+msgid ""
+"Parasitic\n"
+" components"
+msgstr ""
+
+msgid ""
+"Mobile\n"
+"Ion solver"
+msgstr ""
+"Symudol\n"
+"Datryswr Ion"
+
+msgid ""
+"Electrical\n"
+"mesh"
+msgstr ""
+"Trydanol\n"
+"rhwyll"
+
+msgid ""
+"<big><b>Interface editor</b></big>\n"
+"Use this window to edit how electrical interfaces behave."
+msgstr ""
+"<big><b>Golygydd rhyngwyneb</b></big>\n"
+"Defnyddiwch y ffenestr hon i olygu sut mae rhyngwynebau trydanol yn ymddwyn."
+
+msgid "Electrical boundary conditions"
+msgstr "Amodau terfyn trydanol"
+
+msgid "Excitonic boundary conditions"
+msgstr "Amodau ffin excitonig"
+
+msgid ""
+"<big><b>Doping window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr ""
+"<big><b>Ffenestr cyffuriau</b></big>\n"
+"Defnyddiwch y ffenestr hon i ychwanegu cyffuriau at yr efelychiad"
+
+msgid ""
+"<big><b>Gradients window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr ""
+"<big><b>Ffenestr graddiannau</b></big>\n"
+"Defnyddiwch y ffenestr hon i ychwanegu cyffuriau at yr efelychiad"
+
+msgid ""
+"<big><b>Parasitic components</b></big>\n"
+"Use this window to edit the shunt and series resistance."
+msgstr ""
+"<big><b>Cydrannau parasitig</b></big>\n"
+"Defnyddiwch y ffenestr hon i olygu'r gwrthiant siynt a chyfres."
+
+msgid "Load type"
+msgstr "Math o lwyth"
+
+msgid "Multiplyer"
+msgstr "Lluosydd"
+
+msgid ""
+"External\n"
+"interface:"
+msgstr ""
+"Rhyngwyneb allanol\n"
+":"
+
+msgid ""
+"External\n"
+"Reflection"
+msgstr ""
+"Allanol\n"
+"Myfyrio"
+
+msgid "Reflective interface editor"
+msgstr "Golygydd rhyngwyneb adlewyrchol"
+
+msgid "Connect to cluster"
+msgstr "Cysylltwch â'r clwstwr"
+
+msgid "Connect"
+msgstr "Cyswllt"
+
+msgid "Disconnect"
+msgstr "Datgysylltu"
+
+msgid "Cancel"
+msgstr "Canslo"
+
+msgid ""
+"<big><b>The device structure tab</b></big>\n"
+" Use this tab to change the structure of the device, the layer thicknesses and to perform optical "
+"simulations.  You can also browse the materials data base and  edit the electrical mesh."
+msgstr ""
+"<big><b>Tab strwythur y ddyfais</b></big>\n"
+" Defnyddiwch y tab hwn i newid strwythur y ddyfais, trwch yr haenau ac i berfformio efelychiadau "
+"optegol. Gallwch hefyd bori'r gronfa ddata deunyddiau a golygu'r rhwyll drydanol."
+
+msgid "<big><b>Update available!</b></big><br>"
+msgstr "<big><b>Diweddariad ar gael!</b></big><br>"
+
+msgid "File to plot"
+msgstr "Ffeil i blotio"
+
+msgid "Plot type"
+msgstr "Math o lain"
+
+msgid "Play"
+msgstr "Chwarae"
+
+msgid "Snapshot slider"
+msgstr "llithrydd ciplun"
+
+msgid "Fit variables duplicate window"
+msgstr "Ffitiwch newidynnau dyblyg ffenestr"
+
+msgid "Destination"
+msgstr "Cyrchfan"
+
+msgid "Source (JSON)"
+msgstr "Ffynhonnell (JSON)"
+
+msgid "Destination (JSON)"
+msgstr "Cyrchfan (JSON)"
+
+msgid "Open data file"
+msgstr "Agor ffeil ddata"
+
+msgid "Load/Import"
+msgstr "Llwytho/Mewnforio"
+
+msgid "Next"
+msgstr "Nesaf"
+
+msgid "Online help"
+msgstr "Cymorth ar-lein"
+
+msgid "On line help"
+msgstr "Cymorth ar-lein"
+
+msgid "Hide"
+msgstr "Cuddio"
+
+msgid "OghmaNano in your language!"
+msgstr "OghmaNano yn dy iaith di!"
+
+msgid "OghmaNano translated by:"
+msgstr "OghmaNano wedi'i gyfieithu gan:"
+
+msgid "Dimension editor"
+msgstr "Golygydd dimensiwn"
+
+msgid "Substrate xz size"
+msgstr "Maint xz swbstrad"
+
+msgid "World size"
+msgstr "Maint y byd"
+
+msgid "Select simulation parameter"
+msgstr "Dewiswch baramedr efelychu"
+
+msgid "OK"
+msgstr "iawn"
+
+msgid "No row selected in the scan window, can't insert the selection"
+msgstr "Dim rhes a ddewiswyd yn y ffenestr sgan, ni all fewnosod y dewis"
+
+msgid "New material"
+msgstr "Deunydd newydd"
+
+msgid "New spectra"
+msgstr "Sbectra newydd"
+
+msgid "New shape"
+msgstr "Siâp newydd"
+
+msgid "New filter"
+msgstr "Hidlydd newydd"
+
+msgid "Unpack archive"
+msgstr "Dadbacio archif"
+
+msgid "Clone the file to be called:"
+msgstr "Cloniwch y ffeil i'w galw:"
+
+msgid "The file name already exists"
+msgstr "Mae enw'r ffeil eisoes yn bodoli"
+
+msgid "Rename the simulation to be called:"
+msgstr "Ail-enwi'r efelychiad i'w alw:"
+
+msgid "Are you sure you want to delete the files ?"
+msgstr "Ydych chi'n siŵr eich bod am ddileu'r ffeiliau ?"
+
+msgid "You should now have a sim.json file in: "
+msgstr "Dylech nawr gael ffeil sim.json yn:"
+
+msgid "Open this directory to see it."
+msgstr "Agorwch y cyfeiriadur hwn i'w weld."
+
+msgid "Image"
+msgstr "Delwedd"
+
+msgid "Gnuplot"
+msgstr "Gnuplot"
+
+msgid "Csv"
+msgstr "Csv"
+
+msgid "Text file (txt)"
+msgstr "Ffeil testun (txt)"
+
+msgid "MS Excel (xlsx)"
+msgstr "MS Excel (xlsx)"
+
+msgid "Graph"
+msgstr "Graff"
+
+msgid "Show title"
+msgstr "Dangos teitl"
+
+msgid "Show key"
+msgstr "Dangos allwedd"
+
+msgid "Light source editor"
+msgstr "Golygydd ffynhonnell golau"
+
+msgid "Rebuild"
+msgstr "Ailadeiladu"
+
+msgid "Electrical parameters"
+msgstr "Paramedrau trydanol"
+
+msgid ""
+"<big><b>Electrical parameters</b></big><br>Use this tab to configure the electrical parameters "
+"for the material."
+msgstr ""
+"<big><b>Paramedrau trydanol</b></big><br>Defnyddiwch y tab hwn i ffurfweddu paramedrau trydanol y "
+"deunydd."
+
+msgid "<big><b>Absorption</b></big><br>"
+msgstr "<big><b>Amsugno</b></big><br>"
+
+msgid "<big><b>Refractive index</b></big><br>"
+msgstr "<big><b>Mynegai plygiannol</b></big><br>"
+
+msgid "<big><b>Emission spectrum</b></big><br>Use this tab to edit the emission spectrum."
+msgstr ""
+"<big><b>Sbectrwm allyriadau</b></big><br>Defnyddiwch y tab hwn i olygu'r sbectrwm allyriadau."
+
+msgid "Material editor"
+msgstr "Golygydd deunydd"
+
+msgid "Thermal parameters"
+msgstr "Paramedrau thermol"
+
+msgid "Life cycle"
+msgstr "Cylch bywyd"
+
+msgid "Refractive index (n)"
+msgstr "Mynegai plygiannol (n)"
+
+msgid "k"
+msgstr "k"
+
+msgid "Don't run me as root!!"
+msgstr "Peidiwch â rhedeg fi fel gwraidd!!"
+
+msgid "I can't run from inside a zip file!"
+msgstr "Ni allaf redeg o'r tu mewn i ffeil zip!"
+
+msgid ""
+"<big><b>New simulation!</b></big><br> Now selected the type of device you would like to simulate."
+msgstr ""
+"<big><b>Efelychiad newydd!</b></big><br> Nawr dewiswch y math o ddyfais yr hoffech ei efelychu."
+
+msgid "<big><b>Now run the simulation</b></big><br> Click on the play icon to start a simulation."
+msgstr ""
+"<big><b>Rhedwch yr efelychiad nawr</b></big><br> Cliciwch ar yr eicon chwarae i gychwyn "
+"efelychiad."
+
+msgid ""
+"<big><b>Hi!</b></big><br> I'm the on-line help system :).  If you have any questions or find any "
+"bugs please send them to <a href=\"mailto:"
+msgstr ""
+"<big><b>Helo!</b></big><br> Fi yw'r system cymorth ar-lein :). Os oes gennych unrhyw gwestiynau "
+"neu os dewch o hyd i unrhyw fygiau anfonwch nhw i <a href=\"mailto:"
+
+msgid "Click on the new icon to make a new simulation directory."
+msgstr "Cliciwch ar yr eicon newydd i wneud cyfeiriadur efelychu newydd."
+
+msgid "Open an existing simulation"
+msgstr "Agor efelychiad presennol"
+
+msgid ""
+"To open this file I need to rename it to have a .oghma extention. Do you want me to do that?. I "
+"would rename the file: "
+msgstr ""
+"I agor y ffeil hon mae angen i mi ei hailenwi i gael estyniad .oghma. Ydych chi eisiau i mi wneud "
+"hynny?. Byddwn yn ailenwi'r ffeil:"
+
+msgid "The simulation directory has been deleted."
+msgstr "Mae'r cyfeiriadur efelychu wedi'i ddileu."
+
+msgid "Desktop"
+msgstr "Penbwrdd"
+
+msgid "Downloads"
+msgstr "Lawrlwythiadau"
+
+msgid ""
+"<big><b>Examine the results in time domain</b></big><br> After you have run a simulation in time "
+"domain, if is often nice to be able to step through the simulation and look at the results.  This "
+"is what this window does.  Use the slider bar to move through the simulation.  When you are "
+"simulating a JV curve, the slider sill step through voltage points rather than time points."
+msgstr ""
+"<big><b>Archwiliwch y canlyniadau yn y parth amser</b></big><br> Ar ôl i chi redeg efelychiad yn "
+"y parth amser, os yw'n aml yn braf gallu camu trwy'r efelychiad ac edrych ar y canlyniadau . Dyma "
+"beth mae'r ffenestr hon yn ei wneud. Defnyddiwch y bar llithrydd i symud drwy'r efelychiad. Pan "
+"fyddwch chi'n efelychu cromlin JV, mae'r sil llithrydd yn camu trwy bwyntiau foltedd yn hytrach "
+"na phwyntiau amser."
+
+msgid ""
+"Are you sure you want restore this file from the backup, it will overwrite all files in the "
+"simulation directory?"
+msgstr ""
+"Ydych chi'n siŵr eich bod am adfer y ffeil hon o'r copi wrth gefn, bydd yn trosysgrifo'r holl "
+"ffeiliau yn y cyfeiriadur efelychu?"
+
+msgid "title"
+msgstr "teitl"
+
+msgid "x axis"
+msgstr "echel x"
+
+msgid "y axis"
+msgstr "echel y"
+
+msgid "equilibrium"
+msgstr "cydbwysedd"
+
+msgid "This contains the simulation output at 0V in the dark."
+msgstr "Mae hyn yn cynnwys yr allbwn efelychu ar 0V yn y tywyllwch."
+
+msgid "Attenuation"
+msgstr "Gwanhau"
+
+msgid "Luminescence editor"
+msgstr "Golygydd luminescence"
+
+msgid ""
+"Optical\n"
+"Emission"
+msgstr ""
+"Optegol\n"
+"Allyrru"
+
+msgid ""
+"<big><b>Luminescence</b></big>\n"
+"If you set 'Turn on luminescence' to true, the simulation will assume recombination is a raditave "
+"process and intergrate it to produce Voltage-Light intensity curves (lv.dat).  Each number in the "
+"tab tells the model how efficient each recombination mechanism is at producing photons."
+msgstr ""
+"<big><b>Goleuedd</b></big>\n"
+"Os ydych chi'n gosod 'Trowch ymoleuedd ymlaen' yn wir, bydd yr efelychiad yn cymryd yn ganiataol "
+"mai proses raditaf yw ailgyfuno a'i integreiddio i gynhyrchu cromliniau dwyster Foltedd-Golau (lv."
+"dat ). Mae pob rhif yn y tab yn dweud wrth y model pa mor effeithlon yw pob mecanwaith ailgyfuno "
+"wrth gynhyrchu ffotonau."
+
+msgid "All"
+msgstr "I gyd"
+
+msgid "Wavelengths"
+msgstr "Tonfeddi"
+
+msgid "Electrical equilibrium solver"
+msgstr "Datrysydd ecwilibriwm trydanol"
+
+msgid "Polynomial data generator"
+msgstr "Generadur data polynomaidd"
+
+msgid "Laser editor"
+msgstr "Golygydd laser"
+
+msgid "Youtube channel"
+msgstr "Sianel Youtube"
+
+msgid "Quit"
+msgstr "Ymadael"
+
+msgid ""
+"Stop\n"
+"simulation"
+msgstr ""
+"Stopio\n"
+"efelychu"
+
+msgid "Thickness"
+msgstr "Trwch"
+
+msgid "Mesh Auto"
+msgstr "Rhwyll Auto"
+
+msgid "Stop"
+msgstr "Stopio"
+
+msgid "Step multiply"
+msgstr "Cam lluosi"
+
+msgid "points"
+msgstr "pwyntiau"
+
+msgid "Mesh points"
+msgstr "Pwyntiau rhwyll"
+
+msgid "PL experiment window"
+msgstr "PL ffenestr arbrawf"
+
+msgid "Script editor"
+msgstr "Golygydd sgript"
+
+msgid "Rename the script:"
+msgstr "Ailenwi'r sgript:"
+
+msgid "active"
+msgstr "gweithgar"
+
+msgid "Flyby video maker"
+msgstr "Gwneuthurwr fideos Flyby"
+
+msgid ""
+"Set\n"
+"position"
+msgstr ""
+"Gosod\n"
+"leoliad"
+
+msgid "Goto"
+msgstr "Mynd i"
+
+msgid "window width not divisible by two"
+msgstr "lled ffenestr ddim yn rhanadwy gyda dau"
+
+msgid "window height not divisible by two"
+msgstr "uchder ffenestr ddim yn rhanadwy gyda dau"
+
+msgid "and "
+msgstr "a"
+
+msgid " more."
+msgstr "mwy."
+
+msgid "Should I delete these files?:\n"
+msgstr "A ddylwn i ddileu'r ffeiliau hyn?:\n"
+
+msgid "command line tool"
+msgstr "offeryn llinell orchymyn"
+
+msgid "Prints the used paths"
+msgstr "Yn argraffu'r llwybrau a ddefnyddiwyd"
+
+msgid "www.pvlighthouse.com.au sync"
+msgstr "www.pvlighthouse.com.au cysoni"
+
+msgid "Load new image"
+msgstr "Llwytho delwedd newydd"
+
+msgid ""
+"Original\n"
+"image"
+msgstr ""
+
+msgid ""
+"Generate\n"
+"Image"
+msgstr ""
+"Cynhyrchu\n"
+"Delwedd"
+
+msgid ""
+"Show\n"
+"Mesh"
+msgstr ""
+"Dangos\n"
+"Rhwyll"
+
+msgid ""
+"Edit\n"
+"Mesh"
+msgstr ""
+"Golygu\n"
+"Rhwyll"
+
+msgid ""
+"Build\n"
+"Mesh"
+msgstr ""
+"Adeiladu\n"
+"Rhwyll"
+
+msgid ""
+"Generate\n"
+"Honeycomb"
+msgstr ""
+"Cynhyrchu\n"
+"Honeycomb"
+
+msgid ""
+"Generate\n"
+"Xtal"
+msgstr ""
+"Cynhyrchu\n"
+"Xtal"
+
+msgid ""
+"Generate\n"
+"lens"
+msgstr ""
+"Cynhyrchu\n"
+"lens"
+
+msgid ""
+"Generate\n"
+"Gaussian"
+msgstr ""
+"Cynhyrchu\n"
+"Gauseg"
+
+msgid ""
+"Saw\n"
+"wave"
+msgstr ""
+"Gwelodd\n"
+"ton"
+
+msgid "Blur"
+msgstr "Blur"
+
+msgid "Edit blur"
+msgstr "Golygu niwl"
+
+msgid ""
+"Normalize\n"
+"y"
+msgstr ""
+"Normaleiddio\n"
+"y"
+
+msgid "Edit histogram"
+msgstr "Golygu histogram"
+
+msgid ""
+"Normalize\n"
+"z"
+msgstr ""
+"Normaleiddio\n"
+"z"
+
+msgid "Threshold"
+msgstr "Trothwy"
+
+msgid "Boundary"
+msgstr "Ffin"
+
+msgid "Apply"
+msgstr "Ymgeisiwch"
+
+msgid "2D Image"
+msgstr "Delwedd 2D"
+
+msgid "I don't know how to process this type of file!"
+msgstr "Nid wyf yn gwybod sut i brosesu'r math hwn o ffeil!"
+
+msgid " <a href=\""
+msgstr "<a href=\""
+
+msgid "Can not connect to cluster."
+msgstr "Methu cysylltu â'r clwstwr."
+
+msgid "Editors"
+msgstr "Golygyddion"
+
+msgid ""
+"<big><b>Simulation Editors</b></big><br> Use this tab to edit the simulation you wish to perform, "
+"you can choose from steady state measurments such as JV curve/Suns-Voc, time domain or frequency "
+"domain.  You can also choose to use advanced optical models to understand your data."
+msgstr ""
+"<big><b>Golygyddion Efelychiad</b></big><br> Defnyddiwch y tab hwn i olygu'r efelychiad yr "
+"hoffech ei berfformio, gallwch ddewis o fesuriadau cyflwr cyson megis cromlin JV/Suns-Voc, parth "
+"amser neu parth amlder. Gallwch hefyd ddewis defnyddio modelau optegol uwch i ddeall eich data."
+
+msgid ""
+"<big><b>Configure</b></big><br> Use this tab to control advanced features of the simulation, such "
+"as finite difference mesh, amount of data written to disk, and the configuration of the back end "
+"numerical solvers."
+msgstr ""
+"<big><b>Ffurfweddu</b></big><br> Defnyddiwch y tab hwn i reoli nodweddion uwch yr efelychiad, "
+"megis rhwyll gwahaniaeth meidraidd, faint o ddata sydd wedi'i ysgrifennu ar ddisg, a ffurfweddiad "
+"rhifol pen ôl datryswyr."
+
+msgid ""
+"<big><b>Simulation type</b></big><br> Use this tab to select which simulation mode the model runs "
+"in, select between steady state, time domain, frequency domain and optical simulations."
+msgstr ""
+"<big><b>Math o efelychiad</b></big><br> Defnyddiwch y tab hwn i ddewis ym mha fodd efelychu mae'r "
+"model yn rhedeg, dewiswch rhwng cyflwr cyson, parth amser, parth amlder ac efelychiadau optegol."
+
+msgid "Databases"
+msgstr "Cronfeydd data"
+
+msgid ""
+"<big><b>Databases</b></big><br> Use this tab to explore the materials and optical data bases, you "
+"can add and download more materials/optical models using the tools here."
+msgstr ""
+"<big><b>Cronfeydd Data</b></big><br> Defnyddiwch y tab hwn i archwilio'r cronfeydd data "
+"defnyddiau a optegol, gallwch ychwanegu a lawrlwytho mwy o ddeunyddiau/modelau optegol gan "
+"ddefnyddio'r offer yma."
+
+msgid ""
+"<big><b>Information</b></big><br> Access extra information about the model in this tab, there are "
+"lots of tutorial videos on YouTube, follow on Twitter for the latest updates."
+msgstr ""
+"<big><b>Gwybodaeth</b></big><br> Cyrchwch wybodaeth ychwanegol am y model yn y tab hwn, mae "
+"llawer o fideos tiwtorial ar YouTube, dilynwch ar Twitter am y diweddariadau diweddaraf."
+
+msgid "Automation"
+msgstr "Awtomatiaeth"
+
+msgid "Electrical"
+msgstr "Trydanol"
+
+msgid "Thermal"
+msgstr "Thermol"
+
+msgid "<big><b>Simulation mode changed</b></big><br>"
+msgstr "<big><b>Modd efelychiad wedi ei newid</b></big><br>"
+
+msgid "Key not found"
+msgstr "Allwedd heb ei chanfod"
+
+msgid "User not found"
+msgstr "Defnyddiwr heb ei ganfod"
+
+msgid ""
+"This version of the software is too old to validate it's key, please download the latest version."
+msgstr ""
+"Mae'r fersiwn hon o'r meddalwedd yn rhy hen i ddilysu ei allwedd, lawrlwythwch y fersiwn "
+"diweddaraf."
+
+msgid "OghmaNano trial"
+msgstr "OghmaNano treial"
+
+msgid "Optical simulation editor"
+msgstr "Golygydd efelychu optegol"
+
+msgid "Photon distribution"
+msgstr "Dosbarthiad ffoton"
+
+msgid "Photon distribution absorbed"
+msgstr "Amsugno dosbarthiad ffoton"
+
+msgid "m"
+msgstr "m"
+
+msgid "cm"
+msgstr "cm"
+
+msgid "mm"
+msgstr "mm"
+
+msgid "um"
+msgstr "um"
+
+msgid "nm"
+msgstr "nm"
+
+msgid "pm"
+msgstr "pm"
+
+msgid "fm"
+msgstr "fm"
+
+msgid "Optical thickness editor"
+msgstr "Golygydd trwch optegol"
+
+msgid "File or token to ban"
+msgstr "Ffeil neu docyn i'w wahardd"
+
+msgid "Laser:"
+msgstr "Laser:"
+
+msgid "Export"
+msgstr "Allforio"
+
+msgid "Cost and energy payback calculator"
+msgstr "Cyfrifiannell ad-dalu costau ac ynni"
+
+msgid "Re-calcualte"
+msgstr "Ail-gyfrifo"
+
+msgid "material"
+msgstr "deunydd"
+
+msgid "Mass"
+msgstr "Offeren"
+
+msgid "Optical outcoupling"
+msgstr "Outcoupling optegol"
+
+msgid "Photon distribution (norm)"
+msgstr "Dosbarthiad ffoton (norm)"
+
+msgid "Escape probability (1D in y)"
+msgstr "Tebygolrwydd dianc (1D yn y)"
+
+msgid "You have not selected any parameters to scan through.  Use the add button."
+msgstr "Nid ydych wedi dewis unrhyw baramedrau i'w sganio. Defnyddiwch y botwm ychwanegu."
+
+msgid "Parameter scan editor"
+msgstr "Golygydd sgan paramedr"
+
+msgid "Parameter to scan"
+msgstr "Paramedr i'w sganio"
+
+msgid "JSON Variable 0"
+msgstr "JSON Newidyn 0"
+
+msgid "JSON Variable 1"
+msgstr "JSON Newidyn 1"
+
+msgid ""
+"<big><b>Fast optimizer</b></big><br>When the fast optimizer is enabled simulation results are not "
+"written to disk and instead only key paramters are saved in a csv file. Using a spreadsheet you "
+"can then search/sort for the desired device parameters. This enables very fast parameter "
+"optimization of layer thicknesses."
+msgstr ""
+"<big><b>Optimeiddiwr cyflym</b></big><br>Pan mae'r optimizer cyflym wedi'i alluogi nid yw "
+"canlyniadau efelychiad yn cael eu hysgrifennu ar ddisg ac yn hytrach dim ond paramedrau allweddol "
+"sy'n cael eu cadw mewn ffeil csv. Gan ddefnyddio taenlen gallwch wedyn chwilio / didoli am y "
+"paramedrau dyfais dymunol. Mae hyn yn galluogi optimeiddio paramedr cyflym iawn o drwch haenau."
+
+msgid "Quantum efficiency editor"
+msgstr ""

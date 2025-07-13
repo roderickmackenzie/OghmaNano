@@ -33,10 +33,13 @@ import shutil
 from tempfile import mkstemp
 import zipfile
 from cal_path import subtract_paths
+from cal_path import sim_paths
 import time
 import hashlib
 from safe_delete import safe_delete
 from bytes2str import bytes2str
+import ctypes
+from bytes2str import str2bytes
 
 ## Copy a file from one archive to another.
 def archive_copy_file(dest_archive,dest_file_name,src_archive,file_name,dest="archive"):
@@ -135,7 +138,11 @@ def zip_get_raw_data(file_name,bytes=None,mode="b",archive="sim.oghma"):
 	lines=[]
 
 	if mode=="l":
-		read_data=read_data.decode('utf-8')#.decode("utf-8") 
+		try:
+			read_data=read_data.decode('utf-8') 
+		except:
+			print("Could not read lines from file, I expect it is not utf-8",file_name)
+			return []
 		read_data=read_data.split("\n")
 
 		for i in range(0, len(read_data)):
@@ -345,67 +352,18 @@ def archive_get_file_time(zip_file_path,file_name):
 
 	return epoch
 
-## This will unpack an acrhive
-def archive_decompress(zip_file_path,remove_archive=False):
-
-	if os.path.isfile(zip_file_path):
-		zf = zipfile.ZipFile(zip_file_path, 'r')
-		for file_name in zf.filelist:
-			read_lines = zf.read(file_name)
-			out_file=os.path.join(os.path.dirname(zip_file_path),file_name.filename)
-			f=open(out_file, mode='wb')
-			f.write(read_lines)
-			f.close()
-
-		zf.close()
-
-		if remove_archive==True:
-			os.remove(zip_file_path)
-
-	return
 
 ## This will extract a file from an archive and write it to disk.
 def extract_file_from_archive(dest,zip_file_path,file_name):
+	path_to_archive=ctypes.c_char_p(str2bytes(zip_file_path))
+	dest=ctypes.c_char_p(str2bytes(dest))
+	file_name=ctypes.c_char_p(str2bytes(file_name))
+	ret=sim_paths.lib.zip_extract_from_archive(path_to_archive, file_name, dest)
 
-	file_path=os.path.join(os.path.dirname(zip_file_path),file_name)
-
-	read_lines=[]
-
-	if os.path.isfile(file_path):
-		f=open(file_path, mode='rb')
-		read_lines = f.read()
-		f.close()
-	else:
-		found=False
-
-		if os.path.isfile(zip_file_path):
-			zf = zipfile.ZipFile(zip_file_path, 'r')
-			if zip_search_file(zf,os.path.basename(file_path))==True:
-				read_lines = zf.read(file_name)
-				found=True
-			elif zip_search_file(zf,file_name)==True:
-				read_lines = zf.read(file_name)
-				found=True
-
-			zf.close()
-
-		if found==False:
-			print("not found",file_name)
-			return False
-
-	if file_name.endswith("/")==True:
-		if os.path.isdir(os.path.join(dest,file_name))==False:
-			os.makedirs(os.path.join(dest,file_name))
+	if ret==0:
 		return True
-	else:
-		if os.path.isdir(os.path.join(dest,os.path.dirname(file_name)))==False:
-			os.makedirs(os.path.join(dest,os.path.dirname(file_name)))
 
-		f=open(os.path.join(dest,file_name), mode='wb')
-		f.write(read_lines)
-		f.close()
-
-	return True
+	return False
 
 ## Extract a directory from an archive.
 def extract_dir_from_archive(dest,zip_file_path,dir_name,zf=None):

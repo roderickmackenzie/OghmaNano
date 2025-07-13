@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,7 +29,7 @@
 
 #ifndef dim_h
 #define dim_h
-
+#include <g_io.h>
 #include <dat_file_struct.h>
 
 struct dimensions
@@ -41,21 +39,36 @@ struct dimensions
 	int ylen;
 	int llen;
 
-	long double *y;
-	long double *x;
-	long double *z;
-	long double *l;
+	gdouble *y;
+	gdouble *x;
+	gdouble *z;
+	double *l;
 
-	long double *dY;
-	long double *dX;
-	long double *dZ;
+	gdouble *dY;
+	gdouble *dX;
+	gdouble *dZ;
 
-	long double dy;
-	long double dx;
-	long double dz;
-	long double dl;
+	gdouble dy;	//Mesh spacing for uniform mesh
+	gdouble dx;	//Mesh spacing for uniform mesh
+	gdouble dz;	//Mesh spacing for uniform mesh
+	double dl;	//Mesh spacing for uniform mesh
 
 	int srh_bands;
+
+	double y_start;
+	double x_start;
+	double z_start;
+	double l_start;
+
+	double y_stop;
+	double x_stop;
+	double z_stop;
+	double l_stop;
+
+	double y_tot_len;
+	double x_tot_len;
+	double z_tot_len;
+	double l_tot_len;
 };
 
 struct dim_zx_epitaxy
@@ -67,35 +80,27 @@ struct dim_zx_epitaxy
 
 
 
-void dim_set_simple_mesh_x(struct dimensions *dim, long double start, long double stop);
-void dim_set_simple_mesh_z(struct dimensions *dim, long double start, long double stop);
+void dim_set_simple_mesh_x(struct dimensions *dim, double start, double stop);
+void dim_set_simple_mesh_y(struct dimensions *dim, double start, double stop);
+void dim_set_simple_mesh_z(struct dimensions *dim, double start, double stop);
 
 //dimension
 void dim_init(struct dimensions *dim);
 void dim_free(struct dimensions *dim);
 void dim_malloc(struct dimensions *dim);
 void dim_cpy(struct dimensions *out,struct dimensions *in);
+void dim_cpy_l(struct dimensions *out,struct dimensions *in);
 void dim_malloc_xyz(struct dimensions *dim,char xyz);
 void dim_free_xyz(struct dimensions *dim,char xyz);
 void dim_swap(struct dimensions *out,struct dimensions *in);
 void dim_info_to_buf(struct dat_file *buf,struct dimensions *dim);
-long double dim_dl_xyz(struct dimensions *dim, int x0, int y0, int z0,int x1,int y1, int z1);
+gdouble dim_dl_xyz(struct dimensions *dim, int x0, int y0, int z0,int x1,int y1, int z1);
+void dim_init_xyz(struct dimensions *dim,char xyz);
+void dim_rescale_if_needed_xyz(struct dimensions *dim,char xyz,double L);
+void dim_to_plot_type(char *plot_type, int zlen, int xlen, int ylen);
 
 //dim_epitaxy
 void dim_init_zx_epitaxy(struct dim_zx_epitaxy *dim);
 void dim_free_zx_epitaxy(struct dim_zx_epitaxy *dim);
-
-//dim_light
-void dim_light_init_xyzl(struct dimensions *dim,char xyzl);
-void dim_light_init(struct dimensions *dim);
-void dim_light_free_xyzl(struct dimensions *dim,char xyzl);
-void dim_light_free(struct dimensions *dim);
-void dim_light_malloc_xyzl(struct dimensions *dim,char xyzl);
-void dim_light_malloc(struct dimensions *dim);
-void dim_light_cpy(struct dimensions *out,struct dimensions *in);
-
-//dim_heat
-void dim_heat_malloc(struct dimensions *dim);
-
 
 #endif

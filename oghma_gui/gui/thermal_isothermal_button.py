@@ -37,42 +37,41 @@ from PySide2.QtWidgets import QWidget,QSizePolicy,QHBoxLayout,QPushButton,QDialo
 
 from icon_lib import icon_get
 from help import help_window
-from json_root import json_root
 
 from cal_path import sim_paths
+from json_c import json_tree_c
 
 class thermal_isothermal_button(QAction):
 
+	def __init__(self,parent):
+		self.thermal=False
+		self.bin=json_tree_c()
+		QAction.__init__(self,icon_get("thermal-off"), _("Isothermal"),parent)
+		self.triggered.connect(self.callback_state_changed)
+		self.update_ui(False)
+
 	def set_state(self,val):
-		data=json_root()
-		data.thermal.thermal=val
-		data.save()
+		self.bin.set_token_value("thermal","thermal",str(val))
+		self.bin.save()
 
 	def update_ui(self,update_help):
 		self.blockSignals(True)
-		data=json_root()
-		self.thermal=data.thermal.thermal
+		self.thermal=self.bin.get_token_value("thermal","thermal")
 
 		if self.thermal==True:
 			self.setIcon(icon_get("thermal-on"))
 			self.setText(_("Thermal model\nenabled"))
 			if update_help==True:
-				help_window().help_set_help(["thermal-on.png",_("<big><b>Thermal solver switched on</b></big><br>The heat equation will be solved across the device")])
+				help_window().help_set_help("thermal-on.png",_("<big><b>Thermal solver switched on</b></big><br>The heat equation will be solved across the device"))
 
 		if self.thermal==False:
 			self.setIcon(icon_get("thermal-off"))
 			self.setText(_("Iso-thermal\nmodel"))
 			if update_help==True:
-				help_window().help_set_help(["thermal-off.png",_("<big><b>Isothermal mode</b></big><br>A single temperature will be assumed across the entire device.")])
+				help_window().help_set_help("thermal-off.png",_("<big><b>Isothermal mode</b></big><br>A single temperature will be assumed across the entire device."))
 		self.blockSignals(False)
 
 	def refresh(self):
-		self.update_ui(False)
-
-	def __init__(self,parent):
-		self.thermal=False
-		QAction.__init__(self,icon_get("thermal-off"), _("Isothermal"),parent)
-		self.triggered.connect(self.callback_state_changed)
 		self.update_ui(False)
 
 	def callback_state_changed(self):
@@ -81,6 +80,5 @@ class thermal_isothermal_button(QAction):
 		else:
 			self.thermal=True
 
-		#print(self.thermal)
 		self.set_state(self.thermal)
 		self.update_ui(True)

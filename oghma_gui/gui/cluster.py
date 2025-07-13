@@ -39,7 +39,6 @@ from time import sleep
 from win_lin import get_platform
 from util import gui_print_path
 
-from cal_path import get_exe_command
 from inp import inp_search_token_value
 from stat import *
 from cluster_encrypt import encrypt
@@ -48,25 +47,33 @@ from cluster_encrypt import encrypt2
 from cluster_encrypt import decrypt
 from cluster_encrypt import encrypt_load
 import hashlib
-import i18n
-_ = i18n.language.gettext
+
 import zlib
-from cal_path import get_src_path
 from progress_class import progress_class
 
 from gui_enable import gui_get
 from process_events import process_events
 
 if gui_get()==True:
+	import i18n
+	_ = i18n.language.gettext
 	from gQtCore import gSignal
 
 from cal_path import sim_paths
-from cal_path import get_exe_name
-from cal_path import get_cluster_libs_path
 
-from job import job
 import random
 from sim_name import sim_name
+
+
+class job:
+	name=""
+	path=""
+	ip=""
+	args=""
+	start=""
+	stop=""
+	cpus=1
+	status=0
 
 def strip_slash(tx_name):
 	start=0
@@ -656,7 +663,7 @@ class cluster:
 
 	def copy_src_to_cluster_fast(self):
 		if self.cluster==True:
-			path=get_src_path()
+			path=sim_paths.get_src_path()
 			if path==None:
 				return
 			self.sync_dir(path,"src")
@@ -665,7 +672,7 @@ class cluster:
 		
 	def copy_src_to_cluster(self):
 		if self.cluster==True:
-			path=get_src_path()
+			path=sim_paths.get_src_path()
 			if path==None:
 				return
 
@@ -681,7 +688,7 @@ class cluster:
 
 			path=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),"cluster"),"#path_to_libs",search_active_file=True)
 			if path=="autosearch":
-				path=get_cluster_libs_path()
+				path=sim_paths.get_cluster_libs_path()
 
 			self.send_dir(path,"src")
 

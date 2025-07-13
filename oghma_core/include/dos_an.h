@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,20 +29,25 @@
 
 #ifndef dos_an_h
 #define dos_an_h
+#include <g_io.h>
+#include <rpn.h>
 
-#include <sim_struct.h>
-#include <json.h>
+struct dos_an_item
+{
+	char function[STR_MAX];
+	int enabled;
+	double a;
+	double b;
+	double c;
+};
 
 struct dos_an_data
 {
-	int items;
-	int type[100];
-	int enable[100];
-	double a[100];
-	double b[100];
-	double c[100];
+	int len;
+	struct dos_an_item *items;
+	struct rpn_calculator rpn_cal;
+	struct rpn_equation rpn_equ;
+	char error[STR_MAX];
 };
 
-void dos_an_load(struct simulation *sim,struct dos_an_data *in,struct json_obj *json_complex_dos);
-double dos_an_get_value(struct simulation *sim,struct dos_an_data *in,double E);
 #endif

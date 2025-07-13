@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -58,94 +56,99 @@ void error_report(int status, const char *file, const char *func, int line)
 
 
 
-int umfpack_solver(struct matrix_solver_memory *msm,int col,int nz,int *Ti,int *Tj, long double *lTx,long double *lb)
+int umfpack_solver(struct matrix_solver_memory *msm,int col,int nz,int *Ti,int *Tj, gdouble *lTx,gdouble *lb)
 {
-int i;
-void *Symbolic, *Numeric;
-int status;
+	int i;
+	void *Symbolic, *Numeric;
+	int status;
 
 
-for (i=0;i<col;i++)
-{
-	msm->b[i]=(double)lb[i];
-}
+	for (i=0;i<col;i++)
+	{
+		msm->b[i]=(double)lb[i];
+	}
 
-for (i=0;i<nz;i++)
-{
-	msm->Tx[i]=(double)lTx[i];
-}
+	for (i=0;i<nz;i++)
+	{
+		msm->Tx[i]=(double)lTx[i];
+	}
 
-double Control [UMFPACK_CONTROL],Info [UMFPACK_INFO];
+	double Control [UMFPACK_CONTROL],Info [UMFPACK_INFO];
 
-umfpack_di_defaults (Control) ;
-Control[UMFPACK_BLOCK_SIZE]=20;
-//Control [UMFPACK_STRATEGY]=UMFPACK_STRATEGY_AUTO;//
-//Control [UMFPACK_STRATEGY]=UMFPACK_STRATEGY_SYMMETRIC;
-//Control [UMFPACK_STRATEGY]=UMFPACK_STRATEGY_UNSYMMETRIC;
-//Control [UMFPACK_ORDERING]=UMFPACK_ORDERING_NONE;//UMFPACK_ORDERING_BEST;//UMFPACK_ORDERING_AMD;//UMFPACK_ORDERING_BEST;//
-//Control [UMFPACK_PIVOT_TOLERANCE]=0.0001;
-//Control[UMFPACK_SINGLETONS]=1;
-//Control[UMFPACK_SCALE]=3;
-status = umfpack_di_triplet_to_col(col, col, nz, Ti, Tj, msm->Tx, msm->Ap, msm->Ai, msm->Ax, NULL);
+	umfpack_di_defaults (Control) ;
+	Control[UMFPACK_BLOCK_SIZE]=20;
+	//Control [UMFPACK_STRATEGY]=UMFPACK_STRATEGY_AUTO;//
+	//Control [UMFPACK_STRATEGY]=UMFPACK_STRATEGY_SYMMETRIC;
+	//Control [UMFPACK_STRATEGY]=UMFPACK_STRATEGY_UNSYMMETRIC;
+	//Control [UMFPACK_ORDERING]=UMFPACK_ORDERING_NONE;//UMFPACK_ORDERING_BEST;//UMFPACK_ORDERING_AMD;//UMFPACK_ORDERING_BEST;//
+	//Control [UMFPACK_PIVOT_TOLERANCE]=0.0001;
+	//Control[UMFPACK_SINGLETONS]=1;
+	//Control[UMFPACK_SCALE]=3;
+	status = umfpack_di_triplet_to_col(col, col, nz, Ti, Tj, msm->Tx, msm->Ap, msm->Ai, msm->Ax, NULL);
 
-if (status != UMFPACK_OK) {
-	error_report(status, __FILE__, __func__, __LINE__);
-	return EXIT_FAILURE;
-}
+	if (status != UMFPACK_OK) {
+		error_report(status, __FILE__, __func__, __LINE__);
+		return EXIT_FAILURE;
+	}
 
-// symbolic analysis
-status = umfpack_di_symbolic(col, col, msm->Ap, msm->Ai, msm->Ax, &Symbolic, Control, Info);
+	// symbolic analysis
+	status = umfpack_di_symbolic(col, col, msm->Ap, msm->Ai, msm->Ax, &Symbolic, Control, Info);
 
-if (status != UMFPACK_OK) {
-	error_report(status, __FILE__, __func__, __LINE__);
-	return EXIT_FAILURE;
-}
+	if (status != UMFPACK_OK) {
+		error_report(status, __FILE__, __func__, __LINE__);
+		return EXIT_FAILURE;
+	}
 
-/*#ifdef windows
-	 EnterCriticalSection(&lock);
-#else
-	pthread_mutex_lock(&lock);
-#endif*/
-// LU factorization
-umfpack_di_numeric(msm->Ap, msm->Ai, msm->Ax, Symbolic, &Numeric, Control, Info);
+	/*#ifdef windows
+		 EnterCriticalSection(&lock);
+	#else
+		pthread_mutex_lock(&lock);
+	#endif*/
+	// LU factorization
+	umfpack_di_numeric(msm->Ap, msm->Ai, msm->Ax, Symbolic, &Numeric, Control, Info);
 
-/*#ifdef windows
-	 LeaveCriticalSection(&lock);
-#else
-	pthread_mutex_unlock(&lock);
-#endif*/
+	/*#ifdef windows
+		 LeaveCriticalSection(&lock);
+	#else
+		pthread_mutex_unlock(&lock);
+	#endif*/
 
-if (status != UMFPACK_OK) {
-	error_report(status, __FILE__, __func__, __LINE__);
-	return EXIT_FAILURE;
-}
-// solve system
+	if (status != UMFPACK_OK) {
+		error_report(status, __FILE__, __func__, __LINE__);
+		return EXIT_FAILURE;
+	}
+	// solve system
 
-umfpack_di_free_symbolic(&Symbolic);
-
-
-umfpack_di_solve(UMFPACK_A, msm->Ap, msm->Ai, msm->Ax, msm->x, msm->b, Numeric, Control, Info);
+	umfpack_di_free_symbolic(&Symbolic);
 
 
-if (status != UMFPACK_OK) {
-	error_report(status, __FILE__, __func__, __LINE__);
-	return EXIT_FAILURE;
-}
-
-umfpack_di_free_numeric(&Numeric);
+	umfpack_di_solve(UMFPACK_A, msm->Ap, msm->Ai, msm->Ax, msm->x, msm->b, Numeric, Control, Info);
 
 
+	if (status != UMFPACK_OK) {
+		error_report(status, __FILE__, __func__, __LINE__);
+		return EXIT_FAILURE;
+	}
 
-for (i=0;i<col;i++)
-{
-lb[i]=(long double)msm->x[i];
-}
-
-//memcpy(b, x, col*sizeof(double));
-//umfpack_toc(stats);
+	umfpack_di_free_numeric(&Numeric);
 
 
-return 0;
+	matrix_solver_memory_dump_error(msm,lTx, Tj, Ti, msm->x,lb,col);
+
+	for (i=0;i<col;i++)
+	{
+	lb[i]=(gdouble)msm->x[i];
+	}
+
+	//memcpy(b, x, col*sizeof(double));
+	//umfpack_toc(stats);
+
+	//////////debug
+
+
+
+	///////////////
+	return 0;
 }
 
 void umfpack_solver_free(struct matrix_solver_memory *msm)

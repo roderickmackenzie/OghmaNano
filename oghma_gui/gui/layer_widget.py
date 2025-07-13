@@ -27,27 +27,77 @@
 ## @package layer_widget
 #  The window to select and build the device structure.
 #
-
+import os
+import i18n
 from icon_lib import icon_get
-from global_objects import global_object_get
-from g_tab2 import g_tab2
-from PySide2.QtWidgets import QVBoxLayout ,QToolBar
+from g_tab2_bin import g_tab2_bin
+from PySide2.QtWidgets import QWidget, QSizePolicy, QVBoxLayout ,QToolBar, QStatusBar, QAction, QMenu
 from global_objects import global_object_run
 from global_objects import global_object_get
 from QWidgetSavePos import QWidgetSavePos
-from epitaxy import get_epi
-from json_root import json_root
-from epitaxy_class import epi_layer
+from util import distance_with_units
+from PySide2.QtGui import QColor
+from cal_path import sim_paths
+from QColorMap import QColorMap
+from mesh_math import mesh_math
+from json_c import json_tree_c
+import ctypes
 
-import i18n
 _ = i18n.language.gettext
 
 class layer_widget(QWidgetSavePos):
+
+	def __init__(self):
+		QWidgetSavePos.__init__(self,"layer_widget")
+		self.bin=json_tree_c()
+		self.warning=""
+		self.setWindowTitle2(_("Layer editor"))
+		self.setWindowIcon(icon_get("layers"))
+		self.resize(800,500)
+		self.mesh_y=mesh_math("electrical_solver.mesh.mesh_y")
+		self.main_vbox=QVBoxLayout()
+
+		self.toolbar=QToolBar()
+
+		self.tab2 = g_tab2_bin(toolbar=self.toolbar)
+		self.tab2.fixup_new_row=self.fixup_new_row
+		self.tab2.set_tokens(["name","dy","optical_material","obj_type","solve_optical_problem","id"])
+		self.tab2.set_labels([_("Layer name"), _("Thicknes"), _("Optical material"), _("Layer type"), _("Solve optical\nproblem"), _("ID")])
+		self.tab2.json_root_path="epitaxy"
+		self.tab2.setColumnWidth(1, 125)
+		self.tab2.setColumnWidth(2, 250)
+		self.tab2.setColumnWidth(3, 120)
+		self.tab2.setColumnWidth(5, 10)
+		self.tab2.populate()
+		self.tab2.new_row_clicked.connect(self.callback_new_row_clicked)
+		self.tab2.changed.connect(self.emit_structure_changed)
+		self.tab2.itemSelectionChanged.connect(self.layer_selection_changed)
+
+		spacer = QWidget()
+		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+		self.toolbar.addWidget(spacer)
+
+
+		self.color_map=QColorMap(self)
+
+		self.color_map.changed.connect(self.callback_random_colors)
+		self.color_map.setEnabled(False)
+		#self.colors.setCheckable(True)
+		self.toolbar.addAction(self.color_map)
+
+		self.main_vbox.addWidget(self.toolbar)
+
+		self.main_vbox.addWidget(self.tab2)
+		self.status_bar=QStatusBar()
+		self.main_vbox.addWidget(self.status_bar)	
+		self.setLayout(self.main_vbox)
+		self.update_colors()
 
 	def callback_tab_selection_changed(self):
 		self.emit_change()
 
 	def emit_change(self):
+		self.update_colors()
 		global_object_run("gl_force_redraw_hard")
 		
 	def emit_structure_changed(self,token):
@@ -60,54 +110,65 @@ class layer_widget(QWidgetSavePos):
 			global_object_run("optics_force_redraw")
 			global_object_run("gl_force_redraw_hard")
 
-
-	def __init__(self):
-		QWidgetSavePos.__init__(self,"layer_widget")
-
-		self.setWindowTitle2(_("Layer editor"))
-		self.setWindowIcon(icon_get("layers"))
-		self.resize(800,500)
-
-		self.main_vbox=QVBoxLayout()
-
-		self.toolbar=QToolBar()
-
-		self.tab2 = g_tab2(toolbar=self.toolbar)
-		self.tab2.set_tokens(["name","dy","optical_material","layer_type","solve_optical_problem","solve_thermal_problem","id"])
-		self.tab2.set_labels([_("Layer name"), _("Thicknes")+" (m)", _("Optical material"), _("Layer type"), _("Solve optical\nproblem"), _("Solve thermal\nproblem"), _("ID")])
-		self.tab2.json_search_path="json_root().epitaxy.layers"
-		self.tab2.setColumnWidth(2, 250)
-		self.tab2.setColumnWidth(6, 10)
-		self.tab2.populate()
-		self.tab2.new_row_clicked.connect(self.callback_new_row_clicked)
-		self.tab2.changed.connect(self.emit_structure_changed)
-		self.tab2.base_obj=epi_layer()
-		self.tab2.itemSelectionChanged.connect(self.layer_selection_changed)
-
-		self.main_vbox.addWidget(self.toolbar)
-
-		self.main_vbox.addWidget(self.tab2)
-		self.setLayout(self.main_vbox)
+	def callback_random_colors(self):
+		lines=self.tab2.selectionModel().selectedRows()
+		y=0
+		segments=self.bin.get_token_value("epitaxy","segments")
+		for l in lines:
+			row=l.row()
+			if row>=0 and row<segments:
+				r,g,b=self.color_map.get_color(float(row)/float(segments))
+				self.bin.set_token_value("epitaxy.segment"+str(row),"color_r",float(r)/255.0)
+				self.bin.set_token_value("epitaxy.segment"+str(row),"color_g",float(g)/255.0)
+				self.bin.set_token_value("epitaxy.segment"+str(row),"color_b",float(b)/255.0)
+		self.bin.save()
+		global_object_run("gl_force_redraw_hard")
 
 	def callback_new_row_clicked(self,row):
-		#epi=get_epi()
-		#obj=epi.add_new_layer(pos=row)
-		#self.tab2.insert_row(obj,row)
 		self.emit_structure_changed("all")
 
 	def save_model(self):
-		epi=get_epi()
-		data=json_root()
-		epi.symc_to_mesh(data.electrical_solver.mesh.mesh_y)
-		data.save()
+		self.bin.lib.json_epitaxy_symc_to_mesh(ctypes.byref(json_tree_c()))
+		self.bin.save()
 
 	def layer_selection_changed(self):
 		a=self.tab2.selectionModel().selectedRows()
 
 		if len(a)>0:
 			y=a[0].row()
-			epi=get_epi()
-			global_object_get("display_set_selected_obj")(epi.layers[y].id)
+			layer_id=self.bin.get_token_value("epitaxy.segment"+str(y),"id")
+			layer_name=self.bin.get_token_value("epitaxy.segment"+str(y),"name")
+			global_object_get("display_set_selected_obj")(layer_id)
+			layer_start=self.bin.lib.json_epitaxy_get_layer_start(ctypes.byref(json_tree_c()),y)
+			layer_stop=self.bin.lib.json_epitaxy_get_layer_stop(ctypes.byref(json_tree_c()),y)
+			start_mul,start_units= distance_with_units(layer_start)
+			stop_mul,stop_units= distance_with_units(layer_stop)
+			self.status_bar.showMessage(layer_name+" "+_("start:")+" "+"{:.3f}".format(start_mul*layer_start)+start_units+" "+_("stop:")+" "+"{:.3f}".format(stop_mul*layer_stop)+" "+stop_units)
 
+		self.color_map.blockSignals(True)
+		if len(a)==0:
+			self.color_map.setEnabled(False)
+		else:
+			self.color_map.setEnabled(True)
+		self.color_map.blockSignals(False)
+
+	def update_colors(self):
+		error_found=False
+		for y in range(self.tab2.rowCount()):
+			path=str(self.tab2.get_value(y,2))
+			full_path=os.path.join(sim_paths.get_materials_path(),path)
+			if os.path.isfile(full_path)==False and os.path.isdir(full_path)==False:
+				self.tab2.set_row_color( y, QColor('red'))
+				error_found=True
+			else:
+				self.tab2.set_row_color( y, QColor('white'))
+
+
+		if error_found==True:
+			self.warning=_("Red=not found in materials DB")
+			self.status_bar.showMessage(self.warning)
+
+	def fixup_new_row(self,row):
+		pass
 
 

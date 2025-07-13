@@ -35,16 +35,12 @@ import i18n
 _ = i18n.language.gettext
 from inp import inp
 from token_lib import tokens
-from json_root import all_json_root
-from scan_human_labels import get_json_obj_from_human_path
-from scan_human_labels import get_json_path_from_human_path
 from math import pow
 from math import fabs
 from util_latex import latex
 from token_lib import tokens
 import json
 import operator
-from util import pygtk_to_latex_subscript
 from lib_html import lib_html
 
 class fit_lib_anal_results:
@@ -81,6 +77,7 @@ class fit_lib_anal_results:
 		for s in simulation_paths:
 			f=inp()
 			if f.load(os.path.join(s,"sim.json"))!=False:
+
 				json_data="\n".join(f.lines)
 				decode=json.loads(json_data)
 
@@ -117,8 +114,8 @@ class fit_lib_anal_results:
 		for name,val in results[0].vars.items():
 			ret[name]['std']=pow(ret[name]['std']/len(results),0.5)
 
-		#for name,val in avg.items():
-		#	print(val,std[name],name)
+		for name,val in results[0].vars.items():
+			print(name,ret[name]['avg'])
 
 		#for r in results:
 			
@@ -187,7 +184,7 @@ class fit_lib_anal_results:
 				else:
 					line.append("")
 
-			line.append("$"+pygtk_to_latex_subscript(token.units)+"$")
+			line.append("$"+token.units+"$")
 			lx.tab_add_row(line)
 
 		lx.tab_end()
@@ -224,7 +221,7 @@ class fit_lib_anal_results:
 				else:
 					line.append("")
 
-			line.append("$"+pygtk_to_latex_subscript(token.units)+"$")
+			line.append("$"+token.units+"$")
 			lx.tab_add_row(line)
 
 		lx.tab_end()

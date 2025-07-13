@@ -36,12 +36,34 @@ from PySide2.QtWidgets import QTabWidget
 
 from tab import tab_class
 from css import css_apply
-from json_root import json_root
 
 from circuit import circuit
 from fxexperiment_mesh_tab import fxexperiment_mesh_tab
+from json_c import json_tree_c
 
 class fxexperiment_tab(QTabWidget):
+
+	def __init__(self,json_search_path,uid):
+		QTabWidget.__init__(self)
+		css_apply(self ,"tab_default.css")
+		self.json_search_path=json_search_path
+		self.uid=uid
+		self.bin=json_tree_c()
+
+		self.setMovable(True)
+
+		self.tmesh = fxexperiment_mesh_tab(self.json_search_path, uid)
+		self.addTab(self.tmesh,_("Frequency mesh"))
+
+		self.config_tab=tab_class(json_search_path,uid=uid, json_postfix="config")
+		self.addTab(self.config_tab,_("Configure"))
+
+		solver_type=self.bin.get_token_value("electrical_solver","solver_type")
+
+		if solver_type!="circuit":
+			self.circuit=circuit(json_search_path,uid)
+			self.addTab(self.circuit,_("Circuit"))
+			self.circuit.load_type.changed.connect(self.config_tab.tab.hide_show_widgets)
 
 	def update(self):
 		self.fxmesh.update()
@@ -49,31 +71,5 @@ class fxexperiment_tab(QTabWidget):
 	def image_save(self):
 		self.fxmesh.image_save()
 
-	def __init__(self,data):
-		QTabWidget.__init__(self)
-		css_apply(self ,"tab_default.css")
-		self.data=data
-
-		self.setMovable(True)
-
-		#self.tmesh = tab_time_mesh(self.data)
-		#self.addTab(self.tmesh,_("time mesh"))
-		self.tmesh = fxexperiment_mesh_tab(self.data.id)
-		self.addTab(self.tmesh,_("Frequency mesh"))
-
-		self.config_tab=tab_class(self.data.config)
-		self.addTab(self.config_tab,_("Configure"))
-
-		if json_root().electrical_solver.solver_type!="circuit":
-			self.circuit=circuit(self.data)
-			self.addTab(self.circuit,_("Circuit"))
-			self.circuit.load_type.changed.connect(self.config_tab.tab.hide_show_widgets)
-
-	def rename(self,tab_name):
-		self.data.name=tab_name
-		json_root().save()
-
-	def get_json_obj(self):
-		return self.data
 
 

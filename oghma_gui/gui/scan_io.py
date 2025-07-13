@@ -54,7 +54,6 @@ _ = i18n.language.gettext
 import zipfile
 from util_zip import archive_add_dir
 from inp import inp
-from json_scan import json_scan_line
 from clean_sim import ask_to_delete
 from progress_class import progress_class
 from decode_inode import decode_inode
@@ -87,6 +86,7 @@ def scan_archive(sim_dir,progress_window=None):
 	l=os.listdir(sim_dir)
 	for i in range(0,len(l)):
 		dir_to_zip=os.path.join(sim_dir,l[i])
+		print(dir_to_zip)
 		if os.path.isdir(dir_to_zip)==True:
 			archive_add_dir(archive_path,dir_to_zip,sim_dir,zf=zf,remove_src_dir=True,exclude=["gmon.out"])
 
@@ -209,7 +209,8 @@ class scan_io(ctypes.Structure):
 				('scan_optimizer_dump_at_end', ctypes.c_int),
 				('scan_optimizer_dump_n_steps', ctypes.c_int),
 				('name', ctypes.c_char * 4096),
-				('last_error', ctypes.c_char * 4096)]
+				('last_error', ctypes.c_char * 4096),
+				('early_stop', ctypes.c_int)]
 
 	def __init__(self):
 		self.parent_window=None
@@ -218,12 +219,11 @@ class scan_io(ctypes.Structure):
 		self.base_dir=None
 		self.scan_name=None
 		self.config_file=None
-		self.program_list=[]
 		self.myserver=None
 		self.lib=sim_paths.get_dll_py()
 		self.lib.scan_load_config_from_file.restype = ctypes.c_int
 		self.lib.scan_make_dirs.restype = ctypes.c_int
-		self.lib.scan_init(None,ctypes.byref(self))
+		self.lib.scan_init(ctypes.byref(self))
 
 	def load_config_from_file(self,path,json_path):
 		return self.lib.scan_load_config_from_file(None,ctypes.byref(self), bytes(path, encoding='utf8') , bytes(json_path, encoding='utf8'))
@@ -235,25 +235,19 @@ class scan_io(ctypes.Structure):
 		return self.lib.scan_make_dirs(None,ctypes.byref(self),bytes(path, encoding='utf8'))
 
 	def scan_free(self):
-		self.lib.scan_free(None,ctypes.byref(self))
+		self.lib.scan_free(ctypes.byref(self))
 
 	def __del__(self):
-		self.lib.scan_free(None,ctypes.byref(self))
+		self.lib.scan_free(ctypes.byref(self))
 
 
-	def load(self,path,name,scan_obj):
-		self.program_list=[]
-
+	def load(self,path,name):
 		if name!=None:
 			self.scan_name=name
 		else:
 			self.scan_name=os.path.basename(path)
 
 		self.scan_dir=os.path.join(path,self.scan_name)
-
-		if scan_obj!=None:
-			for s in scan_obj.segments:
-				self.program_list.append(s)
 
 	def set_path(self,scan_dir):
 		self.scan_dir=scan_dir

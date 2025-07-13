@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -32,42 +30,52 @@
 #ifndef server_struct_h
 #define server_struct_h
 
-#define server_max 20
-#define server_no_job 0
-#define server_job_ready 1
-#define server_job_running 2
-
+#include <g_io.h>
+#include <ipc.h>
 #include <time.h>
 #include <enabled_libs.h>
 	#include <pthread.h>
 
-#include <gpvdm_const.h>
+#include <oghma_const.h>
 
-#define JOB_NONE		0
-#define JOB_WAIT		1
-#define JOB_RUNNING		2
-#define JOB_FINISHED	3
-
-
+struct server_packet
+{
+	int val;
+	char buf[20];
+	int odes;
+	int tot_jobs;
+	double data_double0;
+};
 
 struct worker
 {
 	int working;
 		pthread_t thread_han;
+		int pipefd[2];
 	int worker_n;
+	void *job;		//points to the job
+};
+
+struct batch_id
+{
+	int id;
+	int max_cpus;
 };
 
 struct job
 {
-	char name[100];
+	char name[400];
 	int status;
 	int batch_id;
 		void *(* fun)(void *);		//Function to call
 	void *sim;
+	void *server;
 	void * data0;
 	void * data1;
 	void * data2;
 	void * data3;
+	void * data4;
+	void * data5;
 	int data_int0;
 	int data_int1;
 	int data_int2;
@@ -76,37 +84,77 @@ struct job
 	int data_int5;
 	int cpus;
 	struct worker *w;
+	int process_type;	//SERVER_THREAD, SERVER_PROCESS, SERVER_SYSTEM	
 	void * next;
+	int micro_jobs_done;
+	int micro_jobs_tot;
+	
+	//feedback
+	int odes;
+	int tot_jobs;
+	double data_double0;
+
+	//timings
+	long long start_time;		//time_t
+	long long end_time;			//time_t
+
+	//data for system exec jobs
+	char path[STR_MAX];
+	char args[STR_MAX];
+	char full_command[STR_MAX];
+	char ip[40];
+	char lock_file_name[40];	//This should not really be used
+
 };
 
 struct server_struct
 {
-	char command[server_max][PATH_MAX];		//these need removing as they take up too much memory
-	char output[server_max][PATH_MAX];
-	int state[server_max];
-	char dbus_finish_signal[200];
-	char lock_file[PATH_MAX];
+	char dbus_finish_signal[256];
+	char lock_file[OGHMA_PATH_MAX];
 	int jobs;
 	int jobs_running;
-	int fd;
-	int wd;
-	int on;
-	int readconfig;
+
 	int min_cpus;
-	int steel;
+
+	//run control
 	int max_run_time;
-	time_t end_time;
-	time_t start_time;
-	int max_forks;
-	int batch_id;
+	long long start_time;		//time_t
+	long long end_time;			//time_t
+	int last_job_ended_at;
+	int allow_fake_forking_on_windows;
+
 	//server2
 	int max_threads;
 	int worker_max;
+	int steel;
+	int poll_time;
 	struct worker *workers;
 
 	struct job *j;
-	int jobs_max;
 	int send_progress_to_gui;
+
+	//gpu
+	int use_gpu;
+	int enable_micro_job_reporting;
+
+	//mutex
+	g_pthread_mutex_t *lock;
+
+	//Not sure needed
+	int batch_id;
+	int max_forks;
+
+	//stats
+	int quiet;
+	int tot_odes;
+	int tot_jobs;
+	double stats_start_time;
+	double stats_stop_time;
+	double server_jobs_per_s;
+	double server_odes_per_s;
+	struct ipc ipc_data;
 };
+
+
 
 #endif

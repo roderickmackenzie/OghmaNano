@@ -30,8 +30,7 @@
 
 import i18n
 _ = i18n.language.gettext
-from jvexperiment_tab import jvexperiment_tab
-from experiment import experiment
+from experiment_bin import experiment_bin
 from tab_scan import tab_scan
 from cal_path import sim_paths
 from PySide2.QtWidgets import QAction
@@ -41,13 +40,13 @@ from util import wrap_text
 from server import server_get
 from play import play
 from scan_io import scan_io
-from json_root import json_root
+from json_c import json_tree_c
 
-class window_scan(experiment):
-
+class window_scan(experiment_bin):
 
 	def __init__(self,data=None):
-		experiment.__init__(self,"tab_scan",window_save_name="window_scan", window_title=_("Parameter scan window"),json_search_path="json_root().scans",min_y=500,style="list")
+		experiment_bin.__init__(self,"tab_scan",window_save_name="window_scan", window_title=_("Parameter scan window"),json_search_path="scans",min_y=500,style="list")
+		self.bin=json_tree_c()
 		self.sim_dir=sim_paths.get_sim_path()
 		self.scans_io=scans_io(self.sim_dir)
 		self.scans_io.parent_window=self
@@ -71,16 +70,19 @@ class window_scan(experiment):
 		self.scans_io.clean_all()
 
 	def callback_run_all_simulations(self):
-		for obj in json_root().scans.segments:
-			if obj.scan_optimizer.enabled==False:
+		segments=self.bin.get_token_value("scans","segments")
+		for s in range(0,segments):
+			name=self.bin.get_token_value("scans.segment"+str(s),"name")
+			enabled=self.bin.get_token_value("scans.segment"+str(s)+".scan_optimizer","enabled")
+			if enabled==False:
 				s=scan_io()
-				s.load(sim_paths.get_sim_path(),obj.name,obj)
+				s.load(sim_paths.get_sim_path(),name)
 				s.parent_window=self
 				s.myserver=server_get()
 				s.set_base_dir(sim_paths.get_sim_path())
 				s.run()
 			else:
-				server_get().add_job(sim_paths.get_sim_path(),"--optimizer "+obj.name+" --path "+sim_paths.get_sim_path())
+				server_get().add_job(sim_paths.get_sim_path(),"--optimizer "+name+" --path "+sim_paths.get_sim_path())
 				server_get().start()
 
 
@@ -92,6 +94,6 @@ class window_scan(experiment):
 
 	def callback_rename_item(self,old_name,new_name):
 		s=scan_io()
-		s.load(sim_paths.get_sim_path(),old_name,None)
+		s.load(sim_paths.get_sim_path(),old_name)
 		s.rename(new_name)
 

@@ -36,74 +36,37 @@ from gQtCore import gSignal
 from util import distance_with_units
 from icon_lib import icon_get
 
-from json_root import json_root
-from json_mesh import json_mesh_segment
-from json_mesh import json_mesh_lambda
-from json_mesh import json_mesh_thermal
-
-from g_tab2 import g_tab2
+from g_tab2_bin import g_tab2_bin
 
 from dat_file import dat_file
-import pyqtgraph as pg
+from mesh_math import mesh_math
+from json_c import json_tree_c
+from graph import graph_widget
+from color_map import color_map
 
 class tab_mesh_editor(QGroupBox):
 
 	changed = gSignal()
 
-	def redraw(self):
-		self.x=[]
-		self.mag=[]
-		data=eval(self.json_path)
-		
-		x_ret,self.mag=data.calculate_points(root_data=json_root())
-		tot=0
-		if len(x_ret)>1:
-			tot=x_ret[len(x_ret)-1]
-
-		mul,unit=distance_with_units(tot)
-		if data.direction=="t":
-			unit="Kelvin"
-			mul=1.0
-
-		self.plot.clear()
-		self.plot.getPlotItem().hideAxis('left')
-		self.plot.getPlotItem().setMouseEnabled(x=False, y=False)
-		scatter = pg.ScatterPlotItem()
-
-		spots = []
-		for i in range(0,len(x_ret)):
-			spot_dic = {'pos': (x_ret[i]*mul, 1), 'size': 10, 'brush': pg.intColor(i, len(x_ret)), 'pen': None}
-			spots.append(spot_dic)
-
-		scatter.addPoints(spots)
-
-		self.plot.addItem(scatter)
-		if data.direction=="l":
-			self.plot.setLabel('bottom', _("Wavelength"), units=str(unit), color='k')
-		elif data.direction=="t":
-			self.plot.setLabel('bottom', _("Temperature"), units=str(unit), color='k')
-		else:
-			self.plot.setLabel('bottom', _("Thickness"), units=str(unit), color='k')
-
-
-	def get_json(self):
-		return eval(self.json_path)
-
-	def __init__(self,json_path,no_user_edit=False,show_auto=False):
-		self.json_path=json_path
-		self.show_auto=show_auto
-		self.no_user_edit=no_user_edit
-		data=self.get_json()
-
+	def __init__(self,json_path,no_user_edit=False,show_auto=False,one_point_per_layer=False):
 		QGroupBox.__init__(self)
+		self.bin=json_tree_c()
+		self.json_path=json_path
+		self.mesh_math=mesh_math(json_path)
+		self.show_auto=show_auto
+		self.one_point_per_layer=one_point_per_layer
+		self.no_user_edit=no_user_edit
+		self.setMinimumWidth(250)
+		self.cm=color_map()
+		self.cm.find_map("Rainbow")
 		self.xyz=""
 
-		if data.direction=="l":
+		if self.mesh_math.direction=="l":
 			self.setTitle(_("Wavelength"))
-		elif data.direction=="t":
+		elif self.mesh_math.direction=="t":
 			self.setTitle(_("Temperature"))
 		else:
-			self.setTitle(data.direction)
+			self.setTitle(self.mesh_math.direction)
 
 		self.setStyleSheet("QGroupBox {  border: 1px solid gray;}")
 		vbox=QVBoxLayout()
@@ -114,58 +77,82 @@ class tab_mesh_editor(QGroupBox):
 
 		vbox.addWidget(self.toolbar)
 
-		self.tab = g_tab2(toolbar=self.toolbar)
+		self.tab = g_tab2_bin(toolbar=self.toolbar)
 
 		self.tb_mesh_auto = QAction(icon_get("mesh_auto"), _("Mesh Auto"), self)
 		self.tb_mesh_auto.setCheckable(True)
-		self.tb_mesh_auto.setChecked(data.auto)
+		auto=self.bin.get_token_value(self.json_path,"auto")
+		self.tb_mesh_auto.setChecked(auto)
 		self.tb_mesh_auto.triggered.connect(self.callback_mesh_auto)
 
 		if self.show_auto==True:
 			self.toolbar.addAction(self.tb_mesh_auto)
 		
-		if data.direction=="l":
+		if self.mesh_math.direction=="l":
+			self.tab.set_override_widgets(["edit_with_units","edit_with_units","",""])
 			self.tab.set_tokens(["start","stop","mul","points"])
 			self.tab.set_labels([_("Start"), _("Stop"), _("Step multiply"), _("points")])
-		elif data.direction=="t":
+			self.tab.setColumnWidth(0, 150)
+			self.tab.setColumnWidth(1, 150)
+		elif self.mesh_math.direction=="t":
 			self.tab.set_tokens(["start","stop","mul","points"])
 			self.tab.set_labels([_("Start"), _("Stop"), _("Step multiply"), _("points")])
 		else:
 			self.tab.set_tokens(["len","points","mul","left_right"])
 			self.tab.set_labels([_("Thicknes"), _("Mesh points"), _("Step multiply"), _("Left/Right")])
+			self.tab.setColumnWidth(0, 150)
 
-		self.tab.json_search_path=self.json_path+".segments"
+		self.tab.json_root_path=self.json_path
 
 		self.tab.populate()
 		self.tab.changed.connect(self.emit_structure_changed)
 		vbox.addWidget(self.tab)
-		if data.direction=="l":
-			self.tab.base_obj=json_mesh_lambda()
-		elif data.direction=="t":
-			self.tab.base_obj=json_mesh_thermal()
-		else:
-			self.tab.base_obj=json_mesh_segment()
 
-		pg.setConfigOptions(antialias = True)
-
-		# creating a plot window
-		pg.setConfigOption('background', 'w')
-		pg.setConfigOption('foreground', 'k')
-		self.plot = pg.PlotWidget()
-		self.plot.setMaximumHeight(200)
-		vbox.addWidget(self.plot)
+		self.plot2=graph_widget()
+		self.plot2.graph.cm_default=self.cm.map
+		self.plot2.graph.axis_y.hidden=True;
+		self.plot2.graph.points=True;
+		self.plot2.graph.lines=False;
+		self.plot2.setMaximumHeight(200)
+		self.plot2.setMinimumHeight(200)
+		vbox.addWidget(self.plot2)
 		self.update()
 		self.redraw()
 
+	def redraw(self):
+		self.x=[]
+		self.mag=[]
+
+		d=dat_file()
+		x_ret,self.mag=self.mesh_math.calculate_points(one_point_per_layer=self.one_point_per_layer)
+		self.mesh_math.gen_dat_file(d)
+		self.plot2.load([d])
+		self.plot2.graph.info[0].color_map_within_line=True
+		#d.dump_info()
+		d.free()
+		self.plot2.update()
+		#mul,unit=distance_with_units(tot)
+		#if self.mesh_math.direction=="t":
+		#	unit="Kelvin"
+		#	mul=1.0
+
+		#if self.mesh_math.direction=="l":
+		#	self.plot.setLabel('bottom', _("Wavelength"), units=str(unit), color='k')
+		#elif self.mesh_math.direction=="t":
+		#	self.plot.setLabel('bottom', _("Temperature"), units=str(unit), color='k')
+		#else:
+		#	self.plot.setLabel('bottom', _("Thickness"), units=str(unit), color='k')
+
+
 	def update(self):
-		data=self.get_json()
 		if self.show_auto==True:
-			if data.auto==True:
+			auto=self.bin.get_token_value(self.json_path,"auto")
+			if auto==True:
 				self.tab.setEnabled(False)
-				self.plot.setHidden(True)
+				self.plot2.setHidden(True)
 			else:
 				self.tab.setEnabled(True)
-				self.plot.setHidden(False)
+				self.plot2.setHidden(False)
 
 		if self.no_user_edit==True:
 			self.tab.tb_add.setEnabled(False)
@@ -176,12 +163,11 @@ class tab_mesh_editor(QGroupBox):
 
 
 	def callback_mesh_auto(self):
-		data=self.get_json()
-		data.auto=self.tb_mesh_auto.isChecked()
+		self.bin.set_token_value(self.json_path,"auto",self.tb_mesh_auto.isChecked())
 		self.update()
-		json_root().save()
+		self.bin.save()
 
 	def emit_structure_changed(self):
 		self.redraw()
 		self.changed.emit()
-		json_root().save()
+		self.bin.save()

@@ -1,0 +1,7366 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Roderick C. I. MacKenzie
+# This file is distributed under the same license as the oghmanano package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: oghmanano 8.0\n"
+"Report-Msgid-Bugs-To: roderick.mackenzie@oghma-nano.com\n"
+"POT-Creation-Date: 2024-05-02 11:45+0100\n"
+"PO-Revision-Date: 2024-05-02 17:21+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? "
+"1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+msgid "H_joule"
+msgstr "H_džaul"
+
+msgid "H_recombination"
+msgstr "H_rekombinatsioon"
+
+msgid "H_parasitic"
+msgstr "H_parasiit"
+
+msgid "Single states"
+msgstr "Üksikud osariigid"
+
+msgid "time"
+msgstr "aega"
+
+msgid "Ns"
+msgstr "Ns"
+
+msgid "Triplet states"
+msgstr "Kolmikolekud"
+
+msgid "Nt"
+msgstr "Nt"
+
+msgid "Singlets in donor"
+msgstr "Singletid doonoris"
+
+msgid "Nsd"
+msgstr "Nsd"
+
+msgid "Triplet in donor"
+msgstr "Kolmik doonoris"
+
+msgid "Ntd"
+msgstr "Ntd"
+
+msgid "Photon denisty"
+msgstr "Footonite tihedus"
+
+msgid "Npho"
+msgstr "Npho"
+
+msgid "file name not set\n"
+msgstr "failinime pole määratud\n"
+
+msgid "Time"
+msgstr "Aeg"
+
+msgid "Voltage"
+msgstr "Pinge"
+
+msgid "Free electron generation rate"
+msgstr "Vaba elektronide genereerimise kiirus"
+
+msgid "Generation rate"
+msgstr "Põlvkonna määr"
+
+msgid "Free hole generation rate"
+msgstr "Tasuta aukude tekitamise määr"
+
+msgid "SRH recombination free electrons -> trapped holes"
+msgstr "SRH rekombinatsioonivabad elektronid -> kinni jäänud augud"
+
+msgid "Recombination"
+msgstr "Rekombinatsioon"
+
+msgid "SRH recombination free holes -> trapped electrons"
+msgstr "SRH rekombinatsioonivabad augud -> kinni jäänud elektronid"
+
+msgid "Surface recombination on left contact"
+msgstr "Pinna rekombinatsioon vasakul kontaktil"
+
+msgid "Surface recombination on right contact"
+msgstr "Pinna rekombinatsioon paremal kontaktil"
+
+msgid "Trapped electron density"
+msgstr "Püütud elektroni tihedus"
+
+msgid "Electron density"
+msgstr "Elektroni tihedus"
+
+msgid "Trapped hole density"
+msgstr "Lõksu jäänud aukude tihedus"
+
+msgid "Hole density"
+msgstr "Aukude tihedus"
+
+msgid "Free electron density"
+msgstr "Vabade elektronide tihedus"
+
+msgid "Free hole density"
+msgstr "Vaba aukude tihedus"
+
+msgid "Total electron density"
+msgstr "Elektronide summaarne tihedus"
+
+msgid "Total hole density"
+msgstr "Aukude kogutihedus"
+
+msgid "Electron mobility"
+msgstr "Elektronide liikuvus"
+
+msgid "Mobility"
+msgstr "Liikuvus"
+
+msgid "Hole mobility"
+msgstr "Aukude liikuvus"
+
+msgid "Average electron and hole mobility"
+msgstr "Keskmine elektronide ja aukude liikuvus"
+
+msgid "Total PL intensity"
+msgstr "PL koguintensiivsus"
+
+msgid "Total PL Intensity"
+msgstr "PL koguintensiivsus"
+
+msgid "PL intensity at given energy"
+msgstr "PL intensiivsus antud energia juures"
+
+msgid "PL Intensity"
+msgstr "PL Intensiivsus"
+
+msgid "Voltage applied to diode"
+msgstr "Dioodile rakendatud pinge"
+
+msgid "band bend (percent)"
+msgstr "riba painutus (protsenti)"
+
+msgid "band bend"
+msgstr "riba painutus"
+
+msgid "percent"
+msgstr "protsenti"
+
+msgid "Dynamic quantum efficiency"
+msgstr "Dünaamiline kvanttõhusus"
+
+msgid "Percent"
+msgstr "protsenti"
+
+msgid "Drift current density"
+msgstr "Triivimisvoolu tihedus"
+
+msgid "Position"
+msgstr "positsioon"
+
+msgid "Electron current density (drift)"
+msgstr "Elektronide voolutihedus (triiv)"
+
+msgid "Diffusion current density"
+msgstr "Difusioonivoolu tihedus"
+
+msgid "position"
+msgstr "positsiooni"
+
+msgid "Electron current density (diffusion)"
+msgstr "Elektronide voolutihedus (difusioon)"
+
+msgid "Diffusion+Drift current density"
+msgstr "Difusioon+triivi voolutihedus"
+
+msgid "Drift current density (x)"
+msgstr "Triivivoolu tihedus (x)"
+
+msgid "Diffusion current density (x)"
+msgstr "Difusioonivoolu tihedus (x)"
+
+msgid "Hole current density (drift)"
+msgstr "Aukude voolutihedus (triiv)"
+
+msgid "Hole current density (diffusion)"
+msgstr "Aukude voolutihedus (difusioon)"
+
+msgid "Current density"
+msgstr "Voolu tihedus"
+
+msgid "Electron current density"
+msgstr "Elektronide voolutihedus"
+
+msgid "Hole current density"
+msgstr "Aukude voolutihedus"
+
+msgid "Electron current density x"
+msgstr "Elektronide voolutihedus x"
+
+msgid "Total current density (Jn+Jp)"
+msgstr "Koguvoolutihedus (Jn+Jp)"
+
+msgid "|Jny|+|Jnx|"
+msgstr "|Jny|+|Jnx|"
+
+msgid "|Total current density|"
+msgstr "|Voolu kogutihedus|"
+
+msgid "|Jpy|+|Jpx|"
+msgstr "|Jpy|+|Jpx|"
+
+msgid "Free electron -> Free hole recombination rate"
+msgstr "Vaba elektron -> Vaba augu rekombinatsiooni määr"
+
+msgid "Free carrier recombination rate"
+msgstr "Tasuta operaatori rekombinatsioonimäär"
+
+msgid "Free electron loss due to SRH processes (including trapping)"
+msgstr "Vabade elektronide kadu SRH protsesside tõttu (sealhulgas püüdmine)"
+
+msgid "Free electron loss"
+msgstr "Vaba elektronide kadu"
+
+msgid "Free hole loss due to SRH processes (including trapping)"
+msgstr "Vaba augu kadu SRH protsesside tõttu (sh kinnijäämine)"
+
+msgid "Free hole loss"
+msgstr "Vaba augu kaotus"
+
+msgid "SRH relaxation free electrons -> trapped electrons"
+msgstr "SRH relaksatsioonivabad elektronid -> kinni jäänud elektronid"
+
+msgid "Relaxation"
+msgstr "Lõõgastus"
+
+msgid "SRH relaxation free holes -> trapped holes"
+msgstr "SRH lõdvestusvabad augud -> kinnijäänud augud"
+
+msgid "Singlet density (S1)"
+msgstr "Singleti tihedus (S1)"
+
+msgid "Singlet density"
+msgstr "Singleti tihedus"
+
+msgid "Triplet density  (T1)"
+msgstr "Kolmiku tihedus (T1)"
+
+msgid "Triplet density"
+msgstr "Kolmiku tihedus"
+
+msgid "Singlet CT (1C)"
+msgstr "Singlet CT (1C)"
+
+msgid "Triplet CT (3C)"
+msgstr "Triplet CT (3C)"
+
+msgid "Singlet S1 'IMREF'"
+msgstr "Singlett S1 'IMREF'"
+
+msgid "Singlet energy"
+msgstr "Üksikenergia"
+
+msgid "Triplet T1 'IMREF'"
+msgstr "Kolmik T1 'IMREF'"
+
+msgid "Triplet energy"
+msgstr "Kolmik energia"
+
+msgid "Singlet CT (1C) 'IMREF'"
+msgstr "Singlet CT (1C) 'IMREF'"
+
+msgid "Triplet CT (3C) 'IMREF'"
+msgstr "Kolmik CT (3C) 'IMREF'"
+
+msgid "Singlet in donor density"
+msgstr "Singlet doonoritiheduses"
+
+msgid "Triplet in donor density"
+msgstr "Kolmik doonoritiheduses"
+
+msgid "Ion density"
+msgstr "Ioonide tihedus"
+
+msgid "Singlet 'IMREF'"
+msgstr "Singlett 'IMREF'"
+
+msgid "Triplet 'IMREF'"
+msgstr "Kolmik 'IMREF'"
+
+msgid "Singlet in donor 'IMREF'"
+msgstr ""
+
+msgid "Triplet in donor 'IMREF'"
+msgstr ""
+
+msgid "Ion energy"
+msgstr "Ioonide energia"
+
+msgid "Doping"
+msgstr "Doping"
+
+msgid "Doping density"
+msgstr "Dopingu tihedus"
+
+msgid "Free electron carrier density"
+msgstr "Vaba elektroni kandja tihedus"
+
+msgid "Carrier density"
+msgstr "Kandja tihedus"
+
+msgid "Free hole carrier density"
+msgstr "Vaba augu kanduri tihedus"
+
+msgid "Trapped electron carrier density"
+msgstr "Püütud elektronide kandja tihedus"
+
+msgid "Trapped hole carrier density"
+msgstr "Lõksu jäänud augu kandja tihedus"
+
+msgid "Change in electron population"
+msgstr "Muutus elektronide populatsioonis"
+
+msgid "Total charge"
+msgstr "Kogutasu"
+
+msgid "Change in total charge"
+msgstr "Kogutasu muutus"
+
+msgid "Change in hole population"
+msgstr "Aukude populatsiooni muutus"
+
+msgid "Excess electron density"
+msgstr "Liigne elektrontihedus"
+
+msgid "x-position"
+msgstr "x-asend"
+
+msgid "y-position"
+msgstr "y-asend"
+
+msgid "z-position"
+msgstr "z-asend"
+
+msgid "Excess hole density"
+msgstr "Liigne aukude tihedus"
+
+msgid "Perovskite mobile ion density"
+msgstr "Perovskiidi liikuvate ioonide tihedus"
+
+msgid "Interface free-to-free recombination constant"
+msgstr "Liidese vabast vabaks rekombinatsioonikonstant"
+
+msgid "Electron tunneling though the interface"
+msgstr "Elektronide tunneldamine liidese kaudu"
+
+msgid "Tunneling-e"
+msgstr "Tunneldamine-e"
+
+msgid "Hole tunneling though the interface"
+msgstr "Aukude tunneldamine liidese kaudu"
+
+msgid "Tunneling-h"
+msgstr "Tunneldamine-h"
+
+msgid "Interface free-to-trap recombination constant"
+msgstr "Liidese vaba lõksu rekombinatsiooni konstant"
+
+msgid "Interface free-to-trap  recombination constant"
+msgstr "Liidese vaba lõksu rekombinatsiooni konstant"
+
+msgid "Interface recombination rate"
+msgstr "Liidese rekombinatsiooni määr"
+
+msgid "Electron current density left contact (J_y0_n)"
+msgstr "Elektronivoolutiheduse vasakkontakt (J_y0_n)"
+
+msgid "Hole current density left contact (J_y0_p)"
+msgstr "Ava voolutiheduse vasakkontakt (J_y0_p)"
+
+msgid "Electron current density right contact (J_y1_n)"
+msgstr "Elektronivoolutiheduse paremkontakt (J_y1_n)"
+
+msgid "Hole current density right contact (J_y1_p)"
+msgstr "Ava voolutiheduse parempoolne kontakt (J_y1_p)"
+
+msgid "Electron drift current"
+msgstr "Elektronide triivvool"
+
+msgid "Electron diffusion current"
+msgstr "Elektronide difusioonivool"
+
+msgid "Hole drift current"
+msgstr "Aukude triivvool"
+
+msgid "Hole diffusion current"
+msgstr "Aukude difusioonivool"
+
+msgid " Hole diffusion current"
+msgstr "Aukude difusioonivool"
+
+msgid "Electron drift+diffusion current"
+msgstr "Elektronide triiv+difusioonvool"
+
+msgid "Hole diffusion+diffusion current"
+msgstr "Aukusdifusioon+difusioonvool"
+
+msgid "Jn at contacts"
+msgstr "Jn kontaktidel"
+
+msgid "Jp at contacts"
+msgstr "Jp kontaktidel"
+
+msgid "External Current"
+msgstr "Väline vool"
+
+msgid "Current"
+msgstr "Praegune"
+
+msgid "Current density at contacts"
+msgstr "Voolutihedus kontaktidel"
+
+msgid "Single states (S1)"
+msgstr "Üksikud olekud (S1)"
+
+msgid "Triplet states (T1)"
+msgstr "Kolmikolekud (T1)"
+
+msgid "Material fraction (x)"
+msgstr "Materjali osa (x)"
+
+msgid "Fraction"
+msgstr "Murd"
+
+msgid "Material fraction (y)"
+msgstr "Materjali osa (y)"
+
+msgid "LUMO"
+msgstr "LUMO"
+
+msgid "Electron Energy"
+msgstr "Elektronenergia"
+
+msgid "HOMO"
+msgstr "HOMO"
+
+msgid "Lattice temperature"
+msgstr "Võre temperatuur"
+
+msgid "Temperature"
+msgstr "Temperatuur"
+
+msgid "Electron temperature"
+msgstr "Elektronide temperatuur"
+
+msgid "Hole temperature"
+msgstr "Aukude temperatuur"
+
+msgid "Band gap"
+msgstr "Ribavahe"
+
+msgid "Electron quasi Fermi-level"
+msgstr "Elektron kvaasi-Fermi-tase"
+
+msgid "Hole quasi Fermi-level"
+msgstr "Auk kvaasi Fermi tasemel"
+
+msgid "Potential"
+msgstr "potentsiaal"
+
+msgid "Equlibrium Fermi-level"
+msgstr "Tasakaalu Fermi-tase"
+
+msgid "Energy"
+msgstr "Energia"
+
+msgid "Relative permittivity"
+msgstr "Suhteline lubavus"
+
+msgid "Joule heating from device"
+msgstr "Džauli kuumutamine seadmest"
+
+msgid "Heating"
+msgstr "Küte"
+
+msgid "Electron mobility z"
+msgstr "Elektronide liikuvus z"
+
+msgid "Electron mobility x"
+msgstr "Elektronide liikuvus x"
+
+msgid "Electron mobility y"
+msgstr "Elektronide liikuvus y"
+
+msgid "Hole mobility z"
+msgstr "Aukude liikuvus z"
+
+msgid "Hole mobility x"
+msgstr "Aukude liikuvus x"
+
+msgid "Hole mobility y"
+msgstr "Aukude liikuvus y"
+
+msgid "Average electron mobility"
+msgstr "Keskmine elektronide liikuvus"
+
+msgid "Recombination rate"
+msgstr "Rekombinatsiooni määr"
+
+msgid "Auger recombination"
+msgstr "Tigu rekombinatsioon"
+
+msgid "Rate"
+msgstr "Hinda"
+
+msgid "Trap fermi level"
+msgstr "Lõksu fermi tase"
+
+msgid "Electron Fermi level"
+msgstr "Elektron Fermi tase"
+
+msgid "Material number"
+msgstr "Materjali number"
+
+msgid "Number"
+msgstr "Number"
+
+msgid "Passivated"
+msgstr "Passiveeritud"
+
+msgid "True/False"
+msgstr "Õige Vale"
+
+msgid "Current map of the bottom contact"
+msgstr "Alumise kontakti praegune kaart"
+
+msgid "Resistance of bottom of device"
+msgstr "Seadme põhja vastupidavus"
+
+msgid "Running Ray tracer\n"
+msgstr "Käivitab Ray tracer\n"
+
+msgid "pulse mode not known\n"
+msgstr "impulsi režiim pole teada\n"
+
+msgid "pulse time"
+msgstr "pulsi aeg"
+
+msgid "step"
+msgstr "samm"
+
+msgid "current density"
+msgstr "voolutihedus"
+
+msgid "current"
+msgstr "praegune"
+
+msgid "Volts"
+msgstr "volti"
+
+msgid "Photogeneration rate"
+msgstr "Fotogeneratsiooni kiirus"
+
+msgid "Emission"
+msgstr "Emissioon"
+
+msgid "Charge density"
+msgstr "Laengu tihedus"
+
+msgid "Suns"
+msgstr "Päikesed"
+
+msgid "Charge"
+msgstr "Lae"
+
+msgid "ce mode not known\n"
+msgstr "ce režiim pole teada\n"
+
+msgid "ce mode not known"
+msgstr "ce režiim pole teada"
+
+msgid "ce time"
+msgstr "ce aeg"
+
+msgid "Simulated polynomial data"
+msgstr "Simuleeritud polünoomiandmed"
+
+msgid "x"
+msgstr "x"
+
+msgid "y"
+msgstr "y"
+
+msgid "Full transfer matrix based light model"
+msgstr "Täielik ülekandemaatriksil põhinev valgusmudel"
+
+msgid "Generating mesh\n"
+msgstr "Võrgusilma genereerimine\n"
+
+msgid "The materials in your device are not configured to emit light\n"
+msgstr "Teie seadmes olevad materjalid ei ole konfigureeritud valgust kiirgama\n"
+
+msgid "Real"
+msgstr "Päris"
+
+msgid "Imaginary"
+msgstr "Kujutletav"
+
+msgid "Re(i)"
+msgstr "Re(i)"
+
+msgid "Im(i)"
+msgstr "ma(i)"
+
+msgid "Frequency"
+msgstr "Sagedus"
+
+msgid "Real(i)"
+msgstr "Päris(i)"
+
+msgid "Capacitance"
+msgstr "Mahtuvus"
+
+msgid "1/C^2"
+msgstr "1/C^2"
+
+msgid "abs(i)"
+msgstr "abs(i)"
+
+msgid "phi(i)"
+msgstr "phi(i)"
+
+msgid "Phase"
+msgstr "Faas"
+
+msgid "Fit error modulation"
+msgstr "Fit error modulation"
+
+msgid "Error"
+msgstr "Viga"
+
+msgid "Fit error j/v"
+msgstr "Sobivusviga j/v"
+
+msgid "Resistance"
+msgstr "Vastupidavus"
+
+msgid "Solving EQE at"
+msgstr "EQE lahendamine kl"
+
+msgid "out of memory!\n"
+msgstr "mälu otsas!\n"
+
+msgid "matrix is singular!\n"
+msgstr "maatriks on ainsuses!\n"
+
+msgid "Running scanning probe microscopy\n"
+msgstr "Skaneeriva sondi mikroskoopia käivitamine\n"
+
+msgid "no spm config file found"
+msgstr "spm konfiguratsioonifaili ei leitud"
+
+msgid "Running JV simulation\n"
+msgstr "JV simulatsiooni käivitamine\n"
+
+msgid "Stopping because of Vexternal"
+msgstr "Peatus Vexternali tõttu"
+
+msgid "Efficiency"
+msgstr "Tõhusus"
+
+msgid "Voltage/Current across just the ideal diode"
+msgstr "Pinge/vool just ideaalsel dioodil"
+
+msgid "Applied Voltage"
+msgstr "Rakendatud pinge"
+
+msgid "Recombination prefactor"
+msgstr "Rekombinatsiooni prefaktor"
+
+msgid "Applied voltage"
+msgstr "Rakendatud pinge"
+
+msgid "Excess carrier density"
+msgstr "Liigne kandja tihedus"
+
+msgid "Excess charge density above equilibrium"
+msgstr "Liigne laengutihedus üle tasakaalu"
+
+msgid "Charge density with correction for surface charge"
+msgstr "Laengu tihedus koos pinnalaengu korrigeerimisega"
+
+msgid "Total charge density"
+msgstr "Laengu kogutihedus"
+
+msgid "EQE"
+msgstr "EQE"
+
+msgid "Light flux"
+msgstr "Valgusvoog"
+
+msgid "Power in Optical emission/Electrical power in"
+msgstr "Võimsus sisse Optiline emissioon/Elektrivõimsus sisse"
+
+msgid "Conductivity"
+msgstr "Juhtivus"
+
+msgid "Holes on left contact"
+msgstr "Vasakul kontaktil augud"
+
+msgid "Electrons on left contact"
+msgstr "Elektronid vasakul kontaktil"
+
+msgid "Holes on right contact"
+msgstr "Paremal kontaktil augud"
+
+msgid "Electrons on right contact"
+msgstr "Elektronid paremal kontaktil"
+
+msgid "Generating electrical mesh\n"
+msgstr "Elektrivõrgu genereerimine\n"
+
+msgid "I can't solve the matrix because I don't have enough equations."
+msgstr "Ma ei saa maatriksit lahendada, kuna mul pole piisavalt võrrandeid."
+
+msgid "Wavelength"
+msgstr "Lainepikkus"
+
+msgid "Probe load configuration"
+msgstr "Sondi koormuse konfiguratsioon"
+
+msgid "Probe calculate modes"
+msgstr "Sondi arvutamise režiimid"
+
+msgid "Probe free memory"
+msgstr "Sondi vaba mälu"
+
+msgid "Photon generation rate"
+msgstr "Footonite genereerimise kiirus"
+
+msgid "Average photon generation rate (xz-plane)"
+msgstr "Keskmine footoni genereerimise kiirus (xz-tasand)"
+
+msgid "Photon generation rate  (xz-plane)"
+msgstr "Footonite genereerimise kiirus (xz-tasand)"
+
+msgid "Absorption"
+msgstr "Imendumine"
+
+msgid "Extended opticla absorption"
+msgstr "Pikendatud optika neeldumine"
+
+#, python-format
+msgid "Cleaning cache index: %s\n"
+msgstr "Vahemälu indeksi puhastamine: %s\n"
+
+msgid "Cache: checking cache free space\n"
+msgstr "Vahemälu: vahemälu vaba ruumi kontrollimine\n"
+
+msgid "Freeing memory from the exciton model\n"
+msgstr "Mälu vabastamine eksitonimudelist\n"
+
+msgid "Mode E-field"
+msgstr "Režiim E-väli"
+
+msgid "E-field"
+msgstr "E-väli"
+
+msgid "Refractive index"
+msgstr "Murdumisnäitaja"
+
+msgid "Normalized photon ensity"
+msgstr "Normaliseeritud footonite esmasus"
+
+msgid "Photon density"
+msgstr "Footonite tihedus"
+
+msgid "Mode Ey"
+msgstr "Režiim Ey"
+
+msgid "Ey"
+msgstr "Ei"
+
+msgid "E - Electric field"
+msgstr "E - Elektriväli"
+
+msgid "Job stalled. Time since last run:"
+msgstr "Töö jäi seisma. Aeg viimasest jooksust:"
+
+msgid "Bytes, written"
+msgstr "Baiti, kirjutatud"
+
+msgid ", read"
+msgstr ", loe"
+
+msgid "Files, read"
+msgstr "Failid, loe"
+
+msgid " written"
+msgstr "kirjutatud"
+
+msgid "I have shut down the server"
+msgstr "Ma sulgesin serveri"
+
+msgid "Number of CPUs:"
+msgstr "Protsessorite arv:"
+
+msgid "Start time"
+msgstr "Algusaeg"
+
+msgid "End time"
+msgstr "Lõpuaeg"
+
+msgid "All jobs finished jobs"
+msgstr "Kõik tööd lõpetatud"
+
+msgid "I have finished all my jobs"
+msgstr "Olen kõik oma tööd lõpetanud"
+
+msgid "The server has detected a crash"
+msgstr "Server on tuvastanud krahhi"
+
+msgid "Hole generation rate"
+msgstr "Aukude tekkimise kiirus"
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie, Releced the MIT License"
+msgstr "Autoriõigus (C) 2009-2022 Roderick C. I. MacKenzie, sai MIT-i litsentsi"
+
+msgid "options"
+msgstr "valikuid"
+
+msgid "Options"
+msgstr "Valikud"
+
+msgid "Simulation root path"
+msgstr "Simulatsiooni juurtee"
+
+msgid "displays the current version"
+msgstr "kuvab praeguse versiooni"
+
+msgid "Dump know paths"
+msgstr "Dump tea teed"
+
+msgid "Forces a simulation mode."
+msgstr "Sunnib simulatsioonirežiimi."
+
+msgid "sets the number of CPUs"
+msgstr "määrab protsessorite arvu"
+
+msgid "Runs the optimizer. Syntax --optimizer scan_name"
+msgstr "Käivitab optimeerija. Süntaks -- optimeerija skannimise_nimi"
+
+msgid "Additional information about OghmaNano is available at https://www.Oghma-Nano.com."
+msgstr "Lisateavet OghmaNano kohta leiate aadressilt https://www.Oghma-Nano.com."
+
+msgid "Report bugs to: roderick.mackenzie@oghma-nano.com"
+msgstr "Teatage vigadest aadressil: roderick.mackenzie@oghma-nano.com"
+
+#, python-format
+msgid "oghma_core, Version %s\n"
+msgstr "oghma_core, versioon %s\n"
+
+msgid "OghmaNano (Organic and hybrid Material Nano Simulation tool) core."
+msgstr "OghmaNano (orgaanilise ja hübriidse materjali nanosimulatsiooni tööriist) tuum."
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2009-2022"
+msgstr "Autoriõigus Roderick MacKenzie, välja antud MIT litsentsi 2009–2022 alusel"
+
+msgid "There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or\n"
+msgstr "GARANTII PUUDUB ABSOLUUTSELT; isegi mitte kaubeldavuse või\n"
+
+msgid "FITNESS FOR A PARTICULAR PURPOSE.\n"
+msgstr "SOBIVUS KONKREETSEKS EESMÄRGIKS.\n"
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2010-2019"
+msgstr "Autoriõigus Roderick MacKenzie, välja antud MIT-i litsentsi 2010–2019 alusel"
+
+msgid "OghmaNano - Organic and hybrid Material Nano Simulation tool"
+msgstr "OghmaNano – orgaanilise ja hübriidse materjali nanosimulatsiooni tööriist"
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+msgstr "Autoriõigus (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+
+msgid "Released under the MIT software license"
+msgstr "Välja antud MIT tarkvaralitsentsi alusel"
+
+msgid "If you wish to collaborate in anyway please get in touch:\n"
+msgstr "Kui soovite ikkagi koostööd teha, võtke ühendust:\n"
+
+msgid "dll not loaded"
+msgstr "dll pole laaditud"
+
+msgid "dll function outcoupling_dll_init not found\n"
+msgstr "dll funktsiooni outcoupling_dll_init ei leitud\n"
+
+msgid "dll function outcoupling_dll_solve_lam_slice not found\n"
+msgstr "dll funktsiooni outcoupling_dll_solve_lam_slice ei leitud\n"
+
+msgid "dll function outcoupling_dll_ver not found\n"
+msgstr "dll funktsiooni outcoupling_dll_ver ei leitud\n"
+
+msgid "Generation rate - position"
+msgstr "Põlvkonna määr – positsioon"
+
+msgid "Photons escape probability - position"
+msgstr "Footonid pääsevad tõenäosusest – positsioonist"
+
+msgid "Photons escape probability"
+msgstr "Footonid pääsevad tõenäosusest välja"
+
+msgid "Position - Photon density"
+msgstr "Asend – Footonite tihedus"
+
+msgid "Photon Escape Probability Wavelength Averaged"
+msgstr "Footoni põgenemise tõenäosuse lainepikkuse keskmine"
+
+msgid "Escape probability"
+msgstr "Põgenemise tõenäosus"
+
+msgid "Photon escape probability"
+msgstr "Footonite põgenemise tõenäosus"
+
+msgid "Running FDTD simulation @"
+msgstr "FDTD simulatsiooni käivitamine @"
+
+msgid "Ex - Electric field"
+msgstr "Näiteks - elektriväli"
+
+msgid "Ey - Electric field"
+msgstr "Ey – elektriväli"
+
+msgid "Ez - Electric field"
+msgstr "Ez – elektriväli"
+
+msgid "Detectors"
+msgstr "Detektorid"
+
+msgid "Hx - Magnetic field"
+msgstr "Hx – magnetväli"
+
+msgid "H-field"
+msgstr "H-väli"
+
+msgid "Hy - Magnetic field"
+msgstr "Hy – magnetväli"
+
+msgid "Hz - Magnetic field"
+msgstr "Hz – magnetväli"
+
+msgid "Power den"
+msgstr "Power den"
+
+msgid "Tot power den"
+msgstr "Tot power den"
+
+msgid "epsilon_r - Premitivity"
+msgstr "epsilon_r – Premitivity"
+
+msgid "Permitivity"
+msgstr "Lubatavus"
+
+msgid "sigma - ?"
+msgstr "sigma - ?"
+
+msgid "sigma"
+msgstr "sigma"
+
+msgid "Math_2d output"
+msgstr "Math_2d väljund"
+
+msgid "Values"
+msgstr "Väärtused"
+
+msgid "dll function dll_matrix_solve not found\n"
+msgstr "dll funktsiooni dll_matrix_solve ei leitud\n"
+
+msgid "dll function dll_matrix_solver_free not found\n"
+msgstr "dll funktsiooni dll_matrix_solver_free ei leitud\n"
+
+msgid "dll function dll_matrix_init not found\n"
+msgstr "dll funktsiooni dll_matrix_init ei leitud\n"
+
+msgid "Error closing dll"
+msgstr "Viga dll sulgemisel"
+
+msgid "File not found\n"
+msgstr "Faili ei leitud\n"
+
+#, python-format
+msgid "File access log written to %s\n"
+msgstr "Faili juurdepääsulogi on kirjutatud %s\n"
+
+msgid "Equilibrium Fermi-level"
+msgstr "Tasakaalu Fermi-tase"
+
+msgid "dll function dll_complex_matrix_solver_free not found\n"
+msgstr "dll funktsiooni dll_complex_matrix_solver_free ei leitud\n"
+
+msgid "Deleting directory: "
+msgstr "Kataloogi kustutamine:"
+
+msgid "Deleting directory"
+msgstr "Kataloogi kustutamine"
+
+msgid "Solver initialization\n"
+msgstr "Lahendaja lähtestamine\n"
+
+msgid "dll_solve_cur not NULL\n"
+msgstr "dll_solve_cur ei ole NULL\n"
+
+msgid "dll function dll_solve_cur not found\n"
+msgstr "dll funktsiooni dll_solve_cur ei leitud\n"
+
+msgid "dll_solver_realloc not NULL\n"
+msgstr "dll_solver_realloc ei ole NULL\n"
+
+msgid "dll function dll_solver_realloc not found\n"
+msgstr "dll funktsiooni dll_solver_realloc ei leitud\n"
+
+msgid "dll_solver_free_memory not NULL\n"
+msgstr "dll_solver_free_memory ei ole NULL\n"
+
+msgid "dll function dll_solver_free_memory not found\n"
+msgstr "dll funktsiooni dll_solver_free_memory ei leitud\n"
+
+msgid ">I don't understand the command"
+msgstr ">Ma ei saa käsust aru"
+
+msgid "Can not open file"
+msgstr "Faili ei saa avada"
+
+#, python-brace-format
+msgid "Average mobility at V_{oc}"
+msgstr "Keskmine liikuvus V_{oc}"
+
+msgid "Recombination rate at Voc"
+msgstr "Rekombinatsioonimäär Voc"
+
+#, python-brace-format
+msgid "Average mobility as J_{sc}"
+msgstr "Keskmine liikuvus J_{sc}"
+
+#, python-brace-format
+msgid "Electron mobility at J_{sc}"
+msgstr "Elektronide liikuvus J_{sc}"
+
+#, python-brace-format
+msgid "Hole mobility at J_{sc}"
+msgstr "Aukude liikuvus J_{sc}"
+
+#, python-brace-format
+msgid "Electron mobility at P_{max}"
+msgstr "Elektronide liikuvus P_{max} juures"
+
+#, python-brace-format
+msgid "Hole mobility at P_{max}"
+msgstr "Aukude liikuvus P_{max} juures"
+
+msgid "Recombination time constant at Voc"
+msgstr "Rekombinatsiooni ajakonstant Voc juures"
+
+msgid "Trapped electrons at Voc"
+msgstr "Vangistatud elektronid Voci juures"
+
+msgid "Trapped holes at Voc"
+msgstr "Lõksus augud Voci juures"
+
+msgid "Free electrons at Voc"
+msgstr "Vabad elektronid Voci juures"
+
+msgid "Free holes at Voc"
+msgstr "Vabad augud Voci juures"
+
+msgid "Total carriers (n+p)/2 at Voc"
+msgstr "Kandjaid kokku (n+p)/2 Voc"
+
+#, python-brace-format
+msgid "Average mobility at P_{max}"
+msgstr "Keskmine liikuvus P_{max}"
+
+msgid "<b>GPU</b>"
+msgstr "<b>GPU</b>"
+
+msgid "Max Cahce Size"
+msgstr "Max Cahce suurus"
+
+msgid "Minimum disk free"
+msgstr "Minimaalne kettavaba"
+
+msgid "Number of simulations to keep"
+msgstr "Säilitatavate simulatsioonide arv"
+
+msgid "Enable cache"
+msgstr "Vahemälu lubamine"
+
+msgid "Cache path"
+msgstr "Vahemälu tee"
+
+msgid "Name"
+msgstr "Nimi"
+
+msgid "Resistor"
+msgstr "Takisti"
+
+msgid "Capacitor"
+msgstr "Kondensaator"
+
+msgid "Inductance"
+msgstr "Induktiivsus"
+
+msgid "I0"
+msgstr "I0"
+
+msgid "Ideality factor"
+msgstr "Ideaalsuse tegur"
+
+msgid "Layer"
+msgstr "Kiht"
+
+msgid "Single point"
+msgstr "Üks punkt"
+
+msgid "Start intensity"
+msgstr "Alguse intensiivsus"
+
+msgid "Stop intensity"
+msgstr "Lõpetage intensiivsus"
+
+msgid "step multiplier"
+msgstr "sammu kordaja"
+
+msgid "dx of Honeycomb"
+msgstr "dx kärgstruktuuri"
+
+msgid "dy of Honeycomb"
+msgstr "dy of Honeycomb"
+
+msgid "Line width"
+msgstr "Joone laius"
+
+msgid "x shift"
+msgstr "x vahetus"
+
+msgid "y shift"
+msgstr "y vahetus"
+
+msgid "Rotate"
+msgstr "Pööra"
+
+msgid "Enable fit variable"
+msgstr "Luba sobivusmuutuja"
+
+msgid "Select"
+msgstr "Valige"
+
+msgid "Shift experimental y"
+msgstr "Nihe eksperimentaalne y"
+
+msgid "Invert simulated data (y)"
+msgstr "Simuleeritud andmete ümberpööramine (y)"
+
+msgid "Subtract lowest point"
+msgstr "Lahutage madalaim punkt"
+
+msgid "Set first point to zero"
+msgstr "Seadke esimene punkt nulliks"
+
+msgid "Fit df(x)/dx"
+msgstr "Sobitage df(x)/dx"
+
+msgid "Fit error multiplyer"
+msgstr "Veakordaja sobitamine"
+
+msgid "Stall steps"
+msgstr "Talli sammud"
+
+msgid "Fit define convergence"
+msgstr "Sobivus määratleb konvergentsi"
+
+msgid "<b>Fit method</b>"
+msgstr "<b>Sobitusmeetod</b>"
+
+msgid "Fiting method"
+msgstr "Sobivusmeetod"
+
+msgid "Nelder–Mead (Downhill simplex)"
+msgstr "Nelder-Mead (Downhill simplex)"
+
+msgid "Thermal Annealing"
+msgstr "Termiline lõõmutamine"
+
+msgid "Markov chain Monte Carlo (MCMC)"
+msgstr "Markovi kett Monte Carlo (MCMC)"
+
+msgid "Markov chain Monte Carlo (HMC)"
+msgstr "Markovi kett Monte Carlo (HMC)"
+
+msgid "No-U-Turn Sampler (NUTS)"
+msgstr "U-pöördeta proovivõttur (NUTS)"
+
+msgid "Newton"
+msgstr "Newton"
+
+msgid "Broyden–Fletcher–Goldfarb–Shanno (BFGS)"
+msgstr "Broyden–Fletcher–Goldfarb–Shanno (BFGS)"
+
+msgid "Start simplex step multiplication"
+msgstr "Käivitage simpleksastmeline korrutamine"
+
+msgid "Enable simplex reset steps"
+msgstr "Lubage ühesuunalise lähtestamise sammud"
+
+msgid "Simplex reset steps"
+msgstr "Simplex lähtestamise etapid"
+
+msgid "Disable reset at level"
+msgstr "Keela lähtestamine tasemel"
+
+msgid "On stall randomize fit"
+msgstr "Juhuslikult sobiv sobivus"
+
+msgid "Number of iterations between random reset"
+msgstr "Iteratsioonide arv juhusliku lähtestamise vahel"
+
+msgid "Sigma"
+msgstr "Sigma"
+
+msgid "Dump every n steps"
+msgstr "Tühistada iga n sammu järel"
+
+msgid "Leapfrog steps"
+msgstr "Hüppesammud"
+
+msgid "Cooling constant"
+msgstr "Jahutuskonstant"
+
+msgid "Annealing steps"
+msgstr "Lõõmutamise sammud"
+
+msgid "Randomize variables at begining"
+msgstr "Juhuslik muutujad alguses"
+
+msgid "<b>Fit control</b>"
+msgstr "<b>Sobivuse juhtimine</b>"
+
+msgid "Set error to zero before"
+msgstr "Seadke viga enne nulli"
+
+msgid "Enable snapshots during fit"
+msgstr "Lubage sobivuse ajal hetktõmmised"
+
+msgid "Normalize data at x point"
+msgstr "Normaliseerige andmed punktis x"
+
+msgid "Random funciton"
+msgstr "Juhuslik funktsioon"
+
+msgid "Mersenne Twister"
+msgstr "Mersenne Twister"
+
+msgid "C rand"
+msgstr "C rand"
+
+msgid "Random initialization"
+msgstr "Juhuslik initsialiseerimine"
+
+msgid "Wall clock"
+msgstr "seinakell"
+
+msgid "Constant value"
+msgstr "Püsiv väärtus"
+
+msgid "/dev/urandom"
+msgstr "/dev/urandom"
+
+msgid "Random seed value"
+msgstr "Juhuslik seemne väärtus"
+
+msgid "Add noise"
+msgstr "Lisa müra"
+
+msgid "Noise level"
+msgstr "Müratase"
+
+msgid "a"
+msgstr "a"
+
+msgid "b"
+msgstr "b"
+
+msgid "c"
+msgstr "c"
+
+msgid "Range start x0"
+msgstr "Vahemiku algus x0"
+
+msgid "Range stop x1"
+msgstr "Vahemaa peatus x1"
+
+msgid "JV voltage step multiplyer"
+msgstr "JV pinge astme kordaja"
+
+msgid "Maximum current density"
+msgstr "Maksimaalne voolutihedus"
+
+msgid "JV curve photon generation efficiency"
+msgstr "JV kõvera footonite genereerimise efektiivsus"
+
+#, python-brace-format
+msgid "Average carrier density at P_{max}"
+msgstr "Keskmine kandja tihedus P_{max} juures"
+
+msgid "Start voltage"
+msgstr "Käivituspinge"
+
+msgid "Stop voltage"
+msgstr "Peatuspinge"
+
+msgid "Voltage step"
+msgstr "Pinge samm"
+
+msgid "Points"
+msgstr "Punktid"
+
+msgid "Detector input hist"
+msgstr "Detektori sisend hist"
+
+msgid "Counts"
+msgstr "Loeb"
+
+msgid "Detected light"
+msgstr "Tuvastatud valgus"
+
+msgid "Efficiency of emission"
+msgstr "Emissiooni efektiivsus"
+
+msgid "Detector"
+msgstr "Detektor"
+
+msgid "Power"
+msgstr "Võimsus"
+
+msgid "Solving the initial electrostatic field."
+msgstr "Algse elektrostaatilise välja lahendamine."
+
+msgid "Electrostatic solver f()="
+msgstr "Elektrostaatiline lahendaja f()="
+
+msgid "Converged"
+msgstr "koondunud"
+
+msgid "Finding equilibrium conditions"
+msgstr "Tasakaalutingimuste leidmine"
+
+msgid "Finished finding equilibrium conditions"
+msgstr "Tasakaalutingimuste leidmine on lõpetatud"
+
+msgid "Finished generating DoS....\n"
+msgstr "DoS genereerimine on lõpetatud...\n"
+
+msgid "load: config files"
+msgstr "laadige: konfiguratsioonifailid"
+
+msgid "Intrinsic Fermi - position"
+msgstr "Sisemine Fermi – asend"
+
+msgid "LUMO energy - position"
+msgstr "LUMO energia - asend"
+
+msgid "HOMO energy - position"
+msgstr "HOMO energia – asend"
+
+msgid "Electron density - position"
+msgstr "Elektroni tihedus – asend"
+
+msgid "Hole density - position"
+msgstr "Aukude tihedus – asend"
+
+msgid "Potential - position"
+msgstr "Potentsiaal – positsioon"
+
+msgid "Loading electrical dll\n"
+msgstr "Elektrilise dll laadimine\n"
+
+msgid "dll function dll_run_simulation not found\n"
+msgstr "dll funktsiooni dll_run_simulation ei leitud\n"
+
+msgid "Electrical objects"
+msgstr "Elektrilised objektid"
+
+msgid "Running simulation"
+msgstr "Jooksu simulatsioon"
+
+msgid "Solved"
+msgstr "Lahendatud"
+
+msgid "Equations"
+msgstr "Võrrandid"
+
+msgid "I can't allocate a device with less than 1 mesh point."
+msgstr "Ma ei saa määrata seadet, mille võrgusilma punkt on väiksem kui 1."
+
+msgid ""
+"You are asking me to simulate a device with more than 50000 mesh points, although I could "
+"do this I am not going to because it seems a bad idea to me."
+msgstr ""
+"Te palute mul simuleerida seadet, millel on rohkem kui 50 000 võrgupunkti, kuigi ma saaksin "
+"seda teha, ma ei tee seda, sest see tundub mulle halb mõte."
+
+msgid "Current "
+msgstr "Praegune"
+
+msgid "Voltage - Current density"
+msgstr "Pinge – voolutihedus"
+
+msgid "Voltage - Current"
+msgstr "Pinge – vool"
+
+msgid "Time - Current density"
+msgstr "Aeg – voolutihedus"
+
+msgid "Time - Voltage"
+msgstr "Aeg - pinge"
+
+msgid "Fit error"
+msgstr "Sobivuse viga"
+
+msgid "Step"
+msgstr "Samm"
+
+msgid "au"
+msgstr "au"
+
+msgid "Speed"
+msgstr "Kiirus"
+
+msgid "odes/s"
+msgstr "oodid/s"
+
+msgid "Chain all"
+msgstr "Kett kõik"
+
+msgid "Value"
+msgstr "Väärtus"
+
+msgid "Chain accepted"
+msgstr "Kett vastu võetud"
+
+msgid "Hist chain accepted"
+msgstr "Hist kett vastu võetud"
+
+msgid "Freeing memory from the heat model\n"
+msgstr "Mälu vabastamine soojusmudelist\n"
+
+msgid "Loading file"
+msgstr "Faili laadimine"
+
+#, python-format
+msgid "Expected dos size is different from generated %d %d\n"
+msgstr "Eeldatav doosi suurus erineb loodud %d %d suurusest\n"
+
+#, python-format
+msgid "genndosfdgaus: I can not write to the file %s\n"
+msgstr "genndosfdgaus: Ma ei saa kirjutada faili %s\n"
+
+msgid "Computer cores:"
+msgstr "Arvuti tuumad:"
+
+msgid "Max threads:"
+msgstr "Max lõime:"
+
+msgid "You must load the optical plugin before making the time mesh"
+msgstr "Enne ajasilma loomist peate laadima optilise pistikprogrammi"
+
+msgid "The electrical mesh does not match the device length"
+msgstr "Elektrivõrk ei vasta seadme pikkusele"
+
+msgid "Can't generate a mesh with zero points"
+msgstr "Nullpunktiga võrku ei saa luua"
+
+msgid "If you want to run perovskite in fx-domain send me an e-mail."
+msgstr "Kui soovite käivitada perovskite fx-domeenis, saatke mulle e-kiri."
+
+msgid "fxdomain mode not known"
+msgstr "fxdomeeni režiim pole teada"
+
+msgid "Running frequency"
+msgstr "Töösagedus"
+
+msgid ""
+"Optical modulation will come in the next version.  If you want to use it drop me a mail..."
+msgstr ""
+"Optiline modulatsioon tuleb järgmises versioonis. Kui soovid seda kasutada, kirjuta mulle..."
+
+msgid "fxdomain time"
+msgstr "fxdomeeni aeg"
+
+msgid "Light intensity"
+msgstr "Valguse intensiivsus"
+
+msgid "Ion density - position"
+msgstr "Ioonide tihedus - asend"
+
+msgid "Ion free"
+msgstr "Ioonivaba"
+
+msgid "Ion convergence="
+msgstr "Ioonide konvergents ="
+
+msgid "Ion diffusion"
+msgstr "Ioonide difusioon"
+
+msgid "R spm"
+msgstr "R spm"
+
+msgid "Vlost spm"
+msgstr "Vlost spm"
+
+msgid "V spm"
+msgstr "V spm"
+
+msgid "Electrical circuit"
+msgstr "Elektriahel"
+
+msgid "Circuit"
+msgstr "Ahel"
+
+msgid "Current vector plot"
+msgstr "Praegune vektorgraafik"
+
+msgid "Real refractive index"
+msgstr "Reaalne murdumisnäitaja"
+
+msgid "|Electric field|"
+msgstr "|Elektriväli|"
+
+msgid "Transmittance"
+msgstr "Läbilaskvus"
+
+msgid "Reflectance"
+msgstr "Peegeldus"
+
+msgid "Solve optical slice at"
+msgstr "Lahenda optiline viil juures"
+
+msgid "It was dark I did not solve any slices\n"
+msgstr "Oli pime, ma ei lahendanud ühtegi lõiku\n"
+
+msgid "Initializing optical model"
+msgstr "Optilise mudeli initsialiseerimine"
+
+msgid "dll function light_dll_init not found\n"
+msgstr "dll funktsiooni light_dll_init ei leitud\n"
+
+msgid "dll function light_dll_solve_lam_slice not found\n"
+msgstr "dll funktsiooni light_dll_solve_lam_slice ei leitud\n"
+
+msgid "dll function light_dll_ver not found\n"
+msgstr "dll funktsiooni light_dll_ver ei leitud\n"
+
+msgid "Power density of the optical spectra (no filter):"
+msgstr "Optiliste spektrite võimsustihedus (ilma filtrita):"
+
+msgid "File not found"
+msgstr "Faili ei leitud"
+
+msgid "Light: Load filter"
+msgstr "Tuli: laadige filter"
+
+msgid "Refractive index - position"
+msgstr "Murdumisnäitaja - asend"
+
+msgid "Absorption - position"
+msgstr "Imendumine – asend"
+
+msgid "Photons absorbed - position"
+msgstr "Neeldunud footonid – asend"
+
+msgid "Photons absorbed"
+msgstr "Footonid neelduvad"
+
+msgid "Position - Electric field (y+)"
+msgstr "Asend – elektriväli (y+)"
+
+msgid "Position - Electric field (y-)"
+msgstr "Asend – elektriväli (y-)"
+
+msgid "Freeing memory from the optical model\n"
+msgstr "Mälu vabastamine optilisest mudelist\n"
+
+msgid "Electron generation rate"
+msgstr "Elektronide genereerimise kiirus"
+
+msgid "Optical heating"
+msgstr "Optiline soojendus"
+
+msgid "Charge carrier generation rate"
+msgstr "Laenukandja genereerimise määr"
+
+msgid "Copy"
+msgstr "Kopeeri"
+
+msgid "Copy as JSON"
+msgstr "Kopeeri JSON-ina"
+
+msgid "Copy json/python path"
+msgstr "Kopeerige json/pythoni tee"
+
+msgid "Copy ObjID"
+msgstr "Kopeeri ObjID"
+
+msgid "Copy as LaTex"
+msgstr "Kopeeri LaTexina"
+
+msgid "Copy as csv"
+msgstr "Kopeeri csv-vormingus"
+
+msgid "Paste"
+msgstr "Kleebi"
+
+msgid "Reimport from database"
+msgstr "Reimport andmebaasist"
+
+msgid "Are you sure you want reimport the material values from:"
+msgstr "Kas olete kindel, et soovite materiaalsed väärtused uuesti importida:"
+
+msgid "File not found:"
+msgstr "Faili ei leitud:"
+
+msgid "Edit reference"
+msgstr "Redigeeri viidet"
+
+msgid "Delete reference"
+msgstr "Kustuta viide"
+
+msgid "Add reference"
+msgstr "Lisa viide"
+
+msgid "This simulation"
+msgstr "See simulatsioon"
+
+msgid "Electrical parameter editor for shape"
+msgstr "Elektriliste parameetrite redaktor kuju jaoks"
+
+msgid "Reference"
+msgstr "Viide"
+
+msgid "Bibliography editor"
+msgstr "Bibliograafia toimetaja"
+
+msgid "Electrical Mesh Editor"
+msgstr "Elektriline võrguredaktor"
+
+msgid ""
+"Y\n"
+"Dimension"
+msgstr ""
+"Y\n"
+"Dimensioon"
+
+msgid ""
+"X\n"
+"Dimension"
+msgstr ""
+"X\n"
+"Mõõtmed"
+
+msgid ""
+"Z\n"
+"Dimension"
+msgstr ""
+"Z\n"
+"Mõõtmed"
+
+msgid ""
+"Configure\n"
+"mesh"
+msgstr ""
+"Seadistage\n"
+"võrk"
+
+msgid ""
+"Import from\n"
+"layer editor"
+msgstr ""
+"Importida\n"
+"kihiredaktorist"
+
+msgid "Remesh"
+msgstr "Remesh"
+
+msgid "Configure mesh"
+msgstr "Võrgusilma seadistamine"
+
+msgid ""
+"Are you sure you want to overwrite the electrical mesh with a guessed mesh based on the "
+"layer structure?"
+msgstr ""
+"Kas olete kindel, et soovite elektrivõrgu üle kirjutada kihistruktuuri põhjal arvatava "
+"võrguga?"
+
+msgid "New simulation"
+msgstr "Uus simulatsioon"
+
+msgid ""
+"Open\n"
+"simulation"
+msgstr ""
+"Ava\n"
+"simulatsioon"
+
+msgid ""
+"Export\n"
+"Zip"
+msgstr ""
+"Ekspordi\n"
+"Zip"
+
+msgid ""
+"Run\n"
+"simulation"
+msgstr ""
+"Käivita\n"
+"simulatsioon"
+
+msgid "Run simulation"
+msgstr "Käivitage simulatsioon"
+
+msgid "Tutorials"
+msgstr "Õpetused"
+
+msgid "Manual"
+msgstr "Käsiraamat"
+
+msgid ""
+"Follow on\n"
+"Twitter"
+msgstr ""
+"Jälgi\n"
+"Twitteris"
+
+msgid ""
+"Subscribe\n"
+"on Youtube"
+msgstr ""
+
+msgid "Getting started"
+msgstr "Alustamine"
+
+msgid "1D Simulations"
+msgstr "1D simulatsioonid"
+
+msgid "Carrier trapping"
+msgstr "Vedaja püüdmine"
+
+msgid "2D electrical structures (OFETs)"
+msgstr "2D elektrilised struktuurid (OFET)"
+
+msgid "Large area devices/circuit models"
+msgstr "Suure ala seadmed/vooluahela mudelid"
+
+msgid "OLEDs"
+msgstr "OLED-id"
+
+msgid "Material databases"
+msgstr "Materjalide andmebaasid"
+
+msgid "Scripting"
+msgstr "Skriptimine"
+
+msgid "Frequency domain simulations"
+msgstr "Sageduspiirkonna simulatsioonid"
+
+msgid "Transient simulations"
+msgstr "Mööduvad simulatsioonid"
+
+msgid "Optical simulations"
+msgstr "Optilised simulatsioonid"
+
+msgid "Excitonic simulations"
+msgstr "Eksitoonilised simulatsioonid"
+
+msgid "Fitting"
+msgstr "Paigaldamine"
+
+msgid "Misc"
+msgstr "Muu"
+
+msgid "Basics"
+msgstr "Põhitõed"
+
+msgid ""
+"<big><b>Now save the simulation</b></big><br>Now select where you would like to save the "
+"simulation directory."
+msgstr ""
+"<big><b>Nüüd salvestage simulatsioon</b></big><br>Nüüd valige, kuhu soovite simulatsiooni "
+"kataloogi salvestada."
+
+msgid "password:"
+msgstr "parool:"
+
+msgid "Wrong password"
+msgstr "Vale parool"
+
+msgid ""
+"It's not a good idea to save the simulation in the installation directory.  Try saving it "
+"somewhere else, such as your desktop or home directory."
+msgstr ""
+"Simulatsiooni installikataloogi salvestamine ei ole hea mõte. Proovige salvestada see "
+"kuhugi mujale, näiteks oma töölauale või kodukataloogi."
+
+msgid "It's not a good idea to save the simulation in the oghma_local directory."
+msgstr "Simulatsiooni salvestamine kataloogi oghma_local ei ole hea mõte."
+
+msgid "That directory already exists.  Pick another name or delete the old one."
+msgstr "See kataloog on juba olemas. Valige mõni muu nimi või kustutage vana."
+
+msgid "Please select a device before clicking next"
+msgstr "Valige seade enne järgmise klõpsamist"
+
+msgid "Organic LED"
+msgstr "Orgaaniline LED"
+
+msgid "Crystalline silicon solar cell"
+msgstr "Kristalliline räni päikesepatarei"
+
+msgid "a-Si solar cell "
+msgstr "a-Si päikesepatarei"
+
+msgid "polycrystalline silicon "
+msgstr "polükristalliline räni"
+
+msgid "OFET "
+msgstr "OFET"
+
+msgid "Perovskite solar cell"
+msgstr "Perovskiit päikesepatarei"
+
+msgid "CIGS Solar cell"
+msgstr "CIGS päikesepatarei"
+
+msgid "Which type of device would you like to simulate?"
+msgstr "Millist tüüpi seadet soovite simuleerida?"
+
+msgid "Double click to open"
+msgstr "Avamiseks topeltklõpsake"
+
+msgid "Close"
+msgstr "Sulge"
+
+msgid "Show hidden"
+msgstr "Kuva peidetud"
+
+msgid "Object editor"
+msgstr "Objekti redaktor"
+
+msgid ""
+"Object\n"
+"enabled"
+msgstr ""
+
+msgid ""
+"Object\n"
+"disabled"
+msgstr ""
+
+msgid "About"
+msgstr "Umbes"
+
+msgid "Written by Roderick MacKenzie 2012-2023, released under the MIT software license."
+msgstr "Kirjutas Roderick MacKenzie 2012-2023, välja antud MIT tarkvaralitsentsi alusel."
+
+msgid "Version "
+msgstr "Versioon"
+
+msgid ""
+" is a general-purpose tool for simulation of light harvesting devices. It was originally "
+"written to simulate organic solar cells and OLEDs, but it has recently been extended to "
+"simulate other devices including silicon based devices. Currently the model can sumulate:"
+msgstr ""
+"on üldotstarbeline tööriist kergete koristusseadmete simuleerimiseks. Algselt kirjutati see "
+"orgaaniliste päikesepatareide ja OLED-ide simuleerimiseks, kuid hiljuti on seda laiendatud, "
+"et simuleerida muid seadmeid, sealhulgas ränipõhiseid seadmeid. Praegu suudab mudel kokku "
+"võtta:"
+
+msgid "Organic solar cells"
+msgstr "Orgaanilised päikesepatareid"
+
+msgid "Organic LEDs"
+msgstr "Orgaanilised LED-id"
+
+msgid "Crystalline silicon solar cells"
+msgstr "Kristallilised räni päikesepatareid"
+
+msgid "a-Si solar cells"
+msgstr "a-Si päikesepatareid"
+
+msgid "CIGS solar cells"
+msgstr "CIGS päikesepatareid"
+
+msgid ""
+"The model solves both electron and hole drift-diffusion, and carrier continuity equations "
+"in position space to describe the movement of charge within the device. The model also "
+"solves Poisson's equation to calculate the internal electrostatic potential. Recombination "
+"and carrier trapping are described within the model using a Shockley-Read-Hall (SRH) "
+"formalism, the distribution of trap sates can be arbitrarily defined. All equations can be "
+"solved either in steady state or in time domain. A fuller description of the model can be "
+"found in the here, in the associated publications and in the manual."
+msgstr ""
+"Mudel lahendab nii elektronide kui ka aukude triivi-difusiooni ja kandja järjepidevuse "
+"võrrandid positsiooniruumis, et kirjeldada laengu liikumist seadme sees. Mudel lahendab ka "
+"Poissoni võrrandi sisemise elektrostaatilise potentsiaali arvutamiseks. Rekombinatsiooni ja "
+"kandja lõksu kirjeldatakse mudelis Shockley-Read-Hall (SRH) formalismi abil, lõksude "
+"jaotust saab suvaliselt määratleda. Kõiki võrrandeid saab lahendada kas püsiseisundis või "
+"ajas. Mudeli täielikuma kirjelduse leiate siit, seotud väljaannetest ja juhendist."
+
+msgid "Legal"
+msgstr "Juriidiline"
+
+msgid "Translations"
+msgstr "Tõlked"
+
+msgid "Paths"
+msgstr "Rajad"
+
+msgid ""
+"Materials\n"
+"database"
+msgstr "Materjalid\andmebaas"
+
+msgid ""
+"Optical\n"
+"database"
+msgstr "Optiline\andmebaas"
+
+msgid ""
+"User\n"
+"data"
+msgstr "Kasutaja\andmed"
+
+msgid ""
+"Shape\n"
+"database"
+msgstr "Kuju\andmebaas"
+
+msgid ""
+"Filters\n"
+"database"
+msgstr "Filtrid\andmebaas"
+
+msgid ""
+"Backup\n"
+"Simulaion"
+msgstr ""
+"Varundus\n"
+"Simulatsioon"
+
+msgid ""
+"Solar spectrum\n"
+"generator"
+msgstr ""
+"Päikesespekter\n"
+"generaator"
+
+msgid "Add Material"
+msgstr "Lisage materjal"
+
+msgid "Add Filter"
+msgstr "Lisa filter"
+
+msgid "Add Spectra"
+msgstr "Lisage spektrid"
+
+msgid "Add Shape"
+msgstr "Lisa kujund"
+
+msgid "New backup"
+msgstr "Uus varukoopia"
+
+msgid "New backup:"
+msgstr "Uus varukoopia:"
+
+msgid "New backup name"
+msgstr "Uus varunimi"
+
+msgid "Shape"
+msgstr "Kuju"
+
+msgid "<big><b>Shape file</b></big><br>"
+msgstr "<big><b>Kujundifail</b></big><br>"
+
+msgid "Blur menu"
+msgstr "Hägustamise menüü"
+
+msgid "Normalization editor"
+msgstr "Normaliseerimisredaktor"
+
+msgid "Shape editor"
+msgstr "Kujundusredaktor"
+
+msgid "Configure honeycomb"
+msgstr "Konfigureerige kärgstruktuuri"
+
+msgid "Configure photonic xtal"
+msgstr "Seadistage fotooniline xtal"
+
+msgid "Configure photonic lens"
+msgstr "Seadistage fotooniline objektiiv"
+
+msgid "Configure saw wave"
+msgstr "Saelaine seadistamine"
+
+msgid "Configure gaussian"
+msgstr "Konfigureerige gaussi"
+
+msgid "Configure boundary"
+msgstr "Piiri konfigureerimine"
+
+msgid "Configure threshold"
+msgstr "Seadistage lävi"
+
+msgid "Configure"
+msgstr "Seadistage"
+
+msgid "Show labels"
+msgstr "Kuva sildid"
+
+msgid "Show data"
+msgstr "Näita andmeid"
+
+msgid "Show axis"
+msgstr "Näita telge"
+
+msgid "Normalize layer width"
+msgstr "Kihi laiuse normaliseerimine"
+
+msgid "Copy to clipboard"
+msgstr "Kopeerida lõikelauale"
+
+msgid "Save as SVG"
+msgstr "Salvesta SVG-na"
+
+msgid "Redraw"
+msgstr "Joonista ümber"
+
+msgid "Active layer"
+msgstr "Aktiivne kiht"
+
+msgid "From electrical parameters"
+msgstr "Elektriliste parameetrite järgi"
+
+msgid "From material db"
+msgstr "Materjalist db"
+
+msgid "<big><b>Spectra</b></big><br>"
+msgstr "<big><b>Spektrid</b></big><br>"
+
+msgid "Optical spectrum editor"
+msgstr "Optiline spektriredaktor"
+
+msgid "Spectra"
+msgstr "Spektrid"
+
+msgid "Basic"
+msgstr "Põhiline"
+
+msgid "Frequency mesh"
+msgstr "Sagedusvõrk"
+
+msgid "Additional information about gpvdm is available at"
+msgstr "Lisateavet gpvdm-i kohta leiate aadressilt"
+
+msgid "Report bugs to:"
+msgstr "Teatage vigadest aadressile:"
+
+msgid "Deletes the content of all scan directories."
+msgstr "Kustutab kõigi skannimiskataloogide sisu."
+
+msgid "Loads a simulation --load /path/containing/simulation/sim.oghma"
+msgstr "Laadib simulatsiooni --load /path/containing/simulation/sim.oghma"
+
+msgid "Extract the sim.oghma archive --unpack"
+msgstr "Pakkige välja arhiiv sim.oghma -- pakkige lahti"
+
+msgid "Extract the sim.oghma archive --pack"
+msgstr "Pakkige välja sim.oghma arhiiv -- pakk"
+
+msgid "Electrical parameter editor"
+msgstr "Elektriliste parameetrite redaktor"
+
+msgid "Device"
+msgstr "Seade"
+
+msgid ""
+"Simulation\n"
+"Notes"
+msgstr ""
+"Simulatsioon\n"
+"Märkused"
+
+msgid ""
+"Hints\n"
+"Window"
+msgstr ""
+"Vihjed\n"
+"Aken"
+
+msgid ""
+"Interface\n"
+"Language"
+msgstr ""
+"Liides\n"
+"Keel"
+
+msgid "Assosiated paper"
+msgstr "Seotud paber"
+
+msgid "Documentation"
+msgstr "Dokumentatsioon"
+
+msgid "Language"
+msgstr "Keel"
+
+msgid ""
+"<big><b>Record notes about the simulation here</b></big><br>Use this window to make notes "
+"about the simulation."
+msgstr ""
+"<big><b>Salvestage siin märkmeid simulatsiooni kohta</b></big><br>Kasutage seda akent "
+"simulatsiooni kohta märkmete tegemiseks."
+
+msgid "Charge denisty (m^{-3})"
+msgstr "Laengu tihedus (m^{-3})"
+
+msgid "Material gradient editor"
+msgstr "Materjali gradiendi redaktor"
+
+msgid "Save"
+msgstr "Salvesta"
+
+msgid "New scan"
+msgstr "Uus skaneerimine"
+
+msgid "Delete scan"
+msgstr "Kustuta skannimine"
+
+msgid "Clone scan"
+msgstr "Klooni skaneerimine"
+
+msgid "Rename scan"
+msgstr "Nimeta skannimine ümber"
+
+msgid "Clean all"
+msgstr "Puhastage kõik"
+
+msgid "Run all scans"
+msgstr "Käivitage kõik skannimised"
+
+msgid "Help"
+msgstr "Abi"
+
+msgid "Plot fits"
+msgstr "Krunt sobib"
+
+msgid "Run simulation no generation"
+msgstr "Käita simulatsiooni genereerimata"
+
+msgid "Run single fit"
+msgstr "Jookse üksinda"
+
+msgid "Clean unconverged simulation"
+msgstr "Puhas konvergeerimata simulatsioon"
+
+msgid "Clean simulation output"
+msgstr "Puhas simulatsiooni väljund"
+
+msgid "Push unconverged to hpc"
+msgstr "Push unconverged hpc-le"
+
+msgid "Change dir"
+msgstr "Muuda dir"
+
+msgid "Report"
+msgstr "Aruanne"
+
+msgid "Scan"
+msgstr "Skaneeri"
+
+msgid "Advanced"
+msgstr "Täpsemalt"
+
+msgid "JV experiment window"
+msgstr "JV katseaken"
+
+msgid ""
+"Import data\n"
+"from file"
+msgstr ""
+"Andmete importimine\n"
+"failist"
+
+msgid ""
+"From\n"
+"Equation"
+msgstr ""
+"Alates\n"
+"võrrandist"
+
+msgid "Reference information"
+msgstr "Viiteteave"
+
+msgid "Cost"
+msgstr "Maksumus"
+
+msgid "Cost of material"
+msgstr "Materjali maksumus"
+
+msgid "File"
+msgstr "Fail"
+
+msgid "Align and distribute"
+msgstr "Joondage ja levitage"
+
+msgid "Left"
+msgstr "Vasakule"
+
+msgid "Right"
+msgstr "Õige"
+
+msgid "Distribute"
+msgstr "Levitada"
+
+msgid "z"
+msgstr "z"
+
+msgid "Exciton simulation editor"
+msgstr "Excitoni simulatsiooni redaktor"
+
+msgid ""
+"From\n"
+"File"
+msgstr ""
+"Alates\n"
+"Fail"
+
+msgid "Insert reference information"
+msgstr "Sisestage viiteteave"
+
+msgid ""
+"Are you sure you want to edit the circuit directly?  The circuit will no longer automaticly "
+"be updated as you change the layer structure, and the electrical parameters editor will be "
+"disabled.  Use can use the reset function in the circuit diagram editor to resore this "
+"functionality"
+msgstr ""
+"Kas olete kindel, et soovite ahelat otse redigeerida? Ahelat ei värskendata enam "
+"automaatselt, kui muudate kihi struktuuri ja elektriliste parameetrite redaktor keelatakse. "
+"Kasutamine võib selle funktsiooni taastamiseks kasutada lülitusskeemide redaktori "
+"lähtestamise funktsiooni"
+
+msgid "Component"
+msgstr "Komponent"
+
+msgid "Circuit diagram"
+msgstr "Vooluskeem"
+
+msgid "Use epitaxy as base"
+msgstr "Kasutage alusena epitaksiat"
+
+msgid "Free hand drawing"
+msgstr "Vaba käega joonistamine"
+
+msgid "Enabled"
+msgstr "Lubatud"
+
+msgid "Variable"
+msgstr "Muutuv"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Max"
+
+msgid "Random function"
+msgstr "Juhuslik funktsioon"
+
+msgid "JSON Variable"
+msgstr "JSON-muutuja"
+
+msgid "FDTD Editor"
+msgstr "FDTD redaktor"
+
+msgid "Configure hardware"
+msgstr "Seadistage riistvara"
+
+msgid ""
+"Hardware\n"
+"benchmark"
+msgstr ""
+"Riistvara\n"
+"etalon"
+
+msgid ""
+"RNG\n"
+"test"
+msgstr ""
+"RNG\n"
+"test"
+
+msgid ""
+"Clear\n"
+"Newton cache"
+msgstr ""
+"Tühjenda\n"
+"Newtoni vahemälu"
+
+msgid "CPU/GPU configuration"
+msgstr "CPU/GPU konfiguratsioon"
+
+msgid "Newton cache"
+msgstr "Newtoni vahemälu"
+
+msgid "Random numbers"
+msgstr "Juhuslikud numbrid"
+
+msgid "Electrostatic solver"
+msgstr "Elektrostaatiline lahendaja"
+
+msgid "Drift diffusion"
+msgstr "Triivi difusioon"
+
+msgid "Simple circuit solver"
+msgstr "Lihtne vooluringi lahendaja"
+
+msgid "Poission solver"
+msgstr "Mürgistuse lahendaja"
+
+msgid "Poission solver configuration"
+msgstr "Poission Solver konfiguratsioon"
+
+msgid "Newton solver"
+msgstr "Newtoni lahendaja"
+
+msgid "Exciton solver"
+msgstr "Excitoni lahendaja"
+
+msgid "Singlet solver"
+msgstr "Singleti lahendaja"
+
+msgid "Newton solver configuration"
+msgstr "Newtoni lahendaja konfiguratsioon"
+
+msgid "Configuration"
+msgstr "Seadistamine"
+
+msgid "Circuit solver configuration"
+msgstr "Voolulahendaja konfiguratsioon"
+
+msgid "Data imported from: "
+msgstr "Andmed imporditud:"
+
+msgid "Layer editor"
+msgstr "Kihiredaktor"
+
+msgid "Layer name"
+msgstr "Kihi nimi"
+
+msgid "Thicknes"
+msgstr "Paksused"
+
+msgid "Optical material"
+msgstr "Optiline materjal"
+
+msgid "Layer type"
+msgstr "Kihi tüüp"
+
+msgid ""
+"Solve optical\n"
+"problem"
+msgstr ""
+"Lahendage optiline\n"
+"probleem"
+
+msgid ""
+"Solve thermal\n"
+"problem"
+msgstr ""
+"Lahendage termiline\n"
+"probleem"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "start:"
+msgstr "algus:"
+
+msgid "stop:"
+msgstr "peatus:"
+
+msgid "Red=not found in materials DB"
+msgstr "Punane = ei leitud materjalidest DB"
+
+msgid ""
+"Enable\n"
+"Drift Diff."
+msgstr ""
+"Luba\n"
+"Drift Diff."
+
+msgid ""
+"Enable\n"
+"Auger"
+msgstr ""
+"Luba\n"
+"Tigu"
+
+msgid ""
+"Dynamic\n"
+"SRH traps"
+msgstr ""
+"Dünaamilised\n"
+"SRH-lõksud"
+
+msgid "Min trap depth"
+msgstr "Minimaalne lõksu sügavus"
+
+msgid "Max trap depth"
+msgstr "Maksimaalne lõksu sügavus"
+
+msgid "Min Fermi level"
+msgstr "Min Fermi tase"
+
+msgid "Fn points"
+msgstr "Fn-punktid"
+
+msgid "Fermi integral points"
+msgstr "Fermi integraalpunktid"
+
+msgid ""
+"Equilibrium\n"
+"SRH traps"
+msgstr ""
+"Tasakaalu\n"
+"SRH püünised"
+
+msgid "Excitons"
+msgstr "Eksitoonid"
+
+msgid ""
+"Excited\n"
+"states laser"
+msgstr ""
+
+msgid "Photon rate equation"
+msgstr "Footonikiiruse võrrand"
+
+msgid ""
+"Excited\n"
+"states OPV"
+msgstr ""
+"Põnevil\n"
+"on OPV"
+
+msgid "Carrier density points"
+msgstr "Kandja tiheduse punktid"
+
+msgid "Fermi-dirac integral steps"
+msgstr "Fermi-dirac integraalastmed"
+
+msgid "Minimum trap depth (eV):"
+msgstr "Minimaalne püünissügavus (eV):"
+
+msgid "That's not a number.."
+msgstr "see pole number.."
+
+msgid "Maximum trap depth (eV):"
+msgstr "Lõksu maksimaalne sügavus (eV):"
+
+msgid "Minimum fermi level (eV):"
+msgstr "Minimaalne fermi tase (eV):"
+
+msgid "Number of carrier density points to calculate:"
+msgstr "Arvutatavate kande tiheduse punktide arv:"
+
+msgid "Number of steps in the Fermi-dirac integral:"
+msgstr "Sammude arv Fermi-dirac integraalis:"
+
+msgid "DoS Config"
+msgstr "DoS-i konfiguratsioon"
+
+msgid "Dos Config"
+msgstr "Dos Config"
+
+msgid ""
+"Light\n"
+"Sources"
+msgstr ""
+"Valgus\n"
+"Allikad"
+
+msgid ""
+"Lasers\n"
+"(fs)"
+msgstr ""
+"Laserid\n"
+"(fs)"
+
+msgid ""
+"Transfer\n"
+"Matrix"
+msgstr ""
+"Ülekanne\n"
+"Matrix"
+
+msgid ""
+"Optical\n"
+"Outcoupling"
+msgstr ""
+"Optiline\n"
+"Väljaühendus"
+
+msgid ""
+"Ray tracing\n"
+"editor"
+msgstr ""
+"Kiirte jälgimise\n"
+"redaktor"
+
+msgid ""
+"Optical\n"
+"Detectors"
+msgstr ""
+"Optilised\n"
+"detektorid"
+
+msgid ""
+"FDTD\n"
+"Simulation"
+msgstr ""
+"FDTD\n"
+"Simulatsioon"
+
+msgid ""
+"Mode\n"
+"Calculator"
+msgstr ""
+"Režiim\n"
+"Kalkulaator"
+
+msgid ""
+"Optical\n"
+"thickness"
+msgstr ""
+"Optiline\n"
+"paksus"
+
+msgid ""
+"Optical\n"
+"mesh"
+msgstr ""
+"Optiline\n"
+"võrk"
+
+msgid ""
+"Boundary\n"
+"Conditions"
+msgstr ""
+"Piir\n"
+"Tingimused"
+
+msgid "<big><b>Laser setup</b></big><br> Use this window to set up your lasers."
+msgstr ""
+"<big><b>Laseri seadistamine</b></big><br> Kasutage seda akent laserite seadistamiseks."
+
+msgid ""
+"<big><b>The light sources window</b></big><br>Use this window to setup optical sources for "
+"the transfer matrix, ray tracing and FDTD simulations."
+msgstr ""
+"<big><b>Valgusallikate aken</b></big><br>Kasutage seda akent optiliste allikate "
+"seadistamiseks ülekandemaatriksi, kiirte jälgimise ja FDTD simulatsioonide jaoks."
+
+msgid "<big><b>The ray tracing editor</b></big><br> Use this window to configure ray tracing."
+msgstr ""
+"<big><b>Kiirte jälgimise redaktor</b></big><br> Kasutage seda akent kiirte jälgimise "
+"konfigureerimiseks."
+
+msgid ""
+"<big><b>The detectors window</b></big><br>Use this window to setup optical detectors.  "
+"These can be used for the ray tracing simulations."
+msgstr ""
+"<big><b>Detektori aken</b></big><br>Kasutage seda akent optiliste detektorite "
+"seadistamiseks. Neid saab kasutada kiirte jälgimise simulatsioonide jaoks."
+
+msgid ""
+"<big><b>FDTD</b></big><br> Use this window to setup a finite difference time domain "
+"simulation."
+msgstr ""
+"<big><b>FDTD</b></big><br> Kasutage seda akent lõpliku erinevuse aja domeeni simulatsiooni "
+"seadistamiseks."
+
+msgid ""
+"<big><b>Mode calculator</b></big><br> Use this window to setup a the optical mode "
+"calculator."
+msgstr ""
+"<big><b>Režiimi kalkulaator</b></big><br> Kasutage seda akent optilise režiimi kalkulaatori "
+"seadistamiseks."
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh, the window can also be used to change the dimensionality "
+"of the simulation."
+msgstr ""
+"<big><b>Võrguredaktor</b></big>\n"
+"Kasutage seda akent võrgu seadistamiseks, akent saab kasutada ka simulatsiooni mõõtmete "
+"muutmiseks."
+
+msgid "Optical Mesh Editor"
+msgstr "Optilise võrguredaktor"
+
+msgid "Boundary conditions"
+msgstr "Piirtingimused"
+
+msgid ""
+"<big><b>The optical simulation window</b></big><br>Use this window to perform optical "
+"simulations.  Click on the play button to run a simulation."
+msgstr ""
+"<big><b>Optilise simulatsiooni aken</b></big><br>Kasutage seda akent optiliste "
+"simulatsioonide tegemiseks. Simulatsiooni käivitamiseks klõpsake esitusnupul."
+
+msgid ""
+"Click on the play button to run an optical simulation.  The results will be displayed in "
+"the tabs to the right."
+msgstr ""
+"Optilise simulatsiooni käivitamiseks klõpsake esitusnupul. Tulemused kuvatakse "
+"parempoolsetel vahekaartidel."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Tutorial video</b></"
+"big><br>Designing optical filters and reflective coatings."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Õpetusvideo</b></"
+"big><br>Optiliste filtrite ja peegeldavate katete kujundamine."
+
+msgid ""
+"<big><b>The optical outcoupling window</b></big><br>Use this window to calculate how much "
+"light escapes the device. This is useful whend designing OLEDs and other light emitting "
+"structures."
+msgstr ""
+"<big><b>Optilise väljundi aken</b></big><br>Kasutage seda akent seadmest väljuva valguse "
+"arvutamiseks. See on kasulik OLED-ide ja muude valgust kiirgavate struktuuride kavandamisel."
+
+msgid ""
+"<big><b>Optical thickness</b></big><br>Usually the optical thickness of a layer will be "
+"taken from the layer structure set out in the layer editor. However, sometimes one wants to "
+"simulate very thick layers. This window will enable you to force the optical thickness to a "
+"value while maintaining it's physical thickness."
+msgstr ""
+"<big><b>Optiline paksus</b></big><br>Tavaliselt võetakse kihi optiline paksus "
+"kihiredaktoris määratud kihistruktuurist. Vahel aga tahetakse simuleerida väga pakse kihte. "
+"See aken võimaldab teil sundida optilist paksust teatud väärtusele, säilitades samal ajal "
+"selle füüsilise paksuse."
+
+msgid "Edit parasitic components"
+msgstr "Parasiitkomponentide muutmine"
+
+msgid "Parasitic components"
+msgstr "Parasiitkomponendid"
+
+msgid "Registration window"
+msgstr "Registreerimise aken"
+
+msgid "Enter the license key below:"
+msgstr "Sisestage litsentsi võti allpool:"
+
+msgid "Key"
+msgstr "Võti"
+
+msgid "Can't open file "
+msgstr "Faili ei saa avada"
+
+msgid "back"
+msgstr "tagasi"
+
+msgid "home"
+msgstr "Kodu"
+
+msgid "Scanning probe microscopy editor"
+msgstr "Skaneeriva sondi mikroskoopia redaktor"
+
+msgid "No files were given to load"
+msgstr "Faile ei antud laadimiseks"
+
+msgid ""
+"3D\n"
+"Mode"
+msgstr ""
+"3D\n"
+"režiim"
+
+msgid "New"
+msgstr "Uus"
+
+msgid "Rename"
+msgstr "Nimeta ümber"
+
+msgid "Run"
+msgstr "Jookse"
+
+msgid ""
+"Plot\n"
+"File"
+msgstr ""
+"Joonis\n"
+"Fail"
+
+msgid ""
+"View raw\n"
+"json"
+msgstr ""
+"Kuva töötlemata\n"
+"json"
+
+msgid "Cache path:"
+msgstr "Vahemälu tee:"
+
+msgid "Newton cache used"
+msgstr "Kasutatud Newtoni vahemälu"
+
+msgid "The cache directory does not exist"
+msgstr "Vahemälu kataloogi pole olemas"
+
+msgid "The cache path needs to end in cache."
+msgstr "Vahemälu tee peab lõppema vahemäluga."
+
+msgid "The cache is empty"
+msgstr "Vahemälu on tühi"
+
+msgid "I have emptied the cache"
+msgstr "Tühjendasin vahemälu"
+
+msgid "<big><b>Simulation finished!</b></big><br>Click on the plot icon to plot the results"
+msgstr ""
+"<big><b>Simulatsioon on lõppenud!</b></big><br>Tulemuste joonistamiseks klõpsake joonise "
+"ikoonil"
+
+msgid "Ray trace editor"
+msgstr "Kiirte jälgimise redaktor"
+
+msgid "Fit configure"
+msgstr "Fit configure"
+
+msgid "Duplicate variables"
+msgstr "Dubleerivad muutujad"
+
+msgid "Fit variables"
+msgstr "Muutujate sobitamine"
+
+msgid "Fit rules"
+msgstr "Sobivuse reeglid"
+
+msgid "Configure minimizer"
+msgstr "Seadistage minimeerija"
+
+msgid "Generaton rate editor"
+msgstr "Genereerimiskiiruse redaktor"
+
+msgid "Generation rate (m^{-3}s^{-1})"
+msgstr "Tootmiskiirus (m^{-3}s^{-1})"
+
+msgid "json id"
+msgstr "json id"
+
+msgid "Reference manager"
+msgstr "Viitehaldur"
+
+msgid ""
+"Layer\n"
+"editor"
+msgstr ""
+"Kihi\n"
+"redaktor"
+
+msgid "Contacts"
+msgstr "Kontaktid"
+
+msgid ""
+"Electrical\n"
+"parameters"
+msgstr ""
+"Elektrilised\n"
+"parameetrid"
+
+msgid ""
+"Emission\n"
+"parameters"
+msgstr ""
+"Emissioon\n"
+"parameetrid"
+
+msgid ""
+"Substrate\n"
+"xz-size"
+msgstr ""
+"Substraat\n"
+"xz-suurus"
+
+msgid ""
+"<big><b>Contacts window</b></big>\n"
+"Use this window to change the layout of the contacts on the device"
+msgstr ""
+"<big><b>Kontaktide aken</b></big>\n"
+"Kasutage seda akent seadme kontaktide paigutuse muutmiseks"
+
+msgid ""
+"<big><b>Device layers</b></big>\n"
+"Use this window to configure the structure of the device."
+msgstr ""
+"<big><b>Seadme kihid</b></big>\n"
+"Kasutage seda akent seadme struktuuri konfigureerimiseks."
+
+msgid ""
+"<big><b>xz dimension editor</b></big>\n"
+"Use this window to configure the xz size of the device."
+msgstr ""
+"<big><b>xz mõõtmete redaktor</b></big>\n"
+"Kasutage seda akent seadme xz suuruse seadistamiseks."
+
+msgid ""
+"<big><b>Electrical parameters</b></big>\n"
+"Use this window to change the electrical parameters of each layer."
+msgstr ""
+"<big><b>Elektrilised parameetrid</b></big>\n"
+"Kasutage seda akent iga kihi elektriliste parameetrite muutmiseks."
+
+msgid ""
+"<big><b>Emission parameters</b></big>\n"
+"Use this window to set if a layer emits light or not.  You can choose between theoretically "
+"calculated emission spectra and imported experimental spectra."
+msgstr ""
+"<big><b>Emissiooniparameetrid</b></big>\n"
+"Kasutage seda akent, et määrata, kas kiht kiirgab valgust või mitte. Saate valida "
+"teoreetiliselt arvutatud emissioonispektrite ja imporditud eksperimentaalsete spektrite "
+"vahel."
+
+msgid "Frequency start"
+msgstr "Sageduse algus"
+
+msgid "Frequency stop"
+msgstr "Sageduse peatus"
+
+msgid "Max points"
+msgstr "Max punktid"
+
+msgid "Multiply"
+msgstr "Korrutada"
+
+msgid "Paramter to change"
+msgstr "Muutmise parameeter"
+
+msgid "Parameter scan window"
+msgstr "Parameetrite skannimise aken"
+
+msgid "Calculate"
+msgstr "Arvutama"
+
+msgid "Export spectrum"
+msgstr "Ekspordi spekter"
+
+msgid "Spectrum"
+msgstr "Spekter"
+
+msgid "mode Editor"
+msgstr "režiimi redaktor"
+
+msgid "Edit contacts"
+msgstr "Redigeeri kontakte"
+
+msgid "Top/Bottom"
+msgstr "Ülemine/alumine"
+
+msgid ""
+"Applied\n"
+"voltage"
+msgstr ""
+"Rakendatud\n"
+"pinge"
+
+msgid "Start"
+msgstr "Alusta"
+
+msgid "Width"
+msgstr "Laius"
+
+msgid "Contact resistance\n"
+msgstr "Kontakttakistus\n"
+
+msgid "Shunt resistance"
+msgstr "Šundi takistus"
+
+msgid ""
+"Charge density/\n"
+"Fermi-offset"
+msgstr ""
+"Laengu tihedus/\n"
+"Fermi-nihe"
+
+msgid ""
+"Majority\n"
+"carrier"
+msgstr ""
+"Enamus\n"
+"operaator"
+
+msgid "ve0 (m/s)"
+msgstr "ve0 (m/s)"
+
+msgid "vh0 (m/s)"
+msgstr "vh0 (m/s)"
+
+msgid ""
+"Physical\n"
+"model"
+msgstr ""
+"Füüsiline\n"
+"mudel"
+
+msgid "Neural networks editor"
+msgstr "Närvivõrkude redaktor"
+
+msgid ""
+"Compile\n"
+"to json"
+msgstr ""
+"Kompileerimine\n"
+"json-vormingusse"
+
+msgid "Reporting error...."
+msgstr "Teata veast...."
+
+msgid "Diode"
+msgstr "Diood"
+
+msgid "Power law"
+msgstr "Võimuseadus"
+
+msgid "Barrier"
+msgstr "Barjäär"
+
+msgid "Wire"
+msgstr "Traat"
+
+msgid "Ground"
+msgstr "Maapind"
+
+msgid "Voltage source"
+msgstr "Pingeallikas"
+
+msgid "Pointer"
+msgstr "Osuti"
+
+msgid "Scroll"
+msgstr "Kerige"
+
+msgid "Clean"
+msgstr "Puhas"
+
+msgid "Input vector"
+msgstr "Sisendvektor"
+
+msgid "Output vector"
+msgstr "Väljundvektor"
+
+msgid "Enter the time at which the laser pulse will fire (-1) to turn it off"
+msgstr "Sisestage laserimpulsi väljalülitamise aeg (-1)."
+
+msgid "Sun"
+msgstr "Päike"
+
+msgid "Laser"
+msgstr "Laser"
+
+msgid "fs Laser"
+msgstr "fs Laser"
+
+msgid "Enter the start time of the simulation"
+msgstr "Sisestage simulatsiooni algusaeg"
+
+msgid "Length"
+msgstr "Pikkus"
+
+msgid "dt"
+msgstr "dt"
+
+msgid "Start Voltage"
+msgstr "Käivituspinge"
+
+msgid "Stop Voltage"
+msgstr "Peatuspinge"
+
+msgid "step multiplyer"
+msgstr "sammukordaja"
+
+msgid "Sun start"
+msgstr "Päikese algus"
+
+msgid "Sun stop"
+msgstr "Päikesepeatus"
+
+msgid "Laser start"
+msgstr "Laserkäivitus"
+
+msgid "Laser stop"
+msgstr "Laserpeatus"
+
+msgid ""
+"Save\n"
+"video"
+msgstr ""
+"Salvesta\n"
+"video"
+
+msgid ""
+"Storyboard\n"
+"to clipboard"
+msgstr ""
+"Süžeeskeemi\n"
+"lõikepuhvrisse"
+
+msgid "Autoscale"
+msgstr "Automaatne skaleerimine"
+
+msgid "Set log scale y"
+msgstr "Määra logiskaala y"
+
+msgid "Set log scale x"
+msgstr "Määra logiskaala x"
+
+msgid "Plot"
+msgstr "Süžee"
+
+msgid "Scale"
+msgstr "Kaal"
+
+msgid "Video"
+msgstr "Video"
+
+msgid ""
+"Set\n"
+"Temperature"
+msgstr ""
+"Määra\n"
+"Temperatuur"
+
+msgid ""
+"Configure\n"
+"Model"
+msgstr ""
+"Seadistage\n"
+"mudel"
+
+msgid ""
+"Joule\n"
+"Heating"
+msgstr ""
+"Joule\n"
+"Küte"
+
+msgid ""
+"Parasitic\n"
+"Heating"
+msgstr ""
+"Parasiit\n"
+"Küte"
+
+msgid ""
+"Optical\n"
+"Heating"
+msgstr ""
+"Optiline\n"
+"Küte"
+
+msgid ""
+"Recombination\n"
+"heating"
+msgstr ""
+"Rekombinatsioon\n"
+"küte"
+
+msgid ""
+"Thermal\n"
+"parameters"
+msgstr ""
+"Termilised\n"
+"parameetrid"
+
+msgid ""
+"Thermal\n"
+"mesh"
+msgstr ""
+"Termiline\n"
+"võrk"
+
+msgid ""
+"<big><b>Thermal parameters</b></big>\n"
+"Use this window to change the thermal parameters of each layer."
+msgstr ""
+"<big><b>Soojusparameetrid</b></big>\n"
+"Kasutage seda akent iga kihi termiliste parameetrite muutmiseks."
+
+msgid "Enter the new temperature"
+msgstr "Sisestage uus temperatuur"
+
+msgid "Thermal boundary conditions"
+msgstr "Termilised piirtingimused"
+
+msgid "Configure thermal model"
+msgstr "Seadistage termiline mudel"
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh."
+msgstr ""
+"<big><b>Võrguredaktor</b></big>\n"
+"Kasutage seda akent võrgu seadistamiseks."
+
+msgid "Thermal Mesh Editor"
+msgstr "Termovõrgu redaktor"
+
+msgid "Experimental data"
+msgstr "Eksperimentaalsed andmed"
+
+msgid "Delta=Experiment - Simulation"
+msgstr "Delta=Katse – Simulatsioon"
+
+msgid "Configure fit"
+msgstr "Sobivuse seadistamine"
+
+msgid "Fit patch"
+msgstr "Sobiv plaaster"
+
+msgid "Local duplicate"
+msgstr "Kohalik duplikaat"
+
+msgid "Function"
+msgstr "Funktsioon"
+
+msgid "JSON x"
+msgstr "JSON x"
+
+msgid "JSON y"
+msgstr "JSON y"
+
+msgid "Frequency domain experiment window"
+msgstr "Sagedusdomeeni katse aken"
+
+msgid "Thermal parameter editor"
+msgstr "Soojusparameetrite redaktor"
+
+msgid "Device structure"
+msgstr "Seadme struktuur"
+
+msgid ""
+"<big><b>The device structure tab</b></big><br> Use this tab to change the structure of the "
+"device, the layer thicknesses and to perform optical simulations.  You can also browse the "
+"materials data base and  edit the electrical mesh."
+msgstr ""
+"<big><b>Seadme struktuuri vahekaart</b></big><br> Kasutage seda vahekaarti seadme "
+"struktuuri, kihtide paksuste muutmiseks ja optiliste simulatsioonide tegemiseks. Samuti "
+"saate sirvida materjalide andmebaasi ja redigeerida elektrivõrku."
+
+msgid "Terminal"
+msgstr "Terminal"
+
+msgid ""
+"<big><b>The terminal window</b></big><br>The output of the model will be displayed in this "
+"window, watch this screen for debugging and convergence information."
+msgstr ""
+"<big><b>Terminaali aken</b></big><br>Selles aknas kuvatakse mudeli väljund, silumise ja "
+"lähenemise teabe saamiseks vaadake seda ekraani."
+
+msgid "Tutorials/Documentation"
+msgstr "Õpetused/dokumentatsioon"
+
+msgid ""
+"<big><b>Tutorials/Documentation</b></big><br>Here you can find tutorials, videos, "
+"worksheets, and talks about this software and simulating opto-electronic devices in "
+"general.  Although this software is easy to use with it's friendly interface, under the "
+"hood it is a highly complex model and powerful model, it is worth taking time to read the "
+"documentation to understand it.  This will enable you to get the most out of this software "
+"and your experimental data."
+msgstr ""
+"<big><b>Õpetused/Dokumentatsioon</b></big><br>Siit leiate selle tarkvara ja "
+"optoelektrooniliste seadmete simuleerimise kohta üldiselt õpetusi, videoid, töölehti ja "
+"juttu. Kuigi seda tarkvara on selle sõbraliku liidesega lihtne kasutada, on see kapoti all "
+"väga keerukas ja võimas mudel, mille mõistmiseks tasub dokumentatsiooni lugemiseks aega "
+"võtta. See võimaldab teil sellest tarkvarast ja katseandmetest maksimumi võtta."
+
+msgid ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Watch the video</a></b></big><br> "
+"Performing my first solar cell simulation"
+msgstr ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Vaadake videot</a></b></big><br> Teostan "
+"oma esimest päikesepatarei simulatsiooni"
+
+msgid "Output"
+msgstr "Väljund"
+
+msgid ""
+"<big><b>Output</b></big><br>This shows the root simulation directory, this is where the "
+"results are stored.  Double click on a file to see what is in it.."
+msgstr ""
+"<big><b>Väljund</b></big><br>See näitab juursimulatsiooni kataloogi, kuhu salvestatakse "
+"tulemused. Topeltklõpsake failil, et näha, mis selles on."
+
+msgid "Information"
+msgstr "Teave"
+
+msgid ""
+"<big><b>The fitting variables window</b></big><br> Use this window to select the variables "
+"use to perform the fit."
+msgstr ""
+"<big><b>Sobivate muutujate aken</b></big><br> Kasutage seda akent sobitamiseks kasutatavate "
+"muutujate valimiseks."
+
+msgid "Fit the simulation to experimental data"
+msgstr "Sobitage simulatsioon katseandmetega"
+
+msgid "Data sets"
+msgstr "Andmekogumid"
+
+msgid "Rename the fit:"
+msgstr "Nimetage sobivus ümber:"
+
+msgid "Clone the experiment:"
+msgstr "Kloonige katse:"
+
+msgid "Export the simulation"
+msgstr "Ekspordi simulatsioon"
+
+msgid "Zip file"
+msgstr "Zip-fail"
+
+msgid "Are you sure you want to delete the experiment: "
+msgstr "Kas olete kindel, et soovite katse kustutada?"
+
+msgid "Make a new fit:"
+msgstr "Tehke uus sobivus:"
+
+msgid "Error function"
+msgstr "Veafunktsioon"
+
+msgid "Log scale"
+msgstr "Palkide skaala"
+
+msgid "Open file"
+msgstr "Avatud fail"
+
+msgid "Back"
+msgstr "tagasi"
+
+msgid "Home"
+msgstr "Kodu"
+
+msgid "is not a number.."
+msgstr "ei ole number.."
+
+msgid "Complex Density of states editor"
+msgstr "Olekute komplekstiheduse redaktor"
+
+msgid "LUMO numerical"
+msgstr "LUMO numbriline"
+
+msgid "HOMO numerical"
+msgstr "HOMO numbriline"
+
+msgid "Please cite these papers:"
+msgstr "Palun tsiteerida neid pabereid:"
+
+msgid "If you publish a paper, book or thesis using results from "
+msgstr "Kui avaldate paberi, raamatu või lõputöö, kasutades tulemusi alates"
+
+msgid "This is not a valide e-mail address"
+msgstr "See ei ole kehtiv e-posti aadress"
+
+msgid "The e-mail addresses do not match."
+msgstr "E-posti aadressid ei ühti."
+
+msgid "Please enter your first name."
+msgstr "Palun sisesta oma eesnimi."
+
+msgid "Please enter your surname."
+msgstr "Palun sisesta oma perekonnanimi."
+
+msgid "Please enter your Company/University."
+msgstr "Palun sisestage oma ettevõte/ülikool."
+
+msgid "Please enter how you heard about OghmaNano."
+msgstr "Palun sisestage, kuidas te OghmaNanost kuulsite."
+
+msgid "Please enter what you plan on using OghmaNano for."
+msgstr "Palun sisestage, milleks kavatsete OghmaNanot kasutada."
+
+msgid "Your version of OghmaNano is too old to register, please download the latest version."
+msgstr "Teie OghmaNano versioon on registreerimiseks liiga vana, laadige alla uusim versioon."
+
+msgid "Please register to use OghmaNano. Thanks!"
+msgstr "OghmaNano kasutamiseks registreeruge. Aitäh!"
+
+msgid "First name"
+msgstr "Eesnimi"
+
+msgid "Surname"
+msgstr "Perekonnanimi"
+
+msgid "Company/University"
+msgstr "Ettevõte/ülikool"
+
+msgid "E-mail"
+msgstr "E-post"
+
+msgid "Confirm e-mail"
+msgstr "Kinnita email"
+
+msgid "I heard about OghmaNano from:"
+msgstr "Kuulsin OghmaNanost:"
+
+msgid "I am most interested in simulating:"
+msgstr "Mind huvitab kõige rohkem simuleerimine:"
+
+msgid " will not work until you register.  Would do you want to exit?"
+msgstr "ei tööta enne, kui registreerute. Kas soovite väljuda?"
+
+msgid "Suns v.s. Voc"
+msgstr "Suns v.s. Voc"
+
+msgid "Light source (y0)"
+msgstr "Valgusallikas (y0)"
+
+msgid "Light source"
+msgstr "Valgusallikas"
+
+msgid "Filters (y0)"
+msgstr "Filtrid (y0)"
+
+msgid "Filters"
+msgstr "Filtrid"
+
+msgid "Run optical simulation"
+msgstr "Käivitage optiline simulatsioon"
+
+msgid ""
+"Transfer\n"
+"matrix"
+msgstr ""
+"Ülekanne\n"
+"maatriks"
+
+msgid ""
+"Transfer\n"
+"matrix FD"
+msgstr ""
+"Ülekanne\n"
+"maatriks FD"
+
+msgid ""
+"Exponential\n"
+"profile"
+msgstr ""
+"Eksponentsiaalne\n"
+"profiil"
+
+msgid ""
+"Flat\n"
+"profile"
+msgstr ""
+"Lame\n"
+"profiil"
+
+msgid ""
+"From\n"
+"file"
+msgstr ""
+
+msgid ""
+"From QE\n"
+"spectra"
+msgstr ""
+"QE\n"
+"spectrast"
+
+msgid ""
+"Constant\n"
+"value"
+msgstr ""
+"Püsiv\n"
+"väärtus"
+
+msgid "Edit constant"
+msgstr "Redigeeri konstanti"
+
+msgid "Optics"
+msgstr "Optika"
+
+msgid ""
+"Machine\n"
+"Learning"
+msgstr ""
+"Masin\n"
+"Õpe"
+
+msgid ""
+"Edit\n"
+"Probes"
+msgstr ""
+"Redigeerimine\n"
+"Probid"
+
+msgid ""
+"Parameter\n"
+"scan"
+msgstr ""
+"Parameetri\n"
+"skannimine"
+
+msgid ""
+"Fit to\n"
+"experiment"
+msgstr ""
+"Sobitage\n"
+"eksperimendiks"
+
+msgid ""
+"Json\n"
+"explorer"
+msgstr ""
+"Json\n"
+"explorer"
+
+msgid "Matlab paths"
+msgstr "Matlabi rajad"
+
+msgid "Python paths"
+msgstr "Pythoni teed"
+
+msgid ""
+"Script\n"
+"Editor"
+msgstr ""
+"Skript\n"
+"Redaktor"
+
+msgid ""
+"<big><b>Probes window</b></big><br>Use this window to setup simulation probes, which can be "
+"used to extract values from the simulations at any given mesh point."
+msgstr ""
+"<big><b>Sondide aken</b></big><br>Kasutage seda akent simulatsioonisondide seadistamiseks, "
+"mida saab kasutada väärtuste eraldamiseks simulatsioonidest mis tahes võrgupunktis."
+
+msgid ""
+"<big><b>Machine learning window</b></big><br>Use this window to generate machine learning "
+"vectors"
+msgstr "<big><b>Masinõppe aken</b></big><br>Kasutage seda akent masinõppevektorite loomiseks"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Very often it is useful to be able to systematically "
+"very a device parameter such as mobility or density of trap states.  This window allows you "
+"to do just that."
+msgstr ""
+"<big><b>Skannimise aken</b></big><br> Väga sageli on kasulik osata süstemaatiliselt määrata "
+"seadme parameetreid, näiteks lõksuolekute liikuvust või tihedust. See aken võimaldab teil "
+"just seda teha."
+
+msgid "Use the plus icon to add a new scan line to the list."
+msgstr "Kasutage plussikooni, et lisada loendisse uus skannimisrida."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Tutorial video</b></"
+"big><br>Using the parameter scan window."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Õpetusvideo</b></"
+"big><br>Parameetrite skannimise akna kasutamine ."
+
+msgid ""
+"<big><b>Fit window</b></big><br> Use this window to fit the simulation to experimental "
+"data.  The model uses advanced and optimized fitting algorithms to fit the model to your "
+"experimental data, so that material parameters such as mobilities and recombination rates "
+"can be extracted."
+msgstr ""
+"<big><b>Sobita aken</b></big><br> Kasutage seda akent simulatsiooni sobitamiseks "
+"katseandmetega. Mudel kasutab täiustatud ja optimeeritud sobitusalgoritme, et sobitada "
+"mudel teie katseandmetega, et saaks eraldada materjali parameetreid, nagu liikuvus ja "
+"rekombinatsioonikiirus."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Watch the tutorial video 1</"
+"b></big><br>Fitting the model to experimental data to extract mobility and recombination "
+"rate parameters."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Vaadake õppevideot 1</b></"
+"big><br>Modeli sobitamine katseandmed liikuvuse ja rekombinatsioonikiiruse parameetrite "
+"eraldamiseks."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Watch the tutorial video 2</"
+"b></big><br>Fitting the model to large area solar cells"
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Vaadake 2. õppevideot</b></"
+"big><br>Modeli sobitamine suure pindalaga päikesepatareid"
+
+msgid "Run scan"
+msgstr "Käivitage skannimine"
+
+msgid "Clean simulation"
+msgstr "Puhas simulatsioon"
+
+msgid "Fast Optimizer"
+msgstr "Kiire optimeerija"
+
+msgid "Build scan"
+msgstr "Ehitise skannimine"
+
+msgid "Rerun"
+msgstr "Korda"
+
+msgid "Archive simulations"
+msgstr "Arhiivi simulatsioonid"
+
+msgid "Notes"
+msgstr "Märkmed"
+
+msgid "Simulations"
+msgstr "Simulatsioonid"
+
+msgid "New experiment"
+msgstr "Uus eksperiment"
+
+msgid "Delete experiment"
+msgstr "Kustuta katse"
+
+msgid "Refresh"
+msgstr "Värskenda"
+
+msgid "Clone experiment"
+msgstr "Kloonikatse"
+
+msgid "Rename experiment"
+msgstr "Nimeta katse ümber"
+
+msgid ""
+"Export\n"
+"Data"
+msgstr ""
+"Ekspordi\n"
+"Andmed"
+
+msgid "Import data"
+msgstr "Andmete importimine"
+
+msgid "One itteration"
+msgstr "Üks iteratsioon"
+
+msgid "Run fit"
+msgstr "Jooks vormis"
+
+msgid ""
+"Fit this\n"
+"data set"
+msgstr ""
+"Sobitage see\n"
+"daandmete komplekt"
+
+msgid ""
+"Dont' fit this\n"
+"data set"
+msgstr ""
+"Ei sobi sellele\n"
+"daandmete komplektile"
+
+msgid "Mesh point"
+msgstr "Võrgusilma punkt"
+
+msgid "Average"
+msgstr "Keskmine"
+
+msgid "Max pos y-slice"
+msgstr "Max pos y-slice"
+
+msgid "Max pos y-slice STD-Left"
+msgstr "Max pos y-slice STD-Vasak"
+
+msgid "Max pos y-slice STD-Right"
+msgstr "Max pos y-slice STD-Right"
+
+msgid "Max pos y-slice val"
+msgstr "Max pos y-slice val"
+
+msgid "Max pos y-slice STD-Left val"
+msgstr "Max pos y-slice STD-Vasak val"
+
+msgid "Max pos y-slice STD-Right val"
+msgstr "Max pos y-slice STD-Parem val"
+
+msgid "x:"
+msgstr "x:"
+
+msgid "y:"
+msgstr "y:"
+
+msgid "z:"
+msgstr "z:"
+
+msgid "Move up"
+msgstr "Üles liikuma"
+
+msgid "Move down"
+msgstr "Liigu alla"
+
+msgid "Add layer"
+msgstr "Lisa kiht"
+
+msgid "Add object inside"
+msgstr "Lisage objekt sees"
+
+msgid "Delete"
+msgstr "Kustuta"
+
+msgid "Copy json"
+msgstr "Kopeerige json"
+
+msgid "Edit"
+msgstr "Muuda"
+
+msgid "Join mesh"
+msgstr "Liituge võrguga"
+
+msgid "Group (Ctrl+G)"
+msgstr "Grupp (Ctrl+G)"
+
+msgid "Ungroup (Ctrl+U)"
+msgstr "Lahutage rühmitamine (Ctrl+U)"
+
+msgid "Script"
+msgstr "Skript"
+
+msgid "Copy path (Python)"
+msgstr "Kopeeri tee (Python)"
+
+msgid "View"
+msgstr "Vaade"
+
+msgid "Show solid"
+msgstr "Näita kindlat"
+
+msgid "Show mesh"
+msgstr "Näita võrku"
+
+msgid "Show cut through x"
+msgstr "Näita lõigatud läbi x"
+
+msgid "Show cut through y"
+msgstr "Näita läbilõiget y"
+
+msgid "Hidden"
+msgstr "Peidetud"
+
+msgid "New shape name"
+msgstr "Uus kujundi nimi"
+
+msgid "Rename the layer:"
+msgstr "Nimetage kiht ümber:"
+
+msgid ""
+"Thermal model\n"
+"enabled"
+msgstr ""
+
+msgid ""
+"<big><b>Thermal solver switched on</b></big><br>The heat equation will be solved across the "
+"device"
+msgstr ""
+"<big><b>Soojuslahendaja on sisse lülitatud</b></big><br>Soojusvõrrand lahendatakse kogu "
+"seadmes"
+
+msgid ""
+"Iso-thermal\n"
+"model"
+msgstr ""
+"Isotermiline\n"
+"mudel"
+
+msgid ""
+"<big><b>Isothermal mode</b></big><br>A single temperature will be assumed across the entire "
+"device."
+msgstr "<big><b>Isotermiline režiim</b></big><br>Kogu seadmes eeldatakse üht temperatuuri."
+
+msgid "Isothermal"
+msgstr "Isotermiline"
+
+msgid "Add"
+msgstr "Lisama"
+
+msgid "Delete row"
+msgstr "Kustuta rida"
+
+msgid "Laser start time"
+msgstr "Laseri käivitusaeg"
+
+msgid "Simulation start time"
+msgstr "Simulatsiooni algusaeg"
+
+msgid "Loop"
+msgstr "Loop"
+
+msgid "Time domain experiment window"
+msgstr "Ajadomeeni katse aken"
+
+msgid "Simulation"
+msgstr "Simulatsioon"
+
+msgid "Config"
+msgstr "Konfig"
+
+msgid "Loop configuration"
+msgstr "Silmuse konfiguratsioon"
+
+msgid "Random variables"
+msgstr "Juhuslikud muutujad"
+
+msgid "Patch"
+msgstr "Plaaster"
+
+msgid "Duplicate"
+msgstr "Duplikaat"
+
+msgid "Neural networks"
+msgstr "Närvivõrgud"
+
+msgid "Compiled json written to "
+msgstr "Kompileeritud json, millele on kirjutatud"
+
+msgid "Copying files and configuring"
+msgstr "Failide kopeerimine ja konfigureerimine"
+
+msgid "Finish time:"
+msgstr "Lõpuaeg:"
+
+msgid "Running"
+msgstr "Jooksmine"
+
+msgid "Cluster status"
+msgstr "Klastri olek"
+
+msgid "Constant bias"
+msgstr "Pidev eelarvamus"
+
+msgid "Change"
+msgstr "Muuda"
+
+msgid "From file"
+msgstr "Failist"
+
+msgid ""
+"Export\n"
+"image"
+msgstr ""
+"Ekspordi\n"
+"imi"
+
+msgid "<big><b>Filters</b></big><br>Use this tab to edit the optical filters"
+msgstr "<big><b>Filtrid</b></big><br>Kasutage seda vahekaarti optiliste filtrite muutmiseks"
+
+msgid "Filter editor"
+msgstr "Filtriredaktor"
+
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Not a valid license number"
+msgstr "Pole kehtiv litsentsi number"
+
+msgid "This key has been used too many times."
+msgstr "Seda võtit on liiga palju kordi kasutatud."
+
+msgid "This key has expired."
+msgstr "See võti on aegunud."
+
+msgid ""
+"This version of OghmaNano is too old to validate it's key, please download the latest "
+"version."
+msgstr ""
+"See OghmaNano versioon on võtme kinnitamiseks liiga vana. Laadige alla uusim versioon."
+
+msgid "Can't access the internet"
+msgstr "Internetile ei pääse"
+
+msgid "Key manager"
+msgstr "Võtmehaldur"
+
+msgid "Data"
+msgstr "Andmed"
+
+msgid ""
+"JV\n"
+"editor"
+msgstr ""
+"JV\n"
+"toimetaja"
+
+msgid ""
+"Time domain\n"
+"editor."
+msgstr ""
+"Ajadomeen\n"
+"redaktor."
+
+msgid ""
+"FX domain\n"
+"editor"
+msgstr ""
+"FX domeeni\n"
+"redaktor"
+
+msgid ""
+"CV\n"
+"editor"
+msgstr ""
+"CV\n"
+"toimetaja"
+
+msgid ""
+"Suns Voc\n"
+"editor"
+msgstr ""
+"Suns Voc\n"
+"toimetaja"
+
+msgid ""
+"Suns Jsc\n"
+"editor"
+msgstr ""
+"Suns Jsc\n"
+"toimetaja"
+
+msgid ""
+"CE\n"
+"editor"
+msgstr ""
+"CE\n"
+"toimetaja"
+
+msgid ""
+"PL\n"
+"editor"
+msgstr ""
+"PL\n"
+"toimetaja"
+
+msgid ""
+"Exciton\n"
+"editor"
+msgstr ""
+"Excitoni\n"
+"toimetaja"
+
+msgid ""
+"Quantum\n"
+"efficiency"
+msgstr "Kvant\tõhusus"
+
+msgid ""
+"Electrical\n"
+"equilibrium"
+msgstr ""
+"Elektriline\n"
+" tasakaal"
+
+msgid ""
+"Polynomial\n"
+"editor"
+msgstr ""
+"Polünoom\n"
+"redaktor"
+
+msgid ""
+"Calculate\n"
+"the cost"
+msgstr ""
+"Arvutage\n"
+"kulu"
+
+msgid ""
+"scanning probe\n"
+"microscopy"
+msgstr ""
+"skaneerimissond\n"
+"mikroskoopia"
+
+msgid ""
+"Output\n"
+"Files"
+msgstr ""
+"Väljund\n"
+"Failid"
+
+msgid ""
+"Simulation\n"
+"Hardware"
+msgstr ""
+"Simulatsioon\n"
+"Riistvara"
+
+msgid ""
+"<big><b>The time mesh editor</b></big><br> To do time domain simulations one must define "
+"how voltage the light vary as a function of time.  This can be done in this window.  Also "
+"use this window to define the simulation length and time step."
+msgstr ""
+"<big><b>Ajavõrgu redaktor</b></big><br> Ajapiirkonna simulatsioonide tegemiseks tuleb "
+"määratleda, kuidas valguse pinge aja funktsioonina muutub. Seda saab teha selles aknas. "
+"Kasutage seda akent ka simulatsiooni pikkuse ja aja sammu määramiseks."
+
+msgid ""
+"<big><b>Frequency domain mesh editor</b></big><br> Some times it is useful to do frequency "
+"domain simulations such as when simulating impedance spectroscopy.  This window will allow "
+"you to choose which frequencies will be simulated."
+msgstr ""
+"<big><b>Sagedusdomeeni võrguredaktor</b></big><br> Mõnikord on kasulik teha "
+"sageduspiirkonna simulatsioone, näiteks impedantsspektroskoopia simuleerimisel. See aken "
+"võimaldab teil valida, milliseid sagedusi simuleeritakse."
+
+msgid ""
+"<big><b>Capacitance voltage editor</b></big><br> Use this editor to change serup "
+"capacitance voltage simulation."
+msgstr ""
+"<big><b>Mahtuvuspinge redaktor</b></big><br> Kasutage seda redaktorit serupi mahtuvuspinge "
+"simulatsiooni muutmiseks."
+
+msgid ""
+"<big><b>Scanning probe microscopy</b></big><br> Use this window to configure the scanning "
+"probe microscopy simulations."
+msgstr ""
+"<big><b>Skaneeriva sondi mikroskoopia</b></big><br> Kasutage seda akent skaneeriva sondi "
+"mikroskoopia simulatsioonide konfigureerimiseks."
+
+msgid ""
+"<big><b>PL simulation editor</b></big><br> Use this window to configure the steady state "
+"photoluminescence simulation."
+msgstr ""
+"<big><b>PL simulatsiooniredaktor</b></big><br> Kasutage seda akent statsionaarse "
+"fotoluminestsentsi simulatsiooni konfigureerimiseks."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Watch the youtube video</"
+"a></b></big><br>Watch the video on perfomring PL simulation."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Vaadake YouTube'i videot</"
+"a></b></big><br>Vaadake video PL simulatsiooni läbiviimisest."
+
+msgid ""
+"<big><b>Suns voc simulation editor</b></big><br> Use this window to select the step size "
+"and parameters of the JV simulations."
+msgstr ""
+"<big><b>Suns voci simulatsiooniredaktor</b></big><br> Kasutage seda akent JV "
+"simulatsioonide sammu suuruse ja parameetrite valimiseks."
+
+msgid ""
+"<big><b>Suns Jsc simulation editor</b></big><br> Use this window to select the step size "
+"and parameters of the JV simulations."
+msgstr ""
+"<big><b>Suns Jsc simulatsiooniredaktor</b></big><br> Kasutage seda akent JV simulatsioonide "
+"sammu suuruse ja parameetrite valimiseks."
+
+msgid ""
+"<big><b>Charge Extraction editor</b></big><br> This performs charge extraction experiments "
+"in time domain, accounting for recombination losses.  If you don’t mind about accounting "
+"for recombination losses on extraction just run a JV curve or a Suns-Voc simulation and use "
+"the charge.dat file."
+msgstr ""
+"<big><b>Laengu ekstraheerimise redaktor</b></big><br> See teostab laengu eraldamise katseid "
+"ajapiirkonnas, võttes arvesse rekombinatsioonikadusid. Kui te ei pahanda ekstraheerimisel "
+"tekkinud rekombinatsioonikadude arvestamise pärast, käivitage lihtsalt JV kõver või Suns-"
+"Voc simulatsioon ja kasutage faili charge.dat."
+
+msgid ""
+"<big><b>Costs window</b></big>\n"
+"Use this window to calculate the cost of the solar cell and the energy payback time."
+msgstr ""
+"<big><b>Kulude aken</b></big>\n"
+"Kasutage seda akent päikesepatarei maksumuse ja energia tasuvusaja arvutamiseks."
+
+msgid ""
+"<big><b>JV simulation editor</b></big><br> Use this window to configure JV simulations."
+msgstr ""
+"<big><b>JV simulatsiooniredaktor</b></big><br> Kasutage seda akent JV simulatsioonide "
+"konfigureerimiseks."
+
+msgid ""
+"<big><b>Polynomial editor</b></big><br> Use this window to generate random date sets for "
+"resting the fitting model."
+msgstr ""
+"<big><b>Polünoomiredaktor</b></big><br> Kasutage seda akent juhuslike kuupäevakomplektide "
+"loomiseks sobiva mudeli taastamiseks."
+
+msgid ""
+"<big><b>Exciton simulation editor</b></big><br> Use this window to configure exciton "
+"simulations."
+msgstr ""
+"<big><b>Eergutussimulatsiooni redaktor</b></big><br> Kasutage seda akent "
+"ergutussimulatsioonide konfigureerimiseks."
+
+msgid ""
+"<big><b>Simulation hardware</b></big><br>Use this window to change how the model uses the "
+"computer's hardware."
+msgstr ""
+"<big><b>Simulatsiooniriistvara</b></big><br>Kasutage seda akent, et muuta seda, kuidas "
+"mudel arvuti riistvara kasutab."
+
+msgid "Output files"
+msgstr "Väljundfailid"
+
+msgid "Banned files and tokens"
+msgstr "Keelatud failid ja märgid"
+
+msgid "Probes"
+msgstr "Sondid"
+
+msgid "File name"
+msgstr "Faili nimi"
+
+msgid "Probe"
+msgstr "Sond"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Now using the drop down menu in the prameter to "
+"change 'column', select the device parameter you wish to vary, an example may be dos0/"
+"Electron Mobility. Now enter the values you would like it to scan oveer in the  'Values', "
+"an example could be '1e-3 1e-4 1e-5 1e-6'.  And hit the double arrorw to run the simulation."
+msgstr ""
+
+msgid "Neural network editor"
+msgstr "Närvivõrgu redaktor"
+
+msgid "ML Input vector"
+msgstr "ML sisendvektor"
+
+msgid "ML Output vector"
+msgstr "ML väljundvektor"
+
+msgid "Optimizer"
+msgstr "Optimeerija"
+
+msgid "Scan - Configure Optimizer"
+msgstr "Skannimine – optimeerija konfigureerimine"
+
+msgid "Solar Spectrum Generator"
+msgstr "Päikesespektri generaator"
+
+msgid "Show energies"
+msgstr "Näita energiaid"
+
+msgid "Plot token values"
+msgstr "Joonistage märgi väärtused"
+
+msgid "Suns Jsc simulation editor"
+msgstr "Suns Jsc simulatsiooniredaktor"
+
+msgid "Disabled"
+msgstr "Keelatud"
+
+msgid ""
+"Ray\n"
+"trace"
+msgstr ""
+"Ray\n"
+"trace"
+
+msgid ""
+"Perfect\n"
+"outcoupling"
+msgstr ""
+"Täiuslik\n"
+"ühendus"
+
+msgid "time mesh"
+msgstr "aja võrk"
+
+msgid "Explore the simulation data structure"
+msgstr "Tutvuge simulatsiooni andmestruktuuriga"
+
+msgid "Interface editor"
+msgstr "Liidese redaktor"
+
+msgid "Sim name"
+msgstr "Sim nimi"
+
+msgid "Vectors"
+msgstr "Vektorid"
+
+msgid "Cluster get data"
+msgstr "Andmete hankimine klastrisse"
+
+msgid "Copy src to cluster"
+msgstr "Kopeeri src klastrisse"
+
+msgid "Make on cluster"
+msgstr "Tee klastris"
+
+msgid "Clean cluster"
+msgstr "Puhas klaster"
+
+msgid "Kill all cluster code"
+msgstr "Tapa kogu klastri kood"
+
+msgid "Sync"
+msgstr "Sünkroonimine"
+
+msgid "Cluster"
+msgstr "Klaster"
+
+msgid "3D object viewer"
+msgstr "3D objektivaatur"
+
+msgid "Machine learning"
+msgstr "Masinõpe"
+
+msgid ""
+"Build\n"
+"vectors"
+msgstr ""
+"Ehitage\n"
+"vektoreid"
+
+msgid ""
+"Norm\n"
+"vectors"
+msgstr ""
+"Norm\n"
+"vektorid"
+
+msgid ""
+"Run\n"
+"Generator"
+msgstr ""
+"Käivita\n"
+"Generaator"
+
+msgid "Clean files"
+msgstr "Puhastage failid"
+
+msgid "Generator"
+msgstr "Generaator"
+
+msgid "Clone"
+msgstr "Klooni"
+
+msgid "Building simulations: "
+msgstr "Ehitussimulatsioonid:"
+
+msgid "Building vectors: "
+msgstr "Ehitusvektorid:"
+
+msgid "The directory does not exist: "
+msgstr "Kataloogi pole olemas:"
+
+msgid "Loading"
+msgstr "Laadimine"
+
+msgid "Rename:"
+msgstr "Nimeta ümber:"
+
+msgid "Clone:"
+msgstr "Kloonimine:"
+
+msgid "Are you sure you want to delete : "
+msgstr "Kas olete kindel, et soovite kustutada:"
+
+msgid "Make a new:"
+msgstr "Tee uus:"
+
+msgid "Delete file"
+msgstr "Kustuta fail"
+
+msgid "Clone object"
+msgstr "Klooni objekt"
+
+msgid "New shape name:"
+msgstr "Uue kuju nimi:"
+
+msgid "I cant write to:"
+msgstr "Ma ei saa kirjutada:"
+
+msgid ""
+"This means either the disk is full or your system administrator has not given you write "
+"permissions to that location."
+msgstr ""
+"See tähendab, et ketas on täis või pole teie süsteemiadministraator andnud teile sellesse "
+"asukohta kirjutamisõigusi."
+
+msgid "Merge shapes to new"
+msgstr "Ühendage kujundid uuteks"
+
+msgid "name"
+msgstr "nimi"
+
+msgid "path"
+msgstr "tee"
+
+msgid "ip"
+msgstr "ip"
+
+msgid "start"
+msgstr "alustada"
+
+msgid "stop"
+msgstr "peatus"
+
+msgid "CPUs"
+msgstr "protsessorid"
+
+msgid "status"
+msgstr "olek"
+
+msgid "Adding: "
+msgstr "Lisamine:"
+
+msgid "No sim dir name"
+msgstr "SIM-kaardi nimi puudub"
+
+msgid ""
+"I can't load flat_list.inp.  This usually means there is a problem with how you have set up "
+"your scan."
+msgstr ""
+"Ma ei saa laadida flat_list.inp. Tavaliselt tähendab see, et skannimise seadistamisega on "
+"probleeme."
+
+msgid "Problem loading file."
+msgstr "Probleem faili laadimisel."
+
+msgid "Problem generating tree."
+msgstr "Probleem puu loomisel."
+
+msgid "Lambda stop"
+msgstr "Lambda peatus"
+
+msgid "File containing generation rate"
+msgstr "Fail, mis sisaldab genereerimiskiirust"
+
+msgid "Photon efficiency"
+msgstr "Footonite efektiivsus"
+
+msgid "QE spectra file"
+msgstr "QE spektrifail"
+
+msgid "Incoherent wavelengths"
+msgstr "Ebajärjekindlad lainepikkused"
+
+msgid "Mesh layers must equal device layers"
+msgstr "Võrgusilmakihid peavad võrduma seadme kihtidega"
+
+msgid "Light spectrum"
+msgstr "Valgusspekter"
+
+msgid "Light multiplyer"
+msgstr "Valguse kordistaja"
+
+msgid "Photo current density"
+msgstr "Foto voolutihedus"
+
+msgid "Photo current"
+msgstr "Fotovool"
+
+msgid "Invert"
+msgstr "Inverteerida"
+
+msgid "Optical filter material"
+msgstr "Optilise filtri materjal"
+
+msgid "dB"
+msgstr "dB"
+
+msgid "Degrees"
+msgstr "kraadid"
+
+msgid "n"
+msgstr "n"
+
+msgid "Illuminate from"
+msgstr "Valgustage alates"
+
+msgid "Top (y0)"
+msgstr "Ülemine (y0)"
+
+msgid "Bottom (y1)"
+msgstr "Alumine (y1)"
+
+msgid "Left (x0)"
+msgstr "Vasak (x0)"
+
+msgid "Right (x1)"
+msgstr "Parem (x1)"
+
+msgid "Front (z0)"
+msgstr "Ees (z0)"
+
+msgid "Back (z1)"
+msgstr "Tagasi (z1)"
+
+msgid "xyz"
+msgstr "xyz"
+
+msgid "Log fit"
+msgstr "Palk sobib"
+
+msgid "Opperation"
+msgstr "Operatsioon"
+
+msgid "Enable vector"
+msgstr "Luba vektor"
+
+msgid "Edit patch"
+msgstr "Muuda plaastrit"
+
+msgid "Edit vectors"
+msgstr "Redigeeri vektoreid"
+
+msgid "Number of archives"
+msgstr "Arhiivide arv"
+
+msgid "Simulations per archive"
+msgstr "Simulatsioonid arhiivi kohta"
+
+msgid "Random distribution"
+msgstr "Juhuslik jaotus"
+
+msgid "Log"
+msgstr "Logi sisse"
+
+msgid "Linear"
+msgstr "Lineaarne"
+
+msgid "Archive path"
+msgstr "Arhiivi tee"
+
+msgid "Vector file name"
+msgstr "Vektorfaili nimi"
+
+msgid "Crash time"
+msgstr "Krahhi aeg"
+
+msgid "Build vectors when done"
+msgstr "Kui olete valmis, koostage vektorid"
+
+msgid "ML Output Vector"
+msgstr "ML väljundvektor"
+
+msgid "ML Input Vector"
+msgstr "ML sisendvektor"
+
+msgid "file"
+msgstr "faili"
+
+msgid "Experimental file"
+msgstr "Eksperimentaalne fail"
+
+msgid "multiplier"
+msgstr "kordaja"
+
+msgid "Multiplier"
+msgstr "kordaja"
+
+msgid "json_src"
+msgstr "json_src"
+
+msgid "json_dest"
+msgstr "json_dest"
+
+msgid "Laser wavelength"
+msgstr "Laseri lainepikkus"
+
+msgid "Length of pulse"
+msgstr "Pulsi pikkus"
+
+msgid "Spot size x"
+msgstr "Laigu suurus x"
+
+msgid "Spot size y"
+msgstr "Laigu suurus y"
+
+msgid "Energy in pulse"
+msgstr "Energia impulssis"
+
+msgid "Efficiency of photons"
+msgstr "Footonite efektiivsus"
+
+msgid "Solve optical problem"
+msgstr "Lahendage optiline probleem"
+
+msgid "Yes - n/k"
+msgstr "Jah - n/k"
+
+msgid "Yes - k"
+msgstr "Jah - k"
+
+msgid "No"
+msgstr "Ei"
+
+msgid "Yes"
+msgstr "Jah"
+
+msgid "contact"
+msgstr "kontakti"
+
+msgid "active layer"
+msgstr "aktiivne kiht"
+
+msgid "other"
+msgstr "muud"
+
+msgid "Optical thickness"
+msgstr "Optiline paksus"
+
+msgid "Free carrier statistics"
+msgstr "Tasuta operaatori statistika"
+
+msgid "Maxwell Boltzmann - analytic"
+msgstr "Maxwell Boltzmann – analüütik"
+
+msgid "Maxwell Boltzmann - numerical+analytic"
+msgstr "Maxwell Boltzmann – numbriline+analüütiline"
+
+msgid "Maxwell Boltzmann - full numerical"
+msgstr "Maxwell Boltzmann – täisarvuline"
+
+msgid "Ferm-Dirac - numerical"
+msgstr "Ferm-Dirac – numbriline"
+
+msgid "<b>Free carriers</b>"
+msgstr "<b>Tasuta operaatorid</b>"
+
+msgid "Effective density of free electron states (@300K)"
+msgstr "Vabade elektronide olekute efektiivne tihedus (@300K)"
+
+msgid "Effective density of free hole states (@300K)"
+msgstr "Vabade aukude olekute efektiivne tihedus (@300K)"
+
+msgid "Enable T dependent free carrier mob"
+msgstr "Luba T-sõltuv tasuta operaatori mob"
+
+msgid "Enable \\u03BB power in free to free recombination"
+msgstr "Lubage \\u03BB toide vabaks vabaks rekombinatsioonis"
+
+msgid "Show excited singlet states"
+msgstr "Näita erutunud singleti olekuid"
+
+msgid "<b>Equilibrium SRH traps</b>"
+msgstr "<b>Tasakaalu SRH püünised</b>"
+
+#, python-brace-format
+msgid "n_{1}"
+msgstr "n_{1}"
+
+#, python-brace-format
+msgid "p_{1}"
+msgstr "p_{1}"
+
+#, python-brace-format
+msgid "tau_{n}"
+msgstr "tau_{n}"
+
+#, python-brace-format
+msgid "tau_{p}"
+msgstr "tau_{p}"
+
+msgid "<b>Non-equilibrium SRH traps</b>"
+msgstr "<b>Tasakaaluta SRH-lõksud</b>"
+
+msgid "Number of traps"
+msgstr "Püüniste arv"
+
+msgid "DoS distribution"
+msgstr "DoS levitamine"
+
+msgid "Complex"
+msgstr "Kompleksne"
+
+msgid "Exponential"
+msgstr "Eksponentsiaalne"
+
+msgid "Electron trap density"
+msgstr "Elektronlõksu tihedus"
+
+msgid "Hole trap density"
+msgstr "Auklõksu tihedus"
+
+msgid "Electron tail slope"
+msgstr "Elektronide saba kalle"
+
+msgid "Hole tail slope"
+msgstr "Augu saba kalle"
+
+msgid "Free electron to Trapped electron"
+msgstr "Vaba elektron lõksus elektroniks"
+
+msgid "Trapped electron to Free hole"
+msgstr "Vaba auku lõksus elektron"
+
+msgid "Trapped hole to Free electron"
+msgstr "Vaba elektroni lõksus"
+
+msgid "Free hole to Trapped hole"
+msgstr "Vaba auk Trapped auguni"
+
+msgid "Enable/Disable"
+msgstr "Luba/Keela"
+
+msgid "<b>Excitons</b>"
+msgstr "<b>Eksitonid</b>"
+
+msgid "Scattering length"
+msgstr "Hajumispikkus"
+
+msgid "Life time"
+msgstr "Eluaeg"
+
+#, python-brace-format
+msgid "k_{pl}"
+msgstr "k_{pl}"
+
+#, python-brace-format
+msgid "k_{fret}"
+msgstr "k_{fret}"
+
+#, python-brace-format
+msgid "k_{alpha}"
+msgstr "k_{alpha}"
+
+#, python-brace-format
+msgid "k_{dis}"
+msgstr "k_{dis}"
+
+msgid "Max itterations"
+msgstr "Max kordused"
+
+msgid "Convergence error"
+msgstr "Konvergentsi viga"
+
+#, python-brace-format
+msgid "Boundary condition for y_{min}"
+msgstr "Piirtingimus y_{min} jaoks"
+
+msgid "Dirichlet"
+msgstr "Dirichlet"
+
+msgid "ABC"
+msgstr "ABC"
+
+msgid "Periodic"
+msgstr "Perioodiline"
+
+#, python-brace-format
+msgid "Boundary condition for y_{max}"
+msgstr "Piirtingimus y_{max} jaoks"
+
+#, python-brace-format
+msgid "Boundary condition for x_{min}"
+msgstr "Piirtingimus x_{min} jaoks"
+
+#, python-brace-format
+msgid "Boundary condition for x_{max}"
+msgstr "Piirtingimus x_{max} jaoks"
+
+#, python-brace-format
+msgid "Boundary condition for z_{min}"
+msgstr "z_{min} piirtingimus"
+
+#, python-brace-format
+msgid "Boundary condition for z_{max}"
+msgstr "z_{max} piirtingimus"
+
+msgid "Neumann (==0)"
+msgstr "Neumann (==0)"
+
+msgid "Heatsink"
+msgstr "Radikas"
+
+#, python-brace-format
+msgid "Exciton density at y_{min}"
+msgstr "Eksitoni tihedus y_{min} juures"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{min}"
+msgstr "Jahutusradiaatori juhtivus y_{min}"
+
+#, python-brace-format
+msgid "Heat sink length y_{min}"
+msgstr "Jahutusradiaatori pikkus y_{min}"
+
+#, python-brace-format
+msgid "Exciton density at y_{max}"
+msgstr "Eksitonitihedus y_{max} juures"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{max}"
+msgstr "Jahutusradiaatori juhtivus y_{max}"
+
+#, python-brace-format
+msgid "Heat sink length y_{max}"
+msgstr "Jahutusradiaatori pikkus y_{max}"
+
+#, python-brace-format
+msgid "Exciton density at x_{min}"
+msgstr "Eksitoni tihedus x_{min} juures"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{min}"
+msgstr "Jahutusradiaatori juhtivus x_{min}"
+
+#, python-brace-format
+msgid "Heat sink length x_{min}"
+msgstr "Jahutusradiaatori pikkus x_{min}"
+
+#, python-brace-format
+msgid "Exciton density at x_{max}"
+msgstr "Eksitoni tihedus x_{max} juures"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{max}"
+msgstr "Jahutusradiaatori juhtivus x_{max}"
+
+#, python-brace-format
+msgid "Heat sink length x_{max}"
+msgstr "Jahutusradiaatori pikkus x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{min}"
+msgstr "Seadme temperatuur z_{min}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{min}"
+msgstr "Jahutusradiaatori juhtivus z_{min}"
+
+#, python-brace-format
+msgid "Heat sink length z_{min}"
+msgstr "Jahutusradiaatori pikkus z_{min}"
+
+#, python-brace-format
+msgid "Exciton density at z_{max}"
+msgstr "Ergastustihedus z_{max} juures"
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{max}"
+msgstr "Jahutusradiaatori juhtivus z_{max}"
+
+#, python-brace-format
+msgid "Heat sink length z_{max}"
+msgstr "Jahutusradiaatori pikkus z_{max}"
+
+msgid "<b>Auger recombination</b>"
+msgstr "<b>Tigu rekombinatsioon</b>"
+
+#, python-brace-format
+msgid "Auger C_{n}"
+msgstr "Tigu C_{n}"
+
+#, python-brace-format
+msgid "Auger C_{p}"
+msgstr "Tigu C_{p}"
+
+msgid "Start temperature"
+msgstr "Algtemperatuur"
+
+msgid "Stop temperature"
+msgstr "Peatage temperatuur"
+
+msgid "Temperature steps"
+msgstr "Temperatuuri astmed"
+
+msgid "Perovskite ion density"
+msgstr "Perovskite ioonide tihedus"
+
+msgid "Doping density (x=0)"
+msgstr "Dopingu tihedus (x=0)"
+
+msgid "Doping density (x=max)"
+msgstr "Dopingu tihedus (x = max)"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} Recombination rate constant"
+msgstr ""
+
+msgid "<b>Electrostatics</b>"
+msgstr "<b>Elektrostaatika</b>"
+
+msgid "Eg"
+msgstr "Nt"
+
+msgid "Xi"
+msgstr "Xi"
+
+msgid "<b>Excited states</b>"
+msgstr "<b>Põnevused</b>"
+
+msgid "Forster transfer rate"
+msgstr "Forsteri ülekandekiirus"
+
+msgid "Host singlet-exciton decay rate"
+msgstr "Hosti singleti-eksitoni lagunemiskiirus"
+
+msgid "Host inter-system crossing rate"
+msgstr "Süsteemidevaheline hosti ületamise määr"
+
+msgid "Host singlet-singlet annihilation (SSA) rate"
+msgstr "Host singlet-singlet annihilation (SSA) määr"
+
+msgid "Host singlet-polaron annihilation (SPA) rate"
+msgstr "Host singlet-polaron annihilation (SPA) määr"
+
+msgid "Host singlet-triplet annihilation (STA) rate"
+msgstr "Host singlet-triplet annihilation (STA) määr"
+
+msgid "Dexter transfer rate"
+msgstr "Dexteri ülekandekiirus"
+
+msgid "Host triplet decay rate"
+msgstr "Host tripleti lagunemise määr"
+
+msgid "Host triplet-polaron annihilation (TPA) rate"
+msgstr "Host triplet-polaron annihilation (TPA) kiirus"
+
+msgid "Host triplet-triplet annihilation (TTA) rate"
+msgstr "Host triplet-triplet annihilation (TTA) määr"
+
+msgid "Dopant singlet-exciton decay rate"
+msgstr "Dopandi singleti-eksitoni lagunemiskiirus"
+
+msgid "Dopant inter-system crossing rate"
+msgstr "Süsteemidevaheline lisandi ristumismäär"
+
+msgid "Dopant singlet-polaron annihilation (SPA) rate"
+msgstr "Dopant singlett-polaron annihilation (SPA) kiirus"
+
+msgid "Dopant singlet-triplet annihilation (STA) rate"
+msgstr "Dopant singlett-triplet annihilation (STA) määr"
+
+msgid "Dopant singlet-singlet annihilation (SSA) rate"
+msgstr "Dopant singlet-singlet annihilation (SSA) määr"
+
+msgid "Dopant triplet decay rate"
+msgstr "Dopandi kolmiku lagunemiskiirus"
+
+msgid "Dopant triplet-triplet annihilation (TTA) rate"
+msgstr "Dopant tripleti-tripleti annihilatsiooni (TTA) määr"
+
+msgid "Dopant triplet-polaron annihilation (TPA) rate"
+msgstr "Dopant triplet-polaron annihilation (TPA) kiirus"
+
+msgid "Confinement factor"
+msgstr "Kinnitusfaktor"
+
+msgid "Dopant concentration"
+msgstr "Dopandi kontsentratsioon"
+
+msgid "Spectral overlap"
+msgstr "Spektri kattumine"
+
+#, python-brace-format
+msgid "k_{RISC} Reverse Inter-System crossing rate"
+msgstr "k_{RISC} Vastupidine süsteemidevaheline ristumismäär"
+
+#, python-brace-format
+msgid "\\u03C3_{em} Stimulated Emission cross section"
+msgstr "\\u03C3_{em} Stimuleeritud emissiooni ristlõige"
+
+#, python-brace-format
+msgid "\\u03C3_{t1tn} Triplet Absorption cross section"
+msgstr "\\u03C3_{t1tn} Kolmikneeldumise ristlõige"
+
+msgid "\\u03C3_{n,p} Polaron Absorption cross section"
+msgstr "\\u03C3_{n,p} Polaroni neeldumise ristlõige"
+
+msgid "e-h separation distance"
+msgstr "e-h eralduskaugus"
+
+msgid "<b>Photon rate equation</b>"
+msgstr "<b>Fotooni kiiruse võrrand</b>"
+
+msgid "Spontaneous emission factor"
+msgstr "Spontaanne emissioonitegur"
+
+msgid "Cavity photon decay rate"
+msgstr "Õõnsuse footonite lagunemiskiirus"
+
+msgid "Density of guest molecules"
+msgstr "Külalismolekulide tihedus"
+
+msgid "\\u03BE Stimulated emission gain coefficient"
+msgstr "\\u03BE Stimuleeritud emissiooni võimenduse koefitsient"
+
+msgid "<b>Excited states for OPV</b>"
+msgstr "<b>OPV põnevusseisundid</b>"
+
+#, python-brace-format
+msgid "Decay of singlets to 1C (k_{ds})"
+msgstr "Singlettide vähenemine 1C-ni (k_{ds})"
+
+#, python-brace-format
+msgid "Inter system crossing (k_{isc})"
+msgstr "Süsteemidevaheline ristumine (k_{isc})"
+
+#, python-brace-format
+msgid "Reverse inter system crossing (k_{risc})"
+msgstr "Tagurpidi süsteemidevaheline ristumine (k_{risc})"
+
+#, python-brace-format
+msgid "Triplet-triplet annihilation (k_{tta})"
+msgstr "Triplet-triplet annihilation (k_{tta})"
+
+#, python-brace-format
+msgid "Singlet-triplet annihilation (k_{sta})"
+msgstr "Singlet-tripleti annihilatsioon (k_{sta})"
+
+#, python-brace-format
+msgid "Singlet-singlet annihilation (k_{ssa})"
+msgstr "Singlet-singlet annihilatsioon (k_{ssa})"
+
+msgid "Alpha fraction (alpha)"
+msgstr "Alfa murd (alfa)"
+
+#, python-brace-format
+msgid "Singlet to ground state (k_{fs})"
+msgstr "Singlet põhiolekusse (k_{fs})"
+
+#, python-brace-format
+msgid "Decay of triplets (k_{dt})"
+msgstr "Kolmikute lagunemine (k_{dt})"
+
+#, python-brace-format
+msgid "Triplet to ground state (k_{ft})"
+msgstr "Kolmik põhiolekusse (k_{ft})"
+
+#, python-brace-format
+msgid "Decay of 3C to np (k_{dct})"
+msgstr "3C vähenemine np-ks (k_{dct})"
+
+msgid "Inter system crossing CT (k_{isc ct})"
+msgstr "Süsteemidevaheline ristmik CT (k_{isc ct})"
+
+msgid "Reverse inter system crossing CT (k_{risc ct})"
+msgstr "Vastupidine süsteemidevaheline ristumine CT (k_{risc ct})"
+
+#, python-brace-format
+msgid "3C and 1C to ground state (k_{f})"
+msgstr "3C ja 1C põhiolekusse (k_{f})"
+
+msgid "Blended material"
+msgstr "Segatud materjal"
+
+#, python-brace-format
+msgid "Eg_{0}"
+msgstr "Nt_{0}"
+
+#, python-brace-format
+msgid "Xi_{0}"
+msgstr "Xi_{0}"
+
+#, python-brace-format
+msgid "Eg_{1}"
+msgstr "Nt_{1}"
+
+#, python-brace-format
+msgid "Xi_{1}"
+msgstr "Xi_{1}"
+
+msgid "Thermal conductivity"
+msgstr "Soojusjuhtivus"
+
+msgid "Electron relaxation time"
+msgstr "Elektronide lõõgastumise aeg"
+
+msgid "Hole relaxation time"
+msgstr "Hole lõõgastusaeg"
+
+msgid "Density"
+msgstr "Tihedus"
+
+msgid "Cost per Kg"
+msgstr "Maksumus kg kohta"
+
+msgid "Energy per Kg"
+msgstr "Energia kilogrammi kohta"
+
+msgid "Link"
+msgstr "Link"
+
+msgid "Shunt resistivity"
+msgstr "Šundi takistus"
+
+msgid "Series resistivity"
+msgstr "Seeriatakistus"
+
+msgid "Series resistivity z"
+msgstr "Seeriatakistus z"
+
+msgid "Series resistivity x"
+msgstr "Seeriatakistus x"
+
+msgid "Series resistivity y"
+msgstr "Seeriatakistus y"
+
+msgid "Layer ideality factor"
+msgstr "Kihi ideaaltegur"
+
+msgid "Reverse bias current"
+msgstr "Vastupidine eelpingevool"
+
+msgid ""
+"Enable optical charge\n"
+"carrier generation"
+msgstr ""
+"Luba optilise laengu\n"
+"kandja genereerimine"
+
+msgid "Scan section"
+msgstr "Skannimise jaotis"
+
+msgid "Whole device"
+msgstr "Terve seade"
+
+msgid "Box section"
+msgstr "Kasti sektsioon"
+
+msgid "x-Scan"
+msgstr "x-Scan"
+
+msgid "x-start"
+msgstr "x-start"
+
+msgid "z-start"
+msgstr "z-start"
+
+msgid "x-stop"
+msgstr "x-peatus"
+
+msgid "z-stop"
+msgstr "z-peatus"
+
+msgid "Dump only at end"
+msgstr "Visake maha ainult lõpus"
+
+msgid "Shape type"
+msgstr "Kuju tüüp"
+
+msgid "Rotate around y-axis"
+msgstr "Pöörake ümber y-telje"
+
+msgid "y-axis"
+msgstr "y-telg"
+
+msgid "x-axis"
+msgstr "x-telg"
+
+msgid "Rotate around x-axis"
+msgstr "Pöörake ümber x-telje"
+
+msgid "dx of the object"
+msgstr "objekti dx"
+
+msgid "dy of the object"
+msgstr "objekti dy"
+
+msgid "dz of the object"
+msgstr "objekti dz"
+
+msgid "dx padding"
+msgstr "dx polsterdus"
+
+msgid "padding"
+msgstr "polsterdus"
+
+msgid "dy padding"
+msgstr "dy polsterdus"
+
+msgid "dz padding"
+msgstr "dz polsterdus"
+
+msgid "Number of objects x"
+msgstr "Objektide arv x"
+
+msgid "Number of objects"
+msgstr "Objektide arv"
+
+msgid "Number of objects y"
+msgstr "Objektide arv y"
+
+msgid "Number of objects z"
+msgstr "Objektide arv z"
+
+msgid "<b>Object</b>"
+msgstr "<b>Objekt</b>"
+
+msgid "<b>Attributes</b>"
+msgstr "<b>Atribuudid</b>"
+
+msgid "x offset"
+msgstr "x nihe"
+
+msgid "Offset"
+msgstr "Nihe"
+
+msgid "y offset"
+msgstr "y nihe"
+
+msgid "z offset"
+msgstr "z nihe"
+
+msgid "Web page link"
+msgstr "Veebilehe link"
+
+msgid "Text label"
+msgstr "Teksti silt"
+
+msgid "Texture"
+msgstr "Tekstuur"
+
+msgid ""
+"Circuit model\n"
+"parameters"
+msgstr ""
+"Vooluahela mudeli\n"
+"parameetrid"
+
+msgid "Color"
+msgstr "Värv"
+
+msgid "Interface model"
+msgstr "Liidese mudel"
+
+msgid "None"
+msgstr "Mitte ühtegi"
+
+msgid "Free-to-Free"
+msgstr "Tasuta-tasuta"
+
+msgid "Free-to-trap (SRH)"
+msgstr "Vabalt lõksu jääv (SRH)"
+
+msgid "Recombination constant"
+msgstr "Rekombinatsioonikonstant"
+
+msgid "Interface doping LHS"
+msgstr "Liidese doping LHS"
+
+msgid "Doping LHS"
+msgstr "Doping LHS"
+
+msgid "Electron tunneling"
+msgstr "Elektronide tunneldamine"
+
+msgid "Electron tunneling (T)"
+msgstr "Elektronide tunneldamine (T)"
+
+msgid "Hole tunneling"
+msgstr "Aukude tunneldamine"
+
+msgid "Hole tunneling (T)"
+msgstr "Aukude tunneldamine (T)"
+
+msgid "Interface doping RHS"
+msgstr "Liidese doping RHS"
+
+msgid "Doping RHS"
+msgstr "Doping RHS"
+
+msgid "startime"
+msgstr "algusaeg"
+
+msgid "ea_factor"
+msgstr "ea_faktor"
+
+msgid "Np"
+msgstr "Np"
+
+msgid "den"
+msgstr "den"
+
+msgid "externalv"
+msgstr "välisv"
+
+msgid "dt_neg_time"
+msgstr "dt_neg_time"
+
+msgid "dt_mull"
+msgstr "dt_mull"
+
+msgid "stark"
+msgstr "karm"
+
+msgid "lasereff"
+msgstr "lasereff"
+
+msgid "sim_contacts"
+msgstr "sim_contacts"
+
+msgid "Website"
+msgstr "Veebisait"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Journal"
+msgstr "Ajakiri"
+
+msgid "Title"
+msgstr "Pealkiri"
+
+msgid "Volume"
+msgstr "Helitugevus"
+
+msgid "Pages"
+msgstr "Leheküljed"
+
+msgid "Year"
+msgstr "aasta"
+
+msgid "DOI"
+msgstr "DOI"
+
+msgid "Book title"
+msgstr "Raamatu pealkiri"
+
+msgid "Publisher"
+msgstr "Kirjastaja"
+
+msgid "ISBN"
+msgstr "ISBN"
+
+msgid "Scraped text"
+msgstr "Kraabitud tekst"
+
+#, python-brace-format
+msgid "R_{short}"
+msgstr ""
+
+#, python-brace-format
+msgid "V_{bias}"
+msgstr ""
+
+msgid "Efficiency of light"
+msgstr "Valguse efektiivsus"
+
+msgid "subtract DC"
+msgstr "lahutada DC"
+
+msgid "External load resistor"
+msgstr "Väline koormustakisti"
+
+msgid "Material type"
+msgstr "Materjali tüüp"
+
+msgid "Organic"
+msgstr "Orgaaniline"
+
+msgid "Oxide"
+msgstr "Oksiid"
+
+msgid "Inorganic"
+msgstr "Anorgaaniline"
+
+msgid "Metal"
+msgstr "Metallist"
+
+msgid "Other"
+msgstr "muud"
+
+msgid "Transparency"
+msgstr "Läbipaistvus"
+
+msgid "Privicy options"
+msgstr "Privaatsusvalikud"
+
+msgid "Public - everyone"
+msgstr "Avalik – kõik"
+
+msgid "Public - within org"
+msgstr "Avalik – organisatsiooni sees"
+
+msgid "Private - never publish"
+msgstr "Privaatne – mitte kunagi avaldada"
+
+msgid "Change log"
+msgstr "Muuda logi"
+
+msgid ""
+"Use external\n"
+"voltage as stop"
+msgstr ""
+"Kasutage peatusena välist\n"
+"pinget"
+
+msgid "<b>Output</b>"
+msgstr "<b>Väljund</b>"
+
+msgid "Dump trap distribution"
+msgstr "Prügilõksu jaotus"
+
+msgid "False"
+msgstr "Vale"
+
+msgid "Energy space map"
+msgstr "Energia kosmosekaart"
+
+msgid "Single mesh point"
+msgstr "Ühe võrguga punkt"
+
+#, python-brace-format
+msgid "V_{oc}"
+msgstr "V_{oc}"
+
+#, python-brace-format
+msgid "V_{bi}"
+msgstr "V_{bi}"
+
+msgid "Power conversion efficiency (PCE)"
+msgstr "Võimsuse muundamise efektiivsus (PCE)"
+
+msgid "Fill factor"
+msgstr "Täitetegur"
+
+msgid "Max power"
+msgstr "Maksimaalne võimsus"
+
+msgid "Voltage at max power"
+msgstr "Pinge maksimaalsel võimsusel"
+
+msgid "Current density at max power"
+msgstr "Voolutihedus maksimaalsel võimsusel"
+
+msgid "Current density at Voc"
+msgstr "Voolutihedus Voc"
+
+#, python-brace-format
+msgid "J_{sc}"
+msgstr "J_{sc}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free P_{max}"
+msgstr "Teeta_{SRH} – tasuta P_{max}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free-trap P_{max}"
+msgstr "Teeta_{SRH} – vaba lõks P_{max}"
+
+msgid "Recombination time constant"
+msgstr "Rekombinatsiooni ajakonstant"
+
+msgid "Device capacitance"
+msgstr "Seadme mahtuvus"
+
+msgid "Photos absorbed in active layer"
+msgstr "Fotod imenduvad aktiivsesse kihti"
+
+msgid "Peak height Rp"
+msgstr "Piigi kõrgus Rp"
+
+msgid "RMS height Rq"
+msgstr "RMS kõrgus Rq"
+
+msgid "Average height Ra"
+msgstr "Keskmine kõrgus Ra"
+
+msgid "dV step"
+msgstr "dV samm"
+
+msgid "Left hole density"
+msgstr "Vasaku augu tihedus"
+
+msgid "Left electron density"
+msgstr "Vasaku elektroni tihedus"
+
+msgid "Right hole density"
+msgstr "Parema augu tihedus"
+
+msgid "Right electron density"
+msgstr "Õige elektrontihedus"
+
+msgid "Built in potential"
+msgstr "Sisseehitatud potentsiaal"
+
+msgid "Electron affinity left"
+msgstr "Elektronide afiinsus on jäänud"
+
+msgid "Electron affinity right"
+msgstr "Elektronide afiinsusõigus"
+
+msgid "<b>CPU</b>"
+msgstr "<b>CPU</b>"
+
+msgid "Number of threads used by the backend"
+msgstr "Taustaprogrammi poolt kasutatud lõimede arv"
+
+msgid "No threading"
+msgstr "Keermestamine puudub"
+
+msgid "Maximum number of core instances"
+msgstr "Maksimaalne põhieksemplaride arv"
+
+msgid "Path to source code"
+msgstr "Lähtekoodi tee"
+
+msgid "Path to compiled libs for cluster"
+msgstr "Tee klastri kompileeritud libsidesse"
+
+msgid "Make command"
+msgstr "Andke käsk"
+
+msgid "exe name"
+msgstr "exe nimi"
+
+msgid "Store DoS on disk"
+msgstr "Salvestage DoS kettale"
+
+msgid "Remote cluster directory"
+msgstr "Kaugklastri kataloog"
+
+msgid "Remote node list"
+msgstr "Kaugsõlmede loend"
+
+msgid "IV"
+msgstr "IV"
+
+msgid "x-triangles"
+msgstr "x-kolmnurgad"
+
+msgid "y-triangles"
+msgstr "y-kolmnurgad"
+
+msgid "Method"
+msgstr "meetod"
+
+msgid "Node reduce"
+msgstr "Sõlme vähendamine"
+
+msgid "No reduce"
+msgstr "Ei vähenda"
+
+msgid "Min allowable angle"
+msgstr "Minimaalne lubatud nurk"
+
+msgid "Gaussian blur"
+msgstr "Gaussi hägusus"
+
+msgid "Percent of histogram to ignore"
+msgstr "Eirata histogrammi protsent"
+
+msgid "Sigma of gaussian"
+msgstr "Gaussi sigma"
+
+msgid "Gaussian offset x"
+msgstr "Gaussi nihe x"
+
+msgid "Gaussian offset y"
+msgstr "Gaussi nihe y"
+
+msgid "Threshold value"
+msgstr "Läviväärtus"
+
+msgid "dr"
+msgstr "dr"
+
+msgid "dx"
+msgstr "dx"
+
+msgid "dy"
+msgstr "dy"
+
+msgid "offset"
+msgstr "nihe"
+
+msgid "Lens type"
+msgstr "Objektiivi tüüp"
+
+msgid "Convex"
+msgstr "Kumer"
+
+msgid "Concave"
+msgstr "Nõgus"
+
+msgid "Lens size"
+msgstr "Objektiivi suurus"
+
+msgid "length"
+msgstr "pikkus"
+
+msgid "Waveform"
+msgstr "Lainekuju"
+
+msgid "Square"
+msgstr "Ruut"
+
+msgid "Saw wave"
+msgstr "Sae laine"
+
+msgid "pixels"
+msgstr "pikslit"
+
+msgid "Boundary x0"
+msgstr "Piir x0"
+
+msgid "Boundary x1"
+msgstr "Piir x1"
+
+msgid "Boundary y0"
+msgstr "Piir y0"
+
+msgid "Boundary y1"
+msgstr "Piir y1"
+
+msgid "<b>Fist iteration</b>"
+msgstr "<b>Rusika iteratsioon</b>"
+
+msgid "Max Electrical iterations (first step)"
+msgstr "Maksimaalne elektriline iteratsioon (esimene samm)"
+
+msgid "Electrical clamp (first step)"
+msgstr "Elektriline klamber (esimene samm)"
+
+msgid "Desired solver error (first step)"
+msgstr "Soovitud lahendaja viga (esimene samm)"
+
+msgid "<b>Later iterations</b>"
+msgstr "<b>Hilisemad iteratsioonid</b>"
+
+msgid "Max electrical iterations"
+msgstr "Maksimaalsed elektrilised iteratsioonid"
+
+msgid "Electrical clamp"
+msgstr "Elektriline klamber"
+
+msgid "Desired solver error"
+msgstr "Soovitud lahendaja viga"
+
+msgid "<b>Exit strategy</b>"
+msgstr "<b>Välju strateegiast</b>"
+
+msgid "Newton minimum iterations"
+msgstr "Newtoni minimaalsed iteratsioonid"
+
+msgid "<b>Solver type</b>"
+msgstr "<b>Lahendaja tüüp</b>"
+
+msgid "dll name"
+msgstr "dll nimi"
+
+msgid "Complex matrix solver to use"
+msgstr "Kasutatav kompleksmaatrikslahendaja"
+
+msgid "Quit on convergence problem"
+msgstr "Lõpetage lähenemisprobleem"
+
+msgid "Quit on inverted Fermi-level"
+msgstr "Lõpetage ümberpööratud Fermi tasemel"
+
+msgid "Circuit diagram mode"
+msgstr "Vooluskeemide režiim"
+
+msgid "Hand drawn"
+msgstr "Käsitsi joonistatud"
+
+msgid "From layer structure"
+msgstr "Kihistruktuurist"
+
+msgid "From electrical mesh"
+msgstr "Elektrivõrgust"
+
+msgid "Poisson solver max iterations"
+msgstr "Poissoni lahendaja maksimaalsed iteratsioonid"
+
+msgid "Poisson clamping"
+msgstr "Poissoni kinnitus"
+
+msgid "Enable poisson solver"
+msgstr "Poissoni lahendaja lubamine"
+
+msgid "Output verbosity to disk"
+msgstr "Väljund paljusõnalisus kettale"
+
+msgid "Nothing"
+msgstr "Mitte midagi"
+
+msgid "Write everything to disk"
+msgstr "Kirjutage kõik kettale"
+
+msgid "Matrix solver"
+msgstr "Maatriksi lahendaja"
+
+msgid "Newton solver to use"
+msgstr "Kasutatav Newtoni lahendaja"
+
+msgid "Slotboom T0"
+msgstr "Slotboom T0"
+
+msgid "Slotboom D0"
+msgstr "Slotboom D0"
+
+msgid "Slotboom n0"
+msgstr "Slotboom n0"
+
+msgid "Calculate current at"
+msgstr "Arvutage vool at"
+
+msgid "Mid point"
+msgstr "Keskpunkt"
+
+msgid "Solve Kirchhoff's current law in Newton solver"
+msgstr "Lahendage Kirchhoffi praegune seadus Newtoni lahendajas"
+
+msgid "filename"
+msgstr "faili nimi"
+
+msgid "log x"
+msgstr "logi x"
+
+msgid "log y"
+msgstr "logi y"
+
+msgid "Keep sign for log y "
+msgstr "Hoidke logi y märki"
+
+msgid "Point to normalize"
+msgstr "Punkt normaliseerimiseks"
+
+msgid "Fit against simulation"
+msgstr "Sobib simulatsiooni vastu"
+
+msgid "File or token banned"
+msgstr "Fail või tunnus on keelatud"
+
+msgid "EQE Voltage"
+msgstr "EQE pinge"
+
+msgid "Optical power"
+msgstr "Optiline võimsus"
+
+msgid "Single optical power"
+msgstr "Ühekordne optiline võimsus"
+
+msgid "Optical power start"
+msgstr "Optilise toite käivitamine"
+
+msgid "Optical power stop"
+msgstr "Optiline toitelüliti"
+
+msgid "Use electrical DoS at low energy"
+msgstr "Kasutage madala energiatarbega elektrilist DoS-i"
+
+msgid "Max iterations "
+msgstr "Max iteratsioonid"
+
+msgid "Stop error"
+msgstr "Peatusviga"
+
+msgid "Number of x eigenmodes"
+msgstr "X omarežiimide arv"
+
+msgid "Number of y eigenmodes"
+msgstr "y omarežiimide arv"
+
+msgid "TE/TM"
+msgstr "TE/TM"
+
+msgid "Transverse Electric (TE)"
+msgstr "Põik elektriline (TE)"
+
+msgid "Transverse Magnetic (TM)"
+msgstr "Põikmagnet (TM)"
+
+msgid "Find only fundamental"
+msgstr "Leidke ainult põhiline"
+
+msgid "Thermal model type"
+msgstr "Termilise mudeli tüüp"
+
+msgid "Hydrodynamic"
+msgstr "Hüdrodünaamiline"
+
+msgid "Lattice heat"
+msgstr "Võre soojus"
+
+#, python-brace-format
+msgid "Device temperature at y_{min}"
+msgstr "Seadme temperatuur y_{min}"
+
+#, python-brace-format
+msgid "Device temperature at y_{max}"
+msgstr "Seadme temperatuur y_{max}"
+
+#, python-brace-format
+msgid "Device temperature at x_{min}"
+msgstr "Seadme temperatuur x_{min}"
+
+#, python-brace-format
+msgid "Device temperature at x_{max}"
+msgstr "Seadme temperatuur x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{max}"
+msgstr "Seadme temperatuur z_{max}"
+
+msgid "Lattice heat model"
+msgstr "Võre soojusmudel"
+
+msgid "Electron heat model"
+msgstr "Elektronsoojuse mudel"
+
+msgid "Hole heat model"
+msgstr "Auksoojuse mudel"
+
+msgid "Max thermal solver iterations"
+msgstr "Maksimaalsed termilise lahendaja iteratsioonid"
+
+msgid "Desired thermal error"
+msgstr "Soovitud termiline viga"
+
+msgid "Force use of thermal mesh"
+msgstr "Termilise võrgu jõu kasutamine"
+
+msgid "Minimum device temperature"
+msgstr "Seadme minimaalne temperatuur"
+
+msgid "Maximum device temperature"
+msgstr "Seadme maksimaalne temperatuur"
+
+msgid "Thermal mesh points"
+msgstr "Termilised võrgupunktid"
+
+msgid "Interpolate"
+msgstr "Interpoleerida"
+
+msgid "Constant"
+msgstr "Püsiv"
+
+#, python-brace-format
+msgid "Boundary value for y_{min}"
+msgstr "y_{min} piirväärtus"
+
+#, python-brace-format
+msgid "Boundary value for y_{max}"
+msgstr "y_{max} piirväärtus"
+
+#, python-brace-format
+msgid "Boundary value for x_{min}"
+msgstr "Piirväärtus x_{min} jaoks"
+
+#, python-brace-format
+msgid "Boundary value for x_{max}"
+msgstr "X_{max} piirväärtus"
+
+msgid "Couple to electrical solver"
+msgstr "Paar elektrilahendajale"
+
+msgid "Dump slices"
+msgstr "Viska viilud maha"
+
+msgid "Dump dynamic"
+msgstr "Dünaamiline tühjendamine"
+
+msgid "Write out band structure"
+msgstr "Kirjutage välja bändi struktuur"
+
+msgid "Write newton solver convergence to disk"
+msgstr "Kirjutage kettale newtoni lahendaja konvergents"
+
+msgid "Print poisson solver convergence"
+msgstr "Trüki poissoni lahendaja konvergents"
+
+msgid "Normalize output x-time to one"
+msgstr "Normaliseerige väljund x-aeg ühele"
+
+msgid "Dump the built in voltage."
+msgstr "Lülitage sisseehitatud pinge alla."
+
+msgid "Dump optical probe spectrum"
+msgstr "Tühjenda optilise sondi spekter"
+
+msgid "Write file access log to disk."
+msgstr "Kirjutage faili juurdepääsu logi kettale."
+
+msgid "Write headers to output files"
+msgstr "Kirjutage väljundfailidele päised"
+
+msgid "Write first guess to equations"
+msgstr "Kirjutage võrranditesse esimene oletus"
+
+msgid "Log verbocity"
+msgstr "Logi sõnasõnalisus"
+
+msgid "Screen"
+msgstr "Ekraan"
+
+msgid "Disk"
+msgstr "Ketas"
+
+msgid "Screen and disk"
+msgstr "Ekraan ja ketas"
+
+msgid "PL dump Energy"
+msgstr "PL dump Energy"
+
+msgid "Clean up DoS cache files"
+msgstr "Puhastage DoS-i vahemälufailid"
+
+msgid "Write binary data where possible"
+msgstr "Võimaluse korral kirjutage binaarandmed"
+
+msgid "Probe enabled"
+msgstr "Sond on lubatud"
+
+msgid "Probe type"
+msgstr "Sondi tüüp"
+
+msgid "Device state"
+msgstr "Seadme olek"
+
+msgid "Voc"
+msgstr "Voc"
+
+msgid "Jsc"
+msgstr "Jsc"
+
+msgid "<b>Run control</b>"
+msgstr "<b>Käitamise juhtimine</b>"
+
+msgid "<b>Solver control</b>"
+msgstr "<b>Lahendaja juhtimine</b>"
+
+msgid "Dump absorption profile"
+msgstr "Prügi neeldumisprofiil"
+
+msgid "Run the ray tracer"
+msgstr "Käivitage kiirte jälgija"
+
+msgid "When called"
+msgstr "Kui kutsutakse"
+
+msgid "Once per simulation"
+msgstr "Üks kord simulatsiooni kohta"
+
+msgid "Each simulation step"
+msgstr "Iga simulatsiooni etapp"
+
+msgid "Every nth simulation step"
+msgstr "Iga n-s simulatsiooni samm"
+
+msgid "Each n steps"
+msgstr "Iga n sammu"
+
+msgid "Theta steps"
+msgstr "Teeta sammud"
+
+msgid "Theta start"
+msgstr "Teeta algus"
+
+msgid "Theta stop"
+msgstr "Teeta peatus"
+
+msgid "Phi steps"
+msgstr "Phi sammud"
+
+msgid "Phi start"
+msgstr "Phi algus"
+
+msgid "Phi stop"
+msgstr "Phi peatus"
+
+msgid "Escape bins"
+msgstr "Põgenemiskastid"
+
+msgid "Emit from"
+msgstr "Väljuvad"
+
+msgid "Center of each layer"
+msgstr "Iga kihi keskpunkt"
+
+msgid "Each electrical mesh point"
+msgstr "Iga elektrivõrgu punkt"
+
+msgid "Center of y slice"
+msgstr "y lõigu keskpunkt"
+
+msgid "Super sample x"
+msgstr "Supernäidis x"
+
+msgid "Super sample x points"
+msgstr "Supernäidis x punkti"
+
+msgid "<b>Ray tracing</b>"
+msgstr "<b>Kiirte jälgimine</b>"
+
+msgid "Minimum ray intensity"
+msgstr "Minimaalne kiirte intensiivsus"
+
+msgid "Maximum number of bounces"
+msgstr "Maksimaalne põrgete arv"
+
+msgid "Simulate transmitted rays"
+msgstr "Simuleerige edastatud kiiri"
+
+msgid "Simulate reflected rays"
+msgstr "Peegeldunud kiirte simuleerimine"
+
+msgid "Mesh points x"
+msgstr "Võrgusilma punktid x"
+
+msgid "Mesh points z"
+msgstr "Võrgusilma punktid z"
+
+msgid "<b>Detector</b>"
+msgstr "<b>Detektor</b>"
+
+msgid "LED extraction efficiency"
+msgstr "LED-i väljatõmbe efektiivsus"
+
+msgid "Series resistance"
+msgstr "Seeria takistus"
+
+msgid "Other layers"
+msgstr "Muud kihid"
+
+msgid "debug (ignore)"
+msgstr "silumine (ignoreerima)"
+
+msgid "Contact charge density"
+msgstr "Kontaktlaengu tihedus"
+
+msgid "Contact position"
+msgstr "Kontakti positsioon"
+
+msgid "top"
+msgstr "üleval"
+
+msgid "bottom"
+msgstr "põhja"
+
+msgid "right"
+msgstr "õige"
+
+msgid "left"
+msgstr "vasakule"
+
+msgid "Charge type"
+msgstr "Tasu tüüp"
+
+msgid "Electron"
+msgstr "elektron"
+
+msgid "Hole"
+msgstr "Auk"
+
+msgid "Physical model"
+msgstr "Füüsiline mudel"
+
+msgid "Ohmic"
+msgstr "Ohmic"
+
+msgid "Schottky"
+msgstr "Schottky"
+
+msgid "Automatic remesh x"
+msgstr "Automaatne remesh x"
+
+msgid "Automatic remesh y"
+msgstr "Automaatne remesh y"
+
+msgid "Automatic remesh z"
+msgstr "Automaatne remesh z"
+
+msgid "Left/Right"
+msgstr "Vasak parem"
+
+msgid "Mesh dy"
+msgstr "Võrgusilm"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "n_{free} to n_{trap} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "n_{trap} to p_{free} photon generation efficiency"
+msgstr "n_{trap} kuni p_{free} footoni genereerimise efektiivsus"
+
+#, python-brace-format
+msgid "p_{trap} to n_{free} photon generation efficiency"
+msgstr "p_{trap} kuni n_{free} footoni genereerimise efektiivsus"
+
+#, python-brace-format
+msgid "p_{free} to p_{trap} photon generation efficiency"
+msgstr "p_{free} kuni p_{trap} footoni genereerimise efektiivsus"
+
+msgid "Experimental emission spectra"
+msgstr "Eksperimentaalsed emissioonispektrid"
+
+msgid "Icon"
+msgstr "Ikoon"
+
+msgid "Experimental emission efficiency"
+msgstr "Eksperimentaalne emissiooniefektiivsus"
+
+msgid "Use experimental emission spectra"
+msgstr "Kasutage eksperimentaalseid emissioonispektreid"
+
+msgid "Free-to-free emission"
+msgstr "Tasuta emissioon"
+
+msgid "Free-to-trap emission"
+msgstr "Vabalt lõksu jääv emissioon"
+
+#, python-brace-format
+msgid "V_{external}"
+msgstr ""
+
+msgid "Load resistor"
+msgstr "Koormustakisti"
+
+msgid "fx domain mesh points"
+msgstr "fx domeeni võrgupunktid"
+
+msgid "Cycles to simulate"
+msgstr "Tsüklid simuleerimiseks"
+
+msgid "Voltage modulation depth"
+msgstr "Pinge modulatsiooni sügavus"
+
+msgid "Excite with"
+msgstr "Ergutage koos"
+
+msgid "Light"
+msgstr "Valgus"
+
+msgid "Measure"
+msgstr "Mõõtke"
+
+msgid "Light modulation depth"
+msgstr "Valguse modulatsiooni sügavus"
+
+msgid "Run fit after simulation"
+msgstr "Jooksu sobivus pärast simulatsiooni"
+
+msgid "Periods to fit"
+msgstr "Sobivad perioodid"
+
+msgid "Normalize transfer functon by light intensity"
+msgstr "Normaliseerige ülekandefunktsioon valguse intensiivsuse järgi"
+
+msgid "Re(J)"
+msgstr "Re(J)"
+
+msgid "Im(J)"
+msgstr "ma (J)"
+
+msgid "fx"
+msgstr "fx"
+
+msgid "di"
+msgstr "di"
+
+msgid "dmodulation"
+msgstr "dmodulatsioon"
+
+msgid "dphase"
+msgstr "dfaas"
+
+msgid "Simulation type"
+msgstr "Simulatsiooni tüüp"
+
+msgid "Large signal"
+msgstr "Suur signaal"
+
+msgid "Fourier"
+msgstr "Fourier"
+
+msgid "Node list"
+msgstr "Sõlmede loend"
+
+msgid "Initialization vector"
+msgstr "Initsialiseerimisvektor"
+
+msgid "Cryptographic key"
+msgstr "Krüptograafiline võti"
+
+msgid "Intensity of the sun"
+msgstr "Päikese intensiivsus"
+
+msgid "#saturation_n0"
+msgstr "#küllastus_n0"
+
+msgid "#saturation_rate"
+msgstr "#küllastusmäär"
+
+msgid "Absorption of material"
+msgstr "Materjali imendumine"
+
+msgid "Simulation mode"
+msgstr "Simulatsioonirežiim"
+
+msgid "start voltage"
+msgstr "käivituspinge"
+
+msgid "Max voltage"
+msgstr "Max pinge"
+
+msgid "Invert output"
+msgstr "Inverteeri väljund"
+
+msgid "Use capacitor"
+msgstr "Kasutage kondensaatorit"
+
+msgid "External C"
+msgstr "Väline C"
+
+msgid "External R"
+msgstr "Väline R"
+
+msgid "Resistance of scope"
+msgstr "Ulatuse vastupidavus"
+
+msgid "Photon Flux"
+msgstr "Fotonivoog"
+
+msgid "device width"
+msgstr "seadme laius"
+
+msgid "device breadth"
+msgstr "seadme laius"
+
+msgid "Start light intensity"
+msgstr "Käivitage valguse intensiivsus"
+
+msgid "Stop light intensity"
+msgstr "Peatage valguse intensiivsus"
+
+msgid "Numer of steps"
+msgstr "Sammude arv"
+
+msgid "CE light on time"
+msgstr "CE tuli õigeaegselt põlema"
+
+msgid "CE light off time"
+msgstr "CE valguse väljalülitamise aeg"
+
+msgid "Automatic world size"
+msgstr "Automaatne maailma suurus"
+
+msgid "World fills mesh"
+msgstr "Maailm täidab võrgu"
+
+msgid "x0"
+msgstr "x0"
+
+msgid "x1"
+msgstr "x1"
+
+msgid "y0"
+msgstr "y0"
+
+msgid "y1"
+msgstr "y1"
+
+msgid "z0"
+msgstr "z0"
+
+msgid "z1"
+msgstr "z1"
+
+msgid "margin x0"
+msgstr "marginaal x0"
+
+msgid "margin x1"
+msgstr "veeris x1"
+
+msgid "margin y0"
+msgstr "marginaal y0"
+
+msgid "margin y1"
+msgstr "marginaal y1"
+
+msgid "margin z0"
+msgstr "marginaal z0"
+
+msgid "margin z1"
+msgstr "marginaal z1"
+
+msgid "Active layer width"
+msgstr "Aktiivne kihi laius"
+
+msgid "Reset time to zero each cycle"
+msgstr "Nulli iga tsükli aeg"
+
+msgid "OpenCL GPU acceleration"
+msgstr "OpenCL GPU kiirendus"
+
+msgid "GPU name"
+msgstr "GPU nimi"
+
+msgid "<b>Excitation type</b>"
+msgstr "<b>Ergutuse tüüp</b>"
+
+msgid "FDTD Slice"
+msgstr "FDTD viil"
+
+msgid "Sin"
+msgstr "Patt"
+
+msgid "Pulse"
+msgstr "Pulss"
+
+msgid "Start wavelength"
+msgstr "Alusta lainepikkust"
+
+msgid "Stop wavelength"
+msgstr "Stop lainepikkus"
+
+msgid "Wavelength steps"
+msgstr "Lainepikkuse sammud"
+
+msgid "Pulse length"
+msgstr "Pulsi pikkus"
+
+msgid "Excite Ex"
+msgstr "Excite Ex"
+
+msgid "Excite Ey"
+msgstr "Excite Ey"
+
+msgid "Excite Ez"
+msgstr "Ergutage Ez"
+
+msgid "<b>FDTD mesh</b>"
+msgstr "<b>FDTD võrk</b>"
+
+msgid "zy"
+msgstr "zy"
+
+msgid "zx"
+msgstr "zx"
+
+msgid "xy"
+msgstr "xy"
+
+msgid "Mesh points y"
+msgstr "Võrgusilma punktid y"
+
+msgid "Use gnuplot to visualize"
+msgstr "Kasutage visualiseerimiseks gnuploti"
+
+msgid "<b>Simulation time</b>"
+msgstr "<b>Simulatsiooni aeg</b>"
+
+msgid "Stop time"
+msgstr "Peatage aeg"
+
+msgid "Max steps"
+msgstr "Max sammud"
+
+msgid "Key results"
+msgstr "Peamised tulemused"
+
+msgid "Write everything to disk every 2nd step"
+msgstr "Kirjutage kõik kettale iga 2. sammu järel"
+
+msgid "Write everything to disk every 5th step"
+msgstr "Kirjutage kõik kettale iga 5. sammu järel"
+
+msgid "Write everything to disk every 10th step"
+msgstr "Kirjutage kõik kettale iga 10. sammu järel"
+
+msgid "Output verbosity to screen"
+msgstr "Väljund paljusõnalisus ekraanile"
+
+msgid "Show lots"
+msgstr "Näita paljusid"
+
+msgid "Show key results"
+msgstr "Kuva peamised tulemused"
+
+msgid "Solver output verbosity"
+msgstr "Lahendaja väljundi paljusõnalisus"
+
+msgid "As answers are found"
+msgstr "Nagu vastused leitakse"
+
+msgid "Each step"
+msgstr "Iga samm"
+
+msgid "Source"
+msgstr "Allikas"
+
+msgid "x rotation"
+msgstr "x pöörlemine"
+
+msgid "y rotation"
+msgstr "y pöörlemine"
+
+msgid "z rotation"
+msgstr "z pöörlemine"
+
+msgid "x pos"
+msgstr "x pos"
+
+msgid "y pos"
+msgstr "y pos"
+
+msgid "zoom"
+msgstr "suumi"
+
+msgid "The following erros/warning were found while running the simulations:"
+msgstr "Simulatsioonide käitamisel leiti järgmised vead/hoiatused:"
+
+msgid "Output vectors for "
+msgstr "Väljundvektorid jaoks"
+
+msgid "ML Token"
+msgstr "ML Token"
+
+msgid "Symmetric"
+msgstr "Sümmeetriline"
+
+msgid "Asymmetric"
+msgstr "Asümmeetriline"
+
+msgid "Gaussian"
+msgstr "Gaussi"
+
+msgid "Lorentzian"
+msgstr "Lorentzian"
+
+msgid "Colors"
+msgstr "Värvid"
+
+msgid "Save as"
+msgstr "Salvesta kui"
+
+msgid "Save as image"
+msgstr "Salvesta pildina"
+
+msgid "Save as gobj"
+msgstr "Salvesta kui gobj"
+
+msgid "Optical"
+msgstr "Optiline"
+
+msgid "Show photons"
+msgstr "Näita fotoneid"
+
+msgid "FDTD grid"
+msgstr "FDTD võrk"
+
+msgid "Optical mode"
+msgstr "Optiline režiim"
+
+msgid "Rays"
+msgstr "Kiired"
+
+msgid "Solid rays"
+msgstr "Tahked kiired"
+
+msgid "Show detectors"
+msgstr "Näita detektoreid"
+
+msgid "Electrical mesh"
+msgstr "Elektriline võrk"
+
+msgid "Show device"
+msgstr "Näita seadet"
+
+msgid "Grid"
+msgstr "Võre"
+
+msgid "Coordinates"
+msgstr "Koordinaadid"
+
+msgid "Show text"
+msgstr "Näita teksti"
+
+msgid "Show Dimensions"
+msgstr "Näita mõõtmeid"
+
+msgid "Show plot"
+msgstr "Näita süžeed"
+
+msgid "Transparent objects"
+msgstr "Läbipaistvad objektid"
+
+msgid "Ray tracing mesh"
+msgstr "Kiirte jälgimise võrk"
+
+msgid "Show world box"
+msgstr "Näita maailma kasti"
+
+msgid "Lock view"
+msgstr "Lukusta vaade"
+
+msgid "Show gl lights"
+msgstr "Näita gl-tulesid"
+
+msgid "Show buttons"
+msgstr "Kuva nupud"
+
+msgid "Stars"
+msgstr "Tähed"
+
+msgid "Font"
+msgstr "Font"
+
+msgid "Background color"
+msgstr "Taustavärv"
+
+msgid "Interface background color"
+msgstr "Liidese taustavärv"
+
+msgid "Interface text color"
+msgstr "Liidese teksti värv"
+
+msgid "Objects"
+msgstr "Objektid"
+
+msgid "New free object"
+msgstr "Uus tasuta objekt"
+
+msgid "New light source"
+msgstr "Uus valgusallikas"
+
+msgid "New detector"
+msgstr "Uus detektor"
+
+msgid "Rescale"
+msgstr "Skaleeri ümber"
+
+msgid "Object tree"
+msgstr "Objektipuu"
+
+msgid "Copy image"
+msgstr "Kopeeri pilt"
+
+msgid "Object tree viewer"
+msgstr "Objektipuu vaataja"
+
+msgid "Device view"
+msgstr "Seadme vaade"
+
+msgid "Charge extraction experiment window"
+msgstr "Laengu eraldamise katse aken"
+
+msgid "Python Equation"
+msgstr "Pythoni võrrand"
+
+msgid "You've made a mistake in the equation, use w for wavelength. "
+msgstr "Olete võrrandis vea teinud, kasutage lainepikkuse jaoks w."
+
+msgid "Are you sure you wisht to import this, it will overwrite "
+msgstr "Kui olete kindel, et soovite selle importida, kirjutatakse see üle"
+
+msgid "Equation editor"
+msgstr "Võrrandi redaktor"
+
+msgid ""
+"Import\n"
+"into model"
+msgstr ""
+"Import\n"
+"mudelisse"
+
+msgid "Add section"
+msgstr "Lisa jaotis"
+
+msgid "Delete section"
+msgstr "Kustuta jaotis"
+
+msgid ""
+"Your version of OghmaNano is now out of date. To continue using OghmaNano please download a "
+"new version at https://www.oghma-nano.com."
+msgstr ""
+"Teie OghmaNano versioon on nüüd aegunud. OghmaNano kasutamise jätkamiseks laadige alla uus "
+"versioon aadressilt https://www.oghma-nano.com."
+
+msgid "<big><b>Update available!</b></big><br>Download it now from <a href=\""
+msgstr "<big><b>Värskendus on saadaval!</b></big><br>Laadige see kohe alla saidilt <a href=\""
+
+msgid "Optical detectors editor"
+msgstr "Optiliste detektorite redaktor"
+
+msgid "Na"
+msgstr "Na"
+
+msgid "Nd"
+msgstr "Nd"
+
+msgid "Ions"
+msgstr "Ioonid"
+
+msgid "Doping/Mobilie ion profile editor"
+msgstr "Dopingu/mobiiliiooni profiili redaktor"
+
+msgid "New emission spectra name:"
+msgstr "Uue emissioonispektri nimi:"
+
+msgid "New emission spectra name"
+msgstr "Uus emissioonispektri nimi"
+
+msgid "New spectra name:"
+msgstr "Uue spektri nimi:"
+
+msgid "New spectra name"
+msgstr "Uue spektri nimi"
+
+msgid "New material name:"
+msgstr "Uue materjali nimi:"
+
+msgid "New material name"
+msgstr "Uus materjali nimi"
+
+msgid "I cant write to: "
+msgstr "Ma ei saa kirjutada:"
+
+msgid "New filter name:"
+msgstr "Uue filtri nimi:"
+
+msgid "New filter name"
+msgstr "Uue filtri nimi"
+
+msgid "New directory name:"
+msgstr "Uue kataloogi nimi:"
+
+msgid "New directory"
+msgstr "Uus kataloog"
+
+msgid "Save a the simulation as"
+msgstr "Salvestage simulatsioon nimega"
+
+msgid "Directory"
+msgstr "Kataloog"
+
+msgid "Simulation information"
+msgstr "Simulatsiooniteave"
+
+msgid "yz"
+msgstr "yz"
+
+msgid "xz"
+msgstr "xz"
+
+msgid "Orthographic"
+msgstr "Ortograafiline"
+
+msgid "Fly"
+msgstr "Lennata"
+
+msgid "Running job "
+msgstr "Jooksev töö"
+
+msgid "The file to import:"
+msgstr "Imporditav fail:"
+
+msgid "The imported file, the numbers should now be in SI units"
+msgstr "Imporditud fail, numbrid peaksid nüüd olema SI-ühikutes"
+
+msgid "x units:"
+msgstr "x ühikut:"
+
+msgid "y units:"
+msgstr "y ühikut:"
+
+msgid "Title:"
+msgstr "Pealkiri:"
+
+msgid "x-label:"
+msgstr "x-märgis:"
+
+msgid "x-column:"
+msgstr "x-veerg:"
+
+msgid "y-label:"
+msgstr "y-silt:"
+
+msgid "y-column:"
+msgstr "y-veerg:"
+
+msgid "device area:"
+msgstr "seadme ala:"
+
+msgid "Can not load file "
+msgstr "Faili ei saa laadida"
+
+msgid "I can't read the file: "
+msgstr "Ma ei saa faili lugeda:"
+
+msgid ""
+"I can only read plain text files such as csv formats. I can not read binary files such as "
+"excel documents."
+msgstr ""
+"Saan lugeda ainult lihttekstifaile, näiteks csv-vormingus. Ma ei saa lugeda binaarfaile, "
+"näiteks Exceli dokumente."
+
+msgid "Photonenergy"
+msgstr "Fotoenergia"
+
+msgid "J"
+msgstr "J"
+
+msgid "IMPS Re(Z)"
+msgstr "IMPS Re(Z)"
+
+msgid "IMPS Im(Z)"
+msgstr "IMPS Im(Z)"
+
+msgid "IMVS Re(Z)"
+msgstr "IMVS Re(Z)"
+
+msgid "IMVS Im(Z)"
+msgstr "IMVS Im(Z)"
+
+msgid "Amps"
+msgstr "Amper"
+
+msgid "Amps - no convert"
+msgstr "Amperid – konverteerimata"
+
+msgid "I"
+msgstr "I"
+
+msgid "-Voltage"
+msgstr "-Pinge"
+
+msgid "Angular frequency"
+msgstr "Nurksagedus"
+
+msgid "Attenuation coefficient"
+msgstr "Sumbumise koefitsient"
+
+msgid "Intensity"
+msgstr "Intensiivsus"
+
+msgid "mA"
+msgstr "mA"
+
+msgid "Simulation notes"
+msgstr "Simulatsiooni märkmed"
+
+msgid "Bibtex reference"
+msgstr "Bibtexi viide"
+
+msgid "Simulation Notes"
+msgstr "Simulatsiooni märkmed"
+
+msgid "Simulation snapshots"
+msgstr "Simulatsiooni hetktõmmised"
+
+msgid "Running: "
+msgstr "Jooksmine:"
+
+msgid "I could not find a free cpu to run the command on"
+msgstr "Ma ei leidnud käsu käivitamiseks vaba protsessorit"
+
+msgid "CPU"
+msgstr "Protsessor"
+
+msgid "Nodes"
+msgstr "Sõlmed"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Generate keys"
+msgstr "Võtmete genereerimine"
+
+msgid "Install to cluster"
+msgstr "Paigalda klastrisse"
+
+msgid "Boot cluster"
+msgstr "Alglaadimisklaster"
+
+msgid "Stop cluster"
+msgstr "Peata kobar"
+
+msgid "Remove from cluster"
+msgstr "Eemalda klastrist"
+
+msgid "CV experiment window"
+msgstr "CV katse aken"
+
+msgid ""
+"Doping/\n"
+"Ions"
+msgstr ""
+"Doping/\n"
+"Ioonid"
+
+msgid ""
+"Material\n"
+"Gradients"
+msgstr ""
+"Materjal\n"
+"Kalled"
+
+msgid "Interfaces"
+msgstr "Liidesed"
+
+msgid ""
+"Parasitic\n"
+" components"
+msgstr ""
+"Parasiit\n"
+" komponendid"
+
+msgid ""
+"Mobile\n"
+"Ion solver"
+msgstr ""
+"Mobiil\n"
+"Ioonide lahendaja"
+
+msgid ""
+"Electrical\n"
+"mesh"
+msgstr ""
+"Elektriline\n"
+"võrk"
+
+msgid ""
+"<big><b>Interface editor</b></big>\n"
+"Use this window to edit how electrical interfaces behave."
+msgstr ""
+"<big><b>Liidese redaktor</b></big>\n"
+"Kasutage seda akent elektriliste liideste käitumise muutmiseks."
+
+msgid "Electrical boundary conditions"
+msgstr "Elektrilised piirtingimused"
+
+msgid "Excitonic boundary conditions"
+msgstr "Eksitoonilised piirtingimused"
+
+msgid ""
+"<big><b>Doping window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr ""
+"<big><b>Dopingu aken</b></big>\n"
+"Kasutage seda akent simulatsiooni dopingu lisamiseks"
+
+msgid ""
+"<big><b>Gradients window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr ""
+"<big><b>Gradientide aken</b></big>\n"
+"Kasutage seda akent simulatsiooni dopingu lisamiseks"
+
+msgid ""
+"<big><b>Parasitic components</b></big>\n"
+"Use this window to edit the shunt and series resistance."
+msgstr ""
+"<big><b>Parasiitkomponendid</b></big>\n"
+"Kasutage seda akent šundi ja seeriatakistuse muutmiseks."
+
+msgid "Load type"
+msgstr "Koormuse tüüp"
+
+msgid "Multiplyer"
+msgstr "Kordaja"
+
+msgid ""
+"External\n"
+"interface:"
+msgstr ""
+"Väline\n"
+"liides:"
+
+msgid ""
+"External\n"
+"Reflection"
+msgstr ""
+"Väline\n"
+"Peegeldus"
+
+msgid "Reflective interface editor"
+msgstr "Peegeldava liidese redaktor"
+
+msgid "Connect to cluster"
+msgstr "Ühendage klastriga"
+
+msgid "Connect"
+msgstr "Ühendage"
+
+msgid "Disconnect"
+msgstr "Katkesta ühendus"
+
+msgid "Cancel"
+msgstr "Tühista"
+
+msgid ""
+"<big><b>The device structure tab</b></big>\n"
+" Use this tab to change the structure of the device, the layer thicknesses and to perform "
+"optical simulations.  You can also browse the materials data base and  edit the electrical "
+"mesh."
+msgstr ""
+"<big><b>Seadme struktuuri vahekaart</b></big>\n"
+" Kasutage seda vahekaarti seadme struktuuri, kihtide paksuste muutmiseks ja optiliste "
+"simulatsioonide tegemiseks. Samuti saate sirvida materjalide andmebaasi ja redigeerida "
+"elektrivõrku."
+
+msgid "<big><b>Update available!</b></big><br>"
+msgstr "<big><b>Värskendus on saadaval!</b></big><br>"
+
+msgid "File to plot"
+msgstr "Fail joonistamiseks"
+
+msgid "Plot type"
+msgstr "Krundi tüüp"
+
+msgid "Play"
+msgstr "Mängi"
+
+msgid "Snapshot slider"
+msgstr "Snapshot liugur"
+
+msgid "Fit variables duplicate window"
+msgstr "Muutujate sobitamise duplikaken"
+
+msgid "Destination"
+msgstr "Sihtkoht"
+
+msgid "Source (JSON)"
+msgstr "Allikas (JSON)"
+
+msgid "Destination (JSON)"
+msgstr "Sihtkoht (JSON)"
+
+msgid "Open data file"
+msgstr "Ava andmefail"
+
+msgid "Load/Import"
+msgstr "Laadi/impordi"
+
+msgid "Next"
+msgstr "Edasi"
+
+msgid "Online help"
+msgstr "Interneti-abi"
+
+msgid "On line help"
+msgstr "Abi võrgus"
+
+msgid "Hide"
+msgstr "Peida"
+
+msgid "OghmaNano in your language!"
+msgstr "OghmaNano teie keeles!"
+
+msgid "OghmaNano translated by:"
+msgstr "OghmaNano tõlkinud:"
+
+msgid "Dimension editor"
+msgstr "Mõõtmete redaktor"
+
+msgid "Substrate xz size"
+msgstr "Substraadi suurus xz"
+
+msgid "World size"
+msgstr "Maailma suurus"
+
+msgid "Select simulation parameter"
+msgstr "Valige simulatsiooni parameeter"
+
+msgid "OK"
+msgstr "Okei"
+
+msgid "No row selected in the scan window, can't insert the selection"
+msgstr "Skaneerimisaknas pole valitud rida, valikut ei saa sisestada"
+
+msgid "New material"
+msgstr "Uus materjal"
+
+msgid "New spectra"
+msgstr "Uued spektrid"
+
+msgid "New shape"
+msgstr "Uus kuju"
+
+msgid "New filter"
+msgstr "Uus filter"
+
+msgid "Unpack archive"
+msgstr "Pakkige arhiiv lahti"
+
+msgid "Clone the file to be called:"
+msgstr "Kloonige fail, mida nimetatakse:"
+
+msgid "The file name already exists"
+msgstr "Faili nimi on juba olemas"
+
+msgid "Rename the simulation to be called:"
+msgstr "Nimeta nimetatav simulatsioon ümber:"
+
+msgid "Are you sure you want to delete the files ?"
+msgstr "Kas olete kindel, et soovite failid kustutada?"
+
+msgid "You should now have a sim.json file in: "
+msgstr "Nüüd peaks teil olema sim.json-fail asukohas:"
+
+msgid "Open this directory to see it."
+msgstr "Selle nägemiseks avage see kataloog."
+
+msgid "Image"
+msgstr "Pilt"
+
+msgid "Gnuplot"
+msgstr "Gnuplot"
+
+msgid "Csv"
+msgstr "Csv"
+
+msgid "Text file (txt)"
+msgstr "Tekstifail (txt)"
+
+msgid "MS Excel (xlsx)"
+msgstr "MS Excel (xlsx)"
+
+msgid "Graph"
+msgstr "Graafik"
+
+msgid "Show title"
+msgstr "Näita pealkirja"
+
+msgid "Show key"
+msgstr "Näita võtit"
+
+msgid "Light source editor"
+msgstr "Valgusallika redaktor"
+
+msgid "Rebuild"
+msgstr "Ümber ehitada"
+
+msgid "Electrical parameters"
+msgstr "Elektrilised parameetrid"
+
+msgid ""
+"<big><b>Electrical parameters</b></big><br>Use this tab to configure the electrical "
+"parameters for the material."
+msgstr ""
+"<big><b>Elektrilised parameetrid</b></big><br>Kasutage seda vahekaarti materjali "
+"elektriliste parameetrite konfigureerimiseks."
+
+msgid "<big><b>Absorption</b></big><br>"
+msgstr "<big><b>Imendumine</b></big><br>"
+
+msgid "<big><b>Refractive index</b></big><br>"
+msgstr "<big><b>Murdumisnäitaja</b></big><br>"
+
+msgid "<big><b>Emission spectrum</b></big><br>Use this tab to edit the emission spectrum."
+msgstr ""
+"<big><b>Emissioonispekter</b></big><br>Kasutage seda vahekaarti emissioonispektri "
+"muutmiseks."
+
+msgid "Material editor"
+msgstr "Materjali toimetaja"
+
+msgid "Thermal parameters"
+msgstr "Termilised parameetrid"
+
+msgid "Life cycle"
+msgstr "Eluring"
+
+msgid "Refractive index (n)"
+msgstr "Murdumisnäitaja (n)"
+
+msgid "k"
+msgstr "k"
+
+msgid "Don't run me as root!!"
+msgstr "Ära juhi mind rootina!!"
+
+msgid "I can't run from inside a zip file!"
+msgstr "Ma ei saa zip-failist käivitada!"
+
+msgid ""
+"<big><b>New simulation!</b></big><br> Now selected the type of device you would like to "
+"simulate."
+msgstr ""
+"<big><b>Uus simulatsioon!</b></big><br> Nüüd valige seadme tüüp, mida soovite simuleerida."
+
+msgid ""
+"<big><b>Now run the simulation</b></big><br> Click on the play icon to start a simulation."
+msgstr ""
+"<big><b>Nüüd käivitage simulatsioon</b></big><br> Simulatsiooni alustamiseks klõpsake "
+"esitusikooni."
+
+msgid ""
+"<big><b>Hi!</b></big><br> I'm the on-line help system :).  If you have any questions or "
+"find any bugs please send them to <a href=\"mailto:"
+msgstr ""
+"<big><b>Tere!</b></big><br> Olen on-line abisüsteem :). Kui teil on küsimusi või leiate "
+"vigu, saatke need aadressile <a href=\"mailto:"
+
+msgid "Click on the new icon to make a new simulation directory."
+msgstr "Uue simulatsioonikataloogi loomiseks klõpsake uuel ikoonil."
+
+msgid "Open an existing simulation"
+msgstr "Avage olemasolev simulatsioon"
+
+msgid ""
+"To open this file I need to rename it to have a .oghma extention. Do you want me to do "
+"that?. I would rename the file: "
+msgstr ""
+"Selle faili avamiseks pean selle ümber nimetama .oghma laiendiks. Kas sa tahad, et ma seda "
+"teeksin? Nimetaksin faili ümber:"
+
+msgid "The simulation directory has been deleted."
+msgstr "Simulatsioonikataloog on kustutatud."
+
+msgid "Desktop"
+msgstr "Töölaud"
+
+msgid "Downloads"
+msgstr "Allalaadimised"
+
+msgid ""
+"<big><b>Examine the results in time domain</b></big><br> After you have run a simulation in "
+"time domain, if is often nice to be able to step through the simulation and look at the "
+"results.  This is what this window does.  Use the slider bar to move through the "
+"simulation.  When you are simulating a JV curve, the slider sill step through voltage "
+"points rather than time points."
+msgstr ""
+"<big><b>Tulemuste uurimine ajapiirkonnas</b></big><br> Kui olete ajapiirkonnas "
+"simulatsiooni käivitanud, on sageli meeldiv simulatsioonist läbi astuda ja tulemusi "
+"vaadata . Seda see aken teeb. Simulatsioonis liikumiseks kasutage liugurit. Kui simuleerite "
+"JV-kõverat, liigub liugur läbi pingepunktide, mitte ajapunktide."
+
+msgid ""
+"Are you sure you want restore this file from the backup, it will overwrite all files in the "
+"simulation directory?"
+msgstr ""
+"Kas olete kindel, et soovite selle faili varukoopiast taastada, see kirjutab kõik "
+"simulatsioonikataloogis olevad failid üle?"
+
+msgid "title"
+msgstr "pealkiri"
+
+msgid "x axis"
+msgstr "x telg"
+
+msgid "y axis"
+msgstr "y-telg"
+
+msgid "equilibrium"
+msgstr "tasakaal"
+
+msgid "This contains the simulation output at 0V in the dark."
+msgstr "See sisaldab simulatsiooni väljundit 0 V juures pimedas."
+
+msgid "Attenuation"
+msgstr "Sumbumine"
+
+msgid "Luminescence editor"
+msgstr "Luminestsentsi redaktor"
+
+msgid ""
+"Optical\n"
+"Emission"
+msgstr ""
+"Optiline\n"
+"Emissioon"
+
+msgid ""
+"<big><b>Luminescence</b></big>\n"
+"If you set 'Turn on luminescence' to true, the simulation will assume recombination is a "
+"raditave process and intergrate it to produce Voltage-Light intensity curves (lv.dat).  "
+"Each number in the tab tells the model how efficient each recombination mechanism is at "
+"producing photons."
+msgstr ""
+
+msgid "All"
+msgstr "Kõik"
+
+msgid "Wavelengths"
+msgstr "Lainepikkused"
+
+msgid "Electrical equilibrium solver"
+msgstr "Elektrilise tasakaalu lahendaja"
+
+msgid "Polynomial data generator"
+msgstr "Polünoomandmete generaator"
+
+msgid "Laser editor"
+msgstr "Laserredaktor"
+
+msgid "Youtube channel"
+msgstr "Youtube'i kanal"
+
+msgid "Quit"
+msgstr "Lõpeta"
+
+msgid ""
+"Stop\n"
+"simulation"
+msgstr ""
+"Peatage\n"
+"simulatsioon"
+
+msgid "Thickness"
+msgstr "Paksus"
+
+msgid "Mesh Auto"
+msgstr "Mesh Auto"
+
+msgid "Stop"
+msgstr "Peatus"
+
+msgid "Step multiply"
+msgstr "Samm korrutada"
+
+msgid "points"
+msgstr "punktid"
+
+msgid "Mesh points"
+msgstr "Võrgusilma punktid"
+
+msgid "PL experiment window"
+msgstr "PL katse aken"
+
+msgid "Script editor"
+msgstr "Skripti redaktor"
+
+msgid "Rename the script:"
+msgstr "Nimetage skript ümber:"
+
+msgid "active"
+msgstr "aktiivne"
+
+msgid "Flyby video maker"
+msgstr "Flyby video tegija"
+
+msgid ""
+"Set\n"
+"position"
+msgstr ""
+"Määra\n"
+"positsioon"
+
+msgid "Goto"
+msgstr "Minema"
+
+msgid "window width not divisible by two"
+msgstr "akna laius ei jagu kahega"
+
+msgid "window height not divisible by two"
+msgstr "akna kõrgus ei jagu kahega"
+
+msgid "and "
+msgstr "ja"
+
+msgid " more."
+msgstr "rohkem."
+
+msgid "Should I delete these files?:\n"
+msgstr "Kas ma peaksin need failid kustutama?:\n"
+
+msgid "command line tool"
+msgstr "käsurea tööriist"
+
+msgid "Prints the used paths"
+msgstr "Prindib kasutatud teed"
+
+msgid "www.pvlighthouse.com.au sync"
+msgstr "www.pvlighthouse.com.au sync"
+
+msgid "Load new image"
+msgstr "Laadi uus pilt"
+
+msgid ""
+"Original\n"
+"image"
+msgstr ""
+"Algne\n"
+"imi"
+
+msgid ""
+"Generate\n"
+"Image"
+msgstr ""
+"Loo\n"
+"pilt"
+
+msgid ""
+"Show\n"
+"Mesh"
+msgstr ""
+"Näita\n"
+"Mesh"
+
+msgid ""
+"Edit\n"
+"Mesh"
+msgstr ""
+"Redigeeri\n"
+"Mesh"
+
+msgid ""
+"Build\n"
+"Mesh"
+msgstr ""
+"Ehitamine\n"
+"Mesh"
+
+msgid ""
+"Generate\n"
+"Honeycomb"
+msgstr ""
+"Loo\n"
+"Honeycomb"
+
+msgid ""
+"Generate\n"
+"Xtal"
+msgstr ""
+"Loo\n"
+"Xtal"
+
+msgid ""
+"Generate\n"
+"lens"
+msgstr ""
+"Loo\n"
+"objektiiv"
+
+msgid ""
+"Generate\n"
+"Gaussian"
+msgstr ""
+"Genereeri\n"
+"Gaussi"
+
+msgid ""
+"Saw\n"
+"wave"
+msgstr ""
+"Sagin\n"
+"lainet"
+
+msgid "Blur"
+msgstr "Hägusus"
+
+msgid "Edit blur"
+msgstr "Muutke hägusust"
+
+msgid ""
+"Normalize\n"
+"y"
+msgstr ""
+"Normaliseeri\n"
+"y"
+
+msgid "Edit histogram"
+msgstr "Redigeeri histogrammi"
+
+msgid ""
+"Normalize\n"
+"z"
+msgstr ""
+"Normaliseeri\n"
+"z"
+
+msgid "Threshold"
+msgstr "Lävi"
+
+msgid "Boundary"
+msgstr "Piiri"
+
+msgid "Apply"
+msgstr "Rakenda"
+
+msgid "2D Image"
+msgstr "2D-kujutis"
+
+msgid "I don't know how to process this type of file!"
+msgstr "Ma ei tea, kuidas seda tüüpi faile töödelda!"
+
+msgid " <a href=\""
+msgstr "<a href=\""
+
+msgid "Can not connect to cluster."
+msgstr "Klastriga ei saa ühendust."
+
+msgid "Editors"
+msgstr "Toimetajad"
+
+msgid ""
+"<big><b>Simulation Editors</b></big><br> Use this tab to edit the simulation you wish to "
+"perform, you can choose from steady state measurments such as JV curve/Suns-Voc, time "
+"domain or frequency domain.  You can also choose to use advanced optical models to "
+"understand your data."
+msgstr ""
+"<big><b>Simulatsiooniredaktorid</b></big><br> Kasutage seda vahekaarti, et redigeerida "
+"simulatsiooni, mida soovite teostada. Saate valida püsiseisundi mõõtmiste hulgast, nagu JV "
+"kõver/päike-Voc, ajadomeen või sageduspiirkond. Samuti saate oma andmete mõistmiseks "
+"kasutada täiustatud optilisi mudeleid."
+
+msgid ""
+"<big><b>Configure</b></big><br> Use this tab to control advanced features of the "
+"simulation, such as finite difference mesh, amount of data written to disk, and the "
+"configuration of the back end numerical solvers."
+msgstr ""
+"<big><b>Seadista</b></big><br> Kasutage seda vahekaarti, et juhtida simulatsiooni "
+"täiustatud funktsioone, nagu lõplike erinevuste võrk, kettale kirjutatavate andmete hulk ja "
+"tagaosa numbrilise konfiguratsiooni lahendajad."
+
+msgid ""
+"<big><b>Simulation type</b></big><br> Use this tab to select which simulation mode the "
+"model runs in, select between steady state, time domain, frequency domain and optical "
+"simulations."
+msgstr ""
+"<big><b>Simulatsiooni tüüp</b></big><br> Kasutage seda vahekaarti, et valida, millises "
+"simulatsioonirežiimis mudel töötab, ning valige püsiseisundi, ajapiirkonna, "
+"sageduspiirkonna ja optiliste simulatsioonide vahel."
+
+msgid "Databases"
+msgstr "Andmebaasid"
+
+msgid ""
+"<big><b>Databases</b></big><br> Use this tab to explore the materials and optical data "
+"bases, you can add and download more materials/optical models using the tools here."
+msgstr ""
+"<big><b>Andmebaasid</b></big><br> Kasutage seda vahekaarti materjalide ja optiliste "
+"andmebaaside uurimiseks, saate lisada ja alla laadida rohkem materjale/optilisi mudeleid, "
+"kasutades siin olevaid tööriistu."
+
+msgid ""
+"<big><b>Information</b></big><br> Access extra information about the model in this tab, "
+"there are lots of tutorial videos on YouTube, follow on Twitter for the latest updates."
+msgstr ""
+"<big><b>Teave</b></big><br> Sellel vahekaardil leiate mudeli kohta lisateavet, YouTube'is "
+"on palju õppevideoid. Värskeimate värskenduste saamiseks jälgige Twitteris."
+
+msgid "Automation"
+msgstr "Automatiseerimine"
+
+msgid "Electrical"
+msgstr "Elektriline"
+
+msgid "Thermal"
+msgstr "Soojus"
+
+msgid "<big><b>Simulation mode changed</b></big><br>"
+msgstr "<big><b>Simulatsioonirežiim muudetud</b></big><br>"
+
+msgid "Key not found"
+msgstr "Võtit ei leitud"
+
+msgid "User not found"
+msgstr "Kasutajat ei leitud"
+
+msgid ""
+"This version of the software is too old to validate it's key, please download the latest "
+"version."
+msgstr ""
+"See tarkvara versioon on selle võtme kinnitamiseks liiga vana, laadige alla uusim versioon."
+
+msgid "OghmaNano trial"
+msgstr "OghmaNano prooviversioon"
+
+msgid "Optical simulation editor"
+msgstr "Optilise simulatsiooni redaktor"
+
+msgid "Photon distribution"
+msgstr "Footonite jaotus"
+
+msgid "Photon distribution absorbed"
+msgstr "Footonite jaotus neeldunud"
+
+msgid "m"
+msgstr "m"
+
+msgid "cm"
+msgstr "cm"
+
+msgid "mm"
+msgstr "mm"
+
+msgid "um"
+msgstr "um"
+
+msgid "nm"
+msgstr "nm"
+
+msgid "pm"
+msgstr "pm"
+
+msgid "fm"
+msgstr "fm"
+
+msgid "Optical thickness editor"
+msgstr "Optiline paksuse redaktor"
+
+msgid "File or token to ban"
+msgstr "Keelamiseks fail või tunnus"
+
+msgid "Laser:"
+msgstr "Laser:"
+
+msgid "Export"
+msgstr "Ekspordi"
+
+msgid "Cost and energy payback calculator"
+msgstr "Kulude ja energia tasuvuskalkulaator"
+
+msgid "Re-calcualte"
+msgstr "Arvutage uuesti"
+
+msgid "material"
+msgstr "materjalist"
+
+msgid "Mass"
+msgstr "Mass"
+
+msgid "Optical outcoupling"
+msgstr "Optiline ühendus"
+
+msgid "Photon distribution (norm)"
+msgstr "Footonite jaotus (norm)"
+
+msgid "Escape probability (1D in y)"
+msgstr "Põgenemise tõenäosus (1D y-s)"
+
+msgid "You have not selected any parameters to scan through.  Use the add button."
+msgstr "Te pole skannimiseks valinud ühtegi parameetrit. Kasutage lisamisnuppu."
+
+msgid "Parameter scan editor"
+msgstr "Parameetrite skannimise redaktor"
+
+msgid "Parameter to scan"
+msgstr "Skannitav parameeter"
+
+msgid "JSON Variable 0"
+msgstr "JSON-muutuja 0"
+
+msgid "JSON Variable 1"
+msgstr "JSON-muutuja 1"
+
+msgid ""
+"<big><b>Fast optimizer</b></big><br>When the fast optimizer is enabled simulation results "
+"are not written to disk and instead only key paramters are saved in a csv file. Using a "
+"spreadsheet you can then search/sort for the desired device parameters. This enables very "
+"fast parameter optimization of layer thicknesses."
+msgstr ""
+"<big><b>Kiire optimeerija</b></big><br>Kui kiire optimeerija on lubatud, ei kirjutata "
+"simulatsiooni tulemusi kettale ja selle asemel salvestatakse csv-faili ainult peamised "
+"parameetrid. Arvutustabeli abil saate seejärel otsida/sortida soovitud seadme parameetreid. "
+"See võimaldab kihi paksuste parameetrite väga kiiret optimeerimist."
+
+msgid "Quantum efficiency editor"
+msgstr ""

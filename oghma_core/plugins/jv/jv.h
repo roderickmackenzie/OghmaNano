@@ -1,23 +1,26 @@
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+// and/or sell copies of the Software, and to permit persons to whom the
+// Software is furnished to do so, subject to the following conditions:
 // 
-// Copyright (C) 2012-2017 Roderick C. I. MacKenzie info at gpvdm dot com
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
 // 
-// https://www.gpvdm.com
-// 
-// 
-// This program is free software; you can redistribute it and/or modify it
-// under the terms and conditions of the GNU Lesser General Public License,
-// version 2.1, as published by the Free Software Foundation.
-// 
-// This program is distributed in the hope it will be useful, but WITHOUT
-// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-// more details.
-// 
-// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+// THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+// SOFTWARE.
 // 
 
 /** @file jv.h
@@ -28,18 +31,18 @@
 #ifndef jv_h
 #define jv_h
 #include <sim.h>
+#include <device.h>
 #include <json.h>
+#include <sweep_store.h>
 
 struct jv
 {
-	gdouble Vstart;
-	gdouble Vstop;
-	gdouble Vstep;
-	gdouble jv_step_mul;
-	gdouble jv_light_efficiency;
-	gdouble jv_max_j;
-	long double jv_Rshunt;
-	long double jv_Rcontact;
+	double Vstart;
+	double Vstop;
+	double Vstep;
+	double jv_step_mul;
+	double jv_light_efficiency;
+	double jv_max_j;
 	int jv_single_point;
 	int dump_verbosity;
 	int dump_energy_space;
@@ -47,8 +50,11 @@ struct jv
 	int dump_y;
 	int dump_z;
 	int jv_use_external_voltage_as_stop;
+	char charge_carrier_generation_model[200];
+	int dump_sclc;
+	int eqe_smooth;
 };
 
-void sim_jv(struct simulation *sim,struct device *in);
-void jv_load_config(struct simulation *sim,struct jv* in, struct json_obj *json_jv);
+void sim_jv(struct simulation *sim,struct device *dev);
+void jv_load_config(struct simulation *sim, struct jv* dev, struct sweep_store *sweep, struct json_obj *json_jv);
 #endif

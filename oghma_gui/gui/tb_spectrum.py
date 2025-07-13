@@ -37,7 +37,6 @@ from PySide2.QtWidgets import QWidget,QSizePolicy,QTabWidget,QSystemTrayIcon,QMe
 from PySide2.QtGui import QIcon
 
 from materials_io import find_db_items
-from json_root import json_root
 from cal_path import sim_paths
 
 class tb_spectrum(QComboBox):
@@ -53,14 +52,10 @@ class tb_spectrum(QComboBox):
 		return self.currentText()
 
 	def update(self):
-		data=json_root()
 		self.blockSignals(True)
 		models=find_db_items(sim_paths.get_spectra_path(),file_type="spectra")
 
 		for i in range(0, len(models)):
 			self.addItem(models[i])
-
-		data.optical.light.sun
-
 	
 		self.blockSignals(False)

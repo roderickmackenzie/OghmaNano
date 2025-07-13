@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,12 +29,13 @@
 
 #ifndef device_light_srcs_h
 #define device_light_srcs_h
+#include <g_io.h>
 #include <light.h>
+#include <mesh.h>
 
 void light_srcs_init(struct simulation *sim,struct light_sources *srcs);
 void light_srcs_free(struct simulation *sim,struct light_sources *srcs);
 void light_srcs_cpy(struct simulation *sim,struct light_sources *out,struct light_sources *in);
-void light_srcs_load(struct simulation *sim,struct light_sources *srcs,struct json_obj *json_light_sources);
-void light_srcs_cal_lambda_min_max(struct simulation *sim,struct light_sources *srcs);
+void light_srcs_load(struct simulation *sim,struct light_sources *srcs,struct json_obj *json_light_sources,struct mesh *mesh_l);
 void light_srcs_dump(struct simulation *sim,char *path,struct light_sources *srcs);
 #endif

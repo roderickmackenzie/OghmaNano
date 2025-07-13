@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,6 +29,7 @@
 
 #ifndef time_mesh_h
 #define time_mesh_h
+#include <g_io.h>
 #include <stdio.h>
 #include "code_ctrl.h"
 #include "light.h"
@@ -49,16 +48,22 @@
 
 struct time_mesh
 {
-	long double *tm_time_mesh;
-	long double *tm_dt;
-	long double *tm_sun;
-	long double *tm_voltage;
-	long double *tm_laser;
-	long double *tm_fs_laser;
+	gdouble *tm_time_mesh;
+	gdouble *tm_dt;
+	gdouble *tm_sun;
+	gdouble *tm_voltage;
+	gdouble *tm_laser;
+	gdouble *tm_fs_laser;
 
 	int tm_mesh_len;
 	int tm_use_mesh;
 	int tm_mesh_pos;
+
+	int loop;
+	int loop_times;
+	int loop_n;
+	double loop_offset;
+	int loop_reset_time;
 };
 
 

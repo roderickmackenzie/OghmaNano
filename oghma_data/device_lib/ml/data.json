@@ -1,0 +1,9 @@
+{
+	"icon":"ml",
+	"sub_icon":"folder",
+	"name":"Machine\nLearning",
+	"hide_this_json_file": "True",
+	"item_type":"dir",
+	"view_type":"list",
+	"status":"public"
+}

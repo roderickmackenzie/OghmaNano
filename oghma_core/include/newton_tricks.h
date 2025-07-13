@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,6 +29,7 @@
 
 #ifndef newton_tricks_h
 #define newton_tricks_h
+#include <g_io.h>
 
 struct newton_math_state
 {
@@ -40,7 +39,6 @@ struct newton_math_state
 	gdouble electrical_clamp;
 	int newton_clever_exit;
 };
-
 
 void newton_push_state(struct device *in);
 void newton_pop_state(struct device *in);
@@ -55,32 +53,35 @@ void ntricks_auto_ramp_contacts(struct simulation *sim,struct device *in);
 
 
 void newton_externv_aux(struct simulation *sim,struct device *in,gdouble V,gdouble* i,gdouble* didv,gdouble* didphi,gdouble* didxil,gdouble* didxipl,gdouble* didphir,gdouble* didxir,gdouble* didxipr);
-long double newton_externv(struct simulation *sim,struct device *in,long double Vtot);
+gdouble newton_externv(struct simulation *sim,struct device *in,gdouble Vtot);
 gdouble newton_externalv_simple(struct simulation *sim,struct device *in,gdouble V);
-long double sim_externalv_ittr(struct simulation *sim,struct device *in,gdouble wantedv);
+gdouble sim_externalv_ittr(struct simulation *sim,struct device *in,gdouble wantedv);
 
 void state_cache_init(struct simulation *sim,struct device *in);
 void hash_dir(struct simulation *sim,char *out);
 //void state_gen_vector(struct simulation *sim,struct device *in);
 //int state_find_vector(struct simulation *sim,struct device *in,char *out);
 
-//newton state
-void newton_state_init(struct newton_state *ns);
-void newton_state_alloc_mesh(struct newton_state *ns,struct dimensions *dim, int alloc_dim);
-void newton_state_alloc_traps(struct newton_state *ns,struct dimensions *dim);
-void newton_state_free(struct newton_state *ns);
-void newton_state_cpy(struct newton_state *out,struct newton_state *in);
-void newton_state_save(struct simulation *sim,char *file_name,struct newton_state *ns);
-int newton_state_load(struct simulation *sim,struct newton_state *ns,char *file_name);
-void newton_state_update_device(struct simulation *sim,struct device *in, struct newton_state *ns);
-void newton_state_set_last_error(struct simulation *sim, struct newton_state *ns,long double error);
-void newton_state_reset_error(struct simulation *sim, struct newton_state *ns);
-int newton_state_clever_exit(struct simulation *sim, struct newton_state *ns);
+//memory
+void solver_cal_memory_1D_2D(struct simulation *sim,struct device *in,int *ret_N,int *ret_M);
 
-//newton state complex
-void newton_state_complex_init(struct newton_state_complex *ns);
-void newton_state_complex_alloc_mesh(struct newton_state_complex *ns,struct dimensions *dim);
-void newton_state_complex_alloc_traps(struct newton_state_complex *ns,struct dimensions *dim);
-void newton_state_complex_free(struct newton_state_complex *ns);
+//offsets
+int get_offset(struct device *dev, int z, int x, int y, int band, int *phi, int *n, int *p, int *srh_n, int *srh_p, int *nion);
+int get_offset2(struct device *dev, int offset, int z, int x, int y, int *Ns, int *Nt, int *Nsd, int *Ntd, int *N1C, int *N3C);
+int get_offset_aux(struct device *dev,int *kcl, int *Nho);
+
+//newton
+double newton_get_error(struct simulation *sim,struct device *in);
+int newton_dump_bandwidth(struct simulation *sim,struct device *dev);
+void update_solver_vars_1D_2D(struct simulation *sim,struct device *dev,int z,int x_in,int clamp);
+
+//equations
+void newton_setup_equs(struct simulation *sim,struct device *in);
+void newton_set_equs(struct simulation *sim,struct device *dev,int val);
+
+//thermal
+int thermal_ramp_needed(struct simulation *sim,struct device *dev);
+void thermal_ramp(struct simulation *sim,struct device *dev);
+void device_set_temperature_val(struct simulation *sim,struct device *in,double val);
 #endif
 

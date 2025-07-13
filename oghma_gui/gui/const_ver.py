@@ -1,3 +1,3 @@
 def const_ver():
-	return "v8.0"
+	return "v8.1"
 

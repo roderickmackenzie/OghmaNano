@@ -41,8 +41,8 @@ from tab import tab_class
 from gQtCore import gSignal
 
 from QWidgetSavePos import QWidgetSavePos
-from json_root import json_root
 from help import QAction_help
+from json_c import json_tree_c
 
 class fit_configure_window(QWidgetSavePos):
 
@@ -57,7 +57,7 @@ class fit_configure_window(QWidgetSavePos):
 		from fit_rules import fit_rules
 
 		QWidgetSavePos.__init__(self,name)
-		
+		self.bin=json_tree_c()
 		self.setMinimumSize(900, 600)
 		self.setWindowIcon(icon_get("preferences-system"))
 
@@ -82,9 +82,8 @@ class fit_configure_window(QWidgetSavePos):
 		self.notebook.setMovable(True)
 		self.main_vbox.addWidget(self.notebook)
 
-		data=json_root()
-
-		self.duplicate_window=fit_duplicate(data.fits.duplicate.id)
+		uid=self.bin.get_token_value("fits.duplicate","id")
+		self.duplicate_window=fit_duplicate("fits.duplicate",uid)
 		self.notebook.addTab(self.duplicate_window,_("Duplicate variables"))
 
 		self.fit_vars_window=fit_vars()
@@ -93,18 +92,14 @@ class fit_configure_window(QWidgetSavePos):
 		self.fit_rules_window=fit_rules()
 		self.notebook.addTab(self.fit_rules_window,_("Fit rules"))
 
-		tab=tab_class(data.fits.fit_config)
-		self.notebook.addTab(tab,_("Configure minimizer"))
+		self.config_tab=tab_class("fits.fit_config")
+		self.notebook.addTab(self.config_tab,_("Configure minimizer"))
 
-		self.dummy_tab=tab_class(data.fits.dummy_vars)
-		self.notebook.addTab(self.dummy_tab,_("Dummy variables"))
-
-		data.add_call_back(self.update_values)
+		self.bin.add_call_back(self.update_values)
 
 		self.setLayout(self.main_vbox)
 
 	def update_values(self):
-		data=json_root()
 		self.dummy_tab.tab.template_widget=data.fits.dummy_vars
 		self.dummy_tab.tab.update_values()
 

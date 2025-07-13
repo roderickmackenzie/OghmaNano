@@ -31,17 +31,16 @@
 import i18n
 _ = i18n.language.gettext
 
-from experiment import experiment
+from vec import vec
+from experiment_bin import experiment_bin
 from global_objects import global_object_run
-from json_root import json_root
+from json_c import json_tree_c
 
-class detectors_editor(experiment):
-
+class detectors_editor(experiment_bin):
 
 	def __init__(self,data=None):
-		experiment.__init__(self,"detectors_tab",window_save_name="detectors_editor", window_title=_("Optical detectors editor"),json_search_path="json_root().optical.detectors")
-
-		self.base_json_obj="from json_detectors import json_detector"
+		experiment_bin.__init__(self,"tab_jv",window_save_name="detectors_editor", window_title=_("Optical detectors editor"),json_search_path="optical.detectors")
+		self.bin=json_tree_c()
 		self.notebook.currentChanged.connect(self.switch_page)
 		self.switch_page()
 		self.changed.connect(self.callback_changed)
@@ -49,15 +48,26 @@ class detectors_editor(experiment):
 
 	def switch_page(self):
 		self.notebook.currentWidget()
-		#self.tb_lasers.update(tab.data)
 
 	def callback_changed(self):
 		global_object_run("gl_force_redraw")
 
-	def my_fixup_new(self,a):
-		world_min,world_max=json_root().get_world_size()
-		a.dx=world_max.x-world_min.x
-		a.dy=(world_max.y-world_min.y)/100.0
-		a.dz=world_max.z-world_min.z
+	def my_fixup_new(self,json_path):
+		world_min=vec()
+		world_max=vec()
+		self.bin.json_world_size(world_min,world_max)
 
+		dx=world_max.x-world_min.x
+		dy=(world_max.y-world_min.y)/100.0
+		dz=world_max.z-world_min.z
+
+		self.bin.set_token_value(json_path,"dx",dx)
+		self.bin.set_token_value(json_path,"dy",dy)
+		self.bin.set_token_value(json_path,"dz",dz)
+		self.bin.set_token_value(json_path,"moveable",True)
+
+		self.bin.set_token_value(json_path,"color_r",0.0)
+		self.bin.set_token_value(json_path,"color_g",1.0)
+		self.bin.set_token_value(json_path,"color_b",0.0)
+		self.bin.set_token_value(json_path,"color_alpha",0.5)
 

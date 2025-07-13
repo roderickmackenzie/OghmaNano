@@ -48,9 +48,8 @@ from cal_path import sim_paths
 class fit_progress(QTabWidget):
 
 	def update(self):
-		for widget in self.plot_widgets:
-			widget.reload()
-			widget.do_plot()
+		self.plot_widget.reload()
+		self.plot_widget.do_plot()
 	
 	def update_for_fit(self):
 		self.update()
@@ -59,15 +58,15 @@ class fit_progress(QTabWidget):
 		QTabWidget.__init__(self)
 
 		self.setMovable(True)
-		self.plot_widgets=[]
-		for file_name in ["fitlog.csv"]:	#,"fitlog_time_error.dat","fitlog_time_odes.dat"
-			f_name=os.path.join(sim_paths.get_sim_path(),file_name)
-			self.plot_widgets.append(plot_widget(enable_toolbar=False,widget_mode="pyqtgraph"))
-			self.plot_widgets[-1].set_labels([os.path.basename(f_name)])
-			self.plot_widgets[-1].load_data([f_name])
-			self.plot_widgets[-1].do_plot()
+		self.plot_widget=plot_widget(enable_toolbar=False,widget_mode="graph")
+		#for file_name in [,]:	#,"fitlog_time_error.dat","fitlog_time_odes.dat"
+		file_name_fit_log=os.path.join(sim_paths.get_sim_path(),"fitlog.csv")
+		file_name_fit_log_best=os.path.join(sim_paths.get_sim_path(),"fitlog_best.csv")
+		self.plot_widget.load_data([file_name_fit_log])			#,file_name_fit_log_best
+		self.plot_widget.set_labels([_("Current error")])		#,_("Best error")
+		self.plot_widget.do_plot()
 
-			self.addTab(self.plot_widgets[-1],file_name)
+		self.addTab(self.plot_widget,"Fit log")
 		
 
 	def rename(self,tab_name):

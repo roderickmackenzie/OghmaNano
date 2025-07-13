@@ -1,0 +1,9 @@
+{
+	"icon":"ofet",
+	"sub_icon":"folder",
+	"name":"OFETs",
+	"hide_this_json_file": "True",
+	"item_type":"dir",
+	"view_type":"list",
+	"status":"public"
+}

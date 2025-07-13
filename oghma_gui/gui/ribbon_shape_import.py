@@ -31,8 +31,6 @@
 
 import os
 
-from cal_path import get_css_path
-
 #qt
 from PySide2.QtGui import QIcon
 from gQtCore import QSize, Qt,QFile,QIODevice
@@ -46,6 +44,7 @@ from util import wrap_text
 from ribbon_base import ribbon_base
 from QAction_lock import QAction_lock
 from play import play
+from cal_path import sim_paths
 
 class ribbon_shape_import(ribbon_base):
 	def file_toolbar(self):
@@ -95,6 +94,9 @@ class ribbon_shape_import(ribbon_base):
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		toolbar.addWidget(spacer)
 
+		self.tb_ref= QAction(icon_get("ref"), wrap_text(_("Reference information"),8), self)
+		toolbar.addAction(self.tb_ref)
+
 		self.tb_help = QAction(icon_get("help"), _("Help"), self)
 		self.tb_help.setStatusTip(_("Help"))
 		toolbar.addAction(self.tb_help)
@@ -143,7 +145,7 @@ class ribbon_shape_import(ribbon_base):
 
 
 		##########################
-		self.tb_gaus= QAction_lock("gauss", wrap_text(_("Generate\nGaussian"),2), self,"ribbon_shape_gaus")
+		self.tb_gaus= QAction_lock("gaussian", wrap_text(_("Generate\nGaussian"),2), self,"ribbon_shape_gaus")
 
 		self.tb_gaus_menu = QMenu(self)
 		self.tb_gaus.setMenu(self.tb_gaus_menu)
@@ -253,7 +255,7 @@ class ribbon_shape_import(ribbon_base):
 		w=self.filters_toolbar()
 		self.addTab(w,_("Filters"))
 
-		sheet=self.readStyleSheet(os.path.join(get_css_path(),"style.css"))
+		sheet=self.readStyleSheet(os.path.join(sim_paths.get_css_path(),"style.css"))
 		if sheet!=None:
 			sheet=str(sheet,'utf-8')
 			self.setStyleSheet(sheet)

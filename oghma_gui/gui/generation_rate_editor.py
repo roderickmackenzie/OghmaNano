@@ -31,9 +31,8 @@
 from icon_lib import icon_get
 from global_objects import global_object_get
 
-#inp
 #windows
-from g_tab2 import g_tab2
+from g_tab2_bin import g_tab2_bin
 from error_dlg import error_dlg
 
 #qt
@@ -48,31 +47,24 @@ from QComboBoxLang import QComboBoxLang
 import i18n
 _ = i18n.language.gettext
 
-
 from cal_path import sim_paths
 from QWidgetSavePos import QWidgetSavePos
-from epitaxy import get_epi
-
 from error_dlg import error_dlg
-from inp import inp
-from cal_path import sim_paths
-from json_root import json_root
+from json_c import json_tree_c
 
 class generation_rate_editor(QWidgetSavePos):
 
 	def cell_changed(self, y,x):
-		data=json_root()
-		epi=get_epi()
 
 		for i in range(0,self.tab.rowCount()):
 			uid=self.tab.get_value(i,2)
-			obj=epi.find_object_by_id(uid)
-			obj.Gnp=float(self.tab.get_value(i,1))
-
-		data.save()
+			json_path=self.bin.find_path_by_uid("epitaxy",uid)
+			self.bin.set_token_value(json_path,"Gnp",float(self.tab.get_value(i,1)))
+		self.bin.save()
 
 	def __init__(self):
 		QWidgetSavePos.__init__(self,"generation_rate_editor")
+		self.bin=json_tree_c()
 
 		self.setWindowTitle2(_("Generaton rate editor"))
 		self.setWindowIcon(icon_get("layers"))
@@ -80,7 +72,7 @@ class generation_rate_editor(QWidgetSavePos):
 
 		self.main_vbox=QVBoxLayout()
 
-		self.tab = g_tab2()
+		self.tab = g_tab2_bin()
 
 		self.tab.verticalHeader().setVisible(False)
 		self.create_model()
@@ -91,7 +83,6 @@ class generation_rate_editor(QWidgetSavePos):
 		self.setLayout(self.main_vbox)
 
 	def create_model(self):
-		epi=get_epi()
 		self.tab.blockSignals(True)
 		self.tab.clear()
 		self.tab.setColumnCount(3)
@@ -101,10 +92,20 @@ class generation_rate_editor(QWidgetSavePos):
 		self.tab.setColumnWidth(1, 250)
 		self.tab.setColumnWidth(2, 10)
 
-		for l in epi.layers:
-			self.add_row(l.name,l.Gnp,l.id)
-			for s in l.segments:
-				self.add_row(s.name,s.Gnp,s.id)
+		segments=self.bin.get_token_value("epitaxy","segments")
+		for l in range(0,segments):
+			path="epitaxy.segment"+str(l)
+			name=self.bin.get_token_value(path,"name")
+			Gnp=self.bin.get_token_value(path,"Gnp")
+			uid=self.bin.get_token_value(path,"id")
+			s_segments=self.bin.get_token_value(path,"segments")
+			self.add_row(name,Gnp,uid)
+			for s in range(0,s_segments):
+				s_path="epitaxy.segment"+str(l)+".segment"+str(s)
+				name=self.bin.get_token_value(s_path,"name")
+				Gnp=self.bin.get_token_value(s_path,"Gnp")
+				uid=self.bin.get_token_value(s_path,"id")
+				self.add_row(name,Gnp,uid)
 
 
 		self.tab.blockSignals(False)

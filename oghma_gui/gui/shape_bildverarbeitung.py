@@ -36,7 +36,7 @@ from icon_lib import icon_get
 from PIL import Image, ImageFilter,ImageOps, ImageDraw
 from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget, QDialog, QMenu
-from PySide2.QtGui import QPainter,QIcon,QPixmap,QPen,QColor
+from PySide2.QtGui import QPainter,QIcon,QPixmap,QPen,QColor,QImage
 
 #python modules
 
@@ -44,38 +44,46 @@ from help import help_window
 
 from gQtCore import gSignal
 from PIL import Image, ImageFilter,ImageOps 
-from PIL.ImageQt import ImageQt
 
 class shape_bildverarbeitung():
 
-	def __init__(self,path,json_obj):
+	def __init__(self,path,json_bin_obj):
 		super().__init__()
 		self.path=path
-		self.json_obj=json_obj
+		self.bin=json_bin_obj
 		self.image_in=os.path.join(self.path,"image.png")
 		self.image_out=os.path.join(self.path,"image_out.png")
 
 	def apply_boundary(self,im):
-		if self.json_obj.boundary.boundary_enabled==True:
-			x0=self.json_obj.boundary.image_boundary_x0
-			x0_r=int(float(self.json_obj.boundary.image_boundary_x0_color.split(",")[0])*255)
-			x0_g=int(float(self.json_obj.boundary.image_boundary_x0_color.split(",")[1])*255)
-			x0_b=int(float(self.json_obj.boundary.image_boundary_x0_color.split(",")[2])*255)
+		boundary_enabled=self.bin.get_token_value("boundary","boundary_enabled")
+		if boundary_enabled==True:
+			x0=self.bin.get_token_value("boundary","image_boundary_x0")
+			color=self.bin.get_token_value("boundary","image_boundary_x0_color")
+			r,g,b,alpha=color.split(",")
+			x0_r=int(float(r)*255)
+			x0_g=int(float(g)*255)
+			x0_b=int(float(b)*255)
 
-			x1=self.json_obj.boundary.image_boundary_x1
-			x1_r=int(float(self.json_obj.boundary.image_boundary_x1_color.split(",")[0])*255)
-			x1_g=int(float(self.json_obj.boundary.image_boundary_x1_color.split(",")[1])*255)
-			x1_b=int(float(self.json_obj.boundary.image_boundary_x1_color.split(",")[2])*255)
+			x1=self.bin.get_token_value("boundary","image_boundary_x1")
+			color=self.bin.get_token_value("boundary","image_boundary_x1_color")
+			r,g,b,alpha=color.split(",")
+			x1_r=int(float(r)*255)
+			x1_g=int(float(g)*255)
+			x1_b=int(float(b)*255)
 
-			y0=self.json_obj.boundary.image_boundary_y0
-			y0_r=int(float(self.json_obj.boundary.image_boundary_y0_color.split(",")[0])*255)
-			y0_g=int(float(self.json_obj.boundary.image_boundary_y0_color.split(",")[1])*255)
-			y0_b=int(float(self.json_obj.boundary.image_boundary_y0_color.split(",")[2])*255)
+			y0=self.bin.get_token_value("boundary","image_boundary_y0")
+			color=self.bin.get_token_value("boundary","image_boundary_y0_color")
+			r,g,b,alpha=color.split(",")
+			y0_r=int(float(r)*255)
+			y0_g=int(float(g)*255)
+			y0_b=int(float(b)*255)
 
-			y1=self.json_obj.boundary.image_boundary_y1
-			y1_r=int(float(self.json_obj.boundary.image_boundary_x1_color.split(",")[0])*255)
-			y1_g=int(float(self.json_obj.boundary.image_boundary_x1_color.split(",")[1])*255)
-			y1_b=int(float(self.json_obj.boundary.image_boundary_x1_color.split(",")[2])*255)
+			y1=self.bin.get_token_value("boundary","image_boundary_y1")
+			color=self.bin.get_token_value("boundary","image_boundary_y1_color")
+			r,g,b,alpha=color.split(",")
+			y1_r=int(float(r)*255)
+			y1_g=int(float(g)*255)
+			y1_b=int(float(b)*255)
 
 			w, h = im.size
 			dr=ImageDraw.Draw(im)
@@ -91,25 +99,32 @@ class shape_bildverarbeitung():
 		return im
 
 	def apply_blur(self,im):
-		if self.json_obj.blur.shape_import_blur_enabled==True:
-			im = im.filter(ImageFilter.GaussianBlur(radius = self.json_obj.blur.shape_import_blur))
+		shape_import_blur_enabled=self.bin.get_token_value("blur","shape_import_blur_enabled")
+		shape_import_blur=self.bin.get_token_value("blur","shape_import_blur")
+		if shape_import_blur_enabled==True:
+			im = im.filter(ImageFilter.GaussianBlur(radius = shape_import_blur))
 		return im
 
 	def apply_rotate(self,im):
-		rotate=self.json_obj.import_config.shape_import_rotate
+		shape_import_rotate=self.bin.get_token_value("import_config","shape_import_rotate")
+		rotate=shape_import_rotate
 		if rotate!=0:
 			im=im.rotate(360-rotate)
 		return im
 
 	def norm_y(self,im):
-		if self.json_obj.import_config.shape_import_y_norm==True:
-			print(self.json_obj.import_config.shape_import_y_norm_percent,im.mode)
-			im=ImageOps.autocontrast(im, cutoff=self.json_obj.import_config.shape_import_y_norm_percent, ignore=None)
+		shape_import_y_norm=self.bin.get_token_value("import_config","shape_import_y_norm")
+		shape_import_y_norm_percent=self.bin.get_token_value("import_config","shape_import_y_norm_percent")
+		if shape_import_y_norm==True:
+			print(shape_import_y_norm_percent,im.mode)
+			im=ImageOps.autocontrast(im, cutoff=shape_import_y_norm_percent, ignore=None)
 		return im
 
 	def threshold(self,im):
-		if self.json_obj.threshold.threshold_enabled==True:
-			fn = lambda x : 255 if x > self.json_obj.threshold.threshold_value else 0
+		threshold_enabled=self.bin.get_token_value("threshold","threshold_enabled")
+		if threshold_enabled==True:
+			threshold_value=self.bin.get_token_value("threshold","threshold_value")
+			fn = lambda x : 255 if x > threshold_value else 0
 			im = im.convert('L').point(fn, mode='1')
 			im = im.convert('RGB')
 
@@ -135,9 +150,9 @@ class shape_bildverarbeitung():
 		if img.mode!="RGB":
 			img=img.convert('RGB')
 
-		self.y_norm=self.json_obj.shape_import_y_norm
-		self.z_norm=self.json_obj.shape_import_z_norm
-		self.y_norm_percent=self.json_obj.shape_import_y_norm_percent
+		self.y_norm=self.bin.get_token_value("","shape_import_y_norm")
+		self.z_norm=self.bin.get_token_value("","shape_import_z_norm")
+		self.y_norm_percent=self.bin.get_token_value("import_config","shape_import_y_norm_percent")
 
 		if self.z_norm==True:
 			img2 = img.resize((1, 1))
@@ -170,30 +185,39 @@ class shape_bildverarbeitung():
 	def mouseReleaseEvent(self, event):
 		self.im.save(self.image_in)
 
-	def paintEvent(self, event):
-		painter = QPainter(self)
+#I got chat gpt to rewrite this without ImageQt from PIL
+def paintEvent(self, event):
+	painter = QPainter(self)
 
-		if self.im==None:
-			return
-		width, height = self.im.size
-		#print(type(self.im))
-		qim = ImageQt(self.im)
-		pixmap = QPixmap.fromImage(qim)
-		#self.im=pixmap.toImage()
-		x_mul=self.height()
-		z_mul=self.width()
+	if self.im is None:
+		return
 
-		painter.drawPixmap(self.rect(), pixmap)
-		pen = QPen(Qt.red, 3)
-		painter.setPen(pen)
+	# Convert PIL image to RGBA and then to raw bytes
+	pil_im = self.im.convert("RGBA")
+	width, height = pil_im.size
+	data = pil_im.tobytes("raw", "RGBA")
 
-		if self.show_mesh==True:
-			if self.dat_file.data!=None:
-				for t in self.dat_file.data:
-					#print(t.xyz0.x,t.xyz0.x*x_mul,self.width())
-					painter.drawLine(t.xyz0.z*z_mul, t.xyz0.x*x_mul, t.xyz1.z*z_mul, t.xyz1.x*x_mul)
-					painter.drawLine(t.xyz1.z*z_mul, t.xyz1.x*x_mul, t.xyz2.z*z_mul, t.xyz2.x*x_mul)
-					painter.drawLine(t.xyz2.z*z_mul, t.xyz2.x*x_mul, t.xyz0.z*z_mul, t.xyz0.x*x_mul)
+	# Create QImage from raw data
+	qimage = QImage(data, width, height, QImage.Format_RGBA8888)
+	pixmap = QPixmap.fromImage(qimage)
+
+	x_mul = self.height()
+	z_mul = self.width()
+
+	# Draw the image
+	painter.drawPixmap(self.rect(), pixmap)
+
+	# Set up red pen
+	pen = QPen(Qt.red, 3)
+	painter.setPen(pen)
+
+	# Optional mesh overlay
+	if self.show_mesh and self.dat_file.data is not None:
+		for t in self.dat_file.data:
+			painter.drawLine(t.xyz0.z * z_mul, t.xyz0.x * x_mul, t.xyz1.z * z_mul, t.xyz1.x * x_mul)
+			painter.drawLine(t.xyz1.z * z_mul, t.xyz1.x * x_mul, t.xyz2.z * z_mul, t.xyz2.x * x_mul)
+			painter.drawLine(t.xyz2.z * z_mul, t.xyz2.x * x_mul, t.xyz0.z * z_mul, t.xyz0.x * x_mul)
+
 
 
 	def callback_copy(self,event):

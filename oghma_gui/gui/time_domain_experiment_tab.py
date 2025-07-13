@@ -42,11 +42,28 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTabWidget
 from PySide2.QtGui import QPainter,QIcon
 from cal_path import sim_paths
-from inp import inp
 from css import css_apply
-from json_root import json_root
+from json_c import json_tree_c
 
 class time_domain_experiment_tab(QTabWidget):
+
+	def __init__(self,json_search_path,uid):
+		QTabWidget.__init__(self)
+		self.bin=json_tree_c()
+		css_apply(self ,"tab_default.css")
+		self.json_search_path=json_search_path
+		self.uid=uid
+		self.setMovable(True)
+
+		self.tmesh = tab_time_mesh(uid)
+		self.addTab(self.tmesh,_("time mesh"))
+
+		if self.bin.get_token_value("electrical_solver","solver_type")!="circuit":
+			self.circuit=circuit(json_search_path,uid)
+			self.addTab(self.circuit,_("Circuit"))
+
+		tab=tab_class(json_search_path,uid=uid, json_postfix="config")
+		self.addTab(tab,_("Configure"))
 
 	def update(self):
 		self.tmesh.update()
@@ -54,28 +71,9 @@ class time_domain_experiment_tab(QTabWidget):
 	def image_save(self):
 		self.tmesh.image_save()
 
-	def __init__(self,data):
-		QTabWidget.__init__(self)
-		css_apply(self ,"tab_default.css")
-		self.data=data
-		
-		self.setMovable(True)
-
-		self.tmesh = tab_time_mesh(self.data.id)
-		self.addTab(self.tmesh,_("time mesh"))
-
- 
-		if json_root().electrical_solver.solver_type!="circuit":
-			self.circuit=circuit(self.data)
-			self.addTab(self.circuit,_("Circuit"))
-
-		tab=tab_class(self.data.config)
-		self.addTab(tab,_("Configure"))
-
-
 	def rename(self,tab_name):
 		self.data.name=tab_name
-		json_root().save()
+		self.bin.save()
 
 	def get_json_obj(self):
 		return self.data

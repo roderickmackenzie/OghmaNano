@@ -29,7 +29,6 @@
 #
 
 
-from tab_base import tab_base
 from tab import tab_class
 from global_objects import global_object_register
 
@@ -45,15 +44,17 @@ from QHTabBar import QHTabBar
 from icon_lib import icon_get
 
 from css import css_apply
-from json_root import json_root
 from help import QAction_help
 from sim_name import sim_name
 from ribbon_page import ribbon_page
+from json_c import json_tree_c
+import ctypes
 
-class pl_main(QWidget,tab_base):
+class pl_main(QWidget):
 
 	def __init__(self):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.main_vbox = QVBoxLayout()
 
 		self.setWindowIcon(icon_get("preferences-system"))
@@ -81,7 +82,8 @@ class pl_main(QWidget,tab_base):
 		self.main_vbox.addWidget(toolbar)
 
 		self.notebook = QTabWidget()
-		if len(json_root().epi.layers)>8:
+		segments=self.bin.get_token_value("epitaxy","segments")
+		if segments>8:
 			self.tab_bar=QHTabBar()
 			css_apply(self.notebook,"style_h.css")
 			self.notebook.setTabBar(self.tab_bar)
@@ -99,34 +101,40 @@ class pl_main(QWidget,tab_base):
 
 	def update(self):
 		self.notebook.clear()
-		epi=json_root().epi
+		segments=self.bin.get_token_value("epitaxy","segments")
 
-		for l in epi.layers:
-			if l.layer_type=="active":
-
-				widget=tab_class(l.shape_pl)
-
-				self.notebook.addTab(widget,l.name)
+		for l in range(0,segments):
+			path="epitaxy.segment"+str(l)
+			name=self.bin.get_token_value(path,"name")
+			uid=self.bin.get_token_value(path,"id")
+			obj_type=self.bin.get_token_value(path,"obj_type")
+			if obj_type=="active":
+				widget=tab_class("epitaxy",uid=uid,json_postfix="shape_pl")
+				self.notebook.addTab(widget,name)
 
 	def help(self):
-		help_window().help_set_help(["tab.png",_("<big><b>Luminescence</b></big>\nIf you set 'Turn on luminescence' to true, the simulation will assume recombination is a raditave process and intergrate it to produce Voltage-Light intensity curves (lv.dat).  Each number in the tab tells the model how efficient each recombination mechanism is at producing photons.")])
+		help_window().help_set_help("tab.png",_("<big><b>Luminescence</b></big>\nIf you set 'Turn on luminescence' to true, the simulation will assume recombination is a raditave process and intergrate it to produce Voltage-Light intensity curves (lv.dat).  Each number in the tab tells the model how efficient each recombination mechanism is at producing photons."))
 
 	def changed_click(self):
-		data=json_root()
 
 		tab = self.notebook.currentWidget()
 		if tab==None:
 			return
-		tab.tab.refind_template_widget()
-		self.tb_pl_enabled.setChecked(tab.tab.template_widget.pl_emission_enabled)
+
+		uid=tab.tab.uid
+		if uid!=None:
+			json_path=self.bin.find_path_by_uid("epitaxy",uid)
+			enabled=self.bin.get_token_value(json_path+".shape_pl","pl_emission_enabled")
+			self.tb_pl_enabled.setChecked(enabled)
 
 
 	def callback_pl_enabled(self):
-		data=json_root()
 		tab = self.notebook.currentWidget()
-		tab.tab.refind_template_widget()
-		tab.tab.template_widget.pl_emission_enabled=self.tb_pl_enabled.isChecked()
+		uid=tab.tab.uid
+		if uid!=None:
+			json_path=self.bin.find_path_by_uid("epitaxy",uid)
+			self.bin.set_token_value(json_path+".shape_pl","pl_emission_enabled",self.tb_pl_enabled.isChecked())
+			tab.tab.hide_show_widgets()
+			self.bin.save()
 
-		tab.tab.hide_show_widgets()
-		data.save()
 

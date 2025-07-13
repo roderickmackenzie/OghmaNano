@@ -29,9 +29,7 @@
 #
 
 import os
-from tab_base import tab_base
 from help import my_help_class
-from cal_path import get_image_file_path
 
 import i18n
 _ = i18n.language.gettext
@@ -43,7 +41,7 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QScrollArea,QSizePolicy,QHBoxLayout,QPushButton,QDialog,QFileDialog,QToolBar, QMessageBox, QVBoxLayout, QGroupBox, QTableWidget,QAbstractItemView, QTableWidgetItem, QLabel
 from cal_path import sim_paths
 
-class information(QScrollArea,tab_base):
+class information(QScrollArea):
 
 	def __init__(self,file_name):
 		QScrollArea.__init__(self)
@@ -69,7 +67,7 @@ class information(QScrollArea,tab_base):
 				line=bytes(line, 'utf-8').decode('utf-8', 'ignore')
 				text=text+'\n'+data[i].rstrip()
 
-			text=text.replace("get_image_file_path()",get_image_file_path())
+			text=text.replace("get_image_file_path()",sim_paths.get_image_file_path())
 
 		self.label.setText(text)
 

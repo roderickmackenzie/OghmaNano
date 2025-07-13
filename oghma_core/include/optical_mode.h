@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solardevs.
-// The model can simulate OLEDs, Perovskite devs, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -25,7 +23,6 @@
 // SOFTWARE.
 // 
 
-
 /** @file optical_mode.h
 	@brief Mode solver functions
 */
@@ -33,15 +30,35 @@
 
 #ifndef h_optical_mode
 #define h_optical_mode
+#include <g_io.h>
 #include <enabled_libs.h>
-#include <i.h>
+#include <math_xy.h>
 
 struct optical_mode
 {
 	int enabled;
-	struct math_xy mode;
-	struct math_xy mode_norm;
-	char mode_input_path[PATH_MAX];
+	double gamma;
+	double L;
+
+	struct dimensions dim;
+	double ***Ey;			//Mode Ey
+	double ***Ph_Ey;		//Normalized photon density
+	double ***Photons;		//mode containing the photon desntiy
+	double ***n;
+	struct object ****obj;
+	double lambda;
+	double omega;
+	double beta2;
+	double k0;
+	double n_eff;
+	double eigenvalues[100];
+	int n_eigenvalues;
+	int mode_max_ittr;
+	double mode_stop_error;
+	int mode_max_eigenmode_x;
+	int mode_max_eigenmode_y;
+	char mode_te_tm[100];
+	int force_fundermental;
 };
 
 #endif

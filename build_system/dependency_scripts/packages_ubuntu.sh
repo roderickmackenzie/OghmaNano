@@ -3,7 +3,7 @@
 #    Copyright (C) 2008-2021 Roderick C. I. MacKenzie
 #
 #	r.c.i.mackenzie at googlemail.com
-#	https://www.gpvdm.com
+#	https://www.oghma-nano.com
 #	Room B86 Coates, University Park, Nottingham, NG7 2RD, UK
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -19,9 +19,9 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-#Tested in Ubuntu 20.04
+#Tested in Ubuntu 22.03
 
-#This script will install all the dependencies needed by gpvdm for Ubuntu
+#This script will install all the dependencies needed by OghamNano for Ubuntu
 #it will install everything needed to build it and run it.
 #running the script on a decent VM with a decent internet connection takes about 20 min
 #from a fresh version of ubuntu.  The script must be run as root.
@@ -30,7 +30,7 @@
 #build system
 apt-get -y install python3-dialog
 
-#gpvdm_core
+#oghma_core
 if [ "1" -eq "1" ]
 then
 	apt-get -y install libsuitesparse-dev
@@ -62,22 +62,50 @@ then
 	apt-get -y install valgrind
 	apt-get -y install kcachegrind
 	apt-get -y install graphviz
+	apt-get -y install ccache
+	apt-get -y install gitk
+	apt-get -y install cifs-utils		#mounting windows shares
+	#cross compiling
+	apt-get -y install gcc-mingw-w64-x86-64
+	apt-get -y install libz-mingw-w64
+	#arm
+	apt-get -y install qemu-system-arm
 fi
 
-#gpvdm_gui
+#oghma_gui
 apt-get -y install python3
-apt-get -y install python3-opengl python3-numpy python3-dbus.mainloop.pyqt5 python3-psutil python3-dateutil
+apt-get -y install python3-opengl python3-numpy python3-psutil python3-dateutil
 apt-get -y install libqt5multimedia5-plugins 
-apt-get -y install python3-pyqt5.qtmultimedia python3-pyqt5.qtopeng
 apt-get -y install python3-pip
 apt-get -y install python3-matplotlib
+#Fore OpenGL needed on Freddies PC
+apt-get -y install mesa-utils
+apt-get -y install freeglut3-dev
 
-#gpvdm_data
+#ml
+python3 -m pip install tensorflow
+python3 -m pip install tensorflow-addons
+apt-get -y install python3-pandas
+
+#pyside
+apt-get -y install python3-pyside2.qtcore
+apt-get -y install python3-pyside2.qtgui
+apt-get -y install python3-pyside2.qtopengl
+apt-get -y install pyside2-tools
+apt-get -y install python3-pyside2.qtuitools
+apt-get -y install python3-pyside2.qtmultimedia
+apt-get -y install python3-pyside2.qtmultimediawidgets
+apt-get -y install python3-pyqtgraph
+
+#oghma_gui dll
+apt-get -y install libfreetype-dev libfreetype6 libfreetype6-dev
+apt-get -y install libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+
+#oghma_data
 apt-get -y install texlive
-apt-get install texlive-latex-extra
+apt-get -y install texlive-latex-extra
 
 #for latex minted for nice source code in boxes in manual
-apt-get install python-pygments
 apt install python3-pygments
 
 #use these to fix python distro
@@ -94,9 +122,13 @@ apt install python3-pygments
 apt-get -y install mencoder
 apt-get -y install imagemagick
 
+##matrix solvers
 #mpi/mumps
-apt-get -y install libopenmpi-dev libopenmpi2
+apt-get -y install libopenmpi-dev libopenmpi3
 apt-get -y install libmumps-dev
+
+#petsc
+apt install petsc-dev
 
 #apt-get install libopenblas-base for paralel blas
 
@@ -105,15 +137,31 @@ apt-get -y install devscripts
 apt-get -y install debhelper
 apt-get -y install build-essential
 apt-get -y install dh-python
-apt-get -y install python-bashate
+apt-get -y install python3-bashate
 apt-get -y install apt-file
-apt-get -y install gettext-lint
 apt-get -y install pep8
 apt-get -y install i18nspector
 apt-get -y install pbuilder
 apt-get -y install python3-dev
+apt-get -y install python3-distro
 apt-get -y install dh-virtualenv
 #apt-get -y install license-reconcile
 echo "Done"
 
 #remove apt-get remove libopenblas0-pthread
+
+#opencl
+apt-get -y install opencl-headers
+apt install ocl-icd-libopencl1
+apt-get -y install clinfo
+apt-get install intel-opencl-icd 	#This is for intel chips, was beignet-opencl-icd
+
+apt-get install libopengl-dev
+apt-get install libgl-dev
+#libcurl
+apt-get install libcurl4-gnutls-dev
+
+#translate
+apt-get -y install poedit
+pip install translate-po
+ln -s /usr/lib/x86_64-linux-gnu/libOpenCL.so.1 /usr/lib/libOpenCL.so

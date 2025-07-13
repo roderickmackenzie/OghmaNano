@@ -1,0 +1,24 @@
+#gpvdm
+#title Suns - Voltage
+#type xy
+#x_mul 1.0
+#y_mul 1.0
+#z_mul 1.0
+#data_mul 1.0
+#y_label Suns
+#data_label Voltage
+#y_units Suns
+#data_units V
+#time 0.0
+#Vexternal 0.0
+#x 1
+#y 6
+#z 1
+#begin
+3.00000000e-03 6.55112000e-01
+1.00000000e-02 6.97667000e-01
+3.00000000e-02 7.33712000e-01
+1.00000000e-01 7.69434000e-01
+3.00000000e-01 7.98670000e-01
+1.00000000e+00 8.27367000e-01
+#end

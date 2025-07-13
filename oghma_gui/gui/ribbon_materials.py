@@ -31,9 +31,6 @@
 
 import os
 
-
-from cal_path import get_css_path
-
 #qt
 from PySide2.QtGui import QIcon
 from gQtCore import QSize, Qt
@@ -61,7 +58,7 @@ class ribbon_materials(ribbon_base):
 		self.tb_ref= QAction(icon_get("ref"), wrap_text(_("Reference information"),8), self)
 		toolbar.addAction(self.tb_ref)
 
-		toolbar.addSeparator()
+		#toolbar.addSeparator()
 
 		self.cost = QAction(icon_get("cost"), _("Cost"), self)
 		self.cost.setStatusTip(_("Cost of material"))
@@ -86,7 +83,7 @@ class ribbon_materials(ribbon_base):
 
 		self.setCurrentIndex(0)
 
-		sheet=self.readStyleSheet(os.path.join(get_css_path(),"style.css"))
+		sheet=self.readStyleSheet(os.path.join(sim_paths.get_css_path(),"style.css"))
 		if sheet!=None:
 			sheet=str(sheet,'utf-8')
 			self.setStyleSheet(sheet)

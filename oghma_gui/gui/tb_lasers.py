@@ -33,26 +33,34 @@ import i18n
 _ = i18n.language.gettext
 
 #qt
+from gQtCore import gSignal
 from PySide2.QtWidgets import  QTextEdit
 from gQtCore import QSize, Qt 
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QLabel,QComboBox
-from json_root import json_root
+from json_c import json_tree_c
 
 class tb_lasers(QWidget):
 
-	def update(self,data):
-		self.data=data
+	laser_changed = gSignal(str)
+
+	def update(self,laser_name):
+		if type(laser_name)!=str:
+			print("ERROR in tb_lasers!")
+			asdads
 		self.sim_mode.blockSignals(True)
 		self.sim_mode.clear()
 
-		for laser in json_root().optical.lasers.segments:
-			value=laser.name.rstrip()
-			self.sim_mode.addItem(value)
+		segments=self.bin.get_token_value("optical.lasers","segments")
+
+		for i in range(0,segments):
+			name=self.bin.get_token_value("optical.lasers.segment"+str(i),"name")
+			name=name.rstrip()
+			self.sim_mode.addItem(name)
 
 		all_items  = [self.sim_mode.itemText(i) for i in range(self.sim_mode.count())]
 
 		for i in range(0,len(all_items)):
-			if all_items[i] == self.data.config.pump_laser:
+			if all_items[i] == laser_name:
 				self.sim_mode.setCurrentIndex(i)
 
 		self.sim_mode.blockSignals(False)
@@ -64,6 +72,7 @@ class tb_lasers(QWidget):
 		label=QLabel()
 		label.setText(_("Laser:"))
 		layout.addWidget(label)
+		self.bin=json_tree_c()
 
 		self.sim_mode = QComboBox(self)
 		self.sim_mode.setEditable(True)
@@ -78,6 +87,5 @@ class tb_lasers(QWidget):
 
 	def call_back_sim_mode_changed(self):
 		mode=self.sim_mode.currentText()
-		self.data.config.pump_laser=mode
-		json_data().save()
+		self.laser_changed.emit(mode)
 

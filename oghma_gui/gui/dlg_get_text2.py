@@ -44,7 +44,7 @@ class dlg_get_text2(QDialog):
 		icon=icon_get(image_name)
 		self.setWindowIcon(icon)
 		self.setWindowTitle(title_text) 
-		self.setWindowFlags(Qt.WindowStaysOnTopHint)
+		#self.setWindowFlags(Qt.WindowStaysOnTopHint)
 
 		main_vbox=QVBoxLayout()
 		#main_vbox.setContentsMargins(0,0,0,0)
@@ -105,6 +105,7 @@ class dlg_get_text2(QDialog):
 		self.setLayout(main_vbox)
 
 		self.setMinimumWidth(400)
+		self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
 		self.exec_()
 
 	def callback_accept(self):

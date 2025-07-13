@@ -29,6 +29,7 @@
 import os
 import sys
 import argparse
+import time
 
 def make_m4(hpc=False, win=False,usear=False,dbus=True,wine=False):
 	path=os.getcwd()
@@ -63,6 +64,12 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,wine=False):
 	config_files.append("librpn")
 	oghma_lib.append("librpn")
 
+	config_files.append("libscript")
+	oghma_lib.append("libscript")
+
+	config_files.append("liblua")
+	oghma_lib.append("liblua")
+
 	config_files.append("libshape")
 	oghma_lib.append("libshape")
 
@@ -81,6 +88,9 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,wine=False):
 
 	config_files.append("libjson")
 	oghma_lib.append("libjson")
+
+	config_files.append("libsavefile")
+	oghma_lib.append("libsavefile")
 
 	if os.path.isdir(os.path.join(path,"libheat")):
 		config_files.append("libheat")
@@ -110,11 +120,21 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,wine=False):
 	config_files.append("libdump")
 	oghma_lib.append("libdump")
 
+	config_files.append("libsweep")
+	oghma_lib.append("libsweep")
+
+	config_files.append("libdatfile")
+	oghma_lib.append("libdatfile")
+
 	config_files.append("libpy")
 	config_files.append("libgl")
+	config_files.append("libui")
 
 	config_files.append("libscan")
 	oghma_lib.append("libscan")
+
+	config_files.append("liboutcoupling")
+	oghma_lib.append("liboutcoupling")
 
 	config_files.append("libdevice")
 	oghma_lib.append("libdevice")
@@ -154,8 +174,14 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,wine=False):
 		oghma_lib.append("libcircuit")
 
 	if win==False:
-		if os.path.isdir(os.path.join(path,"mumps")):
-			config_files.append("mumps")
+		if os.path.isdir(os.path.join(path,"external_solvers","mumps")):
+			config_files.append(os.path.join("external_solvers","mumps"))
+
+		if os.path.isdir(os.path.join(path,"external_solvers","umfpack")):
+			config_files.append(os.path.join("external_solvers","umfpack"))
+
+		if os.path.isdir(os.path.join(path,"external_solvers","petsc")):
+			config_files.append(os.path.join("external_solvers","petsc"))
 
 	config_files.append("lib")					#Main lib dll
 	oghma_lib.append("lib")
@@ -212,8 +238,8 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,wine=False):
 		#linux
 		f.write( "AC_SUBST(GUIC, \"gcc\")\n")
 		f.write( "AC_SUBST(LIBOPENGL, \"-lGL -lGLU\")\n")
-		f.write( "AC_SUBST(DEFINE_CORE, \"-Denable_server -Duse_open_cl\")\n")
-		f.write( "AC_SUBST(DEFINE_GUI, \"-Denable_server -Duse_open_cl -Dpydll\")\n")
+		f.write( "AC_SUBST(DEFINE_CORE, \"-Dlinux -Denable_server -Duse_open_cl\")\n")
+		f.write( "AC_SUBST(DEFINE_GUI, \"-Dlinux -Denable_server -Duse_open_cl -Dpydll\")\n")
 		f.write( "AC_SUBST(LIBS_GUI, \" -lm -rdynamic -export-dynamic -ldl -lzip -lz -lpng\")\n")
 		f.write( "AC_SUBST(COMPILE_FLAG, \" -fPIC \")\n")	#this is for the core
 		f.write( "AC_SUBST(COMPILE_FLAG_GUI, \" -fPIC \")\n")
@@ -222,8 +248,8 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,wine=False):
 			#hybrid
 			f.write( "AC_SUBST(GUIC, \"gcc\")\n")
 			f.write( "AC_SUBST(LIBOPENGL, \"-lGL -lGLU\")\n")
-			f.write( "AC_SUBST(DEFINE_CORE, \"-Dwindows \")\n")
-			f.write( "AC_SUBST(DEFINE_GUI, \" -Dpydll \")\n")
+			f.write( "AC_SUBST(DEFINE_CORE, \"-Dwindows -Dwine\")\n")
+			f.write( "AC_SUBST(DEFINE_GUI, \"-Dlinux -Dpydll -Dtalk_to_wine_from_unix\")\n")
 			f.write( "AC_SUBST(LIBS_GUI, \" -lm -rdynamic -export-dynamic -ldl -lzip -lz -lpng\")\n")
 			f.write( "AC_SUBST(COMPILE_FLAG, \" \")\n")	#this is for the core
 			f.write( "AC_SUBST(COMPILE_FLAG_GUI, \" -fPIC \")\n")
@@ -249,7 +275,16 @@ def make_m4_core(path,hpc=False, win=False,usear=False,dbus=True,wine=False):
 
 	f.close()
 
+	f = open(os.path.join(path,"include","compile_time.h"), "w")
+	f.write( "//OghmaNano 2023\n")
+	f.write( "//This file is auto generated\n")
+	f.write( "#ifndef COMPILE_TIME\n")
+	f.write( "#define COMPILE_TIME \""+str(int(time.time()))+"\"\n")
+	f.write( "#define COMPILE_TIME_long_int "+str(int(time.time()))+"\n")
+	f.write( "#endif\n")
+	f.close()
 
+			
 
 	f = open(os.path.join(path,"local_link.m4"), "w")
 	f.write( "AC_SUBST(LOCAL_LINK,\"")
@@ -301,8 +336,8 @@ def make_m4_gui(path,hpc=False, win=False,usear=False):
 	config_files.append("lang")
 
 	if hpc==False:
-		config_files.append("images/16x16")
-		config_files.append("images/32x32")
+		#config_files.append("images/16x16")
+		#config_files.append("images/32x32")
 		config_files.append("images/48x32")
 		config_files.append("images/64x64")
 
@@ -366,7 +401,6 @@ def make_m4_data(path,hpc=False, win=False,usear=False):
 	link_libs=""
 
 	config_files.append("")
-	config_files.append("cie_color")
 
 	if os.path.isdir(os.path.join(path,"docs","man")):
 		config_files.append("docs/man")

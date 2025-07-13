@@ -37,8 +37,7 @@ from QComboBoxLang import QComboBoxLang
 
 #cal_path
 from cal_path import subtract_paths
-from cal_path import get_materials_path
-from json_root import json_root
+from json_c import json_tree_c
 
 import i18n
 _ = i18n.language.gettext
@@ -50,6 +49,7 @@ class g_applied_voltage(QWidget):
 
 	def __init__(self,file_box=True):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.raw_value="ground"
 		self.hbox=QHBoxLayout()
 		self.edit=QLineEdit()
@@ -73,16 +73,18 @@ class g_applied_voltage(QWidget):
 	def update(self):
 		self.edit.blockSignals(True)
 		self.combobox.blockSignals(True)
-		cb_value=self.contact.applied_voltage_type
-		self.combobox.setValue_using_english(cb_value)
-		if cb_value!="ground" and cb_value!="change":
+		path=self.find_contact_path()
+		applied_voltage_type=self.bin.get_token_value(path,"applied_voltage_type")
+		applied_voltage=self.bin.get_token_value(path,"applied_voltage")
+		self.combobox.setValue_using_english(applied_voltage_type)
+		if applied_voltage_type!="ground" and applied_voltage_type!="change":
 			self.edit.setEnabled(True)
-			self.edit.setText(str(self.contact.applied_voltage))
+			self.edit.setText(str(applied_voltage))
 		else:
 			self.edit.setEnabled(False)
-			if cb_value=="ground":
+			if applied_voltage_type=="ground":
 				self.edit.setText("Gnd")
-			elif cb_value=="change":
+			elif applied_voltage_type=="change":
 				self.edit.setText("Vsig")
 
 		self.combobox.blockSignals(False)
@@ -94,26 +96,32 @@ class g_applied_voltage(QWidget):
 			str(float(self.edit.text()))
 		except:
 			return
-		self.find_contact()
-		self.contact.applied_voltage=float(self.edit.text())
+		path=self.find_contact_path()
+		self.bin.set_token_value(path,"applied_voltage",float(self.edit.text()))
 		self.changed.emit()
 
 	def callback_combobox(self):
-		self.find_contact()
-		self.contact.applied_voltage_type=self.combobox.currentText_english()
+		path=self.find_contact_path()
+		self.bin.set_token_value(path,"applied_voltage_type",self.combobox.currentText_english())
 		self.update()
 		self.changed.emit()
 
 	def updateValue(self,uid):
 		self.uid=uid
-		self.find_contact()
-		print(self.uid,self.contact.applied_voltage_type)
 		self.update()
 
-	def find_contact(self):
+	def find_contact_path(self):
 		self.contact=None
-		for c in json_root().epi.contacts.segments:
-			if self.uid==c.id:
-				self.contact=c
+		segments=self.bin.get_token_value("epitaxy.contacts","segments")
+		for l in range(0,segments):
+			path="epitaxy.contacts.segment"+str(l)
+			uid=self.bin.get_token_value(path,"id")
+			if self.uid==uid:
+				return path+".contact"
+		return None
 
-		
+	def text(self):
+		path=self.find_contact_path()
+		return str(self.bin.get_token_value(path,"applied_voltage"))
+
+

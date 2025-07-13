@@ -42,29 +42,25 @@ from PySide2.QtWidgets import QWidget,QSizePolicy,QHBoxLayout,QPushButton,QDialo
 from gQtCore import QTimer
 from PySide2.QtGui import QPainter,QFont,QColor,QPen,QPainterPath,QBrush
 
-import numpy as np
-
 from dat_file import dat_file
 from global_objects import global_object_register
 from cal_path import sim_paths
-from epitaxy import get_epi
 
-from json_root import json_root
 from PySide2.QtWidgets import QMessageBox
 from gl_toolbar import gl_toolbar
 from gl_views import gl_views
 from gl_main import gl_main
 from gl_scale import gl_scale_class
+from json_c import json_tree_c
+import ctypes
 
 class gl_fallback(QWidget, gl_toolbar,gl_views):
 
 	def __init__(self):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		gl_toolbar.__init__(self)
 		#self.setMinimumSize(600, 500)
-		self.epi=get_epi()
-		global_object_register("gl_force_redraw",self.force_redraw)
-		global_object_register("gl_force_redraw_hard",self.force_redraw)
 		self.box_shown=False
 		self.gl_main=gl_main()
 		self.scale=gl_scale_class(self.gl_main.scale)
@@ -74,6 +70,15 @@ class gl_fallback(QWidget, gl_toolbar,gl_views):
 		self.suns=0.0
 		self.lastPos=None
 		self.mouse_click_time=0.0
+		self.wx = []
+		self.wy = []
+
+		x = 0.0
+		while x < 100.0:
+			self.wx.append(x)
+			self.wy.append(math.sin(x * math.pi * 0.1) * 15)
+			x += 0.1
+
 
 	def paintEvent(self, e):
 		qp = QPainter()
@@ -83,34 +88,34 @@ class gl_fallback(QWidget, gl_toolbar,gl_views):
 
 
 	def drawWidget(self, qp):
-		data=json_root()
 		font = QFont('Sans', 11, QFont.Normal)
 		qp.setFont(font)
-		epi=data.epi
-		emission=False
-		
-		for l in epi.layers:
-			if l.layer_type=="active":
-				if l.shape_pl.pl_emission_enabled==True:
-					emission=True
-
-		tot=epi.ylen()
 
 		pos=0.0
-		total_layers=len(epi.layers)
-		
-		for i in range(0,total_layers):
-			thick=200.0*epi.layers[total_layers-1-i].dy/tot
+		emission=False
+		tot=self.bin.lib.json_epitaxy_get_len(ctypes.byref(json_tree_c()))
+		layers=self.bin.get_token_value("epitaxy","segments")
+		self.suns=self.bin.get_token_value("optical.light_sources","Psun")
+
+		for l in range(0,layers):
+			path="epitaxy.segment"+str(l)
+			obj_type=self.bin.get_token_value(path,"obj_type")
+			dy=self.bin.get_token_value(path,"dy")
+			red=self.bin.get_token_value(path,"color_r")
+			green=self.bin.get_token_value(path,"color_g")
+			blue=self.bin.get_token_value(path,"color_b")
+			pl_emission_enabled=self.bin.get_token_value(path+".shape_pl","pl_emission_enabled")
+
+			if obj_type=="active":
+				if pl_emission_enabled==True:
+					emission=True
+
+			thick=200.0*dy/tot
 			pos=pos+thick
-			l=epi.layers[i]
-			red=l.color_r
-			green=l.color_g
-			blue=l.color_b
 
-			self.draw_box(qp,200,450.0-pos,thick*0.9,red,green,blue,total_layers-1-i)
+			self.draw_box(qp,200,450.0-pos,thick*0.9,red,green,blue,layers-1-l)
+
 		step=50.0
-
-		self.suns=float(data.optical.light.Psun)
 
 		if self.suns<=0.01:
 			step=200
@@ -150,9 +155,6 @@ class gl_fallback(QWidget, gl_toolbar,gl_views):
 
 
 	def draw_photon(self,qp,start_x,start_y,up):
-		wx=np.arange(0, 100.0 , 0.1)
-		wy=np.sin(wx*3.14159*0.1)*15
-
 		pen=QPen()
 		pen.setWidth(2)
 		
@@ -163,8 +165,8 @@ class gl_fallback(QWidget, gl_toolbar,gl_views):
 
 		qp.setPen(pen)
 
-		for i in range(1,len(wx)):
-			qp.drawLine((int)(start_x-wy[i-1]),(int)(start_y+wx[i-1]),(int)(start_x-wy[i]),(int)(start_y+wx[i]))
+		for i in range(1,len(self.wx)):
+			qp.drawLine((int)(start_x-self.wy[i-1]),(int)(start_y+self.wx[i-1]),(int)(start_x-self.wy[i]),(int)(start_y+self.wx[i]))
 
 		if up==True:
 			path=QPainterPath()
@@ -197,15 +199,17 @@ class gl_fallback(QWidget, gl_toolbar,gl_views):
 		w=200
 		qp.setBrush(QColor(r*255,g*255,b*255))
 		qp.drawRect(x, y, 200,h)
-		data=json_root()
-		epi=data.epi
-		l=epi.layers[layer]
-		if l.layer_type=="active":
-			text=l.name+" (active)"
+
+		path="epitaxy.segment"+str(layer)
+		obj_type=self.bin.get_token_value(path,"obj_type")
+		name=self.bin.get_token_value(path,"name")
+
+		if obj_type=="active":
+			text=name+" (active)"
 			qp.setBrush(QColor(0,0,0.7*255))
 			qp.drawRect(x+w+5, y, 20,h)
 		else:
-			text=l.name
+			text=name
 
 		qp.drawText(x+200+40, y+h/2, text)
 		
@@ -231,8 +235,6 @@ class gl_fallback(QWidget, gl_toolbar,gl_views):
 					x1=(int)(x1)
 					y1=(int)(y1)
 					qp.drawLine(x0,y0,x1,y1)
-		#else:
-		#	print("no mode")
 
 
 	def set_sun(self,suns):
@@ -241,8 +243,12 @@ class gl_fallback(QWidget, gl_toolbar,gl_views):
 	def force_redraw(self):
 		self.repaint()
 
+	def force_redraw_hard(self):
+		self.repaint()
+
 	def rebuild_scene(self):
 		pass
 
-	def do_draw(self):
+	def gl_graph_load_files(self,files):
 		pass
+

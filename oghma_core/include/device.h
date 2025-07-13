@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,6 +29,7 @@
 
 #ifndef device_h
 #define device_h
+#include <g_io.h>
 #include <stdio.h>
 #include "code_ctrl.h"
 #include "light.h"
@@ -52,87 +51,32 @@
 #include <json.h>
 #include <world_struct.h>
 #include <optical_mode.h>
+#include <probes.h>
+#include <ray.h>
+#include <fom_struct.h>
+#include <outcoupling.h>
+#include <newton_state.h>
+#include <dump_ctrl.h>
 
 struct solver_cache
 {
 	char hash[100];
-	int length;
+	long cache_max_size;
+	long cache_min_disk_free;
+	long cache_sims_to_keep;
 	int enabled;
 };
 
 
-struct newton_state
+struct simmode
 {
-	struct dimensions dim;
-
-	int last_ittr;
-	long double last_error;
-	double last_time;
-	long double ***phi;
-	long double ***x_Nion;
-
-	//Singlet
-	long double ***x_Ns;
-	long double ***x_Nt;
-	long double ***x_Nsd;
-	long double ***x_Ntd;
-	long double x_Nho;
-
-	long double ***x;
-	long double ***xp;
-
-	long double ****xt;
-	long double ****xpt;
-
-	//Fermi levels for schottky contact
-	long double **x_y0;
-	long double **xp_y0;
-	long double **x_y1;
-	long double **xp_y1;
-
-	//for clever exiting of solver
-	long double last_errors[10];
-	int last_error_pos;
-
-	//What so solver for
-	int Nion_enabled;
-	int singlet_enabled;
-
-	//for accelerating the Bernoulli fucntion
-	long double ***By_xi_plus;
-	long double ***By_xi_neg;
-	long double ***By_xip_plus;
-	long double ***By_xip_neg;
-
-	long double ***Bx_xi_plus;
-	long double ***Bx_xi_neg;
-	long double ***Bx_xip_plus;
-	long double ***Bx_xip_neg;
-
-	long double ***dBy_xi_plus;
-	long double ***dBy_xi_neg;
-	long double ***dBy_xip_plus;
-	long double ***dBy_xip_neg;
-
-	long double ***dBx_xi_plus;
-	long double ***dBx_xi_neg;
-	long double ***dBx_xip_plus;
-	long double ***dBx_xip_neg;
-
-
-};
-
-struct newton_state_complex
-{
-	struct dimensions dim;
-
-	long double complex ***phi;
-	long double complex ***x;
-	long double complex ***xp;
-
-	long double complex ****xt;
-	long double complex ****xpt;
-
+	char simmode[200];
+	char optical_solver[200];
+	int drift_diffision_simulations_enabled;
+	int electrical_simulation_enabled;
+	int optical_simulations_enabled;
+	int exciton_simulations_enabled;
+	int circuit_simulation;
 };
 
 struct device
@@ -140,14 +84,18 @@ struct device
 
 	int sim_number;
 
-	//Dimensions
-		long double xlen;
-		long double ylen;
-		long double zlen;
+	//times
+		long long start_time;
+		long long stop_time;
+		long long last_poll;
 
-		long double A;			//Area
-		long double Vol;
-		long double area;
+	//Dimensions
+		double xlen;
+		double ylen;
+		double zlen;
+
+		double Vol;
+		double area;
 
 	//Meshing
 		int remesh;
@@ -155,250 +103,161 @@ struct device
 		int dynamic_mesh;
 
 	//Current at contacts
-		long double **Jn_y0;
-		long double **Jn_y1;
-		long double **Jp_y0;
-		long double **Jp_y1;
+		double **Jn_y0;
+		double **Jn_y1;
+		double **Jp_y0;
+		double **Jp_y1;
 
-	//Charge density at contacts
+		double **Jn_x0;
+		double **Jn_x1;
+		double **Jp_x0;
+		double **Jp_x1;
+
+		double **Jn_z0;
+		double **Jn_z1;
+		double **Jp_z0;
+		double **Jp_z1;
+
+	//The contact number
 		int **n_contact_y0;
 		int **n_contact_y1;
 		int **n_contact_x0;
 		int **n_contact_x1;
+		int **n_contact_z0;
+		int **n_contact_z1;
 
 	//Contact fermi levels
-		long double **Fi0_y0;		//This is the equilibrium fermi level of the contact were it in free space, i.e. with no phi subtracted
-		long double **Fi0_y1;		
-		long double **Fi0_x0;
-		long double **Fi0_x1;
-	
-	//Built in potentials
-		long double **V_y0;		//Diference between the equlibrium fermi level and the fermilevel at in->Fi0_y0[0][0]
-		long double **V_y1;		//This is referenced to Fi0_y0[0][0], and is the difference between Fi0_y0[0][0] and Fi0_y0[z][x/y]
-		long double **V_x0;		//, this difference must be equal to the built in potential on the contact
-		long double **V_x1;
+		gdouble **Fi0_y0;		//This is the equilibrium fermi level of the contact were it in free space, i.e. with no phi subtracted
+		gdouble **Fi0_y1;		
+		gdouble **Fi0_x0;
+		gdouble **Fi0_x1;
+		gdouble **Fi0_z0;
+		gdouble **Fi0_z1;
 
-		long double Vbi;		//I have no idea why there are two
+	//Built in potentials
+		gdouble **V_y0;		//Diference between the equlibrium fermi level and the fermilevel at in->Fi0_y0[0][0]
+		gdouble **V_y1;		//This is referenced to Fi0_y0[0][0], and is the difference between Fi0_y0[0][0] and Fi0_y0[z][x/y]
+		gdouble **V_x0;		//, this difference must be equal to the built in potential on the contact
+		gdouble **V_x1;
+		gdouble **V_z0;
+		gdouble **V_z1;
+
+		gdouble Vbi;		//I have no idea why there are two
 
 	//Charge densities on surfaces even away from contacts
-		long double **electrons_y0;
-		long double **holes_y0;
+		gdouble **electrons_y0;
+		gdouble **electrons_y1;
+		gdouble **electrons_x0;
+		gdouble **electrons_x1;
+		gdouble **electrons_z0;
+		gdouble **electrons_z1;
 
-		long double **electrons_y1;
-		long double **holes_y1;
+		gdouble **holes_y0;
+		gdouble **holes_y1;
+		gdouble **holes_x0;
+		gdouble **holes_x1;
+		gdouble **holes_z0;
+		gdouble **holes_z1;
 
-		long double **electrons_x0;
-		long double **holes_x0;
-
-		long double **electrons_x1;
-		long double **holes_x1;
-
-	//Ions
-		long double ***Nad;
-		long double ***Nion;
-		long double ***dNion;
-		long double ***dNiondphi;
-		long double ***Nion_last;
-
-	//Singlet
-		long double ***Ns;
-		long double ***Nt;
-		long double ***Nsd;
-		long double ***Ntd;
-		long double Nho;
-
-		long double ***dNs;
-		long double ***dNt;
-		long double ***dNsd;
-		long double ***dNtd;
-		long double dNho;
-
-		long double ***Ns_last;
-		long double ***Nt_last;
-		long double ***Nsd_last;
-		long double ***Ntd_last;
-		long double Nho_last;
-
+	//optical mode
 		struct optical_mode mode;
-
-	//Generation
-		long double ***G;
-		long double ***Gn;
-		long double ***Gp;
-
-	//Free charges
-		long double ***n;
-		long double ***p;
-		long double ***dn;
-		long double ***dndphi;
-		long double ***dp;
-		long double ***dpdphi;
-		long double ***Dn;
-		long double ***Dp;
-
-		long double ***Fn;
-		long double ***Fp;
-		long double ***Nc;
-		long double ***Nv;
-
-		long double ***nf_save;
-		long double ***pf_save;
-
-		long double ***nfequlib;
-		long double ***pfequlib;
-
-		long double ***nlast;
-		long double ***plast;
-
-		long double ***wn;
-		long double ***wp;
-
-		long double ***n_orig;
-		long double ***p_orig;
-
-		long double ***n_orig_f;
-		long double ***p_orig_f;
-
-		long double ***n_orig_t;
-		long double ***p_orig_t;
-
-		long double ***t;			//in->Xi[z][x][y];
-		long double ***tp;			//in->Xi[z][x][y]+in->Eg[z][x][y]
-		long double ***t_ion;
-
-	//Fermi levels
-		long double ***Fi;
+		double ***mode_epitaxy;
 
 	//Bands
-		long double ***Eg;
-		long double ***Xi;
-		long double ***Ev;
-		long double ***Ec;
+		double ***Eg;
+		double ***Xi;
 
-	//Recombination
-		long double ***Rfree;
-		long double ***Rauger;
+	//Generation
+		double ***G;
+		double ***Gn;
+		double ***Gp;
 
-		long double ***Rn;
-		long double ***Rp;
-		long double ***Rnet;
-
-		long double ***Rn_srh;
-		long double ***Rp_srh;
-
-		long double ***Rbi_k;
-
-		long double ***B;
-
-
+	//Fermi levels
+		gdouble ***Fi;
+		double ***Nc;
+		double ***Nv;
+		double ***B;
 
 	//Interfaces
 		int interfaces_n;
 		int interfaces_n_srh;
 		int ***interface_type;
-		long double ***interface_B;
-		long double ***interface_Bt;
-		long double ***interface_R;
+		gdouble ***interface_B;
+		gdouble ***interface_Bt;
+		gdouble ***interface_R;
 
 		//Tunneling
 		int interfaces_tunnels_e;
 		int interfaces_tunnels_h;
-		long double ***interface_Ge;
-		long double ***interface_Gh;
-
-	//Rates
-		long double ***nrelax;
-		long double ***ntrap_to_p;
-		long double ***prelax;
-		long double ***ptrap_to_n;
+		gdouble ***interface_Ge;
+		gdouble ***interface_Gh;
 
 	//Mobility
 		int mun_symmetric;
-		long double ***mun_z;
-		long double ***mun_x;
-		long double ***mun_y;
+		double ***mun_z;
+		double ***mun_x;
+		double ***mun_y;
 
 		int mup_symmetric;
-		long double ***mup_z;
-		long double ***mup_x;
-		long double ***mup_y;
+		double ***mup_z;
+		double ***mup_x;
+		double ***mup_y;
 
-		long double ***muion;
+		gdouble ***muion;
 
 	//Auger
-		long double ***Cn;
-		long double ***Cp;
+		double ***Cn;
+		double ***Cp;
 		int auger_enabled;
 
 	//SS SRH
 		int ss_srh_enabled;
-		long double ***n1;
-		long double ***p1;
-		long double ***tau_n;
-		long double ***tau_p;
+		gdouble ***n1;
+		gdouble ***p1;
+		gdouble ***tau_n;
+		gdouble ***tau_p;
 
 	//Electrostatics
-		long double ***epsilonr;
-		long double ***epsilonr_e0;
-		long double ***phi_save;
+		gdouble ***epsilonr;
+		gdouble ***epsilonr_e0;
 
 	//Temperature
-		long double ***Tl;
-		long double ***Te;
-		long double ***Th;
+		gdouble ***Tl;
+		gdouble ***Te;
+		gdouble ***Th;
 
 	//Heating
-		long double ***Hl;
-		long double ***H_recombination;
-		long double ***H_joule;
+		gdouble ***Hl;		//**move
+		gdouble ***H_recombination;		//**move
+		gdouble ***H_joule;		//**move
 
-		long double ***He;
-		long double ***Hh;
+		gdouble ***He;		//**move
+		gdouble ***Hh;		//**move
 
-		long double ***ke;		//Thernal conductivities
-		long double ***kh;
-
-	//Current
-		long double ***Jn;
-		long double ***Jp;
-		long double ***Jn_x;
-		long double ***Jp_x;
-
-		long double ***Jn_diffusion;
-		long double ***Jn_drift;
-
-		long double ***Jn_x_diffusion;
-		long double ***Jn_x_drift;
-
-		long double ***Jp_diffusion;
-		long double ***Jp_drift;
-
-		long double ***Jp_x_diffusion;
-		long double ***Jp_x_drift;
-
-		long double ***Jion;
+		gdouble ***ke;		//Thernal conductivities
+		gdouble ***kh;
 
 	//Applied voltages
-		long double **Vapplied_y0;
-		long double **Vapplied_y1;
-		long double **Vapplied_x0;
-		long double **Vapplied_x1;
+		gdouble **Vapplied_y0;
+		gdouble **Vapplied_y1;
+		gdouble **Vapplied_x0;
+		gdouble **Vapplied_x1;
+		gdouble **Vapplied_z0;
+		gdouble **Vapplied_z1;
 
 	//Passivation
-		int **passivate_y0;
-		int **passivate_y1;
-		int **passivate_x0;
-		int **passivate_x1;
+		int **boundary_y0;
+		int **boundary_y1;
+		int **boundary_x0;
+		int **boundary_x1;
+		int **boundary_z0;
+		int **boundary_z1;
 
-	//Emission
-		long double ***Photon_gen;
 
 	//Device layout
-		int ***imat_epitaxy;		//These should no longer be used
-		int ***mask;				//These should no longer be used
+		struct dimensions dim_optical;		//Optical dimensions
 
 		struct dim_zx_epitaxy dim_epitaxy;				//This is a dim object with zx and the length of the epitaxy
-		int ***mask_epitaxy;							//?????????????????? Come back to
 
 
 	//Trap control
@@ -406,71 +265,15 @@ struct device
 		int ntrapnewton;
 		int ptrapnewton;
 
-	//Traps 3d n
-		long double ***nt_all;
-		long double ***tt;			//in->Xi[z][x][y];
-
-		long double ***nt_save;
-		long double ***ntequlib;
-
-	//Traps 3d p
-		long double ***pt_all;
-		long double ***tpt;			//in->Xi[z][x][y]+in->Eg[z][x][y]
-
-		long double ***pt_save;
-		long double ***ptequlib;
-
-	//Traps 4d n
-		long double  ****nt;
-		long double  ****ntlast;
-		long double  ****dnt;
-		long double  ****srh_n_r1;
-		long double  ****srh_n_r2;
-		long double  ****srh_n_r3;
-		long double  ****srh_n_r4;
-		long double  ****dsrh_n_r1;
-		long double  ****dsrh_n_r2;
-		long double  ****dsrh_n_r3;
-		long double  ****dsrh_n_r4;
-		long double  ****Fnt;
-
-		long double  ****nt_r1;
-		long double  ****nt_r2;
-		long double  ****nt_r3;
-		long double  ****nt_r4;
-
-		long double ****ntb_save;
-
-	//Traps 4d p
-		long double  ****pt;
-		long double  ****ptlast;
-		long double  ****dpt;
-		long double  ****srh_p_r1;
-		long double  ****srh_p_r2;
-		long double  ****srh_p_r3;
-		long double  ****srh_p_r4;
-		long double  ****dsrh_p_r1;
-		long double  ****dsrh_p_r2;
-		long double  ****dsrh_p_r3;
-		long double  ****dsrh_p_r4;
-		long double  ****Fpt;
-
-		long double  ****pt_r1;
-		long double  ****pt_r2;
-		long double  ****pt_r3;
-		long double  ****pt_r4;
-
-
-		long double ****ptb_save;
-
 	//Newton solver control
 		int max_electrical_itt;
-		long double electrical_clamp;
-		long double min_cur_error;
+		double electrical_clamp;
+		double min_cur_error;
 
 		int max_electrical_itt0;
-		long double electrical_clamp0;
-		long double electrical_error0;
+		double electrical_clamp0;
+		double electrical_error0;
+		int temperature_ramp0;
 
 		int math_enable_pos_solver;
 
@@ -483,71 +286,56 @@ struct device
 		int newton_clever_exit;
 
 		int newton_only_fill_matrix;
-		long double omega;
+		gdouble omega;
 
 		int newton_min_itt;
 
 		int newton_last_ittr;
 
-	//Arrays used by newton solver
-		long double *newton_dntrap;
-		long double *newton_dntrapdntrap;
-		long double *newton_dntrapdn;
-		long double *newton_dntrapdp;
-		long double *newton_dJdtrapn;
-		long double *newton_dJpdtrapn;
-
-		long double *newton_dptrapdp;
-		long double *newton_dptrapdptrap;
-		long double *newton_dptrap;
-		long double *newton_dptrapdn;
-		long double *newton_dJpdtrapp;
-		long double *newton_dJpdtrapp_interface_right;
-		long double *newton_dJdtrapp;
-		long double *newton_dphidntrap;
-		long double *newton_dphidptrap;
-		long double *newton_ntlast;
-		long double *newton_ptlast;
+	//block matrix normalization
+		int block_auto;
+		double block_phi_norm;
+		double block_Je_norm;
+		double block_Jh_norm;
+		double block_srh_e_norm;
+		double block_srh_h_norm;
 
 	//Electrical components
-		long double Rshunt;
-		long double Rcontact;
-		long double Rload;
-		long double L;
-		long double C;
-		long double Rshort;
-		long double other_layers;
-		long double contact_charge;
+		double Rshunt;
+		double Rcontact;
+		double Rload;
+		double L;
+		double C;
+		double Rshort;
+		double other_layers;
+		double contact_charge;
 
 	//Dump contorl
-		long double dump_dynamic_pl_energy;
+		gdouble dump_dynamic_pl_energy;	//This needs to be removed
+		int dump_binary;
 
 		int snapshot_number;
 
-		long double map_start;
-		long double map_stop;
-
 		int timedumpcount;
 
-		char plot_file[100];
+		struct probes pr;
+		int dump_optical_probe;
+		int dump_optical_probe_spectrum;
+		int dump_probes;
 
 	//time
 		int go_time;
-		long double dt;
-		long double time;
-		long double Ilast;
-		long double start_stop_time;
+		gdouble dt;
+		gdouble time;
+		gdouble Ilast;
 
 	//Run control
 		int stop;
 		int onlypos;
 		int odes;
-		int stop_start;
 		int dd_conv;
 		int high_voltage_limit;
-		int stoppoint;
-		int drift_diffision_simulations_enabled;
-		int electrical_simulation_enabled;
+
 	//Matrix
 		struct matrix mx;
 
@@ -557,18 +345,27 @@ struct device
 	//meshing
 		struct mesh_obj mesh_data;
 		struct mesh_obj mesh_data_save;
-		long double layer_start[100];
-		long double layer_stop[100];
+		struct mesh_obj optical_mesh_data;		//This should be in world
+
+		gdouble layer_start[100];
+		gdouble layer_stop[100];
 
 	//epitaxy
 		struct epitaxy my_epitaxy;
 
 	//plugins
-		char simmode[200];
+		struct simmode simmode;
+
+	//Material concentrations
+		double ***x;
+		double ***y;
+
+	//Doping
+		double ***Nad;
 
 	//Newton states
-		struct newton_state ns;
-		struct newton_state ns_save;
+		struct newton_state *ns;
+		struct newton_states ns_lib;
 
 	//Light
 		struct light mylight;
@@ -579,9 +376,14 @@ struct device
 
 	//Emission
 		int emission_enabled;
-		long double pl_intensity;
-		long double pl_intensity_tot;
+		double pl_intensity;
+		double pl_intensity_tot;
 		int pl_use_experimental_emission_spectra;
+		double ***Photon_gen;
+		double ****photons_escape_prob;
+		double *** photons_escape_prob_lam_avg;
+		double optical_output_power;			//Wm-2
+		double optical_output_photon_flux;		//m-2
 
 	//thermal
 		struct heat thermal;
@@ -591,30 +393,31 @@ struct device
 
 	//singlet
 		struct singlet sing;
+		struct singlet_opv sing_opv;
 
 	//Preovskite
 		struct perovskite mobileion;
 
 	//Circuit simulation
-		int circuit_simulation;
 		struct circuit cir;
 
 	//Ray tracing
-		struct image my_image;
+		struct ray_engine eng;
 		struct shape big_box;
-
 
 	//Contacts
 		struct contact *contacts;
 		int ncontacts;
 		int active_contact;
-		int boundry_y0;
 
-		long double flip_current;
+		double flip_current;
+		int cal_current_at;
+		int use_sg_currents;
 
 	//objects
 		struct object ****obj_zxy;
 		struct object ****obj_zx_layer;
+		struct object ****obj_zxy_optical;
 
 	//time mesh
 		struct time_mesh tm;
@@ -633,22 +436,29 @@ struct device
 		struct json config;
 
 	//temp vars
-		long double glob_wanted;
+		gdouble glob_wanted;
 
 	//paths
 	//paths
-		char output_path[PATH_MAX];
-		char input_path[PATH_MAX];
+		char output_path[OGHMA_PATH_MAX];
+		char input_path[OGHMA_PATH_MAX];
 
-	//Newton solver dll
-		int (*dll_solve_cur)();
-		int (*dll_solver_realloc)();
-		int (*dll_solver_free_memory)();
-		void *dll_solver_handle;
+	//Newton solver
 		int solver_verbosity;
 
 	//the world
 	struct world w;
+	struct vec device_start;
+	struct vec device_stop;
+
+	//fom
+	struct fom *fom;
+
+	//outcoupling
+	struct outcoupling outcoupling;
+
+	struct dump_ctrl dump_ctrl;
+
 };
 
 

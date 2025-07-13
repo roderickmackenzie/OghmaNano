@@ -30,48 +30,59 @@
 
 import os
 import json
-from PySide2.QtWidgets import QMenu,QApplication
+from PySide2.QtWidgets import QMenu,QApplication, QShortcut
+from PySide2.QtGui import QKeySequence
 from object_editor import object_editor
-from epitaxy import get_epi
-from epitaxy_class import epi_layer
 from gui_util import  yes_no_dlg
 from icon_lib import icon_get
-from shape import shape
 from dlg_get_text2 import dlg_get_text2
-from json_contacts import contact
-from json_root import json_root
-from json_base import json_base
-from json_light_sources import json_light_source
-from json_detectors import json_detector
-from json_gl_lights import json_gl_light
 from cal_path import sim_paths
 from bytes2str import str2bytes
 from cal_path import subtract_paths
 from bytes2str import bytes2str
-
 import ctypes
+from json_c import json_tree_c
+from object_editor import object_editor
 
 class gl_object_editor():
 
-	def menu_obj(self,event,obj):
+	def __init__(self):
+		shortcut = QShortcut(QKeySequence("Ctrl+G"), self)
+		shortcut.activated.connect(self.callback_group)
+
+		shortcut = QShortcut(QKeySequence("Ctrl+U"), self)
+		shortcut.activated.connect(self.callback_ungroup)
+
+		shortcut = QShortcut(QKeySequence("Del"), self)
+		shortcut.activated.connect(self.callback_delete)
+
+		shortcut = QShortcut(QKeySequence("Backspace"), self)
+		shortcut.activated.connect(self.callback_delete)
+		self.bin=json_tree_c()
+
+	def menu_obj(self,event,uid):
+		json_path=self.bin.find_path_by_uid("",uid)
+		if json_path==None:
+			return
+
 		view_menu = QMenu(self)
 
 		menu = QMenu(self)
-		
 		is_epi_layer=False
-		if obj in json_root().epi.layers:
-			is_epi_layer=True
+		if json_path.startswith("epitaxy"):
+			if json_path.startswith("epitaxy.contacts")==False:
+				is_epi_layer=True
 
 		self.is_light_source=False
 		self.is_detector=False
 		self.is_gl_light=False
-		if obj in json_root().optical.light_sources.lights.segments:
+		if json_path.startswith("optical.light_sources.lights"):
 			self.is_light_source=True
 
-		if obj in json_root().optical.detectors.segments:
+		if json_path.startswith("optical.detectors"):
 			self.is_detector=True
 
-		if obj in json_root().gl.gl_lights.segments:
+		if json_path.startswith("gl.gl_lights"):
 			self.is_gl_light=True
 
 		if is_epi_layer==True:
@@ -85,15 +96,15 @@ class gl_object_editor():
 			action.triggered.connect(self.layer_add)
 
 			action=menu.addAction(icon_get("list-add"),_("Add object inside"))
-			action.triggered.connect(self.add_shape_to_object)
+			action.triggered.connect(self.callback_add_shape_to_object)
 
 			menu.addSeparator()
 
 		action=menu.addAction(icon_get("list-remove"),_("Delete"))
-		action.triggered.connect(self.layer_delete)
+		action.triggered.connect(self.callback_delete)
 
 		action=menu.addAction(icon_get("rename"),_("Rename"))
-		action.triggered.connect(self.layer_rename)
+		action.triggered.connect(self.callback_rename)
 
 		menu.addSeparator()
 
@@ -107,15 +118,30 @@ class gl_object_editor():
 
 		action=menu.addAction(_("Edit"))
 		action.triggered.connect(self.layer_object_editor)
+		n_objs=self.gl_main.get_number_objects_selected(True)
 
-		objs=self.gl_objects_get_selected()
-		if len(objs)>1:
+		if n_objs>1:
+			group=self.is_selected_group()
+			menu.addSeparator()
 			action=menu.addAction(icon_get("align_left"),_("Align and distribute"))
 			action.triggered.connect(self.callback_align)
 
-		if len(objs)>1:
 			action=menu.addAction(icon_get("mesh_tri"),_("Join mesh"))
 			action.triggered.connect(self.callback_join_mesh)
+
+			action=menu.addAction(icon_get("object-group"),_("Group (Ctrl+G)"))
+			action.triggered.connect(self.callback_group)
+
+			if group!=False:
+				action.setEnabled(False)
+
+			action=menu.addAction(icon_get("object-ungroup"),_("Ungroup (Ctrl+U)"))
+			action.triggered.connect(self.callback_ungroup)
+			if group==False:
+				action.setEnabled(False)
+
+
+			menu.addSeparator()
 
 		script=menu.addMenu(_("Script"))
 		action=script.addAction(icon_get("edit-copy"),_("Copy path (Python)"))
@@ -144,11 +170,17 @@ class gl_object_editor():
 			self.menu_hidden.triggered.connect(self.menu_toggle_object_view)
 			self.menu_hidden.setCheckable(True)
 
-			self.menu_show_solid.setChecked(obj.display_options.show_solid)
-			self.menu_show_mesh.setChecked(obj.display_options.show_mesh)
-			self.menu_show_cut_through_x.setChecked(obj.display_options.show_cut_through_x)
-			self.menu_show_cut_through_y.setChecked(obj.display_options.show_cut_through_y)
-			self.menu_hidden.setChecked(obj.display_options.hidden)
+			show_solid=self.bin.get_token_value(json_path+".display_options","show_solid")
+			show_mesh=self.bin.get_token_value(json_path+".display_options","show_mesh")
+			show_cut_through_x=self.bin.get_token_value(json_path+".display_options","show_cut_through_x")
+			show_cut_through_y=self.bin.get_token_value(json_path+".display_options","show_cut_through_y")
+			hidden=self.bin.get_token_value(json_path+".display_options","hidden")
+
+			self.menu_show_solid.setChecked(show_solid)
+			self.menu_show_mesh.setChecked(show_mesh)
+			self.menu_show_cut_through_x.setChecked(show_cut_through_x)
+			self.menu_show_cut_through_y.setChecked(show_cut_through_y)
+			self.menu_hidden.setChecked(hidden)
 
 		menu.exec_(event.globalPos())
 
@@ -191,48 +223,50 @@ class gl_object_editor():
 			self.gl_add_object_to_world(path=delta_path)
 
 	def menu_toggle_object_view(self):
-		data=json_root()
-
 		obj=self.gl_objects_get_first_selected()
 		if obj!=None:
-			s=data.find_thing_by_id(obj.id)
-			if s!=None:
-				s.display_options.show_solid=self.menu_show_solid.isChecked()
-				s.display_options.show_mesh=self.menu_show_mesh.isChecked()
-				s.display_options.show_cut_through_x=self.menu_show_cut_through_x.isChecked()
-				s.display_options.show_cut_through_y=self.menu_show_cut_through_y.isChecked()
-				s.display_options.hidden=self.menu_hidden.isChecked()
-				data.save()
+			json_path=self.bin.find_path_by_uid("",obj.id)
+			if json_path!=None:
+				self.bin.set_token_value(json_path+".display_options","show_solid",self.menu_show_solid.isChecked())
+				self.bin.set_token_value(json_path+".display_options","show_mesh",self.menu_show_mesh.isChecked())
+				self.bin.set_token_value(json_path+".display_options","show_cut_through_x",self.menu_show_cut_through_x.isChecked())
+				self.bin.set_token_value(json_path+".display_options","show_cut_through_y",self.menu_show_cut_through_y.isChecked())
+				self.bin.set_token_value(json_path+".display_options","hidden",self.menu_hidden.isChecked())
+				self.bin.save()
 		self.force_redraw()
 
 
-
 	def object_copy_json(self):
-		data=json_root()
 		obj=self.gl_objects_get_first_selected()
+		
 		if obj!=None:
-			epi=get_epi()
-			s=data.find_thing_by_id(obj.id)
+			json_path=self.bin.find_path_by_uid("",obj.id)
+			if json_path!=None:
+				lines=self.bin.gen_json(json_path)
+				lines[0]="\"data\": "+lines[0].split(":")[1]
+				all_data=[]
+				all_data.append("{")
+				all_data.append("\"data_type\": \"\",")
 
-			b=json_base("",segment_class=True)
+				all_data.extend(lines)
+				all_data.append("}")
 
-			b.segments.append(s)
-			#print(s.gen_json())
-			cb = QApplication.clipboard()
-			cb.clear(mode=cb.Clipboard )
-			cb.setText("\n".join(b.gen_json())[3:], mode=cb.Clipboard)
+				cb = QApplication.clipboard()
+				cb.clear(mode=cb.Clipboard )
+				cb.setText("\n".join(all_data), mode=cb.Clipboard)
 
 	def object_copy_path(self):
-		data=json_root()
 		obj=self.gl_objects_get_first_selected()
 		if obj!=None:
-			obj,path=data.find_object_path_by_id(obj.id)
+			json_path=self.bin.find_path_by_uid("",obj.id)
 			cb = QApplication.clipboard()
 			cb.clear(mode=cb.Clipboard )
-			cb.setText(path, mode=cb.Clipboard)
+			cb.setText(json_path, mode=cb.Clipboard)
 
 
 	def object_paste(self):
+		print("not yet implemented")
+		return
 		cb = QApplication.clipboard()
 		text=cb.text()
 		json_data=json.loads(text)
@@ -240,140 +274,88 @@ class gl_object_editor():
 			print(json_data["segment"+str(n)])
 
 	def layer_add(self):
-		data=json_root()
 		obj=self.gl_objects_get_first_selected()
 		if obj!=None:
-			s=json_root().find_thing_by_id(obj.id)
-			if type(s)==epi_layer or type(s)==shape:
-				epi=get_epi()
-				layer_index=epi.find_layer_by_id(bytes2str(obj.id))
-				a=epi.add_new_layer(pos=layer_index)
-				data.save()
+			json_path=self.bin.find_path_by_uid("",obj.id)
+			if json_path.startswith("epitaxy") and json_path.count("contacts")==0:
+				dy=self.bin.get_token_value(json_path,"dy")
+				number=int(json_path[len("epitaxy.segment"):])
+				path_of_new_segment=self.bin.make_new_segment("epitaxy","",number)
+				self.bin.set_token_value(path_of_new_segment,"dy",dy)
+				self.bin.save()
 				self.force_redraw_hard()
-
-	def add_shape_to_object(self):
-		data=json_root()
-		gl_obj=self.gl_objects_get_first_selected()
-		if gl_obj!=None:
-			obj=json_root().find_thing_by_id(gl_obj.id)
-			if obj!=None:
-				s=shape()
-				s.dx=obj.dx/2.0
-				s.dy=obj.dy/2.0
-				s.dz=obj.dz/2.0
-				s.moveable=True
-				obj.segments.append(s)
-				data.save()
-				self.force_redraw(level="reload_rebuild")
 
 	def layer_move_down(self):
-		data=json_root()
-		gl_obj=self.gl_objects_get_first_selected()
-		if gl_obj!=None:
-			obj=json_root().find_thing_by_id(gl_obj.id)
-			if obj in json_root().epi.layers:
-				pos=json_root().epi.layers.index(obj)
-				epi=get_epi()
-				epi.move_down(pos)
-				data.save()
-				self.force_redraw() 
-
-	def layer_move_up(self):
-		data=json_root()
-		gl_obj=self.gl_objects_get_first_selected()
-		if gl_obj!=None:
-			obj=json_root().find_thing_by_id(gl_obj.id)
-			if obj in json_root().epi.layers:
-				pos=json_root().epi.layers.index(obj)
-				epi=get_epi()
-				epi.move_up(pos)
-				data.save()
-				self.force_redraw() 
-
-	def layer_delete(self):
-		data=json_root()
-
-		objs=self.gl_objects_get_selected()
-		if len(objs)>0:
-			question="Do you really want to delete the objects: \n"
-			ids=[]
-			for obj in objs:
-				s=data.find_thing_by_id(obj.id)
-				if s!=None:
-					ids.append(s.id)
-					question=question+s.name+"\n"
-			response=yes_no_dlg(self,question)
-			if response == True:
-				for my_id in ids:
-					data.pop_object_by_id(my_id)
-				data.save()
-				self.force_redraw_hard()
-
-	def layer_rename(self):
-		data=json_root()
 		obj=self.gl_objects_get_first_selected()
 		if obj!=None:
-			s=data.find_thing_by_id(obj.id)
-			if s!=None:
-				old_name=s.name
-				name=dlg_get_text2( _("Rename the layer:"), old_name,"rename.png")
-				name=name.ret
+			json_path=self.bin.find_path_by_uid("",obj.id)
+			if json_path.startswith("epitaxy") and json_path.count("contacts")==0:
+				number=int(json_path[len("epitaxy.segment"):])
+				a,b=self.bin.segments_move_up_down("epitaxy","down",number)
+				self.bin.save()
+				self.force_redraw()
 
-				if name!=None:
-					s.name=name
-					data.save()
+	def layer_move_up(self):
+		obj=self.gl_objects_get_first_selected()
+		if obj!=None:
+			json_path=self.bin.find_path_by_uid("",obj.id)
+			if json_path.startswith("epitaxy") and json_path.count("contacts")==0:
+				number=int(json_path[len("epitaxy.segment"):])
+				a,b=self.bin.segments_move_up_down("epitaxy","up",number)
+				self.bin.save()
+				self.force_redraw()
 
-			self.force_redraw() 
-
-	def layer_object_editor(self):
-		epi=get_epi()
-		data=json_root()
+	def callback_delete(self):
 		objs=self.gl_objects_get_selected()
 		ids=[]
-		for obj in objs:
-			s=data.find_thing_by_id(obj.id)
-			if type(s)==json_light_source:
-				ids.append(obj.id)
-			if type(s)==json_detector:
-				ids.append(obj.id)
-			if type(s)==json_gl_light:
-				for light in json_root().gl.gl_lights.segments:
-					ids.append(light.id)
-			if type(s)==shape or type(s)==contact or type(s)==epi_layer:
-				ids.append(obj.id)
-				sub_shapes=epi.get_all_sub_shapes(obj.id)
+		for o in objs:
+			ids.append(o.id)
 
-				for sub in sub_shapes:
-					if sub.id not in ids:
-						ids.append(sub.id)
-		#print(ids)
+		self.delete_object(ids)
+
+	def callback_rename(self):
+		obj=self.gl_objects_get_first_selected()
+		if obj!=None:
+			self.rename_object(obj.id)
+
+
+	def layer_object_editor(self):
+		objs=self.gl_objects_get_selected()
+
+		ids=[]
+		for obj in objs:
+			if obj.id!=b"selection_box":
+				json_path=self.bin.find_path_by_uid("",obj.id)
+				if json_path!=None:
+					ids.append(bytes2str(obj.id))
+					segments=self.bin.get_token_value(json_path,"segments")
+					if segments!=None:
+						for s in range(0,segments):
+							json_sub_path=json_path+".segment"+str(s)
+							sub_uid=self.bin.get_token_value(json_sub_path,"id")
+							ids.append(sub_uid)
+
+				ids=list(set(ids))
+
 		if ids!=[]:
 			self.shape_edit=object_editor(self.force_redraw)
 			self.shape_edit.load(ids)
 			self.shape_edit.show()
 
-	def gl_add_object_to_world(self,path=None):
-		a=shape()
-				
-		max_dist_x=10
-		max_dist_z=10
-		max_dist_y=10
+	def is_selected_group(self):
+		uid = ctypes.create_string_buffer(100)
+		ret=self.bin.lib.gl_objects_selected_is_exact_group(uid,ctypes.byref(json_tree_c()),ctypes.byref(self.gl_main))
+		uid = uid.value.decode('utf-8') 
+		if ret==-1:
+			return False		
 
-		a.dy=self.scale.world_delta.y*0.2
-		a.dx=self.scale.world_delta.x*0.2
-		a.dz=self.scale.world_delta.z*0.2
+		return uid
 
-		a.name="object"
-		a.segments=[]
-		a.color_r=1.0
-		a.color_g=0
-		a.color_b=0
-		a.color_alpha=0.5
-		a.moveable=True
-		if path!=None:
-			a.shape_type=path
-		a.load_triangles()
-		json_root().world.world_data.segments.append(a)
-		self.force_redraw()
+	def callback_group(self):
+		self.bin.lib.gl_group_make_new_group_from_selected(ctypes.byref(json_tree_c()),ctypes.byref(self.gl_main))
+		self.bin.save()
 
+	def callback_ungroup(self):
+		self.bin.lib.gl_group_ungroup_selected(ctypes.byref(json_tree_c()),ctypes.byref(self.gl_main))
+		self.bin.save()
 

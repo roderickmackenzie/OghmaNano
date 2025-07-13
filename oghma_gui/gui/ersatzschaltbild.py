@@ -31,13 +31,14 @@
 
 import os
 import math
+import time
+import ctypes
 from gQtCore import QSize, Qt , QPoint, QRect
 from PySide2.QtWidgets import QWidget, QDialog, QMenu
 from PySide2.QtGui import QPainter,QFont,QColor,QPen,QPolygon
 
 from gQtCore import gSignal
 from math import fabs, pow, sqrt
-from cal_path import get_components_path
 from inp import inp
 from vec import vec
 
@@ -45,26 +46,63 @@ from cal_path import sim_paths
 from gui_util import yes_no_dlg
 
 from json_dialog import json_dialog
-from json_circuit import json_component
-from json_root import json_root
-from json_base import json_base
+from bytes2str import bytes2str
 
-class draw_object():
+from NSVGimage import NSVGimage,NSVGpath,NSVGpaint,NSVGshape
+from json_c import json_c
+from json_c import json_tree_c
+
+class display_component():
 	def __init__(self):
-		self.v0=vec()
-		self.v1=vec()
-		self.type="l"
-		self.r=1.0
-		self.text=""
+		self.x0=-1
+		self.y0=-1
+		self.x1=-1
+		self.y1=-1
 		self.I=""
 		self.V=""
+		self.comp="none"
+		self.name="none"
+		self.dir="north"
+
+	def __str__(self):
+		return str(self.x0)+" "+str(self.y0)+" "+str(self.x1)+" "+str(self.y1)+" "+self.name
+
+	def __eq__(self,a):
+		if self.x0==a.x0:
+			if self.y0==a.y0:
+				if self.x1==a.x1:
+					if self.y1==a.y1:
+						return True
+
+		if self.x0==a.x1:
+			if self.y0==a.y1:
+				if self.x1==a.x0:
+					if self.y1==a.y0:
+						return True
+		return False
+
+	def get_direction(self):
+		if self.x0==self.x1:
+			if self.y1>self.y0:
+				return "up"
+			else:
+				return "down"
+
+		if self.y0==self.y1:
+			if self.x1>self.x0:
+				return "right"
+			else:
+				return "left"
 
 class ersatzschaltbild(QWidget):
 
-	def __init__(self):      
+	def __init__(self):
 		super(ersatzschaltbild, self).__init__()
-		self.dx=160
-		self.dy=160
+		self.bin=json_tree_c()
+
+		self.dx=80
+		self.dy=80
+		self.lib=sim_paths.get_dll_py()
 
 		self.objects=[]
 		self.origonal_objects=[]
@@ -72,12 +110,29 @@ class ersatzschaltbild(QWidget):
 		self.editable=True
 
 		self.selected="diode"
-		#self.setMouseTracking(True)
-		self.init()
-		self.hover=json_component()
+		self.shift_x=-self.dx/2
+		self.shift_y=-self.dy/2
+		self.hover=display_component()
 		self.menu_build()
 		self.file_current_voltage=None
 		self.show_resistance_values=True
+		self.svgs={}
+		self.load_svgs()
+		self.drag_start_x=None
+		self.drag_start_y=None
+
+	def load_svgs(self):
+		for f in os.listdir(sim_paths.get_components_path()):
+			if f.endswith(".svg"):
+				svg_file=os.path.join(sim_paths.get_components_path(),f)
+				image = NSVGimage()
+				image.load(svg_file)
+				image.norm(self.dx,self.dy)
+				self.svgs[f[:-4]]=image
+
+	def __del__(self):
+		for attr, value in self.svgs.items():
+			value.free()
 
 	def objects_push(self):
 		self.origonal_objects=[]
@@ -89,9 +144,6 @@ class ersatzschaltbild(QWidget):
 		for o in self.origonal_objects:
 			self.objects.append(o)
 
-	def init(self):
-		self.shift_x=-self.dx/2
-		self.shift_y=-self.dy/2
 
 	def clear(self):
 		self.objects=[]
@@ -99,14 +151,11 @@ class ersatzschaltbild(QWidget):
 	def paintEvent(self, e):
 		qp = QPainter()
 		qp.begin(self)
+		qp.setRenderHint(QPainter.Antialiasing)
 		self.drawWidget(qp)
 		qp.end()
 
-
-	def drawWidget(self, qp):
-		font = QFont('Sans', 11, QFont.Normal)
-		qp.setFont(font)
-
+	def draw_mesh(self,qp):
 		pen = QPen(QColor(20, 20, 20), 1, Qt.SolidLine)
 		
 		qp.setPen(pen)
@@ -114,7 +163,6 @@ class ersatzschaltbild(QWidget):
 
 		width = self.width()
 		height = self.height()
-
 		maxx=int(width/self.dx)+1
 		maxy=int(height/self.dy)+1
 		self.xmesh=[]
@@ -143,29 +191,53 @@ class ersatzschaltbild(QWidget):
 				for yy in range(-3+y,3+y):
 					qp.drawPoint(x+self.shift_x, yy+self.shift_y)
 
+	def drawWidget(self, qp):
+		font = QFont('Sans', 11, QFont.Normal)
+		qp.setFont(font)
 
-
-
-
+		self.draw_mesh(qp)
+		component_index=0
 		for o in self.objects:
-			#qp.drawLine(o.x0*self.dx, o.y0*self.dx, o.x1*self.dx, o.y1*self.dx)
-			#qp.drawEllipse(QRect(o.x0*self.dx, o.y0*self.dx,10,10));
-			pen = QPen(QColor(0, 0, 0), 4, Qt.SolidLine)
-			qp.setPen(pen)
-			for draw_obj in o.lines:
-				if draw_obj.type=="l":
-					x0=o.x0*self.dx+draw_obj.v0.x
-					y0=o.y0*self.dy+draw_obj.v0.y
-					x1=o.x0*self.dx+draw_obj.v1.x
-					y1=o.y0*self.dy+draw_obj.v1.y
+			if o.comp in self.svgs:
+				image=self.svgs[o.comp]
+				shape=image.p.contents.shapes
+				r=ctypes.c_int()
+				g=ctypes.c_int()
+				b=ctypes.c_int()
+				image.lib.svg_get_rgb(shape,ctypes.byref(r),ctypes.byref(g),ctypes.byref(b))
+				pen = QPen(QColor(r.value, g.value, b.value), 4, Qt.SolidLine)
+				qp.setPen(pen)
+				while(shape):
+					path=shape.contents.paths
+					while(path):
+						i=0
+						while(i<path.contents.npts-1):
+							p=ctypes.POINTER(ctypes.c_float)
+							x=path.contents.pts[i*2]
+							y=path.contents.pts[i*2+1]
+							if o.get_direction()=="down":
+								x,y=path.contents.rotate(x,y,-90)
+							elif o.get_direction()=="up":
+								x,y=path.contents.rotate(x,y,90)
+							#print(o.get_direction())
+							x0=o.x0*self.dx+x*self.dx
+							y0=o.y0*self.dy+y*self.dy
 
-					qp.drawLine(x0+self.shift_x, y0+self.shift_y, x1+self.shift_x, y1+self.shift_y)
-				elif draw_obj.type=="c":
-					x0=o.x0*self.dx+draw_obj.v0.x-draw_obj.r/2.0
-					y0=o.y0*self.dy+draw_obj.v0.y-draw_obj.r/2.0
-					qp.drawEllipse(QRect(x0+self.shift_x, y0+self.shift_y, draw_obj.r, draw_obj.r));
-				elif draw_obj.type=="t":
-					qp.drawText(o.x0*self.dx+draw_obj.v0.x+self.shift_x, o.y0*self.dy+draw_obj.v0.y+self.shift_y, draw_obj.text)
+							x=path.contents.pts[i*2+6]
+							y=path.contents.pts[i*2+7]
+							if o.get_direction()=="down":
+								x,y=path.contents.rotate(x,y,-90)
+							elif o.get_direction()=="up":
+								x,y=path.contents.rotate(x,y,90)
+
+							x1=o.x0*self.dx+x*self.dx
+							y1=o.y0*self.dy+y*self.dy
+							
+							qp.drawLine(x0+self.shift_x, y0+self.shift_y, x1+self.shift_x, y1+self.shift_y)
+							i=i+3
+
+						path=path.contents.next
+					shape=shape.contents.next
 
 			pen = QPen(QColor(0, 0, 255), 1, Qt.SolidLine)
 			qp.setPen(pen)
@@ -183,35 +255,43 @@ class ersatzschaltbild(QWidget):
 				pass
 			if self.show_resistance_values==True:
 				if o.comp=="resistor":
-					qp.drawText(o.x0*self.dx-self.dx/4.0, o.y0*self.dy-self.dy/8, self.resistance_to_text(o.R))
-			
+					path="circuit.circuit_diagram"+".segment"+str(component_index)
+					R=self.bin.get_token_value(path,"R")
+					if R!=None:
+						qp.drawText(o.x0*self.dx+self.dx/4.0+self.shift_x, o.y0*self.dy-self.dy*2/8.0+self.shift_y, self.resistance_to_text(R))
 
-	def resistance_to_text(self,r):
-		if r<1e-3:
-			return str(round(r*1e6))+"u\u03A9"
-		elif r<1.0:
-			return str(round(r*1e3))+"m\u03A9"
-		elif r<1e3:
-			return str(round(r*1e0))+"\u03A9"
-		elif r<1e6:
-			return str(round(r*1e-3))+"k\u03A9"
-		else:
-			return str(round(r*1e-6))+"M\u03A9"
-		
-	def save(self):
-		data=json_root()
-		data.circuit.circuit_diagram.segments=[]
-		for o in self.objects:
-			data.circuit.circuit_diagram.segments.append(o)
-		data.save()
+			component_index=component_index+1
+	def wheelEvent(self, event):
+		numDegrees = event.delta() / 8
+		numSteps = numDegrees / 15
+		self.dx=self.dx+int(numSteps)
+		self.dy=self.dy+int(numSteps)
+		self.repaint()
+
+	def resistance_to_text(self,val):
+		buf = (ctypes.c_char * 64)()
+		self.lib.ohms_with_units(buf,ctypes.c_double(val))
+		ret=bytes2str(ctypes.cast(buf, ctypes.c_char_p).value)
+		return ret+"\u03A9"
 
 	def load(self):
+		t=time.time()  
 		self.objects=[]
-		data=json_root()
-		for s in data.circuit.circuit_diagram.segments:
-			s.I=""
-			s.V=""
-			self.add_object(s)
+		segments=self.bin.get_token_value("circuit.circuit_diagram","segments")
+		for s in range(0,segments):
+			path="circuit.circuit_diagram"+".segment"+str(s)
+			o=display_component()
+			o.x0=self.bin.get_token_value(path,"x0")
+			o.y0=self.bin.get_token_value(path,"y0")
+			o.x1=self.bin.get_token_value(path,"x1")
+			o.y1=self.bin.get_token_value(path,"y1")
+
+			o.name=self.bin.get_token_value(path,"name")
+			o.comp=self.bin.get_token_value(path,"comp")
+			
+			o.I=""
+			o.V=""
+			self.add_object(o)
 
 		if self.file_current_voltage!=None:
 			self.f=inp()
@@ -230,85 +310,20 @@ class ersatzschaltbild(QWidget):
 				self.objects[uid].I=self.objects[uid].I.replace("e-0","e-")
 		self.repaint()
 
-	def load_component(self,c):
-		f=inp()
-		file_name=os.path.join(get_components_path(),c.comp+".inp")
-		f.load(file_name)
-		if f.lines==False:
-			return []
-
-		pi=[]
-		for l in f.lines:
-			s=l.split()
-			if len(s)>1:
-				if s[0]=="l":
-					draw_obj=draw_object()
-					draw_obj.v0.x=float(s[1])
-					draw_obj.v0.y=float(s[2])
-					draw_obj.v0.x*=self.dx
-					draw_obj.v0.y*=self.dy
-
-					draw_obj.v1.x=float(s[3])
-					draw_obj.v1.y=float(s[4])
-					draw_obj.v1.x*=self.dx
-					draw_obj.v1.y*=self.dy
-					draw_obj.type="l"
-					pi.append(draw_obj)
-
-				if s[0]=="c":
-					draw_obj=draw_object()
-					draw_obj.v0.x=float(s[1])
-					draw_obj.v0.y=float(s[2])
-					draw_obj.v0.x*=self.dx
-					draw_obj.v0.y*=self.dy
-					draw_obj.type="c"
-					draw_obj.r=float(s[3])*self.dx
-					pi.append(draw_obj)
-				if s[0]=="t":
-					draw_obj=draw_object()
-					draw_obj.v0.x=float(s[1])
-					draw_obj.v0.y=float(s[2])
-					draw_obj.v0.x*=self.dx
-					draw_obj.v0.y*=self.dy
-					draw_obj.type="t"
-					draw_obj.text=s[3]
-					pi.append(draw_obj)
-
-		if c.get_direction()=="down":
-			self.rotate(pi,degrees=-90)
-		elif c.get_direction()=="up":
-			self.rotate(pi,degrees=90)
-
-		return pi
-
-	def rotate(self,lines,degrees=90,add_y=0.0):
-		for i in range(0,len(lines)):
-			if lines[i].type=="l" or lines[i].type=="c" or lines[i].type=="t": 
-				lines[i].v0=lines[i].v0.rotate(degrees)
-				lines[i].v0.y=lines[i].v0.y+add_y
-				lines[i].v1=lines[i].v1.rotate(degrees)
-				lines[i].v1.y=lines[i].v1.y+add_y
-
-			
+		
 	def add_object(self,component):
-		component.lines=self.load_component(component)
 		self.objects.append(component)
-
 		return len(self.objects)-1
 
 	def add_object0(self,x0,y0,x1,y1,comp):
-		component=json_component()
+		component=display_component()
 		component.x0=x0
 		component.y0=y0
 		component.x1=x1
 		component.y1=y1
 		component.comp=comp
 		component.name=comp
-		component.lines=self.load_component(component)
 		self.objects.append(component)
-
-		return len(self.objects)-1
-
 
 	def find_click_points(self,event):
 		xmin_list=[]
@@ -373,22 +388,24 @@ class ersatzschaltbild(QWidget):
 		return -1
 
 	def mouseReleaseEvent(self, event):
+		self.drag_start_x=None
+		self.drag_start_y=None
+		data=json_c("")
 
 		if self.editable==False:
 			return
-		data=json_root()
 
-		if data.circuit.enabled==False:
+		if self.bin.get_token_value("circuit","enabled")==False:
 			result=yes_no_dlg(self,_("Are you sure you want to edit the circuit directly?  The circuit will no longer automaticly be updated as you change the layer structure, and the electrical parameters editor will be disabled.  Use can use the reset function in the circuit diagram editor to resore this functionality"))
 			if result == False:
 				return
 			else:
-				data.circuit.enabled=True
-				data.save()
+				self.bin.set_token_value("circuit","enabled",True)
+				self.bin.save()
 
 		if event.button() == Qt.LeftButton:
 			x0,y0,x1,y1,direction=self.find_click_points(event)
-			c=json_component()
+			c=display_component()
 			c.x0=x0
 			c.y0=y0
 			c.x1=x1
@@ -399,76 +416,223 @@ class ersatzschaltbild(QWidget):
 			if self.selected=="clean":
 				if index!=-1:
 					self.objects.pop(index)
+					self.bin.delete_segment("circuit.circuit_diagram","segment"+str(index))
 			else:
 				if index==-1:
+					if self.selected=="pointer":
+						return
+					if self.selected=="all-scroll":
+						return
+
 					c.comp=self.selected
-					c.lines=self.load_component(c)
-					#if direction=="up":
-					#	self.rotate(c.lines)
 
 					self.objects.append(c)
-				else:
-					self.a=json_dialog(_("Component")+": "+self.objects[index].name)
-					ret=None
-					data=json_base("dlg")
-					data.var_list.append(["comp",self.objects[index].comp])
-					data.var_list.append(["name0",self.objects[index].name])
-					if self.objects[index].comp=="resistor":
-						data.var_list.append(["com_R",self.objects[index].R])
-						data.var_list_build()
-						ret=self.a.run(data)
-						if ret==QDialog.Accepted:
-							self.objects[index].R=data.com_R
-					elif self.objects[index].comp=="capacitor":
-						data.var_list.append(["com_C",self.objects[index].C])
-						data.var_list_build()
-						ret=self.a.run(data)
-						if ret==QDialog.Accepted:
-							self.objects[index].C=data.com_C
-					elif self.objects[index].comp=="inductor":
-						data.var_list.append(["com_L",self.objects[index].L])
-						data.var_list_build()
-						ret=self.a.run(data)
-						if ret==QDialog.Accepted:
-							self.objects[index].L=data.com_L
-					elif self.objects[index].comp=="diode":
-						data.var_list.append(["com_nid",self.objects[index].nid])
-						data.var_list.append(["com_I0",self.objects[index].I0])
-						data.var_list.append(["com_layer",self.objects[index].layer])
-						data.var_list.append(["Dphotoneff",self.objects[index].Dphotoneff])
-						data.var_list_build()
-						ret=self.a.run(data)
-						if ret==QDialog.Accepted:
-							self.objects[index].nid=data.com_nid
-							self.objects[index].I0=data.com_I0
-							self.objects[index].layer=data.com_layer
-							self.objects[index].Dphotoneff=data.Dphotoneff
-					elif self.objects[index].comp=="power":
-						data.var_list.append(["com_a",self.objects[index].a])
-						data.var_list.append(["com_b",self.objects[index].b])
-						data.var_list.append(["com_c",self.objects[index].c])
-						data.var_list.append(["com_I0",self.objects[index].I0])
-						data.var_list.append(["com_layer",self.objects[index].layer])
-						data.var_list.append(["Dphotoneff",self.objects[index].Dphotoneff])
-						data.var_list_build()
-						ret=self.a.run(data)
-						if ret==QDialog.Accepted:
-							self.objects[index].I0=data.com_I0
-							self.objects[index].a=data.com_a
-							self.objects[index].b=data.com_b
-							self.objects[index].c=data.com_c
-							self.objects[index].layer=data.com_layer
-							self.objects[index].Dphotoneff=data.Dphotoneff
-					if ret==QDialog.Accepted:
-						self.objects[index].comp=data.comp
-						self.objects[index].name=data.name0
+					path_of_new_segment=self.bin.make_new_segment("circuit.circuit_diagram","",-1)
+					self.bin.set_token_value(path_of_new_segment,"x0",x0)
+					self.bin.set_token_value(path_of_new_segment,"x1",x1)
+					self.bin.set_token_value(path_of_new_segment,"y0",y0)
+					self.bin.set_token_value(path_of_new_segment,"y1",y1)
+					self.bin.set_token_value(path_of_new_segment,"comp",self.selected)
 
-			self.save()
+				else:
+					path="circuit.circuit_diagram"+".segment"+str(index)
+
+					self.a=json_dialog(data,title=_("Component")+": "+self.bin.get_token_value(path,"name"))
+					ret=None
+
+					data.json_py_add_obj_string("", "comp", self.bin.get_token_value(path,"comp"))
+					data.json_py_add_obj_string("", "name0", self.bin.get_token_value(path,"name"))
+					if self.objects[index].comp=="resistor":
+						data.json_py_add_obj_double("", "com_R", self.bin.get_token_value(path,"R"))
+						ret=self.a.run()
+						if ret==QDialog.Accepted:
+							self.bin.set_token_value(path,"R",data.get_token_value("","com_R"))
+					elif self.objects[index].comp=="capacitor":
+						data.json_py_add_obj_double("", "com_C", self.bin.get_token_value(path,"C"))
+						ret=self.a.run()
+						if ret==QDialog.Accepted:
+							self.bin.set_token_value(path,"C",data.get_token_value("","com_C"))
+					elif self.objects[index].comp=="inductor":
+						data.json_py_add_obj_double("", "com_L", self.bin.get_token_value(path,"L"))
+						ret=self.a.run()
+						if ret==QDialog.Accepted:
+							self.bin.set_token_value(path,"L",data.get_token_value("","com_L"))
+					elif self.objects[index].comp=="diode":
+						data.json_py_add_obj_double("", "com_nid", self.bin.get_token_value(path,"nid"))
+						data.json_py_add_obj_double("", "com_I0", self.bin.get_token_value(path,"I0"))
+						data.json_py_add_obj_string("", "com_layer", self.bin.get_token_value(path,"layer"))
+						data.json_py_add_obj_double("", "Dphotoneff", self.bin.get_token_value(path,"Dphotoneff"))
+						ret=self.a.run()
+						if ret==QDialog.Accepted:
+							self.bin.set_token_value(path,"nid",data.get_token_value("","com_nid"))
+							self.bin.set_token_value(path,"I0",data.get_token_value("","com_I0"))
+							self.bin.set_token_value(path,"layer",data.get_token_value("","com_layer"))
+							self.bin.set_token_value(path,"Dphotoneff",data.get_token_value("","Dphotoneff"))
+					elif self.objects[index].comp=="power":
+						data.json_py_add_obj_double("", "com_a", self.bin.get_token_value(path,"a"))
+						data.json_py_add_obj_double("", "com_b", self.bin.get_token_value(path,"b"))
+						data.json_py_add_obj_double("", "com_c", self.bin.get_token_value(path,"c"))
+						data.json_py_add_obj_double("", "com_I0", self.bin.get_token_value(path,"I0"))
+						data.json_py_add_obj_string("", "com_layer", self.bin.get_token_value(path,"layer"))
+						data.json_py_add_obj_double("", "Dphotoneff", self.bin.get_token_value(path,"Dphotoneff"))
+
+						ret=self.a.run()
+						if ret==QDialog.Accepted:
+							self.bin.set_token_value(path,"I0",data.get_token_value("","com_I0"))
+							self.bin.set_token_value(path,"a",data.get_token_value("","com_a"))
+							self.bin.set_token_value(path,"b",data.get_token_value("","com_b"))
+							self.bin.set_token_value(path,"c",data.get_token_value("","com_c"))
+							self.bin.set_token_value(path,"layer",data.get_token_value("","com_layer"))
+							self.bin.set_token_value(path,"Dphotoneff",data.get_token_value("","Dphotoneff"))
+					elif self.objects[index].comp=="barrier":
+						data.json_py_add_obj_double("", "com_I0", self.bin.get_token_value(path,"I0"))
+						data.json_py_add_obj_double("", "com_phi0", self.bin.get_token_value(path,"phi0"))
+						data.json_py_add_obj_double("", "com_b0", self.bin.get_token_value(path,"b0"))
+						ret=self.a.run()
+						if ret==QDialog.Accepted:
+							self.bin.set_token_value(path,"I0",data.get_token_value("","com_I0"))
+							self.bin.set_token_value(path,"phi0",data.get_token_value("","com_phi0"))
+							self.bin.set_token_value(path,"b0",data.get_token_value("","com_b0"))
+					elif self.objects[index].comp=="diode_n":
+						data.json_py_add_obj_double("", "com_nid", self.bin.get_token_value(path,"nid"))
+						data.json_py_add_obj_double("", "com_nid_sigma", self.bin.get_token_value(path,"nid_sigma"))
+						data.json_py_add_obj_double("", "com_I0", self.bin.get_token_value(path,"I0"))
+						data.json_py_add_obj_double("", "com_I0_sigma", self.bin.get_token_value(path,"I0_sigma"))
+						data.json_py_add_obj_string("", "com_layer", self.bin.get_token_value(path,"layer"))
+						data.json_py_add_obj_double("", "Dphotoneff", self.bin.get_token_value(path,"Dphotoneff"))
+						print(">>>>>",path)
+						data.json_py_add_obj_double("", "com_Rs", self.bin.get_token_value(path,"a"))
+						data.json_py_add_obj_double("", "com_Rs_sigma", self.bin.get_token_value(path,"a_sigma"))
+						data.json_py_add_obj_double("", "com_Rsh", self.bin.get_token_value(path,"b"))
+						data.json_py_add_obj_double("", "com_Rsh_sigma", self.bin.get_token_value(path,"b_sigma"))
+						data.json_py_add_obj_int("", "com_count", self.bin.get_token_value(path,"count"))
+						ret=self.a.run()
+						if ret==QDialog.Accepted:
+							self.bin.set_token_value(path,"nid",data.get_token_value("","com_nid"))
+							self.bin.set_token_value(path,"nid_sigma",data.get_token_value("","com_nid_sigma"))
+							self.bin.set_token_value(path,"I0",data.get_token_value("","com_I0"))
+							self.bin.set_token_value(path,"I0_sigma",data.get_token_value("","com_I0_sigma"))
+							self.bin.set_token_value(path,"layer",data.get_token_value("","com_layer"))
+							self.bin.set_token_value(path,"Dphotoneff",data.get_token_value("","Dphotoneff"))
+							self.bin.set_token_value(path,"a",data.get_token_value("","com_Rs"))
+							self.bin.set_token_value(path,"a_sigma",data.get_token_value("","com_Rs_sigma"))
+							self.bin.set_token_value(path,"b",data.get_token_value("","com_Rsh"))
+							self.bin.set_token_value(path,"b_sigma",data.get_token_value("","com_Rsh_sigma"))
+							self.bin.set_token_value(path,"count",data.get_token_value("","com_count"))
+					elif self.objects[index].comp=="diode_ns1":
+						data.json_py_add_obj_double("", "com_nid", self.bin.get_token_value(path,"nid"))
+						data.json_py_add_obj_double("", "com_nid_sigma", self.bin.get_token_value(path,"nid_sigma"))
+						data.json_py_add_obj_double("", "com_I0", self.bin.get_token_value(path,"I0"))
+						data.json_py_add_obj_double("", "com_I0_sigma", self.bin.get_token_value(path,"I0_sigma"))
+						data.json_py_add_obj_string("", "com_layer", self.bin.get_token_value(path,"layer"))
+						data.json_py_add_obj_double("", "Dphotoneff", self.bin.get_token_value(path,"Dphotoneff"))
+						data.json_py_add_obj_double("", "com_Rs", self.bin.get_token_value(path,"a"))
+						data.json_py_add_obj_double("", "com_Rs_sigma", self.bin.get_token_value(path,"a_sigma"))
+						data.json_py_add_obj_double("", "com_Rsh", self.bin.get_token_value(path,"b"))
+						data.json_py_add_obj_double("", "com_Rsh_sigma", self.bin.get_token_value(path,"b_sigma"))
+						#s_shape_circuit
+						data.json_py_add_obj_double("", "com_Rs1", self.bin.get_token_value(path,"b0"))
+						data.json_py_add_obj_double("", "com_Rs1_sigma", self.bin.get_token_value(path,"b0_sigma"))
+						data.json_py_add_obj_double("", "com_I0_1", self.bin.get_token_value(path,"phi0"))
+						data.json_py_add_obj_double("", "com_I0_1_sigma", self.bin.get_token_value(path,"phi0_sigma"))
+						data.json_py_add_obj_double("", "com_nid_1", self.bin.get_token_value(path,"c"))
+						data.json_py_add_obj_double("", "com_nid_1_sigma", self.bin.get_token_value(path,"c_sigma"))
+						data.json_py_add_obj_bool("", "com_enable_sigma", self.bin.get_token_value(path,"com_enable_sigma"))
+						#count
+						data.json_py_add_obj_int("", "com_count", self.bin.get_token_value(path,"count"))
+						ret=self.a.run()
+						if ret==QDialog.Accepted:
+							self.bin.set_token_value(path,"nid",data.get_token_value("","com_nid"))
+							self.bin.set_token_value(path,"nid_sigma",data.get_token_value("","com_nid_sigma"))
+							self.bin.set_token_value(path,"I0",data.get_token_value("","com_I0"))
+							self.bin.set_token_value(path,"I0_sigma",data.get_token_value("","com_I0_sigma"))
+							self.bin.set_token_value(path,"layer",data.get_token_value("","com_layer"))
+							self.bin.set_token_value(path,"Dphotoneff",data.get_token_value("","Dphotoneff"))
+							self.bin.set_token_value(path,"a",data.get_token_value("","com_Rs"))
+							self.bin.set_token_value(path,"a_sigma",data.get_token_value("","com_Rs_sigma"))
+							self.bin.set_token_value(path,"b",data.get_token_value("","com_Rsh"))
+							self.bin.set_token_value(path,"b_sigma",data.get_token_value("","com_Rsh_sigma"))
+							#s_shape_circuit
+							self.bin.set_token_value(path,"b0",data.get_token_value("","com_Rs1"))
+							self.bin.set_token_value(path,"b0_sigma",data.get_token_value("","com_Rs1_sigma"))
+							self.bin.set_token_value(path,"phi0",data.get_token_value("","com_I0_1"))
+							self.bin.set_token_value(path,"phi0_sigma",data.get_token_value("","com_I0_1_sigma"))
+							self.bin.set_token_value(path,"c",data.get_token_value("","com_nid_1"))
+							self.bin.set_token_value(path,"c_sigma",data.get_token_value("","com_nid_1_sigma"))
+							self.bin.set_token_value(path,"com_enable_sigma",data.get_token_value("","com_enable_sigma"))
+							#count
+							data.json_py_add_obj_int("", "com_count", self.bin.get_token_value(path,"count"))
+					elif self.objects[index].comp=="diode_ns2":
+						data.json_py_add_obj_double("", "com_nid", self.bin.get_token_value(path,"nid"))
+						data.json_py_add_obj_double("", "com_nid_sigma", self.bin.get_token_value(path,"nid_sigma"))
+						data.json_py_add_obj_double("", "com_I0", self.bin.get_token_value(path,"I0"))
+						data.json_py_add_obj_double("", "com_I0_sigma", self.bin.get_token_value(path,"I0_sigma"))
+						data.json_py_add_obj_string("", "com_layer", self.bin.get_token_value(path,"layer"))
+						data.json_py_add_obj_double("", "Dphotoneff", self.bin.get_token_value(path,"Dphotoneff"))
+						data.json_py_add_obj_double("", "com_Rs", self.bin.get_token_value(path,"a"))
+						data.json_py_add_obj_double("", "com_Rs_sigma", self.bin.get_token_value(path,"a_sigma"))
+						data.json_py_add_obj_double("", "com_Rsh", self.bin.get_token_value(path,"b"))
+						data.json_py_add_obj_double("", "com_Rsh_sigma", self.bin.get_token_value(path,"b_sigma"))
+						#s_shape_circuit
+						data.json_py_add_obj_double("", "com_Rs1", self.bin.get_token_value(path,"b0"))
+						data.json_py_add_obj_double("", "com_Rs1_sigma", self.bin.get_token_value(path,"b0_sigma"))
+						data.json_py_add_obj_double("", "com_I0_1", self.bin.get_token_value(path,"phi0"))
+						data.json_py_add_obj_double("", "com_I0_1_sigma", self.bin.get_token_value(path,"phi0_sigma"))
+						data.json_py_add_obj_double("", "com_nid_1", self.bin.get_token_value(path,"c"))
+						data.json_py_add_obj_double("", "com_nid_1_sigma", self.bin.get_token_value(path,"c_sigma"))
+						data.json_py_add_obj_bool("", "com_enable_sigma", self.bin.get_token_value(path,"com_enable_sigma"))
+						#count
+						data.json_py_add_obj_int("", "com_count", self.bin.get_token_value(path,"count"))
+
+						ret=self.a.run()
+						if ret==QDialog.Accepted:
+							self.bin.set_token_value(path,"nid",data.get_token_value("","com_nid"))
+							self.bin.set_token_value(path,"nid_sigma",data.get_token_value("","com_nid_sigma"))
+							self.bin.set_token_value(path,"I0",data.get_token_value("","com_I0"))
+							self.bin.set_token_value(path,"I0_sigma",data.get_token_value("","com_I0_sigma"))
+							self.bin.set_token_value(path,"layer",data.get_token_value("","com_layer"))
+							self.bin.set_token_value(path,"Dphotoneff",data.get_token_value("","Dphotoneff"))
+							self.bin.set_token_value(path,"a",data.get_token_value("","com_Rs"))
+							self.bin.set_token_value(path,"a_sigma",data.get_token_value("","com_Rs_sigma"))
+							self.bin.set_token_value(path,"b",data.get_token_value("","com_Rsh"))
+							self.bin.set_token_value(path,"b_sigma",data.get_token_value("","com_Rsh_sigma"))
+							#s_shape_circuit
+							self.bin.set_token_value(path,"b0",data.get_token_value("","com_Rs1"))
+							self.bin.set_token_value(path,"b0_sigma",data.get_token_value("","com_Rs1_sigma"))
+							self.bin.set_token_value(path,"phi0",data.get_token_value("","com_I0_1"))
+							self.bin.set_token_value(path,"phi0_sigma",data.get_token_value("","com_I0_1_sigma"))
+							self.bin.set_token_value(path,"c",data.get_token_value("","com_nid_1"))
+							self.bin.set_token_value(path,"c_sigma",data.get_token_value("","com_nid_1_sigma"))
+							self.bin.set_token_value(path,"com_enable_sigma",data.get_token_value("","com_enable_sigma"))
+
+							#count
+							data.json_py_add_obj_int("", "com_count", self.bin.get_token_value(path,"count"))
+							
+					if ret==QDialog.Accepted:
+						self.bin.set_token_value(path,"comp",data.get_token_value("","comp"))
+						self.bin.set_token_value(path,"name",data.get_token_value("","name0"))
+
+			self.bin.save()
 			self.load()
 
 		elif event.button() == Qt.RightButton:
             #do what you want here
 			print("Right Button Clicked")
+		data.free()
+
+	def mouseMoveEvent(self, event):
+		if event.buttons() & Qt.LeftButton:
+			if self.selected=="all-scroll":
+				if self.drag_start_x==None:
+					self.drag_start_x=event.globalPos().x()
+					self.drag_start_y=event.globalPos().y()
+
+				self.shift_x=self.shift_x+event.globalPos().x()-self.drag_start_x
+				self.shift_y=self.shift_y+event.globalPos().y()-self.drag_start_y
+
+				self.drag_start_x=event.globalPos().x()
+				self.drag_start_y=event.globalPos().y()
+				self.repaint()
 
 	def menu_build(self):
 		self.main_menu = QMenu(self)
@@ -485,8 +649,7 @@ class ersatzschaltbild(QWidget):
 		self.menu_update()
 
 	def menu_update(self):
-		data=json_root()
-		if data.circuit.enabled==True:
+		if self.bin.get_token_value("circuit","enabled")==True:
 			self.menu_circuit_from_epitaxy.setChecked(False)
 			self.menu_circuit_freehand.setChecked(True)
 		else:
@@ -497,9 +660,9 @@ class ersatzschaltbild(QWidget):
 		self.main_menu.exec_(event.globalPos())
 
 	def callback_toggle_diagram_src(self):
-		data=json_root()
-		data.circuit.enabled=not data.circuit.enabled
+		enabled=not self.bin.get_token_value("circuit","enabled")
+		self.bin.set_token_value("circuit","enabled",enabled)
 		self.menu_update()
-		data.save()
+		self.bin.save()
 
 

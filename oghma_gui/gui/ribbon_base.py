@@ -53,3 +53,19 @@ class ribbon_base(QTabWidget):
 			file.close()
 		return css
 
+	def hide_page(self,page_name):
+		self.blockSignals(True)
+		for i in range(0,self.count()):
+				if self.tabText(i)==page_name:
+					self.setTabEnabled(i,False)
+					break
+		self.blockSignals(False)
+
+	def show_page(self,page_name):
+		self.blockSignals(True)
+		for i in range(0,self.count()):
+				if self.tabText(i)==page_name:
+					self.setTabEnabled(i,True)
+					break
+		self.blockSignals(False)
+

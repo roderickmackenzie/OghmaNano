@@ -31,8 +31,6 @@
 
 from icon_lib import icon_get
 
-from cal_path import get_css_path
-
 #qt
 from PySide2.QtGui import QIcon
 from gQtCore import QSize, Qt,QFile,QIODevice
@@ -42,12 +40,13 @@ from help import help_window
 from global_objects import global_object_register
 from pl_main import pl_main
 from QAction_lock import QAction_lock
-from json_root import json_root
+from ribbon_page import ribbon_page
+from json_c import json_tree_c
 
-class ribbon_device(QToolBar):
+class ribbon_device(ribbon_page):
 	def __init__(self):
-		QToolBar.__init__(self)
-		self.cost_window=None
+		ribbon_page.__init__(self)
+		self.bin=json_tree_c()
 		self.contacts_window=None
 		self.layer_editor=None
 		self.dim_editor=None
@@ -82,35 +81,19 @@ class ribbon_device(QToolBar):
 
 		self.callback_circuit_diagram()
 
-
 	def callback_circuit_diagram(self):
-		data=json_root()
+		self.tb_electrical_editor.setEnabled(True)
 
-		if data.circuit.enabled==True and data.electrical_solver.solver_type=="circuit":
-			self.tb_electrical_editor.setEnabled(False)
-		else:
-			self.tb_electrical_editor.setEnabled(True)
+		if self.bin.get_token_value("circuit","enabled")==True:
+			if self.bin.get_token_value("electrical_solver","solver_type")=="circuit":
+				self.tb_electrical_editor.setEnabled(False)
+			
 
 	def update(self):
-		if self.cost_window!=None:
-			del self.cost_window
-			self.cost_window=None
-			
-		if self.contacts_window!=None:
-			del self.contacts_window
-			self.contacts_window=None
-
-		if self.layer_editor!=None:
-			del self.layer_editor
-			self.layer_editor=None
-
-		if self.dim_editor!=None:
-			del self.dim_editor
-			self.dim_editor=None
-
-		if self.electrical_editor!=None:
-			del self.electrical_editor
-			self.electrical_editor=None
+		self.close_window(self.contacts_window)
+		self.close_window(self.layer_editor)
+		self.close_window(self.dim_editor)
+		self.close_window(self.electrical_editor)
 
 	def setEnabled(self,val):
 		self.cost.setEnabled(val)
@@ -119,60 +102,48 @@ class ribbon_device(QToolBar):
 
 		
 	def callback_contacts(self):		
-		help_window().help_set_help(["contact.png",_("<big><b>Contacts window</b></big>\nUse this window to change the layout of the contacts on the device")])
+		help_window().help_set_help("contact.png",_("<big><b>Contacts window</b></big>\nUse this window to change the layout of the contacts on the device"))
 
-		if self.contacts_window==None:
-			from contacts import contacts_window
-			self.contacts_window=contacts_window()
-			
-		if self.contacts_window.isVisible()==True:
-			self.contacts_window.hide()
-		else:
-			self.contacts_window.show()
+		self.close_window(self.contacts_window)
+
+		from contacts import contacts_window
+		self.contacts_window=contacts_window()
+		self.show_window(self.contacts_window)
 
 
 	def callback_layer_editor(self):
-		help_window().help_set_help(["layers.png",_("<big><b>Device layers</b></big>\nUse this window to configure the structure of the device.")])
+		help_window().help_set_help("layers.png",_("<big><b>Device layers</b></big>\nUse this window to configure the structure of the device."))
 
-		if self.layer_editor==None:
-			from layer_widget import layer_widget
-			self.layer_editor=layer_widget()
+		if self.is_valid(self.layer_editor):
+			self.layer_editor.close()
 
-		if self.layer_editor.isVisible()==True:
-			self.layer_editor.hide()
-		else:
-			self.layer_editor.show()
+		from layer_widget import layer_widget
+		self.layer_editor=layer_widget()
+		self.layer_editor.setAttribute(Qt.WA_DeleteOnClose, True)
+		self.show_window(self.layer_editor)
 
 	def callback_dimension_editor(self):
-		help_window().help_set_help(["dimension.png",_("<big><b>xz dimension editor</b></big>\nUse this window to configure the xz size of the device.")])
+		help_window().help_set_help("dimensions.png",_("<big><b>xz dimension editor</b></big>\nUse this window to configure the xz size of the device."))
 
-		if self.dim_editor==None:
-			from dim_editor import dim_editor
-			self.dim_editor=dim_editor()
+		self.close_window(self.dim_editor)
 
-		if self.dim_editor.isVisible()==True:
-			self.dim_editor.hide()
-		else:
-			self.dim_editor.show()
+		from dim_editor import dim_editor
+		self.dim_editor=dim_editor()
+		self.show_window(self.dim_editor)
 
 
 	def callback_electrical_editor(self):
-		help_window().help_set_help(["electrical.png",_("<big><b>Electrical parameters</b></big>\nUse this window to change the electrical parameters of each layer.")])
-
-		if self.electrical_editor!=None:
-			del self.electrical_editor
+		help_window().help_set_help("electrical.png",_("<big><b>Electrical parameters</b></big>\nUse this window to change the electrical parameters of each layer."))
+		self.close_window(self.electrical_editor)
 
 		from dos_main import dos_main
 		self.electrical_editor=dos_main()
-		self.electrical_editor.show()
+		self.show_window(self.electrical_editor)
 
 	def callback_emission_editor(self):
-		help_window().help_set_help(["emission.png",_("<big><b>Emission parameters</b></big>\nUse this window to set if a layer emits light or not.  You can choose between theoretically calculated emission spectra and imported experimental spectra.")])
-			
-		if self.emission_editor==None:
-			self.emission_editor=pl_main()
+		help_window().help_set_help("emission.png",_("<big><b>Emission parameters</b></big>\nUse this window to set if a layer emits light or not.  You can choose between theoretically calculated emission spectra and imported experimental spectra."))
 
-		if self.emission_editor.isVisible()==True:
-			self.emission_editor.hide()
-		else:
-			self.emission_editor.show()
+		self.close_window(self.emission_editor)
+
+		self.emission_editor=pl_main()
+		self.show_window(self.emission_editor)

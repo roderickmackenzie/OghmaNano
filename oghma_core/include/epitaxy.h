@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -25,7 +23,6 @@
 // SOFTWARE.
 // 
 
-
 /** @file epitaxy.h
 	@brief Read the epitaxy from the epitaxy.inp file.
 */
@@ -33,6 +30,7 @@
 
 #ifndef epitaxy_h
 #define epitaxy_h
+#include <g_io.h>
 #include "advmath.h"
 #include <sim_struct.h>
 #include <shape_struct.h>
@@ -41,42 +39,36 @@
 #include <json.h>
 
 void epitaxy_init(struct simulation *sim,struct epitaxy *epi);
-void epi_layer_init(struct simulation *sim,struct epi_layer *layer);
+void epi_layer_init(struct epi_layer *layer);
 void epitaxy_cpy(struct simulation *sim,struct epitaxy *out,struct epitaxy *in);
-int epitaxy_load(struct simulation *sim,struct epitaxy *in, struct json_obj *obj_epi);
+int epitaxy_load(struct simulation *sim,struct device *dev, struct epitaxy *in, struct json_obj *obj_epi);
 gdouble epitaxy_get_electrical_length(struct epitaxy *in);
 gdouble epitaxy_get_optical_length(struct epitaxy *in);
 int epitaxy_get_layer(struct epitaxy *in,gdouble pos);
 //int epitaxy_get_electrical_material_layer(struct epitaxy *in,gdouble pos);
-gdouble epitaxy_get_device_start(struct epitaxy *in);
-gdouble epitaxy_get_device_stop(struct epitaxy *in);
+double epitaxy_get_device_start(struct epitaxy *in);
+double epitaxy_get_device_stop(struct epitaxy *in);
 gdouble epitaxy_get_device_start_i(struct epitaxy *in);
 int epitaxy_get_epitaxy_layer_using_electrical_pos(struct epitaxy *in,gdouble pos);
 void epitaxy_free(struct simulation *sim,struct epitaxy *in);
 void epitaxy_free_materials(struct epitaxy *in);
-void epitaxy_load_emission(struct simulation *sim,struct epi_layer *layer);
-void epitaxy_mask(struct simulation *sim,struct device *dev);
-void epitaxy_shapes_load(struct simulation *sim,struct epitaxy *in, struct json_obj *obj_epi);
-void epitaxy_load_interface_file(struct simulation *sim, struct epi_layer *layer,struct json_obj *interface_json);
+void epitaxy_load_emission(struct simulation *sim,struct device *dev, struct epi_layer *layer);
 void epitaxy_setup_interfaces(struct simulation *sim,struct device *dev);
-long double epitaxy_get_total_length_y(struct epitaxy *in);
-void epitaxy_load_pl_file(struct simulation *sim, struct epi_layer *layer,struct json_obj *pl_json);
+gdouble epitaxy_get_total_length_y(struct epitaxy *in);
+void epitaxy_load_pl_file(struct simulation *sim, struct device *dev, struct epi_layer *layer,struct json_obj *pl_json);
 void epitaxy_debug(struct simulation *sim,struct epitaxy *in);
+int epitaxy_is_electrical_layer(struct epi_layer *layer);
 
 //optical
-long double epitaxy_get_optical_problem_start(struct epitaxy *in);
-long double epitaxy_get_optical_problem_stop(struct epitaxy *in);
-
-//heat
-long double epitaxy_get_heat_problem_start(struct epitaxy *in);
-long double epitaxy_get_heat_problem_stop(struct epitaxy *in);
+gdouble epitaxy_get_optical_problem_start(struct epitaxy *in);
+gdouble epitaxy_get_optical_problem_stop(struct epitaxy *in);
 
 //exciton
-long double epitaxy_get_exciton_problem_start(struct epitaxy *in);
-long double epitaxy_get_exciton_problem_stop(struct epitaxy *in);
+gdouble epitaxy_get_exciton_problem_start(struct epitaxy *in);
+gdouble epitaxy_get_exciton_problem_stop(struct epitaxy *in);
 
 //singlet
-long double epitaxy_get_singlet_problem_start(struct epitaxy *in);
-long double epitaxy_get_singlet_problem_stop(struct epitaxy *in);
+gdouble epitaxy_get_singlet_problem_start(struct epitaxy *in);
+gdouble epitaxy_get_singlet_problem_stop(struct epitaxy *in);
 
 #endif

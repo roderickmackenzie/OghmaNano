@@ -48,16 +48,16 @@ from ribbon_simulation_notes import ribbon_simulation_notes
 from css import css_apply
 from gui_util import yes_no_dlg
 from script_editor import script_editor
-from json_root import json_root
-from ref import ref_window
 from cal_path import sim_paths
 from tab import tab_class
- 
+from json_c import json_tree_c
+
 class window_simulation_notes(QWidgetSavePos):
 
 	def __init__(self,path="",api_callback=None):
 
 		QWidgetSavePos.__init__(self,"simulation_notes")
+		self.bin=json_tree_c()
 
 		self.setWindowIcon(icon_get("script"))
 
@@ -65,8 +65,6 @@ class window_simulation_notes(QWidgetSavePos):
 		self.setWindowTitle2(_("Simulation notes"))    
 
 		self.ribbon=ribbon_simulation_notes()
-
-		data=json_root()
 
 		self.setWindowIcon(icon_get("script"))
 
@@ -89,15 +87,24 @@ class window_simulation_notes(QWidgetSavePos):
 		#file_name=os.path.join(self.path,f)
 		a=script_editor()
 		a.api_callback=self.api_callback
-		a.setText(data.sim.notes)
+
+		text=self.bin.get_token_value("sim","notes")
+		a.setText(text)
+
 		a.status_changed.connect(self.callback_tab_changed)
 		a.save_signal.connect(self.callback_save)
 		self.notebook.addTab(a,_("Notes"))
 
-		self.ref_window=ref_window(os.path.join(sim_paths.get_sim_path(),"json.bib"),"device",show_toolbar=False)
-		self.notebook.addTab(self.ref_window,_("Bibtex reference"))
+		#simulation ref
+		ref_token="bib_name"
+		if self.bin.is_token("",ref_token)==False:
+			self.bin.add_bib_item("",ref_token)
+			self.bin.save()
 
-		self.config_window=tab_class(data)
+		self.bib_window=tab_class(ref_token)
+		self.notebook.addTab(self.bib_window,_("Bibtex reference"))
+
+		self.config_window=tab_class("")
 		self.notebook.addTab(self.config_window,_("Config"))
 
 		self.notebook.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -120,9 +127,8 @@ class window_simulation_notes(QWidgetSavePos):
 	def callback_save(self):
 		tab = self.notebook.currentWidget()
 		if type(tab)==script_editor:
-			data=json_root()
-			data.sim.notes=tab.getText()
-			data.save()
+			self.bin.set_token_value("sim","notes",tab.getText())
+			self.bin.save()
 			tab.not_saved=False
 			self.callback_tab_changed()
 

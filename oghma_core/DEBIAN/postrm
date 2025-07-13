@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rm -f /bin/oghma
+rm -f /usr/bin/oghma

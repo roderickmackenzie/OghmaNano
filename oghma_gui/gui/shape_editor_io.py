@@ -31,9 +31,7 @@
 import os
 
 from PIL import Image, ImageFilter,ImageOps, ImageDraw
-from PIL.ImageQt import ImageQt
 
-from cal_path import get_exe_command
 from server import server_get
 from cal_path import sim_paths
 
@@ -41,13 +39,20 @@ from math import sin
 from math import cos
 from math import exp
 from math import sqrt
+from json_c import json_c
 
-from json_shape_db_item import shape_db_item
+class shape_editor_io():
 
-class shape_editor_io(shape_db_item):
+	def __init__(self,path):
+		self.path=path
+		self.bin=json_c("shape_db")
+		self.bin.build_template()
+	
+	def load(self):
+		self.bin.load(os.path.join(self.path,"data.json"))
 
-	def __init__(self):
-		shape_db_item.__init__(self)
+	def save(self):
+		self.bin.save()
 
 	def gen_poly(self,x0,y0,dx0,dy0):
 		ret=[]
@@ -89,20 +94,23 @@ class shape_editor_io(shape_db_item):
 		return w,h,ret
 
 	def draw_honeycomb(self):
-		dx=self.honeycomb.honeycomb_dx
-		dy=self.honeycomb.honeycomb_dy
-		shift_x=self.honeycomb.honeycomb_x_shift
-		shift_y=self.honeycomb.honeycomb_y_shift
-		line_width=self.honeycomb.honeycomb_line_width
+		dx=self.bin.get_token_value("honeycomb","honeycomb_dx")
+		dy=self.bin.get_token_value("honeycomb","honeycomb_dy")
+		shift_x=self.bin.get_token_value("honeycomb","honeycomb_x_shift")
+		shift_y=self.bin.get_token_value("honeycomb","honeycomb_y_shift")
+		line_width=self.bin.get_token_value("honeycomb","honeycomb_line_width")
+		image_xlen=self.bin.get_token_value("","image_xlen")
+		image_ylen=self.bin.get_token_value("","image_ylen")
+		honeycomb_rotate=self.bin.get_token_value("honeycomb","honeycomb_rotate")
 
-		im= Image.new("RGB", (self.image_xlen, self.image_ylen), "#000000")
+		im= Image.new("RGB", (image_xlen, image_ylen), "#000000")
 
 		x_start=-20
-		x_stop=self.image_xlen
+		x_stop=image_xlen
 		(x_stop-x_start)/dx
 
 		y_start=-20
-		y_stop=self.image_ylen
+		y_stop=image_ylen
 		(y_stop-y_start)/dy
 
 		x_pos=0
@@ -126,27 +134,29 @@ class shape_editor_io(shape_db_item):
 			else:
 				delta=0
 
-		im=im.rotate(self.honeycomb.honeycomb_rotate)
+		im=im.rotate(honeycomb_rotate)
 
 
 		return im
 
 	def draw_xtal(self):
-		dx=self.xtal.xtal_dx
-		dy=self.xtal.xtal_dy
-		offset=self.xtal.xtal_offset
-		dr=self.xtal.xtal_dr
+		dx=self.bin.get_token_value("xtal","xtal_dx")
+		dy=self.bin.get_token_value("xtal","xtal_dy")
+		offset=self.bin.get_token_value("xtal","xtal_offset")
+		dr=self.bin.get_token_value("xtal","xtal_dr")
+		image_xlen=self.bin.get_token_value("","image_xlen")
+		image_ylen=self.bin.get_token_value("","image_ylen")
 
-		im= Image.new("RGB", (self.image_xlen, self.image_ylen), "#000000")
+		im= Image.new("RGB", (image_xlen, image_ylen), "#000000")
 		
 		x=dx/2
 		y=dy/2
 		shift=False
-		while(y<self.image_ylen):
+		while(y<image_ylen):
 			x=0
 			if shift==True:
 				x=x+offset
-			while(x<self.image_xlen):
+			while(x<image_xlen):
 				drawer=ImageDraw.Draw(im)
 				drawer.ellipse([(x-dr, y-dr), (x+dr, y+dr)], fill="white")
 				x=x+dx
@@ -158,18 +168,23 @@ class shape_editor_io(shape_db_item):
 		return im
 
 	def draw_lens(self):
+		lens_type=self.bin.get_token_value("lens","convex")
+		lens_size=self.bin.get_token_value("lens","lens_size")
+		image_xlen=self.bin.get_token_value("","image_xlen")
+		image_ylen=self.bin.get_token_value("","image_ylen")
+
 		convex=True
-		if self.lens.lens_type=="convex":
+		if lens_type=="convex":
 			convex=True
 		else:
 			convex=False
 
-		dr=self.image_xlen*self.lens.lens_size*0.5
-		do=self.image_xlen*0.5-dr
-		im= Image.new("RGB", (self.image_xlen, self.image_ylen), "#000000")
+		dr=image_xlen*lens_size*0.5
+		do=image_xlen*0.5-dr
+		im= Image.new("RGB", (image_xlen, image_ylen), "#000000")
 		
-		for y in range(0,self.image_ylen):
-			for x in range(0,self.image_xlen):
+		for y in range(0,image_ylen):
+			for x in range(0,image_xlen):
 				mag=dr*dr-((x-do)-dr)*((x-do)-dr)-((y-do)-dr)*((y-do)-dr)
 				if mag<0:
 					mag=0.0
@@ -204,18 +219,22 @@ class shape_editor_io(shape_db_item):
 			return 1.0-(dx/period)
 
 	def draw_saw_wave(self):
-		pass
+		shape_saw_type=self.bin.get_token_value("saw_wave","shape_saw_type")
+		shape_saw_offset=self.bin.get_token_value("saw_wave","shape_saw_offset")
+		shape_saw_length=self.bin.get_token_value("saw_wave","shape_saw_length")
 
-		self.image_xlen/2
-		im= Image.new("RGB", (self.image_xlen, self.image_ylen), "#000000")
+		image_xlen=self.bin.get_token_value("","image_xlen")
+		image_ylen=self.bin.get_token_value("","image_ylen")
 
-		for x in range(0,self.image_xlen):
-			for y in range(0,self.image_ylen):
+		im= Image.new("RGB", (image_xlen, image_ylen), "#000000")
+
+		for x in range(0,image_xlen):
+			for y in range(0,image_ylen):
 			
-				if self.saw_wave.shape_saw_type=="saw_wave":
-					mag=self.f_saw_wave(self.saw_wave.shape_saw_offset,self.saw_wave.shape_saw_length,x)
+				if shape_saw_type=="saw_wave":
+					mag=self.f_saw_wave(shape_saw_offset,shape_saw_length,x)
 				else:
-					mag=self.f_square_wave(self.saw_wave.shape_saw_offset,self.saw_wave.shape_saw_length,x)
+					mag=self.f_square_wave(shape_saw_offset,shape_saw_length,x)
 
 				mag=int(255*mag)
 
@@ -225,11 +244,10 @@ class shape_editor_io(shape_db_item):
 		return im
 
 	def add_job_to_server(self,sim_path,server):
-		path=os.path.dirname(self.file_name)
-		server.add_job(sim_path,"--simmode data@mesh_gen --path \""+path+"\"")
+		server.add_job(sim_path,"--simmode data@mesh_gen --path \""+self.path+"\"")
 
 	def load_image(self):
-		file_to_load=os.path.join(os.path.dirname(self.file_name),"image.png")
+		file_to_load=os.path.join(self.path,"image.png")
 		if os.path.isfile(file_to_load)==False:
 			return None
 
@@ -240,17 +258,20 @@ class shape_editor_io(shape_db_item):
 		return img.convert('RGB')
 
 	def draw_gauss(self):
+		image_xlen=self.bin.get_token_value("","image_xlen")
+		image_ylen=self.bin.get_token_value("","image_ylen")
 
-		sigma=self.gauss.gauss_sigma
-		gauss_offset_x=self.gauss.gauss_offset_x
-		gauss_offset_y=self.gauss.gauss_offset_y
+		sigma=self.bin.get_token_value("gauss","gauss_sigma")
+		gauss_offset_x=self.bin.get_token_value("gauss","gauss_offset_x")
+		gauss_offset_y=self.bin.get_token_value("gauss","gauss_offset_y")
+		gauss_invert=self.bin.get_token_value("gauss","gauss_invert")
 
-		im= Image.new("RGB", (self.image_xlen, self.image_ylen), "#FF0000")
+		im= Image.new("RGB", (image_xlen, image_ylen), "#FF0000")
 
-		for y in range(0,self.image_ylen):
-			for x in range(0,self.image_xlen):
-				mag=int(255*exp(-((x-gauss_offset_x-self.image_xlen/2)/sigma)**2 -((y-gauss_offset_y-self.image_ylen/2)/sigma)**2))
-				if self.gauss.gauss_invert==True:
+		for y in range(0,image_ylen):
+			for x in range(0,image_xlen):
+				mag=int(255*exp(-((x-gauss_offset_x-image_xlen/2)/sigma)**2 -((y-gauss_offset_y-image_ylen/2)/sigma)**2))
+				if gauss_invert==True:
 					mag=255-mag
 				im.putpixel((x,y),(mag, mag, mag))
 
@@ -267,7 +288,7 @@ class shape_editor_io(shape_db_item):
 		if new_sim_name!=None:
 			new_shape=os.path.join(path,new_sim_name)
 			ret=clone_material(new_shape,sim_paths.get_shape_template_path())
-			self.save_as(os.path.join(new_shape,"data.json"))
+			self.bin.save_as(os.path.join(new_shape,"data.json"))
 			if ret==False:
 				error_dlg(self,_("I cant write to:")+new_shape+" "+_("This means either the disk is full or your system administrator has not given you write permissions to that location."))
 				return None

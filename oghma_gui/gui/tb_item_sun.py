@@ -41,47 +41,15 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QPushButton,QDialog,QFileDialog,QToolBar,QLabel,QComboBox
 from gQtCore import gSignal
 
-from json_root import json_root
 from global_objects import global_object_run
+from json_c import json_tree_c
 
 class tb_item_sun(QWidget):
 
 	changed = gSignal()
-	
-	def call_back_light_changed(self):
-		light_power=self.light.currentText()
-		data=json_root()
-		try:
-			data.optical.light.Psun=float(light_power)
-		except:
-			pass
-		data.save()
-		global_object_run("gl_force_redraw")
-		self.changed.emit()
-
-	def update(self):
-		self.light.blockSignals(True)
-		self.light.clear()
-		sun_values=["0.0","0.01","0.1","1.0","10"]
-		data=json_root()
-
-		token=str(data.optical.light.Psun)
-		if sun_values.count(token)==0:
-			sun_values.append(token)
-
-		for i in range(0,len(sun_values)):
-			self.light.addItem(sun_values[i])
-
-		all_items  = [self.light.itemText(i) for i in range(self.light.count())]
-		for i in range(0,len(all_items)):
-		    if all_items[i] == token:
-		        self.light.setCurrentIndex(i)
-		self.light.blockSignals(False)
-
-
 	def __init__(self,layout=QVBoxLayout()):
 		QWidget.__init__(self)
-
+		self.bin=json_tree_c()
 		label=QLabel()
 		if type(layout)==QVBoxLayout:
 			label.setText(_("Light intensity")+" ("+_("Suns")+"):")
@@ -102,5 +70,35 @@ class tb_item_sun(QWidget):
 		
 		self.light.currentIndexChanged.connect(self.call_back_light_changed)
 		self.light.editTextChanged.connect(self.call_back_light_changed)
+
+	def call_back_light_changed(self):
+		light_power=self.light.currentText()
+		try:
+			self.bin.set_token_value("optical.light_sources","Psun",float(light_power))
+		except:
+			pass
+		self.bin.save()
+		global_object_run("gl_force_redraw")
+		self.changed.emit()
+
+	def update(self):
+		self.light.blockSignals(True)
+		self.light.clear()
+		sun_values=["0.0","0.01","0.1","1.0","10"]
+
+		token=str(self.bin.get_token_value("optical.light_sources","Psun"))
+
+		if sun_values.count(token)==0:
+			sun_values.append(token)
+
+		for i in range(0,len(sun_values)):
+			self.light.addItem(sun_values[i])
+
+		all_items  = [self.light.itemText(i) for i in range(self.light.count())]
+		for i in range(0,len(all_items)):
+		    if all_items[i] == token:
+		        self.light.setCurrentIndex(i)
+		self.light.blockSignals(False)
+
 
 

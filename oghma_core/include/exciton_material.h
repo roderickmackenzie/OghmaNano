@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,16 +29,17 @@
 
 #ifndef h_exciton_material
 #define h_exciton_material
+#include <g_io.h>
 
 struct exciton_material
 {
-	long double L;
-	long double tau;
-	long double D;
-	long double k_pl;
-	long double k_fret;
-	long double alpha;
-	long double k_dis;
+	gdouble L;
+	gdouble tau;
+	gdouble D;
+	gdouble k_pl;
+	gdouble k_fret;
+	gdouble alpha;
+	gdouble k_dis;
 };
 
 #endif

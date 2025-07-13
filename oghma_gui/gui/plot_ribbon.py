@@ -31,8 +31,6 @@
 
 import os
 
-from cal_path import get_css_path
-
 #qt
 from PySide2.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
 from PySide2.QtGui import QIcon
@@ -47,91 +45,91 @@ from about import about_dlg
 from util import wrap_text
 from ribbon_base import ribbon_base
 from QAction_lock import QAction_lock
+from cal_path import sim_paths
+from QColorMap import QColorMap
 
 class plot_ribbon(ribbon_base):
 
-	def video(self):
-		tb_video = QToolBar()
-		tb_video.setToolButtonStyle( Qt.ToolButtonTextUnderIcon)
-		tb_video.setIconSize(QSize(42, 42))
-		self.tb_save_video = QAction(icon_get("video"), _("Save\nvideo"), self)
-		tb_video.addAction(self.tb_save_video)
-
-		self.tb_storyboard = QAction(icon_get("storyboard"), _("Storyboard\nto clipboard"), self)
-		tb_video.addAction(self.tb_storyboard)
-
-		return tb_video
-	
 	def plot(self):
 		self.plot_toolbar = QToolBar()
 		self.plot_toolbar.setToolButtonStyle( Qt.ToolButtonTextUnderIcon)
 		self.plot_toolbar.setIconSize(QSize(42, 42))
 
+		self.tb_home = QAction(icon_get("mpl_home"), _("Home"), self)
+		self.tb_home.setCheckable(True)
+		self.plot_toolbar.addAction(self.tb_home)
+
+		self.tb_pointer = QAction(icon_get("pointer"), _("Pointer"), self)
+		self.tb_pointer.setCheckable(True)
+		self.plot_toolbar.addAction(self.tb_pointer)
+		self.tb_pointer.setVisible(False)
+
+		self.tb_zoom = QAction(icon_get("mpl_zoom_to_rect"), _("Zoom"), self)
+		self.tb_zoom.setCheckable(True)
+		self.plot_toolbar.addAction(self.tb_zoom)
+
+		self.tb_move = QAction(icon_get("mpl_move"), _("Move"), self)
+		self.tb_move.setCheckable(True)
+		self.plot_toolbar.addAction(self.tb_move)
+
+		self.tb_rotate = QAction(icon_get("rotate"), _("Rotate"), self)
+		self.tb_rotate.setCheckable(True)
+		self.plot_toolbar.addAction(self.tb_rotate)
+
+		self.color_map=QColorMap(self)
+		self.plot_toolbar.addAction(self.color_map)
+
+		spacer = QWidget()
+		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+		self.plot_toolbar.addWidget(spacer)
+
 		return self.plot_toolbar
 
-
-	def color(self):
-		toolbar = QToolBar()
-		toolbar.setToolButtonStyle( Qt.ToolButtonTextUnderIcon)
-		toolbar.setIconSize(QSize(42, 42))
-
-		self.tb_color_black = QAction(icon_get("black"), _("Black"), self)
-		toolbar.addAction(self.tb_color_black)
-
-		self.tb_color_rainbow = QAction(icon_get("rainbow"), _("Rainbow"), self)
-		toolbar.addAction(self.tb_color_rainbow)
-
-		return toolbar
 
 	def scale(self):
 		toolbar = QToolBar()
 		toolbar.setToolButtonStyle( Qt.ToolButtonTextUnderIcon)
 		toolbar.setIconSize(QSize(42, 42))
 
-		#self.action = QAction(icon_get("plot_log_x"),"Fix scales", None)
-		#self.action.triggered.connect(self.callback_fix_scales)
-		#self.action.setCheckable(True)
 
 		self.tb_scale_autoscale = QAction(icon_get("plot_log_x"), _("Autoscale"), self)
 		self.tb_scale_autoscale.setCheckable(True)
 		self.tb_scale_autoscale.setChecked(True)
 		toolbar.addAction(self.tb_scale_autoscale)
 
-		self.tb_scale_log_y = QAction(icon_get("plot_log_x"), _("Set log scale y"), self)
-		toolbar.addAction(self.tb_scale_log_y)
+		toolbar.addSeparator()
 
-		self.tb_scale_log_x = QAction(icon_get("plot_log_x"), _("Set log scale x"), self)
+		self.tb_scale_log_x = QAction(icon_get("plot_log_x"), _("Log x"), self)
+		self.tb_scale_log_x.setCheckable(True)
 		toolbar.addAction(self.tb_scale_log_x)
 
+		self.tb_scale_log_y = QAction(icon_get("plot_log_y"), _("Log y"), self)
+		self.tb_scale_log_y.setCheckable(True)
+		toolbar.addAction(self.tb_scale_log_y)
 
-		return toolbar
+		self.tb_scale_log_z = QAction(icon_get("plot_log_y"), _("Log z"), self)
+		self.tb_scale_log_z.setCheckable(True)
+		toolbar.addAction(self.tb_scale_log_z)
 
-	def math(self):
-		toolbar = QToolBar()
-		toolbar.setToolButtonStyle( Qt.ToolButtonTextUnderIcon)
-		toolbar.setIconSize(QSize(42, 42))
+		toolbar.addSeparator()
 
-		self.math_opps=[]
-		self.math_subtract_first_point = QAction(icon_get("plot_log_x"), _("Subtract first point"), self)
-		#toolbar.addAction(self.math_subtract_first_point)
+		self.tb_transpose = QAction(icon_get("rotate_right"), _("Transpose"), self)
+		self.tb_transpose.setCheckable(True)
+		toolbar.addAction(self.tb_transpose)
 
-		self.math_add_min_point = QAction(icon_get("plot_log_x"), _("Add min point"), self)
-		#toolbar.addAction(self.math_add_min_point)
+		toolbar.addSeparator()
 
-		self.math_invert_y_axis = QAction(icon_get("plot_invert_y"), _("Invert y-axis"), self)
-		#toolbar.addAction(self.math_invert_y_axis)
+		self.tb_flip_x = QAction(icon_get("plot_log_x"), _("Flip x"), self)
+		self.tb_flip_x.setCheckable(True)
+		toolbar.addAction(self.tb_flip_x)
 
-		self.math_opps.append([QAction(icon_get("plot_abs"), _("abs(f())"), self),"abs"])
-		#toolbar.addAction(self.math_opps[-1][0])
+		self.tb_flip_y = QAction(icon_get("plot_log_y"), _("Flip y"), self)
+		self.tb_flip_y.setCheckable(True)
+		toolbar.addAction(self.tb_flip_y)
 
-		self.math_norm_to_peak_of_all_data = QAction(icon_get("plot_log_x"), _("Norm to peak of all data"), self)
-		#toolbar.addAction(self.math_norm_to_peak_of_all_data)
-
-		self.math_heat_map = QAction(icon_get("plot_log_x"), _("Heat map"), self)
-		#toolbar.addAction(self.math_heat_map)
-
-		self.math_heat_map_edit = QAction(icon_get("plot_log_x"), _("Heat map edit"), self)
-		#toolbar.addAction(self.math_heat_map_edit)
+		self.tb_flip_z = QAction(icon_get("plot_log_y"), _("Flip z"), self)
+		self.tb_flip_z.setCheckable(True)
+		toolbar.addAction(self.tb_flip_z)
 
 		return toolbar
 
@@ -141,25 +139,14 @@ class plot_ribbon(ribbon_base):
 		#self.setMaximumHeight(130)
 		#self.setStyleSheet("QWidget {	background-color:cyan; }")
 
-
-
 		self.tab_plot=self.plot()
 		self.addTab(self.tab_plot,_("Plot"))
-
-		self.tab_color=self.color()
-		self.addTab(self.tab_color,_("Color"))
 
 		self.scale_toolbar=self.scale()
 		self.addTab(self.scale_toolbar,_("Scale"))
 
-		self.tab_math=self.math()
-		self.addTab(self.tab_math,_("Math"))
 
-		self.tb_video=self.video()
-		self.addTab(self.tb_video,_("Video"))
-		self.setTabEnabled(4,False)
-
-		sheet=self.readStyleSheet(os.path.join(get_css_path(),"style.css"))
+		sheet=self.readStyleSheet(os.path.join(sim_paths.get_css_path(),"style.css"))
 		if sheet!=None:
 			sheet=str(sheet,'utf-8')
 			self.setStyleSheet(sheet)

@@ -30,17 +30,18 @@ from status_icon import status_icon_stop
 
 #qt
 from gQtCore import QSize, Qt
-from PySide2.QtGui import QIcon,QPalette
 from PySide2.QtWidgets import QWidget, QVBoxLayout,QProgressBar,QLabel,QDesktopWidget,QToolBar,QHBoxLayout,QAction, QSizePolicy,  QTableWidgetItem,QComboBox,QDialog,QAbstractItemView
 
-from PySide2.QtGui import QPixmap
 from gQtCore import gSignal
 from PySide2.QtWidgets import QWidget
 
 from server import server_get
 
 from g_tab import g_tab
+from bytes2str import str2bytes
+from bytes2str import bytes2str
 import time
+import ctypes
 
 ## @package jobs
 #  A jobs viewer widget.
@@ -57,8 +58,6 @@ class jobs_view(QWidget):
 		self.tab.resizeColumnsToContents()
 
 		self.tab.verticalHeader().setVisible(False)
-
-#		self.tab.cellChanged.connect(self.tab_changed)
 		
 		self.main_vbox.addWidget(self.tab)
 
@@ -72,16 +71,23 @@ class jobs_view(QWidget):
 	def callback_cluster_get_jobs(self):
 
 		self.tab.clear()
-		self.tab.setColumnCount(7)
+		self.tab.setColumnCount(6)
 		self.tab.setRowCount(0)
 		self.tab.setSelectionBehavior(QAbstractItemView.SelectRows)
-		self.tab.setHorizontalHeaderLabels([ _("name"), _("path"), _("ip"), _("start"), _("stop"), _("CPUs"), _("status")])
+		self.tab.setHorizontalHeaderLabels([ _("name"), _("path"), _("ip"), _("start"),  _("CPUs"), _("status")])
 
-
-		for job in self.myserver.jobs:
-			start_time=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(job.start_time))
-			self.tab.add([job.name,job.path,job.ip,start_time,job.stop,str(job.cpus),str(job.status)])
-
+		#self.myserver.lib.server2_dump_jobs(ctypes.byref(self.myserver.server))
+		njobs=self.myserver.lib.server2_count_all_jobs(ctypes.byref(self.myserver.server))
+		for n in range(0,njobs):
+			job=self.myserver.lib.server_jobs_find_by_number(ctypes.byref(self.myserver.server), n);
+			#self.myserver.lib.job_dump(job)
+			start_time=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(job.contents.start_time))
+			name=bytes2str(job.contents.name)
+			path=bytes2str(job.contents.path)
+			ip=bytes2str(job.contents.ip)
+			cpus=str(job.contents.cpus)
+			status=str(job.contents.status)
+			self.tab.add([name,path,ip,start_time,cpus,status])
 
 
 

@@ -38,10 +38,9 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QAbstractItemView, QTableWidgetItem
 from PySide2.QtGui import QPainter,QIcon
 
-from g_tab2 import g_tab2
+from g_tab2_bin import g_tab2_bin
 from select_param import select_param
-from json_root import json_root
-from json_ml import json_ml_random_item
+from json_c import json_tree_c
 
 class tab_ml_random(QWidget):
 
@@ -50,6 +49,7 @@ class tab_ml_random(QWidget):
 
 	def __init__(self,uid):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.uid=uid
 
 		self.vbox=QVBoxLayout()
@@ -61,21 +61,18 @@ class tab_ml_random(QWidget):
 
 
 
-		self.tab2 = g_tab2(toolbar=toolbar)
+		self.tab2 = g_tab2_bin(toolbar=toolbar)
 		self.tab2.set_tokens(["random_var_enabled","human_var","min","max","random_distribution","json_var"])
 		self.tab2.set_labels([_("Enabled"),_("Variable"), _("Min"), _("Max"), _("Random function"),_("JSON Variable")])
 
-		data=json_root().ml.find_object_by_id(self.uid)
-		index=json_root().ml.segments.index(data)
-
-		self.tab2.json_search_path="json_root().ml.segments["+str(index)+"].ml_random.segments"
+		path=self.refind_json_path()		
+		self.tab2.json_root_path=path+".ml_random"
 		self.tab2.fixup_new_row=self.fixup_new_row
 		self.tab2.setColumnWidth(1, 400)
 		self.tab2.setColumnWidth(2, 100)
 		self.tab2.setColumnWidth(3, 100)
 		self.tab2.setColumnWidth(4, 100)
 		self.tab2.setColumnWidth(5, 20)
-		self.tab2.base_obj=json_ml_random_item()
 		self.tab2.populate()
 		self.tab2.changed.connect(self.callback_save)
 		self.tab2.callback_a=self.callback_show_list
@@ -97,6 +94,9 @@ class tab_ml_random(QWidget):
 
 
 	def callback_save(self):
-		print("save!!!")
-		json_root().save()
+		self.bin.save()
+
+	def refind_json_path(self):
+		ret=self.bin.find_path_by_uid("ml",self.uid)
+		return ret
 

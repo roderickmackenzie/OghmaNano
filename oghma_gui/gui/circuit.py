@@ -28,7 +28,6 @@
 #  Widget to draw circuit diagram
 #
 
-from cal_path import get_image_file_path
 from tb_pulse_load_type import tb_pulse_load_type
 
 #qt
@@ -37,35 +36,18 @@ from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,Q
 from PySide2.QtGui import QPainter,QIcon,QPixmap
 from ersatzschaltbild import ersatzschaltbild
 
-class my_draw(QWidget):
-    def __init__(self, parent=None):
-        super(QWidget, self).__init__(parent)
-
-        self.mQImage = QPixmap("document-new.png")
-
-    def paintEvent(self, QPaintEvent):
-        painter = QPainter()
-        painter.begin(self)
-        painter.drawPixmap(100,10, self.mQImage)
-        painter.end()
-
-
 class circuit(QWidget):
 
-	def update(self,object):
-		self.darea.queue_draw()
-
-	def __init__(self,data):
+	def __init__(self,json_path,uid):
 		QWidget.__init__(self)
-		self.data=data
+		self.json_path=json_path
+		self.uid=uid
 		vbox=QVBoxLayout()
-
 
 		toolbar=QToolBar()
 		toolbar.setIconSize(QSize(48, 48))
 
-
-		self.load_type=tb_pulse_load_type(data.config)
+		self.load_type=tb_pulse_load_type(self.json_path,self.uid)
 
 		toolbar.addWidget(self.load_type)
 		vbox.addWidget(toolbar)
@@ -84,6 +66,9 @@ class circuit(QWidget):
 		self.setLayout(vbox)
 		self.load_type.changed.connect(self.update)
 		self.update()
+
+	def update(self,object):
+		self.darea.queue_draw()
 
 	def update(self):
 		self.diagram.clear()

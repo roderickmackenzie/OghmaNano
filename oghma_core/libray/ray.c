@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -27,13 +25,14 @@
 
 #include <stdio.h>
 #include <ray.h>
-#include <gpvdm_const.h>
+#include <oghma_const.h>
 #include <math.h>
 #include <stdlib.h>
 #include <cal_path.h>
 #include <log.h>
 #include <ray_fun.h>
 #include <util.h>
+#include <detector.h>
 
 /** @file ray.c
 	@brief Ray tracing for the optical model, this should really be split out into it's own library.
@@ -72,7 +71,7 @@ void ray_reset(struct ray_worker *worker)
 	worker->top_of_done_rays=0;
 }
 
-int add_ray(struct simulation *sim,struct ray_worker *worker,struct vec *start,struct vec *dir,double mag,int obj_uid,int parent)
+int add_ray(struct simulation *sim,struct ray_worker *worker,struct vec *start,struct vec *dir,double mag0,int obj_uid,int parent)
 {
 	int ret=-1;
 
@@ -106,7 +105,7 @@ int activate_rays(struct ray_worker *worker)
 return changed;
 }
 
-int get_objects_from_tri(struct simulation *sim,struct device *dev,struct image *in,struct object **obj0,struct object **obj1,struct triangle *tri,struct ray *my_ray)
+int get_objects_from_tri(struct simulation *sim,struct device *dev,struct ray_engine *in,struct object **obj0,struct object **obj1,struct triangle *tri,struct ray *my_ray)
 {
 	struct world *w=&(dev->w);
 
@@ -146,7 +145,11 @@ int get_objects_from_tri(struct simulation *sim,struct device *dev,struct image 
 return 0;
 }
 
-int get_objects(struct simulation *sim,struct device *dev,struct image *in,struct object **obj0,struct object **obj1,struct ray *my_ray)
+//Gets objects either side of the triangle
+//If we can't find one the other side of the interface
+//we are outside the box and return -1
+
+int get_objects(struct simulation *sim,struct device *dev,struct ray_engine *in,struct object **obj0,struct object **obj1,struct ray *my_ray)
 {
 	//printf("in\n");
 	struct vec tmp;
@@ -221,7 +224,7 @@ int get_objects(struct simulation *sim,struct device *dev,struct image *in,struc
 
 }
 
-int propergate_next_ray(struct simulation *sim,struct device *dev,struct image *in,struct ray_worker *w)
+int propergate_next_ray(struct simulation *sim,struct device *dev,struct ray_engine *in,struct ray_worker *w)
 {
 return 0;
 }

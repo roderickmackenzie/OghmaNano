@@ -29,8 +29,6 @@
 #
 
 
-from cal_path import get_css_path
-
 #qt
 from gQtCore import QSize, Qt,QFile,QIODevice
 from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QPushButton,QToolBar, QLineEdit, QToolButton, QTextEdit, QAction, QTabWidget, QMenu
@@ -58,36 +56,37 @@ from lock import get_lock
 from help import help_window
 from QAction_lock import QAction_lock
 from lock import get_lock
-from json_root import json_root
 from ribbon_page import ribbon_page
+from json_c import json_tree_c
 
 class gQAction(QAction_lock):
 	selected=gSignal(QAction_lock)
 
-	def __init__(self,s,obj,command,module,actions):
+	def __init__(self,s,uid,name,icon,segment,module,actions):
 		if module=="ray":
 			module="trace"
 		elif module=="transfer_matrix":
 			module="optics"
 
-		self.command=command
+		self.command=segment
 		self.module=module
-		self.icon_name=obj.icon
-		self.id=obj.id
+		self.icon_name=icon
+		self.uid=uid
 		self.over=False
-		self.name=obj.name
-		self.text=obj.name.replace("\\n","\n")
+		self.name=name
+		self.text=name.replace("\\n","\n")
 		self.actions=actions
 		
 		QAction_lock.__init__(self,self.icon_name, self.text, s,self.module)
+		self.bin=json_tree_c()
+
 		self.setCheckable(True)
 		self.clicked.connect(self.callback_click)
 		self.hovered.connect(self.callback_hover)
 
 	def callback_click(self):
-		data=json_root()
-		data.sim.simmode=self.command+"@"+self.module
-		data.save()
+		self.bin.set_token_value("sim","simmode",self.command+"@"+self.module)
+		self.bin.save()
 		self.selected.emit(self)
 
 	def get_simmode(self):
@@ -102,73 +101,9 @@ class gQAction(QAction_lock):
 
 class ribbon_sim_mode(ribbon_page):
 
-	def callback_click(self,w,disable_help=False):
-		self.blockSignals(True)
-		for a in self.actions:
-			if type(a)==gQAction:
-				a.setChecked(False)
-
-		w.setChecked(True)
-		if disable_help==False:
-			if w.icon!=False and w.text!=None:
-				help_window().help_set_help([w.icon_name+".png",_("<big><b>Simulation mode changed</b></big><br>"+w.name.replace("\\n"," "))])
-
-		self.blockSignals(False)
-
-	def update(self):
-		data=json_root()
-		self.clear_toolbar()
-
-		self.blockSignals(True)
-
-		found=False
-		simmode=data.sim.simmode.lower()
-
-		for segment_name in data.sims.var_list:
-			segment_name=segment_name[0]
-			segs=getattr(data.sims,segment_name,None)
-			if segs!=None:
-				segs=getattr(segs,"segments",None)
-
-			if segs!=None:
-				i=0
-				added=0
-				for sub_sim in segs:
-					added=added+1
-					a = gQAction(self, sub_sim,"segment"+str(i), segment_name,self.actions)
-					a.selected.connect(self.callback_click)
-					
-					self.actions.append(a)
-					self.addAction(a)
-					if a.get_simmode()==simmode:
-						self.callback_click(a,disable_help=True)
-						
-						found=True
-
-					i=i+1
-				if added!=0:
-					self.addSeparator()
-
-
-		#if there is no known mode, just set it to jv mode
-		if found==False:
-			for a in self.actions:
-				if type(a)==gQAction:
-					if a.module=="jv":
-						self.callback_click(a,disable_help=True)
-						data=json_root()
-						data.sim.simmode=a.command+"@"+a.module
-						data.save()
-						break
-
-			self.blockSignals(False)
-
-	def clear_toolbar(self):
-		self.clear()
-		self.actions=[]
-
 	def __init__(self):
 		ribbon_page.__init__(self)
+		self.bin=json_tree_c()
 		self.actions=[]
 		self.dont_show=["photon_extraction"]
 		self.myserver=server_get()
@@ -179,16 +114,72 @@ class ribbon_sim_mode(ribbon_page):
 		
 		global_object_register("ribbon_sim_mode_update",self.update)
 
+	def callback_click(self,w,disable_help=False):
+		self.blockSignals(True)
+		for a in self.actions:
+			if type(a)==gQAction:
+				a.setChecked(False)
+
+		w.setChecked(True)
+		if disable_help==False:
+			if w.icon!=False and w.text!=None:
+				help_window().help_set_help(w.icon_name+".png",_("<big><b>Simulation mode changed</b></big><br>"+w.name.replace("\\n"," ")))
+
+		self.blockSignals(False)
+
+	def update(self):
+		self.clear_toolbar()
+
+		self.blockSignals(True)
+
+		found=False
+		simmode=self.bin.get_token_value("sim","simmode")
+		if simmode==None:
+			return
+
+		simmode=simmode.lower()
+
+		modes=self.bin.get_all_sim_modes()
+
+		if modes!=None:
+			for data in modes:
+				if data=="vline":
+					self.addSeparator()
+				else:
+					data=data.split("|")
+					uid=data[0]
+					name=data[1]
+					icon=data[2]
+					seg=data[3]
+					mode=data[4]
+					a = gQAction(self, uid,name,icon,seg, mode,self.actions)
+					a.selected.connect(self.callback_click)
+					
+					self.actions.append(a)
+					self.addAction(a)
+					if a.get_simmode()==simmode:
+						self.callback_click(a,disable_help=True)
+						found=True
+
+
+		#if there is no known mode, just set it to jv mode
+		if found==False:
+			for a in self.actions:
+				if type(a)==gQAction:
+					if a.module=="jv":
+						self.callback_click(a,disable_help=True)
+						self.bin.set_token_value("sim","simmode",a.command+"@"+a.module)
+						self.bin.save()
+						break
+
+			self.blockSignals(False)
+
+	def clear_toolbar(self):
+		self.clear()
+		self.actions=[]
+
 	def setEnabled(self,val):
-		self.undo.setEnabled(val)
-		self.run.setEnabled(val)
-		#self.stop.setEnabled(val)
-		self.scan.setEnabled(val)
-		self.plot.setEnabled(val)
-		self.sun.setEnabled(val)
 		self.help.setEnabled(val)
-
-
 
 	def mouseReleaseEvent(self,event):
 		if event.button()==Qt.RightButton:
@@ -200,16 +191,9 @@ class ribbon_sim_mode(ribbon_page):
 			if a.over==True:
 				self.removeAction(a)
 				self.actions.pop(i)
-				obj=json_root().sims.find_object_by_id(a.id)
-				for segment_name in json_root().sims.var_list:
-					segment_name=segment_name[0]
-					segs=getattr(json_root().sims,segment_name,None)
-					if segs!=None:
-						segs=getattr(segs,"segments",None)
-						ii=0
-						for o in segs:
-							if o==obj:
-								segs.pop(ii)
-					json_root().save()
+				full_path=self.bin.find_path_by_uid("sims",a.uid)
+				path, seg = full_path.rsplit('.', 1)
+				self.bin.delete_segment(path,seg)
+				self.bin.save()
 				break
 			i=i+1

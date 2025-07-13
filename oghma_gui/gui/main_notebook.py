@@ -36,10 +36,6 @@ import random
 from tab_main import tab_main
 from tab import tab_class
 
-#paths
-from cal_path import get_exe_args
-from cal_path import get_exe_command
-
 #qt
 from PySide2.QtWidgets import QTabWidget,QWidget
 
@@ -57,33 +53,28 @@ from cal_path import sim_paths
 
 from tab_view import tab_view
 
-from css import css_apply
 from circuit_editor import circuit_editor
 from display_mesh import display_mesh
-from json_root import json_root
-from json_local_root import json_local_root
 from inp import inp
+from mesh_math import mesh_math
+from json_c import json_tree_c
 
-if json_local_root().gui_config.enable_webbrowser==True:
-	from information_webkit import information
-else:
-	from information_noweb import information
+from information_noweb import information
+from oghma_QTabWidget import oghma_QTabWidget
 
-class main_notebook(QTabWidget):
+class main_notebook(oghma_QTabWidget):
 	item_factory=None
 
 
 	def __init__(self):
-		QTabWidget.__init__(self)
-		css_apply(self,"tab_default.css")
+		oghma_QTabWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.terminal=None
 		self.update_display_function=None
 		self.currentChanged.connect(self.changed_click)
 		global_object_register("notebook_goto_page",self.goto_page)
 		self.state_loaded=False
 		self.display_mesh=None
-
-
 
 	def update(self):
 		for i in range(0,self.count()):
@@ -93,32 +84,21 @@ class main_notebook(QTabWidget):
 	def changed_click(self):
 
 		if self.tabText(self.currentIndex()).strip()==_("Device structure"):
-			help_window().help_set_help(["device.png",_("<big><b>The device structure tab</b></big><br> Use this tab to change the structure of the device, the layer thicknesses and to perform optical simulations.  You can also browse the materials data base and  edit the electrical mesh.")])
-
-		if self.tabText(self.currentIndex()).strip()==_("Electrical parameters"):
-			help_window().help_set_help(["tab.png",_("<big><b>The electrical parameters</b></big><br>This tab contains the electrical model parameters, such as mobility, tail slope energy, and band gap.")])
+			help_window().help_set_help("device.png",_("<big><b>The device structure tab</b></big><br> Use this tab to change the structure of the device, the layer thicknesses and to perform optical simulations.  You can also browse the materials data base and  edit the electrical mesh."))
 
 		if self.tabText(self.currentIndex()).strip()==_("Terminal"):
-			help_window().help_set_help(["utilities-terminal.png",_("<big><b>The terminal window</b></big><br>The output of the model will be displayed in this window, watch this screen for debugging and convergence information.")])
+			help_window().help_set_help("utilities-terminal.png",_("<big><b>The terminal window</b></big><br>The output of the model will be displayed in this window, watch this screen for debugging and convergence information."))
 
 		if self.tabText(self.currentIndex()).strip()==_("Tutorials/Documentation"):
-			help_window().help_set_help(["help.png",_("<big><b>Tutorials/Documentation</b></big><br>Here you can find tutorials, videos, worksheets, and talks about this software and simulating opto-electronic devices in general.  Although this software is easy to use with it's friendly interface, under the hood it is a highly complex model and powerful model, it is worth taking time to read the documentation to understand it.  This will enable you to get the most out of this software and your experimental data."),"youtube",_("<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Watch the video</a></b></big><br> Performing my first solar cell simulation")])
+			help_window().help_set_help("help.png",_("<big><b>Tutorials/Documentation</b></big><br>Here you can find tutorials, videos, worksheets, and talks about this software and simulating opto-electronic devices in general.  Although this software is easy to use with it's friendly interface, under the hood it is a highly complex model and powerful model, it is worth taking time to read the documentation to understand it.  This will enable you to get the most out of this software and your experimental data."))
+			help_window().help_append("youtube",_("<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Watch the video</a></b></big><br> Performing my first solar cell simulation"))
 
 		if self.tabText(self.currentIndex()).strip()==_("Output"):
-			help_window().help_set_help(["dat_file.png",_("<big><b>Output</b></big><br>This shows the root simulation directory, this is where the results are stored.  Double click on a file to see what is in it..")])
+			help_window().help_set_help("dat_file.png",_("<big><b>Output</b></big><br>This shows the root simulation directory, this is where the results are stored.  Double click on a file to see what is in it.."))
 
 	def get_current_page(self):
 		i=self.currentIndex()
 		return self.tabText(i)
-
-
-	def goto_page(self,page):
-		self.blockSignals(True)
-		for i in range(0,self.count()):
-				if self.tabText(i)==page:
-					self.setCurrentIndex(i)
-					break
-		self.blockSignals(False)
 
 	def add_info_page(self):
 		files=os.listdir(sim_paths.get_html_path())
@@ -157,10 +137,11 @@ class main_notebook(QTabWidget):
 			self.terminal=tab_terminal()
 			self.terminal.init()
 			self.addTab(self.terminal,_("Terminal"))
-			self.terminal.run(os.getcwd(),get_exe_command()+" --version2 "+get_exe_args())
+			self.terminal.run(os.getcwd(),sim_paths.get_exe_command()+" --version2 --gui --html")
 			global_object_register("terminal",self.terminal)
 
 			widget=tab_view()
+			widget.viewer.fill_store()
 			self.addTab(widget,_("Output"))
 			self.add_docs_page()
 			self.state_loaded=True
@@ -171,12 +152,11 @@ class main_notebook(QTabWidget):
 			self.state_loaded=False
 
 	def update_circuit_window(self):
-		data=json_root()
-		mesh_x=data.electrical_solver.mesh.mesh_x
-		mesh_z=data.electrical_solver.mesh.mesh_z
+		mesh_x=mesh_math("electrical_solver.mesh.mesh_x")
+		mesh_z=mesh_math("electrical_solver.mesh.mesh_z")
 
 		next_tab=None
-		if data.electrical_solver.solver_type=="circuit":
+		if self.bin.get_token_value("electrical_solver","solver_type")=="circuit":
 			if  mesh_x.get_points()==1 and mesh_z.get_points()==1:
 				next_tab=circuit_editor()
 			else:

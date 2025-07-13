@@ -65,7 +65,6 @@ def save_as_filter(parent,my_filter):
 		if s.count("(*")==1:
 			s=s.split("(*")[1]
 			s=s[:-1]
-
 			if filename.endswith(s)==False and s!=".":
 				filename=filename+s
 			else:
@@ -98,10 +97,7 @@ def open_as_filter(parent,my_filter,path="",multi_files=False):
 
 		filenames = dialog.selectedFiles()
 		for f in filenames:
-			if f.endswith(s)==False:
-				ret_list.append(f+s)
-			else:
-				ret_list.append(f)
+			ret_list.append(f)
 
 		if multi_files==True:
 			return ret_list

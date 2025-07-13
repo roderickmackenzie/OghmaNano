@@ -32,8 +32,6 @@
 import os
 from icon_lib import icon_get
 
-from cal_path import get_css_path
-
 #qt
 from PySide2.QtGui import QIcon
 from gQtCore import QSize, Qt,QFile,QIODevice
@@ -41,7 +39,6 @@ from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QPushB
 
 from doping import doping_window
 from contacts import contacts_window
-from cal_path import get_materials_path
 from g_open import g_open
 from g_open import g_open_window
 
@@ -57,16 +54,14 @@ from dlg_get_text2 import dlg_get_text2
 from error_dlg import error_dlg
 
 from QAction_lock import QAction_lock
-from cal_path import get_user_data_path
 import webbrowser
 from cal_path import sim_paths
 
 from lock import get_lock
 from ribbon_page import ribbon_page
-from json_root import json_root
-from json_base import json_base
 from QWidgetSavePos import QWidgetSavePos
 from sim_name import sim_name
+from json_c import json_c
 
 class ribbon_database(ribbon_page):
 	def __init__(self):
@@ -88,6 +83,10 @@ class ribbon_database(ribbon_page):
 		self.shape.clicked.connect(self.callback_configure_shape)
 		self.addAction(self.shape)
 
+		self.morphology = QAction_lock("morphology1", _("Morphology\ndatabase"), self,"ribbion_morphology")
+		self.morphology.clicked.connect(self.callback_configure_morphology)
+		self.addAction(self.morphology)
+
 		self.filters = QAction_lock("filter_wheel", _("Filters\ndatabase"), self,"ribbion_db_materials")
 		self.filters.clicked.connect(self.callback_view_filters)
 		self.addAction(self.filters)
@@ -99,6 +98,14 @@ class ribbon_database(ribbon_page):
 		self.solar = QAction_lock("weather-few-clouds", _("Solar spectrum\ngenerator"), self,"solar_spectrum_tool")
 		self.solar.clicked.connect(self.callback_solar)
 		self.addAction(self.solar)
+
+		spacer = QWidget()
+		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+		self.addWidget(spacer)
+
+		self.tb_update = QAction_lock("update", _("Update\nDatabases"), self,"ribbion_db_update")
+		self.tb_update.clicked.connect(self.callback_update_window)
+		self.addAction(self.tb_update)
 
 	def update(self):
 		pass
@@ -115,8 +122,11 @@ class ribbon_database(ribbon_page):
 	def on_new_shape_clicked(self):
 		self.dialog.vbox.viewer.new_shape()
 
+	def callback_new_morphology_clicked(self):
+		self.dialog.vbox.viewer.new_morphology()
+
 	def callback_view_materials(self):
-		self.dialog=g_open_window(get_materials_path(),big_toolbar=True)
+		self.dialog=g_open_window(sim_paths.get_materials_path(),big_toolbar=True)
 		self.new_materials = QAction_lock("add_material", wrap_text(_("Add Material"),8), self,"add_material")
 		self.new_materials.clicked.connect(self.dialog.vbox.viewer.new_material)
 		self.dialog.vbox.toolbar.addAction(self.new_materials)
@@ -141,7 +151,9 @@ class ribbon_database(ribbon_page):
 		self.dialog.show()
 
 	def callback_update_window(self):
-		webbrowser.open(sim_name.web+"/download_materials.php")
+		from window_updates import window_updates
+		self.window_updates=window_updates()
+		self.window_updates.show()
 
 	def callback_configure_shape(self):
 		self.dialog=g_open_window(sim_paths.get_shape_path(),big_toolbar=True)
@@ -150,8 +162,15 @@ class ribbon_database(ribbon_page):
 		self.dialog.vbox.toolbar.addAction(self.new_shape)
 		self.dialog.show()
 
+	def callback_configure_morphology(self):
+		self.dialog=g_open_window(sim_paths.get_morphology_path(),big_toolbar=True)
+		self.new_morphology = QAction_lock("add_morphology", wrap_text(_("Add morphology"),8), self,"add_morphology")
+		self.new_morphology.clicked.connect(self.callback_new_morphology_clicked)
+		self.dialog.vbox.toolbar.addAction(self.new_morphology)
+		self.dialog.show()
+
 	def callback_configure_user_data(self):
-		self.dialog=g_open_window(get_user_data_path(),big_toolbar=True)
+		self.dialog=g_open_window(sim_paths.get_user_data_path(),big_toolbar=True)
 		self.dialog.show()
 
 	def callback_solar(self):
@@ -165,20 +184,14 @@ class ribbon_database(ribbon_page):
 		if os.path.isdir(backup_path)==False:
 			os.makedirs(backup_path)
 
-		data=json_base("backup")
-		data.include_name=False
-		data.var_list.append(["icon","backup"])
-		data.var_list.append(["item_type","backup_main"])
-		data.var_list.append(["hidden","True"])
-		data.var_list_build()
-
+		data=json_c("folder_backup_main")
+		data.build_template()
 		data.save_as(os.path.join(backup_path,"data.json"))
 
 		self.dialog=g_open(backup_path,big_toolbar=True)
 		self.new_backup = QAction_lock("add_backup", wrap_text(_("New backup"),2), self,"add_backup")
 		self.new_backup.clicked.connect(self.on_new_backup)
 		self.dialog.vbox.toolbar.addAction(self.new_backup)
-
 		self.dialog.exec_()
 
 	def on_new_backup(self):
@@ -186,6 +199,6 @@ class ribbon_database(ribbon_page):
 		new_backup_name=dlg_get_text2( _("New backup:"), _("New backup name"),"add_backup")
 		new_backup_name=new_backup_name.ret
 		if new_backup_name!=None:
-			new_backup=os.path.join(self.dialog.viewer.path,new_backup_name)
-			backup(new_backup,get_sim_path())
-			self.dialog.viewer.fill_store()
+			new_backup=os.path.join(self.dialog.vbox.viewer.path,new_backup_name)
+			backup(new_backup,sim_paths.get_sim_path())
+			self.dialog.vbox.viewer.fill_store()

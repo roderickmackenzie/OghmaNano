@@ -31,7 +31,7 @@
 import os
 #import glob
 from shutil import copyfile
-from json_base import json_base
+from json_c import json_c
 from safe_delete import safe_delete
 
 def backup(dest,src,notes=""):
@@ -39,14 +39,8 @@ def backup(dest,src,notes=""):
 	if os.path.isdir(dest)==False:
 		os.makedirs(dest)
 
-	data=json_base("backup")
-	data.include_name=False
-	data.var_list.append(["icon","backup"])
-	data.var_list.append(["item_type","backup"])
-	data.var_list.append(["hidden","False"])
-	data.var_list.append(["date","False"])
-
-	data.var_list_build()
+	data=json_c("folder_backup")
+	data.build_template()
 	data.save_as(os.path.join(dest,"data.json"))
 
 	for f in os.listdir(src):

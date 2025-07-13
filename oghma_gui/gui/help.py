@@ -30,7 +30,6 @@
 
 
 import os
-from cal_path import get_icon_path
 import webbrowser
 
 from gQtCore import QSize, Qt
@@ -40,12 +39,13 @@ from PySide2.QtGui import QPixmap
 
 from i18n import get_language
 
-from cal_path import get_flag_file_path
+from cal_path import sim_paths
 from i18n import get_full_desired_lang_path
 
-from bibtex import bibtex
 from icon_lib import icon_get
 from sim_name import sim_name
+from json_c import json_c
+
 my_help_class=None
 
 class QAction_help(QAction):
@@ -58,10 +58,11 @@ class QAction_help(QAction):
 		webbrowser.open(sim_name.web+"/docs.html")
 
 class help_data():
-	def __init__(self,token,icon,text):
-		self.token=token
-		self.icon=icon
-		self.text=text
+	def __init__(self):
+		self.token=None
+		self.icon=None
+		self.text=None
+		self.lang_flag=False
 
 class help_class(QWidget):
 	def move_window(self):
@@ -92,19 +93,14 @@ class help_class(QWidget):
 		QWidget.__init__(self)
 		self.item_height=10
 		self.setWindowFlags(Qt.FramelessWindowHint|Qt.WindowStaysOnTopHint)
-		#self.setFixedSize(400,160)
-		#self.setFixedWidth(700)
-
 		self.setStyleSheet(" padding:0px; margin-top:0px; margin-bottom:0px")
-		#; border:2px solid rgb(0, 0, 0); 
 
-		self.last=[]
+		self.help_items=[]
 		self.pos=-1
 
 		self.move_window()
 		self.vbox = QVBoxLayout()
 
-		#self.vbox.setAlignment(Qt.AlignTop)
 		self.box=[]
 		self.image=[]
 		self.label=[]
@@ -126,7 +122,6 @@ class help_class(QWidget):
 			self.label.append(label)
 
 			self.box[i].setLayout(l)
-			#self.box[i].setFixedSize(380,80)	#setMinimumSize(400, 500)#
 			l.addWidget(self.image[i])
 			l.addWidget(self.label[i])
 
@@ -141,13 +136,11 @@ class help_class(QWidget):
 		self.forward.triggered.connect(self.callback_forward)
 		toolbar.addAction(self.forward)
 
-
 		spacer = QWidget()
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		toolbar.addWidget(spacer)
 
-
-		self.undo = QAction(QIcon(get_icon_path("www")), _("Online help"), self)
+		self.undo = QAction(icon_get("internet-web-browser",size=64), _("Online help"), self)
 		self.undo.setStatusTip(_("On line help"))
 		self.undo.triggered.connect(self.on_line_help)
 		toolbar.addAction(self.undo)
@@ -156,9 +149,6 @@ class help_class(QWidget):
 		self.undo.setStatusTip(_("Close"))
 		self.undo.triggered.connect(self.callback_close)
 		toolbar.addAction(self.undo)
-
-
-
 
 		self.vbox.addWidget(toolbar)
 
@@ -178,8 +168,8 @@ class help_class(QWidget):
 
 	def callback_forward(self,widget):
 		self.pos=self.pos+1
-		if self.pos>=len(self.last):
-			self.pos=len(self.last)-1
+		if self.pos>=len(self.help_items):
+			self.pos=len(self.help_items)-1
 
 		self.update()
 
@@ -190,32 +180,39 @@ class help_class(QWidget):
 		self.update()
 
 	def on_line_help(self,widget):
-		webbrowser.open(sim_name.web+"/man/index.html")
+		webbrowser.open("https://www.oghma-nano.com/docs.html?page=Manual")
 
 	def update(self):
-		items=int(len(self.last[self.pos])/2)
-		for i in range(0,5):
-			self.box[i].hide()
 		tot_height=0
 		line_height=20
-		for i in range(0,items):
-			all_text=self.last[self.pos][i*2+1]
-			nbr=all_text.count("<br>")
-			len(all_text.split("<br>")[-1])
-			pixmap = QPixmap(get_icon_path(self.last[self.pos][i*2],size=64))
+
+		for i in range(0,5):
+			self.box[i].hide()
+
+		i=0
+		for item in self.help_items[self.pos]:
+			if item.lang_flag==False:
+				pixmap = icon_get(item.icon,size=64)
+				pixmap = pixmap.pixmap(pixmap.actualSize(QSize(64, 64)))
+			else:
+				#pixmap = icon_get(item.icon,size=48)
+				flag_path=os.path.join(sim_paths.get_flag_file_path(),item.icon+".png")
+				if os.path.isfile(flag_path)==True:
+					pixmap=QPixmap(flag_path)
+			#else:
+			#
+
 			self.image[i].setPixmap(pixmap)
-			text=all_text+"<br>"
+			nbr=item.text.count("<br>")
+			text=item.text+"<br>"
 			self.label[i].setText(text)
-			height=len(all_text)
+			height=len(text)
 			tot_height=tot_height+height+nbr*line_height
 			
-			#self.label[i].setFixedSize(380,300)
 			self.label[i].adjustSize()
 			self.label[i].setOpenExternalLinks(True)
 			self.box[i].show()
-			#self.image[i].show()
-
-		#self.resize(300, tot_height+80)	#items*self.item_height
+			i=i+1
 
 		self.forward.setEnabled(True)
 		self.back.setEnabled(True)
@@ -223,30 +220,30 @@ class help_class(QWidget):
 		if self.pos==0:
 			self.back.setEnabled(False)
 
-		if self.pos==len(self.last)-1:
+		if self.pos==len(self.help_items)-1:
 			self.forward.setEnabled(False)
 
-		self.status_bar.showMessage(str(self.pos)+"/"+str(len(self.last)-1))
+		self.status_bar.showMessage(str(self.pos)+"/"+str(len(self.help_items)-1))
 		self.adjustSize()
 
-	def help_set_help(self,array):
+	def help_set_help(self,icon,text):
 		add=True
-		if len(self.last)!=0:
-			if self.last[self.pos][1]==array[1]:
-				add=False
+		data=help_data()
+		data.icon=icon
+		data.text=text
+		self.help_items.append([data])
 
-		if add==True:
-			self.pos=self.pos+1
-			self.last.append(array)
-
+		self.pos=len(self.help_items)-1
 		self.update()
 		self.move_window()
 
-	def help_append(self,array):
-		last_item=len(self.last)-1
-		self.last[last_item]=self.last[last_item] + array
+	def help_append(self,icon,text,lang_flag=False):
+		data=help_data()
+		data.icon=icon
+		data.text=text
+		data.lang_flag=lang_flag
+		self.help_items[-1].append(data)
 		self.update()
-		#self.resize(300, 150)
 		self.move_window()
 
 def help_init():
@@ -259,13 +256,18 @@ def help_window():
 
 def language_advert():
 	lang=get_language()
-	f=os.path.join(get_flag_file_path(),lang+".png")
+	f=os.path.join(sim_paths.get_flag_file_path(),lang+".png")
 	if os.path.isfile(f)==True:
-		b=bibtex()
-		loaded=b.load(os.path.join(get_full_desired_lang_path(),"ref.bib"))
+		b=json_c("file_defined")
 
-		if loaded==False or r.author=="":
-			my_help_class.help_append([f,"<big><b>"+_("OghmaNano in your language!")+"</b></big><br>"+"Would you like OghmaNano to be translated into your native language?  If so please help with the OghmaNano <a href=\""+sim_name.web+"/translation.html\">translation project.</a>"])
+		loaded=b.load(os.path.join(get_full_desired_lang_path(),"ref.bib"))
+		if loaded==False:
+			my_help_class.help_append(lang,"<big><b>"+_("OghmaNano in your language!")+"</b></big><br>"+"Would you like OghmaNano to be translated into your native language?  If so please help with the OghmaNano <a href=\""+sim_name.web+"/lang.php\">translation project.</a>",lang_flag=True)
 		else:
-			my_help_class.help_append([f,"<big><b>"+_("OghmaNano translated by:")+"</b></big><br>"+r.author])
-			
+			try:
+				author=b.get_token_value("lang","author")
+				my_help_class.help_append(f,"<big><b>"+_("OghmaNano translated by:")+"</b></big><br>"+author)
+			except:
+				pass
+		b.free()
+

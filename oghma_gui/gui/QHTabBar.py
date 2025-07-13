@@ -35,7 +35,6 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QPushButton,QDialog,QFileDialog,QToolBar,QLabel,QComboBox, QTabWidget,QStatusBar,QMenuBar, QTabBar, QStylePainter, QStyleOptionTab,QStyle
 from gQtCore import gSignal
 from icon_lib import icon_get
-from json_root import json_root
 import json
 class QHTabBar(QTabBar):
 	menu_click = gSignal(QMouseEvent,int)
@@ -44,63 +43,9 @@ class QHTabBar(QTabBar):
 	delete = gSignal()
 	rename = gSignal()
 
-	def menu_build(self):
-		self.main_menu = QMenu(self)
-
-		action=self.main_menu.addAction(icon_get("edit-copy"),_("Copy"))
-		action.triggered.connect(self.do_copy)
-
-		action=self.main_menu.addAction(icon_get("edit-paste"),_("Paste"))
-		action.triggered.connect(self.do_paste)
-
-		action=self.main_menu.addAction(icon_get("edit-delete"),_("Delete"))
-		action.triggered.connect(self.do_delete)
-
-		action=self.main_menu.addAction(icon_get("rename"),_("Rename"))
-		action.triggered.connect(self.do_rename)
-		#
-
-	def do_delete(self):
-		self.delete.emit()
-
-	def do_rename(self):
-		self.rename.emit()
-
-	def do_copy(self):
-		lines=None
-		if self.obj_search_path!=None and self.obj_id!=None:
-			search_path=eval(self.obj_search_path)
-			obj=search_path.find_object_by_id(self.obj_id)
-			lines=obj.gen_json()
-
-		if lines!=None:
-			lines[0]="\"data\": "+lines[0].split(":")[1]
-			all_data=[]
-			all_data.append("{")
-			all_data.append("\"data_type\": \""+self.data_type+"\",")
-
-			all_data.extend(lines)
-			all_data.append("}")
-
-			cb = QApplication.clipboard()
-			cb.clear(mode=cb.Clipboard )
-			cb.setText("\n".join(all_data), mode=cb.Clipboard)
-
-	def do_paste(self):
-		lines = QApplication.clipboard().text()
-		#try:
-		read_data=json.loads(lines)
-		#except:
-		#	return
-		self.paste_data=read_data['data']
-		self.paste.emit()
-
-	def show_menu_tab(self,event,tab_number):
-		self.main_menu.exec_(event.globalPos())
-
 	def __init__(self,build_tb=False):
 		QTabBar.__init__(self)
-
+		self.bin=None
 		if build_tb==True:
 			self.box=QVBoxLayout()
 			self.box.setSpacing(0)
@@ -134,24 +79,76 @@ class QHTabBar(QTabBar):
 
 		self.setStyleSheet("QTabBar::tab { height: 35px; width: 140px; }")
 
+	def menu_build(self):
+		self.main_menu = QMenu(self)
+
+		action=self.main_menu.addAction(icon_get("edit-copy"),_("Copy"))
+		action.triggered.connect(self.do_copy)
+
+		action=self.main_menu.addAction(icon_get("edit-paste"),_("Paste"))
+		action.triggered.connect(self.do_paste)
+
+		action=self.main_menu.addAction(icon_get("edit-delete"),_("Delete"))
+		action.triggered.connect(self.do_delete)
+
+		action=self.main_menu.addAction(icon_get("rename"),_("Rename"))
+		action.triggered.connect(self.do_rename)
+		#
+
+	def do_delete(self):
+		self.delete.emit()
+
+	def do_rename(self):
+		self.rename.emit()
+
+	def do_copy(self):
+		lines=None
+
+		if self.obj_search_path!=None and self.obj_id!=None:
+			if self.bin==None:
+				search_path=eval(self.obj_search_path)
+				obj=search_path.find_object_by_id(self.obj_id)
+				lines=obj.gen_json()
+			else:
+				path=self.bin.find_path_by_uid(self.obj_search_path,self.obj_id)
+				lines=self.bin.gen_json(path)
+
+		if lines!=None:
+			lines[0]="\"data\": "+lines[0].split(":")[1]
+			all_data=[]
+			all_data.append("{")
+			all_data.append("\"data_type\": \""+self.data_type+"\",")
+
+			all_data.extend(lines)
+			all_data.append("}")
+
+			cb = QApplication.clipboard()
+			cb.clear(mode=cb.Clipboard )
+			cb.setText("\n".join(all_data), mode=cb.Clipboard)
+
+	def do_paste(self):
+		lines = QApplication.clipboard().text()
+		read_data=json.loads(lines)
+		self.paste_data=read_data['data']
+		self.paste.emit()
+
+	def show_menu_tab(self,event,tab_number):
+		self.main_menu.exec_(event.globalPos())
+
 	def paintEvent(self, event):
 		painter = QStylePainter(self)
 		option = QStyleOptionTab()
 
-		#painter.begin(self)
 		for index in range(self.count()):
 			self.initStyleOption(option, index)
 			tabRect = self.tabRect(index)
 			tabRect.moveLeft(10)
 			painter.drawControl(QStyle.CE_TabBarTabShape, option)
 			painter.drawText(tabRect, Qt.AlignVCenter | Qt.TextDontClip, self.tabText(index))
-		#painter.end()
 
 	def mousePressEvent(self, event):
 		if event.button() == Qt.RightButton:
 			tab_index=self.tabAt(event.pos())
-			#self.obj_id=tab.uid
-			#self.menu_click.emit(event,self.tabAt(event.pos()))
 			self.show_menu_tab(event,tab_index)
 		QTabBar.mousePressEvent(self, event)
 

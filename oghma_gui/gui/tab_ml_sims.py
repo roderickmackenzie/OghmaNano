@@ -38,18 +38,20 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QAbstractItemView, QMenuBar, QTableWidgetItem
 from PySide2.QtGui import QPainter,QIcon
 
-from g_tab2 import g_tab2
+from g_tab2_bin import g_tab2_bin
 from select_param import select_param
-from json_root import json_root
-from json_ml import json_ml_sims_item
 from tab_ml_patch import tab_ml_patch
 from tab_ml_output_vectors import tab_ml_output_vectors
+from json_c import json_tree_c
 
 class tab_ml_sims(QWidget):
 
-	def __init__(self,uid):
+	def __init__(self,main_ml_sim_uid):
 		QWidget.__init__(self)
-		self.uid=uid
+		self.main_ml_sim_uid=main_ml_sim_uid
+		self.bin=json_tree_c()
+		path=self.refind_json_path()
+		print(path,self.main_ml_sim_uid)
 
 		self.vbox=QVBoxLayout()
 
@@ -59,37 +61,34 @@ class tab_ml_sims(QWidget):
 		self.vbox.addWidget(toolbar)
 
 
-		self.tab2 = g_tab2(toolbar=toolbar)
+		self.tab2 = g_tab2_bin(toolbar=toolbar)
 		self.tab2.set_tokens(["ml_sim_enabled","sim_name","ml_edit_sim","ml_edit_vectors"])
 		self.tab2.set_labels([_("Enabled"),_("Sim name"),_("Patch"),_("Vectors")])
 
-		data=json_root().ml.find_object_by_id(self.uid)
-		index=json_root().ml.segments.index(data)
+
 		self.tab2.fixup_new_row=self.fixup_new_row
-		self.tab2.json_search_path="json_root().ml.segments["+str(index)+"].ml_sims.segments"
-		self.tab2.setColumnWidth(1, 400)
+		self.tab2.json_root_path=path+".ml_sims"
+		self.tab2.setColumnWidth(1, 200)
 		self.tab2.setColumnWidth(2, 100)
 		self.tab2.setColumnWidth(3, 100)
 		self.tab2.setColumnWidth(4, 100)
-		self.tab2.base_obj=json_ml_sims_item()
 		self.tab2.populate()
 		self.tab2.changed.connect(self.callback_save)
-
 		self.vbox.addWidget(self.tab2)
-
 		self.setLayout(self.vbox)
-
+		self.tab_ml_output_vectors=None
 
 	def callback_save(self):
-		json_root().save()
+		self.bin.save()
 
 	def fixup_new_row(self,row):
-		data=json_root().ml.find_object_by_id(self.uid)
-		index=json_root().ml.segments.index(data)
-		self.tab2.cellWidget(row, 2).uid=json_root().ml.segments[index].ml_sims.segments[row].id
+		path=self.refind_json_path()
+		uid=self.bin.get_token_value(path+".ml_sims.segment"+str(row),"id")
+		#print("FIXUP=",uid,path+".ml_sims.segments"+str(row))
+		self.tab2.cellWidget(row, 2).uid=uid
 		self.tab2.cellWidget(row, 2).changed.connect(self.callback_edit_clicked)
 
-		self.tab2.cellWidget(row, 3).uid=json_root().ml.segments[index].ml_sims.segments[row].id
+		self.tab2.cellWidget(row, 3).uid=uid
 		self.tab2.cellWidget(row, 3).changed.connect(self.callback_edit_vectors_clicked)
 
 	def callback_edit_clicked(self,uid):
@@ -97,7 +96,11 @@ class tab_ml_sims(QWidget):
 		w.setMinimumSize(700,700)
 		w.show()
 
-	def callback_edit_vectors_clicked(self,uid):
-		w=tab_ml_output_vectors(uid)
-		w.setMinimumSize(700,700)
-		w.show()
+	def callback_edit_vectors_clicked(self,uid_of_row):
+		#print("a>",self.main_ml_sim_uid,uid_of_row)
+		self.tab_ml_output_vectors=tab_ml_output_vectors(self.main_ml_sim_uid,uid_of_row)
+		self.tab_ml_output_vectors.show()
+
+	def refind_json_path(self):
+		ret=self.bin.find_path_by_uid("ml",self.main_ml_sim_uid)
+		return ret

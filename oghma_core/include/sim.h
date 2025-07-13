@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -32,36 +30,25 @@
 
 #ifndef sim_h
 #define sim_h
-
+#include <g_io.h>
 #include <enabled_libs.h>
 #include "code_ctrl.h"
-#include "gpvdm_const.h"
+#include "oghma_const.h"
 #include <stdio.h>
 #include <sim_struct.h>
 
 #include "version.h"
 #include "device.h"
 #include <util.h>
-#include "light_interface.h"
 #include "newton_interface.h"
 #include <json.h>
 
-struct pos_config
-{
-	int max_ittr;
-	long double posclamp;
-	long double pos_min_error;
-	int pos_dump_verbosity;
-
-};
-
 //newtonsolver
 int solve_cur_thermal(struct device *in,int thermal, int z, int x);
-int solve_pos(struct simulation *sim,struct device *dev);
-int solve_pos_y(struct simulation *sim,struct device *in, int z, int x,struct pos_config *config);
+
 void get_initial(struct simulation *sim,struct device *in,int guess);
 void update_y_array(struct simulation *sim,struct device *in,int z,int x);
-void find_n0(struct simulation *sim,struct device *in);
+void find_n0(struct simulation *sim,struct device *in,int verbose);
 
 //from time.c
 void time_mesh_save(struct simulation *sim,struct device *in);
@@ -85,14 +72,12 @@ void get_max_layers(int in);
 void lock_main(int argc, char *argv[]);
 
 void update_material_arrays(struct simulation *sim, struct device *in);
-
+void device_setup_doping(struct simulation *sim,struct device *in);
 
 
 void load_config(struct simulation *sim,struct device *in);
 void update(struct device *cell);
-int device_run_simulation(struct simulation *sim, struct device *dev);
 void clean_sim_dir(struct simulation *sim, struct device *dev);
-void solve_all(struct simulation *sim,struct device *in);
 
 //Light
 void solve_light(struct device *cell,struct light *in,gdouble Psun_in,gdouble Plaser_in);
@@ -100,10 +85,10 @@ void light_load_dlls(struct simulation *sim,struct light *in);
 void light_solve_and_update(struct simulation *sim,struct device *cell,struct light *in,gdouble laser_eff_in);
 
 //debug
-void stop_start(struct simulation *sim,struct device *in);
 void run_electrical_dll(struct simulation *sim,struct device *in,char *dll_name);
 void sim_init(struct simulation *sim);
-void sim_free(struct simulation *sim);
+void sim_free(struct simulation *sim, int hard);
+void sim_setup(struct simulation *sim);
 void fit_log_init(struct simulation *sim);
 
 //errors
@@ -112,6 +97,12 @@ void errors_free(struct simulation *sim);
 void errors_dump(struct simulation *sim);
 void errors_add(struct simulation *sim, const char *format, ...);
 int is_errors(struct simulation *sim);
+void benchmark(struct simulation *sim);
+void benchmark_disk_small(struct simulation *sim);
+void benchmark_disk_large(struct simulation *sim);
+void benchmark_mem_alloc(struct simulation *sim,int size_in_kb, double default_speed);
+void benchmark_exp(struct simulation *sim);
+
 
 #endif
 

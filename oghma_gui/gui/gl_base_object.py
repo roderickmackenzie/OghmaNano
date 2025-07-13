@@ -29,9 +29,9 @@
 #
 
 from vec import vec
-from json_base import json_base
 import ctypes
 from cal_path import sim_paths
+
 
 class code_block(ctypes.Structure):
 	_fields_ = [('gl_array_type', ctypes.c_int ),
@@ -46,6 +46,8 @@ class code_block(ctypes.Structure):
 
 
 class gl_base_object(ctypes.Structure):
+	OGHMA_GL_LIGHT=0
+	OGHMA_GL_REAL_WORLD_OBJECT=1
 	_fields_ = [('r', ctypes.c_float ),
 				('g', ctypes.c_float ),
 				('b', ctypes.c_float ),
@@ -61,7 +63,7 @@ class gl_base_object(ctypes.Structure):
 				('dx', ctypes.c_float ),
 				('dy', ctypes.c_float ),
 				('dz', ctypes.c_float ),
-				('type', ctypes.c_char * 100),
+				('render_as', ctypes.c_char * 100),
 				('selected', ctypes.c_int ),
 				('moveable', ctypes.c_int ),
 				('resizable', ctypes.c_int ),
@@ -81,39 +83,14 @@ class gl_base_object(ctypes.Structure):
 				('image_w', ctypes.c_int),
 				('image_h', ctypes.c_int),
 				('texture', ctypes.c_int),
-				('texture_used', ctypes.c_int)]
-
-
-	def __init__(self):
-		self.lib=sim_paths.get_dll_py()
-		#sim_paths.get_dll_py().gl_base_object_init(ctypes.byref(self))
-		sim_paths.get_dll_py().gl_base_object_add_block.restype = ctypes.c_void_p
-		sim_paths.get_dll_py().gl_base_object_get_block.restype = ctypes.c_void_p
-		sim_paths.get_dll_py().gl_base_object_add_block.restype = ctypes.c_void_p
+				('texture_used', ctypes.c_int),
+				('object_type', ctypes.c_int),
+				('inside', ctypes.c_int)]
 
 
 	def match_false_color(self,r,g,b):
 		if sim_paths.get_dll_py().gl_base_object_match_false_color(ctypes.byref(self),ctypes.c_float(r), ctypes.c_float(g), ctypes.c_float(b))==0:
 			return True
 		return False
-
-	def add_block(self):
-		#print(self.lib)
-		return code_block.from_address( sim_paths.get_dll_py().gl_base_object_add_block(ctypes.byref(self)))
-
-	def get_block(self,n):
-		return code_block.from_address( sim_paths.get_dll_py().gl_base_object_get_block(ctypes.byref(self),ctypes.c_int(n)))
-
-	def add_xyz(self,x,y,z):
-		return sim_paths.get_dll_py().gl_base_object_add_xyz(ctypes.byref(self),ctypes.c_float(x), ctypes.c_float(y), ctypes.c_float(z))
-
-	def get_xyz(self,n):
-		a=vec()
-		sim_paths.get_dll_py().gl_base_object_get_xyz(ctypes.byref(a),ctypes.byref(self),ctypes.c_int(n))
-		return a
-
-	def set_xyz(self,n,xyz):
-		sim_paths.get_dll_py().gl_base_object_set_xyz(ctypes.byref(self),ctypes.c_int(n),ctypes.byref(xyz))
-
 
 

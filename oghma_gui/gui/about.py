@@ -26,21 +26,21 @@
 
 import os
 from const_ver import const_ver
-from cal_path import get_image_file_path
-from cal_path import get_materials_path
 
 from PySide2.QtWidgets import QPushButton,QTextBrowser,QTabWidget,QWidget,QHBoxLayout,QLabel,QDialog,QVBoxLayout
 from PySide2.QtGui import QPixmap
 
 from icon_lib import icon_get
 
-from cal_path import get_device_lib_path, get_bin_path, get_plugins_path, sim_paths, get_exe_command, get_exe_name
+from cal_path import sim_paths
 from lock import get_lock
 
 from cal_path import multiplatform_exe_command
-from cal_path import get_exe_command
 from sim_name import sim_name
 from bytes2str import bytes2str
+from cal_path import sim_paths
+import ctypes
+import datetime
 
 class about_dlg(QDialog):
 	def __init__(self):
@@ -48,16 +48,23 @@ class about_dlg(QDialog):
 		self.main_hbox=QHBoxLayout()
 		self.left_vbox=QVBoxLayout()
 		self.main_vbox=QVBoxLayout()
-		self.setFixedSize(750,480) 
+		self.setFixedSize(850,580) 
 		self.setWindowTitle(_("About")+sim_name.web_window_title)
 		self.setWindowIcon(icon_get("icon"))
-		self.name=QLabel("<font size=40><b>"+sim_name.name_lower+"_gui</b></font>")
+		self.name=QLabel("<font size=40><b>OghamNano</b></font>")
 		self.image=QLabel()
 		self.image.mousePressEvent=self.callback
-		self.written_by=QLabel(_("Written by Roderick MacKenzie 2012-2022, released under the MIT software license."))
+		self.written_by=QLabel(_("Written by Roderick MacKenzie 2012-2023, released under the MIT software license."))
 		self.written_by.setWordWrap(True)
-		self.ver=QLabel(_("Version ")+const_ver())
-		pixmap = QPixmap(os.path.join(get_image_file_path(),"image.jpg"))
+		try:
+			compile_time=bytes2str(ctypes.cast(sim_paths.lib.get_compile_time(), ctypes.c_char_p).value)
+			compile_time = datetime.datetime.fromtimestamp(float(compile_time))
+			compile_time=compile_time.strftime('%Y-%m-%d %H:%M:%S')
+		except:
+			compile_time=""
+
+		self.ver=QLabel(_("Version ")+const_ver()+"\nCompile time: "+compile_time)
+		pixmap = QPixmap(os.path.join(sim_paths.get_image_file_path(),"image.jpg"))
 		self.image.setPixmap(pixmap)
 		self.left_vbox.addWidget(self.name)
 		self.left_vbox.addWidget(self.image)
@@ -118,18 +125,11 @@ class about_dlg(QDialog):
 		self.translations.setText(text)
 		self.right.addTab(self.translations,_("Translations"))
 
-
-
-
 		self.paths=QTextBrowser()
 		text=""
-
-		text=text+"<b>"+_("Materials library path")+":</b>"+get_materials_path()+"<br>"
-		text=text+"<b>"+_("Device library path")+":</b>"+get_device_lib_path()+"<br>"
-		text=text+"<b>"+_("Binary path")+":</b>"+get_bin_path()+"<br>"
-		text=text+"<b>"+_("Plugins path")+":</b>"+get_plugins_path()+"<br>"
-		text=text+"<b>"+_("Binary name")+":</b>"+get_exe_name()+"<br>"
-		text=text+"<b>"+_("Install ID")+":</b>"+bytes2str(get_lock().uid)+"<br>"
+		text=text+sim_paths.get_paths_as_debug_info()
+		get_lock().lib.lock_gui_dump(ctypes.byref(get_lock()))
+		text=text+"<br>"+bytes2str(get_lock().ret_val)+"<br>"
 
 		self.paths.setText(text)
 		self.right.addTab(self.paths,_("Paths"))
@@ -165,6 +165,6 @@ class about_dlg(QDialog):
 		self.close()
 
 	def callback(self,event):
-		command=multiplatform_exe_command(get_exe_command()+" --license")
+		command=multiplatform_exe_command(sim_paths.get_exe_command()+" --license")
 		os.system(command)
 		print("ok")

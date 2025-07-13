@@ -42,17 +42,14 @@ from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,Q
 from PySide2.QtGui import QPainter,QIcon
 
 from g_select import g_select
-
-from g_tab2 import g_tab2
-from json_fit import json_fit_patch_line
-from json_root import json_root
+from json_c import json_tree_c
+from g_tab2_bin import g_tab2_bin
 
 class fit_patch(QWidget):
 
-
 	def __init__(self,uid):
 		QWidget.__init__(self)
-
+		self.bin=json_tree_c()
 		self.vbox=QVBoxLayout()
 
 		toolbar=QToolBar()
@@ -60,13 +57,12 @@ class fit_patch(QWidget):
 
 		self.vbox.addWidget(toolbar)
 
-		self.tab2 = g_tab2(toolbar=toolbar)
+		self.tab2 = g_tab2_bin(toolbar=toolbar)
 		self.tab2.set_tokens(["human_path","val","json_path"])
 		self.tab2.set_labels([_("Variable"), _("Value"), _("JSON Variable")])
-		self.tab2.json_search_path="json_root().fits.fits"
+		self.tab2.json_root_path="fits.fits"
 		self.tab2.uid=uid
-		self.tab2.base_obj=json_fit_patch_line()
-		self.tab2.postfix="fit_patch.segments"
+		self.tab2.json_postfix="fit_patch"
 		
 		self.tab2.setColumnWidth(0, 300)
 		self.tab2.setColumnWidth(1, 150)
@@ -90,7 +86,7 @@ class fit_patch(QWidget):
 		self.setLayout(self.vbox)
 
 	def callback_changed(self):
-		json_root().save()
+		self.bin.save()
 
 	def fixup_new_row(self,row):
 		self.tab2.cellWidget(row, 0).button.clicked.connect(self.callback_show_list)

@@ -49,14 +49,14 @@ import sys
 
 from report_error import report_error
 from lock import get_lock
-from json_local_root import json_local_root
+from json_c import json_local_root
 
 def error_han(type, value, tback):
 	print("error=",value,tback,"rod")
 	if value==KeyboardInterrupt:
 		print("hello")
 
-	if json_local_root().gui_config.enable_betafeatures==False:
+	if json_local_root().get_token_value("gui_config","enable_betafeatures")==False:
 
 		#formatted_lines = traceback.format_exc().splitlines()
 		long_trace=traceback.format_exception(type, value, tback)
@@ -72,7 +72,7 @@ def error_han(type, value, tback):
 class widget_error_han(QDialog):
 
 	def __init__(self,long_error,error):
-
+		self.message_through_forum=True
 		self.error=error
 		self.file_path=""
 		QDialog.__init__(self)
@@ -91,8 +91,12 @@ class widget_error_han(QDialog):
 		h_box.setAlignment(image,Qt.AlignTop)
 		
 		self.message = QTextEdit()
-		help_text="<big><b>An error has occurred please report this error by clicking ok:<b></big><br><br>"
-		help_text2="<br><br><big><b>It would also help if you e-mailed the error message to "+get_lock().my_email+" and described what you were doing with the model to make it crash.  Very often there is not enough information in bug reports alone to fix the problem.<br><br>All error reports are gratefully received.<br><br>Rod 5/9/16<b></big>"
+		if self.message_through_forum==False:
+			help_text="<big><b>An error has occurred please report this error by clicking ok:<b></big><br><br>"
+			help_text2="<br><br><big><b>It would also help if you e-mailed the error message to "+get_lock().my_email+" and described what you were doing with the model to make it crash.  Very often there is not enough information in bug reports alone to fix the problem.<br><br>All error reports are gratefully received.<br><br>Rod 5/9/16<b></big>"
+		else:
+			help_text="<big><b>An error has occurred please report this error though the User Forum:<b></big><br><br>"
+			help_text2="<br><br><big><b>Please report the bug using "+get_lock().get_help+"<br><br>Described what you were doing with the model to make it crash.  Very often there is not enough information in bug reports alone to fix the problem.<br><br>All error reports are gratefully received.<br><br>Rod 25/08/25<b></big>"
 		self.message.setText(help_text+long_error+help_text2)
 		h_box.addWidget(self.message)
 		
@@ -116,12 +120,16 @@ class widget_error_han(QDialog):
 
 		button_layout.addStretch(1)
 		button_layout.addWidget(okButton)
-		button_layout.addWidget(cancelButton)
+		if self.message_through_forum==False:
+			button_layout.addWidget(cancelButton)
 		button_widget.setLayout(button_layout)
 
 		self.setLayout(self.main_vbox)
-	
-		okButton.clicked.connect(self.on_ok_clicked) 
+
+		if self.message_through_forum==False:
+			okButton.clicked.connect(self.on_ok_clicked) 
+		else:
+			okButton.clicked.connect(self.callback_close) 
 		cancelButton.clicked.connect(self.close_clicked)
 
 	def error_reported(self,sucess):
@@ -141,6 +149,8 @@ class widget_error_han(QDialog):
 		else:
 			self.on_ok_clicked()
 
+	def callback_close(self):
+		self.close()
 	def on_ok_clicked(self):
 		print("Reporting error....")
 		self.label_reporting.show()

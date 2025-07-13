@@ -1,0 +1,11 @@
+{
+	"item_type":"material",
+	"color_r":-0.900732231209774,
+	"color_g":0.3143626696319863,
+	"color_b":0.900724514435752,
+	"color_alpha":0.5,
+	"material_type":"other",
+	"status":"public",
+	"changelog":"",
+	"mat_src":"refractive_index.info"
+	}

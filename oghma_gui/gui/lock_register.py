@@ -51,92 +51,11 @@ def isValidEmail(email):
 
 from lock import get_lock
 from cal_path import sim_paths
-from json_base import json_base
 from i18n import get_full_language
 from sim_name import sim_name
 import random
 
 class register(QDialog):
-
-	def callback_register(self):
-
-		if self.anoym==False:
-			if isValidEmail(self.email0.text()) == False :
-				error_dlg(self,_("This is not a valide e-mail address"))
-				return
-
-			if self.email0.text()!=self.email1.text():
-				error_dlg(self,_("The e-mail addresses do not match."))
-				return
-
-			if self.first_name.text()=="":
-				error_dlg(self,_("Please enter your first name."))
-				return
-
-			if self.surname.text()=="":
-				error_dlg(self,_("Please enter your surname."))
-				return
-
-
-			if self.company.text()=="":
-				error_dlg(self,_("Please enter your Company/University."))
-				return
-
-		if self.heard_about.currentText()=="Choose option":
-			error_dlg(self,_("Please enter how you heard about OghmaNano."))
-			return
-
-		if self.use_for.currentText()=="Choose option":
-			error_dlg(self,_("Please enter what you plan on using OghmaNano for."))
-			return
-
-		#QApplication.processEvents()
-		#QApplication.processEvents()
-
-		#self.spinner.show()
-		#self.working.show()
-		if self.anoym==False:
-			email=str(self.email0.text().encode('ascii', 'xmlcharrefreplace'))[2:-1]
-			title=self.title.currentText()
-			first_name=str(self.first_name.text().encode('ascii', 'xmlcharrefreplace'))[2:-1]
-			surname=str(self.surname.text().encode('ascii', 'xmlcharrefreplace'))[2:-1]
-			company=str(self.company.text().encode('ascii', 'xmlcharrefreplace'))[2:-1]
-		else:
-			email="abc@abc.com"
-			title="Dr."
-			first_name="none"
-			surname="none"
-			company="none"
-
-		use_for=self.use_for.currentText()+":"+self.heard_about.currentText()
-		use_for=str(use_for.encode('ascii', 'xmlcharrefreplace'))[2:-1]
-
-		self.register.setEnabled(False)
-		user_data=json_base("register")
-		user_data.include_name=False
-		user_data.var_list=[]
-		user_data.var_list.append(["email",email])
-		user_data.var_list.append(["title",title])
-		user_data.var_list.append(["first_name",first_name])
-		user_data.var_list.append(["surname",surname])
-		user_data.var_list.append(["company",company])
-		user_data.var_list.append(["use_for",use_for])
-		user_data.var_list.append(["lang",get_full_language()])
-		user_data.var_list_build()
-
-		ret=get_lock().register(user_data)
-		if ret==False:
-			if get_lock().error=="no_internet":
-				error_dlg(self,"I can't access the internet, or OghmaNano is down.")
-			
-			if get_lock().error=="too_old":
-				error_dlg(self,_("Your version of OghmaNano is too old to register, please download the latest version."))
-
-			return
-
-		self.allow_exit=True
-
-		self.accept()
 
 	def __init__(self):
 		QDialog.__init__(self)
@@ -296,6 +215,86 @@ class register(QDialog):
 			self.company.setText("my company")
 			self.use_for.setCurrentIndex(1)
 
+	def callback_register(self):
+
+		if self.anoym==False:
+			if isValidEmail(self.email0.text()) == False :
+				error_dlg(self,_("This is not a valide e-mail address"))
+				return
+
+			if self.email0.text()!=self.email1.text():
+				error_dlg(self,_("The e-mail addresses do not match."))
+				return
+
+			if self.first_name.text()=="":
+				error_dlg(self,_("Please enter your first name."))
+				return
+
+			if self.surname.text()=="":
+				error_dlg(self,_("Please enter your surname."))
+				return
+
+
+			if self.company.text()=="":
+				error_dlg(self,_("Please enter your Company/University."))
+				return
+
+		if self.heard_about.currentText()=="Choose option":
+			error_dlg(self,_("Please enter how you heard about OghmaNano."))
+			return
+
+		if self.use_for.currentText()=="Choose option":
+			error_dlg(self,_("Please enter what you plan on using OghmaNano for."))
+			return
+
+		#QApplication.processEvents()
+		#QApplication.processEvents()
+
+		#self.spinner.show()
+		#self.working.show()
+		if self.anoym==False:
+			email=str(self.email0.text().encode('ascii', 'xmlcharrefreplace'))[2:-1]
+			title=self.title.currentText()
+			first_name=str(self.first_name.text().encode('ascii', 'xmlcharrefreplace'))[2:-1]
+			surname=str(self.surname.text().encode('ascii', 'xmlcharrefreplace'))[2:-1]
+			company=str(self.company.text().encode('ascii', 'xmlcharrefreplace'))[2:-1]
+		else:
+			email="abc@abc.com"
+			title="Dr."
+			first_name="none"
+			surname="none"
+			company="none"
+
+		use_for=self.use_for.currentText()+":"+self.heard_about.currentText()
+		use_for=str(use_for.encode('ascii', 'xmlcharrefreplace'))[2:-1]
+
+		reg_path=os.path.join(sim_paths.get_tmp_path(),"reg.txt")
+
+		self.register.setEnabled(False)
+		user_data=json_c("")
+		user_data.json_py_add_obj_string("", "email", email)
+		user_data.json_py_add_obj_string("", "title", title)
+		user_data.json_py_add_obj_string("", "first_name", first_name)
+		user_data.json_py_add_obj_string("", "surname", surname)
+		user_data.json_py_add_obj_string("", "company", company)
+		user_data.json_py_add_obj_string("", "use_for", use_for)
+		user_data.json_py_add_obj_string("", "lang", get_full_language())
+		user_data.save_as(reg_path)
+		user_data.free()
+		ret=get_lock().register()
+		if ret==False:
+			if get_lock().ret_val==b"error:no_internet":
+				error_dlg(self,"I can't access the internet, or OghmaNano is down.")
+			
+			if get_lock().ret_val==b"error:too_old":
+				error_dlg(self,_("Your version of OghmaNano is too old to register, please download the latest version."))
+
+
+			return
+
+		self.allow_exit=True
+
+		self.accept()
 
 	def closeEvent(self, event):
 		if self.allow_exit==False:

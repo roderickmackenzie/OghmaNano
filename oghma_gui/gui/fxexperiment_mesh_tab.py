@@ -34,8 +34,6 @@ from icon_lib import icon_get
 import i18n
 _ = i18n.language.gettext
 
-import pyqtgraph as pg
-
 #qt
 from gQtCore import QSize, Qt 
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget
@@ -43,25 +41,91 @@ from PySide2.QtGui import QPainter,QIcon
 
 #windows
 from open_save_dlg import save_as_jpg
-
 from cal_path import sim_paths
-from g_tab2 import g_tab2
-
-import numpy as np
-from json_fx_domain import json_fx_domain_mesh_segment
-from json_root import json_root
+from g_tab2_bin import g_tab2_bin
+from json_c import json_tree_c
+import ctypes
+from bytes2str import str2bytes
+from graph import graph_widget
+from dat_file import dat_file
+from color_map import color_map
 
 class fxexperiment_mesh_tab(QWidget):
 
+	def __init__(self,json_search_path,uid):
+		QWidget.__init__(self)
+		self.bin=json_tree_c()
+		self.cm=color_map()
+		self.cm.find_map("Rainbow")
+
+		self.json_search_path=json_search_path
+		self.uid=uid
+
+		self.data=dat_file()
+
+		self.plot2=graph_widget()
+		self.plot2.graph.axis_y.hidden=True;
+		self.plot2.graph.cm_default=self.cm.map
+		self.plot2.graph.points=True;
+		self.plot2.graph.lines=False;
+		self.plot2.setMaximumHeight(200)
+		self.plot2.setMinimumHeight(200)
+		self.plot2.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+		self.plot2.setMinimumSize(600, 250)
+
+		self.main_vbox = QVBoxLayout()
+
+
+		#toolbar 2
+
+		toolbar2=QToolBar()
+		toolbar2.setIconSize(QSize(32, 32))
+
+		tab_holder=QWidget()
+		tab_vbox_layout= QVBoxLayout()
+		tab_holder.setLayout(tab_vbox_layout)
+		self.tab = g_tab2_bin(toolbar=toolbar2)
+
+		self.tab.set_tokens(["start","stop","points","mul"])
+		self.tab.set_labels([_("Frequency start"),_("Frequency stop"), _("Max points"), _("Multiply")])
+
+		self.tab.setColumnWidth(0, 200)
+		self.tab.setColumnWidth(1, 200)
+
+		json_path=self.refind_json_path()
+		self.tab.json_root_path=json_path+".mesh"
+
+		self.tab.populate()
+
+		self.tab.changed.connect(self.on_cell_edited)
+
+		self.tab.setMinimumSize(self.width(), 120)
+
+		tab_vbox_layout.addWidget(toolbar2)
+
+		self.build_mesh()
+		self.draw_graph()
+
+		tab_vbox_layout.addWidget(self.tab)
+		self.main_vbox.addWidget(self.plot2)
+		self.main_vbox.addWidget(tab_holder)
+
+		self.setLayout(self.main_vbox)
+
+	def refind_json_path(self):
+		ret=self.bin.find_path_by_uid("sims.fx_domain",self.uid)
+		return ret
+
 	def save_data(self):
-		json_root().save()
+		self.bin.save()
 		
 	def update(self):
 		self.build_mesh()
 		self.draw_graph()
 
 	def draw_graph(self):
-		if len(self.fx)==0:
+
+		if self.fx==[] or self.fx==[[]]:
 			return
 
 		my_max=self.fx[0][0]
@@ -76,7 +140,6 @@ class fxexperiment_mesh_tab(QWidget):
 					my_min=self.fx[i][ii]
 	
 		mul=1.0
-		unit="Hz"
 
 		fx=[]
 		mag=[]
@@ -87,47 +150,47 @@ class fxexperiment_mesh_tab(QWidget):
 				mag.append(1)
 			fx.extend(local_fx)
 
-		self.plot.clear()
-		self.plot.getAxis('bottom').enableAutoSIPrefix(False)
-		self.plot.getPlotItem().hideAxis('left')
-		self.plot.getPlotItem().setMouseEnabled(x=False, y=False)		
-		scatter = pg.ScatterPlotItem()
+		self.data.x_len=1
+		self.data.y_len=len(fx)
+		self.data.z_len=1
+		self.data.cols=b"yd"
+		self.data.type=b"xy"
+		self.data.data_label=b""
+		self.data.data_units=b""
+		self.data.y_label=b"Frequency"
+		self.data.y_units=b"Hz"
+		self.data.y_mul=1e9
+		self.plot2.graph.cm_default=self.cm.map
+		self.plot2.graph.axis_x.log_scale=True
+		self.plot2.graph.lib.dat_file_malloc_py_data(ctypes.byref(self.data))
+		self.plot2.graph.show_key=True
 
-		#here
-		pi = self.plot.getPlotItem()
-		ai = pi.getAxis("bottom")
-		ai.setLogMode(True)
+		for i in range(0,self.data.y_len):
+			self.data.y_scaleC[i]=fx[i]
+			self.data.py_data[0][0][i]=1.0
 
-		#spots = []
-		brush=[]
-		for i in range(0,len(fx)):
-			#spot_dic = {'pos': (fx[i], 1), 'size': 10, 'brush': pg.intColor(i, len(fx)), 'pen': None}
-			#spots.append(spot_dic)
-			brush.append(pg.intColor(i, len(fx)))
-
-		#scatter.addPoints(spots)
-		my_plot = pi.plot(fx,mag, size=10, pen=None, symbolBrush=brush)
-		#my_plot.addItem(scatter)
-		my_plot.setLogMode(True, False)
-		#self.plot.addItem(scatter)
-		self.plot.setLogMode(True, False)
-		self.plot.setLabel('bottom', _("Frequency")+" ("+unit+")", color='k')
+		self.plot2.load([self.data])
+		self.plot2.graph.info[0].color_map_within_line=True
+		self.plot2.update()
 
 
+	def __del__(self):
+		self.data.free()
 
 	def build_mesh(self):
 		self.mag=[]
 		self.fx=[]
-		data=json_root().sims.fx_domain.find_object_by_id(self.uid)
+		json_path=self.refind_json_path()
+		segments=self.bin.get_token_value(json_path+".mesh","segments")
 
-		for mesh_item in data.mesh.segments:
+		for seg in range(0,segments):
 			local_mag=[]
 			local_fx=[]
-			start=mesh_item.start
+			start=self.bin.get_token_value(json_path+".mesh.segment"+str(seg),"start")
 			fx=start
-			stop=mesh_item.stop
-			max_points=mesh_item.points
-			mul=mesh_item.mul
+			stop=self.bin.get_token_value(json_path+".mesh.segment"+str(seg),"stop")
+			max_points=self.bin.get_token_value(json_path+".mesh.segment"+str(seg),"points")
+			mul=self.bin.get_token_value(json_path+".mesh.segment"+str(seg),"mul")
 			pos=0
 			if stop!=0.0 and max_points!=0.0 and mul!=0.0:
 				if max_points==1:
@@ -151,70 +214,12 @@ class fxexperiment_mesh_tab(QWidget):
 			local_mag=[]
 			local_fx=[]
 
-
-
 	def redraw_and_save(self):
 		self.update()
 		self.save_data()
 
 	def on_cell_edited(self):
+		self.plot2.update()
 		self.redraw_and_save()
-
-	def __init__(self,uid):
-		QWidget.__init__(self)
-		self.uid=uid
-		self.ax1=None
-
-		pg.setConfigOption('background', 'w')
-		pg.setConfigOption('foreground', 'k')
-		self.plot = pg.PlotWidget()
-		self.plot.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-
-		self.main_vbox = QHBoxLayout()
-
-		self.main_vbox.addWidget(self.plot)
-
-
-		#toolbar 2
-
-		toolbar2=QToolBar()
-		toolbar2.setIconSize(QSize(32, 32))
-
-		tab_holder=QWidget()
-		tab_vbox_layout= QVBoxLayout()
-		tab_holder.setLayout(tab_vbox_layout)
-		self.tab = g_tab2(toolbar=toolbar2)
-
-		self.tab.set_tokens(["start","stop","points","mul"])
-		self.tab.set_labels([_("Frequency start"),_("Frequency stop"), _("Max points"), _("Multiply")])
-
-		self.tab.setColumnWidth(0, 200)
-		self.tab.setColumnWidth(1, 200)
-
-		data=json_root().sims.fx_domain.find_object_by_id(self.uid)
-		index=json_root().sims.fx_domain.segments.index(data)
-		self.tab.json_search_path="json_root().sims.fx_domain.segments["+str(index)+"].mesh.segments"
-
-		self.tab.populate()
-
-		self.tab.new_row_clicked.connect(self.callback_new_row_clicked)
-		self.tab.changed.connect(self.on_cell_edited)
-
-		self.tab.setMinimumSize(self.width(), 120)
-
-		tab_vbox_layout.addWidget(toolbar2)
-
-		self.build_mesh()
-		self.draw_graph()
-
-		tab_vbox_layout.addWidget(self.tab)
-		self.main_vbox.addWidget(tab_holder)
-
-		self.setLayout(self.main_vbox)
-
-	def callback_new_row_clicked(self,row):
-		obj=json_fx_domain_mesh_segment()
-		json_root().sims.fx_domain.find_object_by_id(self.uid).mesh.segments.insert(row,obj)
-		self.tab.insert_row(obj,row)
 
 

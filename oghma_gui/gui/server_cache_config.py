@@ -41,60 +41,28 @@ from icon_lib import icon_get
 from safe_delete import safe_delete
 from gtkswitch import gtkswitch
 from QWidgetSavePos import QWidgetSavePos
-from json_root import json_root
 from gui_util import yes_no_dlg
 from msg_dlg import msg_dlg
+from json_viewer_bin import json_viewer_bin
+from json_c import json_tree_c
 
 class server_cache_config(QWidgetSavePos):
 
 	def __init__(self):
 		QWidgetSavePos.__init__(self,"server_cache_config")
-		self.setWindowIcon(icon_get("cache"))
-		self.setMinimumSize(800,300)
-		config=json_root().electrical_solver.cache
-
-		self.setWindowTitle2("Cache editor")
-		centerPoint = QDesktopWidget().availableGeometry().center()
-		qtRectangle = self.frameGeometry()
-		qtRectangle.moveCenter(centerPoint)
-		self.move(qtRectangle.topLeft())
-
 		vbox=QVBoxLayout()
+		self.bin=json_tree_c()
+		self.tab=json_viewer_bin(self.bin)
+		self.tab.populate("electrical_solver.cache")
+		self.tab.changed.connect(self.callback_edit)
 
-		self.title_text=QLabel("OghmaNano cache editor:  OghmaNano uses a disk based cached to accelerate simulation, use this window to either increase the size of the cache or to clear the cache.  If you want to save disk space clear the cache, if you want fast simulations increase the size of the cache.")
-		self.title_text.setFont(QFont('SansSerif', 15))
-		#self.title_text.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-		self.title_text.setWordWrap(True)
-		vbox.addWidget(self.title_text)
+		vbox.addWidget(self.tab)
 
-		self.progress=g_progress()
-		self.progress.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-		self.progress.setMinimumSize(-1,50)
-		vbox.addWidget(self.progress)
-
-		self.data_text=QLabel()
-		self.data_text.setFont(QFont('SansSerif', 15))
-
-		self.data_text.setWordWrap(True)
-		vbox.addWidget(self.data_text)
-
-		#spin
-		spin_widget=QWidget()
-		spin_widget_layout=QHBoxLayout()
-		spin_widget.setLayout(spin_widget_layout)
-
-		spin_label=QLabel(_("Maximum size in Mb:"))
-		spin_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-		spin_widget_layout.addWidget(spin_label)
-
-		self.spin=QSpinBox()
-		self.spin.setMaximum(1e6)
-		self.spin.setValue(config.cache_max_size)
-
-		spin_widget_layout.addWidget(self.spin)
-
-		self.spin.valueChanged.connect(self.callback_spin_edited)
-		vbox.addWidget(spin_widget)
+		#turn off cache
+		widget=QWidget()
+		widget.setMinimumSize(150,50)
+		widget_layout=QHBoxLayout()
+		widget.setLayout(widget_layout)
 
 		#Cache path
 		cache_path_widget=QWidget()
@@ -105,66 +73,39 @@ class server_cache_config(QWidgetSavePos):
 		cache_path_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
 		cache_path_layout.addWidget(cache_path_label)
 
-		self.cache_path_text = QLineEdit()
-		self.cache_path_text.setText(self.get_cache_path())
-		self.cache_path_text.textChanged.connect(self.callback_cache_path)
-		cache_path_layout.addWidget(self.cache_path_text)
-		vbox.addWidget(cache_path_widget)
+		#progress bar
+		self.title_text=QLabel(_("Newton cache used"))
+		self.title_text.setFont(QFont('SansSerif', 15))
+		#self.title_text.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+		self.title_text.setWordWrap(True)
+		vbox.addWidget(self.title_text)
 
-		#turn off cache
-		widget=QWidget()
-		widget.setMinimumSize(-1,50)
-		widget_layout=QHBoxLayout()
-		widget.setLayout(widget_layout)
+		self.progress=g_progress()
+		self.progress.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+		self.progress.setMinimumSize(50,25)
+		vbox.addWidget(self.progress)
 
-		label=QLabel(("Cache enabled:"))
-		label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-		widget_layout.addWidget(label)
+		self.data_text=QLabel()
+		self.data_text.setFont(QFont('SansSerif', 15))
 
-		self.enable_switch=gtkswitch()
-		self.enable_switch.set_value(config.cache_enabled)
-		self.enable_switch.changed.connect(self.callback_enabled)
-		widget_layout.addWidget(self.enable_switch)
-
-		vbox.addWidget(widget)
-
-		##
-		button_box=QHBoxLayout()
+		self.data_text.setWordWrap(True)
+		vbox.addWidget(self.data_text)
 
 		spacer = QWidget()
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-		button_box.addWidget(spacer)
 
-		self.clear=QPushButton("Clear cache", self)
-		self.clear.clicked.connect(self.callback_clear_cache)
-		button_box.addWidget(self.clear)
-
-
-		button_box_widget=QWidget()
-		button_box_widget.setLayout(button_box)
-		vbox.addWidget(button_box_widget)
+		vbox.addWidget(spacer)
 
 		self.setLayout(vbox)
 		self.update_progress()
 		self.show()
 
-	def callback_cache_path(self):
-		config=json_root().electrical_solver.cache
-		json_root().electrical_solver.cache.cache_path=self.cache_path_text.text()
-		json_root().save()
-
 	def get_cache_path(self):
-		config=json_root().electrical_solver.cache
-		if config.cache_path=="none_none_none_default":
-			return os.path.join(sim_paths.get_user_settings_dir(),"cache")
+		cache_path=self.bin.get_token_value("electrical_solver.cache","cache_path")
+		if cache_path=="none_none_none_default":
+			return sim_paths.get_newton_cache_path()
 		else:
-			return json_root().electrical_solver.cache.cache_path
-
-
-	def callback_enabled(self):
-		config=json_root().electrical_solver.cache
-		config.cache_enabled= not config.cache_enabled
-		json_root().save()
+			return cache_path
 
 	def callback_clear_cache(self):
 		path=self.get_cache_path()
@@ -209,15 +150,9 @@ class server_cache_config(QWidgetSavePos):
 
 	def update_progress(self):
 		self.cur_size=round(self.get_size())
-		config=json_root().electrical_solver.cache
-		self.progress.setValue(self.cur_size/config.cache_max_size)
-		self.data_text.setText(str(self.cur_size)+"Mb used of "+str(config.cache_max_size)+"Mb used.")
-
-	def callback_spin_edited(self):
-		config=json_root().electrical_solver.cache
-		config.cache_max_size=self.spin.value()
-		json_root().save()
-		self.update_progress()
+		cache_max_size=self.bin.get_token_value("electrical_solver.cache","cache_max_size")
+		self.progress.setValue(self.cur_size/cache_max_size)
+		self.data_text.setText(str(self.cur_size)+"Mb used of "+str(cache_max_size)+"Mb used.")
 
 	def get_size(self):
 		tot = 0
@@ -228,4 +163,8 @@ class server_cache_config(QWidgetSavePos):
 			        tot += os.path.getsize(fp)
 
 		return tot/1024/1024
+
+	def callback_edit(self,token):
+		self.update_progress()
+		self.bin.save()
 

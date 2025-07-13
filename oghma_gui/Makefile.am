@@ -4,7 +4,7 @@ SUBDIRS = @BUILD_DIRS@
 
 if INCLUDE_HTML
 htmlsrcdir = $(pkgdatadir)/html
-htmlsrc_DATA = html/*.html
+htmlsrc_DATA = html/*.html html/*.csv
 
 bibsrcdir = $(pkgdatadir)/bib
 bibsrc_DATA = bib/*.bib
@@ -21,13 +21,13 @@ endif
 
 if INCLUDE_IMAGES
 imagedir = $(pkgdatadir)/images
-image_DATA = images/*.jpg images/*.png  images/*.ico
+image_DATA = images/*.jpg images/*.ico
 
-image16dir = $(pkgdatadir)/images/16x16
-image16_DATA = images/16x16/*.png
+#image16dir = $(pkgdatadir)/images/16x16
+#image16_DATA = images/16x16/*.png
 
-image32dir = $(pkgdatadir)/images/32x32
-image32_DATA = images/32x32/*.png
+#image32dir = $(pkgdatadir)/images/32x32
+#image32_DATA = images/32x32/*.png
 
 image64dir = $(pkgdatadir)/images/64x64
 image64_DATA = images/64x64/*.png
@@ -68,19 +68,22 @@ python_PYTHON=gui/*.py gui/*.bat
 
 dist_doc_DATA = README.md LICENSE.txt
 
+licensesdir = $(pkgdatadir)/licenses
+licenses_DATA=licenses/*.txt
+
 if INCLUDE_MAN
-man1_MANS = man/gpvdm_gui.1
+man1_MANS = man/oghma_gui.1
 endif
 
 if INCLUDE_DESKTOP
 appicondir=$(pkgdatadir)/images
-appicon_DATA=$(srcdir)/desktop/application-gpvdm.svg
+appicon_DATA=$(srcdir)/desktop/application-oghma.svg
 
 desktopdir = $(datadir)/applications
-desktop_DATA = $(srcdir)/desktop/gpvdm.desktop
+desktop_DATA = $(srcdir)/desktop/oghma.desktop
 
 packagesdir = $(datadir)/mime/packages
-packages_DATA = $(srcdir)/desktop/gpvdm-gpvdm.xml
+packages_DATA = $(srcdir)/desktop/oghma-oghma.xml
 
 endif
 
@@ -89,22 +92,26 @@ clean-local:
 	rm ./gui/__pycache__/* -f
 	rm autom4te.cache -rf
 	find . -type f -name '.~lock*' -delete
-	@echo "(gpvdm_build_finished)"
+	@echo "clean-local"
+	@echo "(oghma_build_finished)"
 	
 all:
-	@echo "(gpvdm_build_finished)"
+	@echo "all"
+	@echo "(oghma_build_finished)"
 
 
 install-data-hook:
 	pwd
-	cp ui $(DESTDIR)$(datadir)/gpvdm_gui/ui -rf
-	chmod +x $(DESTDIR)$(pkgdatadir)/gui/gpvdm.py
-	chmod +x $(DESTDIR)$(pkgdatadir)/gui/gpvdm_tool.py
-	find ./ -name "*.mo" -exec cp --parents {} $(DESTDIR)$(datadir)/gpvdm_gui/ ";"
-	@echo "(gpvdm_build_finished)"
+	chmod +x $(DESTDIR)$(pkgdatadir)/gui/oghmanano.py
+	chmod +x $(DESTDIR)$(pkgdatadir)/gui/oghma_tool.py
+	find ./ -name "*.mo" -exec cp --parents {} $(DESTDIR)$(datadir)/oghma_gui/ ";"
+	-rm $(DESTDIR)$(pkgdatadir)/gui/__pycache__ -rf
+	@echo "install-data-hook"
+	@echo "(oghma_build_finished)"
 
 uninstall-hook:
 	-rm $(DESTDIR)$(pkgdatadir) -rf
-	-rm $(DESTDIR)$(bindir)/gpvdm_gui
+	-rm $(DESTDIR)$(bindir)/oghma_gui
+	@echo "uninstall-hook"
 
 ACLOCAL_AMFLAGS = -I m4

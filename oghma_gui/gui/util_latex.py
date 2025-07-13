@@ -29,29 +29,23 @@
 #
 
 import os
+import ctypes
+from cal_path import sim_paths
+from bytes2str import str2bytes,bytes2str
+from json_c import json_string
 
 class latex:
 	def __init__(self):
 		self.lines=[]
+		self.lib=sim_paths.get_dll_py()
 
 	def tab_start(self,labels):
-		self.lines.append("\\begin{table}[H]\n")
-		self.lines.append("\\begin{center}\n")
-		a="\\begin{tabular}{|"
-		for l in labels:
-			a=a+"l|"
-		a=a+"}\n"
-		self.lines.append(a)
-
-		self.lines.append("  \\hline\n")
-		a="  "
-		for l in labels:
-			a=a+l+"&\t"
-		a=a[:-2]
-		a=a+"\\\\ \n"
-		self.lines.append(a)
-
-		self.lines.append("  \\hline\n")
+		labels=",".join(labels)
+		a=json_string()
+		ret=self.lib.latex_tab_start(ctypes.byref(a), ctypes.c_char_p(str2bytes(labels)))
+		ret=a.get_data()
+		a.free()
+		self.lines.append(ret.split("\n"))
 
 	def tab_add_row(self,values):
 		a=""
@@ -62,25 +56,25 @@ class latex:
 		self.lines.append(a)
 
 	def document_start(self):
-
-		self.lines.append("\\documentclass{article}\n")
-		self.lines.append("\\providecommand{\\e}[1]{\\ensuremath{\\times 10^{#1}}}\n")
-		self.lines.append("\\begin{document}\n")
-		self.lines.append("\\pagenumbering{gobble}\n")
-		self.lines.append("\n")
-
+		a=json_string()
+		ret=self.lib.latex_document_start(ctypes.byref(a))
+		ret=a.get_data()
+		a.free()
+		self.lines.append(ret.split("\n"))
 
 	def latex_document_end(self):
-		self.lines.append("\\end{document}\n")
+		a=json_string()
+		ret=self.lib.latex_document_end(ctypes.byref(a))
+		ret=a.get_data()
+		a.free()
+		self.lines.append(ret.split("\n"))
 
-	def tab_end(self,caption=None):
-		self.lines.append("  \\hline\n")
-		self.lines.append("\\end{tabular}\n")
-		self.lines.append("\\end{center}\n")
-		if caption!=None:
-			self.lines.append("\\caption{"+caption+"}\n")
-		self.lines.append("\\end{table}\n")
-		self.lines.append("\n")
+	def tab_end(self,caption=""):
+		a=json_string()
+		ret=self.lib.latex_tab_end(ctypes.byref(a), ctypes.c_char_p(str2bytes(caption)))
+		ret=a.get_data()
+		a.free()
+		self.lines.append(ret.split("\n"))
 
 	def save(self,file_name):
 		self.file_name=file_name
@@ -130,45 +124,18 @@ class latex:
 		return ret
 
 	def numbers_to_latex(self,data):
-		out=""
-		number=False
-		open_ten=False
-		for i in range(0,len(data)):
-			if str.isdigit(data[i])==True and number==False:
-				out=out+""#$
-				number=True
+		a=json_string()
+		ret=self.lib.latex_insert_number(ctypes.byref(a),str2bytes(data))
+		if ret==-1:
+			return None
+		ret=a.get_data()
+		a.free()
+		return ret
 
-			if number==True:
-				add=data[i]
-
-				if number==True:
-					if data[i]=="e":
-						add="\\times10^{"
-						open_ten=True
-					if str.isdigit(data[i])==True:
-						add=data[i]
-					else:
-						if data[i]!="e" and data[i]!="-" and data[i]!="+" and data[i]!=".":
-							number=False
-							add=""+data[i] #$
-							if open_ten==True:
-								add="}"+data[i] #$
-								open_ten=False
-				out=out+add
-			else:
-				out=out+data[i]
-		if open_ten==True:
-			out=out+"}"#$
-			number=False
-
-		if number==True:
-			out=out+"" #$
-
-		return out
-
-def str_to_latex(in_string):
-	out_string=in_string.replace("_","\\_")
-	return out_string
+	def str_to_latex(self,in_val):
+		in_buf=ctypes.create_string_buffer(str2bytes(in_val),len(in_val)+100)
+		self.lib.str_escape_latex(in_buf)
+		return bytes2str(in_buf.value)
 
 
 

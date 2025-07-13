@@ -1,0 +1,11 @@
+#gpvdm_csv {"title":"Refractive index","type":"xy","y_label":"Wavelength","data_label":"Refractive index","y_units":"nm","y_mul":1000000000.0,"data_units":"au","icon":"mat_file","time ":0.0,"Vexternal":0.0,"x_len":1,"y_len":10,"z_len":1,"cols":"yd"}*
+3.612000e-07	1.411100e+00
+3.650000e-07	1.410300e+00
+4.063000e-07	1.404100e+00
+4.358000e-07	1.400100e+00
+4.700000e-07	1.396700e+00
+4.806000e-07	1.395700e+00
+5.086000e-07	1.393700e+00
+5.461000e-07	1.391800e+00
+5.780000e-07	1.390000e+00
+6.439000e-07	1.387600e+00

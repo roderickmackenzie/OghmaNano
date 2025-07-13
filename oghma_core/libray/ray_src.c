@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -28,13 +26,12 @@
 #include <stdio.h>
 #include <ray.h>
 #include <ray_fun.h>
-#include <gpvdm_const.h>
+#include <oghma_const.h>
 #include <math.h>
 #include <stdlib.h>
 #include <cal_path.h>
 #include <log.h>
 #include <device.h>
-#include <inp.h>
 #include <util.h>
 #include <triangles.h>
 #include <memory.h>
@@ -47,83 +44,48 @@
 	@brief Set up the simulation window for the ray tracer
 */
 
-void ray_check_if_needed(struct simulation *sim,struct device *dev)
-{
-	int count;
-	struct image *my_image=&(dev->my_image);
-	my_image->enabled=FALSE;
-	count=ray_src_add_emitters(sim,dev, TRUE);
-	if (count>0)
-	{	
-		my_image->enabled=TRUE;
-	}
-}
-
-void ray_src_dump(struct simulation *sim,struct device *dev)
-{
-	int i;
-	struct ray_src *src;
-	struct image *my_image=&(dev->my_image);
-	//printf_log(sim,"x\ty\tz\ttheta_steps\ttheta_start\ttheta_stop\tphi_steps\tphi_start\tphi_stop\n");
-	printf_log(sim,"%-14s%-14s%-14s","x","y","z");
-	printf_log(sim,"%-14s%-14s%-14s","theta_steps","theta_start","theta_stop");
-	printf_log(sim,"%-14s%-14s%-14s","phi_steps","phi_start","phi_stop");
-	printf_log(sim,"\n");
-
-	for (i=0;i<my_image->n_ray_srcs;i++)
-	{
-		src=&(my_image->ray_srcs[i]);
-	
-		printf_log(sim,"%-14le%-14le%-14le",src->x,src->y,src->z);
-		printf_log(sim,"%-14d%-14le%-14le",src->theta_steps, src->theta_start,src->theta_stop);
-		printf_log(sim,"%-14d%-14le%-14le",src->phi_steps, src->phi_start,src->phi_stop);
-		printf_log(sim,"\n");
-//le\t%d\t%le\t%le\t%d\t%le\t%le\n",,src->phi_steps, src->phi_start,	src->phi_stop);
-	}
-}
-
-int ray_src_add_emitters(struct simulation *sim,struct device *dev, int just_count)
+int ray_check_if_needed(struct simulation *sim,struct device *dev)
 {
 	int l;
 	int i;
-	int emitters=0;
 	struct light_src *lightsrc;
-	struct ray_src *raysrc;
 	struct epi_layer *layer;
-	struct image *my_image=&(dev->my_image);
+	struct ray_engine *eng=&(dev->eng);
 	struct epitaxy* epitaxy = &(dev->my_epitaxy);
-	double xlen=dev->xlen;
-	double zlen=dev->zlen;
+	struct json_obj *json_outcoupling;
+	char outcoupling_mode[100];
+	struct simmode *sm=&(dev->simmode);
 
-	double start_z=zlen/2.0;
-	double start_x=xlen/2.0;
 
-	for (l=0;l<epitaxy->layers;l++)
+	eng->enabled=FALSE;
+
+	//If we are running an fdtd simulation then we are not ray tracing.
+	if (strcmp_end(sm->optical_solver,"ray_trace")==0)
 	{
-		layer=&(epitaxy->layer[l]);
+		eng->enabled=TRUE;
+		return 0;
+	}
 
-		if (layer->pl_enabled==TRUE)
+	if (strcmp_end(sm->optical_solver,"fdtd")==0)
+	{
+		eng->enabled=FALSE;
+		return -1;
+	}
+
+	json_outcoupling=json_obj_find_by_path(&(dev->config.obj), "optical.outcoupling");
+	json_get_string(sim, json_outcoupling, outcoupling_mode,"outcoupling_model",TRUE);
+
+	if (strcmp(outcoupling_mode,"ray_trace")==0)
+	{
+		for (l=0;l<epitaxy->layers;l++)
 		{
-			if (just_count==FALSE)
+			layer=&(epitaxy->layer[l]);
+
+			if (layer->pl_enabled==TRUE)
 			{
-				raysrc=&(my_image->ray_srcs[emitters]);
-
-				raysrc->x=start_x;
-				raysrc->y=layer->y_start+layer->width/2.0;
-				raysrc->z=start_z;
-
-				raysrc->theta_steps=layer->theta_steps;
-				raysrc->theta_start=layer->theta_start;
-				raysrc->theta_stop=layer->theta_stop;
-
-				raysrc->phi_steps=layer->phi_steps;
-				raysrc->phi_start=layer->phi_start;
-				raysrc->phi_stop=layer->phi_stop;
-				raysrc->epi_layer=l;
-				raysrc->emission_source=layer->emission_source;
-				raysrc->light=-1;
+				eng->enabled=TRUE;
+				return 0;
 			}
-			emitters++;
 		}
 	}
 
@@ -132,31 +94,102 @@ int ray_src_add_emitters(struct simulation *sim,struct device *dev, int just_cou
 		lightsrc=&(dev->lights.light_sources[i]);
 		if (strcmp(lightsrc->illuminate_from,"xyz")==0)
 		{
-			if (just_count==FALSE)
-			{
-				raysrc=&(my_image->ray_srcs[emitters]);
-
-				raysrc->x=lightsrc->x0;
-				raysrc->y=lightsrc->y0;
-				raysrc->z=lightsrc->z0;
-
-				raysrc->theta_steps=lightsrc->theta_steps;
-				raysrc->theta_start=lightsrc->theta_start;
-				raysrc->theta_stop=lightsrc->theta_stop;
-
-				raysrc->phi_steps=lightsrc->phi_steps;
-				raysrc->phi_start=lightsrc->phi_start;
-				raysrc->phi_stop=lightsrc->phi_stop;
-				raysrc->epi_layer=-1;
-				raysrc->emission_source=-1;
-				raysrc->light=i;
-			}
-			emitters++;
+			eng->enabled=TRUE;
+			return 0;
 		}
 	}
 
-	return emitters;
-
+	return 0;
 }
+
+int ray_src_init(struct ray_src *raysrc)
+{
+	raysrc->x=0.0;
+	raysrc->y=0.0;
+	raysrc->z=0.0;
+
+	raysrc->theta_steps=0;
+	raysrc->theta_start=0.0;
+	raysrc->theta_stop=0.0;
+
+	raysrc->phi_steps=0;
+	raysrc->phi_start=0.0;
+	raysrc->phi_stop=0.0;
+
+	raysrc->dx_padding=0.0;
+	raysrc->dy_padding=0.0;
+	raysrc->dz_padding=0.0;
+
+	raysrc->dx=0.0;
+	raysrc->dy=0.0;
+	raysrc->dz=0.0;
+
+	raysrc->nx=0;
+	raysrc->ny=0;
+	raysrc->nz=0;
+
+	raysrc->single_ray_area=0.0;
+
+	raysrc->rotate_x=0.0;
+	raysrc->rotate_y=0.0;
+
+	raysrc->epi_layer=0;
+	raysrc->light=0;
+	raysrc->emission_source=0;
+	raysrc->mag=0.0;
+	raysrc->mesh_x=-1;
+	raysrc->mesh_y=-1;
+	raysrc->mesh_z=-1;
+
+	raysrc->emitted=NULL;
+	raysrc->detected=NULL;
+
+	strcpy(raysrc->name,"");
+	return 0;
+}
+
+int ray_src_malloc(struct ray_src *src,struct ray_engine *eng)
+{
+	malloc_1d((void **)(&(src->emitted)),eng->ray_wavelength_points, sizeof(double));
+	malloc_1d((void **)(&(src->detected)),eng->ray_wavelength_points, sizeof(double));
+	return 0;
+}
+
+int ray_src_free(struct ray_src *src)
+{
+	free_1d((void **)(&src->emitted));
+	free_1d((void **)(&src->detected));
+	return 0;
+}
+
+int ray_src_layer_to_raysrc(struct ray_src *raysrc, struct epi_layer *layer)
+{
+	raysrc->theta_steps=layer->theta_steps;
+	raysrc->theta_start=layer->theta_start;
+	raysrc->theta_stop=layer->theta_stop;
+
+	raysrc->phi_steps=layer->phi_steps;
+	raysrc->phi_start=layer->phi_start;
+	raysrc->phi_stop=layer->phi_stop;
+
+	raysrc->dx_padding=layer->dx_padding;
+	raysrc->dy_padding=layer->dy_padding;
+	raysrc->dz_padding=layer->dz_padding;
+
+	raysrc->nx=layer->nx;
+	raysrc->ny=layer->ny;
+	raysrc->nz=layer->nz;
+
+	raysrc->rotate_x=0.0;
+	raysrc->rotate_y=0.0;
+
+	raysrc->emission_source=layer->emission_source;
+	raysrc->epi_layer=layer->layer_number;
+	raysrc->light=-1;
+	return 0;
+}
+
+
+
 
 

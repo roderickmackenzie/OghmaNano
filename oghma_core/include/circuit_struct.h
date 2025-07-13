@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,8 +29,11 @@
 
 #ifndef circuit_struct_h
 #define circuit_struct_h
+#include <g_io.h>
+#include <shape_struct.h>
 #include <sim_struct.h>
 #include <matrix_solver_memory.h>
+#include <contact_struct.h>
 
 #define CIR_KNOWN 0
 #define CIR_UNKNOWN 1
@@ -47,13 +48,29 @@ struct circuit_config_line
 	int x1;
 	int y1;
 	int z1;
-	double R;
-	double C;
 	double L;
+	double C;
+	double R;
+	double R_sigma;
+	double a;
+	double a_sigma;
+	double b;
+	double b_sigma;
+	double c;
+	double c_sigma;
 	double nid;
+	double nid_sigma;
 	double I0;
+	double I0_sigma;
+	double phi0;
+	double phi0_sigma;
+	double b0;
+	double b0_sigma;
+	int com_enable_sigma;
 	double Dphotoneff;
 	char layer_name[100];
+	int uid;
+	int count;
 };
 
 struct circuit_link
@@ -64,24 +81,27 @@ struct circuit_link
 	double L;
 	double C;
 	double R;
+	double a;
+	double b;
+	double c;
 	double I0;
+	double phi0;
+	double b0;
 	double Isc;
 	int enable_Isc;
 	double n0;
 	double i;
 	double Dphotoneff;
-	//For 3d electrical not use for the calculation
-	//double J0;
-	//double Jsc;
-	//double j;
 	double dl;		//Length between nodes
-	//double rho;
+	int uid;
 
 	//only used for diodes and to figure out where they are.
-	int layer;
+	struct shape *s;
 	int x;
 	int z;
 	int id;
+
+	int enabled;
 
 };
 
@@ -99,11 +119,12 @@ struct circuit_node
 	double x_pos;
 	double y_pos;
 
-	int links[10];
+	int *links;
 	int nlinks;
+	int nlinks_max;
 	char selected;
-
 	int node_index;
+	int contact_number;		//contact
 };
 
 struct circuit
@@ -122,6 +143,10 @@ struct circuit
 	int enabled;
 	struct matrix_solver_memory msm;
 	int quite;
+	int prime;
+	int step;
+	int solver_verbosity;
+	int circuit_mesh_src;
 };
 
 #endif

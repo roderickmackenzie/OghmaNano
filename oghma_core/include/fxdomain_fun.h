@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,6 +29,7 @@
 
 #ifndef fxdomain_fun_h
 #define fxdomain_fun_h
+#include <g_io.h>
 #include "advmath.h"
 #include "inp_struct.h"
 #include <sim_struct.h>
@@ -39,7 +38,7 @@
 #include <json.h>
 
 //fitting
-void fit_cos(struct simulation *sim,int dump_fit_progress_data,long double *fit_error,gdouble *ret_mag,gdouble *ret_delta,struct math_xy *input_data,gdouble fx,char * prefix, char *output_path);
+void fit_cos(struct simulation *sim,int dump_fit_progress_data,double *fit_error,double *ret_mag,double *ret_delta,struct math_xy *input_data,double fx,char * prefix, char *output_path);
 double sin_f (double *p,int len);
 
 //fxdomain
@@ -67,6 +66,6 @@ void fx_load_mesh(struct simulation *sim,struct fxdomain *config,struct json_obj
 void fx_mesh_step(struct simulation *sim,struct fxdomain *config);
 int fx_mesh_points(struct fxdomain *config);
 int fx_mesh_run(struct fxdomain *config);
-long double fx_mesh_get_fx(struct fxdomain *config);
+gdouble fx_mesh_get_fx(struct fxdomain *config);
 int fx_mesh_get_step(struct fxdomain *config);
 #endif

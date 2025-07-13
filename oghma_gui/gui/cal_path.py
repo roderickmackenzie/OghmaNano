@@ -30,7 +30,6 @@
 
 import sys
 import os
-from pathlib import Path
 from win_lin import get_platform
 from win_lin import set_oghma_core_path
 from gui_enable import gui_get
@@ -41,42 +40,345 @@ import ctypes
 from bytes2str import str2bytes
 from bytes2str import bytes2str
 
-root_materials_path=None
-plugins_path=None
-exe_command=None
-share_path=None
-device_lib_path=None
-bin_path=None
-lib_path=None
-image_path=None
-css_path=None
-flag_path=None
-lang_path=None
-src_path=None
-spectra_base_path=None
-sim_path=None
-materials_base_path=None
-atmosphere_path=None
-shape_base_path=None
-scripts_base_path=None
-bib_path=None
-fonts_path=None
-video_path=None
-cluster_path=None
-cluster_libs_path=None
-home_path=None
-use_json_local_root=None
-components_path=None
-filters_base_path=None
 li_path=None
-dll_py_path_han=None
+sim_paths=None
 
 class c_paths(ctypes.Structure):
-	_fields_ = [('html_path', ctypes.c_char * 4096)]
+	_fields_ = [('html_path', ctypes.c_char_p),
+				('user_home_dir', ctypes.c_char_p),
+				('user_desktop_dir', ctypes.c_char_p),
+				('user_music_dir', ctypes.c_char_p),
+				('user_downloads_dir', ctypes.c_char_p),
+				('python_script_path', ctypes.c_char_p),
+				('shape_base_path', ctypes.c_char_p),
+				('morphology_base_path', ctypes.c_char_p),
+				('filters_base_path', ctypes.c_char_p),
+				('scripts_base_path', ctypes.c_char_p),
+				('atmosphere_path', ctypes.c_char_p),
+				('device_lib_path', ctypes.c_char_p),
+				('plugins_path', ctypes.c_char_p),
+				('image_path', ctypes.c_char_p),
+				('css_path', ctypes.c_char_p),
+				('flag_path', ctypes.c_char_p),
+				('lang_path', ctypes.c_char_p),
+				('spectra_base_path', ctypes.c_char_p),
+				('cluster_path', ctypes.c_char_p),
+				('cluster_libs_path', ctypes.c_char_p),
+				('bib_path', ctypes.c_char_p),
+				('fonts_path', ctypes.c_char_p),
+				('video_path', ctypes.c_char_p),
+				('components_path', ctypes.c_char_p),
+				('inp_template_path', ctypes.c_char_p),
+				('guess_of_main_oghma_dir', ctypes.c_char_p),
+				('materials_base_path', ctypes.c_char_p),
+				('exe_command', ctypes.c_char_p),
+				('src_path', ctypes.c_char_p),
+				('li_path', ctypes.c_char_p),
+				('text_dump', ctypes.c_char_p),
+				('materials', ctypes.c_char_p),
+				('filter_path', ctypes.c_char_p),
+				('cie_color_path', ctypes.c_char_p),
+				('shape_path', ctypes.c_char_p),
+				('morphology_path', ctypes.c_char_p),
+				('spectra_path', ctypes.c_char_p),
+				('tmp_path', ctypes.c_char_p),
+				('tmp_path_fast', ctypes.c_char_p),
+				('updates', ctypes.c_char_p),
+				('oghma_local', ctypes.c_char_p),
+				('newton_cache_path', ctypes.c_char_p),
+				('external_solver_path', ctypes.c_char_p),
+				('root_simulation_path', ctypes.c_char_p),
+				('dirs', ctypes.c_int),
+				('files', ctypes.c_int),
+				('search_oghma_local', ctypes.c_int),
+				('installed_from_deb', ctypes.c_int)]
 
-paths=c_paths()
+	def __init__(self):
+		self.lib = None
+		self.dll_path=None
+		if self.find_the_dll()==False:
+			print("I can't find liboghma_py.dll or liboghma_py.so")
+			sys.exit(0)
+		self.lib = ctypes.CDLL(self.dll_path)
+		if self.lib==None:
+			print("Error loading  liboghma_py.dll or liboghma_py.so")
+			sys.exit(0)
+		self.lib.init_lang()
+		self.lib.paths_init(ctypes.byref(self))
+		self.lib.color_map_build_index()
+		self.lib.paths_set_python_script_path(ctypes.byref(self),ctypes.c_char_p(str2bytes(os.path.dirname(os.path.realpath(__file__)))))
+		self.lib.paths_do_search(ctypes.byref(self))
+		self.lib.get_compile_time.restype = ctypes.c_char_p
+		self.lib.token_lib_find.restype = ctypes.c_void_p
+		self.lib.token_lib_rfind.restype = ctypes.c_void_p
+		self.lib.server_get_next_job.restype = ctypes.c_void_p
+		self.lib.json_epitaxy_get_layer_start.restype = ctypes.c_double
+		self.lib.json_epitaxy_get_layer_stop.restype = ctypes.c_double
+		self.lib.json_epitaxy_get_len.restype = ctypes.c_double
+		self.lib.json_epitaxy_get_device_start.restype = ctypes.c_double
+		self.lib.zip_get_file_modification_date.restype = ctypes.c_long
 
-def subtract_paths(root,b_in):
+		#self.lib.json_epitaxy_project_doping.argtypes = [ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double), ctypes.c_int, ctypes.byref]
+		#self.lib.paths_dump(ctypes.byref(self))
+
+	def find_the_dll(self):
+		if get_platform()=="linux":
+			ex=".so"
+		elif get_platform()=="wine":
+			ex=".so"
+		else:
+			ex=".dll"
+		paths=[]
+		paths.append(os.getcwd())
+		#chk cwd and in the oghma_* directories
+		paths.append(os.path.join(os.getcwd(),"oghma_local"))
+		paths.append(os.path.join(os.getcwd(),"oghma_gui"))
+		paths.append(os.path.join(os.getcwd(),"oghma_core"))
+
+		#check where the root directory for a normal install
+		script_dir=os.path.dirname(os.path.realpath(__file__))
+		script_dir_dot_dot=os.path.dirname(script_dir)
+		script_dir_dot_dot_dot_dot=os.path.dirname(script_dir_dot_dot)
+		paths.append(script_dir)
+		paths.append(os.path.dirname(script_dir))
+
+		paths.append(os.path.join(script_dir_dot_dot,"oghma_local"))
+		paths.append(os.path.join(script_dir_dot_dot,"oghma_gui"))
+		paths.append(os.path.join(script_dir_dot_dot,"oghma_core"))
+
+		paths.append(os.path.join(script_dir_dot_dot_dot_dot,"oghma_local"))
+		paths.append(os.path.join(script_dir_dot_dot_dot_dot,"oghma_gui"))
+		paths.append(os.path.join(script_dir_dot_dot_dot_dot,"oghma_core"))
+
+		paths.append(os.path.join(os.path.abspath(os.path.join(os.getcwd(), os.pardir))))
+
+		if get_platform()=="linux":
+			paths.append("/usr/lib/oghma_core/")
+			paths.append("/usr/lib/")
+			paths.append("/usr/bin/")		#libs should not be in here but it is easy
+		else:
+			paths.append(os.path.join("C:\\Program Files","OghmaNano"))
+			paths.append(os.path.join("D:\\Program Files","OghmaNano"))
+			paths.append(os.path.join("C:\\Program Files (x86)","OghmaNano"))
+			paths.append(os.path.join("D:\\Program Files (x86)","OghmaNano"))
+
+		for path in paths:
+			test_file=os.path.join(path,"liboghma_py.so")
+			if os.path.isfile(test_file)==True:
+				self.dll_path=test_file
+				return True
+
+			test_file=os.path.join(path,"liboghma_py.dll")
+			if os.path.isfile(test_file)==True:
+				self.dll_path=test_file
+				return True
+
+		return False
+
+	def get_paths_as_debug_info(self):
+		self.lib.paths_dump_to_text(ctypes.byref(self))
+		text=bytes2str(ctypes.cast(self.text_dump, ctypes.c_char_p).value)
+		text="<b>"+text.replace("\n","<br><b>")
+		text=text.replace(":","</b>")
+		return text
+
+	def get_html_path(self):
+		return bytes2str(ctypes.cast(self.html_path, ctypes.c_char_p).value)
+
+	def get_inp_template_path(self):
+		return bytes2str(ctypes.cast(self.inp_template_path, ctypes.c_char_p).value)
+
+	def is_plugin(self,name):
+		if os.path.isfile(os.path.join(bytes2str(ctypes.cast(self.plugins_path, ctypes.c_char_p).value),name+".dll"))==True:
+			return True
+
+		if os.path.isfile(os.path.join(bytes2str(ctypes.cast(self.plugins_path, ctypes.c_char_p).value),name+".so"))==True:
+			return True
+
+		return False
+
+	def get_newton_cache_path(self):
+		return bytes2str(ctypes.cast(self.newton_cache_path, ctypes.c_char_p).value)
+
+	def get_bib_path(self):
+		return bytes2str(ctypes.cast(self.bib_path, ctypes.c_char_p).value)
+
+	def get_tmp_path(self):
+		ret=bytes2str(ctypes.cast(self.tmp_path, ctypes.c_char_p).value)
+
+		if os.path.isdir(ret)==False:
+			os.makedirs(ret)
+
+		return ret
+
+	def get_tmp_path_fast(self):
+		ret=bytes2str(ctypes.cast(self.tmp_path_fast, ctypes.c_char_p).value)
+
+		if os.path.isdir(ret)==False:
+			os.makedirs(ret)
+
+		return ret
+
+	def get_materials_path(self):
+		return os.path.join(self.get_user_settings_dir(),"materials")
+
+	def get_sim_path(self):
+		return bytes2str(sim_paths.root_simulation_path)
+
+	##############################################################
+	#get_xxx_path(self): in self.get_user_settings_dir()
+
+	def get_filters_path(self):
+		return os.path.join(self.get_user_settings_dir(),"filters")
+
+	def get_shape_path(self):
+		return os.path.join(self.get_user_settings_dir(),"shape")
+
+	def get_spectra_path(self):
+		return os.path.join(self.get_user_settings_dir(),"spectra")
+
+	def get_scripts_path(self):
+		return os.path.join(self.get_user_settings_dir(),"scripts")
+
+	def get_morphology_path(self):
+		return os.path.join(self.get_user_settings_dir(),"morphology")
+
+	##############################################################
+	#get_base_xxx_path(self):
+
+	def get_base_filters_path(self):
+		return bytes2str(ctypes.cast(self.filters_base_path, ctypes.c_char_p).value)
+
+	def get_base_morphology_path(self):
+		return bytes2str(ctypes.cast(self.morphology_base_path, ctypes.c_char_p).value)
+
+	def get_base_shape_path(self):
+		return bytes2str(ctypes.cast(self.shape_base_path, ctypes.c_char_p).value)
+
+	def get_base_scripts_path(self):
+		return bytes2str(ctypes.cast(self.scripts_base_path, ctypes.c_char_p).value)
+
+	def get_base_spectra_path(self):
+		return bytes2str(ctypes.cast(self.spectra_base_path, ctypes.c_char_p).value)
+
+	def get_base_material_path(self):
+		return bytes2str(ctypes.cast(self.materials_base_path, ctypes.c_char_p).value)
+
+	##############################################################
+	def am_i_rod(self):
+		path=os.path.join(self.get_home_path(),"oghma_rod")
+		if os.path.isfile(path):
+			return True
+		return False
+
+	def get_wine_home_dir(self):
+		path=os.path.join(self.get_home_path(),".wine","drive_c","users",os.path.basename(self.get_home_path()))
+		if os.path.isdir(path):
+			return path
+		return False
+
+	def get_li_path(self):
+		global li_path
+		
+		#If settings.json is in the exe path default to that
+		test_path=os.path.join(os.path.dirname(bytes2str(ctypes.cast(self.exe_command, ctypes.c_char_p).value)),"settings.json")
+		if os.path.isfile(test_path)==True:
+			return test_path
+
+		return li_path
+
+	def get_backup_path(self):
+		global sim_paths
+		path=os.getcwd()
+		if sim_paths.root_simulation_path!=None:
+			path=bytes2str(sim_paths.root_simulation_path)
+
+		backup_path=os.path.join(path,"backup")
+		return backup_path
+
+	def get_home_path(self):
+		return bytes2str(ctypes.cast(self.user_home_dir, ctypes.c_char_p).value)
+
+	def get_shape_template_path(self):
+		return os.path.join(bytes2str(ctypes.cast(self.inp_template_path, ctypes.c_char_p).value),"shape")
+
+	def get_exe_path(self):
+		ret=os.path.dirname(bytes2str(ctypes.cast(self.exe_command, ctypes.c_char_p).value))
+		return ret
+
+	def get_dll_py(self):
+		return self.lib
+
+	def get_fonts_path(self):
+		return bytes2str(ctypes.cast(self.fonts_path, ctypes.c_char_p).value)
+
+	def get_user_settings_dir(self):
+		ret=bytes2str(ctypes.cast(self.oghma_local, ctypes.c_char_p).value)
+		if os.path.isdir(ret)==False:
+			os.makedirs(ret)
+		return ret
+
+	def get_device_lib_path(self):
+		return bytes2str(ctypes.cast(self.device_lib_path, ctypes.c_char_p).value)
+
+	def get_plugins_path(self):
+		return bytes2str(ctypes.cast(self.plugins_path, ctypes.c_char_p).value)
+
+	def get_exe_command(self):
+		return bytes2str(ctypes.cast(self.exe_command, ctypes.c_char_p).value)
+
+	def get_exe_name(self):
+		return os.path.basename(bytes2str(ctypes.cast(self.exe_command, ctypes.c_char_p).value))
+
+	def get_components_path(self):
+		return bytes2str(ctypes.cast(self.components_path, ctypes.c_char_p).value)
+
+	def get_image_file_path(self):
+		return bytes2str(ctypes.cast(self.image_path, ctypes.c_char_p).value)
+
+	def get_css_path(self):
+		return bytes2str(ctypes.cast(self.css_path, ctypes.c_char_p).value)
+
+	def get_flag_file_path(self):
+		return bytes2str(ctypes.cast(self.flag_path, ctypes.c_char_p).value)
+
+	def get_lang_path(self):
+		return bytes2str(ctypes.cast(self.lang_path, ctypes.c_char_p).value)
+
+	def get_video_path(self):
+		return bytes2str(ctypes.cast(self.video_path, ctypes.c_char_p).value)
+
+	def get_atmosphere_path(self):
+		return bytes2str(ctypes.cast(self.atmosphere_path, ctypes.c_char_p).value)
+
+	def get_cluster_path(self):
+		return bytes2str(ctypes.cast(self.cluster_path, ctypes.c_char_p).value)
+
+	def get_cluster_libs_path(self):
+		return bytes2str(ctypes.cast(self.cluster_libs_path, ctypes.c_char_p).value)
+
+	def get_src_path(self):
+		return bytes2str(ctypes.cast(self.src_path, ctypes.c_char_p).value)
+
+	def get_web_cache_path(self):
+		ret=os.path.join(sim_paths.get_user_settings_dir(),"web_cache")
+
+		if os.path.isdir(ret)==False:
+			os.makedirs(ret)
+
+		return ret
+
+	def get_user_data_path(self):
+		ret=os.path.join(sim_paths.get_user_settings_dir(),"user_data")
+		if os.path.isdir(ret)==False:
+			os.makedirs(ret)
+		return ret
+
+	def __del__(self):
+		if self.lib!=None:
+			self.lib.paths_free(ctypes.byref(self))
+
+def subtract_paths(root,b_in):		#There is a functon in C that is untestedm, in a release or two replce this with the C function
 	a=root.replace("/","\\")
 	b=b_in.replace("/","\\")
 	a=a.split("\\")
@@ -118,98 +420,6 @@ def remove_simpathfrompath(path):
 		tmp=tmp[len(sim_paths.get_sim_path())+1:]
 	return tmp
 
-def cal_share_path():
-	global share_path
-
-	if os.path.isfile("configure.ac"):
-		share_path=os.getcwd()
-		return
-
-	if os.path.isfile("ver.py"):
-		share_path=os.path.abspath(os.path.join(os.getcwd(), os.pardir))
-		return
-
-	if get_platform()=="win" or get_platform()=="wine":
-		if os.path.isfile(os.path.join(os.getcwd(),sim_name.exe_name+".exe")):
-			share_path=os.getcwd()
-		else:
-			share_path=os.path.join("c:\\",sim_name.install_dir)
-
-	else:
-		if os.path.isdir(os.path.join("/usr/lib64",sim_name.install_dir)):
-			share_path=os.path.join("/usr/lib64",sim_name.install_dir)
-		elif os.path.isdir(os.path.join("/usr/lib",sim_name.install_dir)):
-			share_path=os.path.join("/usr/lib",sim_name.install_dir)
-		else:
-			share_path=os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-			print("I don't know where the shared files are assuming ",share_path)
-
-def search_known_paths(file_or_dir_to_find,ext,key_file,is_file,ret_none_on_not_found=False):
-	global share_path
-	global bin_path
-	root_dir_rel_to_script_for_source_code=os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))	#oghma.py ../../ assuming it's in the right palce
-
-	#print(root_dir_rel_to_script)
-	#check cwd
-	paths=[]
-	for ex in ext:
-		paths.append(os.path.join(os.getcwd(),file_or_dir_to_find)+ex)
-		#chk cwd and in the oghma_* directories
-		paths.append(os.path.join(os.getcwd(),"oghma_local",file_or_dir_to_find)+ex)
-		paths.append(os.path.join(os.getcwd(),"oghma_gui",file_or_dir_to_find)+ex)
-		paths.append(os.path.join(os.getcwd(),"oghma_data",file_or_dir_to_find)+ex)
-		paths.append(os.path.join(os.getcwd(),sim_name.exe_name,file_or_dir_to_find)+ex)
-		paths.append(os.path.join("C:\\Program Files",sim_name.install_dir,file_or_dir_to_find)+ex)
-		paths.append(os.path.join("D:\\Program Files",sim_name.install_dir,file_or_dir_to_find)+ex)
-		paths.append(os.path.join("C:\\Program Files (x86)",sim_name.install_dir,file_or_dir_to_find)+ex)
-		paths.append(os.path.join("D:\\Program Files (x86)",sim_name.install_dir,file_or_dir_to_find)+ex)
-
-		#check where the root directory for a normal install
-		paths.append(os.path.join(root_dir_rel_to_script_for_source_code,sim_name.local_dir,file_or_dir_to_find)+ex)
-		paths.append(os.path.join(root_dir_rel_to_script_for_source_code,"oghma_gui",file_or_dir_to_find)+ex)
-		paths.append(os.path.join(root_dir_rel_to_script_for_source_code,"oghma_data",file_or_dir_to_find)+ex)
-		paths.append(os.path.join(root_dir_rel_to_script_for_source_code,sim_name.exe_name,file_or_dir_to_find)+ex)
-
-		paths.append(os.path.join(os.path.abspath(os.path.join(os.getcwd(), os.pardir)),file_or_dir_to_find)+ex)
-
-		paths.append(os.path.join(bin_path,file_or_dir_to_find)+ex)
-		paths.append(os.path.join(sim_paths.get_sim_path(),file_or_dir_to_find)+ex)
-		if get_platform()=="linux":
-			paths.append(os.path.join("/usr/share/",sim_name.install_dir,file_or_dir_to_find)+ex)
-			paths.append(os.path.join("/usr/local/bin/",file_or_dir_to_find)+ex)
-			paths.append(os.path.join("/usr/bin/",file_or_dir_to_find)+ex)
-
-		paths.append(os.path.join(sim_paths.get_home_path(),"oghma_local",file_or_dir_to_find)+ex)
-
-	for item in paths:
-		#print(item,os.path.isfile(item),os.path.dirname(os.path.realpath(__file__)))
-		if key_file==None:
-			if os.path.isdir(item) and is_file==False:
-				#print "found",item
-				return to_native_path(item)
-			#if item.endswith("settings2.inp"):
-			#	print(item,sim_name.local_dir)
-			if os.path.isfile(item) and is_file==True:
-				#print "found",item
-				return to_native_path(item)
-
-		else:
-			if os.path.isfile(os.path.join(item,key_file)) and is_file==True:
-				return to_native_path(item)
-
-	#print "Can't find",file_or_dir_to_find, "setting it to",paths[0]
-	if ret_none_on_not_found==True:
-		return None
-
-	return paths[2]
-
-def cal_bin_path():
-	global bin_path
-	if get_platform()=="linux":
-			bin_path="/bin/"
-	else:
-			bin_path=share_path
-
 def test_arg_for_sim_file():
 	if len(sys.argv)>1:
 		f=os.path.realpath(sys.argv[1])
@@ -219,408 +429,28 @@ def test_arg_for_sim_file():
 			return f
 	return False
 
-def calculate_paths_init():
-	set_sim_path(os.getcwd())
-	path=test_arg_for_sim_file()
-	if path!=False:
-		set_sim_path(path)
-
-	cal_share_path()
-	cal_bin_path()
-
-def get_icon_path(name,size=-1):
-	global image_path
-	if name.endswith(".png"):
-		name=name[:-4]
-
-	if size==-1:
-		path=os.path.join(image_path,"64x64",name+".png")
-		return path
-
-	return os.path.join(image_path,str(size)+"x"+str(size),name+".png")
-
-
 def calculate_paths():
-	global share_path
-	global lib_path
-	global exe_command
-	global device_lib_path
-	global root_materials_path
-	global image_path
-	global css_path
-	global flag_path	
-	global plugins_path
-	global lang_path
-	global src_path
-	global spectra_base_path
-	global materials_base_path
-	global shape_base_path
-	global scripts_base_path
-	global paths
-	global bib_path
-	global fonts_path
-	global video_path
-	global cluster_path
-	global cluster_libs_path
-	global atmosphere_path
-	global components_path
-	global inp_template_path
-	global filters_base_path
 	global li_path
-	global dll_py_path_han
-
-	root_materials_path=os.path.join(sim_paths.get_sim_path(),"materials")
-	if os.path.isdir(root_materials_path)==False:
-		root_materials_path=search_known_paths("materials",[""],None,False)
-	materials_base_path=search_known_paths("materials",[""],None,False)
-	shape_base_path=search_known_paths("shape",[""],None,False)
-	filters_base_path=search_known_paths("filters",[""],None,False)
-	scripts_base_path=search_known_paths("scripts",[""],None,False)
-	atmosphere_path=search_known_paths("atmosphere",[""],None,False)
-
-	device_lib_path=search_known_paths("device_lib",[""],None,False)
-	plugins_path=search_known_paths("plugins",[""],None,False)
-	image_path=search_known_paths("images",[""],"image.jpg",True)
-
-	css_path=search_known_paths("css",[""],"style.css",True)
-	flag_path=search_known_paths("flags",[""],"gb.png",True)
-	lang_path=search_known_paths("lang",[""],None,False)
-	exe_command=search_known_paths(sim_name.exe_name,["",".exe",".o"],None,True)
-	set_oghma_core_path(exe_command)
-	src_path=os.path.dirname(search_known_paths("Makefile",[".am"],None,True))
-	spectra_base_path=search_known_paths("spectra",[""],None,False)
-	cluster_path=search_known_paths("cluster",[""],None,False)
-	cluster_libs_path=search_known_paths("cluster_libs",[""],None,False)
-
-
-	paths.html_path=str2bytes(search_known_paths("html",[""],"info0.html",True))
-	bib_path=search_known_paths("bib",[""],"cite.bib",True)
-	fonts_path=search_known_paths("fonts",[""],"LiberationSans-Regular.ttf",True)
-	video_path=search_known_paths("video",[""],"welcome.wmv",True)
-	components_path=search_known_paths("components",[""],"resistor.inp",True)
-	inp_template_path=search_known_paths("inp_template",[""],"server.inp",True)
-	li_path=search_known_paths("settings",[".json"],None,True,ret_none_on_not_found=True)
-	if li_path==None:
-		li_path=search_known_paths("settings2.inp",[""],None,True,ret_none_on_not_found=True)
-
-	if dll_py_path_han==None:
-		base_name=os.path.join(os.path.dirname(exe_command),"liboghma_py")
-		if os.path.isfile(base_name+".so")==True:
-			dll_py_path_han = ctypes.CDLL(base_name+".so")
-		elif os.path.isfile(base_name+".dll")==True:
-			dll_py_path_han = ctypes.CDLL(base_name+".dll")
-		else:
-			print("liboghma_py.dll or liboghma_py.so not found")
-
-def get_cluster_path():
-	global cluster_path
-	return cluster_path
-
-def get_cluster_libs_path():
-	global cluster_libs_path
-	return cluster_libs_path
-
-def get_share_path():
-	global share_path
-	return share_path
-
-def get_src_path():
-	global src_path
-	return src_path
-
-
-
-
-
-def get_web_cache_path():
-	ret=os.path.join(sim_paths.get_user_settings_dir(),"web_cache")
-
-	if os.path.isdir(ret)==False:
-		os.makedirs(ret)
-
-	return ret
-
-
-
-#dont use any more
-def get_materials_path():
-	return os.path.join(sim_paths.get_user_settings_dir(),"materials")
-
-def get_user_data_path():
-	ret=os.path.join(sim_paths.get_user_settings_dir(),"user_data")
-	if os.path.isdir(ret)==False:
-		os.makedirs(ret)
-	return ret
-
-
-def get_base_material_path():
-	global materials_base_path
-	return materials_base_path
-
-def get_atmosphere_path():
-	global atmosphere_path
-	return atmosphere_path
-
-
-def get_default_material_path():
-	global materials_base_path
-	return os.path.join(materials_base_path,"generic","default")
-
-def get_device_lib_path():
-	global device_lib_path
-	return device_lib_path
-
-def get_bin_path():
-	global bin_path
-	return bin_path
-
-def get_plugins_path():
-	global plugins_path
-	return plugins_path
-
-def get_exe_command():
-	global exe_command
-	return exe_command
-
-def get_exe_name():
-	global exe_command
-	return os.path.basename(exe_command)
-
-def get_components_path():
-	global components_path
-	return components_path
-
-
-def get_image_file_path():
-	global image_path
-	return image_path
-
-def get_css_path():
-	global css_path
-	return css_path
-
-class sim_paths:
-	def get_inp_template_path():
-		global inp_template_path
-		return inp_template_path
-
-	def is_plugin(name):
-		global plugins_path
-		if os.path.isfile(os.path.join(plugins_path,name+".dll"))==True:
-			return True
-
-		if os.path.isfile(os.path.join(plugins_path,name+".so"))==True:
-			return True
-
-		return False
-
-	def get_shape_template_path():
-		global inp_template_path
-		return os.path.join(inp_template_path,"shape")
-
-	def get_shape_path():
-		return os.path.join(sim_paths.get_user_settings_dir(),"shape")
-
-	def get_bib_path():
-		global bib_path
-		return bib_path
-
-	def get_tmp_path():
-		ret=os.path.join(sim_paths.get_user_settings_dir(),"tmp")
-
-		if os.path.isdir(ret)==False:
-			os.makedirs(ret)
-
-		return ret
-
-	def get_use_json_local_root():
-		global use_json_local_root
-		return use_json_local_root
-
-	def get_materials_path():
-		return os.path.join(sim_paths.get_user_settings_dir(),"materials")
-
-	def get_sim_path():
-		global sim_path
-		if sim_path==None:
-			return os.getcwd()
-		return sim_path
-
-	def get_filters_path():
-		return os.path.join(sim_paths.get_user_settings_dir(),"filters")
-
-	def get_base_filters_path():
-		global filters_base_path
-		return filters_base_path
-
-	def get_spectra_path():
-		return os.path.join(sim_paths.get_user_settings_dir(),"spectra")
-
-	def am_i_rod():
-		path=os.path.join(sim_paths.get_home_path(),"oghma_rod")
-		if os.path.isfile(path):
-			return True
-		return False
-
-	def get_desktop_path():
-		path=os.path.join(sim_paths.get_home_path(),"Desktop")
-		if os.path.isdir(path):
-			return path
-		return False
-
-	def get_wine_home_dir():
-		path=os.path.join(sim_paths.get_home_path(),".wine","drive_c","users",os.path.basename(sim_paths.get_home_path()))
-		if os.path.isdir(path):
-			return path
-		return False
-
-	def get_li_path():
-		global li_path
-		global exe_command
-		
-		#If settings.json is in the exe path default to that
-		test_path=os.path.join(os.path.dirname(exe_command),"settings.json")
-		if os.path.isfile(test_path)==True:
-			return test_path
-
-		return li_path
-
-	def get_backup_path():
-		global sim_path
-		path=os.getcwd()
-		if sim_path!=None:
-			path=sim_path
-
-		backup_path=os.path.join(path,"backup")
-
-		return backup_path
-
-	def get_home_path():
-		global home_path
-		if home_path==None:
-			if get_platform()=="linux":
-				home_path=str(Path.home())
-			elif get_platform()=="win":
-				home_path=str(os.environ['USERPROFILE'])
-				if home_path.endswith("NTUSER.DAT")==True:
-					home_path=os.path.dirname(home_path)
-			elif get_platform()=="wine":
-				home_path=str(Path.home())
-
-		return home_path
-
-	def get_base_material_path():
-		global materials_base_path
-		return materials_base_path
-
-	def get_base_shape_path():
-		global shape_base_path
-		return shape_base_path
-
-	def get_scripts_path():
-		return os.path.join(sim_paths.get_user_settings_dir(),"scripts")
-
-	def get_base_scripts_path():
-		global scripts_base_path
-		return scripts_base_path
-
-	def get_base_spectra_path():
-		global spectra_base_path
-		return spectra_base_path
-
-	def get_exe_path():
-		global exe_command
-		ret=os.path.dirname(exe_command)
-		return ret
-
-	def get_dll_py():
-		global dll_py_path_han
-		return dll_py_path_han
-
-	def get_html_path():
-		global paths
-		return bytes2str(paths.html_path)
-
-	def get_fonts_path():
-		global fonts_path
-		return fonts_path
-
-	def get_user_settings_dir():
-		global use_json_local_root
-		if use_json_local_root==None:
-			use_json_local_root=True
-
-			file_path=os.path.join(os.getcwd(),"sim.json")
-
-			if os.path.isfile(file_path):
-				f=open(file_path, mode='r')
-				read_lines = f.read()
-				f.close()
-
-				data=json.loads(read_lines)
-				try:
-					use_json_local_root=str2bool(data["sim"]["use_json_local_root"])
-				except:
-					pass
-
-		if use_json_local_root==True:
-			ret=os.path.join(sim_paths.get_home_path(),"oghma_local")
-			if os.path.isdir(ret)==False:
-				os.makedirs(ret)
-		else:
-			return os.getcwd()
-		return ret
-
-def get_flag_file_path():
-	global flag_path
-	return flag_path
-
-def get_lang_path():
-	global lang_path
-	return lang_path
-
-def set_sim_path(path):
-	global sim_path
-	sim_path=os.path.abspath(path)
-
-
-def set_sim_path(path):
-	global sim_path
-	sim_path=path
-
-
-
-def get_exe_args():
-	if gui_get()==True:
-		return "--gui --html" #--english
+	global sim_paths
+	sim_paths=c_paths()
+
+	#A bit of sticking plaster
+	if ctypes.cast(sim_paths.li_path, ctypes.c_char_p).value==None:
+		li_path=None
 	else:
-		return ""
+		li_path=bytes2str(ctypes.cast(sim_paths.li_path, ctypes.c_char_p).value)
 
+	set_oghma_core_path(bytes2str(ctypes.cast(sim_paths.exe_command, ctypes.c_char_p).value))
 
-def get_music_path():
-	path=os.path.join(sim_paths.get_home_path(),"Music")
-	if os.path.isdir(path):
-		return path
-	return False
+def get_sim_paths():
+	global sim_paths
+	return sim_paths
 
-def get_videos_path():
-	path=os.path.join(sim_paths.get_home_path(),"Videos")
-	if os.path.isdir(path):
-		return path
-	return False
+def set_sim_path(path):
+	global sim_paths
+	sim_paths.root_simulation_path=bytes(path, encoding='utf8') 
 
-def get_video_path():
-	global video_path
-	return video_path
-
-def get_downloads_path():
-	path=os.path.join(sim_paths.get_home_path(),"Downloads")
-	if os.path.isdir(path):
-		return path
-	return False
-
-
-def multiplatform_exe_command(command):
+def multiplatform_exe_command(command,port=None):
 	if get_platform()!="linux":
 		if command.count(".exe")>0:
 			if get_platform()=="wine":
@@ -629,6 +459,9 @@ def multiplatform_exe_command(command):
 				command="\""+command
 			command=command.replace(".exe",".exe\"",1)
 
-	#print("exe command=",command)
+	if port!=None:
+		command=command+" --port "+str(port)
+
 	return command
+
 

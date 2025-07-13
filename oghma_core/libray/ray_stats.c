@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -27,7 +25,7 @@
 
 #include <stdio.h>
 #include <ray.h>
-#include <gpvdm_const.h>
+#include <oghma_const.h>
 #include <math.h>
 #include <stdlib.h>
 #include <cal_path.h>
@@ -38,52 +36,7 @@
 	@brief Perfrom stats on the ray tracing image
 */
 
-void photon_extract_eff_reset(struct simulation *sim,struct epitaxy *epi,struct image *in)
-{
-	//int i;
-	int l;
-	int layer=0;
-	for (layer=0;layer<epi->layers;layer++)
-	{
-		if (epi->layer[layer].pl_enabled==TRUE)
-		{
-			for (l=0;l<in->ray_wavelength_points;l++)
-			{
-					epi->layer[layer].photon_extract_eff[l]=0.0;
-					epi->layer[layer].photon_extract_eff_count[l]=0.0;
-			}
-		}
-	}
-
-}
-
-void photon_extract_eff_norm(struct simulation *sim,struct epitaxy *epi,struct image *in)
-{
-	//int i;
-	int l;
-	int layer=0;
-	for (layer=0;layer<epi->layers;layer++)
-	{
-		if (epi->layer[layer].pl_enabled==TRUE)
-		{
-			for (l=0;l<in->ray_wavelength_points;l++)
-			{
-					if (epi->layer[layer].photon_extract_eff_count[l]>0)
-					{
-						epi->layer[layer].photon_extract_eff[l]/=epi->layer[layer].photon_extract_eff_count[l];
-					}else
-					{
-						epi->layer[layer].photon_extract_eff[l]=0.0;
-					}
-			}
-		}
-	}
-
-}
-
-
-
-void ray_escape_angle_reset(struct image *in,int l)
+void ray_escape_angle_reset(struct ray_engine *in,int l)
 {
 	int i;
 
@@ -93,7 +46,7 @@ void ray_escape_angle_reset(struct image *in,int l)
 	}
 }
 
-void ray_escape_angle_norm(struct image *in)
+void ray_escape_angle_norm(struct ray_engine *in)
 {
 	int i;
 	int l;
@@ -119,38 +72,7 @@ void ray_escape_angle_norm(struct image *in)
 
 }
 
-void ray_calculate_avg_extract_eff(struct simulation *sim,struct epitaxy *epi,struct image *in)
-{
-	int i;
-	int layer=0;
-	double tot=0.0;
-	double count=0.0;
-	for (layer=0;layer<epi->layers;layer++)
-	{
-
-		if (epi->layer[layer].pl_enabled==TRUE)
-		{
-			tot=0.0;
-			count=0.0;
-
-			for (i=0;i<in->ray_wavelength_points;i++)
-			{
-				tot+=epi->layer[layer].photon_extract_eff[i];
-				count+=epi->layer[layer].photon_extract_eff_count[i];
-			}
-
-			epi->layer[layer].avg_photon_extract_eff=tot/count;
-			//printf("%d %Le\n",layer,epi->layer[layer].avg_photon_extract_eff);
-		}else
-		{
-			epi->layer[layer].avg_photon_extract_eff=0.0;
-		}
-	}
-
-
-}
-
-double ray_cal_escape_angle(struct image *in, struct ray_worker *worker)
+double ray_cal_escape_angle(struct ray_engine *in, struct ray_worker *worker)
 {
 	int i;
 	//double mag=0.0;
@@ -170,9 +92,9 @@ double ray_cal_escape_angle(struct image *in, struct ray_worker *worker)
 				}
 				double ang=raw_ang;
 				int bin=(int)((ang/180.0)*(double)in->escape_bins);
-				in->ang_escape[l][bin]+=worker->rays[i].mag;
-				tot=tot+worker->rays[i].mag;
-				//printf("%lf\n",worker->rays[i].mag);
+				in->ang_escape[l][bin]+=worker->rays[i].mag1;
+				tot=tot+worker->rays[i].mag1;
+				//printf("%lf\n",worker->rays[i].mag1);
 				//getchar();
 			}
 		}
@@ -182,30 +104,3 @@ double ray_cal_escape_angle(struct image *in, struct ray_worker *worker)
 return tot;
 }
 
-double get_eff(struct image *in)
-{
-	int i;
-	int w;
-
-	double tot=0.0;
-	struct ray_worker *worker;
-
-	for (w=0;w<in->worker_max;w++)
-	{
-		worker=&(in->worker[w]);
-
-		for (i=0;i<worker->nrays;i++)
-		{
-			if (worker->rays[i].state==DONE)
-			{
-				if (worker->rays[i].xy_end.y<in->y_escape_level)
-				{
-					tot+=worker->rays[i].mag;
-				}
-			}
-
-		}
-	}
-
-return tot;
-}

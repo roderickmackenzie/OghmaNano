@@ -41,23 +41,15 @@ from global_objects import global_object_run
 
 class tab_fdtd(QTabWidget):
 
-
-	def __init__(self,data):
+	def __init__(self,json_path,uid, json_postfix=None):
 		QTabWidget.__init__(self)
 		css_apply(self ,"tab_default.css")
-		self.data=data
 
 		self.setMovable(True)
 
-		tab=tab_class(self.data)
+		tab=tab_class(json_path,uid=uid, json_postfix=json_postfix)
 		self.addTab(tab,_("Configure"))
 		tab.tab.changed.connect(self.callback_value_changed)
-	def rename(self,tab_name):
-		self.data.name=tab_name
-		json_root().save()
-
-	def get_json_obj(self):
-		return self.data
 
 	def callback_value_changed(self,token):
 		if token=="fdtd_xzy":

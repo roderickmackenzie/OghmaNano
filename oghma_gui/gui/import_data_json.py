@@ -55,11 +55,12 @@ from ribbon_import import ribbon_import
 
 from str2bool import str2bool
 from error_dlg import error_dlg
-from json_root import json_root
 from QWidgetSavePos import resize_window_to_be_sane
 from sim_name import sim_name
 from bytes2str import str2bytes
 from bytes2str import bytes2str
+from json_c import json_tree_c
+from mesh_math import mesh_math
 
 class decoder:
 	def __init__(self):
@@ -76,6 +77,87 @@ class decoder:
 class import_data_json(QDialog):
 
 	changed = gSignal()
+
+	def __init__(self,json_data_object,json_path,export_path=sim_paths.get_sim_path()):
+		QDialog.__init__(self)
+		self.bin=json_data_object
+		self.json_path=json_path
+
+		self.export_path=export_path
+		self.disable_callbacks=False
+		resize_window_to_be_sane(self,0.6,0.7)
+
+		self.setWindowIcon(icon_get("import"))
+		self.setWindowTitle(_("Import data")+sim_name.web_window_title) 
+
+		self.main_vbox = QVBoxLayout()
+	
+		self.ribbon=ribbon_import()
+		self.ribbon.open_data.triggered.connect(self.callback_open)
+		self.ribbon.import_data.triggered.connect(self.callback_import)
+
+		self.main_vbox.addWidget(self.ribbon)
+		
+		self.input_output_hbox=QHBoxLayout()
+
+		self.raw_data_widget=QWidget()
+		self.raw_data_hbox=QVBoxLayout()
+		self.raw_data_widget.setLayout(self.raw_data_hbox)
+		self.raw_data = QTextEdit(self)
+		self.raw_data.setReadOnly(True)
+		self.raw_data.setLineWrapMode(QTextEdit.NoWrap)
+		font = self.raw_data.font()
+		font.setFamily("Courier")
+		font.setPointSize(10)
+		self.raw_data_label=QLabel(_("The file to import:"))
+		self.raw_data_hbox.addWidget(self.raw_data_label)
+		self.raw_data_hbox.addWidget(self.raw_data)
+		self.raw_data_path=QLabel()
+		self.raw_data_hbox.addWidget(self.raw_data_path)
+
+		self.out_data_widget=QWidget()
+		self.out_data_hbox=QVBoxLayout()
+		self.out_data_widget.setLayout(self.out_data_hbox)
+		self.out_data = QTextEdit(self)
+		self.out_data.setReadOnly(True)
+		self.out_data.setLineWrapMode(QTextEdit.NoWrap)
+		font = self.out_data.font()
+		font.setFamily("Courier")
+		font.setPointSize(10)
+		self.out_data_label=QLabel(_("The imported file, the numbers should now be in SI units"))
+		self.out_data_hbox.addWidget(self.out_data_label)
+
+		self.out_data_hbox.addWidget(self.out_data)
+
+		self.out_data_path=QLabel()
+		self.out_data_hbox.addWidget(self.out_data_path)
+		
+		self.input_output_hbox.addWidget(self.raw_data_widget)
+		self.input_output_hbox.addWidget(self.out_data_widget)
+		self.input_output_widget=QWidget()
+		self.input_output_widget.setLayout(self.input_output_hbox)
+
+		self.mesh_x=mesh_math("electrical_solver.mesh.mesh_x")
+		self.mesh_z=mesh_math("electrical_solver.mesh.mesh_z")
+
+		self.build_top_widget()
+
+		self.main_vbox.addWidget(self.top_widget)
+		self.main_vbox.addWidget(self.input_output_widget)		
+		self.input_output_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+		self.setLayout(self.main_vbox)
+
+
+
+		data_file=self.bin.get_token_value(self.json_path,"data_file")
+		import_file_path=self.bin.get_token_value(self.json_path,"import_file_path")
+
+		self.out_data_path.setText(os.path.join(self.export_path,data_file))
+		if self.load_config()==False:
+			self.open_file()
+
+		self.load_file(import_file_path)
+		self.update()
 
 	def combo_to_item(self,combo):
 		search=combo.currentText()
@@ -136,50 +218,60 @@ class import_data_json(QDialog):
 		return val
 
 	def save_config(self):
-		data=json_root()
 		x_combo=self.combo_to_item(self.x_combo)
 		data_combo=self.combo_to_item(self.data_combo)
-
-		self.data.import_x_combo_pos=x_combo.index
-		self.data.import_data_combo_pos=data_combo.index
-		self.data.import_x_spin=self.x_spin.value()
-		self.data.import_data_spin=self.data_spin.value()
-		self.data.import_title=str2bytes(self.title_entry.text())
-		self.data.import_xlabel=self.xlabel_entry.text()
-		self.data.import_data_label=str2bytes(self.data_label_entry.text())
-		self.data.import_area=float(self.area_entry.text())
-		self.data.import_data_invert=str2bool(self.data_invert.isChecked())
-		self.data.import_x_invert=str2bool(self.x_invert.isChecked())
-		data.save()
+		self.bin.set_token_value(self.json_path,"import_x_combo_pos",x_combo.index)
+		self.bin.set_token_value(self.json_path,"import_data_combo_pos",data_combo.index)
+		self.bin.set_token_value(self.json_path,"import_x_spin",self.x_spin.value())
+		self.bin.set_token_value(self.json_path,"import_data_spin",self.data_spin.value())
+		self.bin.set_token_value(self.json_path,"import_title",str2bytes(self.title_entry.text()))
+		self.bin.set_token_value(self.json_path,"import_xlabel",self.xlabel_entry.text())
+		self.bin.set_token_value(self.json_path,"import_data_label",str2bytes(self.data_label_entry.text()))
+		self.bin.set_token_value(self.json_path,"import_area",float(self.area_entry.text()))
+		self.bin.set_token_value(self.json_path,"import_data_invert",str2bool(self.data_invert.isChecked()))
+		self.bin.set_token_value(self.json_path,"import_x_invert",str2bool(self.x_invert.isChecked()))
+		self.bin.save()
 
 	def load_config(self):
-		if os.path.isfile(self.data.import_file_path)==True:
-			self.path=os.path.dirname(self.data.import_file_path)
+		import_file_path=self.bin.get_token_value(self.json_path,"import_file_path")
+		import_x_combo_pos=self.bin.get_token_value(self.json_path,"import_x_combo_pos")
+		import_data_combo_pos=self.bin.get_token_value(self.json_path,"import_data_combo_pos")
+		import_title=self.bin.get_token_value(self.json_path,"import_title")
+		import_xlabel=self.bin.get_token_value(self.json_path,"import_xlabel")
+		import_data_label=self.bin.get_token_value(self.json_path,"import_data_label")
+		import_area=self.bin.get_token_value(self.json_path,"import_area")
+		import_x_spin=self.bin.get_token_value(self.json_path,"import_x_spin")
+		import_data_spin=self.bin.get_token_value(self.json_path,"import_data_spin")
+		import_x_invert=self.bin.get_token_value(self.json_path,"import_x_invert")
+		import_data_invert=self.bin.get_token_value(self.json_path,"import_data_invert")
+
+
+		if os.path.isfile(import_file_path)==True:
+			self.path=os.path.dirname(import_file_path)
 		else:
 			self.path=self.export_path
 
 		self.disable_callbacks=True
 
-		text=self.index_to_text(int(self.data.import_x_combo_pos))
+		text=self.index_to_text(int(import_x_combo_pos))
 		self.x_combo.setCurrentText(text)
 
-		text=self.index_to_text(int(self.data.import_data_combo_pos))
+		text=self.index_to_text(int(import_data_combo_pos))
 		self.data_combo.setCurrentText(text)
 
-		self.title_entry.setText(bytes2str(self.data.import_title))
-		self.xlabel_entry.setText(bytes2str(self.data.import_xlabel))
-		self.data_label_entry.setText(bytes2str(self.data.import_data_label))
-		self.area_entry.setText(str(self.data.import_area))
+		self.title_entry.setText(bytes2str(import_title))
+		self.xlabel_entry.setText(bytes2str(import_xlabel))
+		self.data_label_entry.setText(bytes2str(import_data_label))
+		self.area_entry.setText(str(import_area))
 
-		self.x_spin.setValue(self.data.import_x_spin)
-		self.data_spin.setValue(int(self.data.import_data_spin))
+		self.x_spin.setValue(import_x_spin)
+		self.data_spin.setValue(int(import_data_spin))
 
-		self.x_invert.setChecked(str2bool(self.data.import_x_invert))
-		self.data_invert.setChecked(str2bool(self.data.import_data_invert))
+		self.x_invert.setChecked(str2bool(import_x_invert))
+		self.data_invert.setChecked(str2bool(import_data_invert))
 		self.disable_callbacks=False
 		self.update()
 
-		
 	def set_xlabel(self,text):
 		self.xlabel_entry.blockSignals(True)
 		self.xlabel_entry.setText(text)
@@ -209,82 +301,6 @@ class import_data_json(QDialog):
 		return self.data_label_entry.text()
 	
 	def callback_tab_changed(self):
-		self.update()
-
-	def __init__(self,data,export_path=sim_paths.get_sim_path()):
-		QDialog.__init__(self)
-		self.data=data
-		self.export_path=export_path
-		self.disable_callbacks=False
-		resize_window_to_be_sane(self,0.6,0.7)
-
-		self.setWindowIcon(icon_get("import"))
-
-		self.setWindowTitle(_("Import data")+sim_name.web_window_title) 
-
-		self.main_vbox = QVBoxLayout()
-	
-		self.ribbon=ribbon_import()
-		
-		self.ribbon.open_data.triggered.connect(self.callback_open)
-
-		self.ribbon.import_data.triggered.connect(self.callback_import)
-
-			
-		self.main_vbox.addWidget(self.ribbon)
-		
-		self.input_output_hbox=QHBoxLayout()
-
-		self.raw_data_widget=QWidget()
-		self.raw_data_hbox=QVBoxLayout()
-		self.raw_data_widget.setLayout(self.raw_data_hbox)
-		self.raw_data = QTextEdit(self)
-		self.raw_data.setReadOnly(True)
-		self.raw_data.setLineWrapMode(QTextEdit.NoWrap)
-		font = self.raw_data.font()
-		font.setFamily("Courier")
-		font.setPointSize(10)
-		self.raw_data_label=QLabel(_("The file to import:"))
-		self.raw_data_hbox.addWidget(self.raw_data_label)
-		self.raw_data_hbox.addWidget(self.raw_data)
-		self.raw_data_path=QLabel()
-		self.raw_data_hbox.addWidget(self.raw_data_path)
-
-		self.out_data_widget=QWidget()
-		self.out_data_hbox=QVBoxLayout()
-		self.out_data_widget.setLayout(self.out_data_hbox)
-		self.out_data = QTextEdit(self)
-		self.out_data.setReadOnly(True)
-		self.out_data.setLineWrapMode(QTextEdit.NoWrap)
-		font = self.out_data.font()
-		font.setFamily("Courier")
-		font.setPointSize(10)
-		self.out_data_label=QLabel(_("The imported file, the numbers should now be in SI units"))
-		self.out_data_hbox.addWidget(self.out_data_label)
-
-		self.out_data_hbox.addWidget(self.out_data)
-
-		self.out_data_path=QLabel()
-		self.out_data_hbox.addWidget(self.out_data_path)
-		
-		self.input_output_hbox.addWidget(self.raw_data_widget)
-		self.input_output_hbox.addWidget(self.out_data_widget)
-		self.input_output_widget=QWidget()
-		self.input_output_widget.setLayout(self.input_output_hbox)
-
-		###################
-		self.build_top_widget()
-		###################
-
-		self.main_vbox.addWidget(self.top_widget)
-		self.main_vbox.addWidget(self.input_output_widget)		
-		self.input_output_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-		self.setLayout(self.main_vbox)
-
-		self.out_data_path.setText(os.path.join(self.export_path,self.data.data_file))
-		if self.load_config()==False:
-			self.open_file()
-		self.load_file(self.data.import_file_path)
 		self.update()
 
 	def build_top_widget(self):
@@ -374,7 +390,7 @@ class import_data_json(QDialog):
 		self.area_label=QLabel(_("device area:"))
 		self.area_hbox.addWidget(self.area_label)
 		self.area_entry=QLineEdit()
-		self.area_entry.setText(str(round(json_root().electrical_solver.mesh.mesh_x.get_len()*json_root().electrical_solver.mesh.mesh_z.get_len()*100*100, 3)))
+		self.area_entry.setText(str(round(self.mesh_x.get_len()*self.mesh_z.get_len()*100*100, 3)))
 		self.area_hbox.addWidget(self.area_entry)
 		self.area_units=QLabel("cm2")
 		self.area_hbox.addWidget(self.area_units)
@@ -392,10 +408,12 @@ class import_data_json(QDialog):
 		self.top_widget.setLayout(self.top_vbox)
 
 	def update(self):
-		if os.path.isfile(self.data.import_file_path)==True:
-			data=self.transform(self.data.import_file_path)
+		import_file_path=self.bin.get_token_value(self.json_path,"import_file_path")
+
+		if os.path.isfile(import_file_path)==True:
+			data=self.transform(import_file_path)
 			if data==False:
-				error_dlg(self,_("Can not load file "+self.data.import_file_path))
+				error_dlg(self,_("Can not load file "+import_file_path))
 				return
 
 			text="\n".join(data.gen_output_data())
@@ -452,20 +470,27 @@ class import_data_json(QDialog):
 		return data
 		
 	def callback_import(self):
-		data=self.transform(self.data.import_file_path)
-		data.save(os.path.join(self.export_path,bytes2str(self.data.data_file)))
+		import_file_path=self.bin.get_token_value(self.json_path,"import_file_path")
+		data_file=self.bin.get_token_value(self.json_path,"data_file")
+
+		data=self.transform(import_file_path)
+		data.save(os.path.join(self.export_path,bytes2str(data_file)))
 		self.accept()
 
 	def open_file(self):
 		file_name=open_as_filter(self,"dat (*.dat);;csv (*.csv);;txt (*.txt);;tdf (*.tdf)",path=self.path)
-
+		print("file_name=",file_name)
 		if file_name!=None:
 			if self.load_file(file_name)==False:
+				print("File not loaded")
 				return
 
 			self.update()
 
 	def load_file(self,file_name):
+		if file_name=="none":
+			return False
+
 		if os.path.isfile(file_name)==True:
 			try:
 				f = open(file_name, "r")
@@ -477,7 +502,9 @@ class import_data_json(QDialog):
 				self.raw_data_path.setText(file_name)
 				self.raw_data.setText(text)
 
-				self.data.import_file_path=file_name		#do this last
+				self.bin.set_token_value(self.json_path,"import_file_path",file_name)
+
+				
 			except:
 				error_dlg(self,_("I can't read the file: ")+file_name+_("I can only read plain text files such as csv formats. I can not read binary files such as excel documents."))
 				return False
@@ -869,4 +896,26 @@ class import_data_json(QDialog):
 		a.need_area=False
 		a.index=32
 		a.pre_eval="data_max=max(data.data[0][0])"
+		self.items.append(a)
+
+		a=decoder()
+		a.input_description=_("Time")
+		a.input_units="ms"
+		a.output_description=_("Time")
+		a.output_units="s"
+		a.equation_to_si="val*1e-3"
+		a.mul_to_display=1.0
+		a.need_area=False
+		a.index=34
+		self.items.append(a)
+
+		a=decoder()
+		a.input_description=_("Time")
+		a.input_units="us"
+		a.output_description=_("Time")
+		a.output_units="s"
+		a.equation_to_si="val*1e-6"
+		a.mul_to_display=1.0
+		a.need_area=False
+		a.index=35
 		self.items.append(a)

@@ -35,17 +35,18 @@ from PySide2.QtGui import QIcon
 from gQtCore import QSize, Qt 
 from PySide2.QtWidgets import QWidget,QSizePolicy,QHBoxLayout,QPushButton,QDialog,QFileDialog,QToolBar,QLabel,QComboBox
 from gQtCore import gSignal
-from json_root import json_root
+from json_c import json_tree_c
 
 class tb_pulse_load_type(QWidget):
 
 	changed = gSignal()
 
-	def __init__(self,config_class):
-		self.config_class=config_class
+	def __init__(self,json_search_path,uid):
 		QWidget.__init__(self)
+		self.json_search_path=json_search_path
+		self.uid=uid
 
-
+		self.bin=json_tree_c()
 		layout=QHBoxLayout()
 		label=QLabel()
 		label.setText(_("Load type")+":")
@@ -53,7 +54,6 @@ class tb_pulse_load_type(QWidget):
 
 		self.sim_mode = QComboBox(self)
 		self.sim_mode.setEditable(True)
-
 
 		layout.addWidget(self.sim_mode)
 
@@ -63,9 +63,8 @@ class tb_pulse_load_type(QWidget):
 		self.sim_mode.addItem("load")
 		self.sim_mode.addItem("ideal_diode_ideal_load")
 
-
-		mode=self.config_class.load_type
-
+		json_path=self.refind_json_path()
+		mode=self.bin.get_token_value(json_path+".config","load_type")
 		all_items  = [self.sim_mode.itemText(i) for i in range(self.sim_mode.count())]
 		for i in range(0,len(all_items)):
 		    if all_items[i] == mode:
@@ -73,10 +72,14 @@ class tb_pulse_load_type(QWidget):
 
 		self.sim_mode.currentIndexChanged.connect(self.call_back_sim_mode_changed)
 
+	def refind_json_path(self):
+		ret=self.bin.find_path_by_uid(self.json_search_path,self.uid)
+		return ret
 
 	def call_back_sim_mode_changed(self):
 		mode=self.sim_mode.currentText()
-		self.config_class.load_type=mode
-		json_root().save()
+		json_path=self.refind_json_path()
+		self.bin.set_token_value(json_path+".config","load_type",mode)
+		self.bin.save()
 		self.changed.emit()
 

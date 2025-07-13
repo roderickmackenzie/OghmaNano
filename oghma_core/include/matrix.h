@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,11 +29,21 @@
 
 #ifndef matrix_h
 #define matrix_h
+#include <g_io.h>
+#include <json_struct.h>
+
 struct matrix_sort
 {
 	int Ti;
 	int Tj;
-	long double Tx;
+	gdouble Tx;
+};
+
+struct matrix_index_sorter
+{
+	int index;
+	int Ti;
+	int Tj;
 };
 
 struct matrix
@@ -47,28 +55,39 @@ struct matrix
 	int complex_matrix;
 	int build_from_non_sparse;
 	int msort_len;
-	int use_cache;
 	int ittr;
-	char hash[256];
-	char cache_file_path[PATH_MAX];
 
-	int *Ti;			//row
-	int *Tj;			//col
-	long double *Tx;	//data
-	long double *Txz;
+	int *Ti;		//row
+	int *Tj;		//col
+	double *Tx;		//data
+	double *Txz;
 
-	long double *b;
-	long double *bz;
+	double *b;
+	double *bz;
 
-	char** Tdebug;
+	int enable_row_mul;
+	double *row_mul;
+	int *row_item_count;
 
-	int call;
 	char dump_name[100];
 	//stats
 	int tot_time;
 
 	struct matrix_sort *msort;
 
+	//cache
+		int use_cache;
+		char hash[256];
+		char cache_file_path[OGHMA_PATH_MAX];
+		char cache_index_file[OGHMA_PATH_MAX];
+
+	//debug
+		struct json_string debug_buffer;
+
+	//threshold
+		int threshold_enabled;
+		double threshold_value;
+		int threshold_removed;
 };
 
 #endif

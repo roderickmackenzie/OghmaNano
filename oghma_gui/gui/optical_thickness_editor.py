@@ -33,7 +33,7 @@ from global_objects import global_object_get
 
 #inp
 #windows
-from g_tab2 import g_tab2
+from g_tab2_bin import g_tab2_bin
 from error_dlg import error_dlg
 
 #qt
@@ -52,29 +52,23 @@ from cal_path import sim_paths
 from QWidgetSavePos import QWidgetSavePos
 
 from cal_path import sim_paths
-from json_root import json_root
+from json_c import json_tree_c
 
 class optical_thickness_editor(QWidgetSavePos):
 
 	def cell_changed(self):
-		data=json_root()
-		#for i in range(0,self.tab.rowCount()):
-		#	uid=self.tab.get_value(i,2)
-		#	obj=epi.find_object_by_id(uid)
-		#	obj.Gnp=float(self.tab.get_value(i,1))
-
-		data.save()
+		self.bin.save()
 
 	def __init__(self):
 		QWidgetSavePos.__init__(self,"generation_rate_editor")
-
+		self.bin=json_tree_c()
 		self.setWindowTitle2(_("Optical thickness editor"))
 		self.setWindowIcon(icon_get("layers"))
-		self.resize(500,250)
+		self.resize(700,250)
 
 		self.main_vbox=QVBoxLayout()
 
-		self.tab = g_tab2()
+		self.tab = g_tab2_bin()
 
 		self.tab.verticalHeader().setVisible(False)
 
@@ -83,12 +77,13 @@ class optical_thickness_editor(QWidgetSavePos):
 		#self.tab.setColumnCount(3)
 
 		self.tab.setSelectionBehavior(QAbstractItemView.SelectRows)
-		self.tab.set_tokens(["name","optical_thickness_enabled","optical_thickness","id"])
-		self.tab.setHorizontalHeaderLabels([_("Layer name"), _("Enabled"), _("Optical thickness")+" (m)", _("json id")])
-		self.tab.json_search_path="json_root().epitaxy.layers"
+		self.tab.set_tokens(["name","optical_thickness_enabled","optical_thickness","Dphotoneff","id"])
+		self.tab.setHorizontalHeaderLabels([_("Layer name"), _("Enabled"), _("Optical thickness")+" (m)", _("Photon efficiency")+" (0-1)", _("json id")])
+		self.tab.json_root_path="epitaxy"
 		self.tab.setColumnWidth(1, 100)
 		self.tab.setColumnWidth(2, 250)
-		self.tab.setColumnWidth(3, 10)
+		self.tab.setColumnWidth(3, 200)
+		self.tab.setColumnWidth(4, 10)
 		self.tab.populate()
 		self.tab.changed.connect(self.cell_changed)
 		self.tab.blockSignals(False)

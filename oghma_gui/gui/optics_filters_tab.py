@@ -30,15 +30,12 @@
 
 
 import os
-from cal_path import get_icon_path
 
 #qt
 from gQtCore import QSize, Qt 
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QLabel,QToolBar,QSizePolicy,QAction
 
-from g_tab2 import g_tab2
-from json_root import json_root
-from json_light import json_filter_spectrum
+from g_tab2_bin import g_tab2_bin
 from global_objects import global_object_run
 
 from plot_widget import plot_widget
@@ -46,20 +43,17 @@ from cal_path import sim_paths
 
 from icon_lib import icon_get
 from tab import tab_class
-from g_graph import g_graph
 import i18n
+from json_c import json_tree_c
+
 _ = i18n.language.gettext
 
 
 class optics_filters_tab(QWidget):
  
-	def get_json_obj(self):
-		json_root()
-		data_obj=eval(self.serach_path).find_object_by_id(self.uid)
-		return data_obj
-
 	def __init__(self,search_path,uid,name):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.main_vbox_y0 = QVBoxLayout()
 		self.serach_path=search_path
 		self.uid=uid
@@ -72,7 +66,7 @@ class optics_filters_tab(QWidget):
 		self.main_vbox_y0.addWidget(toolbar2)
 	
 
-		self.tab_filters = g_tab2(toolbar=toolbar2)
+		self.tab_filters = g_tab2_bin(toolbar=toolbar2)
 		self.tab_filters.set_tokens(["filter_enabled","filter_material","filter_invert","filter_db"])
 		self.tab_filters.set_labels([_("Enabled"),_("Filter"),_("Invert"),_("dB")])
 		self.tab_filters.setColumnWidth(0, 100)
@@ -83,16 +77,16 @@ class optics_filters_tab(QWidget):
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		toolbar2.addWidget(spacer)
 
-		self.tab_filters.json_search_path=search_path
+		self.tab_filters.json_root_path=search_path
 		self.tab_filters.uid=uid
-		self.tab_filters.postfix="virtual_spectra.light_filters.segments"
+		self.tab_filters.json_postfix="virtual_spectra.light_filters"
 		self.tab_filters.populate()
 
 		self.tab_filters.new_row_clicked.connect(self.callback_new_row_clicked_filters)
 		self.tab_filters.changed.connect(self.on_cell_edited)
 		self.main_vbox_y0.addWidget(self.tab_filters)
 
-		self.plot_widget=plot_widget(enable_toolbar=False,widget_mode="g_graph")
+		self.plot_widget=plot_widget(enable_toolbar=False,widget_mode="graph")
 		self.plot_widget.set_labels([_("Attenuation")])
 		plot_file=os.path.join(sim_paths.get_sim_path(),"optical_output","light_src_filter_"+self.uid+".csv")
 		self.plot_widget.load_data([plot_file])
@@ -107,16 +101,15 @@ class optics_filters_tab(QWidget):
 		self.main_vbox_y0.addWidget(self.plot_widget)
 		self.setLayout(self.main_vbox_y0)
 
+	def refind_json_path(self):
+		ret=self.bin.find_path_by_uid(self.serach_path,self.uid)
+		return ret
 
 	def callback_new_row_clicked_filters(self,row):
-		obj=json_filter_spectrum()
-		self.get_json_obj().virtual_spectra.light_filters.segments.insert(row,obj)
-		self.tab_filters.insert_row(obj,row)
-		json_root().save()
 		self.plot_widget.do_plot()
 
 	def on_cell_edited(self):
-		json_root().save()
+		self.bin.save()
 		self.plot_widget.do_plot()
 		global_object_run("gl_force_redraw")
 

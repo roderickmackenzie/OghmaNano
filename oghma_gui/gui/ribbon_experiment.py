@@ -30,7 +30,7 @@
 
 import os
 
-from cal_path import get_css_path
+from cal_path import sim_paths
 
 #qt
 from PySide2.QtGui import QIcon
@@ -65,9 +65,6 @@ class ribbon_experiment(ribbon_base):
 		self.tb_rename = QAction(icon_get("rename"), wrap_text(_("Rename"),3), self)
 		toolbar.addAction(self.tb_rename)
 
-		#self.tb_save = QAction(icon_get(("document-save")), wrap_text(_("Save image"),3), self)
-		#toolbar.addAction(self.tb_save)
-
 
 		self.spacer = QWidget()
 		self.spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -77,10 +74,6 @@ class ribbon_experiment(ribbon_base):
 		toolbar.addAction(self.home_help)
 
 		return toolbar
-
-	def update(self):
-		print("update")
-
 
 	def callback_about_dialog(self):
 		dlg=about_dlg()
@@ -99,7 +92,7 @@ class ribbon_experiment(ribbon_base):
 		self.file=self.experiment()
 		self.addTab(self.file,_("File"))
 
-		sheet=self.readStyleSheet(os.path.join(get_css_path(),"style.css"))
+		sheet=self.readStyleSheet(os.path.join(sim_paths.get_css_path(),"style.css"))
 		if sheet!=None:
 			sheet=str(sheet,'utf-8')
 			self.setStyleSheet(sheet)

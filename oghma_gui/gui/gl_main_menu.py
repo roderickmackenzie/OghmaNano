@@ -44,12 +44,18 @@ from cal_path import sim_paths
 from PySide2.QtWidgets import QDialog, QFontDialog, QColorDialog, QApplication, QMenu
 from open_save_dlg import save_as_filter
 from PySide2.QtGui import QImage
-from json_root import json_root
 from icon_lib import icon_get
-
+from json_c import json_tree_c
 import json
+from json_c import json_files_gui_config
+from json_c import json_string
+from bytes2str import str2bytes
 
 class gl_main_menu():
+
+	def __init__(self):
+		self.bin=json_tree_c()
+
 	def build_main_menu(self):
 		view_menu = QMenu(self)
 		
@@ -99,10 +105,6 @@ class gl_main_menu():
 		self.menu_show_detectors.setCheckable(True)
 		#end
 
-		self.menu_view_draw_electrical_mesh=view.addAction(_("Electrical mesh"))
-		self.menu_view_draw_electrical_mesh.triggered.connect(self.menu_toggle_view)
-		self.menu_view_draw_electrical_mesh.setCheckable(True)
-
 		self.menu_view_draw_device=view.addAction(_("Show device"))
 		self.menu_view_draw_device.triggered.connect(self.menu_toggle_view)
 		self.menu_view_draw_device.setCheckable(True)
@@ -140,6 +142,13 @@ class gl_main_menu():
 		self.menu_show_world_box.triggered.connect(self.menu_toggle_view)
 		self.menu_show_world_box.setCheckable(True)
 
+		self.menu_show_electrical_box=view.addAction(_("Show electrical box"))
+		self.menu_show_electrical_box.triggered.connect(self.menu_toggle_view)
+		self.menu_show_electrical_box.setCheckable(True)
+
+		self.menu_show_thermal_box=view.addAction(_("Show thermal box"))
+		self.menu_show_thermal_box.triggered.connect(self.menu_toggle_view)
+		self.menu_show_thermal_box.setCheckable(True)
 
 		self.menu_lock_view=view.addAction(_("Lock view"))
 		self.menu_lock_view.triggered.connect(self.menu_toggle_view)
@@ -163,18 +172,24 @@ class gl_main_menu():
 		action=edit.addAction(_("Font"))
 		action.triggered.connect(self.menu_toggle_view)
 
-		action=edit.addAction(_("Background color"))
+		action=edit.addAction(icon_get("preferences-color"),_("Background color"))
 		action.triggered.connect(self.menu_background_color)
+
+		action=edit.addAction(icon_get("preferences-color"),_("Interface background color"))
+		action.triggered.connect(self.menu_interface_color)
+
+		action=edit.addAction(icon_get("preferences-color"),_("Interface text color"))
+		action.triggered.connect(self.menu_text_color)
 
 		objects=self.main_menu.addMenu(_("Objects"))
 		action=objects.addAction(icon_get("list-add"),_("New free object"))
-		action.triggered.connect(self.callback_add_object)
+		action.triggered.connect(self.gl_add_object_to_world)
 
 		action=objects.addAction(icon_get("lighthouse"),_("New light source"))
 		action.triggered.connect(self.callback_add_light_source)
 
 		action=objects.addAction(icon_get("ccd"),_("New detector"))
-		action.triggered.connect(self.callback_add_object)
+		action.triggered.connect(self.gl_add_detector_to_world)
 
 		action=objects.addAction(icon_get("edit-paste"),_("Paste"))
 		action.triggered.connect(self.callback_paste_object)
@@ -182,76 +197,101 @@ class gl_main_menu():
 		action=objects.addAction(icon_get("view-refresh"),_("Rescale"))
 		action.triggered.connect(self.callback_rescale)
 
-		action=objects.addAction(icon_get("view-refresh"),_("Debug"))
-		action.triggered.connect(self.callback_debug)
+		action=objects.addAction(icon_get("tree"),_("Object tree"))
+		action.triggered.connect(self.callback_object_tree)
 
-		self.main_menu.addSeparator()
+		#action=objects.addAction(icon_get("view-refresh"),_("Debug"))
+		#action.triggered.connect(self.callback_debug)
 
-		action=self.main_menu.addAction(icon_get("edit-copy"),_("Copy image"))
+		copy=self.main_menu.addMenu(_("Copy"))
+
+		action=copy.addAction(icon_get("edit-copy"),_("Copy image"))
 		action.triggered.connect(self.callback_copy)
 
-	def callback_debug(self):
-		self.load_from_json(os.path.join(sim_paths.get_sim_path(),"electrical_mesh.dat"),dz=-0.012)
-		self.force_redraw()
-		self.do_draw()
+		action=copy.addAction(icon_get("edit-copy"),_("Copy json"))
+		action.triggered.connect(self.callback_copy)
+
+		action=copy.addAction(icon_get("edit-paste"),_("Paste json"))
+		action.triggered.connect(self.callback_paste_object)
+
+
+	def callback_object_tree(self):
+		from window_json_tree_view import window_json_tree_view
+		self.w=window_json_tree_view(title=_("Object tree viewer"))
+		self.w.double_click.connect(self.callback_tree_view_object_clicked)
+		self.w.object_mode="shapes"
+		self.w.english=True
+		self.w.show_data_items=True
+		self.w.language_mode="python"
+		self.w.update()
+		self.w.show()
+
+	def callback_tree_view_object_clicked(self):
+		print("fixme")
+		from object_editor import object_editor
+		data=json_root()
+		path=get_python_path_from_human_path(data,self.w.path_python[5:])
+		try:
+			ids=[eval(path+".id")]
+		except:
+			return
+		if ids!=[]:
+			self.shape_edit=object_editor(self.force_redraw)
+			self.shape_edit.load(ids)
+			self.shape_edit.show()
 
 	def callback_rescale(self):
 		self.scale.set_m2screen()
 		self.build_scene()
 
-	def callback_add_object(self):
-		self.gl_add_object_to_world()
-
-	def callback_add_light_source(self):
-		from json_light_sources import json_light_source
-		a=json_light_source()
-		
-		max_dist_x=10
-		max_dist_z=10
-		max_dist_y=10
-
-		a.dy=self.scale.world_delta.y*0.2
-		a.dx=self.scale.world_delta.x*0.2
-		a.dz=self.scale.world_delta.z*0.2
-
-		a.name="Light"
-		a.segments=[]
-		a.color_r=1.0
-		a.color_g=0
-		a.color_b=0
-		a.color_alpha=0.5
-		a.moveable=True
-		a.light_illuminate_from="xyz"
-		json_root().optical.light_sources.lights.segments.append(a)
-		json_root().save()
-		self.force_redraw()
-
 	def callback_paste_object(self):
-		from shape import shape
 		cb = QApplication.clipboard()
-		text=cb.text()
-		json_data=json.loads(text)
-		for n in range(0,json_data['segments']):
-			a=shape()
-			a.decode_from_json(json_data["segment"+str(n)])
-			a.load_triangles()
-			a.x0=a.x0+a.dx
-			#a.y0=a.y0+a.dy
-			#a.z0=a.z0+a.dz
+		cb_text=cb.text()
 
-			a.id=a.random_id()
-			
-			json_root().world.world_data.segments.append(a)
+		sender = self.sender()
+		text=sender.text()
+		
+		if text==_("Paste json"):
+			text_send=ctypes.c_char_p(str2bytes(cb_text))
+			text_len=ctypes.c_int(len(cb_text))
+			self.lib.gl_views_from_clip(ctypes.byref(json_files_gui_config), ctypes.byref(self.gl_main) ,text_send,text_len)
+			self.force_redraw()
+		else:
+			json_data=json.loads(cb_text)
+			for n in range(0,json_data['segments']):
+				a=shape()
+				a.decode_from_json(json_data["segment"+str(n)])
+				a.load_triangles()
+				a.x0=a.x0+a.dx
 
-		json_root().save()
-		self.force_redraw()
+				a.id=a.random_id()
+				
+				json_root().world.world_data.segments.append(a)
+
+				self.bin.save()
+			self.force_redraw()
 
 	def menu(self,event):
 		self.main_menu.exec_(event.globalPos())
 
 	def callback_copy(self):
-		self.render()
-		QApplication.clipboard().setImage(self.grabFrameBuffer())
+		sender = self.sender()
+		text=sender.text()
+		
+		if text==_("Copy image"):
+			self.render_to_screen()
+			QApplication.clipboard().setImage(self.grabFrameBuffer())
+		elif text==_("Copy json"):
+			a=json_string()
+			ret=self.lib.gl_views_to_clip(ctypes.byref(a), ctypes.byref(self.gl_main),ctypes.byref(json_files_gui_config))
+
+			if ret==-1:
+				return None
+			ret=a.get_data()
+			a.free()
+			cb = QApplication.clipboard()
+			cb.clear(mode=cb.Clipboard )
+			cb.setText(ret, mode=cb.Clipboard)
 
 	def callback_save_as_image(self):
 		ret=save_as_filter(self,"png (*.png)")
@@ -268,39 +308,56 @@ class gl_main_menu():
 	def menu_background_color(self,event):
 		col = QColorDialog.getColor(Qt.white, self)
 		if col.isValid():
-			self.active_view.color_r=col.red()/255
-			self.active_view.color_g=col.green()/255
-			self.active_view.color_b=col.blue()/255
+			self.gl_main.active_view.contents.background_color.r=col.red()/255
+			self.gl_main.active_view.contents.background_color.g=col.green()/255
+			self.gl_main.active_view.contents.background_color.b=col.blue()/255
 			self.force_redraw()
 
-			json_root().save()
+			self.lib.gl_save_views(ctypes.byref(json_files_gui_config), ctypes.byref(self.gl_main))
+
+	def menu_interface_color(self,event):
+		col = QColorDialog.getColor(Qt.white, self)
+		if col.isValid():
+			self.bin.set_token_value("gui_config.interface","bk_r",col.red()/255)
+			self.bin.set_token_value("gui_config.interface","bk_g",col.green()/255)
+			self.bin.set_token_value("gui_config.interface","bk_b",col.blue()/255)
+			self.lib.gl_save_views(ctypes.byref(json_files_gui_config), ctypes.byref(self.gl_main))
+
+	def menu_text_color(self,event):
+		col = QColorDialog.getColor(Qt.white, self)
+		if col.isValid():
+			self.bin.set_token_value("gui_config.interface","col_text_r",col.red()/255)
+			self.bin.set_token_value("gui_config.interface","col_text_g",col.green()/255)
+			self.bin.set_token_value("gui_config.interface","col_text_b",col.blue()/255)
+			self.lib.gl_save_views(ctypes.byref(json_files_gui_config), ctypes.byref(self.gl_main))
 
 	def menu_toggle_view(self):
 		action = self.sender()
 		text=action.text()
-		self.draw_electrical_mesh=self.menu_view_draw_electrical_mesh.isChecked()
-		self.active_view.render_photons=self.menu_view_render_photons.isChecked()
-		self.active_view.render_grid=self.menu_view_grid.isChecked()
-		self.active_view.render_fdtd_grid=self.menu_view_fdtd_grid.isChecked()
-		self.active_view.render_cords=self.menu_view_cords.isChecked()
-		self.active_view.draw_device=self.menu_view_draw_device.isChecked()
-		self.active_view.optical_mode=self.menu_view_optical_mode.isChecked()
-		self.active_view.text=self.menu_view_text.isChecked()
-		self.active_view.dimensions=self.menu_view_dimensions.isChecked()
-		self.active_view.render_plot=self.menu_view_plot.isChecked()
-		self.active_view.transparent_objects=self.menu_view_transparent_objects.isChecked()
-		self.active_view.render_light_sources=self.menu_view_light_source.isChecked()
-		self.active_view.draw_rays=self.menu_view_draw_rays.isChecked()
-		self.active_view.ray_solid_lines=self.menu_view_ray_solid_lines.isChecked()
-		self.active_view.show_world_box=self.menu_show_world_box.isChecked()
-		self.active_view.show_detectors=self.menu_show_detectors.isChecked()
-		self.active_view.enable_view_move=not self.menu_lock_view.isChecked()
-		self.active_view.show_gl_lights=self.menu_show_gl_lights.isChecked()
-		self.active_view.show_buttons=self.menu_show_buttons.isChecked()
-		self.active_view.stars=self.menu_stars.isChecked()
+		self.gl_main.active_view.contents.render_photons=self.menu_view_render_photons.isChecked()
+		self.gl_main.active_view.contents.render_grid=self.menu_view_grid.isChecked()
+		self.gl_main.active_view.contents.render_fdtd_grid=self.menu_view_fdtd_grid.isChecked()
+		self.gl_main.active_view.contents.render_cords=self.menu_view_cords.isChecked()
+		self.gl_main.active_view.contents.draw_device=self.menu_view_draw_device.isChecked()
+		self.gl_main.active_view.contents.optical_mode=self.menu_view_optical_mode.isChecked()
+		self.gl_main.active_view.contents.text=self.menu_view_text.isChecked()
+		self.gl_main.active_view.contents.dimensions=self.menu_view_dimensions.isChecked()
+		self.gl_main.active_view.contents.render_plot=self.menu_view_plot.isChecked()
+		self.gl_main.active_view.contents.transparent_objects=self.menu_view_transparent_objects.isChecked()
+		self.gl_main.active_view.contents.render_light_sources=self.menu_view_light_source.isChecked()
+		self.gl_main.active_view.contents.draw_rays=self.menu_view_draw_rays.isChecked()
+		self.gl_main.active_view.contents.ray_solid_lines=self.menu_view_ray_solid_lines.isChecked()
+		self.gl_main.active_view.contents.show_world_box=self.menu_show_world_box.isChecked()
+		self.gl_main.active_view.contents.show_electrical_box=self.menu_show_electrical_box.isChecked()
+		self.gl_main.active_view.contents.show_thermal_box=self.menu_show_thermal_box.isChecked()
+		self.gl_main.active_view.contents.show_detectors=self.menu_show_detectors.isChecked()
+		self.gl_main.active_view.contents.enable_view_move=not self.menu_lock_view.isChecked()
+		self.gl_main.active_view.contents.show_gl_lights=self.menu_show_gl_lights.isChecked()
+		self.gl_main.active_view.contents.show_buttons=self.menu_show_buttons.isChecked()
+		self.gl_main.active_view.contents.stars=self.menu_stars.isChecked()
 
 		if text==_("Ray tracing mesh"):
-			self.active_view.draw_rays= not self.active_view.draw_rays
+			self.gl_main.active_view.contents.draw_rays= not self.gl_main.active_view.contents.draw_rays
 		if text==_("Device view"):
 			self.enable_draw_device = not self.enable_draw_device
 		if text==_("Font"):
@@ -310,28 +367,31 @@ class gl_main_menu():
 				self.font = font
 
 		self.force_redraw()
-		json_root().save()
+
+		self.lib.gl_save_views(ctypes.byref(json_files_gui_config), ctypes.byref(self.gl_main))
 
 	def menu_update(self):
-		self.menu_view_draw_electrical_mesh.setChecked(self.draw_electrical_mesh)
-		self.menu_view_render_photons.setChecked(self.active_view.render_photons)
-		self.menu_view_grid.setChecked(self.active_view.render_grid)
-		self.menu_view_fdtd_grid.setChecked(self.active_view.render_fdtd_grid)
-		self.menu_view_cords.setChecked(self.active_view.render_cords)
-		self.menu_view_draw_device.setChecked(self.active_view.draw_device)
-		self.menu_view_optical_mode.setChecked(self.active_view.optical_mode)
-		self.menu_view_text.setChecked(self.active_view.text)
-		self.menu_view_dimensions.setChecked(self.active_view.dimensions)		
-		self.menu_view_plot.setChecked(self.active_view.render_plot)
-		self.menu_view_transparent_objects.setChecked(self.active_view.transparent_objects)
-		self.menu_view_light_source.setChecked(self.active_view.render_light_sources)
-		self.menu_view_draw_rays.setChecked(self.active_view.draw_rays)
-		self.menu_view_ray_solid_lines.setChecked(self.active_view.ray_solid_lines)
-		self.menu_show_world_box.setChecked(self.active_view.show_world_box)
-		self.menu_show_detectors.setChecked(self.active_view.show_detectors)
-		self.menu_lock_view.setChecked(not self.active_view.enable_view_move)
-		self.menu_show_gl_lights.setChecked(self.active_view.show_gl_lights)
-		self.menu_show_buttons.setChecked(self.active_view.show_buttons)
-		self.menu_stars.setChecked(self.active_view.stars)
+		self.menu_view_render_photons.setChecked(self.gl_main.active_view.contents.render_photons)
+		self.menu_view_grid.setChecked(self.gl_main.active_view.contents.render_grid)
+		self.menu_view_fdtd_grid.setChecked(self.gl_main.active_view.contents.render_fdtd_grid)
+		self.menu_view_cords.setChecked(self.gl_main.active_view.contents.render_cords)
+		self.menu_view_draw_device.setChecked(self.gl_main.active_view.contents.draw_device)
+		self.menu_view_optical_mode.setChecked(self.gl_main.active_view.contents.optical_mode)
+		self.menu_view_text.setChecked(self.gl_main.active_view.contents.text)
+		self.menu_view_dimensions.setChecked(self.gl_main.active_view.contents.dimensions)		
+		self.menu_view_plot.setChecked(self.gl_main.active_view.contents.render_plot)
+		self.menu_view_transparent_objects.setChecked(self.gl_main.active_view.contents.transparent_objects)
+		self.menu_view_light_source.setChecked(self.gl_main.active_view.contents.render_light_sources)
+		self.menu_view_draw_rays.setChecked(self.gl_main.active_view.contents.draw_rays)
+		self.menu_view_ray_solid_lines.setChecked(self.gl_main.active_view.contents.ray_solid_lines)
+		self.menu_show_world_box.setChecked(self.gl_main.active_view.contents.show_world_box)
+		self.menu_show_electrical_box.setChecked(self.gl_main.active_view.contents.show_electrical_box)
+		self.menu_show_thermal_box.setChecked(self.gl_main.active_view.contents.show_thermal_box)
+		self.menu_show_detectors.setChecked(self.gl_main.active_view.contents.show_detectors)
+		self.menu_lock_view.setChecked(not self.gl_main.active_view.contents.enable_view_move)
+		self.menu_show_gl_lights.setChecked(self.gl_main.active_view.contents.show_gl_lights)
+		self.menu_show_buttons.setChecked(self.gl_main.active_view.contents.show_buttons)
+		self.menu_stars.setChecked(self.gl_main.active_view.contents.stars)
+
 
 

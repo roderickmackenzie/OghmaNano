@@ -42,27 +42,23 @@ from plot_widget import plot_widget
 from spctral2 import spctral2
 from dat_file import dat_file
 
-from json_root import json_root
-from json_local_root import json_local_root
 from open_save_dlg import save_as_simfile
 from cal_path import sim_paths
+from json_c import json_tree_c
+from json_c import json_c
 
 class spctral2_gui(QWidget):
 
-
 	def __init__(self):
 		super().__init__()
+		self.bin=json_tree_c()
 		top_hbox=QHBoxLayout()
 		top_widget=QWidget()
-		#top_widget.setLayout(top_hbox)
+
 		self.spctral2=spctral2()
 
-		self.plot=plot_widget(enable_toolbar=False)
-		#self.plot.load_data(["jv.dat"])
-		#self.plot.set_labels(["jv.dat"])
-		
+		self.plot=plot_widget(enable_toolbar=False)		
 		self.plot.do_plot()
-		#self.plot.fig.canvas.draw()
 
 		date_widget=QWidget()
 		date_vbox=QVBoxLayout()
@@ -119,8 +115,7 @@ class spctral2_gui(QWidget):
 		self.no2_layout.addWidget(self.no2_label)
 		self.no2_layout.addWidget(self.no2_edit)
 		self.no2_widget.setLayout(self.no2_layout)
-		if json_local_root().gui_config.enable_betafeatures==True:
-			date_vbox.addWidget(self.no2_widget)
+		date_vbox.addWidget(self.no2_widget)
 
 		date_widget.setLayout(date_vbox)
 
@@ -129,39 +124,36 @@ class spctral2_gui(QWidget):
 
 		self.setLayout(top_hbox)
 
-		data=json_root().optical
-		self.water_edit.setText(str(data.spctral2.spctral2_water))
-		self.aod_edit.setText(str(data.spctral2.spctral2_aod))
-		self.preasure_edit.setText(str(data.spctral2.spctral2_preasure))
-		self.lat_edit.setText(str(data.spctral2.spctral2_lat))
-		self.no2_edit.setText(str(data.spctral2.spctral2_no2))
-
+		self.water_edit.setText(str(self.bin.get_token_value("optical.spctral2","spctral2_water")))
+		self.aod_edit.setText(str(self.bin.get_token_value("optical.spctral2","spctral2_aod")))
+		self.preasure_edit.setText(str(self.bin.get_token_value("optical.spctral2","spctral2_preasure")))
+		self.lat_edit.setText(str(self.bin.get_token_value("optical.spctral2","spctral2_lat")))
+		self.no2_edit.setText(str(self.bin.get_token_value("optical.spctral2","spctral2_no2")))
 
 		self.calculate()
 
 	def calculate(self):
-		
 		self.plot.data=[]
 		self.water_edit.text()
-
 
 		day=self.cal.selectedDate().dayOfYear()
 		hour=self.time.time().hour()
 		minute=self.time.time().minute()
-		data=json_root().optical
-		data.spctral2.spctral2_day=int(day)
-		data.spctral2.spctral2_hour=int(hour)
-		data.spctral2.spctral2_minute=int(minute)
+
+		self.bin.set_token_value("optical.spctral2","spctral2_day",int(day))
+		self.bin.set_token_value("optical.spctral2","spctral2_hour",int(hour))
+		self.bin.set_token_value("optical.spctral2","spctral2_minute",int(minute))
 		
-		data.spctral2.spctral2_lat=float(self.lat_edit.text())
+		self.bin.set_token_value("optical.spctral2","spctral2_lat",float(self.lat_edit.text()))
+		self.bin.set_token_value("optical.spctral2","spctral2_aod",float(self.aod_edit.text()))
 
-		data.spctral2.spctral2_aod=float(self.aod_edit.text())
-		data.spctral2.spctral2_preasure=float(self.preasure_edit.text())
-		data.spctral2.spctral2_water=float(self.water_edit.text())
-		data.spctral2.spctral2_no2=float(self.no2_edit.text())
-		data.save()
+		self.bin.set_token_value("optical.spctral2","spctral2_preasure",float(self.preasure_edit.text()))
+		self.bin.set_token_value("optical.spctral2","spctral2_water",float(self.water_edit.text()))
+		self.bin.set_token_value("optical.spctral2","spctral2_no2",float(self.no2_edit.text()))
 
-		self.spctral2.calc(data.spctral2)
+		self.bin.save()
+
+		self.spctral2.calc()
 
 		am=dat_file()
 		am.load(os.path.join(sim_paths.get_spectra_path(),"AM1.5G","spectra.csv"))
@@ -181,9 +173,9 @@ class spctral2_gui(QWidget):
 		path=save_as_simfile(self,directory = sim_paths.get_spectra_path())
 		if path!=None:
 			os.makedirs(path)
-			from json_spectra_db_item import json_spectra_db_item
 			self.spctral2.Iglobal.save(os.path.join(path,"spectra.csv"))
-			a=json_spectra_db_item()
-			a.save_as(os.path.join(path,"data.json"))
 
+			a=json_c("spectra_db")
+			a.build_template()
+			a.save_as(os.path.join(path,"data.json"))
 

@@ -31,12 +31,11 @@
 import os
 #import glob
 from shutil import copyfile
-from cal_path import get_base_material_path
 from cal_path import subtract_paths
 from materials_io import find_db_items
 from win_lin import get_platform
 from process_events import process_events
-from json_material_db_item import json_material_db_sub_folder
+from json_c import json_c
 
 def clone_material(dest_material_dir,src_material_dir):
 	if os.path.isdir(dest_material_dir)==False:
@@ -63,21 +62,24 @@ def clone_material(dest_material_dir,src_material_dir):
 				copyfile(src_mat_file,os.path.join(dest_material_dir,files[i]))
 	return True
 
-def clone_materials(dest,src_dir,file_type,just_count=False,total=0,progress_window=None,all_files=100):
-	db_folder=json_material_db_sub_folder()
-	cur_ver=db_folder.ver
-	do_copy=False
+def clone_materials(dest,src_dir,file_type,just_count=False,total=0,progress_window=None,all_files=100,sim_link=False):
+	db_folder=json_c("folder_material")
+	db_folder.build_template()
+	
 
+	cur_ver=db_folder.get_token_value("","ver")
+	do_copy=False
+	
 	if db_folder.load(os.path.join(dest,"data.json"))==False:
 		do_copy=True
 
-	if db_folder.ver!=cur_ver:
+	if db_folder.get_token_value("","ver")!=cur_ver:
 		do_copy=True
-
+	
 	if do_copy==False:
 		return 0
 
-	if get_platform()!="linux" and get_platform()!="wine":
+	if sim_link==False:
 		if just_count==False:
 			if os.path.isdir(dest)==False:
 				os.makedirs(dest)
@@ -99,8 +101,8 @@ def clone_materials(dest,src_dir,file_type,just_count=False,total=0,progress_win
 					process_events()
 
 			total=total+1
-
-	else:
+	print(dest,do_copy,sim_link,just_count)
+	if sim_link==True:
 		if os.path.isdir(dest)==False:
 			if just_count==False:
 				os.symlink(src_dir, dest)

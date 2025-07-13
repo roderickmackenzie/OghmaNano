@@ -1,0 +1,7345 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Roderick C. I. MacKenzie
+# This file is distributed under the same license as the oghmanano package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: oghmanano 8.0\n"
+"Report-Msgid-Bugs-To: roderick.mackenzie@oghma-nano.com\n"
+"POT-Creation-Date: 2024-05-02 11:45+0100\n"
+"PO-Revision-Date: 2024-05-13 13:13+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? "
+"1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+msgid "H_joule"
+msgstr "H_joule"
+
+msgid "H_recombination"
+msgstr "H_rekombinasyon"
+
+msgid "H_parasitic"
+msgstr "H_parazitik"
+
+msgid "Single states"
+msgstr "Tek eyaletler"
+
+msgid "time"
+msgstr "zaman"
+
+msgid "Ns"
+msgstr "N'ler"
+
+msgid "Triplet states"
+msgstr "Üçlü durumlar"
+
+msgid "Nt"
+msgstr "NT"
+
+msgid "Singlets in donor"
+msgstr "Donördeki singletler"
+
+msgid "Nsd"
+msgstr "Nsd"
+
+msgid "Triplet in donor"
+msgstr "Donörde üçlü"
+
+msgid "Ntd"
+msgstr "NTD"
+
+msgid "Photon denisty"
+msgstr "Foton reddi"
+
+msgid "Npho"
+msgstr "Npho"
+
+msgid "file name not set\n"
+msgstr "dosya adı ayarlanmadı\n"
+
+msgid "Time"
+msgstr "Zaman"
+
+msgid "Voltage"
+msgstr "Gerilim"
+
+msgid "Free electron generation rate"
+msgstr "Serbest elektron üretim hızı"
+
+msgid "Generation rate"
+msgstr "Üretim oranı"
+
+msgid "Free hole generation rate"
+msgstr "Serbest delik oluşturma oranı"
+
+msgid "SRH recombination free electrons -> trapped holes"
+msgstr "SRH rekombinasyonu serbest elektronlar -> tuzaklanmış delikler"
+
+msgid "Recombination"
+msgstr "Rekombinasyon"
+
+msgid "SRH recombination free holes -> trapped electrons"
+msgstr "CSÜS rekombinasyonu serbest delikler -> sıkışmış elektronlar"
+
+msgid "Surface recombination on left contact"
+msgstr "Sol temasta yüzey rekombinasyonu"
+
+msgid "Surface recombination on right contact"
+msgstr "Doğru temasta yüzey rekombinasyonu"
+
+msgid "Trapped electron density"
+msgstr "Sıkışmış elektron yoğunluğu"
+
+msgid "Electron density"
+msgstr "Elektron yoğunluğu"
+
+msgid "Trapped hole density"
+msgstr "Sıkışan delik yoğunluğu"
+
+msgid "Hole density"
+msgstr "Delik yoğunluğu"
+
+msgid "Free electron density"
+msgstr "Serbest elektron yoğunluğu"
+
+msgid "Free hole density"
+msgstr "Serbest delik yoğunluğu"
+
+msgid "Total electron density"
+msgstr "Toplam elektron yoğunluğu"
+
+msgid "Total hole density"
+msgstr "Toplam delik yoğunluğu"
+
+msgid "Electron mobility"
+msgstr "Elektron hareketliliği"
+
+msgid "Mobility"
+msgstr "Hareketlilik"
+
+msgid "Hole mobility"
+msgstr "Delik hareketliliği"
+
+msgid "Average electron and hole mobility"
+msgstr "Ortalama elektron ve delik hareketliliği"
+
+msgid "Total PL intensity"
+msgstr "Toplam PL yoğunluğu"
+
+msgid "Total PL Intensity"
+msgstr "Toplam PL Yoğunluğu"
+
+msgid "PL intensity at given energy"
+msgstr "Verilen enerjide PL yoğunluğu"
+
+msgid "PL Intensity"
+msgstr "PL Yoğunluğu"
+
+msgid "Voltage applied to diode"
+msgstr "Diyot'a uygulanan voltaj"
+
+msgid "band bend (percent)"
+msgstr "bant bükülmesi (yüzde)"
+
+msgid "band bend"
+msgstr "bant virajı"
+
+msgid "percent"
+msgstr "yüzde"
+
+msgid "Dynamic quantum efficiency"
+msgstr "Dinamik kuantum verimliliği"
+
+msgid "Percent"
+msgstr "Yüzde"
+
+msgid "Drift current density"
+msgstr "Sürüklenme akımı yoğunluğu"
+
+msgid "Position"
+msgstr "Konum"
+
+msgid "Electron current density (drift)"
+msgstr "Elektron akımı yoğunluğu (sürüklenme)"
+
+msgid "Diffusion current density"
+msgstr "Difüzyon akım yoğunluğu"
+
+msgid "position"
+msgstr "konum"
+
+msgid "Electron current density (diffusion)"
+msgstr "Elektron akımı yoğunluğu (difüzyon)"
+
+msgid "Diffusion+Drift current density"
+msgstr "Difüzyon+Sürüklenme akım yoğunluğu"
+
+msgid "Drift current density (x)"
+msgstr "Sürüklenme akımı yoğunluğu (x)"
+
+msgid "Diffusion current density (x)"
+msgstr "Difüzyon akım yoğunluğu (x)"
+
+msgid "Hole current density (drift)"
+msgstr "Delik akım yoğunluğu (sürüklenme)"
+
+msgid "Hole current density (diffusion)"
+msgstr "Delik akım yoğunluğu (difüzyon)"
+
+msgid "Current density"
+msgstr "Akım yoğunluğu"
+
+msgid "Electron current density"
+msgstr "Elektron akım yoğunluğu"
+
+msgid "Hole current density"
+msgstr "Delik akım yoğunluğu"
+
+msgid "Electron current density x"
+msgstr "Elektron akım yoğunluğu x"
+
+msgid "Total current density (Jn+Jp)"
+msgstr "Toplam akım yoğunluğu (Jn+Jp)"
+
+msgid "|Jny|+|Jnx|"
+msgstr "|Jny|+|Jnx|"
+
+msgid "|Total current density|"
+msgstr "|Toplam akım yoğunluğu|"
+
+msgid "|Jpy|+|Jpx|"
+msgstr "|Jpy|+|Jpx|"
+
+msgid "Free electron -> Free hole recombination rate"
+msgstr "Serbest elektron -> Serbest delik rekombinasyon hızı"
+
+msgid "Free carrier recombination rate"
+msgstr "Ücretsiz taşıyıcı rekombinasyon oranı"
+
+msgid "Free electron loss due to SRH processes (including trapping)"
+msgstr "CSÜS süreçleri nedeniyle serbest elektron kaybı (yakalama dahil)"
+
+msgid "Free electron loss"
+msgstr "Serbest elektron kaybı"
+
+msgid "Free hole loss due to SRH processes (including trapping)"
+msgstr "CSÜS süreçleri nedeniyle serbest delik kaybı (yakalama dahil)"
+
+msgid "Free hole loss"
+msgstr "Serbest delik kaybı"
+
+msgid "SRH relaxation free electrons -> trapped electrons"
+msgstr "CSÜS gevşemesi olmayan elektronlar -> tuzaklanmış elektronlar"
+
+msgid "Relaxation"
+msgstr "Gevşeme"
+
+msgid "SRH relaxation free holes -> trapped holes"
+msgstr "CSÜS gevşemesi olmayan delikler -> kapana kısılmış delikler"
+
+msgid "Singlet density (S1)"
+msgstr "Singlet yoğunluğu (S1)"
+
+msgid "Singlet density"
+msgstr "Singlet yoğunluğu"
+
+msgid "Triplet density  (T1)"
+msgstr "Üçlü yoğunluk (T1)"
+
+msgid "Triplet density"
+msgstr "Üçlü yoğunluk"
+
+msgid "Singlet CT (1C)"
+msgstr "Tekli CT (1C)"
+
+msgid "Triplet CT (3C)"
+msgstr "Üçlü CT (3C)"
+
+msgid "Singlet S1 'IMREF'"
+msgstr "Tekli S1 'IMREF'"
+
+msgid "Singlet energy"
+msgstr "Tekli enerji"
+
+msgid "Triplet T1 'IMREF'"
+msgstr "Üçlü T1 'IMREF'"
+
+msgid "Triplet energy"
+msgstr "Üçlü enerji"
+
+msgid "Singlet CT (1C) 'IMREF'"
+msgstr "Tekli CT (1C) 'IMREF'"
+
+msgid "Triplet CT (3C) 'IMREF'"
+msgstr "Üçlü CT (3C) 'IMREF'"
+
+msgid "Singlet in donor density"
+msgstr "Donör yoğunluğunda singlet"
+
+msgid "Triplet in donor density"
+msgstr "Donör yoğunluğunda üçlü"
+
+msgid "Ion density"
+msgstr "İyon yoğunluğu"
+
+msgid "Singlet 'IMREF'"
+msgstr "Tekli 'IMREF'"
+
+msgid "Triplet 'IMREF'"
+msgstr "Üçlü 'IMREF'"
+
+msgid "Singlet in donor 'IMREF'"
+msgstr "Donör 'IMREF'de singlet"
+
+msgid "Triplet in donor 'IMREF'"
+msgstr "Donör 'IMREF'te üçlü"
+
+msgid "Ion energy"
+msgstr "İyon enerjisi"
+
+msgid "Doping"
+msgstr "Doping"
+
+msgid "Doping density"
+msgstr "Doping yoğunluğu"
+
+msgid "Free electron carrier density"
+msgstr "Serbest elektron taşıyıcı yoğunluğu"
+
+msgid "Carrier density"
+msgstr "Taşıyıcı yoğunluğu"
+
+msgid "Free hole carrier density"
+msgstr "Serbest delik taşıyıcı yoğunluğu"
+
+msgid "Trapped electron carrier density"
+msgstr "Sıkışmış elektron taşıyıcı yoğunluğu"
+
+msgid "Trapped hole carrier density"
+msgstr "Sıkışan delik taşıyıcı yoğunluğu"
+
+msgid "Change in electron population"
+msgstr "Elektron popülasyonundaki değişim"
+
+msgid "Total charge"
+msgstr "Toplam ücret"
+
+msgid "Change in total charge"
+msgstr "Toplam ücretteki değişiklik"
+
+msgid "Change in hole population"
+msgstr "Delik popülasyonundaki değişim"
+
+msgid "Excess electron density"
+msgstr "Aşırı elektron yoğunluğu"
+
+msgid "x-position"
+msgstr "x konumu"
+
+msgid "y-position"
+msgstr "y konumu"
+
+msgid "z-position"
+msgstr "z konumu"
+
+msgid "Excess hole density"
+msgstr "Aşırı delik yoğunluğu"
+
+msgid "Perovskite mobile ion density"
+msgstr "Perovskit mobil iyon yoğunluğu"
+
+msgid "Interface free-to-free recombination constant"
+msgstr "Arayüz serbestten serbest rekombinasyon sabiti"
+
+msgid "Electron tunneling though the interface"
+msgstr "Arayüz üzerinden elektron tünellemesi"
+
+msgid "Tunneling-e"
+msgstr "Tünel açma-e"
+
+msgid "Hole tunneling though the interface"
+msgstr "Arayüz üzerinden delik tüneli açma"
+
+msgid "Tunneling-h"
+msgstr "Tünel açma-h"
+
+msgid "Interface free-to-trap recombination constant"
+msgstr "Arayüz tuzaksız rekombinasyon sabiti"
+
+msgid "Interface free-to-trap  recombination constant"
+msgstr "Arayüz tuzaksız rekombinasyon sabiti"
+
+msgid "Interface recombination rate"
+msgstr "Arayüz rekombinasyon oranı"
+
+msgid "Electron current density left contact (J_y0_n)"
+msgstr "Elektron akımı yoğunluğu sol kontak (J_y0_n)"
+
+msgid "Hole current density left contact (J_y0_p)"
+msgstr "Delik akım yoğunluğu sol kontağı (J_y0_p)"
+
+msgid "Electron current density right contact (J_y1_n)"
+msgstr "Elektron akımı yoğunluğu sağ kontak (J_y1_n)"
+
+msgid "Hole current density right contact (J_y1_p)"
+msgstr "Delik akım yoğunluğu sağ kontağı (J_y1_p)"
+
+msgid "Electron drift current"
+msgstr "Elektron sürüklenme akımı"
+
+msgid "Electron diffusion current"
+msgstr "Elektron difüzyon akımı"
+
+msgid "Hole drift current"
+msgstr "Delik sürüklenme akımı"
+
+msgid "Hole diffusion current"
+msgstr "Delik difüzyon akımı"
+
+msgid " Hole diffusion current"
+msgstr "Delik difüzyon akımı"
+
+msgid "Electron drift+diffusion current"
+msgstr "Elektron sürüklenmesi + difüzyon akımı"
+
+msgid "Hole diffusion+diffusion current"
+msgstr "Delik difüzyonu + difüzyon akımı"
+
+msgid "Jn at contacts"
+msgstr "Kişilerdeki Jn"
+
+msgid "Jp at contacts"
+msgstr "Kişilerde Jp"
+
+msgid "External Current"
+msgstr "Harici Akım"
+
+msgid "Current"
+msgstr "Akım"
+
+msgid "Current density at contacts"
+msgstr "Kontaklardaki akım yoğunluğu"
+
+msgid "Single states (S1)"
+msgstr "Tek durumlar (S1)"
+
+msgid "Triplet states (T1)"
+msgstr "Üçlü durumlar (T1)"
+
+msgid "Material fraction (x)"
+msgstr "Malzeme fraksiyonu (x)"
+
+msgid "Fraction"
+msgstr "Kesir"
+
+msgid "Material fraction (y)"
+msgstr "Malzeme fraksiyonu (y)"
+
+msgid "LUMO"
+msgstr "LUMO"
+
+msgid "Electron Energy"
+msgstr "Elektron Enerjisi"
+
+msgid "HOMO"
+msgstr "HOMO"
+
+msgid "Lattice temperature"
+msgstr "Kafes sıcaklığı"
+
+msgid "Temperature"
+msgstr "Sıcaklık"
+
+msgid "Electron temperature"
+msgstr "Elektron sıcaklığı"
+
+msgid "Hole temperature"
+msgstr "Delik sıcaklığı"
+
+msgid "Band gap"
+msgstr "Bant boşluğu"
+
+msgid "Electron quasi Fermi-level"
+msgstr "Elektron yarı Fermi seviyesi"
+
+msgid "Hole quasi Fermi-level"
+msgstr "Delik yarı Fermi seviyesi"
+
+msgid "Potential"
+msgstr "Potansiyel"
+
+msgid "Equlibrium Fermi-level"
+msgstr "Denge Fermi düzeyi"
+
+msgid "Energy"
+msgstr "Enerji"
+
+msgid "Relative permittivity"
+msgstr "Bağıl geçirgenlik"
+
+msgid "Joule heating from device"
+msgstr "Cihazdan Joule ısıtma"
+
+msgid "Heating"
+msgstr "Isıtma"
+
+msgid "Electron mobility z"
+msgstr "Elektron hareketliliği z"
+
+msgid "Electron mobility x"
+msgstr "Elektron hareketliliği x"
+
+msgid "Electron mobility y"
+msgstr "Elektron hareketliliği y"
+
+msgid "Hole mobility z"
+msgstr "Delik hareketliliği z"
+
+msgid "Hole mobility x"
+msgstr "Delik hareketliliği x"
+
+msgid "Hole mobility y"
+msgstr "Delik hareketliliği y"
+
+msgid "Average electron mobility"
+msgstr "Ortalama elektron hareketliliği"
+
+msgid "Recombination rate"
+msgstr "Rekombinasyon oranı"
+
+msgid "Auger recombination"
+msgstr "Burgu rekombinasyonu"
+
+msgid "Rate"
+msgstr "Oran"
+
+msgid "Trap fermi level"
+msgstr "Tuzak fermi seviyesi"
+
+msgid "Electron Fermi level"
+msgstr "Elektron Fermi seviyesi"
+
+msgid "Material number"
+msgstr "Malzeme numarası"
+
+msgid "Number"
+msgstr "Sayı"
+
+msgid "Passivated"
+msgstr "Pasifleştirilmiş"
+
+msgid "True/False"
+msgstr "Doğru yanlış"
+
+msgid "Current map of the bottom contact"
+msgstr "Alt kontağın güncel haritası"
+
+msgid "Resistance of bottom of device"
+msgstr "Cihazın alt kısmının direnci"
+
+msgid "Running Ray tracer\n"
+msgstr "Ray tracer çalıştırılıyor\n"
+
+msgid "pulse mode not known\n"
+msgstr "darbe modu bilinmiyor\n"
+
+msgid "pulse time"
+msgstr "darbe süresi"
+
+msgid "step"
+msgstr "adım"
+
+msgid "current density"
+msgstr "akım yoğunluğu"
+
+msgid "current"
+msgstr "akım"
+
+msgid "Volts"
+msgstr "Volt"
+
+msgid "Photogeneration rate"
+msgstr "Fotojenerasyon oranı"
+
+msgid "Emission"
+msgstr "Emisyon"
+
+msgid "Charge density"
+msgstr "Yük yoğunluğu"
+
+msgid "Suns"
+msgstr "Güneşler"
+
+msgid "Charge"
+msgstr "Şarj"
+
+msgid "ce mode not known\n"
+msgstr "ce modu bilinmiyor\n"
+
+msgid "ce mode not known"
+msgstr "ce modu bilinmiyor"
+
+msgid "ce time"
+msgstr "ce zamanı"
+
+msgid "Simulated polynomial data"
+msgstr "Simüle edilmiş polinom verileri"
+
+msgid "x"
+msgstr "X"
+
+msgid "y"
+msgstr "sen"
+
+msgid "Full transfer matrix based light model"
+msgstr "Tam transfer matrisi tabanlı ışık modeli"
+
+msgid "Generating mesh\n"
+msgstr "Ağ oluşturuluyor\n"
+
+msgid "The materials in your device are not configured to emit light\n"
+msgstr "Cihazınızdaki malzemeler ışık yayacak şekilde yapılandırılmamış\n"
+
+msgid "Real"
+msgstr "Gerçek"
+
+msgid "Imaginary"
+msgstr "Hayali"
+
+msgid "Re(i)"
+msgstr "Yeniden(i)"
+
+msgid "Im(i)"
+msgstr "ben(ben)"
+
+msgid "Frequency"
+msgstr "Sıklık"
+
+msgid "Real(i)"
+msgstr "Gerçek(i)"
+
+msgid "Capacitance"
+msgstr "Kapasite"
+
+msgid "1/C^2"
+msgstr "1/C^2"
+
+msgid "abs(i)"
+msgstr "abs(i)"
+
+msgid "phi(i)"
+msgstr "fi(i)"
+
+msgid "Phase"
+msgstr "Faz"
+
+msgid "Fit error modulation"
+msgstr "Hata modülasyonunu sığdır"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Fit error j/v"
+msgstr "Uyum hatası j/v"
+
+msgid "Resistance"
+msgstr "Rezistans"
+
+msgid "Solving EQE at"
+msgstr "EQE'yi çözme"
+
+msgid "out of memory!\n"
+msgstr "hafıza yetersiz!\n"
+
+msgid "matrix is singular!\n"
+msgstr "matris tekildir!\n"
+
+msgid "Running scanning probe microscopy\n"
+msgstr "Taramalı prob mikroskobu çalıştırılıyor\n"
+
+msgid "no spm config file found"
+msgstr "spm yapılandırma dosyası bulunamadı"
+
+msgid "Running JV simulation\n"
+msgstr "Ortak Girişim simülasyonunu çalıştırma\n"
+
+msgid "Stopping because of Vexternal"
+msgstr "Vexternal nedeniyle durduruluyor"
+
+msgid "Efficiency"
+msgstr "Yeterlik"
+
+msgid "Voltage/Current across just the ideal diode"
+msgstr "Sadece ideal diyotta Gerilim/Akım"
+
+msgid "Applied Voltage"
+msgstr "Uygulanan gerilim"
+
+msgid "Recombination prefactor"
+msgstr "Rekombinasyon ön faktörü"
+
+msgid "Applied voltage"
+msgstr "Uygulanan gerilim"
+
+msgid "Excess carrier density"
+msgstr "Aşırı taşıyıcı yoğunluğu"
+
+msgid "Excess charge density above equilibrium"
+msgstr "Dengenin üzerinde aşırı yük yoğunluğu"
+
+msgid "Charge density with correction for surface charge"
+msgstr "Yüzey yükü düzeltmeli yük yoğunluğu"
+
+msgid "Total charge density"
+msgstr "Toplam şarj yoğunluğu"
+
+msgid "EQE"
+msgstr "EQE"
+
+msgid "Light flux"
+msgstr "Işık akısı"
+
+msgid "Power in Optical emission/Electrical power in"
+msgstr "Güç girişi Optik emisyon/Elektrik gücü girişi"
+
+msgid "Conductivity"
+msgstr "İletkenlik"
+
+msgid "Holes on left contact"
+msgstr "Sol temastaki delikler"
+
+msgid "Electrons on left contact"
+msgstr "Sol temastaki elektronlar"
+
+msgid "Holes on right contact"
+msgstr "Sağ temastaki delikler"
+
+msgid "Electrons on right contact"
+msgstr "Doğru temastaki elektronlar"
+
+msgid "Generating electrical mesh\n"
+msgstr "Elektrik ağı oluşturuluyor\n"
+
+msgid "I can't solve the matrix because I don't have enough equations."
+msgstr "Yeterli denklemim olmadığı için matrisi çözemiyorum."
+
+msgid "Wavelength"
+msgstr "Dalgaboyu"
+
+msgid "Probe load configuration"
+msgstr "Prob yükü konfigürasyonu"
+
+msgid "Probe calculate modes"
+msgstr "Prob hesaplama modları"
+
+msgid "Probe free memory"
+msgstr "Prob boş belleği"
+
+msgid "Photon generation rate"
+msgstr "Foton üretim hızı"
+
+msgid "Average photon generation rate (xz-plane)"
+msgstr "Ortalama foton üretim hızı (xz-düzlemi)"
+
+msgid "Photon generation rate  (xz-plane)"
+msgstr "Foton üretim hızı (xz-düzlemi)"
+
+msgid "Absorption"
+msgstr "Emilim"
+
+msgid "Extended opticla absorption"
+msgstr "Genişletilmiş optik emilim"
+
+#, python-format
+msgid "Cleaning cache index: %s\n"
+msgstr "Önbellek dizini temizleniyor: %s\n"
+
+msgid "Cache: checking cache free space\n"
+msgstr "Önbellek: Önbellekteki boş alan kontrol ediliyor\n"
+
+msgid "Freeing memory from the exciton model\n"
+msgstr "Exciton modelinden hafıza boşaltılıyor\n"
+
+msgid "Mode E-field"
+msgstr "Mod E-alanı"
+
+msgid "E-field"
+msgstr "E-alanı"
+
+msgid "Refractive index"
+msgstr "Kırılma indisi"
+
+msgid "Normalized photon ensity"
+msgstr "Normalleştirilmiş foton yoğunluğu"
+
+msgid "Photon density"
+msgstr "Foton yoğunluğu"
+
+msgid "Mode Ey"
+msgstr "Mod Ey"
+
+msgid "Ey"
+msgstr "Hey"
+
+msgid "E - Electric field"
+msgstr "E - Elektrik alanı"
+
+msgid "Job stalled. Time since last run:"
+msgstr "İş durdu. Son çalıştırmadan bu yana geçen süre:"
+
+msgid "Bytes, written"
+msgstr "Bayt, yazılı"
+
+msgid ", read"
+msgstr ", Okumak"
+
+msgid "Files, read"
+msgstr "Dosyalar, oku"
+
+msgid " written"
+msgstr "yazılı"
+
+msgid "I have shut down the server"
+msgstr "Sunucuyu kapattım"
+
+msgid "Number of CPUs:"
+msgstr "CPU sayısı:"
+
+msgid "Start time"
+msgstr "Başlangıç ​​saati"
+
+msgid "End time"
+msgstr "Bitiş zamanı"
+
+msgid "All jobs finished jobs"
+msgstr "Tüm işler bitmiş işler"
+
+msgid "I have finished all my jobs"
+msgstr "Bütün işlerimi bitirdim"
+
+msgid "The server has detected a crash"
+msgstr "Sunucu bir çökme tespit etti"
+
+msgid "Hole generation rate"
+msgstr "Delik oluşturma oranı"
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie, Releced the MIT License"
+msgstr "Telif Hakkı (C) 2009-2022 Roderick C. I. MacKenzie, MIT Lisansını Geri Aldı"
+
+msgid "options"
+msgstr "seçenekler"
+
+msgid "Options"
+msgstr "Seçenekler"
+
+msgid "Simulation root path"
+msgstr "Simülasyon kök yolu"
+
+msgid "displays the current version"
+msgstr "geçerli sürümü görüntüler"
+
+msgid "Dump know paths"
+msgstr "Bilinen yolları boşalt"
+
+msgid "Forces a simulation mode."
+msgstr "Bir simülasyon modunu zorlar."
+
+msgid "sets the number of CPUs"
+msgstr "CPU sayısını ayarlar"
+
+msgid "Runs the optimizer. Syntax --optimizer scan_name"
+msgstr "Optimize ediciyi çalıştırır. Sözdizimi --optimizer tarama_adı"
+
+msgid "Additional information about OghmaNano is available at https://www.Oghma-Nano.com."
+msgstr "OghmaNano hakkında ek bilgiye https://www.Oghma-Nano.com adresinden ulaşabilirsiniz."
+
+msgid "Report bugs to: roderick.mackenzie@oghma-nano.com"
+msgstr "Hataları şu adrese bildirin: roderick.mackenzie@oghma-nano.com"
+
+#, python-format
+msgid "oghma_core, Version %s\n"
+msgstr "oghma_core, Sürüm %s\n"
+
+msgid "OghmaNano (Organic and hybrid Material Nano Simulation tool) core."
+msgstr "OghmaNano (Organik ve hibrit Malzeme Nano Simülasyon aracı) çekirdeği."
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2009-2022"
+msgstr "Telif Hakkı Roderick MacKenzie, MIT Lisansı 2009-2022 kapsamında yayımlanmıştır"
+
+msgid "There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or\n"
+msgstr "KESİNLİKLE GARANTİ YOKTUR; TİCARİ ELVERİŞLİLİK için bile değil\n"
+
+msgid "FITNESS FOR A PARTICULAR PURPOSE.\n"
+msgstr "BELİRLİ BİR AMACA UYGUNLUK.\n"
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2010-2019"
+msgstr "Telif Hakkı Roderick MacKenzie, MIT Lisansı 2010-2019 kapsamında yayımlanmıştır"
+
+msgid "OghmaNano - Organic and hybrid Material Nano Simulation tool"
+msgstr "OghmaNano - Organik ve hibrit Malzeme Nano Simülasyon aracı"
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+msgstr "Telif Hakkı (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+
+msgid "Released under the MIT software license"
+msgstr "MIT yazılım lisansı altında yayınlandı"
+
+msgid "If you wish to collaborate in anyway please get in touch:\n"
+msgstr "Yine de ortak çalışmak istiyorsanız lütfen iletişime geçin:\n"
+
+msgid "dll not loaded"
+msgstr "dll yüklenmedi"
+
+msgid "dll function outcoupling_dll_init not found\n"
+msgstr "outcoupling_dll_init dll işlevi bulunamadı\n"
+
+msgid "dll function outcoupling_dll_solve_lam_slice not found\n"
+msgstr "outcoupling_dll_solve_lam_slice dll işlevi bulunamadı\n"
+
+msgid "dll function outcoupling_dll_ver not found\n"
+msgstr "dll işlevi outcoupling_dll_ver bulunamadı\n"
+
+msgid "Generation rate - position"
+msgstr "Üretim oranı - konum"
+
+msgid "Photons escape probability - position"
+msgstr "Fotonların kaçma olasılığı - konum"
+
+msgid "Photons escape probability"
+msgstr "Fotonların kaçış olasılığı"
+
+msgid "Position - Photon density"
+msgstr "Konum - Foton yoğunluğu"
+
+msgid "Photon Escape Probability Wavelength Averaged"
+msgstr "Foton Kaçış Olasılığı Dalga Boyu Ortalaması"
+
+msgid "Escape probability"
+msgstr "Kaçış olasılığı"
+
+msgid "Photon escape probability"
+msgstr "Foton kaçış olasılığı"
+
+msgid "Running FDTD simulation @"
+msgstr "FDTD simülasyonunu çalıştırma @"
+
+msgid "Ex - Electric field"
+msgstr "Örn - Elektrik alanı"
+
+msgid "Ey - Electric field"
+msgstr "Ey - Elektrik alanı"
+
+msgid "Ez - Electric field"
+msgstr "Ez - Elektrik alanı"
+
+msgid "Detectors"
+msgstr "Dedektörler"
+
+msgid "Hx - Magnetic field"
+msgstr "Hx - Manyetik alan"
+
+msgid "H-field"
+msgstr "H alanı"
+
+msgid "Hy - Magnetic field"
+msgstr "Hy - Manyetik alan"
+
+msgid "Hz - Magnetic field"
+msgstr "Hz - Manyetik alan"
+
+msgid "Power den"
+msgstr "Güç odası"
+
+msgid "Tot power den"
+msgstr "Toplam güç odası"
+
+msgid "epsilon_r - Premitivity"
+msgstr "epsilon_r - Öncelik"
+
+msgid "Permitivity"
+msgstr "Geçirgenlik"
+
+msgid "sigma - ?"
+msgstr "sigma - ?"
+
+msgid "sigma"
+msgstr "sigma"
+
+msgid "Math_2d output"
+msgstr "Math_2d çıktısı"
+
+msgid "Values"
+msgstr "Değerler"
+
+msgid "dll function dll_matrix_solve not found\n"
+msgstr "dll işlevi dll_matrix_solve bulunamadı\n"
+
+msgid "dll function dll_matrix_solver_free not found\n"
+msgstr "dll işlevi dll_matrix_solver_free bulunamadı\n"
+
+msgid "dll function dll_matrix_init not found\n"
+msgstr "dll işlevi dll_matrix_init bulunamadı\n"
+
+msgid "Error closing dll"
+msgstr "Dll kapatılırken hata oluştu"
+
+msgid "File not found\n"
+msgstr "Dosya bulunamadı\n"
+
+#, python-format
+msgid "File access log written to %s\n"
+msgstr ""
+
+msgid "Equilibrium Fermi-level"
+msgstr "Denge Fermi seviyesi"
+
+msgid "dll function dll_complex_matrix_solver_free not found\n"
+msgstr "dll işlevi dll_complex_matrix_solver_free bulunamadı\n"
+
+msgid "Deleting directory: "
+msgstr "Dizin siliniyor:"
+
+msgid "Deleting directory"
+msgstr "Dizin siliniyor"
+
+msgid "Solver initialization\n"
+msgstr "Çözücü başlatma\n"
+
+msgid "dll_solve_cur not NULL\n"
+msgstr "dll_solve_cur NULL değil\n"
+
+msgid "dll function dll_solve_cur not found\n"
+msgstr "dll işlevi dll_solve_cur bulunamadı\n"
+
+msgid "dll_solver_realloc not NULL\n"
+msgstr "dll_solver_realloc NULL değil\n"
+
+msgid "dll function dll_solver_realloc not found\n"
+msgstr "dll işlevi dll_solver_realloc bulunamadı\n"
+
+msgid "dll_solver_free_memory not NULL\n"
+msgstr "dll_solver_free_memory NULL değil\n"
+
+msgid "dll function dll_solver_free_memory not found\n"
+msgstr "dll işlevi dll_solver_free_memory bulunamadı\n"
+
+msgid ">I don't understand the command"
+msgstr ">Komutu anlamıyorum"
+
+msgid "Can not open file"
+msgstr "Dosya açılamıyor"
+
+#, python-brace-format
+msgid "Average mobility at V_{oc}"
+msgstr "V_{oc}'da ortalama hareketlilik"
+
+msgid "Recombination rate at Voc"
+msgstr "Voc'da rekombinasyon oranı"
+
+#, python-brace-format
+msgid "Average mobility as J_{sc}"
+msgstr "J_{sc} olarak ortalama hareketlilik"
+
+#, python-brace-format
+msgid "Electron mobility at J_{sc}"
+msgstr "J_{sc}'de elektron hareketliliği"
+
+#, python-brace-format
+msgid "Hole mobility at J_{sc}"
+msgstr "J_{sc}'de delik hareketliliği"
+
+#, python-brace-format
+msgid "Electron mobility at P_{max}"
+msgstr "P_{max}'da elektron hareketliliği"
+
+#, python-brace-format
+msgid "Hole mobility at P_{max}"
+msgstr "P_{max}'da delik hareketliliği"
+
+msgid "Recombination time constant at Voc"
+msgstr "Voc'ta rekombinasyon zaman sabiti"
+
+msgid "Trapped electrons at Voc"
+msgstr "Voc'ta hapsolmuş elektronlar"
+
+msgid "Trapped holes at Voc"
+msgstr "Voc'ta sıkışmış delikler"
+
+msgid "Free electrons at Voc"
+msgstr "Voc'ta serbest elektronlar"
+
+msgid "Free holes at Voc"
+msgstr "Voc'ta boş delikler"
+
+msgid "Total carriers (n+p)/2 at Voc"
+msgstr "Voc'ta toplam taşıyıcı (n+p)/2"
+
+#, python-brace-format
+msgid "Average mobility at P_{max}"
+msgstr "P_{max} seviyesinde ortalama hareketlilik"
+
+msgid "<b>GPU</b>"
+msgstr "<b>GPU</b>"
+
+msgid "Max Cahce Size"
+msgstr "Maksimum Cahce Boyutu"
+
+msgid "Minimum disk free"
+msgstr "Minimum disk ücretsiz"
+
+msgid "Number of simulations to keep"
+msgstr "Saklanacak simülasyon sayısı"
+
+msgid "Enable cache"
+msgstr "Önbelleği etkinleştir"
+
+msgid "Cache path"
+msgstr "Önbellek yolu"
+
+msgid "Name"
+msgstr "İsim"
+
+msgid "Resistor"
+msgstr "Direnç"
+
+msgid "Capacitor"
+msgstr "Kapasitör"
+
+msgid "Inductance"
+msgstr "İndüktans"
+
+msgid "I0"
+msgstr "ben0"
+
+msgid "Ideality factor"
+msgstr "İdeallik faktörü"
+
+msgid "Layer"
+msgstr "Katman"
+
+msgid "Single point"
+msgstr "Tek nokta"
+
+msgid "Start intensity"
+msgstr "Başlangıç yoğunluğu"
+
+msgid "Stop intensity"
+msgstr "Yoğunluğu durdur"
+
+msgid "step multiplier"
+msgstr "adım çarpanı"
+
+msgid "dx of Honeycomb"
+msgstr "Petek dx'i"
+
+msgid "dy of Honeycomb"
+msgstr "Petek ölümü"
+
+msgid "Line width"
+msgstr "Hat genişliği"
+
+msgid "x shift"
+msgstr "x kaydırma"
+
+msgid "y shift"
+msgstr "y vardiyası"
+
+msgid "Rotate"
+msgstr "Döndür"
+
+msgid "Enable fit variable"
+msgstr "Uygun değişkeni etkinleştir"
+
+msgid "Select"
+msgstr "Seçme"
+
+msgid "Shift experimental y"
+msgstr "Deneysel y'yi kaydır"
+
+msgid "Invert simulated data (y)"
+msgstr "Simüle edilmiş verileri ters çevir (y)"
+
+msgid "Subtract lowest point"
+msgstr "En düşük noktayı çıkar"
+
+msgid "Set first point to zero"
+msgstr "İlk noktayı sıfıra ayarla"
+
+msgid "Fit df(x)/dx"
+msgstr "df(x)/dx'i sığdır"
+
+msgid "Fit error multiplyer"
+msgstr "Sığdırma hatası çarpanı"
+
+msgid "Stall steps"
+msgstr "Durak adımları"
+
+msgid "Fit define convergence"
+msgstr "Uyum tanımlı yakınsama"
+
+msgid "<b>Fit method</b>"
+msgstr "<b>Uydurma yöntemi</b>"
+
+msgid "Fiting method"
+msgstr "Montaj yöntemi"
+
+msgid "Nelder–Mead (Downhill simplex)"
+msgstr "Nelder – Mead (Yokuş aşağı simpleks)"
+
+msgid "Thermal Annealing"
+msgstr "Termal Tavlama"
+
+msgid "Markov chain Monte Carlo (MCMC)"
+msgstr "Markov zinciri Monte Carlo (MCMC)"
+
+msgid "Markov chain Monte Carlo (HMC)"
+msgstr "Markov zinciri Monte Carlo (HMC)"
+
+msgid "No-U-Turn Sampler (NUTS)"
+msgstr "U Dönüşü Olmayan Numune Alıcı (NUTS)"
+
+msgid "Newton"
+msgstr "Newton"
+
+msgid "Broyden–Fletcher–Goldfarb–Shanno (BFGS)"
+msgstr "Broyden – Fletcher – Goldfarb – Shanno (BFGS)"
+
+msgid "Start simplex step multiplication"
+msgstr "Simpleks adımlı çarpmayı başlat"
+
+msgid "Enable simplex reset steps"
+msgstr "Simpleks sıfırlama adımlarını etkinleştir"
+
+msgid "Simplex reset steps"
+msgstr "Simplex sıfırlama adımları"
+
+msgid "Disable reset at level"
+msgstr "Seviyede sıfırlamayı devre dışı bırak"
+
+msgid "On stall randomize fit"
+msgstr "Duraklamada rastgele uyum"
+
+msgid "Number of iterations between random reset"
+msgstr "Rastgele sıfırlama arasındaki yineleme sayısı"
+
+msgid "Sigma"
+msgstr "Sigma"
+
+msgid "Dump every n steps"
+msgstr "Her n adımda bir boşalt"
+
+msgid "Leapfrog steps"
+msgstr "Birdirbir adımları"
+
+msgid "Cooling constant"
+msgstr "Soğutma sabiti"
+
+msgid "Annealing steps"
+msgstr "Tavlama adımları"
+
+msgid "Randomize variables at begining"
+msgstr "Başlangıçta değişkenleri rastgele seç"
+
+msgid "<b>Fit control</b>"
+msgstr "<b>Uydurma kontrolü</b>"
+
+msgid "Set error to zero before"
+msgstr "Hatayı daha önce sıfıra ayarlayın"
+
+msgid "Enable snapshots during fit"
+msgstr "Uyum sırasında anlık görüntüleri etkinleştir"
+
+msgid "Normalize data at x point"
+msgstr "Verileri x noktasında normalleştir"
+
+msgid "Random funciton"
+msgstr "Rastgele işlev"
+
+msgid "Mersenne Twister"
+msgstr "Mersenne Twister"
+
+msgid "C rand"
+msgstr "C Randı"
+
+msgid "Random initialization"
+msgstr "Rastgele başlatma"
+
+msgid "Wall clock"
+msgstr "duvar saati"
+
+msgid "Constant value"
+msgstr "Sabit değer"
+
+msgid "/dev/urandom"
+msgstr "/dev/urandom"
+
+msgid "Random seed value"
+msgstr "Rastgele tohum değeri"
+
+msgid "Add noise"
+msgstr "Gürültü ekle"
+
+msgid "Noise level"
+msgstr "Gürültü seviyesi"
+
+msgid "a"
+msgstr "A"
+
+msgid "b"
+msgstr "B"
+
+msgid "c"
+msgstr "C"
+
+msgid "Range start x0"
+msgstr "Aralık başlangıcı x0"
+
+msgid "Range stop x1"
+msgstr "Menzil durağı x1"
+
+msgid "JV voltage step multiplyer"
+msgstr "JV gerilimi adım çarpanı"
+
+msgid "Maximum current density"
+msgstr "Maksimum akım yoğunluğu"
+
+msgid "JV curve photon generation efficiency"
+msgstr "JV eğrisi foton üretim verimliliği"
+
+#, python-brace-format
+msgid "Average carrier density at P_{max}"
+msgstr "P_{max}'da ortalama taşıyıcı yoğunluğu"
+
+msgid "Start voltage"
+msgstr "Başlangıç gerilimi"
+
+msgid "Stop voltage"
+msgstr "Durdurma gerilimi"
+
+msgid "Voltage step"
+msgstr "Gerilim adımı"
+
+msgid "Points"
+msgstr "Puanlar"
+
+msgid "Detector input hist"
+msgstr "Dedektör giriş geçmişi"
+
+msgid "Counts"
+msgstr "Sayımlar"
+
+msgid "Detected light"
+msgstr "Algılanan ışık"
+
+msgid "Efficiency of emission"
+msgstr "Emisyon verimliliği"
+
+msgid "Detector"
+msgstr "Dedektör"
+
+msgid "Power"
+msgstr "Güç"
+
+msgid "Solving the initial electrostatic field."
+msgstr "Başlangıçtaki elektrostatik alanın çözümü."
+
+msgid "Electrostatic solver f()="
+msgstr "Elektrostatik çözücü f()="
+
+msgid "Converged"
+msgstr "Bütünleşik"
+
+msgid "Finding equilibrium conditions"
+msgstr "Denge koşullarını bulma"
+
+msgid "Finished finding equilibrium conditions"
+msgstr "Denge koşullarının bulunması tamamlandı"
+
+msgid "Finished generating DoS....\n"
+msgstr "DoS oluşturma tamamlandı....\n"
+
+msgid "load: config files"
+msgstr "yükleme: yapılandırma dosyaları"
+
+msgid "Intrinsic Fermi - position"
+msgstr "İçsel Fermi - pozisyon"
+
+msgid "LUMO energy - position"
+msgstr "LUMO enerjisi - konum"
+
+msgid "HOMO energy - position"
+msgstr "HOMO enerjisi - konum"
+
+msgid "Electron density - position"
+msgstr "Elektron yoğunluğu - konum"
+
+msgid "Hole density - position"
+msgstr "Delik yoğunluğu - konum"
+
+msgid "Potential - position"
+msgstr "Potansiyel - konum"
+
+msgid "Loading electrical dll\n"
+msgstr "Elektrik dll'si yükleniyor\n"
+
+msgid "dll function dll_run_simulation not found\n"
+msgstr "dll işlevi dll_run_simulation bulunamadı\n"
+
+msgid "Electrical objects"
+msgstr "Elektrikli nesneler"
+
+msgid "Running simulation"
+msgstr "Simülasyonun çalıştırılması"
+
+msgid "Solved"
+msgstr "Çözüldü"
+
+msgid "Equations"
+msgstr "Denklemler"
+
+msgid "I can't allocate a device with less than 1 mesh point."
+msgstr "1 mesh noktasından daha az bir cihazı tahsis edemiyorum."
+
+msgid ""
+"You are asking me to simulate a device with more than 50000 mesh points, although I could do "
+"this I am not going to because it seems a bad idea to me."
+msgstr ""
+"Benden 50000'den fazla ağ noktasına sahip bir cihazı simüle etmemi istiyorsunuz, ancak bunu "
+"yapabilecek olsam da yapmayacağım çünkü bu bana kötü bir fikir gibi görünüyor."
+
+msgid "Current "
+msgstr "Akım"
+
+msgid "Voltage - Current density"
+msgstr "Gerilim - Akım yoğunluğu"
+
+msgid "Voltage - Current"
+msgstr "Gerilim - Akım"
+
+msgid "Time - Current density"
+msgstr "Zaman - Akım yoğunluğu"
+
+msgid "Time - Voltage"
+msgstr "Zaman - Gerilim"
+
+msgid "Fit error"
+msgstr "Uygunluk hatası"
+
+msgid "Step"
+msgstr "Adım"
+
+msgid "au"
+msgstr "evet"
+
+msgid "Speed"
+msgstr "Hız"
+
+msgid "odes/s"
+msgstr "kasideler/ler"
+
+msgid "Chain all"
+msgstr "Hepsini zincirle"
+
+msgid "Value"
+msgstr "Değer"
+
+msgid "Chain accepted"
+msgstr "Zincir kabul edildi"
+
+msgid "Hist chain accepted"
+msgstr "Hist zinciri kabul edildi"
+
+msgid "Freeing memory from the heat model\n"
+msgstr "Bellek ısı modelinden boşaltılıyor\n"
+
+msgid "Loading file"
+msgstr "Dosya yükleniyor"
+
+#, python-format
+msgid "Expected dos size is different from generated %d %d\n"
+msgstr "Beklenen doz boyutu oluşturulan %d %d'den farklı\n"
+
+#, python-format
+msgid "genndosfdgaus: I can not write to the file %s\n"
+msgstr ""
+
+msgid "Computer cores:"
+msgstr "Bilgisayar çekirdekleri:"
+
+msgid "Max threads:"
+msgstr "Maksimum konu sayısı:"
+
+msgid "You must load the optical plugin before making the time mesh"
+msgstr "Zaman ağını yapmadan önce optik eklentiyi yüklemelisiniz"
+
+msgid "The electrical mesh does not match the device length"
+msgstr "Elektrik ağı cihazın uzunluğuyla eşleşmiyor"
+
+msgid "Can't generate a mesh with zero points"
+msgstr "Sıfır noktalı bir ağ oluşturulamıyor"
+
+msgid "If you want to run perovskite in fx-domain send me an e-mail."
+msgstr "Perovskite'i fx-domain'de çalıştırmak istiyorsanız bana bir e-posta gönderin."
+
+msgid "fxdomain mode not known"
+msgstr "fxdomain modu bilinmiyor"
+
+msgid "Running frequency"
+msgstr "Çalışma frekansı"
+
+msgid ""
+"Optical modulation will come in the next version.  If you want to use it drop me a mail..."
+msgstr "Optik modülasyon bir sonraki versiyonda gelecek. Kullanmak istersen bana mail at..."
+
+msgid "fxdomain time"
+msgstr "fxdomain süresi"
+
+msgid "Light intensity"
+msgstr "Işık şiddeti"
+
+msgid "Ion density - position"
+msgstr "İyon yoğunluğu - konum"
+
+msgid "Ion free"
+msgstr "İyon içermez"
+
+msgid "Ion convergence="
+msgstr "İyon yakınsaması="
+
+msgid "Ion diffusion"
+msgstr "İyon difüzyonu"
+
+msgid "R spm"
+msgstr "R spm"
+
+msgid "Vlost spm"
+msgstr "Vlost spm'si"
+
+msgid "V spm"
+msgstr "V spm"
+
+msgid "Electrical circuit"
+msgstr "Elektrik devresi"
+
+msgid "Circuit"
+msgstr "Devre"
+
+msgid "Current vector plot"
+msgstr "Güncel vektör grafiği"
+
+msgid "Real refractive index"
+msgstr "Gerçek kırılma indeksi"
+
+msgid "|Electric field|"
+msgstr "|Elektrik alanı|"
+
+msgid "Transmittance"
+msgstr "geçirgenlik"
+
+msgid "Reflectance"
+msgstr "yansıma"
+
+msgid "Solve optical slice at"
+msgstr "Optik dilimi çözün"
+
+msgid "It was dark I did not solve any slices\n"
+msgstr "Hava karanlıktı hiçbir dilimi çözemedim\n"
+
+msgid "Initializing optical model"
+msgstr "Optik modeli başlatma"
+
+msgid "dll function light_dll_init not found\n"
+msgstr "dll işlevi light_dll_init bulunamadı\n"
+
+msgid "dll function light_dll_solve_lam_slice not found\n"
+msgstr "dll işlevi light_dll_solve_lam_slice bulunamadı\n"
+
+msgid "dll function light_dll_ver not found\n"
+msgstr "dll işlevi light_dll_ver bulunamadı\n"
+
+msgid "Power density of the optical spectra (no filter):"
+msgstr "Optik spektrumun güç yoğunluğu (filtresiz):"
+
+msgid "File not found"
+msgstr "Dosya bulunamadı"
+
+msgid "Light: Load filter"
+msgstr "Işık: Filtreyi yükle"
+
+msgid "Refractive index - position"
+msgstr "Kırılma indisi - konum"
+
+msgid "Absorption - position"
+msgstr "Emilim - konum"
+
+msgid "Photons absorbed - position"
+msgstr "Emilen fotonlar - konum"
+
+msgid "Photons absorbed"
+msgstr "Emilen fotonlar"
+
+msgid "Position - Electric field (y+)"
+msgstr "Konum - Elektrik alanı (y+)"
+
+msgid "Position - Electric field (y-)"
+msgstr "Konum - Elektrik alanı (y-)"
+
+msgid "Freeing memory from the optical model\n"
+msgstr "Optik modeldeki bellek boşaltılıyor\n"
+
+msgid "Electron generation rate"
+msgstr "Elektron üretim hızı"
+
+msgid "Optical heating"
+msgstr "Optik ısıtma"
+
+msgid "Charge carrier generation rate"
+msgstr "Şarj taşıyıcısı üretim hızı"
+
+msgid "Copy"
+msgstr "Kopyala"
+
+msgid "Copy as JSON"
+msgstr "JSON olarak kopyala"
+
+msgid "Copy json/python path"
+msgstr "Json/python yolunu kopyala"
+
+msgid "Copy ObjID"
+msgstr "ObjID'yi kopyala"
+
+msgid "Copy as LaTex"
+msgstr "LaTex olarak kopyala"
+
+msgid "Copy as csv"
+msgstr "CSV olarak kopyala"
+
+msgid "Paste"
+msgstr "Yapıştırmak"
+
+msgid "Reimport from database"
+msgstr "Veritabanından yeniden içe aktar"
+
+msgid "Are you sure you want reimport the material values from:"
+msgstr "Malzeme değerlerini aşağıdakilerden yeniden içe aktarmak istediğinizden emin misiniz?"
+
+msgid "File not found:"
+msgstr "Dosya bulunamadı:"
+
+msgid "Edit reference"
+msgstr "Referansı düzenle"
+
+msgid "Delete reference"
+msgstr "Referansı sil"
+
+msgid "Add reference"
+msgstr "Referans ekle"
+
+msgid "This simulation"
+msgstr "Bu simülasyon"
+
+msgid "Electrical parameter editor for shape"
+msgstr "Şekil için elektriksel parametre düzenleyici"
+
+msgid "Reference"
+msgstr "Referans"
+
+msgid "Bibliography editor"
+msgstr "Kaynakça editörü"
+
+msgid "Electrical Mesh Editor"
+msgstr "Elektrik Mesh Düzenleyicisi"
+
+msgid ""
+"Y\n"
+"Dimension"
+msgstr ""
+"Y\n"
+"Boyut"
+
+msgid ""
+"X\n"
+"Dimension"
+msgstr ""
+"X\n"
+"Boyut"
+
+msgid ""
+"Z\n"
+"Dimension"
+msgstr ""
+"Z\n"
+"Boyut"
+
+msgid ""
+"Configure\n"
+"mesh"
+msgstr ""
+
+msgid ""
+"Import from\n"
+"layer editor"
+msgstr ""
+"Katman düzenleyiciden\n"
+"içe aktar"
+
+msgid "Remesh"
+msgstr "Yeniden ağla"
+
+msgid "Configure mesh"
+msgstr "Ağı yapılandır"
+
+msgid ""
+"Are you sure you want to overwrite the electrical mesh with a guessed mesh based on the "
+"layer structure?"
+msgstr ""
+"Katman yapısına dayalı olarak tahmin edilen ağı elektrik ağının üzerine yazmak "
+"istediğinizden emin misiniz?"
+
+msgid "New simulation"
+msgstr "Yeni simülasyon"
+
+msgid ""
+"Open\n"
+"simulation"
+msgstr "Simülasyonu aç"
+
+msgid ""
+"Export\n"
+"Zip"
+msgstr ""
+"Dışa aktar\n"
+"Zip"
+
+msgid ""
+"Run\n"
+"simulation"
+msgstr ""
+"Simülasyonu\n"
+"çalıştır"
+
+msgid "Run simulation"
+msgstr "Simülasyonu çalıştır"
+
+msgid "Tutorials"
+msgstr "Öğreticiler"
+
+msgid "Manual"
+msgstr "Manuel"
+
+msgid ""
+"Follow on\n"
+"Twitter"
+msgstr ""
+
+msgid ""
+"Subscribe\n"
+"on Youtube"
+msgstr ""
+"Youtube'a\n"
+" abone olun"
+
+msgid "Getting started"
+msgstr "Başlarken"
+
+msgid "1D Simulations"
+msgstr "1D Simülasyonlar"
+
+msgid "Carrier trapping"
+msgstr "Taşıyıcı yakalama"
+
+msgid "2D electrical structures (OFETs)"
+msgstr "2D elektriksel yapılar (OFET'ler)"
+
+msgid "Large area devices/circuit models"
+msgstr "Geniş alan cihazları/devre modelleri"
+
+msgid "OLEDs"
+msgstr "OLED'ler"
+
+msgid "Material databases"
+msgstr "Malzeme veritabanları"
+
+msgid "Scripting"
+msgstr "Komut dosyası oluşturma"
+
+msgid "Frequency domain simulations"
+msgstr "Frekans alanı simülasyonları"
+
+msgid "Transient simulations"
+msgstr "Geçici simülasyonlar"
+
+msgid "Optical simulations"
+msgstr "Optik simülasyonlar"
+
+msgid "Excitonic simulations"
+msgstr "Eksitonik simülasyonlar"
+
+msgid "Fitting"
+msgstr "Montaj"
+
+msgid "Misc"
+msgstr "Çeşitli"
+
+msgid "Basics"
+msgstr "Temel bilgiler"
+
+msgid ""
+"<big><b>Now save the simulation</b></big><br>Now select where you would like to save the "
+"simulation directory."
+msgstr ""
+"<big><b>Şimdi simülasyonu kaydedin</b></big><br>Şimdi simülasyon dizinini nereye kaydetmek "
+"istediğinizi seçin."
+
+msgid "password:"
+msgstr "şifre:"
+
+msgid "Wrong password"
+msgstr "Yanlış şifre"
+
+msgid ""
+"It's not a good idea to save the simulation in the installation directory.  Try saving it "
+"somewhere else, such as your desktop or home directory."
+msgstr ""
+"Simülasyonu kurulum dizinine kaydetmek iyi bir fikir değildir. Masaüstünüz veya ana "
+"dizininiz gibi başka bir yere kaydetmeyi deneyin."
+
+msgid "It's not a good idea to save the simulation in the oghma_local directory."
+msgstr "Simülasyonu oghma_local dizinine kaydetmek iyi bir fikir değildir."
+
+msgid "That directory already exists.  Pick another name or delete the old one."
+msgstr "Bu dizin zaten var. Başka bir ad seçin veya eskisini silin."
+
+msgid "Please select a device before clicking next"
+msgstr "Lütfen ileriyi tıklamadan önce bir cihaz seçin"
+
+msgid "Organic LED"
+msgstr "Organik LED"
+
+msgid "Crystalline silicon solar cell"
+msgstr "Kristalin silikon güneş pili"
+
+msgid "a-Si solar cell "
+msgstr "a-Si güneş pili"
+
+msgid "polycrystalline silicon "
+msgstr "polikristalin silikon"
+
+msgid "OFET "
+msgstr "OFET"
+
+msgid "Perovskite solar cell"
+msgstr "Perovskit güneş pili"
+
+msgid "CIGS Solar cell"
+msgstr "CIGS Güneş pili"
+
+msgid "Which type of device would you like to simulate?"
+msgstr "Hangi tür cihazı simüle etmek istiyorsunuz?"
+
+msgid "Double click to open"
+msgstr "Açmak için çift tıklayın"
+
+msgid "Close"
+msgstr "Kapalı"
+
+msgid "Show hidden"
+msgstr "Gizlenenleri göster"
+
+msgid "Object editor"
+msgstr "Nesne düzenleyici"
+
+msgid ""
+"Object\n"
+"enabled"
+msgstr ""
+"Nesne\n"
+"etkinleştirildi"
+
+msgid ""
+"Object\n"
+"disabled"
+msgstr ""
+"Nesne\n"
+"devre dışı"
+
+msgid "About"
+msgstr "Hakkında"
+
+msgid "Written by Roderick MacKenzie 2012-2023, released under the MIT software license."
+msgstr ""
+"Roderick MacKenzie 2012-2023 tarafından yazıldı ve MIT yazılım lisansı altında yayınlandı."
+
+msgid "Version "
+msgstr "Sürüm"
+
+msgid ""
+" is a general-purpose tool for simulation of light harvesting devices. It was originally "
+"written to simulate organic solar cells and OLEDs, but it has recently been extended to "
+"simulate other devices including silicon based devices. Currently the model can sumulate:"
+msgstr ""
+"ışık toplama cihazlarının simülasyonu için genel amaçlı bir araçtır. Başlangıçta organik "
+"güneş pillerini ve OLED'leri simüle etmek için yazılmıştı, ancak yakın zamanda silikon bazlı "
+"cihazlar da dahil olmak üzere diğer cihazları simüle edecek şekilde genişletildi. Şu anda "
+"model şunları özetleyebilmektedir:"
+
+msgid "Organic solar cells"
+msgstr "Organik güneş pilleri"
+
+msgid "Organic LEDs"
+msgstr "Organik LED'ler"
+
+msgid "Crystalline silicon solar cells"
+msgstr "Kristalin silikon güneş pilleri"
+
+msgid "a-Si solar cells"
+msgstr "a-Si güneş pilleri"
+
+msgid "CIGS solar cells"
+msgstr "CIGS güneş pilleri"
+
+msgid ""
+"The model solves both electron and hole drift-diffusion, and carrier continuity equations in "
+"position space to describe the movement of charge within the device. The model also solves "
+"Poisson's equation to calculate the internal electrostatic potential. Recombination and "
+"carrier trapping are described within the model using a Shockley-Read-Hall (SRH) formalism, "
+"the distribution of trap sates can be arbitrarily defined. All equations can be solved "
+"either in steady state or in time domain. A fuller description of the model can be found in "
+"the here, in the associated publications and in the manual."
+msgstr ""
+"Model, cihaz içindeki yükün hareketini tanımlamak için hem elektron hem de boşluk sürüklenme-"
+"difüzyonunu ve konum uzayındaki taşıyıcı süreklilik denklemlerini çözer. Model aynı zamanda "
+"iç elektrostatik potansiyeli hesaplamak için Poisson denklemini de çözer. Rekombinasyon ve "
+"taşıyıcı yakalama, Shockley-Read-Hall (SRH) formalizmi kullanılarak model içerisinde "
+"açıklanmaktadır; tuzak satlarının dağılımı keyfi olarak tanımlanabilir. Tüm denklemler ya "
+"kararlı durumda ya da zaman tanım alanında çözülebilir. Modelin daha kapsamlı bir "
+"açıklamasını burada, ilgili yayınlarda ve kılavuzda bulabilirsiniz."
+
+msgid "Legal"
+msgstr "Yasal"
+
+msgid "Translations"
+msgstr "Çeviriler"
+
+msgid "Paths"
+msgstr "Yollar"
+
+msgid ""
+"Materials\n"
+"database"
+msgstr "Malzemeler\veritabanı"
+
+msgid ""
+"Optical\n"
+"database"
+msgstr "Optik\veritabanı"
+
+msgid ""
+"User\n"
+"data"
+msgstr "Kullanıcı\verisi"
+
+msgid ""
+"Shape\n"
+"database"
+msgstr "Şekil\veritabanı"
+
+msgid ""
+"Filters\n"
+"database"
+msgstr "Filtreler\veritabanı"
+
+msgid ""
+"Backup\n"
+"Simulaion"
+msgstr ""
+"Yedekleme\n"
+"Simülasyon"
+
+msgid ""
+"Solar spectrum\n"
+"generator"
+msgstr ""
+
+msgid "Add Material"
+msgstr "Malzeme Ekle"
+
+msgid "Add Filter"
+msgstr "Filtre Ekle"
+
+msgid "Add Spectra"
+msgstr "Spektrum Ekle"
+
+msgid "Add Shape"
+msgstr "Şekil Ekle"
+
+msgid "New backup"
+msgstr "Yeni yedekleme"
+
+msgid "New backup:"
+msgstr "Yeni yedekleme:"
+
+msgid "New backup name"
+msgstr "Yeni yedek adı"
+
+msgid "Shape"
+msgstr "Şekil"
+
+msgid "<big><b>Shape file</b></big><br>"
+msgstr "<big><b>Şekil dosyası</b></big><br>"
+
+msgid "Blur menu"
+msgstr "Bulanıklaştırma menüsü"
+
+msgid "Normalization editor"
+msgstr "Normalleştirme düzenleyicisi"
+
+msgid "Shape editor"
+msgstr "Şekil düzenleyici"
+
+msgid "Configure honeycomb"
+msgstr "Petek yapılandırması"
+
+msgid "Configure photonic xtal"
+msgstr "Fotonik xtal'i yapılandırma"
+
+msgid "Configure photonic lens"
+msgstr "Fotonik merceği yapılandırma"
+
+msgid "Configure saw wave"
+msgstr "Testere dalgasını yapılandır"
+
+msgid "Configure gaussian"
+msgstr "Gaussian'ı yapılandır"
+
+msgid "Configure boundary"
+msgstr "Sınırı yapılandır"
+
+msgid "Configure threshold"
+msgstr "Eşiği yapılandır"
+
+msgid "Configure"
+msgstr "Yapılandır"
+
+msgid "Show labels"
+msgstr "Etiketleri göster"
+
+msgid "Show data"
+msgstr "Verileri göster"
+
+msgid "Show axis"
+msgstr "Ekseni göster"
+
+msgid "Normalize layer width"
+msgstr "Katman genişliğini normalleştir"
+
+msgid "Copy to clipboard"
+msgstr "Panoya kopyala"
+
+msgid "Save as SVG"
+msgstr "SVG olarak kaydet"
+
+msgid "Redraw"
+msgstr "Yeniden çiz"
+
+msgid "Active layer"
+msgstr "Aktif katman"
+
+msgid "From electrical parameters"
+msgstr "Elektriksel parametrelerden"
+
+msgid "From material db"
+msgstr "Malzeme veritabanından"
+
+msgid "<big><b>Spectra</b></big><br>"
+msgstr "<big><b>Spektra</b></big><br>"
+
+msgid "Optical spectrum editor"
+msgstr "Optik spektrum düzenleyici"
+
+msgid "Spectra"
+msgstr "Spektrum"
+
+msgid "Basic"
+msgstr "Temel"
+
+msgid "Frequency mesh"
+msgstr "Frekans ağı"
+
+msgid "Additional information about gpvdm is available at"
+msgstr "Gpvdm hakkında ek bilgi şu adreste mevcuttur:"
+
+msgid "Report bugs to:"
+msgstr "Hataları şu adrese bildirin:"
+
+msgid "Deletes the content of all scan directories."
+msgstr "Tüm tarama dizinlerinin içeriğini siler."
+
+msgid "Loads a simulation --load /path/containing/simulation/sim.oghma"
+msgstr "Bir simülasyon yükler --load /path/containing/simulation/sim.oghma"
+
+msgid "Extract the sim.oghma archive --unpack"
+msgstr "sim.oghma arşivini çıkarın --unpack"
+
+msgid "Extract the sim.oghma archive --pack"
+msgstr "sim.oghma arşivini çıkarın --pack"
+
+msgid "Electrical parameter editor"
+msgstr "Elektrik parametre editörü"
+
+msgid "Device"
+msgstr "Cihaz"
+
+msgid ""
+"Simulation\n"
+"Notes"
+msgstr ""
+"Simülasyon\n"
+"Notlar"
+
+msgid ""
+"Hints\n"
+"Window"
+msgstr ""
+"İpuçları\n"
+"Pencere"
+
+msgid ""
+"Interface\n"
+"Language"
+msgstr ""
+"Arayüz\n"
+"Dil"
+
+msgid "Assosiated paper"
+msgstr "İlgili makale"
+
+msgid "Documentation"
+msgstr "Dokümantasyon"
+
+msgid "Language"
+msgstr "Dil"
+
+msgid ""
+"<big><b>Record notes about the simulation here</b></big><br>Use this window to make notes "
+"about the simulation."
+msgstr ""
+"<big><b>Simülasyonla ilgili notları buraya kaydedin</b></big><br>Simülasyonla ilgili notlar "
+"almak için bu pencereyi kullanın."
+
+msgid "Charge denisty (m^{-3})"
+msgstr "Şarj reddi (m^{-3})"
+
+msgid "Material gradient editor"
+msgstr "Malzeme gradyanı düzenleyicisi"
+
+msgid "Save"
+msgstr "Kaydetmek"
+
+msgid "New scan"
+msgstr "Yeni tarama"
+
+msgid "Delete scan"
+msgstr "Taramayı sil"
+
+msgid "Clone scan"
+msgstr "Klon taraması"
+
+msgid "Rename scan"
+msgstr "Taramayı yeniden adlandır"
+
+msgid "Clean all"
+msgstr "Hepsini temizle"
+
+msgid "Run all scans"
+msgstr "Tüm taramaları çalıştır"
+
+msgid "Help"
+msgstr "Yardım"
+
+msgid "Plot fits"
+msgstr "Konu uyuyor"
+
+msgid "Run simulation no generation"
+msgstr "Nesil yok simülasyonunu çalıştır"
+
+msgid "Run single fit"
+msgstr "Tek uyum çalıştır"
+
+msgid "Clean unconverged simulation"
+msgstr "Yakınsamayan simülasyonu temizleyin"
+
+msgid "Clean simulation output"
+msgstr "Simülasyon çıktısını temizle"
+
+msgid "Push unconverged to hpc"
+msgstr "Yakınsanmış olmayanları hpc'ye aktar"
+
+msgid "Change dir"
+msgstr "Yönü değiştir"
+
+msgid "Report"
+msgstr "Rapor"
+
+msgid "Scan"
+msgstr "Tara"
+
+msgid "Advanced"
+msgstr "Gelişmiş"
+
+msgid "JV experiment window"
+msgstr "Ortak girişim deneme penceresi"
+
+msgid ""
+"Import data\n"
+"from file"
+msgstr ""
+"Verileri\n"
+"dosyadan içe aktar"
+
+msgid ""
+"From\n"
+"Equation"
+msgstr ""
+
+msgid "Reference information"
+msgstr "Referans bilgisi"
+
+msgid "Cost"
+msgstr "Maliyet"
+
+msgid "Cost of material"
+msgstr "Malzeme maliyeti"
+
+msgid "File"
+msgstr "Dosya"
+
+msgid "Align and distribute"
+msgstr "Hizala ve dağıt"
+
+msgid "Left"
+msgstr "Sol"
+
+msgid "Right"
+msgstr "Sağ"
+
+msgid "Distribute"
+msgstr "Dağıt"
+
+msgid "z"
+msgstr "z"
+
+msgid "Exciton simulation editor"
+msgstr "Exciton simülasyon editörü"
+
+msgid ""
+"From\n"
+"File"
+msgstr ""
+
+msgid "Insert reference information"
+msgstr "Referans bilgilerini ekleyin"
+
+msgid ""
+"Are you sure you want to edit the circuit directly?  The circuit will no longer automaticly "
+"be updated as you change the layer structure, and the electrical parameters editor will be "
+"disabled.  Use can use the reset function in the circuit diagram editor to resore this "
+"functionality"
+msgstr ""
+"Devreyi doğrudan düzenlemek istediğinizden emin misiniz? Katman yapısını değiştirdiğinizde "
+"devre artık otomatik olarak güncellenmeyecek ve elektriksel parametreler düzenleyicisi devre "
+"dışı bırakılacaktır. Bu işlevselliği yeniden sağlamak için devre şeması düzenleyicisindeki "
+"sıfırlama işlevini kullanabilirsiniz."
+
+msgid "Component"
+msgstr "Bileşen"
+
+msgid "Circuit diagram"
+msgstr "Devre şeması"
+
+msgid "Use epitaxy as base"
+msgstr "Epitaksiyi baz olarak kullanın"
+
+msgid "Free hand drawing"
+msgstr "Serbest çizim"
+
+msgid "Enabled"
+msgstr "Etkinleştirilmiş"
+
+msgid "Variable"
+msgstr "Değişken"
+
+msgid "Min"
+msgstr "Min."
+
+msgid "Max"
+msgstr "Maksimum"
+
+msgid "Random function"
+msgstr "Rastgele işlev"
+
+msgid "JSON Variable"
+msgstr "JSON Değişkeni"
+
+msgid "FDTD Editor"
+msgstr "FDTD Düzenleyici"
+
+msgid "Configure hardware"
+msgstr "Donanımı yapılandırma"
+
+msgid ""
+"Hardware\n"
+"benchmark"
+msgstr ""
+"Donanım\n"
+"karşılaştırması"
+
+msgid ""
+"RNG\n"
+"test"
+msgstr ""
+"RNG\n"
+"testi"
+
+msgid ""
+"Clear\n"
+"Newton cache"
+msgstr ""
+
+msgid "CPU/GPU configuration"
+msgstr "CPU/GPU yapılandırması"
+
+msgid "Newton cache"
+msgstr "Newton önbelleği"
+
+msgid "Random numbers"
+msgstr "Rastgele numaralar"
+
+msgid "Electrostatic solver"
+msgstr "Elektrostatik çözücü"
+
+msgid "Drift diffusion"
+msgstr "Sürüklenme difüzyonu"
+
+msgid "Simple circuit solver"
+msgstr "Basit devre çözücü"
+
+msgid "Poission solver"
+msgstr "Zehir çözücü"
+
+msgid "Poission solver configuration"
+msgstr "Poission çözücü konfigürasyonu"
+
+msgid "Newton solver"
+msgstr "Newton çözücü"
+
+msgid "Exciton solver"
+msgstr "Eksiton çözücü"
+
+msgid "Singlet solver"
+msgstr "Tekli çözücü"
+
+msgid "Newton solver configuration"
+msgstr "Newton çözücü konfigürasyonu"
+
+msgid "Configuration"
+msgstr "Yapılandırma"
+
+msgid "Circuit solver configuration"
+msgstr "Devre çözücü konfigürasyonu"
+
+msgid "Data imported from: "
+msgstr "Veriler şuradan içe aktarıldı:"
+
+msgid "Layer editor"
+msgstr "Katman düzenleyici"
+
+msgid "Layer name"
+msgstr "Katman adı"
+
+msgid "Thicknes"
+msgstr "Kalınlıklar"
+
+msgid "Optical material"
+msgstr "Optik malzeme"
+
+msgid "Layer type"
+msgstr "Katman türü"
+
+msgid ""
+"Solve optical\n"
+"problem"
+msgstr ""
+"Optik\n"
+"sorunu çözün"
+
+msgid ""
+"Solve thermal\n"
+"problem"
+msgstr ""
+"Termal\n"
+"sorunu çözün"
+
+msgid "ID"
+msgstr "İD"
+
+msgid "start:"
+msgstr "başlangıç:"
+
+msgid "stop:"
+msgstr "durmak:"
+
+msgid "Red=not found in materials DB"
+msgstr "Kırmızı=Malzemeler DB'de bulunamadı"
+
+msgid ""
+"Enable\n"
+"Drift Diff."
+msgstr ""
+
+msgid ""
+"Enable\n"
+"Auger"
+msgstr ""
+
+msgid ""
+"Dynamic\n"
+"SRH traps"
+msgstr ""
+"Dinamik\n"
+"CSÜS tuzakları"
+
+msgid "Min trap depth"
+msgstr "Minimum tuzak derinliği"
+
+msgid "Max trap depth"
+msgstr "Maksimum tuzak derinliği"
+
+msgid "Min Fermi level"
+msgstr "Min Fermi seviyesi"
+
+msgid "Fn points"
+msgstr "Fn noktaları"
+
+msgid "Fermi integral points"
+msgstr "Fermi integral noktaları"
+
+msgid ""
+"Equilibrium\n"
+"SRH traps"
+msgstr ""
+"Denge\n"
+"CSÜS tuzakları"
+
+msgid "Excitons"
+msgstr "Eksitonlar"
+
+msgid ""
+"Excited\n"
+"states laser"
+msgstr ""
+"Heyecanlı\n"
+"lazer belirtir"
+
+msgid "Photon rate equation"
+msgstr "Foton hızı denklemi"
+
+msgid ""
+"Excited\n"
+"states OPV"
+msgstr ""
+"Heyecanlı\n"
+"OPV'yi belirtir"
+
+msgid "Carrier density points"
+msgstr "Taşıyıcı yoğunluk noktaları"
+
+msgid "Fermi-dirac integral steps"
+msgstr "Fermi-dirac integral adımları"
+
+msgid "Minimum trap depth (eV):"
+msgstr "Minimum tuzak derinliği (eV):"
+
+msgid "That's not a number.."
+msgstr "Bu bir sayı değil.."
+
+msgid "Maximum trap depth (eV):"
+msgstr "Maksimum tuzak derinliği (eV):"
+
+msgid "Minimum fermi level (eV):"
+msgstr "Minimum fermi seviyesi (eV):"
+
+msgid "Number of carrier density points to calculate:"
+msgstr "Hesaplanacak taşıyıcı yoğunluk noktası sayısı:"
+
+msgid "Number of steps in the Fermi-dirac integral:"
+msgstr "Fermi-dirac integralindeki adım sayısı:"
+
+msgid "DoS Config"
+msgstr "DoS Yapılandırması"
+
+msgid "Dos Config"
+msgstr "Dos Yapılandırması"
+
+msgid ""
+"Light\n"
+"Sources"
+msgstr ""
+"Işık\n"
+"Kaynakları"
+
+msgid ""
+"Lasers\n"
+"(fs)"
+msgstr ""
+"Lazerler\n"
+"(fs)"
+
+msgid ""
+"Transfer\n"
+"Matrix"
+msgstr ""
+"Aktarım\n"
+"Matris"
+
+msgid ""
+"Optical\n"
+"Outcoupling"
+msgstr ""
+"Optik\n"
+"Çıkış Bağlantısı"
+
+msgid ""
+"Ray tracing\n"
+"editor"
+msgstr ""
+"Işın izleme\n"
+"edüzenleyici"
+
+msgid ""
+"Optical\n"
+"Detectors"
+msgstr ""
+"Optik\n"
+"Dedektörler"
+
+msgid ""
+"FDTD\n"
+"Simulation"
+msgstr ""
+"FDTD\n"
+"Simülasyon"
+
+msgid ""
+"Mode\n"
+"Calculator"
+msgstr ""
+"Mod\n"
+"Hesap Makinesi"
+
+msgid ""
+"Optical\n"
+"thickness"
+msgstr ""
+"Optik\n"
+"kalınlık"
+
+msgid ""
+"Optical\n"
+"mesh"
+msgstr ""
+"Optik\n"
+"örgü"
+
+msgid ""
+"Boundary\n"
+"Conditions"
+msgstr ""
+"Sınır\n"
+"Koşullar"
+
+msgid "<big><b>Laser setup</b></big><br> Use this window to set up your lasers."
+msgstr ""
+"<big><b>Lazer kurulumu</b></big><br> Lazerlerinizi ayarlamak için bu pencereyi kullanın."
+
+msgid ""
+"<big><b>The light sources window</b></big><br>Use this window to setup optical sources for "
+"the transfer matrix, ray tracing and FDTD simulations."
+msgstr ""
+"<big><b>Işık kaynakları penceresi</b></big><br>Transfer matrisi, ışın izleme ve FDTD "
+"simülasyonlarına yönelik optik kaynakları ayarlamak için bu pencereyi kullanın."
+
+msgid "<big><b>The ray tracing editor</b></big><br> Use this window to configure ray tracing."
+msgstr ""
+"<big><b>Işın izleme düzenleyicisi</b></big><br> Işın izlemeyi yapılandırmak için bu "
+"pencereyi kullanın."
+
+msgid ""
+"<big><b>The detectors window</b></big><br>Use this window to setup optical detectors.  These "
+"can be used for the ray tracing simulations."
+msgstr ""
+"<big><b>Dedektörler penceresi</b></big><br>Optik dedektörleri ayarlamak için bu pencereyi "
+"kullanın. Bunlar ışın izleme simülasyonları için kullanılabilir."
+
+msgid ""
+"<big><b>FDTD</b></big><br> Use this window to setup a finite difference time domain "
+"simulation."
+msgstr ""
+"<big><b>FDTD</b></big><br> Sonlu fark zaman alanı simülasyonunu ayarlamak için bu pencereyi "
+"kullanın."
+
+msgid ""
+"<big><b>Mode calculator</b></big><br> Use this window to setup a the optical mode calculator."
+msgstr ""
+"<big><b>Mod hesaplayıcı</b></big><br> Optik mod hesaplayıcıyı ayarlamak için bu pencereyi "
+"kullanın."
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh, the window can also be used to change the dimensionality "
+"of the simulation."
+msgstr ""
+"<big><b>Mesh editörü</b></big>\n"
+"Mesh'i ayarlamak için bu pencereyi kullanın; pencere aynı zamanda simülasyonun boyutluluğunu "
+"değiştirmek için de kullanılabilir."
+
+msgid "Optical Mesh Editor"
+msgstr "Optik Mesh Düzenleyici"
+
+msgid "Boundary conditions"
+msgstr "Sınır şartları"
+
+msgid ""
+"<big><b>The optical simulation window</b></big><br>Use this window to perform optical "
+"simulations.  Click on the play button to run a simulation."
+msgstr ""
+"<big><b>Optik simülasyon penceresi</b></big><br>Optik simülasyonları gerçekleştirmek için bu "
+"pencereyi kullanın. Bir simülasyonu çalıştırmak için oynat düğmesine tıklayın."
+
+msgid ""
+"Click on the play button to run an optical simulation.  The results will be displayed in the "
+"tabs to the right."
+msgstr ""
+"Optik simülasyonu çalıştırmak için oynat düğmesine tıklayın. Sonuçlar sağdaki sekmelerde "
+"görüntülenecektir."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Tutorial video</b></"
+"big><br>Designing optical filters and reflective coatings."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Eğitim videosu</b></"
+"big><br>Optik filtreler ve yansıtıcı kaplamalar tasarlama."
+
+msgid ""
+"<big><b>The optical outcoupling window</b></big><br>Use this window to calculate how much "
+"light escapes the device. This is useful whend designing OLEDs and other light emitting "
+"structures."
+msgstr ""
+"<big><b>Optik çıkış penceresi</b></big><br>Cihazdan ne kadar ışık kaçtığını hesaplamak için "
+"bu pencereyi kullanın. Bu, OLED'leri ve diğer ışık yayan yapıları tasarlarken kullanışlıdır."
+
+msgid ""
+"<big><b>Optical thickness</b></big><br>Usually the optical thickness of a layer will be "
+"taken from the layer structure set out in the layer editor. However, sometimes one wants to "
+"simulate very thick layers. This window will enable you to force the optical thickness to a "
+"value while maintaining it's physical thickness."
+msgstr ""
+"<big><b>Optik kalınlık</b></big><br>Genellikle bir katmanın optik kalınlığı, katman "
+"düzenleyicide belirlenen katman yapısından alınır. Ancak bazen çok kalın katmanların simüle "
+"edilmesi istenebilir. Bu pencere, fiziksel kalınlığını korurken optik kalınlığı bir değere "
+"zorlamanızı sağlayacaktır."
+
+msgid "Edit parasitic components"
+msgstr "Parazit bileşenleri düzenleyin"
+
+msgid "Parasitic components"
+msgstr "Parazit bileşenler"
+
+msgid "Registration window"
+msgstr "Kayıt penceresi"
+
+msgid "Enter the license key below:"
+msgstr "Lisans anahtarını aşağıya girin:"
+
+msgid "Key"
+msgstr "Anahtar"
+
+msgid "Can't open file "
+msgstr "Dosya açılamıyor"
+
+msgid "back"
+msgstr "geri"
+
+msgid "home"
+msgstr "Ev"
+
+msgid "Scanning probe microscopy editor"
+msgstr "Taramalı prob mikroskobu düzenleyicisi"
+
+msgid "No files were given to load"
+msgstr "Yüklenecek dosya verilmedi"
+
+msgid ""
+"3D\n"
+"Mode"
+msgstr ""
+"3D\n"
+"Modu"
+
+msgid "New"
+msgstr "Yeni"
+
+msgid "Rename"
+msgstr "Yeniden isimlendirmek"
+
+msgid "Run"
+msgstr "Koşmak"
+
+msgid ""
+"Plot\n"
+"File"
+msgstr ""
+"Grafik\n"
+"Dosya"
+
+msgid ""
+"View raw\n"
+"json"
+msgstr ""
+"Ham\n"
+"json'u görüntüle"
+
+msgid "Cache path:"
+msgstr "Önbellek yolu:"
+
+msgid "Newton cache used"
+msgstr "Kullanılan Newton önbelleği"
+
+msgid "The cache directory does not exist"
+msgstr "Önbellek dizini mevcut değil"
+
+msgid "The cache path needs to end in cache."
+msgstr "Önbellek yolunun önbellekte bitmesi gerekiyor."
+
+msgid "The cache is empty"
+msgstr "Önbellek boş"
+
+msgid "I have emptied the cache"
+msgstr "Önbelleği boşalttım"
+
+msgid "<big><b>Simulation finished!</b></big><br>Click on the plot icon to plot the results"
+msgstr ""
+"<big><b>Simülasyon tamamlandı!</b></big><br>Sonuçları çizmek için çizim simgesini tıklayın"
+
+msgid "Ray trace editor"
+msgstr "Işın izleme düzenleyicisi"
+
+msgid "Fit configure"
+msgstr "Uygun yapılandırma"
+
+msgid "Duplicate variables"
+msgstr "Yinelenen değişkenler"
+
+msgid "Fit variables"
+msgstr "Değişkenleri sığdır"
+
+msgid "Fit rules"
+msgstr "Kurallara uy"
+
+msgid "Configure minimizer"
+msgstr "Küçültücüyü yapılandır"
+
+msgid "Generaton rate editor"
+msgstr "Üretim oranı düzenleyicisi"
+
+msgid "Generation rate (m^{-3}s^{-1})"
+msgstr "Oluşturma oranı (m^{-3}s^{-1})"
+
+msgid "json id"
+msgstr "json kimliği"
+
+msgid "Reference manager"
+msgstr "Referans yöneticisi"
+
+msgid ""
+"Layer\n"
+"editor"
+msgstr ""
+"Katman\n"
+"düzenleyicisi"
+
+msgid "Contacts"
+msgstr "Kişiler"
+
+msgid ""
+"Electrical\n"
+"parameters"
+msgstr ""
+"Elektrik\n"
+"parametreleri"
+
+msgid ""
+"Emission\n"
+"parameters"
+msgstr ""
+"Emisyon\n"
+"parametreleri"
+
+msgid ""
+"Substrate\n"
+"xz-size"
+msgstr ""
+"Alt tabaka\n"
+"xz-size"
+
+msgid ""
+"<big><b>Contacts window</b></big>\n"
+"Use this window to change the layout of the contacts on the device"
+msgstr ""
+"<big><b>Kişiler penceresi</b></big>\n"
+"Cihazdaki kişilerin düzenini değiştirmek için bu pencereyi kullanın"
+
+msgid ""
+"<big><b>Device layers</b></big>\n"
+"Use this window to configure the structure of the device."
+msgstr ""
+"<big><b>Cihaz katmanları</b></big>\n"
+"Cihazın yapısını yapılandırmak için bu pencereyi kullanın."
+
+msgid ""
+"<big><b>xz dimension editor</b></big>\n"
+"Use this window to configure the xz size of the device."
+msgstr ""
+"<big><b>xz boyut düzenleyicisi</b></big>\n"
+"Cihazın xz boyutunu yapılandırmak için bu pencereyi kullanın."
+
+msgid ""
+"<big><b>Electrical parameters</b></big>\n"
+"Use this window to change the electrical parameters of each layer."
+msgstr ""
+"<big><b>Elektriksel parametreler</b></big>\n"
+"Her katmanın elektriksel parametrelerini değiştirmek için bu pencereyi kullanın."
+
+msgid ""
+"<big><b>Emission parameters</b></big>\n"
+"Use this window to set if a layer emits light or not.  You can choose between theoretically "
+"calculated emission spectra and imported experimental spectra."
+msgstr ""
+"<big><b>Emisyon parametreleri</b></big>\n"
+"Bir katmanın ışık yayıp yaymayacağını ayarlamak için bu pencereyi kullanın. Teorik olarak "
+"hesaplanan emisyon spektrumları ve içe aktarılan deneysel spektrumlar arasında seçim "
+"yapabilirsiniz."
+
+msgid "Frequency start"
+msgstr "Frekans başlangıcı"
+
+msgid "Frequency stop"
+msgstr "Frekans durağı"
+
+msgid "Max points"
+msgstr "Maksimum puan"
+
+msgid "Multiply"
+msgstr "Çarpmak"
+
+msgid "Paramter to change"
+msgstr "Değiştirilecek parametre"
+
+msgid "Parameter scan window"
+msgstr "Parametre tarama penceresi"
+
+msgid "Calculate"
+msgstr "Hesaplamak"
+
+msgid "Export spectrum"
+msgstr "İhracat spektrumu"
+
+msgid "Spectrum"
+msgstr "Spektrum"
+
+msgid "mode Editor"
+msgstr "mod Düzenleyici"
+
+msgid "Edit contacts"
+msgstr "Kişileri düzenle"
+
+msgid "Top/Bottom"
+msgstr "Üst/Alt"
+
+msgid ""
+"Applied\n"
+"voltage"
+msgstr ""
+"Uygulanan\n"
+"gerilim"
+
+msgid "Start"
+msgstr "Başlangıç"
+
+msgid "Width"
+msgstr "Genişlik"
+
+msgid "Contact resistance\n"
+msgstr "Temas direnci\n"
+
+msgid "Shunt resistance"
+msgstr "Şant direnci"
+
+msgid ""
+"Charge density/\n"
+"Fermi-offset"
+msgstr ""
+"Yük yoğunluğu/\n"
+"Fermi-ofseti"
+
+msgid ""
+"Majority\n"
+"carrier"
+msgstr "Çoğunluk taşıyıcısı"
+
+msgid "ve0 (m/s)"
+msgstr "ve0 (m/sn)"
+
+msgid "vh0 (m/s)"
+msgstr "vh0 (m/sn)"
+
+msgid ""
+"Physical\n"
+"model"
+msgstr ""
+"Fiziksel\n"
+"model"
+
+msgid "Neural networks editor"
+msgstr "Sinir ağları editörü"
+
+msgid ""
+"Compile\n"
+"to json"
+msgstr ""
+"Json'a\n"
+"derle"
+
+msgid "Reporting error...."
+msgstr "Raporlama hatası...."
+
+msgid "Diode"
+msgstr "Diyot"
+
+msgid "Power law"
+msgstr "Güç yasası"
+
+msgid "Barrier"
+msgstr "Bariyer"
+
+msgid "Wire"
+msgstr "Tel"
+
+msgid "Ground"
+msgstr "Zemin"
+
+msgid "Voltage source"
+msgstr "Voltaj kaynağı"
+
+msgid "Pointer"
+msgstr "Işaretçi"
+
+msgid "Scroll"
+msgstr "Taslak"
+
+msgid "Clean"
+msgstr "Temiz"
+
+msgid "Input vector"
+msgstr "Giriş vektörü"
+
+msgid "Output vector"
+msgstr "Çıkış vektörü"
+
+msgid "Enter the time at which the laser pulse will fire (-1) to turn it off"
+msgstr "Kapatmak için lazer darbesinin ateşleneceği zamanı (-1) girin"
+
+msgid "Sun"
+msgstr "Güneş"
+
+msgid "Laser"
+msgstr "Lazer"
+
+msgid "fs Laser"
+msgstr "fs Lazer"
+
+msgid "Enter the start time of the simulation"
+msgstr "Simülasyonun başlangıç zamanını girin"
+
+msgid "Length"
+msgstr "Uzunluk"
+
+msgid "dt"
+msgstr "dt"
+
+msgid "Start Voltage"
+msgstr "Başlangıç Gerilimi"
+
+msgid "Stop Voltage"
+msgstr "Durdurma Gerilimi"
+
+msgid "step multiplyer"
+msgstr "adım çarpanı"
+
+msgid "Sun start"
+msgstr "Güneş başlangıcı"
+
+msgid "Sun stop"
+msgstr "Güneş durağı"
+
+msgid "Laser start"
+msgstr "Lazer başlatma"
+
+msgid "Laser stop"
+msgstr "Lazer durdurma"
+
+msgid ""
+"Save\n"
+"video"
+msgstr ""
+"Videoyu\n"
+"kaydet"
+
+msgid ""
+"Storyboard\n"
+"to clipboard"
+msgstr ""
+"Hikaye şeridi\n"
+"panoya"
+
+msgid "Autoscale"
+msgstr "Oto-ölçekleme"
+
+msgid "Set log scale y"
+msgstr "Günlük ölçeğini y olarak ayarla"
+
+msgid "Set log scale x"
+msgstr "Günlük ölçeğini ayarla x"
+
+msgid "Plot"
+msgstr "Komplo"
+
+msgid "Scale"
+msgstr "Ölçek"
+
+msgid "Video"
+msgstr "Video"
+
+msgid ""
+"Set\n"
+"Temperature"
+msgstr ""
+
+msgid ""
+"Configure\n"
+"Model"
+msgstr ""
+"Yapılandır\n"
+"Model"
+
+msgid ""
+"Joule\n"
+"Heating"
+msgstr ""
+"Joule\n"
+"Isıtma"
+
+msgid ""
+"Parasitic\n"
+"Heating"
+msgstr ""
+"Parazit\n"
+"Isıtma"
+
+msgid ""
+"Optical\n"
+"Heating"
+msgstr ""
+"Optik\n"
+"Isıtma"
+
+msgid ""
+"Recombination\n"
+"heating"
+msgstr ""
+"Rekombinasyon\n"
+"ısıtma"
+
+msgid ""
+"Thermal\n"
+"parameters"
+msgstr ""
+"Termal\n"
+"parametreler"
+
+msgid ""
+"Thermal\n"
+"mesh"
+msgstr ""
+"Termal\n"
+"örgü"
+
+msgid ""
+"<big><b>Thermal parameters</b></big>\n"
+"Use this window to change the thermal parameters of each layer."
+msgstr ""
+"<big><b>Termal parametreler</b></big>\n"
+"Her katmanın termal parametrelerini değiştirmek için bu pencereyi kullanın."
+
+msgid "Enter the new temperature"
+msgstr "Yeni sıcaklığı girin"
+
+msgid "Thermal boundary conditions"
+msgstr "Termal sınır koşulları"
+
+msgid "Configure thermal model"
+msgstr "Termal modeli yapılandırın"
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh."
+msgstr ""
+"<big><b>Mesh düzenleyici</b></big>\n"
+"Mesh'i ayarlamak için bu pencereyi kullanın."
+
+msgid "Thermal Mesh Editor"
+msgstr "Termal Mesh Düzenleyici"
+
+msgid "Experimental data"
+msgstr "Deneysel veri"
+
+msgid "Delta=Experiment - Simulation"
+msgstr "Delta=Deney - Simülasyon"
+
+msgid "Configure fit"
+msgstr "Uygunluğu yapılandır"
+
+msgid "Fit patch"
+msgstr "Yama sığdır"
+
+msgid "Local duplicate"
+msgstr "Yerel kopya"
+
+msgid "Function"
+msgstr "İşlev"
+
+msgid "JSON x"
+msgstr "JSONx"
+
+msgid "JSON y"
+msgstr "JSON ve"
+
+msgid "Frequency domain experiment window"
+msgstr "Frekans alanı deneme penceresi"
+
+msgid "Thermal parameter editor"
+msgstr "Termal parametre düzenleyici"
+
+msgid "Device structure"
+msgstr "Cihaz yapısı"
+
+msgid ""
+"<big><b>The device structure tab</b></big><br> Use this tab to change the structure of the "
+"device, the layer thicknesses and to perform optical simulations.  You can also browse the "
+"materials data base and  edit the electrical mesh."
+msgstr ""
+"<big><b>Cihaz yapısı sekmesi</b></big><br> Cihazın yapısını, katman kalınlıklarını "
+"değiştirmek ve optik simülasyonlar gerçekleştirmek için bu sekmeyi kullanın. Ayrıca malzeme "
+"veri tabanına göz atabilir ve elektrik ağını düzenleyebilirsiniz."
+
+msgid "Terminal"
+msgstr "terminal"
+
+msgid ""
+"<big><b>The terminal window</b></big><br>The output of the model will be displayed in this "
+"window, watch this screen for debugging and convergence information."
+msgstr ""
+"<big><b>Terminal penceresi</b></big><br>Modelin çıktısı bu pencerede görüntülenecektir, hata "
+"ayıklama ve yakınsama bilgileri için bu ekranı izleyin."
+
+msgid "Tutorials/Documentation"
+msgstr "Öğreticiler/Belgeler"
+
+msgid ""
+"<big><b>Tutorials/Documentation</b></big><br>Here you can find tutorials, videos, "
+"worksheets, and talks about this software and simulating opto-electronic devices in "
+"general.  Although this software is easy to use with it's friendly interface, under the hood "
+"it is a highly complex model and powerful model, it is worth taking time to read the "
+"documentation to understand it.  This will enable you to get the most out of this software "
+"and your experimental data."
+msgstr ""
+"<big><b>Eğitimler/Belgeler</b></big><br>Burada bu yazılım ve genel olarak opto-elektronik "
+"cihazların simülasyonu hakkında eğitimler, videolar, çalışma sayfaları ve konuşmalar "
+"bulabilirsiniz. Bu yazılımın kullanıcı dostu arayüzü ile kullanımı kolay olmasına rağmen, "
+"aslında son derece karmaşık ve güçlü bir modeldir, bunu anlamak için belgeleri okumaya zaman "
+"ayırmaya değer. Bu, bu yazılımdan ve deneysel verilerinizden en iyi şekilde yararlanmanızı "
+"sağlayacaktır."
+
+msgid ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Watch the video</a></b></big><br> "
+"Performing my first solar cell simulation"
+msgstr ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Videoyu izleyin</a></b></big><br> İlk güneş "
+"pili simülasyonumu gerçekleştiriyorum"
+
+msgid "Output"
+msgstr "Çıktı"
+
+msgid ""
+"<big><b>Output</b></big><br>This shows the root simulation directory, this is where the "
+"results are stored.  Double click on a file to see what is in it.."
+msgstr ""
+"<big><b>Çıktı</b></big><br>Bu, kök simülasyon dizinini gösterir, sonuçların saklandığı "
+"yerdir. İçinde ne olduğunu görmek için bir dosyaya çift tıklayın.."
+
+msgid "Information"
+msgstr "Bilgi"
+
+msgid ""
+"<big><b>The fitting variables window</b></big><br> Use this window to select the variables "
+"use to perform the fit."
+msgstr ""
+"<big><b>Uydırma değişkenleri penceresi</b></big><br> Uyum işlemini gerçekleştirmek için "
+"kullanılacak değişkenleri seçmek için bu pencereyi kullanın."
+
+msgid "Fit the simulation to experimental data"
+msgstr "Simülasyonu deneysel verilere sığdırın"
+
+msgid "Data sets"
+msgstr "Veri setleri"
+
+msgid "Rename the fit:"
+msgstr "Uygunluğu yeniden adlandırın:"
+
+msgid "Clone the experiment:"
+msgstr "Deneyi klonlayın:"
+
+msgid "Export the simulation"
+msgstr "Simülasyonu dışa aktar"
+
+msgid "Zip file"
+msgstr "Sıkıştırılmış dosya"
+
+msgid "Are you sure you want to delete the experiment: "
+msgstr "Denemeyi silmek istediğinizden emin misiniz:"
+
+msgid "Make a new fit:"
+msgstr "Yeni bir uyum sağlayın:"
+
+msgid "Error function"
+msgstr "Hata fonksiyonu"
+
+msgid "Log scale"
+msgstr "Günlük ölçeği"
+
+msgid "Open file"
+msgstr "Açık dosya"
+
+msgid "Back"
+msgstr "Geri"
+
+msgid "Home"
+msgstr "Ev"
+
+msgid "is not a number.."
+msgstr "bir sayı değil.."
+
+msgid "Complex Density of states editor"
+msgstr "Durumların Karmaşık Yoğunluğu editörü"
+
+msgid "LUMO numerical"
+msgstr "LUMO sayısal"
+
+msgid "HOMO numerical"
+msgstr "HOMO sayısal"
+
+msgid "Please cite these papers:"
+msgstr "Lütfen şu makalelerden alıntı yapın:"
+
+msgid "If you publish a paper, book or thesis using results from "
+msgstr "Sonuçları kullanarak bir makale, kitap veya tez yayınlıyorsanız"
+
+msgid "This is not a valide e-mail address"
+msgstr "Bu geçerli bir e-posta adresi değil"
+
+msgid "The e-mail addresses do not match."
+msgstr "E-posta adresleri eşleşmiyor."
+
+msgid "Please enter your first name."
+msgstr "Lütfen isminizi giriniz."
+
+msgid "Please enter your surname."
+msgstr "Lütfen soyadınızı giriniz."
+
+msgid "Please enter your Company/University."
+msgstr "Lütfen Firmanızı/Üniversitenizi giriniz."
+
+msgid "Please enter how you heard about OghmaNano."
+msgstr "Lütfen OghmaNano'yu nasıl duyduğunuzu girin."
+
+msgid "Please enter what you plan on using OghmaNano for."
+msgstr "Lütfen OghmaNano'yu ne için kullanmayı planladığınızı girin."
+
+msgid "Your version of OghmaNano is too old to register, please download the latest version."
+msgstr "OghmaNano sürümünüz kaydolmak için çok eski, lütfen en son sürümü indirin."
+
+msgid "Please register to use OghmaNano. Thanks!"
+msgstr "OghmaNano'yu kullanmak için lütfen kaydolun. Teşekkürler!"
+
+msgid "First name"
+msgstr "İlk adı"
+
+msgid "Surname"
+msgstr "Soyadı"
+
+msgid "Company/University"
+msgstr "Şirket/Üniversite"
+
+msgid "E-mail"
+msgstr "E-posta"
+
+msgid "Confirm e-mail"
+msgstr "E-posta Onayla"
+
+msgid "I heard about OghmaNano from:"
+msgstr "OghmaNano'yu şu kişiden duydum:"
+
+msgid "I am most interested in simulating:"
+msgstr "En çok simülasyonla ilgileniyorum:"
+
+msgid " will not work until you register.  Would do you want to exit?"
+msgstr "kayıt olana kadar çalışmayacaktır. Çıkmak ister misiniz?"
+
+msgid "Suns v.s. Voc"
+msgstr "Suns vs. Kelime"
+
+msgid "Light source (y0)"
+msgstr "Işık kaynağı (y0)"
+
+msgid "Light source"
+msgstr "Işık kaynağı"
+
+msgid "Filters (y0)"
+msgstr "Filtreler (y0)"
+
+msgid "Filters"
+msgstr "Filtreler"
+
+msgid "Run optical simulation"
+msgstr "Optik simülasyonu çalıştır"
+
+msgid ""
+"Transfer\n"
+"matrix"
+msgstr ""
+"Aktarım\n"
+"matrisi"
+
+msgid ""
+"Transfer\n"
+"matrix FD"
+msgstr ""
+"Transfer\n"
+"matris FD"
+
+msgid ""
+"Exponential\n"
+"profile"
+msgstr ""
+"Üstel\n"
+"profil"
+
+msgid ""
+"Flat\n"
+"profile"
+msgstr ""
+"Düz\n"
+"profil"
+
+msgid ""
+"From\n"
+"file"
+msgstr ""
+
+msgid ""
+"From QE\n"
+"spectra"
+msgstr ""
+"QE\n"
+"spektrasından"
+
+msgid ""
+"Constant\n"
+"value"
+msgstr ""
+"Sabit\n"
+"değer"
+
+msgid "Edit constant"
+msgstr "Sabiti düzenle"
+
+msgid "Optics"
+msgstr "Optik"
+
+msgid ""
+"Machine\n"
+"Learning"
+msgstr ""
+"Makine\n"
+"Öğrenimi"
+
+msgid ""
+"Edit\n"
+"Probes"
+msgstr ""
+"Düzenle\n"
+"Problar"
+
+msgid ""
+"Parameter\n"
+"scan"
+msgstr ""
+"Parametre\n"
+"tarama"
+
+msgid ""
+"Fit to\n"
+"experiment"
+msgstr ""
+
+msgid ""
+"Json\n"
+"explorer"
+msgstr ""
+"Json\n"
+" kaşifi"
+
+msgid "Matlab paths"
+msgstr "Matlab yolları"
+
+msgid "Python paths"
+msgstr "Python yolları"
+
+msgid ""
+"Script\n"
+"Editor"
+msgstr ""
+"Komut Dosyası\n"
+"Düzenleyici"
+
+msgid ""
+"<big><b>Probes window</b></big><br>Use this window to setup simulation probes, which can be "
+"used to extract values from the simulations at any given mesh point."
+msgstr ""
+"<big><b>Problar penceresi</b></big><br>Belirli herhangi bir mesh noktasında simülasyonlardan "
+"değer çıkarmak için kullanılabilecek simülasyon araştırmalarını ayarlamak için bu pencereyi "
+"kullanın."
+
+msgid ""
+"<big><b>Machine learning window</b></big><br>Use this window to generate machine learning "
+"vectors"
+msgstr ""
+"<big><b>Makine öğrenimi penceresi</b></big><br>Makine öğrenimi vektörleri oluşturmak için bu "
+"pencereyi kullanın"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Very often it is useful to be able to systematically "
+"very a device parameter such as mobility or density of trap states.  This window allows you "
+"to do just that."
+msgstr ""
+"<big><b>Tarama penceresi</b></big><br> Tuzak durumlarının hareketliliği veya yoğunluğu gibi "
+"bir cihaz parametresinin sistematik olarak elde edilebilmesi çoğu zaman faydalıdır. Bu "
+"pencere tam da bunu yapmanızı sağlar."
+
+msgid "Use the plus icon to add a new scan line to the list."
+msgstr "Listeye yeni bir tarama satırı eklemek için artı simgesini kullanın."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Tutorial video</b></"
+"big><br>Using the parameter scan window."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Eğitim videosu</b></"
+"big><br>Parametre tarama penceresini kullanma ."
+
+msgid ""
+"<big><b>Fit window</b></big><br> Use this window to fit the simulation to experimental "
+"data.  The model uses advanced and optimized fitting algorithms to fit the model to your "
+"experimental data, so that material parameters such as mobilities and recombination rates "
+"can be extracted."
+msgstr ""
+"<big><b>Uydurma penceresi</b></big><br> Simülasyonu deneysel verilere sığdırmak için bu "
+"pencereyi kullanın. Model, modeli deneysel verilerinize uydurmak için gelişmiş ve optimize "
+"edilmiş yerleştirme algoritmaları kullanır; böylece hareketlilik ve rekombinasyon oranları "
+"gibi malzeme parametreleri çıkarılabilir."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Watch the tutorial video 1</"
+"b></big><br>Fitting the model to experimental data to extract mobility and recombination "
+"rate parameters."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Eğitim videosunu izleyin 1</"
+"b></big><br>Modeli yerleştirme Hareketlilik ve rekombinasyon hızı parametrelerini çıkarmak "
+"için deneysel veriler."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Watch the tutorial video 2</"
+"b></big><br>Fitting the model to large area solar cells"
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Eğitim videosunu izleyin 2</"
+"b></big><br>Modeli geniş alanlı güneş pilleri"
+
+msgid "Run scan"
+msgstr "Taramayı çalıştır"
+
+msgid "Clean simulation"
+msgstr "Temiz simülasyon"
+
+msgid "Fast Optimizer"
+msgstr "Hızlı Optimize Edici"
+
+msgid "Build scan"
+msgstr "Tarama oluştur"
+
+msgid "Rerun"
+msgstr "Tekrar çalıştır"
+
+msgid "Archive simulations"
+msgstr "Arşiv simülasyonları"
+
+msgid "Notes"
+msgstr "Notlar"
+
+msgid "Simulations"
+msgstr "Simülasyonlar"
+
+msgid "New experiment"
+msgstr "Yeni deneme"
+
+msgid "Delete experiment"
+msgstr "Denemeyi sil"
+
+msgid "Refresh"
+msgstr "Yenile"
+
+msgid "Clone experiment"
+msgstr "Klon deneyi"
+
+msgid "Rename experiment"
+msgstr "Denemeyi yeniden adlandır"
+
+msgid ""
+"Export\n"
+"Data"
+msgstr ""
+
+msgid "Import data"
+msgstr "Verileri içe aktar"
+
+msgid "One itteration"
+msgstr "Bir yineleme"
+
+msgid "Run fit"
+msgstr "Uygun koş"
+
+msgid ""
+"Fit this\n"
+"data set"
+msgstr ""
+"Bu\n"
+"daveri kümesini sığdır"
+
+msgid ""
+"Dont' fit this\n"
+"data set"
+msgstr ""
+"Bu veri kümesine uymuyor\n"
+"da"
+
+msgid "Mesh point"
+msgstr "Örgü noktası"
+
+msgid "Average"
+msgstr "Ortalama"
+
+msgid "Max pos y-slice"
+msgstr "Maksimum konum y dilimi"
+
+msgid "Max pos y-slice STD-Left"
+msgstr "Maksimum konum y dilimi STD-Sol"
+
+msgid "Max pos y-slice STD-Right"
+msgstr "Maksimum konum y dilimi STD-Sağ"
+
+msgid "Max pos y-slice val"
+msgstr "Maksimum konum y dilimi değeri"
+
+msgid "Max pos y-slice STD-Left val"
+msgstr "Maksimum konum y dilimi STD-Sol değer"
+
+msgid "Max pos y-slice STD-Right val"
+msgstr "Maksimum konum y dilimi STD-Sağ değer"
+
+msgid "x:"
+msgstr "X:"
+
+msgid "y:"
+msgstr "y:"
+
+msgid "z:"
+msgstr "z:"
+
+msgid "Move up"
+msgstr "Yukarı taşı"
+
+msgid "Move down"
+msgstr "Aşağı inmek"
+
+msgid "Add layer"
+msgstr "Katman ekle"
+
+msgid "Add object inside"
+msgstr "İçeriye nesne ekle"
+
+msgid "Delete"
+msgstr "Silmek"
+
+msgid "Copy json"
+msgstr "Json'u kopyala"
+
+msgid "Edit"
+msgstr "Düzenlemek"
+
+msgid "Join mesh"
+msgstr "Ağa katıl"
+
+msgid "Group (Ctrl+G)"
+msgstr "Grup (Ctrl+G)"
+
+msgid "Ungroup (Ctrl+U)"
+msgstr "Grubu çöz (Ctrl+U)"
+
+msgid "Script"
+msgstr "Senaryo"
+
+msgid "Copy path (Python)"
+msgstr "Yolu kopyala (Python)"
+
+msgid "View"
+msgstr "Görüş"
+
+msgid "Show solid"
+msgstr "Katı göster"
+
+msgid "Show mesh"
+msgstr "Ağı göster"
+
+msgid "Show cut through x"
+msgstr "Kesilen x'i göster"
+
+msgid "Show cut through y"
+msgstr "Y'yi kesip göster"
+
+msgid "Hidden"
+msgstr "Gizlenmiş"
+
+msgid "New shape name"
+msgstr "Yeni şekil adı"
+
+msgid "Rename the layer:"
+msgstr "Katmanı yeniden adlandırın:"
+
+msgid ""
+"Thermal model\n"
+"enabled"
+msgstr ""
+"Termal model\n"
+"etkinleştirildi"
+
+msgid ""
+"<big><b>Thermal solver switched on</b></big><br>The heat equation will be solved across the "
+"device"
+msgstr "<big><b>Termal çözücü açık</b></big><br>Isı denklemi cihaz genelinde çözülecek"
+
+msgid ""
+"Iso-thermal\n"
+"model"
+msgstr ""
+"İzo-termal\n"
+"model"
+
+msgid ""
+"<big><b>Isothermal mode</b></big><br>A single temperature will be assumed across the entire "
+"device."
+msgstr "<big><b>İzotermal mod</b></big><br>Cihazın tamamında tek bir sıcaklık varsayılacaktır."
+
+msgid "Isothermal"
+msgstr "İzotermal"
+
+msgid "Add"
+msgstr "Eklemek"
+
+msgid "Delete row"
+msgstr "Sırayı sil"
+
+msgid "Laser start time"
+msgstr "Lazer başlangıç zamanı"
+
+msgid "Simulation start time"
+msgstr "Simülasyon başlangıç zamanı"
+
+msgid "Loop"
+msgstr "Döngü"
+
+msgid "Time domain experiment window"
+msgstr "Zaman alanı deneme penceresi"
+
+msgid "Simulation"
+msgstr "Simülasyon"
+
+msgid "Config"
+msgstr "Yapılandırma"
+
+msgid "Loop configuration"
+msgstr "Döngü konfigürasyonu"
+
+msgid "Random variables"
+msgstr "Rastgele değişkenler"
+
+msgid "Patch"
+msgstr "Yama"
+
+msgid "Duplicate"
+msgstr "Kopyalamak"
+
+msgid "Neural networks"
+msgstr "Nöral ağlar"
+
+msgid "Compiled json written to "
+msgstr "Derlenmiş json'a yazıldı"
+
+msgid "Copying files and configuring"
+msgstr "Dosyaları kopyalama ve yapılandırma"
+
+msgid "Finish time:"
+msgstr "Bitirme zamanı:"
+
+msgid "Running"
+msgstr "Koşma"
+
+msgid "Cluster status"
+msgstr "Küme durumu"
+
+msgid "Constant bias"
+msgstr "Sürekli önyargı"
+
+msgid "Change"
+msgstr "Değiştirmek"
+
+msgid "From file"
+msgstr "Dosyadan"
+
+msgid ""
+"Export\n"
+"image"
+msgstr ""
+"Dışa aktar\n"
+"görüntü"
+
+msgid "<big><b>Filters</b></big><br>Use this tab to edit the optical filters"
+msgstr "<big><b>Filtreler</b></big><br>Optik filtreleri düzenlemek için bu sekmeyi kullanın"
+
+msgid "Filter editor"
+msgstr "Filtre düzenleyici"
+
+msgid "Filter"
+msgstr "Filtre"
+
+msgid "Not a valid license number"
+msgstr "Geçerli bir lisans numarası değil"
+
+msgid "This key has been used too many times."
+msgstr "Bu anahtar çok fazla kullanıldı."
+
+msgid "This key has expired."
+msgstr "Bu anahtarın süresi doldu."
+
+msgid ""
+"This version of OghmaNano is too old to validate it's key, please download the latest "
+"version."
+msgstr ""
+"OghmaNano'nun bu sürümü, anahtarını doğrulamak için çok eski, lütfen en son sürümü indirin."
+
+msgid "Can't access the internet"
+msgstr "İnternete erişilemiyor"
+
+msgid "Key manager"
+msgstr "Anahtar yönetici"
+
+msgid "Data"
+msgstr "Veri"
+
+msgid ""
+"JV\n"
+"editor"
+msgstr ""
+"Ortak Girişim\n"
+"editörü"
+
+msgid ""
+"Time domain\n"
+"editor."
+msgstr ""
+"Zaman alanı\n"
+"düzenleyicisi."
+
+msgid ""
+"FX domain\n"
+"editor"
+msgstr ""
+"FX alanı\n"
+"düzenleyicisi"
+
+msgid ""
+"CV\n"
+"editor"
+msgstr ""
+
+msgid ""
+"Suns Voc\n"
+"editor"
+msgstr ""
+"Suns Voc\n"
+"editörü"
+
+msgid ""
+"Suns Jsc\n"
+"editor"
+msgstr ""
+"Suns Jsc\n"
+"düzenleyici"
+
+msgid ""
+"CE\n"
+"editor"
+msgstr ""
+"CE\n"
+"düzenleyicisi"
+
+msgid ""
+"PL\n"
+"editor"
+msgstr ""
+"PL\n"
+"düzenleyici"
+
+msgid ""
+"Exciton\n"
+"editor"
+msgstr ""
+"Eksiton\n"
+"edüzenleyici"
+
+msgid ""
+"Quantum\n"
+"efficiency"
+msgstr ""
+"Kuantum\n"
+"verimliliği"
+
+msgid ""
+"Electrical\n"
+"equilibrium"
+msgstr ""
+
+msgid ""
+"Polynomial\n"
+"editor"
+msgstr ""
+"Polinom\n"
+"düzenleyicisi"
+
+msgid ""
+"Calculate\n"
+"the cost"
+msgstr ""
+"Maliyeti\n"
+"hesaplayın"
+
+msgid ""
+"scanning probe\n"
+"microscopy"
+msgstr ""
+"tarama probu\n"
+"mikroskopisi"
+
+msgid ""
+"Output\n"
+"Files"
+msgstr ""
+"Çıktı\n"
+"Dosyalar"
+
+msgid ""
+"Simulation\n"
+"Hardware"
+msgstr ""
+"Simülasyon\n"
+"Donanım"
+
+msgid ""
+"<big><b>The time mesh editor</b></big><br> To do time domain simulations one must define how "
+"voltage the light vary as a function of time.  This can be done in this window.  Also use "
+"this window to define the simulation length and time step."
+msgstr ""
+"<big><b>Zaman ağı düzenleyicisi</b></big><br> Zaman alanı simülasyonları yapmak için ışığın "
+"voltajının zamanın bir fonksiyonu olarak nasıl değiştiğini tanımlamanız gerekir. Bu, bu "
+"pencerede yapılabilir. Simülasyon uzunluğunu ve zaman adımını tanımlamak için de bu "
+"pencereyi kullanın."
+
+msgid ""
+"<big><b>Frequency domain mesh editor</b></big><br> Some times it is useful to do frequency "
+"domain simulations such as when simulating impedance spectroscopy.  This window will allow "
+"you to choose which frequencies will be simulated."
+msgstr ""
+"<big><b>Frekans alanı ağ düzenleyicisi</b></big><br> Bazı durumlarda, empedans "
+"spektroskopisini simüle ederken olduğu gibi frekans alanı simülasyonları yapmak yararlı "
+"olabilir. Bu pencere hangi frekansların simüle edileceğini seçmenizi sağlayacaktır."
+
+msgid ""
+"<big><b>Capacitance voltage editor</b></big><br> Use this editor to change serup capacitance "
+"voltage simulation."
+msgstr ""
+"<big><b>Kapasitans voltajı düzenleyicisi</b></big><br> Serup kapasitans voltajı "
+"simülasyonunu değiştirmek için bu düzenleyiciyi kullanın."
+
+msgid ""
+"<big><b>Scanning probe microscopy</b></big><br> Use this window to configure the scanning "
+"probe microscopy simulations."
+msgstr ""
+"<big><b>Taramalı prob mikroskobu</b></big><br> Taramalı prob mikroskobu simülasyonlarını "
+"yapılandırmak için bu pencereyi kullanın."
+
+msgid ""
+"<big><b>PL simulation editor</b></big><br> Use this window to configure the steady state "
+"photoluminescence simulation."
+msgstr ""
+"<big><b>PL simülasyon düzenleyicisi</b></big><br> Kararlı durum fotolüminesans simülasyonunu "
+"yapılandırmak için bu pencereyi kullanın."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Watch the youtube video</a></"
+"b></big><br>Watch the video on perfomring PL simulation."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Youtube videosunu izleyin</"
+"a></b></big><br>İzleyin PL simülasyonunun gerçekleştirilmesine ilişkin video."
+
+msgid ""
+"<big><b>Suns voc simulation editor</b></big><br> Use this window to select the step size and "
+"parameters of the JV simulations."
+msgstr ""
+"<big><b>Suns voc simülasyon düzenleyicisi</b></big><br> Ortak Girişim simülasyonlarının adım "
+"boyutunu ve parametrelerini seçmek için bu pencereyi kullanın."
+
+msgid ""
+"<big><b>Suns Jsc simulation editor</b></big><br> Use this window to select the step size and "
+"parameters of the JV simulations."
+msgstr ""
+"<big><b>Suns Jsc simülasyon düzenleyicisi</b></big><br> Ortak Girişim simülasyonlarının adım "
+"boyutunu ve parametrelerini seçmek için bu pencereyi kullanın."
+
+msgid ""
+"<big><b>Charge Extraction editor</b></big><br> This performs charge extraction experiments "
+"in time domain, accounting for recombination losses.  If you don’t mind about accounting for "
+"recombination losses on extraction just run a JV curve or a Suns-Voc simulation and use the "
+"charge.dat file."
+msgstr ""
+"<big><b>Yük Çıkarma düzenleyicisi</b></big><br> Bu, zaman alanında yük çıkarma deneyleri "
+"gerçekleştirerek rekombinasyon kayıplarını hesaba katar. Ekstraksiyon sırasında "
+"rekombinasyon kayıplarını hesaba katmayı sorun etmiyorsanız, sadece bir JV eğrisi veya Suns-"
+"Voc simülasyonu çalıştırın ve charge.dat dosyasını kullanın."
+
+msgid ""
+"<big><b>Costs window</b></big>\n"
+"Use this window to calculate the cost of the solar cell and the energy payback time."
+msgstr ""
+"<big><b>Maliyetler penceresi</b></big>\n"
+"Güneş pilinin maliyetini ve enerji geri ödeme süresini hesaplamak için bu pencereyi kullanın."
+
+msgid "<big><b>JV simulation editor</b></big><br> Use this window to configure JV simulations."
+msgstr ""
+"<big><b>JV simülasyon düzenleyicisi</b></big><br> JV simülasyonlarını yapılandırmak için bu "
+"pencereyi kullanın."
+
+msgid ""
+"<big><b>Polynomial editor</b></big><br> Use this window to generate random date sets for "
+"resting the fitting model."
+msgstr ""
+"<big><b>Polinom düzenleyici</b></big><br> Uydurma modelini dinlendirmek amacıyla rastgele "
+"tarih kümeleri oluşturmak için bu pencereyi kullanın."
+
+msgid ""
+"<big><b>Exciton simulation editor</b></big><br> Use this window to configure exciton "
+"simulations."
+msgstr ""
+"<big><b>Eksiton simülasyon düzenleyicisi</b></big><br> Eksiton simülasyonlarını "
+"yapılandırmak için bu pencereyi kullanın."
+
+msgid ""
+"<big><b>Simulation hardware</b></big><br>Use this window to change how the model uses the "
+"computer's hardware."
+msgstr ""
+"<big><b>Simülasyon donanımı</b></big><br>Modelin bilgisayarın donanımını kullanma şeklini "
+"değiştirmek için bu pencereyi kullanın."
+
+msgid "Output files"
+msgstr "Çıkış dosyaları"
+
+msgid "Banned files and tokens"
+msgstr "Yasaklı dosyalar ve belirteçler"
+
+msgid "Probes"
+msgstr "Problar"
+
+msgid "File name"
+msgstr "Dosya adı"
+
+msgid "Probe"
+msgstr "İncelemek, bulmak"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Now using the drop down menu in the prameter to change "
+"'column', select the device parameter you wish to vary, an example may be dos0/Electron "
+"Mobility. Now enter the values you would like it to scan oveer in the  'Values', an example "
+"could be '1e-3 1e-4 1e-5 1e-6'.  And hit the double arrorw to run the simulation."
+msgstr ""
+"<big><b>Tarama penceresi</b></big><br> Şimdi 'sütun'u değiştirmek için prametredeki açılır "
+"menüyü kullanarak, değiştirmek istediğiniz cihaz parametresini seçin; örnek olarak dos0/ "
+"olabilir Elektron Hareketliliği. Şimdi 'Değerler'de taramasını istediğiniz değerleri girin; "
+"örnek olarak '1e-3 1e-4 1e-5 1e-6' olabilir. Ve simülasyonu çalıştırmak için çift oka basın."
+
+msgid "Neural network editor"
+msgstr "Sinir ağı düzenleyicisi"
+
+msgid "ML Input vector"
+msgstr "ML Giriş vektörü"
+
+msgid "ML Output vector"
+msgstr "ML Çıkış vektörü"
+
+msgid "Optimizer"
+msgstr "Optimize Edici"
+
+msgid "Scan - Configure Optimizer"
+msgstr "Tarama - Optimize Ediciyi Yapılandır"
+
+msgid "Solar Spectrum Generator"
+msgstr "Güneş Spektrum Jeneratörü"
+
+msgid "Show energies"
+msgstr "Enerjileri göster"
+
+msgid "Plot token values"
+msgstr "Belirteç değerlerini çizin"
+
+msgid "Suns Jsc simulation editor"
+msgstr "Suns Jsc simülasyon editörü"
+
+msgid "Disabled"
+msgstr "Engelli"
+
+msgid ""
+"Ray\n"
+"trace"
+msgstr ""
+"Ray\n"
+"trace"
+
+msgid ""
+"Perfect\n"
+"outcoupling"
+msgstr ""
+"Mükemmel\n"
+"çıkış bağlantısı"
+
+msgid "time mesh"
+msgstr "zaman ağı"
+
+msgid "Explore the simulation data structure"
+msgstr "Simülasyon veri yapısını keşfedin"
+
+msgid "Interface editor"
+msgstr "Arayüz düzenleyici"
+
+msgid "Sim name"
+msgstr "Sim adı"
+
+msgid "Vectors"
+msgstr "Vektörler"
+
+msgid "Cluster get data"
+msgstr "Verileri kümeleme"
+
+msgid "Copy src to cluster"
+msgstr "Src'yi kümeye kopyala"
+
+msgid "Make on cluster"
+msgstr "Küme üzerinde yap"
+
+msgid "Clean cluster"
+msgstr "Kümeyi temizle"
+
+msgid "Kill all cluster code"
+msgstr "Tüm küme kodunu sonlandır"
+
+msgid "Sync"
+msgstr "Senkronizasyon"
+
+msgid "Cluster"
+msgstr "Küme"
+
+msgid "3D object viewer"
+msgstr "3 boyutlu nesne görüntüleyici"
+
+msgid "Machine learning"
+msgstr "Makine öğrenme"
+
+msgid ""
+"Build\n"
+"vectors"
+msgstr ""
+"Vektörler\n"
+"oluşturun"
+
+msgid ""
+"Norm\n"
+"vectors"
+msgstr ""
+"Norm\n"
+"vektörleri"
+
+msgid ""
+"Run\n"
+"Generator"
+msgstr ""
+
+msgid "Clean files"
+msgstr "Dosyaları temizle"
+
+msgid "Generator"
+msgstr "Jeneratör"
+
+msgid "Clone"
+msgstr "Klon"
+
+msgid "Building simulations: "
+msgstr "Bina simülasyonları:"
+
+msgid "Building vectors: "
+msgstr "Vektörlerin oluşturulması:"
+
+msgid "The directory does not exist: "
+msgstr "Dizin mevcut değil:"
+
+msgid "Loading"
+msgstr "Yükleniyor"
+
+msgid "Rename:"
+msgstr "Yeniden isimlendirmek:"
+
+msgid "Clone:"
+msgstr "Klon:"
+
+msgid "Are you sure you want to delete : "
+msgstr "Silmek istediğine emin misin :"
+
+msgid "Make a new:"
+msgstr "Yenisini yap:"
+
+msgid "Delete file"
+msgstr "Dosyayı sil"
+
+msgid "Clone object"
+msgstr "Nesneyi klonla"
+
+msgid "New shape name:"
+msgstr "Yeni şekil adı:"
+
+msgid "I cant write to:"
+msgstr "şuraya yazamıyorum:"
+
+msgid ""
+"This means either the disk is full or your system administrator has not given you write "
+"permissions to that location."
+msgstr ""
+"Bu, ya diskin dolu olduğu ya da sistem yöneticinizin size o konuma yazma izni vermediği "
+"anlamına gelir."
+
+msgid "Merge shapes to new"
+msgstr "Şekilleri yeniyle birleştir"
+
+msgid "name"
+msgstr "isim"
+
+msgid "path"
+msgstr "yol"
+
+msgid "ip"
+msgstr "ip"
+
+msgid "start"
+msgstr "başlangıç"
+
+msgid "stop"
+msgstr "durmak"
+
+msgid "CPUs"
+msgstr "CPU'lar"
+
+msgid "status"
+msgstr "durum"
+
+msgid "Adding: "
+msgstr "Ekleme:"
+
+msgid "No sim dir name"
+msgstr "Sim dizin adı yok"
+
+msgid ""
+"I can't load flat_list.inp.  This usually means there is a problem with how you have set up "
+"your scan."
+msgstr ""
+"Flat_list.inp'yi yükleyemiyorum. Bu genellikle taramanızı nasıl ayarladığınızla ilgili bir "
+"sorun olduğu anlamına gelir."
+
+msgid "Problem loading file."
+msgstr "Dosya yüklenirken sorun oluştu."
+
+msgid "Problem generating tree."
+msgstr "Ağaç oluşturma sorunu."
+
+msgid "Lambda stop"
+msgstr "Lambda durağı"
+
+msgid "File containing generation rate"
+msgstr "Üretim hızını içeren dosya"
+
+msgid "Photon efficiency"
+msgstr "Foton verimliliği"
+
+msgid "QE spectra file"
+msgstr "QE spektrum dosyası"
+
+msgid "Incoherent wavelengths"
+msgstr "Tutarsız dalga boyları"
+
+msgid "Mesh layers must equal device layers"
+msgstr "Mesh katmanları cihaz katmanlarına eşit olmalıdır"
+
+msgid "Light spectrum"
+msgstr "Işık spektrumu"
+
+msgid "Light multiplyer"
+msgstr "Işık çarpanı"
+
+msgid "Photo current density"
+msgstr "Fotoğraf akım yoğunluğu"
+
+msgid "Photo current"
+msgstr "Fotoğraf akımı"
+
+msgid "Invert"
+msgstr "Ters çevir"
+
+msgid "Optical filter material"
+msgstr "Optik filtre malzemesi"
+
+msgid "dB"
+msgstr "dB"
+
+msgid "Degrees"
+msgstr "Dereceler"
+
+msgid "n"
+msgstr "N"
+
+msgid "Illuminate from"
+msgstr "Şuradan aydınlat:"
+
+msgid "Top (y0)"
+msgstr "En iyi (y0)"
+
+msgid "Bottom (y1)"
+msgstr "Alt (y1)"
+
+msgid "Left (x0)"
+msgstr "Sol (x0)"
+
+msgid "Right (x1)"
+msgstr "Sağ (x1)"
+
+msgid "Front (z0)"
+msgstr "Ön (z0)"
+
+msgid "Back (z1)"
+msgstr "Geri (z1)"
+
+msgid "xyz"
+msgstr "xyz"
+
+msgid "Log fit"
+msgstr "Günlük sığdır"
+
+msgid "Opperation"
+msgstr "Operasyon"
+
+msgid "Enable vector"
+msgstr "Vektörü etkinleştir"
+
+msgid "Edit patch"
+msgstr "Yamayı düzenle"
+
+msgid "Edit vectors"
+msgstr "Vektörleri düzenle"
+
+msgid "Number of archives"
+msgstr "Arşiv sayısı"
+
+msgid "Simulations per archive"
+msgstr "Arşiv başına simülasyonlar"
+
+msgid "Random distribution"
+msgstr "Rastgele dağıtım"
+
+msgid "Log"
+msgstr "Kayıt"
+
+msgid "Linear"
+msgstr "Doğrusal"
+
+msgid "Archive path"
+msgstr "Arşiv yolu"
+
+msgid "Vector file name"
+msgstr "Vektör dosya adı"
+
+msgid "Crash time"
+msgstr "Çarpışma zamanı"
+
+msgid "Build vectors when done"
+msgstr "İşiniz bittiğinde vektörler oluşturun"
+
+msgid "ML Output Vector"
+msgstr "ML Çıkış Vektörü"
+
+msgid "ML Input Vector"
+msgstr "ML Giriş Vektörü"
+
+msgid "file"
+msgstr "dosya"
+
+msgid "Experimental file"
+msgstr "Deneysel dosya"
+
+msgid "multiplier"
+msgstr "çarpan"
+
+msgid "Multiplier"
+msgstr "Çarpan"
+
+msgid "json_src"
+msgstr "json_src"
+
+msgid "json_dest"
+msgstr "json_dest"
+
+msgid "Laser wavelength"
+msgstr "Lazer dalga boyu"
+
+msgid "Length of pulse"
+msgstr "Nabız uzunluğu"
+
+msgid "Spot size x"
+msgstr "Nokta boyutu x"
+
+msgid "Spot size y"
+msgstr "Nokta boyutu y"
+
+msgid "Energy in pulse"
+msgstr "Nabızdaki enerji"
+
+msgid "Efficiency of photons"
+msgstr "Fotonların verimliliği"
+
+msgid "Solve optical problem"
+msgstr "Optik sorunu çözün"
+
+msgid "Yes - n/k"
+msgstr "Evet - yok"
+
+msgid "Yes - k"
+msgstr "Evet - k"
+
+msgid "No"
+msgstr "HAYIR"
+
+msgid "Yes"
+msgstr "Evet"
+
+msgid "contact"
+msgstr "temas etmek"
+
+msgid "active layer"
+msgstr "aktif katman"
+
+msgid "other"
+msgstr "diğer"
+
+msgid "Optical thickness"
+msgstr "Optik kalınlık"
+
+msgid "Free carrier statistics"
+msgstr "Ücretsiz operatör istatistikleri"
+
+msgid "Maxwell Boltzmann - analytic"
+msgstr "Maxwell Boltzmann - analitik"
+
+msgid "Maxwell Boltzmann - numerical+analytic"
+msgstr "Maxwell Boltzmann - sayısal+analitik"
+
+msgid "Maxwell Boltzmann - full numerical"
+msgstr "Maxwell Boltzmann - tam sayısal"
+
+msgid "Ferm-Dirac - numerical"
+msgstr "Ferm-Dirac - sayısal"
+
+msgid "<b>Free carriers</b>"
+msgstr "<b>Ücretsiz operatörler</b>"
+
+msgid "Effective density of free electron states (@300K)"
+msgstr "Serbest elektron durumlarının etkin yoğunluğu (@300K)"
+
+msgid "Effective density of free hole states (@300K)"
+msgstr "Serbest delik durumlarının etkili yoğunluğu (@300K)"
+
+msgid "Enable T dependent free carrier mob"
+msgstr "T'ye bağımlı ücretsiz taşıyıcı mafyasını etkinleştir"
+
+msgid "Enable \\u03BB power in free to free recombination"
+msgstr "Ücretsizden serbest rekombinasyona \\u03BB gücünü etkinleştirin"
+
+msgid "Show excited singlet states"
+msgstr "Heyecanlı singlet durumlarını göster"
+
+msgid "<b>Equilibrium SRH traps</b>"
+msgstr "<b>Denge CSÜS tuzakları</b>"
+
+#, python-brace-format
+msgid "n_{1}"
+msgstr "n_{1}"
+
+#, python-brace-format
+msgid "p_{1}"
+msgstr "p_{1}"
+
+#, python-brace-format
+msgid "tau_{n}"
+msgstr "tau_{n}"
+
+#, python-brace-format
+msgid "tau_{p}"
+msgstr "tau_{p}"
+
+msgid "<b>Non-equilibrium SRH traps</b>"
+msgstr "<b>Denge dışı CSÜS tuzakları</b>"
+
+msgid "Number of traps"
+msgstr "Tuzak sayısı"
+
+msgid "DoS distribution"
+msgstr "DoS dağıtımı"
+
+msgid "Complex"
+msgstr "Karmaşık"
+
+msgid "Exponential"
+msgstr "Üstel"
+
+msgid "Electron trap density"
+msgstr "Elektron tuzağı yoğunluğu"
+
+msgid "Hole trap density"
+msgstr "Delik tutucu yoğunluğu"
+
+msgid "Electron tail slope"
+msgstr "Elektron kuyruk eğimi"
+
+msgid "Hole tail slope"
+msgstr "Delik kuyruk eğimi"
+
+msgid "Free electron to Trapped electron"
+msgstr "Serbest elektrondan Tuzaklanmış elektrona"
+
+msgid "Trapped electron to Free hole"
+msgstr "Serbest deliğe sıkışmış elektron"
+
+msgid "Trapped hole to Free electron"
+msgstr "Serbest elektrona sıkışmış delik"
+
+msgid "Free hole to Trapped hole"
+msgstr "Serbest delikten Sıkışan deliğe"
+
+msgid "Enable/Disable"
+msgstr "Etkinleştirme / Devre dışı"
+
+msgid "<b>Excitons</b>"
+msgstr "<b>Eksitonlar</b>"
+
+msgid "Scattering length"
+msgstr "Saçılma uzunluğu"
+
+msgid "Life time"
+msgstr "Ömür"
+
+#, python-brace-format
+msgid "k_{pl}"
+msgstr "k_{pl}"
+
+#, python-brace-format
+msgid "k_{fret}"
+msgstr ""
+
+#, python-brace-format
+msgid "k_{alpha}"
+msgstr ""
+
+#, python-brace-format
+msgid "k_{dis}"
+msgstr "k_{dis}"
+
+msgid "Max itterations"
+msgstr "Maksimum yineleme"
+
+msgid "Convergence error"
+msgstr "Yakınsama hatası"
+
+#, python-brace-format
+msgid "Boundary condition for y_{min}"
+msgstr "y_{min} için sınır koşulu"
+
+msgid "Dirichlet"
+msgstr "Dirichlet"
+
+msgid "ABC"
+msgstr "ABC"
+
+msgid "Periodic"
+msgstr "Periyodik"
+
+#, python-brace-format
+msgid "Boundary condition for y_{max}"
+msgstr "y_{max} için sınır koşulu"
+
+#, python-brace-format
+msgid "Boundary condition for x_{min}"
+msgstr "x_{min} için sınır koşulu"
+
+#, python-brace-format
+msgid "Boundary condition for x_{max}"
+msgstr "x_{max} için sınır koşulu"
+
+#, python-brace-format
+msgid "Boundary condition for z_{min}"
+msgstr "z_{min} için sınır koşulu"
+
+#, python-brace-format
+msgid "Boundary condition for z_{max}"
+msgstr "z_{max} için sınır koşulu"
+
+msgid "Neumann (==0)"
+msgstr "Neuman (==0)"
+
+msgid "Heatsink"
+msgstr "Soğutucu"
+
+#, python-brace-format
+msgid "Exciton density at y_{min}"
+msgstr "y_{min}'deki eksiton yoğunluğu"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{min}"
+msgstr "Isı emicinin iletkenliği y_{min}"
+
+#, python-brace-format
+msgid "Heat sink length y_{min}"
+msgstr "Isı emici uzunluğu y_{min}"
+
+#, python-brace-format
+msgid "Exciton density at y_{max}"
+msgstr "y_{max}'da eksiton yoğunluğu"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{max}"
+msgstr "Isı emicinin iletkenliği y_{max}"
+
+#, python-brace-format
+msgid "Heat sink length y_{max}"
+msgstr "Isı emici uzunluğu y_{max}"
+
+#, python-brace-format
+msgid "Exciton density at x_{min}"
+msgstr "x_{min}'de eksiton yoğunluğu"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{min}"
+msgstr "Isı emicinin iletkenliği x_{min}"
+
+#, python-brace-format
+msgid "Heat sink length x_{min}"
+msgstr "Isı emici uzunluğu x_{min}"
+
+#, python-brace-format
+msgid "Exciton density at x_{max}"
+msgstr "x_{max}'da eksiton yoğunluğu"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{max}"
+msgstr "Isı emicinin iletkenliği x_{max}"
+
+#, python-brace-format
+msgid "Heat sink length x_{max}"
+msgstr "Isı emici uzunluğu x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{min}"
+msgstr "z_{min}'de cihaz sıcaklığı"
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{min}"
+msgstr "Isı emicinin iletkenliği z_{min}"
+
+#, python-brace-format
+msgid "Heat sink length z_{min}"
+msgstr "Isı emici uzunluğu z_{min}"
+
+#, python-brace-format
+msgid "Exciton density at z_{max}"
+msgstr "z_{max}'da eksiton yoğunluğu"
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{max}"
+msgstr "Isı emicinin iletkenliği z_{max}"
+
+#, python-brace-format
+msgid "Heat sink length z_{max}"
+msgstr "Isı emici uzunluğu z_{max}"
+
+msgid "<b>Auger recombination</b>"
+msgstr "<b>Burgu rekombinasyonu</b>"
+
+#, python-brace-format
+msgid "Auger C_{n}"
+msgstr "Burgu C_{n}"
+
+#, python-brace-format
+msgid "Auger C_{p}"
+msgstr "Burgu C_{p}"
+
+msgid "Start temperature"
+msgstr "Başlangıç sıcaklığı"
+
+msgid "Stop temperature"
+msgstr "Sıcaklığı durdur"
+
+msgid "Temperature steps"
+msgstr "Sıcaklık adımları"
+
+msgid "Perovskite ion density"
+msgstr "Perovskit iyon yoğunluğu"
+
+msgid "Doping density (x=0)"
+msgstr "Katkı yoğunluğu (x=0)"
+
+msgid "Doping density (x=max)"
+msgstr "Katkı yoğunluğu (x=max)"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} Recombination rate constant"
+msgstr "n_{free} ila p_{free} Rekombinasyon hızı sabiti"
+
+msgid "<b>Electrostatics</b>"
+msgstr "<b>Elektrostatik</b>"
+
+msgid "Eg"
+msgstr "Örneğin"
+
+msgid "Xi"
+msgstr "Xi"
+
+msgid "<b>Excited states</b>"
+msgstr "<b>Heyecanlı durumlar</b>"
+
+msgid "Forster transfer rate"
+msgstr "Forster aktarım hızı"
+
+msgid "Host singlet-exciton decay rate"
+msgstr "Konak tekli eksiton bozunma oranı"
+
+msgid "Host inter-system crossing rate"
+msgstr "Ana sistem arası geçiş oranı"
+
+msgid "Host singlet-singlet annihilation (SSA) rate"
+msgstr "Ana bilgisayar tekli-tekli imha (SSA) oranı"
+
+msgid "Host singlet-polaron annihilation (SPA) rate"
+msgstr "Ana bilgisayar tekli-polaron imhası (SPA) oranı"
+
+msgid "Host singlet-triplet annihilation (STA) rate"
+msgstr "Ana bilgisayar tekli-üçlü imha (STA) oranı"
+
+msgid "Dexter transfer rate"
+msgstr "Dexter aktarım hızı"
+
+msgid "Host triplet decay rate"
+msgstr "Konak üçlü bozunma oranı"
+
+msgid "Host triplet-polaron annihilation (TPA) rate"
+msgstr "Konak üçlü-polaron imhası (TPA) oranı"
+
+msgid "Host triplet-triplet annihilation (TTA) rate"
+msgstr "Ana bilgisayar üçlü-üçlü imha (TTA) oranı"
+
+msgid "Dopant singlet-exciton decay rate"
+msgstr "Katkı maddesi singlet-eksiton bozunma oranı"
+
+msgid "Dopant inter-system crossing rate"
+msgstr "Dopant sistemler arası geçiş oranı"
+
+msgid "Dopant singlet-polaron annihilation (SPA) rate"
+msgstr "Katkı maddesi singlet-polaron imhası (SPA) oranı"
+
+msgid "Dopant singlet-triplet annihilation (STA) rate"
+msgstr "Katkı maddesi tekli-üçlü imha (STA) oranı"
+
+msgid "Dopant singlet-singlet annihilation (SSA) rate"
+msgstr "Katkı maddesi tekli-tekli imha (SSA) oranı"
+
+msgid "Dopant triplet decay rate"
+msgstr "Dopant üçlü bozunma oranı"
+
+msgid "Dopant triplet-triplet annihilation (TTA) rate"
+msgstr "Dopant üçlü-üçlü imha (TTA) oranı"
+
+msgid "Dopant triplet-polaron annihilation (TPA) rate"
+msgstr "Dopant üçlü-polaron imhası (TPA) oranı"
+
+msgid "Confinement factor"
+msgstr "Sınırlama faktörü"
+
+msgid "Dopant concentration"
+msgstr "Katkı konsantrasyonu"
+
+msgid "Spectral overlap"
+msgstr "Spektral örtüşme"
+
+#, python-brace-format
+msgid "k_{RISC} Reverse Inter-System crossing rate"
+msgstr "k_{RISC} Sistemler Arası Ters Geçiş Hızı"
+
+#, python-brace-format
+msgid "\\u03C3_{em} Stimulated Emission cross section"
+msgstr "\\u03C3_{em} Uyarılmış Emisyon kesiti"
+
+#, python-brace-format
+msgid "\\u03C3_{t1tn} Triplet Absorption cross section"
+msgstr "\\u03C3_{t1tn} Üçlü Soğurma kesiti"
+
+msgid "\\u03C3_{n,p} Polaron Absorption cross section"
+msgstr "\\u03C3_{n,p} Polaron Emilim kesiti"
+
+msgid "e-h separation distance"
+msgstr "e-h ayırma mesafesi"
+
+msgid "<b>Photon rate equation</b>"
+msgstr "<b>Foton hızı denklemi</b>"
+
+msgid "Spontaneous emission factor"
+msgstr "Kendiliğinden emisyon faktörü"
+
+msgid "Cavity photon decay rate"
+msgstr "Boşluk foton bozunma oranı"
+
+msgid "Density of guest molecules"
+msgstr "Konuk moleküllerin yoğunluğu"
+
+msgid "\\u03BE Stimulated emission gain coefficient"
+msgstr "\\u03BE Uyarılmış emisyon kazanç katsayısı"
+
+msgid "<b>Excited states for OPV</b>"
+msgstr "<b>OPV için heyecanlı durumlar</b>"
+
+#, python-brace-format
+msgid "Decay of singlets to 1C (k_{ds})"
+msgstr "Teklilerin 1C'ye bozunması (k_{ds})"
+
+#, python-brace-format
+msgid "Inter system crossing (k_{isc})"
+msgstr "Sistemler arası geçiş (k_{isc})"
+
+#, python-brace-format
+msgid "Reverse inter system crossing (k_{risc})"
+msgstr "Sistemler arası ters geçiş (k_{risc})"
+
+#, python-brace-format
+msgid "Triplet-triplet annihilation (k_{tta})"
+msgstr "Üçlü-üçlü yok oluş (k_{tta})"
+
+#, python-brace-format
+msgid "Singlet-triplet annihilation (k_{sta})"
+msgstr "Tekli-üçlü yok oluş (k_{sta})"
+
+#, python-brace-format
+msgid "Singlet-singlet annihilation (k_{ssa})"
+msgstr "Tekli-tekli imha (k_{ssa})"
+
+msgid "Alpha fraction (alpha)"
+msgstr "Alfa fraksiyonu (alfa)"
+
+#, python-brace-format
+msgid "Singlet to ground state (k_{fs})"
+msgstr "Tekliden temel duruma (k_{fs})"
+
+#, python-brace-format
+msgid "Decay of triplets (k_{dt})"
+msgstr "Üçüzlerin bozunması (k_{dt})"
+
+#, python-brace-format
+msgid "Triplet to ground state (k_{ft})"
+msgstr "Üçlüden temel duruma (k_{ft})"
+
+#, python-brace-format
+msgid "Decay of 3C to np (k_{dct})"
+msgstr "3C'nin np'ye bozunması (k_{dct})"
+
+msgid "Inter system crossing CT (k_{isc ct})"
+msgstr "CT'yi geçen sistemler arası (k_{isc ct})"
+
+msgid "Reverse inter system crossing CT (k_{risc ct})"
+msgstr "CT'yi geçen sistemler arası ters (k_{risc ct})"
+
+#, python-brace-format
+msgid "3C and 1C to ground state (k_{f})"
+msgstr "3C ve 1C'den temel duruma (k_{f})"
+
+msgid "Blended material"
+msgstr "Harmanlanmış malzeme"
+
+#, python-brace-format
+msgid "Eg_{0}"
+msgstr "Örn_{0}"
+
+#, python-brace-format
+msgid "Xi_{0}"
+msgstr "Xi_{0}"
+
+#, python-brace-format
+msgid "Eg_{1}"
+msgstr "Örneğin_{1}"
+
+#, python-brace-format
+msgid "Xi_{1}"
+msgstr "Xi_{1}"
+
+msgid "Thermal conductivity"
+msgstr "Termal iletkenlik"
+
+msgid "Electron relaxation time"
+msgstr "Elektron gevşeme zamanı"
+
+msgid "Hole relaxation time"
+msgstr "Delik dinlenme süresi"
+
+msgid "Density"
+msgstr "Yoğunluk"
+
+msgid "Cost per Kg"
+msgstr "Kg Başına Maliyet"
+
+msgid "Energy per Kg"
+msgstr "Kg başına enerji"
+
+msgid "Link"
+msgstr "Bağlantı"
+
+msgid "Shunt resistivity"
+msgstr "Şönt direnci"
+
+msgid "Series resistivity"
+msgstr "Seri direnç"
+
+msgid "Series resistivity z"
+msgstr "Seri direnç z"
+
+msgid "Series resistivity x"
+msgstr "Seri direnç x"
+
+msgid "Series resistivity y"
+msgstr "Seri direnç y"
+
+msgid "Layer ideality factor"
+msgstr "Katman idealliği faktörü"
+
+msgid "Reverse bias current"
+msgstr "Ters önyargı akımı"
+
+msgid ""
+"Enable optical charge\n"
+"carrier generation"
+msgstr ""
+"Optik yük\n"
+"taşıyıcı üretimini etkinleştir"
+
+msgid "Scan section"
+msgstr "Tarama bölümü"
+
+msgid "Whole device"
+msgstr "Tüm cihaz"
+
+msgid "Box section"
+msgstr "Kutu bölümü"
+
+msgid "x-Scan"
+msgstr "x-Tarama"
+
+msgid "x-start"
+msgstr "x-başlangıcı"
+
+msgid "z-start"
+msgstr "z-başlangıç"
+
+msgid "x-stop"
+msgstr "x-stop"
+
+msgid "z-stop"
+msgstr "z-stop"
+
+msgid "Dump only at end"
+msgstr "Yalnızca sonunda boşalt"
+
+msgid "Shape type"
+msgstr "Şekil türü"
+
+msgid "Rotate around y-axis"
+msgstr "Y ekseni etrafında döndür"
+
+msgid "y-axis"
+msgstr "y ekseni"
+
+msgid "x-axis"
+msgstr "x ekseni"
+
+msgid "Rotate around x-axis"
+msgstr "X ekseni etrafında döndürme"
+
+msgid "dx of the object"
+msgstr "nesnenin dx'i"
+
+msgid "dy of the object"
+msgstr "nesnenin ölümü"
+
+msgid "dz of the object"
+msgstr "nesnenin dz'si"
+
+msgid "dx padding"
+msgstr "dx dolgu"
+
+msgid "padding"
+msgstr "dolgu malzemesi"
+
+msgid "dy padding"
+msgstr "boya dolgusu"
+
+msgid "dz padding"
+msgstr "dz dolgu"
+
+msgid "Number of objects x"
+msgstr "Nesne sayısı x"
+
+msgid "Number of objects"
+msgstr "Nesne sayısı"
+
+msgid "Number of objects y"
+msgstr "Nesne sayısı y"
+
+msgid "Number of objects z"
+msgstr "Nesne sayısı z"
+
+msgid "<b>Object</b>"
+msgstr "<b>Nesne</b>"
+
+msgid "<b>Attributes</b>"
+msgstr "<b>Nitelikler</b>"
+
+msgid "x offset"
+msgstr "x ofseti"
+
+msgid "Offset"
+msgstr "Telafi etmek"
+
+msgid "y offset"
+msgstr "y ofseti"
+
+msgid "z offset"
+msgstr "z ofseti"
+
+msgid "Web page link"
+msgstr "Web sayfası bağlantısı"
+
+msgid "Text label"
+msgstr "Metin etiketi"
+
+msgid "Texture"
+msgstr "Doku"
+
+msgid ""
+"Circuit model\n"
+"parameters"
+msgstr ""
+"Devre modeli\n"
+"parametreleri"
+
+msgid "Color"
+msgstr "Renk"
+
+msgid "Interface model"
+msgstr "Arayüz modeli"
+
+msgid "None"
+msgstr "Hiçbiri"
+
+msgid "Free-to-Free"
+msgstr "Ücretsiz"
+
+msgid "Free-to-trap (SRH)"
+msgstr "Yakalanması serbest (SRH)"
+
+msgid "Recombination constant"
+msgstr "Rekombinasyon sabiti"
+
+msgid "Interface doping LHS"
+msgstr "Arayüz katkılı LHS"
+
+msgid "Doping LHS"
+msgstr "LHS'yi dopinglemek"
+
+msgid "Electron tunneling"
+msgstr "Elektron tünelleme"
+
+msgid "Electron tunneling (T)"
+msgstr "Elektron tünelleme (T)"
+
+msgid "Hole tunneling"
+msgstr "Delik tüneli açma"
+
+msgid "Hole tunneling (T)"
+msgstr "Delik tünel açma (T)"
+
+msgid "Interface doping RHS"
+msgstr "Arayüz dopingi RHS"
+
+msgid "Doping RHS"
+msgstr "Doping RHS"
+
+msgid "startime"
+msgstr "başlangıç zamanı"
+
+msgid "ea_factor"
+msgstr "ea_faktörü"
+
+msgid "Np"
+msgstr "Np"
+
+msgid "den"
+msgstr "den"
+
+msgid "externalv"
+msgstr "hariciv"
+
+msgid "dt_neg_time"
+msgstr "dt_neg_time"
+
+msgid "dt_mull"
+msgstr "dt_mull"
+
+msgid "stark"
+msgstr "katı"
+
+msgid "lasereff"
+msgstr "lazer efekti"
+
+msgid "sim_contacts"
+msgstr "sim_contacts"
+
+msgid "Website"
+msgstr "İnternet sitesi"
+
+msgid "Author"
+msgstr "Yazar"
+
+msgid "Journal"
+msgstr "Günlük"
+
+msgid "Title"
+msgstr "Başlık"
+
+msgid "Volume"
+msgstr "Hacim"
+
+msgid "Pages"
+msgstr "Sayfalar"
+
+msgid "Year"
+msgstr "Yıl"
+
+msgid "DOI"
+msgstr "DOI"
+
+msgid "Book title"
+msgstr "Kitap başlığı"
+
+msgid "Publisher"
+msgstr "Yayımcı"
+
+msgid "ISBN"
+msgstr "ISBN"
+
+msgid "Scraped text"
+msgstr "Kazınmış metin"
+
+#, python-brace-format
+msgid "R_{short}"
+msgstr ""
+
+#, python-brace-format
+msgid "V_{bias}"
+msgstr ""
+
+msgid "Efficiency of light"
+msgstr "Işığın verimliliği"
+
+msgid "subtract DC"
+msgstr "DC'yi çıkar"
+
+msgid "External load resistor"
+msgstr "Harici yük direnci"
+
+msgid "Material type"
+msgstr "Malzeme Türü"
+
+msgid "Organic"
+msgstr "Organik"
+
+msgid "Oxide"
+msgstr "Oksit"
+
+msgid "Inorganic"
+msgstr "İnorganik"
+
+msgid "Metal"
+msgstr "Metal"
+
+msgid "Other"
+msgstr "Diğer"
+
+msgid "Transparency"
+msgstr "Şeffaflık"
+
+msgid "Privicy options"
+msgstr "Gizlilik seçenekleri"
+
+msgid "Public - everyone"
+msgstr "Herkese açık - herkes"
+
+msgid "Public - within org"
+msgstr "Herkese açık - kuruluş içi"
+
+msgid "Private - never publish"
+msgstr "Özel - asla yayınlama"
+
+msgid "Change log"
+msgstr "Günlüğü değiştir"
+
+msgid ""
+"Use external\n"
+"voltage as stop"
+msgstr ""
+"Durdurma olarak\n"
+"harici gerilimi kullan"
+
+msgid "<b>Output</b>"
+msgstr "<b>Çıktı</b>"
+
+msgid "Dump trap distribution"
+msgstr "Çöp kapanı dağıtımı"
+
+msgid "False"
+msgstr "YANLIŞ"
+
+msgid "Energy space map"
+msgstr "Enerji alanı haritası"
+
+msgid "Single mesh point"
+msgstr "Tek örgü noktası"
+
+#, python-brace-format
+msgid "V_{oc}"
+msgstr "V_{oc}"
+
+#, python-brace-format
+msgid "V_{bi}"
+msgstr "V_{bi}"
+
+msgid "Power conversion efficiency (PCE)"
+msgstr "Güç dönüşüm verimliliği (PCE)"
+
+msgid "Fill factor"
+msgstr "Doldurma faktörü"
+
+msgid "Max power"
+msgstr "en yüksek güç"
+
+msgid "Voltage at max power"
+msgstr "Maksimum güçte voltaj"
+
+msgid "Current density at max power"
+msgstr "Maksimum güçte akım yoğunluğu"
+
+msgid "Current density at Voc"
+msgstr "Voc'daki akım yoğunluğu"
+
+#, python-brace-format
+msgid "J_{sc}"
+msgstr "J_{sc}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free P_{max}"
+msgstr "Theta_{SRH} - ücretsiz P_{max}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free-trap P_{max}"
+msgstr "Theta_{SRH} - serbest tuzak P_{max}"
+
+msgid "Recombination time constant"
+msgstr "Rekombinasyon zaman sabiti"
+
+msgid "Device capacitance"
+msgstr "Cihaz kapasitansı"
+
+msgid "Photos absorbed in active layer"
+msgstr "Aktif katmanda emilen fotoğraflar"
+
+msgid "Peak height Rp"
+msgstr "Tepe yüksekliği Rp"
+
+msgid "RMS height Rq"
+msgstr "RMS yüksekliği Rq"
+
+msgid "Average height Ra"
+msgstr "Ortalama yükseklik Ra"
+
+msgid "dV step"
+msgstr "dV adımı"
+
+msgid "Left hole density"
+msgstr "Sol delik yoğunluğu"
+
+msgid "Left electron density"
+msgstr "Sol elektron yoğunluğu"
+
+msgid "Right hole density"
+msgstr "Sağ delik yoğunluğu"
+
+msgid "Right electron density"
+msgstr "Sağ elektron yoğunluğu"
+
+msgid "Built in potential"
+msgstr "Dahili potansiyel"
+
+msgid "Electron affinity left"
+msgstr "Elektron ilgisi kaldı"
+
+msgid "Electron affinity right"
+msgstr "Elektron ilgisi hakkı"
+
+msgid "<b>CPU</b>"
+msgstr "<b>CPU</b>"
+
+msgid "Number of threads used by the backend"
+msgstr "Arka uç tarafından kullanılan iş parçacığı sayısı"
+
+msgid "No threading"
+msgstr "İş parçacığı yok"
+
+msgid "Maximum number of core instances"
+msgstr "Maksimum çekirdek örnek sayısı"
+
+msgid "Path to source code"
+msgstr "Kaynak koduna giden yol"
+
+msgid "Path to compiled libs for cluster"
+msgstr "Küme için derlenmiş kitaplıkların yolu"
+
+msgid "Make command"
+msgstr "Komut yap"
+
+msgid "exe name"
+msgstr "exe adı"
+
+msgid "Store DoS on disk"
+msgstr "DoS'yi diskte saklayın"
+
+msgid "Remote cluster directory"
+msgstr "Uzak küme dizini"
+
+msgid "Remote node list"
+msgstr "Uzak düğüm listesi"
+
+msgid "IV"
+msgstr "IV"
+
+msgid "x-triangles"
+msgstr "x üçgenleri"
+
+msgid "y-triangles"
+msgstr "y üçgenleri"
+
+msgid "Method"
+msgstr "Yöntem"
+
+msgid "Node reduce"
+msgstr "Düğüm azaltma"
+
+msgid "No reduce"
+msgstr "Azaltma yok"
+
+msgid "Min allowable angle"
+msgstr "İzin verilen minimum açı"
+
+msgid "Gaussian blur"
+msgstr "Gauss bulanıklığı"
+
+msgid "Percent of histogram to ignore"
+msgstr "Yok sayılacak histogramın yüzdesi"
+
+msgid "Sigma of gaussian"
+msgstr "Gauss Sigması"
+
+msgid "Gaussian offset x"
+msgstr "Gauss uzaklığı x"
+
+msgid "Gaussian offset y"
+msgstr "Gauss uzaklığı y"
+
+msgid "Threshold value"
+msgstr "Eşik değeri"
+
+msgid "dr"
+msgstr "doktor"
+
+msgid "dx"
+msgstr "dx"
+
+msgid "dy"
+msgstr "ölmek"
+
+msgid "offset"
+msgstr "telafi etmek"
+
+msgid "Lens type"
+msgstr "Objektif türü"
+
+msgid "Convex"
+msgstr "Dışbükey"
+
+msgid "Concave"
+msgstr "İçbükey"
+
+msgid "Lens size"
+msgstr "Objektif boyutu"
+
+msgid "length"
+msgstr "uzunluk"
+
+msgid "Waveform"
+msgstr "Dalga formu"
+
+msgid "Square"
+msgstr "Kare"
+
+msgid "Saw wave"
+msgstr "Testere dalgası"
+
+msgid "pixels"
+msgstr "piksel"
+
+msgid "Boundary x0"
+msgstr "Sınır x0"
+
+msgid "Boundary x1"
+msgstr "Sınır x1"
+
+msgid "Boundary y0"
+msgstr "Sınır y0"
+
+msgid "Boundary y1"
+msgstr "Sınır y1"
+
+msgid "<b>Fist iteration</b>"
+msgstr "<b>Yumruk yinelemesi</b>"
+
+msgid "Max Electrical iterations (first step)"
+msgstr "Maksimum Elektrik yinelemeleri (ilk adım)"
+
+msgid "Electrical clamp (first step)"
+msgstr "Elektrikli kelepçe (ilk adım)"
+
+msgid "Desired solver error (first step)"
+msgstr "İstenilen çözücü hatası (ilk adım)"
+
+msgid "<b>Later iterations</b>"
+msgstr "<b>Sonraki yinelemeler</b>"
+
+msgid "Max electrical iterations"
+msgstr "Maksimum elektriksel yineleme"
+
+msgid "Electrical clamp"
+msgstr "Elektrik kelepçesi"
+
+msgid "Desired solver error"
+msgstr "İstenilen çözücü hatası"
+
+msgid "<b>Exit strategy</b>"
+msgstr "<b>Çıkış stratejisi</b>"
+
+msgid "Newton minimum iterations"
+msgstr "Newton minimum yinelemeler"
+
+msgid "<b>Solver type</b>"
+msgstr "<b>Çözücü türü</b>"
+
+msgid "dll name"
+msgstr "dll adı"
+
+msgid "Complex matrix solver to use"
+msgstr "Kullanılacak karmaşık matris çözücü"
+
+msgid "Quit on convergence problem"
+msgstr "Yakınsama probleminden çık"
+
+msgid "Quit on inverted Fermi-level"
+msgstr "Ters Fermi düzeyinde çık"
+
+msgid "Circuit diagram mode"
+msgstr "Devre şeması modu"
+
+msgid "Hand drawn"
+msgstr "Elle çizilmiş"
+
+msgid "From layer structure"
+msgstr "Katman yapısından"
+
+msgid "From electrical mesh"
+msgstr "Elektrik ağından"
+
+msgid "Poisson solver max iterations"
+msgstr "Poisson çözücü maksimum yinelemeleri"
+
+msgid "Poisson clamping"
+msgstr "Poisson sıkma"
+
+msgid "Enable poisson solver"
+msgstr "Poisson çözücüyü etkinleştir"
+
+msgid "Output verbosity to disk"
+msgstr "Ayrıntıyı diske aktar"
+
+msgid "Nothing"
+msgstr "Hiç bir şey"
+
+msgid "Write everything to disk"
+msgstr "Her şeyi diske yaz"
+
+msgid "Matrix solver"
+msgstr "Matris çözücü"
+
+msgid "Newton solver to use"
+msgstr "Kullanılacak Newton çözücü"
+
+msgid "Slotboom T0"
+msgstr "Slotboom T0"
+
+msgid "Slotboom D0"
+msgstr "Slot Boom D0"
+
+msgid "Slotboom n0"
+msgstr "Slotboom n0"
+
+msgid "Calculate current at"
+msgstr "Akımı hesapla"
+
+msgid "Mid point"
+msgstr "Orta nokta"
+
+msgid "Solve Kirchhoff's current law in Newton solver"
+msgstr "Kirchhoff'un mevcut yasasını Newton çözücüyle çözün"
+
+msgid "filename"
+msgstr "dosya adı"
+
+msgid "log x"
+msgstr "günlük x"
+
+msgid "log y"
+msgstr "log y"
+
+msgid "Keep sign for log y "
+msgstr "Log y için işareti tutun"
+
+msgid "Point to normalize"
+msgstr "Normalleştirmeyi işaretle"
+
+msgid "Fit against simulation"
+msgstr "Simülasyona uygun"
+
+msgid "File or token banned"
+msgstr "Dosya veya belirteç yasaklandı"
+
+msgid "EQE Voltage"
+msgstr "EQE Gerilimi"
+
+msgid "Optical power"
+msgstr "Optik güç"
+
+msgid "Single optical power"
+msgstr "Tek optik güç"
+
+msgid "Optical power start"
+msgstr "Optik güç başlatma"
+
+msgid "Optical power stop"
+msgstr "Optik güç durdurma"
+
+msgid "Use electrical DoS at low energy"
+msgstr "Düşük enerjide elektrikli DoS kullanın"
+
+msgid "Max iterations "
+msgstr "Maksimum yineleme"
+
+msgid "Stop error"
+msgstr "Hatayı durdur"
+
+msgid "Number of x eigenmodes"
+msgstr "x öz mod sayısı"
+
+msgid "Number of y eigenmodes"
+msgstr "Y özmodlarının sayısı"
+
+msgid "TE/TM"
+msgstr "TE/TM"
+
+msgid "Transverse Electric (TE)"
+msgstr "Enine Elektrik (TE)"
+
+msgid "Transverse Magnetic (TM)"
+msgstr "Enine Manyetik (TM)"
+
+msgid "Find only fundamental"
+msgstr "Yalnızca temel bul"
+
+msgid "Thermal model type"
+msgstr "Termal model tipi"
+
+msgid "Hydrodynamic"
+msgstr "Hidrodinamik"
+
+msgid "Lattice heat"
+msgstr "Kafes ısısı"
+
+#, python-brace-format
+msgid "Device temperature at y_{min}"
+msgstr "Y_{min} tarihinde cihaz sıcaklığı"
+
+#, python-brace-format
+msgid "Device temperature at y_{max}"
+msgstr "Cihaz sıcaklığı y_{max}"
+
+#, python-brace-format
+msgid "Device temperature at x_{min}"
+msgstr "Cihaz sıcaklığı x_{min}"
+
+#, python-brace-format
+msgid "Device temperature at x_{max}"
+msgstr "Cihaz sıcaklığı x_{max} seviyesinde"
+
+#, python-brace-format
+msgid "Device temperature at z_{max}"
+msgstr "Cihaz sıcaklığı z_{max}'da"
+
+msgid "Lattice heat model"
+msgstr "Kafes ısı modeli"
+
+msgid "Electron heat model"
+msgstr "Elektron ısı modeli"
+
+msgid "Hole heat model"
+msgstr "Delik ısı modeli"
+
+msgid "Max thermal solver iterations"
+msgstr "Maksimum termal çözücü yinelemeleri"
+
+msgid "Desired thermal error"
+msgstr "İstenilen termal hata"
+
+msgid "Force use of thermal mesh"
+msgstr "Termal ağın zorla kullanılması"
+
+msgid "Minimum device temperature"
+msgstr "Minimum cihaz sıcaklığı"
+
+msgid "Maximum device temperature"
+msgstr "Maksimum cihaz sıcaklığı"
+
+msgid "Thermal mesh points"
+msgstr "Termal ağ noktaları"
+
+msgid "Interpolate"
+msgstr "Enterpolasyon"
+
+msgid "Constant"
+msgstr "Devamlı"
+
+#, python-brace-format
+msgid "Boundary value for y_{min}"
+msgstr "y_{min} için sınır değeri"
+
+#, python-brace-format
+msgid "Boundary value for y_{max}"
+msgstr "y_{max} için sınır değeri"
+
+#, python-brace-format
+msgid "Boundary value for x_{min}"
+msgstr "x_{min} için sınır değeri"
+
+#, python-brace-format
+msgid "Boundary value for x_{max}"
+msgstr "x_{max} için sınır değeri"
+
+msgid "Couple to electrical solver"
+msgstr "Elektrik çözücüye çift"
+
+msgid "Dump slices"
+msgstr "Dilimleri dök"
+
+msgid "Dump dynamic"
+msgstr "Döküm dinamiği"
+
+msgid "Write out band structure"
+msgstr "Bant yapısını yazın"
+
+msgid "Write newton solver convergence to disk"
+msgstr "Newton çözücü yakınsamasını diske yaz"
+
+msgid "Print poisson solver convergence"
+msgstr "Poisson çözücü yakınsamasını yazdır"
+
+msgid "Normalize output x-time to one"
+msgstr "Çıkış x süresini bire normalleştirin"
+
+msgid "Dump the built in voltage."
+msgstr "Dahili voltajı boşaltın."
+
+msgid "Dump optical probe spectrum"
+msgstr "Optik prob spektrumunu boşalt"
+
+msgid "Write file access log to disk."
+msgstr "Dosya erişim günlüğünü diske yazın."
+
+msgid "Write headers to output files"
+msgstr "Çıkış dosyalarına başlık yazma"
+
+msgid "Write first guess to equations"
+msgstr "Denklemlere ilk tahminin yazılması"
+
+msgid "Log verbocity"
+msgstr "Günlük ayrıntısı"
+
+msgid "Screen"
+msgstr "Ekran"
+
+msgid "Disk"
+msgstr "Disk"
+
+msgid "Screen and disk"
+msgstr "Ekran ve disk"
+
+msgid "PL dump Energy"
+msgstr "PL dökümü Enerji"
+
+msgid "Clean up DoS cache files"
+msgstr "DoS önbellek dosyalarını temizleme"
+
+msgid "Write binary data where possible"
+msgstr "Mümkün olduğunda ikili verileri yazın"
+
+msgid "Probe enabled"
+msgstr "Prob etkinleştirildi"
+
+msgid "Probe type"
+msgstr "Prob tipi"
+
+msgid "Device state"
+msgstr "Cihaz durumu"
+
+msgid "Voc"
+msgstr "Kelime"
+
+msgid "Jsc"
+msgstr "Jsc"
+
+msgid "<b>Run control</b>"
+msgstr "<b>Kontrolünü çalıştır</b>"
+
+msgid "<b>Solver control</b>"
+msgstr "<b>Çözücü kontrolü</b>"
+
+msgid "Dump absorption profile"
+msgstr "Boşaltma emme profili"
+
+msgid "Run the ray tracer"
+msgstr "Işın izleyiciyi çalıştırın"
+
+msgid "When called"
+msgstr "Arandığında"
+
+msgid "Once per simulation"
+msgstr "Simülasyon başına bir kez"
+
+msgid "Each simulation step"
+msgstr "Her simülasyon adımı"
+
+msgid "Every nth simulation step"
+msgstr "Her n'inci simülasyon adımında"
+
+msgid "Each n steps"
+msgstr "Her n adımda"
+
+msgid "Theta steps"
+msgstr "Teta adımları"
+
+msgid "Theta start"
+msgstr "Teta başlangıcı"
+
+msgid "Theta stop"
+msgstr "Teta durağı"
+
+msgid "Phi steps"
+msgstr "Phi adımları"
+
+msgid "Phi start"
+msgstr "Phi başlangıcı"
+
+msgid "Phi stop"
+msgstr "Phi durağı"
+
+msgid "Escape bins"
+msgstr "Kaçış kutuları"
+
+msgid "Emit from"
+msgstr "Gönderen:"
+
+msgid "Center of each layer"
+msgstr "Her katmanın merkezi"
+
+msgid "Each electrical mesh point"
+msgstr "Her bir elektriksel ağ noktası"
+
+msgid "Center of y slice"
+msgstr "Y diliminin merkezi"
+
+msgid "Super sample x"
+msgstr "Süper örnek x"
+
+msgid "Super sample x points"
+msgstr "Süper örnek x puan"
+
+msgid "<b>Ray tracing</b>"
+msgstr "<b>Işın izleme</b>"
+
+msgid "Minimum ray intensity"
+msgstr "Minimum ışın yoğunluğu"
+
+msgid "Maximum number of bounces"
+msgstr "Maksimum geri dönme sayısı"
+
+msgid "Simulate transmitted rays"
+msgstr "İletilen ışınları simüle edin"
+
+msgid "Simulate reflected rays"
+msgstr "Yansıyan ışınları simüle edin"
+
+msgid "Mesh points x"
+msgstr "Örgü noktaları x"
+
+msgid "Mesh points z"
+msgstr "Mesh noktaları z"
+
+msgid "<b>Detector</b>"
+msgstr "<b>Dedektör</b>"
+
+msgid "LED extraction efficiency"
+msgstr "LED çıkarma verimliliği"
+
+msgid "Series resistance"
+msgstr "Seri direnç"
+
+msgid "Other layers"
+msgstr "Diğer katmanlar"
+
+msgid "debug (ignore)"
+msgstr "hata ayıklama (yoksay)"
+
+msgid "Contact charge density"
+msgstr "Temas yükü yoğunluğu"
+
+msgid "Contact position"
+msgstr "İletişim konumu"
+
+msgid "top"
+msgstr "tepe"
+
+msgid "bottom"
+msgstr "alt"
+
+msgid "right"
+msgstr "Sağ"
+
+msgid "left"
+msgstr "sol"
+
+msgid "Charge type"
+msgstr "Şarj tipi"
+
+msgid "Electron"
+msgstr "Elektron"
+
+msgid "Hole"
+msgstr "Delik"
+
+msgid "Physical model"
+msgstr "Fiziksel model"
+
+msgid "Ohmic"
+msgstr "Ohmik"
+
+msgid "Schottky"
+msgstr "Schottky"
+
+msgid "Automatic remesh x"
+msgstr "Otomatik yeniden düzenleme x"
+
+msgid "Automatic remesh y"
+msgstr "Otomatik yeniden düzenleme"
+
+msgid "Automatic remesh z"
+msgstr "Otomatik yenileme z"
+
+msgid "Left/Right"
+msgstr "Sol sağ"
+
+msgid "Mesh dy"
+msgstr "Örgü boyası"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "n_{free} to n_{trap} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "n_{trap} to p_{free} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "p_{trap} to n_{free} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "p_{free} to p_{trap} photon generation efficiency"
+msgstr ""
+
+msgid "Experimental emission spectra"
+msgstr "Deneysel emisyon spektrumları"
+
+msgid "Icon"
+msgstr "Simge"
+
+msgid "Experimental emission efficiency"
+msgstr "Deneysel emisyon verimliliği"
+
+msgid "Use experimental emission spectra"
+msgstr "Deneysel emisyon spektrumlarını kullanın"
+
+msgid "Free-to-free emission"
+msgstr "Serbestten serbest emisyon"
+
+msgid "Free-to-trap emission"
+msgstr "Tuzaksız emisyon"
+
+#, python-brace-format
+msgid "V_{external}"
+msgstr ""
+
+msgid "Load resistor"
+msgstr "Yük direnci"
+
+msgid "fx domain mesh points"
+msgstr "fx etki alanı ağ noktaları"
+
+msgid "Cycles to simulate"
+msgstr "Simüle edilecek döngüler"
+
+msgid "Voltage modulation depth"
+msgstr "Gerilim modülasyon derinliği"
+
+msgid "Excite with"
+msgstr "ile heyecanlandırın"
+
+msgid "Light"
+msgstr "Işık"
+
+msgid "Measure"
+msgstr "Ölçüm"
+
+msgid "Light modulation depth"
+msgstr "Işık modülasyonu derinliği"
+
+msgid "Run fit after simulation"
+msgstr "Simülasyondan sonra uygun çalıştırma"
+
+msgid "Periods to fit"
+msgstr "Uygun dönemler"
+
+msgid "Normalize transfer functon by light intensity"
+msgstr "Aktarım işlevini ışık yoğunluğuna göre normalleştirin"
+
+msgid "Re(J)"
+msgstr "Yeniden(J)"
+
+msgid "Im(J)"
+msgstr "ben(J)"
+
+msgid "fx"
+msgstr "döviz"
+
+msgid "di"
+msgstr "di"
+
+msgid "dmodulation"
+msgstr "dmodülasyon"
+
+msgid "dphase"
+msgstr "dfazı"
+
+msgid "Simulation type"
+msgstr "Simülasyon türü"
+
+msgid "Large signal"
+msgstr "Büyük sinyal"
+
+msgid "Fourier"
+msgstr "Fourier"
+
+msgid "Node list"
+msgstr "Düğüm listesi"
+
+msgid "Initialization vector"
+msgstr "Başlatma vektörü"
+
+msgid "Cryptographic key"
+msgstr "Şifreleme anahtarı"
+
+msgid "Intensity of the sun"
+msgstr "Güneşin yoğunluğu"
+
+msgid "#saturation_n0"
+msgstr "#doygunluk_n0"
+
+msgid "#saturation_rate"
+msgstr "#doygunluk_oranı"
+
+msgid "Absorption of material"
+msgstr "Malzemenin emilmesi"
+
+msgid "Simulation mode"
+msgstr "Simülasyon modu"
+
+msgid "start voltage"
+msgstr "başlangıç gerilimi"
+
+msgid "Max voltage"
+msgstr "Maksimum voltaj"
+
+msgid "Invert output"
+msgstr "Çıkışı ters çevir"
+
+msgid "Use capacitor"
+msgstr "Kapasitör kullan"
+
+msgid "External C"
+msgstr "Harici C"
+
+msgid "External R"
+msgstr "Harici R"
+
+msgid "Resistance of scope"
+msgstr "Kapsamın direnci"
+
+msgid "Photon Flux"
+msgstr "Foton Akısı"
+
+msgid "device width"
+msgstr "cihaz genişliği"
+
+msgid "device breadth"
+msgstr "cihaz genişliği"
+
+msgid "Start light intensity"
+msgstr "Işık yoğunluğunu başlat"
+
+msgid "Stop light intensity"
+msgstr "Işık yoğunluğunu durdur"
+
+msgid "Numer of steps"
+msgstr "Adım sayısı"
+
+msgid "CE light on time"
+msgstr "CE ışığı zamanında yanıyor"
+
+msgid "CE light off time"
+msgstr "CE ışığının kapanma süresi"
+
+msgid "Automatic world size"
+msgstr "Otomatik dünya boyutu"
+
+msgid "World fills mesh"
+msgstr "Dünya ağı dolduruyor"
+
+msgid "x0"
+msgstr "x0"
+
+msgid "x1"
+msgstr "x1"
+
+msgid "y0"
+msgstr "y0"
+
+msgid "y1"
+msgstr "y1"
+
+msgid "z0"
+msgstr "z0"
+
+msgid "z1"
+msgstr "z1"
+
+msgid "margin x0"
+msgstr "marj x0"
+
+msgid "margin x1"
+msgstr "kenar boşluğu x1"
+
+msgid "margin y0"
+msgstr "marj y0"
+
+msgid "margin y1"
+msgstr "marj y1"
+
+msgid "margin z0"
+msgstr "marj z0"
+
+msgid "margin z1"
+msgstr "kenar boşluğu z1"
+
+msgid "Active layer width"
+msgstr "Etkin katman genişliği"
+
+msgid "Reset time to zero each cycle"
+msgstr "Her döngüde zamanı sıfıra sıfırlayın"
+
+msgid "OpenCL GPU acceleration"
+msgstr "OpenCL GPU hızlandırma"
+
+msgid "GPU name"
+msgstr "GPU adı"
+
+msgid "<b>Excitation type</b>"
+msgstr "<b>Uyarma türü</b>"
+
+msgid "FDTD Slice"
+msgstr "FDTD Dilim"
+
+msgid "Sin"
+msgstr "Günah"
+
+msgid "Pulse"
+msgstr "Nabız"
+
+msgid "Start wavelength"
+msgstr "Dalga boyunu başlat"
+
+msgid "Stop wavelength"
+msgstr "Dalga boyunu durdur"
+
+msgid "Wavelength steps"
+msgstr "Dalga boyu adımları"
+
+msgid "Pulse length"
+msgstr "Darbe uzunluğu"
+
+msgid "Excite Ex"
+msgstr "Eskiyi Heyecanlandır"
+
+msgid "Excite Ey"
+msgstr "Heyecanlandır Ey"
+
+msgid "Excite Ez"
+msgstr "Ez'i heyecanlandır"
+
+msgid "<b>FDTD mesh</b>"
+msgstr "<b>FDTD ağı</b>"
+
+msgid "zy"
+msgstr "zy"
+
+msgid "zx"
+msgstr "zx"
+
+msgid "xy"
+msgstr "xy"
+
+msgid "Mesh points y"
+msgstr "Mesh noktaları y"
+
+msgid "Use gnuplot to visualize"
+msgstr "Görselleştirmek için gnuplot'u kullanın"
+
+msgid "<b>Simulation time</b>"
+msgstr "<b>Simülasyon süresi</b>"
+
+msgid "Stop time"
+msgstr "Durma zamanı"
+
+msgid "Max steps"
+msgstr "Maksimum adım"
+
+msgid "Key results"
+msgstr "Temel sonuçlar"
+
+msgid "Write everything to disk every 2nd step"
+msgstr "Her 2. adımda her şeyi diske yazın"
+
+msgid "Write everything to disk every 5th step"
+msgstr "Her 5. adımda her şeyi diske yaz"
+
+msgid "Write everything to disk every 10th step"
+msgstr "Her 10. adımda her şeyi diske yazın"
+
+msgid "Output verbosity to screen"
+msgstr "Ayrıntıyı ekrana aktar"
+
+msgid "Show lots"
+msgstr "Partileri göster"
+
+msgid "Show key results"
+msgstr "Önemli sonuçları göster"
+
+msgid "Solver output verbosity"
+msgstr "Çözücü çıktısının ayrıntı düzeyi"
+
+msgid "As answers are found"
+msgstr "Cevaplar bulundukça"
+
+msgid "Each step"
+msgstr "Her bir adım"
+
+msgid "Source"
+msgstr "Kaynak"
+
+msgid "x rotation"
+msgstr "x döndürme"
+
+msgid "y rotation"
+msgstr "y dönüşü"
+
+msgid "z rotation"
+msgstr "z dönüşü"
+
+msgid "x pos"
+msgstr "x konum"
+
+msgid "y pos"
+msgstr "konum"
+
+msgid "zoom"
+msgstr "yakınlaştırma"
+
+msgid "The following erros/warning were found while running the simulations:"
+msgstr "Simülasyonlar çalıştırılırken aşağıdaki hatalar/uyarılar bulundu:"
+
+msgid "Output vectors for "
+msgstr "için çıktı vektörleri"
+
+msgid "ML Token"
+msgstr "ML Jetonu"
+
+msgid "Symmetric"
+msgstr "Simetrik"
+
+msgid "Asymmetric"
+msgstr "Asimetrik"
+
+msgid "Gaussian"
+msgstr "Gaussian"
+
+msgid "Lorentzian"
+msgstr "Lorentziyen"
+
+msgid "Colors"
+msgstr "Renkler"
+
+msgid "Save as"
+msgstr "Farklı kaydet"
+
+msgid "Save as image"
+msgstr "Resim olarak kaydet"
+
+msgid "Save as gobj"
+msgstr "gobj olarak kaydet"
+
+msgid "Optical"
+msgstr "Optik"
+
+msgid "Show photons"
+msgstr "Fotonları göster"
+
+msgid "FDTD grid"
+msgstr "FDTD ızgarası"
+
+msgid "Optical mode"
+msgstr "Optik mod"
+
+msgid "Rays"
+msgstr "Işınlar"
+
+msgid "Solid rays"
+msgstr "Katı ışınlar"
+
+msgid "Show detectors"
+msgstr "Dedektörleri göster"
+
+msgid "Electrical mesh"
+msgstr "Elektrik ağı"
+
+msgid "Show device"
+msgstr "Cihazı göster"
+
+msgid "Grid"
+msgstr "Kafes"
+
+msgid "Coordinates"
+msgstr "Koordinatlar"
+
+msgid "Show text"
+msgstr "Metni göster"
+
+msgid "Show Dimensions"
+msgstr "Boyutları Göster"
+
+msgid "Show plot"
+msgstr "Konuyu göster"
+
+msgid "Transparent objects"
+msgstr "Şeffaf nesneler"
+
+msgid "Ray tracing mesh"
+msgstr "Işın izleme ağı"
+
+msgid "Show world box"
+msgstr "Dünya kutusunu göster"
+
+msgid "Lock view"
+msgstr "Görünümü kilitle"
+
+msgid "Show gl lights"
+msgstr "Gl ışıklarını göster"
+
+msgid "Show buttons"
+msgstr "Düğmeleri göster"
+
+msgid "Stars"
+msgstr "Yıldızlar"
+
+msgid "Font"
+msgstr "Yazı tipi"
+
+msgid "Background color"
+msgstr "Arka plan rengi"
+
+msgid "Interface background color"
+msgstr "Arayüz arka plan rengi"
+
+msgid "Interface text color"
+msgstr "Arayüz metin rengi"
+
+msgid "Objects"
+msgstr "Nesneler"
+
+msgid "New free object"
+msgstr "Yeni ücretsiz nesne"
+
+msgid "New light source"
+msgstr "Yeni ışık kaynağı"
+
+msgid "New detector"
+msgstr "Yeni dedektör"
+
+msgid "Rescale"
+msgstr "Yeniden ölçeklendir"
+
+msgid "Object tree"
+msgstr "Nesne ağacı"
+
+msgid "Copy image"
+msgstr "Resmi kopyala"
+
+msgid "Object tree viewer"
+msgstr "Nesne ağacı görüntüleyici"
+
+msgid "Device view"
+msgstr "Cihaz görünümü"
+
+msgid "Charge extraction experiment window"
+msgstr "Yük çıkarma deneme penceresi"
+
+msgid "Python Equation"
+msgstr "Python Denklemi"
+
+msgid "You've made a mistake in the equation, use w for wavelength. "
+msgstr "Denklemde bir hata yaptınız, dalga boyu için w'yi kullanın."
+
+msgid "Are you sure you wisht to import this, it will overwrite "
+msgstr "Bunu içe aktarmak istediğinizden emin misiniz, üzerine yazılacaktır"
+
+msgid "Equation editor"
+msgstr "Denklem düzenleyici"
+
+msgid ""
+"Import\n"
+"into model"
+msgstr ""
+"Modele\n"
+"içe aktar"
+
+msgid "Add section"
+msgstr "Bölüm ekle"
+
+msgid "Delete section"
+msgstr "Bölümü sil"
+
+msgid ""
+"Your version of OghmaNano is now out of date. To continue using OghmaNano please download a "
+"new version at https://www.oghma-nano.com."
+msgstr ""
+"OghmaNano sürümünüz artık güncel değil. OghmaNano'yu kullanmaya devam etmek için lütfen "
+"https://www.oghma-nano.com adresinden yeni bir sürümü indirin."
+
+msgid "<big><b>Update available!</b></big><br>Download it now from <a href=\""
+msgstr "<big><b>Güncelleme mevcut!</b></big><br>Şimdi <a href=\" adresinden indirin"
+
+msgid "Optical detectors editor"
+msgstr "Optik dedektörler editörü"
+
+msgid "Na"
+msgstr "Hayır"
+
+msgid "Nd"
+msgstr "Nd"
+
+msgid "Ions"
+msgstr "iyonlar"
+
+msgid "Doping/Mobilie ion profile editor"
+msgstr "Doping/Mobilie iyon profil düzenleyicisi"
+
+msgid "New emission spectra name:"
+msgstr "Yeni emisyon spektrumu adı:"
+
+msgid "New emission spectra name"
+msgstr "Yeni emisyon spektrumu adı"
+
+msgid "New spectra name:"
+msgstr "Yeni spektrum adı:"
+
+msgid "New spectra name"
+msgstr "Yeni spektrum adı"
+
+msgid "New material name:"
+msgstr "Yeni malzeme adı:"
+
+msgid "New material name"
+msgstr "Yeni malzeme adı"
+
+msgid "I cant write to: "
+msgstr "şuraya yazamıyorum:"
+
+msgid "New filter name:"
+msgstr "Yeni filtre adı:"
+
+msgid "New filter name"
+msgstr "Yeni filtre adı"
+
+msgid "New directory name:"
+msgstr "Yeni dizin adı:"
+
+msgid "New directory"
+msgstr "Yeni direktör"
+
+msgid "Save a the simulation as"
+msgstr "Simülasyonu farklı kaydet"
+
+msgid "Directory"
+msgstr "Rehber"
+
+msgid "Simulation information"
+msgstr "Simülasyon bilgileri"
+
+msgid "yz"
+msgstr "yz"
+
+msgid "xz"
+msgstr "xz"
+
+msgid "Orthographic"
+msgstr "ortografik"
+
+msgid "Fly"
+msgstr "Uçmak"
+
+msgid "Running job "
+msgstr "Çalışan iş"
+
+msgid "The file to import:"
+msgstr "İçe aktarılacak dosya:"
+
+msgid "The imported file, the numbers should now be in SI units"
+msgstr "İçe aktarılan dosyada sayılar artık SI birimlerinde olmalıdır"
+
+msgid "x units:"
+msgstr "x birim:"
+
+msgid "y units:"
+msgstr "y birimleri:"
+
+msgid "Title:"
+msgstr "Başlık:"
+
+msgid "x-label:"
+msgstr "x etiketi:"
+
+msgid "x-column:"
+msgstr "x sütunu:"
+
+msgid "y-label:"
+msgstr "y etiketi:"
+
+msgid "y-column:"
+msgstr "y sütunu:"
+
+msgid "device area:"
+msgstr "cihaz alanı:"
+
+msgid "Can not load file "
+msgstr "Dosya yüklenemiyor"
+
+msgid "I can't read the file: "
+msgstr "Dosyayı okuyamıyorum:"
+
+msgid ""
+"I can only read plain text files such as csv formats. I can not read binary files such as "
+"excel documents."
+msgstr ""
+"Yalnızca csv formatları gibi düz metin dosyalarını okuyabiliyorum. Excel belgeleri gibi "
+"ikili dosyaları okuyamıyorum."
+
+msgid "Photonenergy"
+msgstr "Fotoenerji"
+
+msgid "J"
+msgstr "J"
+
+msgid "IMPS Re(Z)"
+msgstr "IMPS Re(Z)"
+
+msgid "IMPS Im(Z)"
+msgstr "IMPS Im(Z)"
+
+msgid "IMVS Re(Z)"
+msgstr "IMVS Re(Z)"
+
+msgid "IMVS Im(Z)"
+msgstr "IMVS Im(Z)"
+
+msgid "Amps"
+msgstr "Amper"
+
+msgid "Amps - no convert"
+msgstr "Amper - dönüştürme yok"
+
+msgid "I"
+msgstr "BEN"
+
+msgid "-Voltage"
+msgstr "-Gerilim"
+
+msgid "Angular frequency"
+msgstr "Açısal frekans"
+
+msgid "Attenuation coefficient"
+msgstr "Zayıflama katsayısı"
+
+msgid "Intensity"
+msgstr "Yoğunluk"
+
+msgid "mA"
+msgstr "mA"
+
+msgid "Simulation notes"
+msgstr "Simülasyon notları"
+
+msgid "Bibtex reference"
+msgstr "Bibtex referansı"
+
+msgid "Simulation Notes"
+msgstr "Simülasyon Notları"
+
+msgid "Simulation snapshots"
+msgstr "Simülasyon anlık görüntüleri"
+
+msgid "Running: "
+msgstr "Koşma:"
+
+msgid "I could not find a free cpu to run the command on"
+msgstr "Komutu çalıştıracak boş bir işlemci bulamadım"
+
+msgid "CPU"
+msgstr "İşlemci"
+
+msgid "Nodes"
+msgstr "Düğümler"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Generate keys"
+msgstr "Anahtar oluştur"
+
+msgid "Install to cluster"
+msgstr "Kümeye yükleme"
+
+msgid "Boot cluster"
+msgstr "Önyükleme kümesi"
+
+msgid "Stop cluster"
+msgstr "Kümeyi durdur"
+
+msgid "Remove from cluster"
+msgstr "Kümeden kaldır"
+
+msgid "CV experiment window"
+msgstr "CV deneme penceresi"
+
+msgid ""
+"Doping/\n"
+"Ions"
+msgstr ""
+"Doping/\n"
+"İyonlar"
+
+msgid ""
+"Material\n"
+"Gradients"
+msgstr ""
+"Malzeme\n"
+"Degradeler"
+
+msgid "Interfaces"
+msgstr "Arayüzler"
+
+msgid ""
+"Parasitic\n"
+" components"
+msgstr ""
+"Parazitik\n"
+" bileşenler"
+
+msgid ""
+"Mobile\n"
+"Ion solver"
+msgstr ""
+"Mobil\n"
+"İyon çözücü"
+
+msgid ""
+"Electrical\n"
+"mesh"
+msgstr ""
+"Elektrikli\n"
+"örgü"
+
+msgid ""
+"<big><b>Interface editor</b></big>\n"
+"Use this window to edit how electrical interfaces behave."
+msgstr ""
+"<big><b>Arayüz düzenleyici</b></big>\n"
+"Elektrikli arayüzlerin nasıl davranacağını düzenlemek için bu pencereyi kullanın."
+
+msgid "Electrical boundary conditions"
+msgstr "Elektriksel sınır koşulları"
+
+msgid "Excitonic boundary conditions"
+msgstr "Eksitonik sınır koşulları"
+
+msgid ""
+"<big><b>Doping window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr ""
+"<big><b>Doping penceresi</b></big>\n"
+"Simülasyona doping eklemek için bu pencereyi kullanın"
+
+msgid ""
+"<big><b>Gradients window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr ""
+"<big><b>Degradeler penceresi</b></big>\n"
+"Simülasyona katkı eklemek için bu pencereyi kullanın"
+
+msgid ""
+"<big><b>Parasitic components</b></big>\n"
+"Use this window to edit the shunt and series resistance."
+msgstr ""
+"<big><b>Parazit bileşenler</b></big>\n"
+"Şönt ve seri direncini düzenlemek için bu pencereyi kullanın."
+
+msgid "Load type"
+msgstr "Yük türü"
+
+msgid "Multiplyer"
+msgstr "Çarpan"
+
+msgid ""
+"External\n"
+"interface:"
+msgstr "Harici\arayüz:"
+
+msgid ""
+"External\n"
+"Reflection"
+msgstr ""
+"Dış\n"
+"Yansıma"
+
+msgid "Reflective interface editor"
+msgstr "Yansıtıcı arayüz düzenleyici"
+
+msgid "Connect to cluster"
+msgstr "Kümeye bağlan"
+
+msgid "Connect"
+msgstr "Bağlamak"
+
+msgid "Disconnect"
+msgstr "Bağlantıyı kes"
+
+msgid "Cancel"
+msgstr "İptal etmek"
+
+msgid ""
+"<big><b>The device structure tab</b></big>\n"
+" Use this tab to change the structure of the device, the layer thicknesses and to perform "
+"optical simulations.  You can also browse the materials data base and  edit the electrical "
+"mesh."
+msgstr ""
+"<big><b>Cihaz yapısı sekmesi</b></big>\n"
+" Cihazın yapısını, katman kalınlıklarını değiştirmek ve optik simülasyonlar gerçekleştirmek "
+"için bu sekmeyi kullanın. Ayrıca malzeme veri tabanına göz atabilir ve elektrik ağını "
+"düzenleyebilirsiniz."
+
+msgid "<big><b>Update available!</b></big><br>"
+msgstr "<big><b>Güncelleme mevcut!</b></big><br>"
+
+msgid "File to plot"
+msgstr "Çizilecek dosya"
+
+msgid "Plot type"
+msgstr "Arsa türü"
+
+msgid "Play"
+msgstr "Oynamak"
+
+msgid "Snapshot slider"
+msgstr "Anlık görüntü kaydırıcısı"
+
+msgid "Fit variables duplicate window"
+msgstr "Değişkenleri sığdır yinelenen pencere"
+
+msgid "Destination"
+msgstr "Varış noktası"
+
+msgid "Source (JSON)"
+msgstr "Kaynak (JSON)"
+
+msgid "Destination (JSON)"
+msgstr "Hedef (JSON)"
+
+msgid "Open data file"
+msgstr "Veri dosyasını aç"
+
+msgid "Load/Import"
+msgstr "Yükle/İçe Aktar"
+
+msgid "Next"
+msgstr "Sonraki"
+
+msgid "Online help"
+msgstr "Çevrimiçi yardım"
+
+msgid "On line help"
+msgstr "Çevrimiçi yardım"
+
+msgid "Hide"
+msgstr "Saklamak"
+
+msgid "OghmaNano in your language!"
+msgstr "OghmaNano kendi dilinizde!"
+
+msgid "OghmaNano translated by:"
+msgstr "OghmaNano çeviren:"
+
+msgid "Dimension editor"
+msgstr "Boyut düzenleyici"
+
+msgid "Substrate xz size"
+msgstr "Alt tabaka xz boyutu"
+
+msgid "World size"
+msgstr "Dünya boyutu"
+
+msgid "Select simulation parameter"
+msgstr "Simülasyon parametresini seçin"
+
+msgid "OK"
+msgstr "TAMAM"
+
+msgid "No row selected in the scan window, can't insert the selection"
+msgstr "Tarama penceresinde hiçbir satır seçilmedi, seçim eklenemiyor"
+
+msgid "New material"
+msgstr "Yeni materyal"
+
+msgid "New spectra"
+msgstr "Yeni spektrumlar"
+
+msgid "New shape"
+msgstr "Yeni şekil"
+
+msgid "New filter"
+msgstr "Yeni filtre"
+
+msgid "Unpack archive"
+msgstr "Arşivi paketinden çıkar"
+
+msgid "Clone the file to be called:"
+msgstr "Çağrılacak dosyayı klonlayın:"
+
+msgid "The file name already exists"
+msgstr "Dosya adı zaten mevcut"
+
+msgid "Rename the simulation to be called:"
+msgstr "Çağrılacak simülasyonu yeniden adlandırın:"
+
+msgid "Are you sure you want to delete the files ?"
+msgstr "Dosyaları silmek istediğinizden emin misiniz?"
+
+msgid "You should now have a sim.json file in: "
+msgstr "Artık şu konumda bir sim.json dosyanız olmalıdır:"
+
+msgid "Open this directory to see it."
+msgstr "Görmek için bu dizini açın."
+
+msgid "Image"
+msgstr "Resim"
+
+msgid "Gnuplot"
+msgstr "Gnuplot"
+
+msgid "Csv"
+msgstr "CSV"
+
+msgid "Text file (txt)"
+msgstr "Metin dosyası (txt)"
+
+msgid "MS Excel (xlsx)"
+msgstr "MS Excel (xlsx)"
+
+msgid "Graph"
+msgstr "Grafik"
+
+msgid "Show title"
+msgstr "Başlığı göster"
+
+msgid "Show key"
+msgstr "Anahtarı göster"
+
+msgid "Light source editor"
+msgstr "Işık kaynağı editörü"
+
+msgid "Rebuild"
+msgstr "Yeniden inşa et"
+
+msgid "Electrical parameters"
+msgstr "Elektriksel parametreler"
+
+msgid ""
+"<big><b>Electrical parameters</b></big><br>Use this tab to configure the electrical "
+"parameters for the material."
+msgstr ""
+"<big><b>Elektriksel parametreler</b></big><br>Malzemenin elektriksel parametrelerini "
+"yapılandırmak için bu sekmeyi kullanın."
+
+msgid "<big><b>Absorption</b></big><br>"
+msgstr "<big><b>Soğurma</b></big><br>"
+
+msgid "<big><b>Refractive index</b></big><br>"
+msgstr "<big><b>Kırılma indisi</b></big><br>"
+
+msgid "<big><b>Emission spectrum</b></big><br>Use this tab to edit the emission spectrum."
+msgstr ""
+"<big><b>Emisyon spektrumu</b></big><br>Emisyon spektrumunu düzenlemek için bu sekmeyi "
+"kullanın."
+
+msgid "Material editor"
+msgstr "Malzeme editörü"
+
+msgid "Thermal parameters"
+msgstr "Termal parametreler"
+
+msgid "Life cycle"
+msgstr "Yaşam döngüsü"
+
+msgid "Refractive index (n)"
+msgstr "Kırılma indeksi (n)"
+
+msgid "k"
+msgstr "k"
+
+msgid "Don't run me as root!!"
+msgstr "Beni root olarak çalıştırma!!"
+
+msgid "I can't run from inside a zip file!"
+msgstr "Zip dosyasının içinden koşamıyorum!"
+
+msgid ""
+"<big><b>New simulation!</b></big><br> Now selected the type of device you would like to "
+"simulate."
+msgstr ""
+"<big><b>Yeni simülasyon!</b></big><br> Şimdi simüle etmek istediğiniz cihaz türünü seçtiniz."
+
+msgid ""
+"<big><b>Now run the simulation</b></big><br> Click on the play icon to start a simulation."
+msgstr ""
+"<big><b>Şimdi simülasyonu çalıştırın</b></big><br> Bir simülasyonu başlatmak için oynat "
+"simgesine tıklayın."
+
+msgid ""
+"<big><b>Hi!</b></big><br> I'm the on-line help system :).  If you have any questions or find "
+"any bugs please send them to <a href=\"mailto:"
+msgstr ""
+"<big><b>Merhaba!</b></big><br> Ben çevrimiçi yardım sistemiyim :). Herhangi bir sorunuz "
+"varsa veya herhangi bir hata bulursanız lütfen bunları <a href=\"mailto: adresine gönderin:"
+
+msgid "Click on the new icon to make a new simulation directory."
+msgstr "Yeni bir simülasyon dizini oluşturmak için yeni simgeye tıklayın."
+
+msgid "Open an existing simulation"
+msgstr "Mevcut bir simülasyonu aç"
+
+msgid ""
+"To open this file I need to rename it to have a .oghma extention. Do you want me to do "
+"that?. I would rename the file: "
+msgstr ""
+"Bu dosyayı açmak için onu .oghma uzantısına sahip olacak şekilde yeniden adlandırmam "
+"gerekiyor. Bunu yapmamı ister misin?. Dosyayı yeniden adlandırırdım:"
+
+msgid "The simulation directory has been deleted."
+msgstr "Simülasyon dizini silindi."
+
+msgid "Desktop"
+msgstr "Masaüstü"
+
+msgid "Downloads"
+msgstr "İndirilenler"
+
+msgid ""
+"<big><b>Examine the results in time domain</b></big><br> After you have run a simulation in "
+"time domain, if is often nice to be able to step through the simulation and look at the "
+"results.  This is what this window does.  Use the slider bar to move through the "
+"simulation.  When you are simulating a JV curve, the slider sill step through voltage points "
+"rather than time points."
+msgstr ""
+"<big><b>Sonuçları zaman alanında inceleyin</b></big><br> Zaman alanında bir simülasyon "
+"çalıştırdıktan sonra, simülasyonda adım adım ilerlemek ve sonuçlara bakmak genellikle "
+"güzeldir . Bu pencerenin yaptığı budur. Simülasyonda ilerlemek için kaydırma çubuğunu "
+"kullanın. Bir JV eğrisini simüle ettiğinizde kaydırıcı eşiği zaman noktaları yerine gerilim "
+"noktalarından geçer."
+
+msgid ""
+"Are you sure you want restore this file from the backup, it will overwrite all files in the "
+"simulation directory?"
+msgstr ""
+"Bu dosyayı yedekten geri yüklemek istediğinizden emin misiniz, simülasyon dizinindeki tüm "
+"dosyaların üzerine yazacaktır?"
+
+msgid "title"
+msgstr "başlık"
+
+msgid "x axis"
+msgstr "x ekseni"
+
+msgid "y axis"
+msgstr "y ekseni"
+
+msgid "equilibrium"
+msgstr "denge"
+
+msgid "This contains the simulation output at 0V in the dark."
+msgstr "Bu, karanlıkta 0V'deki simülasyon çıkışını içerir."
+
+msgid "Attenuation"
+msgstr "zayıflama"
+
+msgid "Luminescence editor"
+msgstr "Lüminesans editörü"
+
+msgid ""
+"Optical\n"
+"Emission"
+msgstr ""
+"Optik\n"
+"Emisyon"
+
+msgid ""
+"<big><b>Luminescence</b></big>\n"
+"If you set 'Turn on luminescence' to true, the simulation will assume recombination is a "
+"raditave process and intergrate it to produce Voltage-Light intensity curves (lv.dat).  Each "
+"number in the tab tells the model how efficient each recombination mechanism is at producing "
+"photons."
+msgstr ""
+"<big><b>Lüminesans</b></big>\n"
+"'Lüminesansı aç'ı doğru olarak ayarlarsanız simülasyon, rekombinasyonun bir ışınım süreci "
+"olduğunu varsayacak ve bunu Gerilim-Işık yoğunluğu eğrileri (lv.dat) oluşturmak için entegre "
+"edecektir. ). Sekmedeki her sayı, modele her rekombinasyon mekanizmasının foton üretmede ne "
+"kadar etkili olduğunu söyler."
+
+msgid "All"
+msgstr "Tüm"
+
+msgid "Wavelengths"
+msgstr "Dalga boyları"
+
+msgid "Electrical equilibrium solver"
+msgstr "Elektriksel denge çözücü"
+
+msgid "Polynomial data generator"
+msgstr "Polinom veri oluşturucu"
+
+msgid "Laser editor"
+msgstr "Lazer düzenleyici"
+
+msgid "Youtube channel"
+msgstr "Youtube kanalı"
+
+msgid "Quit"
+msgstr "Çıkış yapmak"
+
+msgid ""
+"Stop\n"
+"simulation"
+msgstr ""
+"Simülasyonu\n"
+"durdur"
+
+msgid "Thickness"
+msgstr "Kalınlık"
+
+msgid "Mesh Auto"
+msgstr "Mesh Otomatik"
+
+msgid "Stop"
+msgstr "Durmak"
+
+msgid "Step multiply"
+msgstr "Adım çarpma"
+
+msgid "points"
+msgstr "puan"
+
+msgid "Mesh points"
+msgstr "Örgü noktaları"
+
+msgid "PL experiment window"
+msgstr "PL deneme penceresi"
+
+msgid "Script editor"
+msgstr "Komut dosyası düzenleyici"
+
+msgid "Rename the script:"
+msgstr "Komut dosyasını yeniden adlandırın:"
+
+msgid "active"
+msgstr "aktif"
+
+msgid "Flyby video maker"
+msgstr "Uçuş video yapımcısı"
+
+msgid ""
+"Set\n"
+"position"
+msgstr ""
+"Konumu\n"
+" ayarla"
+
+msgid "Goto"
+msgstr "Git"
+
+msgid "window width not divisible by two"
+msgstr "pencere genişliği ikiye bölünemez"
+
+msgid "window height not divisible by two"
+msgstr "pencere yüksekliği ikiye bölünemez"
+
+msgid "and "
+msgstr "Ve"
+
+msgid " more."
+msgstr "Daha."
+
+msgid "Should I delete these files?:\n"
+msgstr "Bu dosyaları silmeli miyim?:\n"
+
+msgid "command line tool"
+msgstr "komut satırı aracı"
+
+msgid "Prints the used paths"
+msgstr "Kullanılan yolları yazdırır"
+
+msgid "www.pvlighthouse.com.au sync"
+msgstr "www.pvlighthouse.com.au senkronizasyonu"
+
+msgid "Load new image"
+msgstr "Yeni resim yükle"
+
+msgid ""
+"Original\n"
+"image"
+msgstr ""
+"Orijinal\n"
+"iresim"
+
+msgid ""
+"Generate\n"
+"Image"
+msgstr ""
+
+msgid ""
+"Show\n"
+"Mesh"
+msgstr ""
+
+msgid ""
+"Edit\n"
+"Mesh"
+msgstr ""
+"Düzenle\n"
+"Mesh"
+
+msgid ""
+"Build\n"
+"Mesh"
+msgstr ""
+"Oluştur\n"
+"Mesh"
+
+msgid ""
+"Generate\n"
+"Honeycomb"
+msgstr ""
+
+msgid ""
+"Generate\n"
+"Xtal"
+msgstr ""
+
+msgid ""
+"Generate\n"
+"lens"
+msgstr ""
+"Objektif\n"
+"oluştur"
+
+msgid ""
+"Generate\n"
+"Gaussian"
+msgstr ""
+
+msgid ""
+"Saw\n"
+"wave"
+msgstr ""
+"Testere\n"
+"dalga"
+
+msgid "Blur"
+msgstr "Bulanıklık"
+
+msgid "Edit blur"
+msgstr "Bulanıklaştırmayı düzenle"
+
+msgid ""
+"Normalize\n"
+"y"
+msgstr ""
+"Normalleştir\n"
+"y"
+
+msgid "Edit histogram"
+msgstr "Histogramı düzenle"
+
+msgid ""
+"Normalize\n"
+"z"
+msgstr ""
+"Normalleştir\n"
+"z"
+
+msgid "Threshold"
+msgstr "Eşik"
+
+msgid "Boundary"
+msgstr "Sınır"
+
+msgid "Apply"
+msgstr "Uygula"
+
+msgid "2D Image"
+msgstr "2D Görüntü"
+
+msgid "I don't know how to process this type of file!"
+msgstr "Bu tür dosyaları nasıl işleyeceğimi bilmiyorum!"
+
+msgid " <a href=\""
+msgstr "<a href=\""
+
+msgid "Can not connect to cluster."
+msgstr "Kümeye bağlanılamıyor."
+
+msgid "Editors"
+msgstr "Editörler"
+
+msgid ""
+"<big><b>Simulation Editors</b></big><br> Use this tab to edit the simulation you wish to "
+"perform, you can choose from steady state measurments such as JV curve/Suns-Voc, time domain "
+"or frequency domain.  You can also choose to use advanced optical models to understand your "
+"data."
+msgstr ""
+"<big><b>Simülasyon Düzenleyicileri</b></big><br> Gerçekleştirmek istediğiniz simülasyonu "
+"düzenlemek için bu sekmeyi kullanın; JV eğrisi/Suns-Voc, zaman alanı veya zaman alanı gibi "
+"kararlı durum ölçümleri arasından seçim yapabilirsiniz. frekans alanı. Verilerinizi anlamak "
+"için gelişmiş optik modelleri kullanmayı da seçebilirsiniz."
+
+msgid ""
+"<big><b>Configure</b></big><br> Use this tab to control advanced features of the simulation, "
+"such as finite difference mesh, amount of data written to disk, and the configuration of the "
+"back end numerical solvers."
+msgstr ""
+"<big><b>Yapılandır</b></big><br> Simülasyonun sonlu fark ağı, diske yazılan veri miktarı ve "
+"arka uç sayısal yapılandırması gibi gelişmiş özelliklerini kontrol etmek için bu sekmeyi "
+"kullanın. çözücüler."
+
+msgid ""
+"<big><b>Simulation type</b></big><br> Use this tab to select which simulation mode the model "
+"runs in, select between steady state, time domain, frequency domain and optical simulations."
+msgstr ""
+"<big><b>Simülasyon türü</b></big><br> Modelin hangi simülasyon modunda çalışacağını seçmek, "
+"sabit durum, zaman alanı, frekans alanı ve optik simülasyonlar arasında seçim yapmak için bu "
+"sekmeyi kullanın."
+
+msgid "Databases"
+msgstr "Veritabanları"
+
+msgid ""
+"<big><b>Databases</b></big><br> Use this tab to explore the materials and optical data "
+"bases, you can add and download more materials/optical models using the tools here."
+msgstr ""
+"<big><b>Veritabanları</b></big><br> Malzemeleri ve optik veri tabanlarını keşfetmek için bu "
+"sekmeyi kullanın; buradaki araçları kullanarak daha fazla malzeme/optik model ekleyebilir ve "
+"indirebilirsiniz."
+
+msgid ""
+"<big><b>Information</b></big><br> Access extra information about the model in this tab, "
+"there are lots of tutorial videos on YouTube, follow on Twitter for the latest updates."
+msgstr ""
+"<big><b>Bilgi</b></big><br> Bu sekmede modelle ilgili ekstra bilgilere erişin, YouTube'da "
+"çok sayıda eğitim videosu var, en son güncellemeler için Twitter'ı takip edin."
+
+msgid "Automation"
+msgstr "Otomasyon"
+
+msgid "Electrical"
+msgstr "Elektriksel"
+
+msgid "Thermal"
+msgstr "Termal"
+
+msgid "<big><b>Simulation mode changed</b></big><br>"
+msgstr "<big><b>Simülasyon modu değiştirildi</b></big><br>"
+
+msgid "Key not found"
+msgstr "Anahtar bulunamadı"
+
+msgid "User not found"
+msgstr "Kullanıcı bulunamadı"
+
+msgid ""
+"This version of the software is too old to validate it's key, please download the latest "
+"version."
+msgstr ""
+"Yazılımın bu sürümü, anahtarını doğrulamak için çok eski; lütfen en son sürümü indirin."
+
+msgid "OghmaNano trial"
+msgstr "OghmaNano denemesi"
+
+msgid "Optical simulation editor"
+msgstr "Optik simülasyon editörü"
+
+msgid "Photon distribution"
+msgstr "Foton dağılımı"
+
+msgid "Photon distribution absorbed"
+msgstr "Foton dağılımı emildi"
+
+msgid "m"
+msgstr "M"
+
+msgid "cm"
+msgstr "santimetre"
+
+msgid "mm"
+msgstr "mm"
+
+msgid "um"
+msgstr "hım"
+
+msgid "nm"
+msgstr "nm"
+
+msgid "pm"
+msgstr "öğleden sonra"
+
+msgid "fm"
+msgstr "fm"
+
+msgid "Optical thickness editor"
+msgstr "Optik kalınlık düzenleyici"
+
+msgid "File or token to ban"
+msgstr "Yasaklanacak dosya veya simge"
+
+msgid "Laser:"
+msgstr "Lazer:"
+
+msgid "Export"
+msgstr "İhracat"
+
+msgid "Cost and energy payback calculator"
+msgstr "Maliyet ve enerji geri ödeme hesaplayıcısı"
+
+msgid "Re-calcualte"
+msgstr "Yeniden hesapla"
+
+msgid "material"
+msgstr "malzeme"
+
+msgid "Mass"
+msgstr "Yığın"
+
+msgid "Optical outcoupling"
+msgstr "Optik çıkış"
+
+msgid "Photon distribution (norm)"
+msgstr "Foton dağılımı (norm)"
+
+msgid "Escape probability (1D in y)"
+msgstr "Kaçış olasılığı (y cinsinden 1D)"
+
+msgid "You have not selected any parameters to scan through.  Use the add button."
+msgstr "Taranacak herhangi bir parametre seçmediniz. Ekle düğmesini kullanın."
+
+msgid "Parameter scan editor"
+msgstr "Parametre tarama düzenleyicisi"
+
+msgid "Parameter to scan"
+msgstr "Taranacak parametre"
+
+msgid "JSON Variable 0"
+msgstr "JSON Değişkeni 0"
+
+msgid "JSON Variable 1"
+msgstr "JSON Değişkeni 1"
+
+msgid ""
+"<big><b>Fast optimizer</b></big><br>When the fast optimizer is enabled simulation results "
+"are not written to disk and instead only key paramters are saved in a csv file. Using a "
+"spreadsheet you can then search/sort for the desired device parameters. This enables very "
+"fast parameter optimization of layer thicknesses."
+msgstr ""
+"<big><b>Hızlı optimize edici</b></big><br>Hızlı optimize edici etkinleştirildiğinde "
+"simülasyon sonuçları diske yazılmaz ve bunun yerine yalnızca önemli parametreler bir csv "
+"dosyasına kaydedilir. Bir elektronik tablo kullanarak istediğiniz cihaz parametrelerini "
+"arayabilir/sıralayabilirsiniz. Bu, katman kalınlıklarının çok hızlı parametre "
+"optimizasyonuna olanak sağlar."
+
+msgid "Quantum efficiency editor"
+msgstr ""

@@ -33,15 +33,13 @@ from token_lib import tokens
 import i18n
 _ = i18n.language.gettext
 
-#qt
 from gQtCore import QSize, Qt 
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QAbstractItemView, QMenuBar, QTableWidgetItem
 from PySide2.QtGui import QPainter,QIcon
 
-from g_tab2 import g_tab2
+from g_tab2_bin import g_tab2_bin
 from select_param import select_param
-from json_root import json_root
-from json_probes import json_probe_item
+from json_c import json_tree_c
 
 class tab_probes_probes(QWidget):
 
@@ -50,6 +48,7 @@ class tab_probes_probes(QWidget):
 
 	def __init__(self,uid):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.uid=uid
 		self.vbox=QVBoxLayout()
 
@@ -58,18 +57,17 @@ class tab_probes_probes(QWidget):
 
 		self.vbox.addWidget(toolbar)
 
-		self.tab2 = g_tab2(toolbar=toolbar)
+		self.tab2 = g_tab2_bin(toolbar=toolbar)
 		self.tab2.set_tokens(["probe_enabled","file_name","probe_type"])
 		self.tab2.set_labels([_("Enabled"),_("File name"), _("Probe")])
 
-		self.tab2.json_search_path="json_root().dump.probes"
+		self.tab2.json_root_path="dump.probes"
 		self.tab2.uid=uid
-		self.tab2.postfix="probes.segments"
+		self.tab2.json_postfix="probes"
 
 		self.tab2.setColumnWidth(0, 100)
-		self.tab2.setColumnWidth(1, 100)
+		self.tab2.setColumnWidth(1, 200)
 		self.tab2.setColumnWidth(2, 300)
-		self.tab2.base_obj=json_probe_item()
 		self.tab2.populate()
 		self.tab2.changed.connect(self.callback_save)
 
@@ -85,5 +83,5 @@ class tab_probes_probes(QWidget):
 
 
 	def callback_save(self):
-		json_root().save()
+		self.bin.save()
 

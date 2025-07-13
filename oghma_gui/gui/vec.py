@@ -29,21 +29,16 @@
 #
 
 from math import cos, sin
-from json_base import json_base
 import ctypes
 
-class vec(json_base,ctypes.Structure):
+class vec2d_int(ctypes.Structure):
+	_fields_ = [('x', ctypes.c_int),
+				('y', ctypes.c_int)]
+
+class vec(ctypes.Structure):
 	_fields_ = [('x', ctypes.c_double),
 				('y', ctypes.c_double),
 				('z', ctypes.c_double)]
-
-	def __init__(self,name="vec"):
-		json_base.__init__(self,name)
-		self.var_list=[]
-		self.var_list.append(["x",0.0])
-		self.var_list.append(["y",0.0])
-		self.var_list.append(["z",0.0])
-		self.var_list_build()
 
 	def __str__(self):
 		return "(x="+str(self.x)+",y="+str(self.y)+",z="+str(self.z)+")"
@@ -99,23 +94,6 @@ class vec(json_base,ctypes.Structure):
 			a.y=self.y*data
 			a.z=self.z*data
 
-		return a
-	
-	def rotate(self,theta):
-		theta_rad=(theta/360.0)*2*3.14159
-		#print()
-		a=vec()
-		a.x=self.x*cos(theta_rad)-self.y*sin(theta_rad)
-		a.y=self.x*sin(theta_rad)+self.y*cos(theta_rad)
-		a.z=0.0
-		return a
-
-	def rotate_y(self,theta):		#rotate around the y axis
-		theta_rad=(theta/360.0)*2*3.14159
-		a=vec()
-		a.x = self.x*cos(theta_rad) + self.z*sin(theta_rad)
-		a.y = self.y
-		a.z = self.z*cos(theta_rad) - self.x*sin(theta_rad)
 		return a
 
 	def cpy(self,data):

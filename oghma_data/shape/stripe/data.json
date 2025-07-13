@@ -6,11 +6,16 @@
 	"image_ylen":200,
 	"image_xlen":200,
 	"color_alpha":0.8,
+	"shape_type0_enable":"False",
+	"shape_type0":"box",
+	"shape_type1_enable":"False",
+	"shape_type1":"box",
 	"status":"public",
 	"gauss": {
 		"gauss_sigma":100.0,
 		"gauss_offset_x":0,
-		"gauss_offset_y":0
+		"gauss_offset_y":0,
+		"gauss_invert":"false"
 		},
 	"honeycomb": {
 		"honeycomb_dx":30,
@@ -27,7 +32,8 @@
 		"xtal_offset":30
 		},
 	"lens": {
-		"lens_type":"convex"
+		"lens_type":"convex",
+		"lens_size":1.0
 		},
 	"import_config": {
 		"shape_import_y_norm":"False",
@@ -36,12 +42,18 @@
 		"shape_import_rotate":90
 		},
 	"boundary": {
+		"boundary_enabled":"False",
 		"image_boundary_x0":0,
+		"image_boundary_x0_color":"1.0,1.0,1.0,1.0",
 		"image_boundary_x1":0,
+		"image_boundary_x1_color":"1.0,1.0,1.0,1.0",
 		"image_boundary_y0":0,
-		"image_boundary_y1":0
+		"image_boundary_y0_color":"1.0,1.0,1.0,1.0",
+		"image_boundary_y1":0,
+		"image_boundary_y1_color":"1.0,1.0,1.0,1.0"
 		},
 	"mesh": {
+		"mesh_show":"True",
 		"mesh_gen_nx":20,
 		"mesh_gen_ny":20,
 		"mesh_gen_opp":"node_reduce",
@@ -49,6 +61,21 @@
 		},
 	"blur": {
 		"shape_import_blur_enabled":"False",
-		"shape_import_blur":10
-		}
-	}
+		"shape_import_blur":10,
+		"mesh_show":"true",
+		"mesh_gen_nx":20,
+		"mesh_gen_ny":20,
+		"mesh_gen_opp":"node_reduce",
+		"mesh_min_ang":25
+		},
+	"saw_wave": {
+		"shape_saw_offset":0,
+		"shape_saw_length":50,
+		"shape_saw_type":"saw_wave"
+		},
+	"threshold": {
+		"threshold_enabled":"False",
+		"threshold_value":200
+		},
+	"id":"1a954e6a6a8fe350"
+}

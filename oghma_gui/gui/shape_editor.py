@@ -55,37 +55,24 @@ from dat_file import dat_file
 
 from gQtCore import gSignal
 from PIL import Image, ImageFilter,ImageOps, ImageDraw
-from PIL.ImageQt import ImageQt
 from json_dialog import json_dialog
 
 from shape_image_flat_view import shape_image_flat_view
-from scripts import scripts
 
 from config_window import class_config_window
-from cal_path import get_exe_command
 from server import server_get
 from cal_path import sim_paths
 
 from gl import glWidget
-from bibtex import bibtex
-from json_shape_db_item import shape_db_item
 from shape_editor_io import shape_editor_io
 
 from vec import vec
-from json_base import json_base
 import shutil
 from shape_bildverarbeitung import shape_bildverarbeitung
+from ref import ref_window
+from json_c import json_c
 
 class shape_editor(QWidgetSavePos):
-
-	def changed_click(self):
-
-		if self.notebook.tabText(self.notebook.currentIndex()).strip()==_("Shape"):
-			b=bibtex()
-			if b.load(os.path.join(self.path,"shape.bib"))!=False:
-				text=b.get_text()
-				help_window().help_set_help(["shape.png",_("<big><b>Shape file</b></big><br>"+text)])
-
 
 	def reload(self):
 		self.shape_image_flat_view.force_update()
@@ -93,89 +80,82 @@ class shape_editor(QWidgetSavePos):
 		self.three_d_shape.force_redraw()
 
 	def load_data(self):
-		self.data=dat_file()
-		self.data.load(os.path.join(self.path,"shape.inp"),raw_data=True)
-		if self.data.data!=None:
-			a=vec()
-			min_vec=self.data.gl_triangles_get_min()
-			self.data.gl_triangles_sub_vec(min_vec)
-			max_vec=self.data.gl_triangles_get_max()
-			self.data.gl_triangles_div_vec(max_vec)
-			
-			self.three_d_shape.scale.set_m2screen()
-			self.three_d_shape.graph_data=[self.data]
+		path=os.path.join(self.path,"shape.inp")
+		self.three_d_shape.scale.set_m2screen()
+		self.three_d_shape.gl_graph_load_files([path],scale=True)
+
 
 	def update(self):
 		self.alpha.update()
 
 	def callback_norm_y(self):
-		self.io.import_config.shape_import_y_norm=self.ribbon.tb_norm_y.isChecked()
+		self.io.bin.set_token_value("import_config","shape_import_y_norm",self.ribbon.tb_norm_y.isChecked())
 		self.io.save()
 		im=self.io.load_image()
-		f=shape_bildverarbeitung(self.path,self.io)
+		f=shape_bildverarbeitung(self.path,self.io.bin)
 		f.apply(im)
 		self.shape_image_flat_view.force_update()
 
 	def callback_tb_gaus(self):
 		im=self.io.draw_gauss()
-		f=shape_bildverarbeitung(self.path,self.io)
+		f=shape_bildverarbeitung(self.path,self.io.bin)
 		f.apply(im)	
 		self.shape_image_flat_view.force_update()
 
 	def callback_tb_honeycomb(self):
 		im=self.io.draw_honeycomb()
-		f=shape_bildverarbeitung(self.path,self.io)
+		f=shape_bildverarbeitung(self.path,self.io.bin)
 		f.apply(im)	
 		self.shape_image_flat_view.force_update()
 
 	def callback_tb_xtal(self):
 		im=self.io.draw_xtal()
-		f=shape_bildverarbeitung(self.path,self.io)
+		f=shape_bildverarbeitung(self.path,self.io.bin)
 		f.apply(im)	
 		self.shape_image_flat_view.force_update()
 
 	def callback_tb_lens(self):
 		im=self.io.draw_lens()
-		f=shape_bildverarbeitung(self.path,self.io)
+		f=shape_bildverarbeitung(self.path,self.io.bin)
 		f.apply(im)	
 		self.shape_image_flat_view.force_update()
 
 	def callback_tb_saw_wave(self):
 		im=self.io.draw_saw_wave()
-		f=shape_bildverarbeitung(self.path,self.io)
-		f.apply(im)	
+		f=shape_bildverarbeitung(self.path,self.io.bin)
+		f.apply(im)
 		self.shape_image_flat_view.force_update()
 
 	def callback_rotate(self):
-		rotate=self.io.import_config.shape_import_rotate
+		rotate=self.io.bin.get_token_value("import_config","shape_import_rotate")
 		rotate=rotate+90
 		if rotate>360:
 			rotate=0
-		self.io.import_config.shape_import_rotate=rotate
+		self.io.bin.set_token_value("import_config","shape_import_rotate",rotate)
 		self.io.save()
 		im=self.io.load_image()
-		f=shape_bildverarbeitung(self.path,self.io)
+		f=shape_bildverarbeitung(self.path,self.io.bin)
 		f.apply(im)
 		self.shape_image_flat_view.force_update()
 
 
 	def callback_filters_update(self):
-		self.io.blur.shape_import_blur_enabled=self.ribbon.tb_blur.isChecked()
-		self.io.threshold.threshold_enabled=self.ribbon.tb_threshold.isChecked()
-		self.io.import_config.shape_import_z_norm=self.ribbon.tb_norm_z.isChecked()
-		self.io.boundary.boundary_enabled=self.ribbon.tb_boundary.isChecked()
+		self.io.bin.set_token_value("blur","shape_import_blur_enabled",self.ribbon.tb_blur.isChecked())
+		self.io.bin.set_token_value("threshold","threshold_enabled",self.ribbon.tb_threshold.isChecked())
+		self.io.bin.set_token_value("import_config","shape_import_z_norm",self.ribbon.tb_norm_z.isChecked())
+		self.io.bin.set_token_value("boundary","boundary_enabled",self.ribbon.tb_boundary.isChecked())
 		self.io.save()
 		im=self.io.load_image()
-		f=shape_bildverarbeitung(self.path,self.io)
+		f=shape_bildverarbeitung(self.path,self.io.bin)
 		f.apply(im)
 		self.shape_image_flat_view.force_update()
 
 	def callback_menu_blur(self):
-		self.config_window=class_config_window([self.io.blur],[_("Blur menu")],data=self.io)
+		self.config_window=class_config_window(["blur"],[_("Blur menu")],data=self.io.bin)
 		self.config_window.show()
 
 	def callback_mesh_editor(self):
-		self.config_window=class_config_window([self.io.mesh],[_("Configure mesh")],data=self.io)
+		self.config_window=class_config_window(["mesh"],[_("Configure mesh")],data=self.io.bin)
 		self.config_window.show()
 
 	def callback_mesh_build(self):
@@ -186,20 +166,27 @@ class shape_editor(QWidgetSavePos):
 		self.my_server.start()
 
 	def callback_edit_norm_y(self):
-		self.a=json_dialog(title=_("Normalization editor"),icon="shape")
-		data=json_base("dlg")
-		data.var_list.append(["shape_import_y_norm_percent",self.io.import_config.shape_import_y_norm_percent])
-		data.var_list_build()
-		ret=self.a.run(data)
+		shape_import_y_norm_percent=self.io.bin.get_token_value("import_config","shape_import_y_norm_percent")
+
+
+		data=json_c("file_defined")
+		data.json_py_add_obj_double("", "shape_import_y_norm_percent", shape_import_y_norm_percent)
+		data.dump()
+
+		self.a=json_dialog(data,title=_("Normalization editor"),icon="shape")
+		ret=self.a.run()
 
 		if ret==QDialog.Accepted:
-			self.io.import_config.shape_import_y_norm_percent=data.shape_import_y_norm_percent
+			shape_import_y_norm_percent=data.get_token_value("","shape_import_y_norm_percent")
+			self.io.bin.set_token_value("import_config","shape_import_y_norm_percent",shape_import_y_norm_percent)
 			self.io.save()
 			im=self.io.load_image()
-			f=shape_bildverarbeitung(self.path,self.io)
+			f=shape_bildverarbeitung(self.path,self.io.bin)
 			f.apply(im)
 			self.shape_image_flat_view.force_update()
 
+		data.dump()
+		data.free()
 
 	def callback_open_image(self):
 		file_name=open_as_filter(self,"png (*.png);;jpg (*.jpg)",path=self.path)
@@ -210,9 +197,6 @@ class shape_editor(QWidgetSavePos):
 			self.shape_image_flat_view.load_image()
 			self.shape_image_flat_view.build_mesh()
 			self.callback_filters_update()
-
-	def callback_script(self):
-		self.scripts.show()
 
 	def __init__(self,path):
 		QWidgetSavePos.__init__(self,"shape_import")
@@ -227,11 +211,11 @@ class shape_editor(QWidgetSavePos):
 
 
 
-		self.io=shape_editor_io()
-		self.io.load(os.path.join(self.path,"data.json"))
+		self.io=shape_editor_io(self.path)
+		self.io.load()
 		self.io.loaded=True
 		self.io.save()
-		print(">>>",self.path)
+		#print(">>>",self.path)
 		self.shape_image_flat_view=shape_image_flat_view(self.path,self.io)
 
 
@@ -240,17 +224,11 @@ class shape_editor(QWidgetSavePos):
 
 		self.setWindowTitle2(os.path.basename(self.path)+" "+_("Shape editor")) 
 
-		self.scripts=scripts(path=self.path,api_callback=self.shape_image_flat_view.force_update)
-
-		self.scripts.ribbon.help.setVisible(False)
-		self.scripts.ribbon.plot.setVisible(False)
-		self.scripts.ribbon.hashtag.setVisible(False)
-
 		self.main_vbox = QVBoxLayout()
 
 		self.ribbon=ribbon_shape_import()
-
-		self.ribbon.tb_norm_y.setChecked(self.io.import_config.shape_import_y_norm)
+		shape_import_y_norm=self.io.bin.get_token_value("import_config","shape_import_y_norm")
+		self.ribbon.tb_norm_y.setChecked(shape_import_y_norm)
 
 
 
@@ -258,6 +236,7 @@ class shape_editor(QWidgetSavePos):
 
 		self.ribbon.mesh_edit.triggered.connect(self.callback_mesh_editor)
 		self.ribbon.mesh_build.clicked.connect(self.callback_mesh_build)
+		self.ribbon.tb_ref.triggered.connect(self.callback_ref)
 		server_get().sim_finished.connect(self.ribbon.mesh_build.stop)
 		server_get().sim_started.connect(self.ribbon.mesh_build.start)
 
@@ -286,16 +265,20 @@ class shape_editor(QWidgetSavePos):
 
 		#On button depress filters
 		self.ribbon.tb_norm_z.triggered.connect(self.callback_filters_update)
-		self.ribbon.tb_norm_z.setChecked(self.io.import_config.shape_import_z_norm)
+		shape_import_z_norm=self.io.bin.get_token_value("import_config","shape_import_z_norm")
+		self.ribbon.tb_norm_z.setChecked(shape_import_z_norm)
 
 		self.ribbon.tb_blur.triggered.connect(self.callback_filters_update)
-		self.ribbon.tb_blur.setChecked(self.io.blur.shape_import_blur_enabled)
+		shape_import_blur_enabled=self.io.bin.get_token_value("blur","shape_import_blur_enabled")
+		self.ribbon.tb_blur.setChecked(shape_import_blur_enabled)
 
 		self.ribbon.tb_threshold.triggered.connect(self.callback_filters_update)
-		self.ribbon.tb_threshold.setChecked(self.io.threshold.threshold_enabled)
+		threshold_enabled=self.io.bin.get_token_value("threshold","threshold_enabled")
+		self.ribbon.tb_threshold.setChecked(threshold_enabled)
 
 		self.ribbon.tb_boundary.triggered.connect(self.callback_filters_update)
-		self.ribbon.tb_boundary.setChecked(self.io.boundary.boundary_enabled)
+		boundary_enabled=self.io.bin.get_token_value("boundary","boundary_enabled")
+		self.ribbon.tb_boundary.setChecked(boundary_enabled)
 
 		self.ribbon.tb_norm_y.triggered.connect(self.callback_norm_y)
 		self.ribbon.tb_rotate.triggered.connect(self.callback_rotate)
@@ -304,9 +287,9 @@ class shape_editor(QWidgetSavePos):
 		self.ribbon.import_image.clicked.connect(self.callback_open_image)
 		self.ribbon.save_data.clicked.connect(self.callback_import)
 		self.ribbon.show_mesh.clicked.connect(self.callback_show_mesh)
-		self.ribbon.show_mesh.setChecked(self.io.mesh.mesh_show)
 
-		self.ribbon.tb_script.clicked.connect(self.callback_script)
+		mesh_show=self.io.bin.get_token_value("mesh","mesh_show")
+		self.ribbon.show_mesh.setChecked(mesh_show)
 
 		self.main_vbox.addWidget(self.ribbon)
 
@@ -324,16 +307,16 @@ class shape_editor(QWidgetSavePos):
 		self.three_d_shape=glWidget(self)
 		self.three_d_shape.enable_views(["plot"])
 		self.three_d_shape.draw_electrical_mesh=False
-		self.three_d_shape.active_view.draw_device=False
-		self.three_d_shape.active_view.draw_rays=False
-		self.three_d_shape.active_view.render_fdtd_grid=False
+		self.three_d_shape.gl_main.active_view.contents.draw_device=False
+		self.three_d_shape.gl_main.active_view.contents.draw_rays=False
+		self.three_d_shape.gl_main.active_view.contents.render_fdtd_grid=False
 		self.three_d_shape.scene_built=True
-		self.three_d_shape.active_view.plot_graph=True
+		self.three_d_shape.gl_main.active_view.contents.plot_graph=True
 		self.three_d_shape.render_plot=True
-		self.three_d_shape.active_view.render_grid=True
-		self.three_d_shape.active_view.ray_solid_lines=True
-		self.three_d_shape.active_view.render_photons=False
-		self.three_d_shape.active_view.optical_mode=False
+		self.three_d_shape.gl_main.active_view.contents.render_grid=True
+		self.three_d_shape.gl_main.active_view.contents.ray_solid_lines=True
+		self.three_d_shape.gl_main.active_view.contents.render_photons=False
+		self.three_d_shape.gl_main.active_view.contents.optical_mode=False
 
 		display=QWidget()
 		layout = QHBoxLayout()
@@ -348,54 +331,53 @@ class shape_editor(QWidgetSavePos):
 		self.setLayout(self.main_vbox)
 		
 		self.load_data()
-		self.notebook.currentChanged.connect(self.changed_click)
 		#self.three_d_shape.force_redraw()
 
 		self.timer=QTimer()
 		self.timer.timeout.connect(self.callback_timed_redraw)
-		self.timer.start(1000)
+		self.timer.start(20)
 
 	def callback_honeycomb_menu_edit(self):
-		self.config_window=class_config_window([self.io.honeycomb],[_("Configure honeycomb")],data=self.io)
+		self.config_window=class_config_window(["honeycomb"],[_("Configure honeycomb")],data=self.io.bin)
 		self.config_window.show()
 
 	def callback_xtal_menu_edit(self):
-		self.config_window=class_config_window([self.io.xtal],[_("Configure photonic xtal")],data=self.io)
+		self.config_window=class_config_window(["xtal"],[_("Configure photonic xtal")],data=self.io.bin)
 		self.config_window.show()
 
 	def callback_lens_menu_edit(self):
-		self.config_window=class_config_window([self.io.lens],[_("Configure photonic lens")],data=self.io)
+		self.config_window=class_config_window(["lens"],[_("Configure photonic lens")],data=self.io.bin)
 		self.config_window.show()
 
 	def callback_saw_wave_menu_edit(self):
-		self.config_window=class_config_window([self.io.saw_wave],[_("Configure saw wave")],data=self.io)
+		self.config_window=class_config_window(["saw_wave"],[_("Configure saw wave")],data=self.io.bin)
 		self.config_window.show()
 
 	def callback_gaus_menu_edit(self):
-		self.config_window=class_config_window([self.io.gauss],[_("Configure gaussian")],data=self.io)
+		self.config_window=class_config_window(["gauss"],[_("Configure gaussian")],data=self.io.bin)
 		self.config_window.show()
 
 	def callback_boundary_menu_edit(self):
-		self.config_window=class_config_window([self.io.boundary],[_("Configure boundary")],data=self.io)
+		self.config_window=class_config_window(["boundary"],[_("Configure boundary")],data=self.io.bin)
 		self.config_window.show()
 
 	def callback_threshold_menu_edit(self):
-		self.config_window=class_config_window([self.io.threshold],[_("Configure threshold")],data=self.io)
+		self.config_window=class_config_window(["threshold"],[_("Configure threshold")],data=self.io.bin)
 		self.config_window.show()
 
 	def callback_configure(self):
-		self.config_window=class_config_window([self.io],[_("Configure")],data=self.io)
+		self.config_window=class_config_window([""],[_("Configure")],data=self.io.bin)
 		self.config_window.show()
 
 	def callback_show_mesh(self):
-		self.io.mesh.mesh_show=self.ribbon.show_mesh.isChecked()
+		self.io.bin.set_token_value("mesh","mesh_show",self.ribbon.show_mesh.isChecked())
 		self.shape_image_flat_view.repaint()
 		self.io.save()
 
 	def callback_import(self):
 		shutil.copyfile( self.orig_image_file,self.image_file)
 		im=self.io.load_image()
-		f=shape_bildverarbeitung(self.path,self.io)
+		f=shape_bildverarbeitung(self.path,self.io.bin)
 		f.apply(im)
 		self.shape_image_flat_view.force_update()
 
@@ -403,3 +385,7 @@ class shape_editor(QWidgetSavePos):
 		self.timer.stop()
 		self.three_d_shape.force_redraw()
 		
+	def callback_ref(self):
+		self.ref_window=ref_window(os.path.join(self.path,"shape.bib"),"image")
+		self.ref_window.show()
+

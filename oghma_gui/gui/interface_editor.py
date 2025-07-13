@@ -28,10 +28,8 @@
 #  The interface editor
 #
 
-from tab_base import tab_base
 from tab import tab_class
 from global_objects import global_object_register
-from epitaxy import get_epi
 
 #qt5
 from PySide2.QtWidgets import  QTextEdit, QAction, QApplication
@@ -45,14 +43,15 @@ from global_objects import global_object_register
 from icon_lib import icon_get
 
 from css import css_apply
-from json_root import json_root
 from help import QAction_help
 from sim_name import sim_name
+from json_c import json_tree_c
 
-class interface_editor(QWidget,tab_base):
+class interface_editor(QWidget):
 
 	def __init__(self):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.setMinimumSize(1000, 600)
 
 		self.main_vbox = QVBoxLayout()
@@ -83,29 +82,26 @@ class interface_editor(QWidget,tab_base):
 		self.main_vbox.addWidget(self.notebook)
 		self.setLayout(self.main_vbox)
 
-		#self.notebook.setTabsClosable(True)
-		#self.notebook.setMovable(True)
-		#self.notebook.setTabBar(QHTabBar())
-		#self.notebook.setTabPosition(QTabWidget.West)
-
 		global_object_register("interface_update",self.update)
 		self.update()
 
 	def update(self):
 		self.notebook.clear()
-		data=json_root()
-		
-		epi=data.epi
-		for i in range(0,len(epi.layers)-1):
-			l0=epi.layers[i]
-			l1=epi.layers[i+1]
 
-			name=l0.name+"/"+l1.name
-			widget=tab_class(l0.layer_interface)
+		segments=self.bin.get_token_value("epitaxy","segments")
+
+		for i in range(0,segments-1):
+			json_path0="epitaxy.segment"+str(i)
+			json_path1="epitaxy.segment"+str(i+1)
+			name0=self.bin.get_token_value(json_path0,"name")
+			name1=self.bin.get_token_value(json_path1,"name")
+
+			name=name0+"/"+name1
+			widget=tab_class(json_path0+".layer_interface")
 			self.notebook.addTab(widget,name)
 
 
 	def help(self):
-		help_window().help_set_help(["tab.png","<big><b>Density of States</b></big>\nThis tab contains the electrical model parameters, such as mobility, tail slope energy, and band gap."])
+		help_window().help_set_help("tab.png","<big><b>Density of States</b></big>\nThis tab contains the electrical model parameters, such as mobility, tail slope energy, and band gap.")
 
 

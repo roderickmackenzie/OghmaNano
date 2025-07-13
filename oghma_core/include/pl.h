@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,10 +29,32 @@
 
 #ifndef pl_h
 #define pl_h
+#include <g_io.h>
+#include <math_xy.h>
 #include <sim_struct.h>
 
-long double calculate_photon_energy(struct math_xy* in);
-void exp_cal_emission(struct simulation *sim,char *out_dir,struct device *in);
-long double pl_get_light_energy();
-long double calculate_photon_power_m2(struct simulation *sim,struct device *in);
+struct pl
+{
+	int pl_data_added;
+	struct math_xy fe_to_fh;
+	struct math_xy fe_to_te;
+	struct math_xy te_to_fh;
+	struct math_xy fh_to_th;
+	struct math_xy th_to_fe;
+
+	struct math_xy luminescence_ev;
+	struct math_xy luminescence_lam;
+};
+
+int pl_init(struct pl *pl);
+int pl_free(struct pl *pl);
+int pl_dump_spectra(struct simulation *sim,char *out_dir,struct device *dev, struct pl *pl);
+int pl_cal_simulated_spectra(struct simulation *sim,struct device *dev, struct pl *pl);
+int pl_cal_experimental_spectra(struct simulation *sim,struct device *dev, struct pl *pl);
+int calculate_photon_power_m2(struct simulation *sim,struct device *dev);
+void exp_cal_absorption(struct simulation *sim,struct device *dev);
+void exp_cal_emission(struct simulation *sim,char *out_dir,struct device *dev);
+int calculate_eqe(struct simulation *sim,struct device *dev, double *eqe, struct math_xy *eqe_lam, double *Rtot);
+int v_eqe_poly_smooth(struct simulation *sim,struct device *dev, struct math_xy *v_eqe, struct math_xy *v_eqe_R);
+int eqe_dump(struct simulation *sim,struct device *dev, char *path);
 #endif

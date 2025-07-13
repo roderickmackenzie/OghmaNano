@@ -31,6 +31,7 @@
 
 import os
 import sys
+
 from sim_name import sim_name
 
 #paths
@@ -46,13 +47,9 @@ from gui_enable import gui_test
 gui_test()
 
 from win_lin import get_platform
-from cal_path import get_image_file_path
 from cal_path import calculate_paths
-from cal_path import calculate_paths_init
-from cal_path import get_share_path
 from cal_path import set_sim_path
 
-calculate_paths_init()
 calculate_paths()
 
 from inp import inp
@@ -71,6 +68,7 @@ from cal_path import sim_paths
 
 command_args(len(sys.argv),sys.argv)
 
+
 from help import help_window
 from help import help_init
 from help import language_advert
@@ -86,6 +84,7 @@ from server import server_get
 from splash import splash_window
 from process_events import process_events
 from error_han import error_han
+#########bad
 
 #qt
 from PySide2.QtWidgets import QMainWindow,QApplication, QWidget, QSizePolicy, QVBoxLayout,QDialog, QFileDialog, QLineEdit
@@ -94,32 +93,35 @@ from gQtCore import Qt, QTimer
 
 from used_files import used_files_add
 
-from epitaxy import get_epi
 from icon_lib import icon_init_db
 from check_lib_in_bash_rc import check_lib_in_bash_rc
 from msg_dlg import msg_dlg
 from lock_gui import lock_gui
 from lock import get_lock
-
 import webbrowser
 
 from gui_util import yes_no_dlg
 from util import isfiletype
-
 from ribbon import ribbon
 from error_dlg import error_dlg
 
 from cal_path import to_native_path
 from global_objects import global_object_run
 #from check_sim_exists import check_sim_exists
-
 from cal_path import sim_paths
 
-from json_root import json_root
 from const_ver import const_ver
-from json_local_root import json_local_root
+from json_c import json_local_root
 from oghma_local import oghma_local
 from oghma_ipc import oghma_ipc
+from json_c import json_c
+from json_c import json_tree_c
+from json_c import json_files_gui_config_load
+import ctypes
+
+import faulthandler
+faulthandler.enable()
+import locale
 
 if get_platform()=="linux" or get_platform()=="wine":
 	if os.geteuid() == 0:
@@ -131,15 +133,13 @@ class main_window(QMainWindow,oghma_local):
 	def __init__(self):
 		super(main_window,self).__init__()
 		icon_init_db()
-
+		set_sim_path(os.getcwd())
 		self.oghma_local_setup()
-
 		self.splash=splash_window()
 		self.splash.inc_value()
 
 		process_events()
 		process_events()
-		
 		if os.path.isdir(os.path.dirname(sys.argv[0]))==False:
 			error_dlg(self,_("I can't run from inside a zip file!"))
 			sys.exit()
@@ -149,7 +149,6 @@ class main_window(QMainWindow,oghma_local):
 
 		server_init()
 		self.splash.inc_value()
-
 		#self.check_sim_exists=check_sim_exists()
 		#self.splash.inc_value()
 
@@ -157,8 +156,9 @@ class main_window(QMainWindow,oghma_local):
 		#self.splash.inc_value()
 		
 		#self.check_sim_exists.sim_gone.connect(self.sim_gone)
-		self.splash.inc_value()
+		self.bin=json_tree_c()
 
+		self.splash.inc_value()
 		self.my_server=server_get()
 		self.my_server.init(sim_paths.get_sim_path())
 		self.splash.inc_value()
@@ -186,7 +186,7 @@ class main_window(QMainWindow,oghma_local):
 		help_init()
 		self.splash.inc_value()
 
-		self.ipc_pipe=oghma_ipc()
+		self.ipc_pipe=oghma_ipc(self.my_server.server.ipc)
 		self.ipc_pipe.new_data.connect(self.callback_new_data)
 		self.ipc_pipe.start()
 
@@ -208,7 +208,7 @@ class main_window(QMainWindow,oghma_local):
 
 		self.statusBar()
 
-		self.setWindowIcon(QIcon(os.path.join(get_image_file_path(),"image.jpg")))		
+		self.setWindowIcon(QIcon(os.path.join(sim_paths.get_image_file_path(),"image.jpg")))		
 		self.splash.inc_value()
 
 		self.show_tabs = True
@@ -236,6 +236,8 @@ class main_window(QMainWindow,oghma_local):
 		#self.ribbon.home.help.triggered.connect(self.callback_on_line_help)
 
 		resize_window_to_be_sane(self,0.7,0.75)
+
+		print(">>>>",sim_paths.get_sim_path())
 		self.change_dir_and_refresh_interface(sim_paths.get_sim_path())
 		self.splash.inc_value()
 
@@ -250,12 +252,76 @@ class main_window(QMainWindow,oghma_local):
 
 		self.enable_disable_buttons()
 
-
 		check_lib_in_bash_rc()
 
-		self.timer=QTimer()		
-		self.timer.timeout.connect(json_root().check_reload)
+		self.timer=QTimer()
+
+		self.timer.timeout.connect(self.callback_check_reload)
 		self.timer.start(1000)
+
+		#from window_ml import window_ml
+		#self.window_ml=window_ml()
+		#self.showFullScreen()
+		#self.timer=QTimer()		
+		#self.timer.timeout.connect(self.callback_exit)
+		#self.timer.start(2000)
+
+		#print("here")
+		#from cmp_class import cmp_class
+		#self.plot_win=cmp_class("/home/rod/oghma/oghma8.0/snapshots/")
+		#self.plot_win.show()
+		#from plot_widget import plot_widget
+		#self.g=plot_widget(enable_toolbar=True,force_2d3d=True)
+		#self.g.set_labels([_("Spectra")])
+		#self.g.load_data(["exciton_output/G.csv","exciton_output/Gn.csv","exciton_output/Gp.csv"])
+		#self.g.show()
+
+		#from graph import graph_widget
+		#self.g=graph_widget()
+		#self.g.load(["charge.csv","fit_data0.inp"])
+		#self.g.graph.load_bands(self.bin)
+		#self.g.graph.axis_y.hidden=True;
+		#self.g.graph.points=True;
+		#self.g.graph.lines=False;
+		#self.g.graph.info[0].color_map_within_line=True
+		#self.g.show()
+
+		#from plot_window import plot_window
+		#self.p=plot_window()
+		#self.p.init(["Jp.csv"])
+		#self.p.show()
+		#from morphology_editor import morphology_editor
+		#self.p=morphology_editor("/home/rod/oghma_local/morphology/default")
+		#self.p.show()
+		#from window_mesh_editor import window_mesh_editor
+		#self.electrical_mesh=window_mesh_editor(json_path_to_mesh="electrical_solver.mesh")
+		#self.electrical_mesh.show()
+
+		#from fit_window import fit_window
+		#self.fit_window=fit_window()
+		#self.fit_window.show()
+		#self.experiment_window.changed.connect(self.callback_experiments_changed)
+
+		#from dir_viewer import dir_viewer,dir_viewer_c
+		#self.viewer=dir_viewer("")
+		#self.viewer.data.json_data=ctypes.pointer(self.bin)
+		#self.viewer.data.data_type=1
+		#self.viewer.data.allow_navigation=True
+		#self.viewer.set_directory_view(True)
+		#self.viewer.data.show_back_arrow=True
+		#self.viewer.set_multi_select()
+		#self.viewer.setMinimumSize(1000, 600)
+		#print(ctypes.sizeof(self.viewer.data))
+		#self.viewer.fill_store()
+		#self.viewer.show()
+		get_lock().lock_ping_server()
+
+
+	def callback_exit(self):
+		exit()
+
+	def callback_check_reload(self):
+		self.bin.check_reload()
 
 	def callback_new_data(self,data):
 		if data!=None:
@@ -286,7 +352,7 @@ class main_window(QMainWindow,oghma_local):
 
 	def callback_new(self):
 		from new_simulation import new_simulation
-		help_window().help_set_help(["p3ht_pcbm.png",_("<big><b>New simulation!</b></big><br> Now selected the type of device you would like to simulate.")])
+		help_window().help_set_help("p3ht_pcbm.png",_("<big><b>New simulation!</b></big><br> Now selected the type of device you would like to simulate."))
 
 		dialog=new_simulation()
 		dialog.exec_()
@@ -294,25 +360,28 @@ class main_window(QMainWindow,oghma_local):
 
 		if ret!=None:
 			self.change_dir_and_refresh_interface(dialog.ret_path)
-			if json_root().sim.first_sim_message!="":
+			first_sim_message=self.bin.get_token_value("sim","first_sim_message")
+			if first_sim_message!="":
 				msgBox = msg_dlg(title=sim_name.web)
-				msgBox.setText(json_root().sim.first_sim_message.replace("%DIR",dialog.ret_path))
+				msgBox.setText(first_sim_message.replace("%DIR",dialog.ret_path))
 				msgBox.exec_()
 
 	def update_interface(self):
+		enable_betafeatures=json_local_root().get_token_value("gui_config","enable_betafeatures")
 		if self.notebook.is_loaded()==True:
 			#self.check_sim_exists.set_dir(sim_paths.get_sim_path())
 
-			help_window().help_set_help(["media-playback-start",_("<big><b>Now run the simulation</b></big><br> Click on the play icon to start a simulation.")])
+			help_window().help_set_help("media-playback-start",_("<big><b>Now run the simulation</b></big><br> Click on the play icon to start a simulation."))
 
-			if json_local_root().gui_config.enable_betafeatures==True:
+			if enable_betafeatures==True:
 				self.ribbon.simulations.qe.setVisible(True)
 		else:
 			#self.check_sim_exists.set_dir("")
-			help_window().help_set_help(["icon.png",_("<big><b>Hi!</b></big><br> I'm the on-line help system :).  If you have any questions or find any bugs please send them to <a href=\"mailto:"+get_lock().my_email+"\">"+get_lock().my_email+"</a>."),"document-new.png",_("Click on the new icon to make a new simulation directory.")])
+			help_window().help_set_help("icon",_("<big><b>Hi!</b></big><br> I'm the on-line help system :).  If you have any questions or find any bugs please post them to the OghmaNano User forum <a href=\"https://www.oghma-nano.com/forum/\">https://www.oghma-nano.com/forum/</a>."))
+			help_window().help_append("document-new",_("Click on the new icon to make a new simulation directory."))
 			language_advert()
 
-			if json_local_root().gui_config.enable_betafeatures==True:
+			if enable_betafeatures==True:
 				self.ribbon.simulations.qe.setVisible(True)
 
 	def disable_interface(self):
@@ -361,32 +430,51 @@ class main_window(QMainWindow,oghma_local):
 
 
 	def change_dir_and_refresh_interface(self,new_dir):
-
-		used_files_add(os.path.join(new_dir,"sim.oghma"))
-		a=json_root()
-		if inp().isfile(os.path.join(new_dir,"sim.json"))==True:
-			a.load(os.path.join(new_dir,"sim.json"))
-			a.fix_up()
-		elif inp().isfile(os.path.join(new_dir,"json.inp"))==True:
-			a.load(os.path.join(new_dir,"json.inp"))
-			a.f.file_name="sim.json"
-			a.fix_up()
-
-		a.sim.version=const_ver()
-		a.save()
-		#get_watch().reset()
-		self.splash.inc_value()
-
-		self.splash.inc_value()
-
+		#import time
+		#t=time.time()
+		edited=False
+		loaded=False
 		set_sim_path(new_dir)
+		file_name=os.path.join(new_dir,"sim.json")
+		gui_config_file=os.path.join(new_dir,"gui_config.json")
+		alt_file_name=os.path.join(new_dir,"json.inp")
+
+		if inp().isfile(file_name)==True:
+			self.bin.load(file_name)
+			edited=self.bin.import_old_oghma_file(file_name)
+			self.bin.oghma_file_fixup()
+			loaded=True
+		elif inp().isfile(alt_file_name)==True:
+			self.bin.load(alt_file_name)
+			self.bin.f.file_name="sim.json"
+			self.bin.oghma_file_fixup()
+			loaded=True
+		#sys.exit(0)
+
+		if loaded==True:
+			used_files_add(os.path.join(new_dir,"sim.oghma"))
+			self.bin.set_token_value("sim","version",const_ver())
+			self.bin.set_token_value("","status","public")
+			print(edited)
+			if edited==True:
+				self.bin.save()
+				self.bin.free()
+				self.bin.load(file_name)
+				self.bin.oghma_file_fixup()
+				#msgBox = msg_dlg(title="OghmaNano")
+				#msgBox.setText("I have had to repair this file because it was quite old. If simulations do not work, I recommend closing OghmaNano and re-opening the file.")
+				#msgBox.exec_()
+			else:
+				self.bin.save()
+
+		self.splash.inc_value()
+
+		json_files_gui_config_load(gui_config_file)
+
+		
 		self.splash.inc_value()
 
 		#calculate_paths()
-		self.splash.inc_value()
-
-		get_epi()
-
 		self.statusBar().showMessage(sim_paths.get_sim_path())
 		self.splash.inc_value()
 
@@ -419,10 +507,6 @@ class main_window(QMainWindow,oghma_local):
 
 	def load_sim(self,filename):
 		new_path=os.path.dirname(filename)
-		if filename.startswith(get_share_path())==True:
-			error_dlg(self,_("You should not try to open simulations in the root simulation directory."))
-			return
-
 		self.change_dir_and_refresh_interface(new_path)
 
 	def callback_open(self):
@@ -515,7 +599,7 @@ class main_window(QMainWindow,oghma_local):
 if __name__ == '__main__':
 	#QApplication.setAttribute(Qt.AA_UseSoftwareOpenGL)
 	app = QApplication(sys.argv)
-	
+	locale.setlocale(locale.LC_NUMERIC, "C")			#sets the decimal point to a . not a ,
 	sys.excepthook = error_han
 	#from pycallgraph import PyCallGraph
 	#from pycallgraph.output import GraphvizOutput

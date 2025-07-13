@@ -40,9 +40,7 @@ from PySide2.QtGui import QFont
 
 from icon_lib import icon_get
 from error_dlg import error_dlg
-from json_root import json_root
 from token_lib import tokens
-from scan_human_labels import get_json_path_from_human_path
 from window_json_tree_view import window_json_tree_view
 from sim_name import sim_name
 class select_param(QWidget):
@@ -104,13 +102,12 @@ class select_param(QWidget):
 		if len(index)>0:
 			pos=index[0].row()
 			node = self.tab.tab.selectedItems()
-			path=self.tab.cal_path(node,language="human")
-			self.dest_treeview.set_value(pos,self.human_path_col,path)
-			print(path)
+			json_path=self.tab.get_json_path(node)
+			human_path=self.tab.get_human_path(node)
+			self.dest_treeview.set_value(pos,self.human_path_col,human_path,None)
+			#print(path)
 			if self.json_path_col!=-1:
-				data=json_root()
-				print(get_json_path_from_human_path(data,path),path)
-				self.dest_treeview.set_value(pos,self.json_path_col,get_json_path_from_human_path(data,path))
+				self.dest_treeview.set_value(pos,self.json_path_col,json_path,None)
 
 			if self.save_function!=None:
 				self.save_function()

@@ -28,7 +28,6 @@
 #  A slider to scroll through simulation snapshots.
 #
 import os
-from tab import tab_class
 
 #qt
 from gQtCore import QSize, Qt 
@@ -36,25 +35,137 @@ from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,Q
 from PySide2.QtGui import QPainter,QIcon
 from gQtCore import gSignal
 
-from help import help_window
-
-from dat_file import dat_file
 from gQtCore import QTimer
 from icon_lib import icon_get
-from util import wrap_text
-
-from g_tab import g_tab
-from inp import inp
+from g_tab2_bin import g_tab2_bin
+from json_c import json_c
 
 class snapshot_slider(QWidget):
 
 	changed = gSignal()
 
+	def __init__(self,path):
+		QWidget.__init__(self)
+		self.bin=json_c("snapshots")
+		self.bin.build_template()
+		self.bin.load(os.path.join(path,"data.json"))
+		self.path=path
+		self.timer=None
+		self.files=[]
+		self.tb_play = QAction(icon_get("media-playback-start"), _("Play"), self)
+		self.tb_play.triggered.connect(self.timer_toggle)
+
+		self.setWindowTitle(_("Snapshot slider")) 
+		
+		self.main_vbox = QVBoxLayout()
+
+		self.slider_hbox0= QHBoxLayout()
+		
+		self.slider0 = QSlider(Qt.Horizontal)
+
+		self.slider0.setTickPosition(QSlider.TicksBelow)
+		self.slider0.setTickInterval(5)
+		self.slider0.valueChanged.connect(self.slider0_change)
+
+		self.slider_hbox0.addWidget(self.slider0)
+
+		self.label0 = QLabel()
+		self.label0.setText("")
+
+		pos=self.bin.get_token_value("","pos")
+		if pos==None:
+			pos=1
+		self.slider0.setValue(pos)
+
+		self.slider_hbox0.addWidget(self.label0)
+
+		self.widget0=QWidget()
+		self.widget0.setLayout(self.slider_hbox0)
+
+		self.main_vbox.addWidget(self.widget0)
+
+		self.toolbar=QToolBar()
+		self.main_vbox.addWidget(self.toolbar)
+
+		self.tab=g_tab2_bin(toolbar=self.toolbar,json_bin=self.bin)
+		self.tab.verticalHeader().setVisible(True)
+		self.tab.set_tokens(["snapshot_file","snapshot_plot_type"])
+		self.tab.set_labels([ _("File to plot"),_("Plot type")])
+		self.tab.dir_path=self.find_template_dir()
+		self.tab.setMinimumSize(self.width(), 120)
+		self.tab.setColumnWidth(0, 400)
+		self.tab.json_root_path="list"
+
+		self.tab.populate()
+		
+		self.tab.changed.connect(self.on_cell_edited)
+
+		self.main_vbox.addWidget(self.tab)
+
+		self.setLayout(self.main_vbox)
+		self.update_slider_max()
+
+	def find_template_dir(self):
+		for i in range(0,100):
+			dir_name=os.path.join(self.path,str(i))
+			if os.path.isdir(dir_name)==True:
+				return dir_name
+
+		return os.path.join(self.path,"0")
+
+	def update_slider_max(self):
+		self.files=[]
+		all_files=os.listdir(self.path)
+		all_files = [f for f in all_files if f.isdigit()]
+		all_files=sorted(all_files, key=int)
+		if os.path.isdir(self.path)==True:
+			for f in all_files: 
+				file_name=os.path.join(self.path,f)
+				if os.path.isdir(file_name):
+					self.files.append(file_name)
+		
+		self.slider0.setMaximum(len(self.files))
+
+	def __del__(self):
+		self.bin.free()
+
+	def on_cell_edited(self):
+		self.bin.save()
+		self.changed.emit()
+
+	def slider0_change(self):
+		value = self.slider0.value()
+		self.label0.setText(str(value))
+		self.bin.set_token_value("","pos",value)
+		self.bin.save()
+		self.changed.emit()
+
+	def get_file_names(self):
+		files=[]
+		plot_types=[]
+
+		val=self.slider0.value()
+		if val>=len(self.files):
+			return [],[]
+
+		for y in range(0,self.tab.rowCount()):
+			file_path=os.path.join(self.files[val],self.tab.get_value(y,0))
+			if os.path.isfile(file_path)==True:
+				files.append(file_path)
+				plot_types.append(self.tab.get_value(y,1))
+
+		return files,plot_types
+
+	def update_files_combo(self):
+		for y in range(0,self.tab.rowCount()):
+			self.cellWidget(y, 0).update()
+
+	#animation
 	def timer_toggle(self):
 		if self.timer==None:
 			self.timer=QTimer()
 			self.timer.timeout.connect(self.slider_auto_incroment)
-			self.timer.start(1)
+			self.timer.start(100)
 			self.tb_play.setIcon(icon_get("media-playback-pause"))
 		else:
 			self.anim_stop()
@@ -71,215 +182,3 @@ class snapshot_slider(QWidget):
 		if val>self.slider0.maximum():
 			val=0
 		self.slider0.setValue(val)
-		
-	def update(self):
-		self.dirs=[]
-		if os.path.isdir(self.path)==True:
-			for name in os.listdir(self.path):
-				if name!="." and name!= "..":
-					full_path=os.path.join(self.path, name)
-					if os.path.isdir(full_path):
-						self.dirs.append(name)
-
-		self.dirs.sort(key=int)
-
-		for i in range(0,len(self.dirs)):
-			self.dirs[i]=os.path.join(self.path, self.dirs[i])
-
-		self.slider_max=len(self.dirs)-1
-		self.slider0.setMaximum(self.slider_max)
-
-		self.tab.clear()
-		self.tab.setColumnCount(2)
-		self.tab.setSelectionBehavior(QAbstractItemView.SelectRows)
-		self.tab.setHorizontalHeaderLabels([ _("File to plot"),_("Plot type")])
-
-		self.tab.setColumnWidth(0, 400)
-
-		self.tab.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-
-		if self.load_state()==False:
-			pos=self.tab.insert_row()
-			self.insert_row(pos)
-
-	def slider0_change(self):
-		value = self.slider0.value()
-		self.label0.setText(str(value))
-		self.changed.emit()
-
-	def get_file_name(self,pos=-1):
-		ret=[]
-		plot_types=[]
-		if pos==-1:
-			val=self.slider0.value()
-		else:
-			val=pos
-
-		if self.slider_dir_exists()==False:
-			return ret
-
-		for i in range(0,self.tab.rowCount()):
-			file_path=os.path.join(self.path,self.dirs[val],self.tab.get_value(i,0))
-			if os.path.isfile(file_path)==True:
-				ret.append(file_path)
-				plot_types.append(self.tab.get_value(i,1))
-
-		return ret,plot_types
-
-	def set_path(self,path):
-		self.path=path
-		self.update()
-
-		
-	def __init__(self):
-		QWidget.__init__(self)
-		self.dirs=[]
-		self.path=""
-		self.timer=None
-
-		self.tb_play = QAction(icon_get("media-playback-start"), wrap_text(_("Play"),2), self)
-		self.tb_play.triggered.connect(self.timer_toggle)
-
-		self.setWindowTitle(_("Snapshot slider")) 
-		
-		self.main_vbox = QVBoxLayout()
-
-		self.slider_hbox0= QHBoxLayout()
-		self.slider_max=30
-		
-		self.slider0 = QSlider(Qt.Horizontal)
-		#self.slider0.setMinimum(0)
-		#self.slider0.setMaximum(self.slider_max)
-
-		self.slider0.setTickPosition(QSlider.TicksBelow)
-		self.slider0.setTickInterval(5)
-		self.slider0.valueChanged.connect(self.slider0_change)
-		#self.slider0.setMinimumSize(300, 80)
-
-		self.slider_hbox0.addWidget(self.slider0)
-
-		self.label0 = QLabel()
-		self.label0.setText("")
-
-		self.slider0.setValue(1)
-
-		self.slider_hbox0.addWidget(self.label0)
-
-		self.widget0=QWidget()
-		self.widget0.setLayout(self.slider_hbox0)
-
-		self.main_vbox.addWidget(self.widget0)
-
-		self.toolbar=QToolBar()
-		self.main_vbox.addWidget(self.toolbar)
-
-		self.tab=g_tab(toolbar=self.toolbar)
-
-		self.main_vbox.addWidget(self.tab)
-		self.tab.tb_add.triggered.connect(self.callback_insert_row)
-		self.tab.tb_remove.triggered.connect(self.callback_remove_row)
-
-
-		self.setLayout(self.main_vbox)
-
-	def slider_dir_exists(self):
-		if self.slider0.value()==-1:
-			return False
-		if self.slider0.value()>=len(self.dirs):
-			return False
-		
-		return True
-
-	def update_files_combo(self,combo):
-		if self.slider_dir_exists()==False:
-			return False
-		combo.blockSignals(True)
-		combo.clear()
-		path=os.path.join(self.path,self.dirs[self.slider0.value()])
-
-		all_files=[]
-		if os.path.isdir(path)==True:
-			for name in os.listdir(path):
-				full_path=os.path.join(path, name)
-				if os.path.isfile(full_path):
-					if name!="data.json":
-						all_files.append(name)
-
-		all_files.sort()
-		
-		for a in all_files:
-			combo.addItem(a)
-
-		all_items  = [combo.itemText(i) for i in range(combo.count())]
-
-		for i in range(0,len(all_items)):
-			if all_items[i] == "Jn.dat":
-				combo.setCurrentIndex(i)
-
-		combo.blockSignals(False)
-		return True
-
-	def save_state(self):
-		f=inp()
-		for i in range(0,self.tab.rowCount()):
-			f.lines.append(self.tab.get_value(i,0))
-
-		f.save_as(os.path.join(self.path,"last.inp"))
-
-	def load_state(self):
-		f=inp()
-		if f.load(os.path.join(self.path,"last.inp"))==False:
-			return False
-
-		if len(f.lines)==0:
-			return False
-		print("bing")
-		for i in range(0,len(f.lines)):
-			line=f.lines[i]
-			print(line)
-			#pos=self.tab.insert_row()
-			pos=self.tab.insert_row()
-			self.insert_row(pos)
-			self.tab.blockSignals(True)
-			self.tab.set_value(i,0,line)
-			self.tab.blockSignals(False)
-			#f.lines.append(self.tab.get_value(i,0))
-
-		return True
-
-
-	def files_combo_changed(self):
-		self.save_state()		
-		self.changed.emit()
-
-	def insert_row(self,i):
-		self.tab.blockSignals(True)
-
-		self.item = QComboBox()
-		self.update_files_combo(self.item)
-		self.item.currentIndexChanged.connect(self.files_combo_changed)
-		#self.item.setText(v2)
-		#self.item.button.clicked.connect(self.callback_show_list)
-
-		self.tab.setCellWidget(i,0,self.item)
-
-		self.item_type = QComboBox()
-		self.item_type.addItem("wireframe")
-		self.item_type.addItem("heat")
-		self.item_type.addItem("contour")
-		self.item_type.currentIndexChanged.connect(self.files_combo_changed)
-
-		self.tab.setCellWidget(i,1,self.item_type)
-
-		self.tab.blockSignals(False)
-
-	def callback_insert_row(self):
-		pos=self.tab.insert_row()
-		self.insert_row(pos)
-		self.changed.emit()
-
-	def callback_remove_row(self):
-		self.tab.remove()
-		self.changed.emit()
-
-

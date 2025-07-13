@@ -29,7 +29,6 @@
 #
 
 from layer_widget import layer_widget
-from tab_base import tab_base
 from help import help_window
 
 from PySide2.QtWidgets import QWidget,QHBoxLayout,QSplitter
@@ -42,7 +41,7 @@ from dir_viewer import dir_viewer
 from cal_path import sim_paths
 from server import server_get
 
-class tab_view(QWidget,tab_base):
+class tab_view(QWidget):
 
 		
 	def __init__(self):
@@ -51,9 +50,9 @@ class tab_view(QWidget,tab_base):
 		hbox=QHBoxLayout(self)
 		QSplitter(Qt.Horizontal)
 		self.viewer=dir_viewer(sim_paths.get_sim_path())
-		self.viewer.allow_navigation=True
+		self.viewer.data.allow_navigation=True
 		self.viewer.set_directory_view(True)
-		self.viewer.set_back_arrow(True)
+		self.viewer.data.show_back_arrow=True
 		self.viewer.set_multi_select()
 		
 		hbox.addWidget(self.viewer)
@@ -65,8 +64,8 @@ class tab_view(QWidget,tab_base):
 		self.viewer.fill_store()
 
 	def help(self):
-		help_window().help_set_help(["device.png",_("<big><b>The device structure tab</b></big>\n Use this tab to change the structure of the device, the layer thicknesses and to perform optical simulations.  You can also browse the materials data base and  edit the electrical mesh.")])
+		help_window().help_set_help("device.png",_("<big><b>The device structure tab</b></big>\n Use this tab to change the structure of the device, the layer thicknesses and to perform optical simulations.  You can also browse the materials data base and  edit the electrical mesh."))
 
 	def got_help(self,data):
 		if data!="":
-			help_window().help_append(["star.png",_("<big><b>Update available!</b></big><br>"+data)])
+			help_window().help_append("star.png",_("<big><b>Update available!</b></big><br>"+data))

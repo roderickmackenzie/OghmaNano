@@ -31,13 +31,13 @@
 import os
 
 
-from cal_path import get_css_path
+from cal_path import sim_paths
 
 #qt
 from PySide2.QtWidgets import  QAction
 from PySide2.QtGui import QIcon
 from gQtCore import QSize, Qt
-from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QToolBar, QLineEdit, QToolButton
+from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QToolBar, QLineEdit, QToolButton, QComboBox
 
 from icon_lib import icon_get
 
@@ -49,6 +49,8 @@ from play import play
 from tick_cross import tick_cross
 from QAction_lock import QAction_lock
 from help import QAction_help
+from icon_lib import icon_get
+from QComboBoxLang import QComboBoxLang
 
 class fit_ribbon(ribbon_base):
 		
@@ -83,12 +85,8 @@ class fit_ribbon(ribbon_base):
 		self.tb_clone = QAction(icon_get("clone"), wrap_text(_("Clone experiment"),3), self)
 		self.box_tb1.addAction(self.tb_clone)
 
-
 		self.tb_rename = QAction(icon_get("rename"), wrap_text(_("Rename experiment"),3), self)
 		self.box_tb1.addAction(self.tb_rename )
-
-		#self.tb_notes = QAction(icon_get("text-x-generic"), wrap_text(_("Notes"),3), self)
-		#toolbar.addAction(self.tb_notes)
 
 		toolbar.addWidget(self.box_widget)
 
@@ -100,11 +98,6 @@ class fit_ribbon(ribbon_base):
 
 		self.import_data= QAction(icon_get("import"), wrap_text(_("Import data"),4), self)
 		toolbar.addAction(self.import_data)
-
-		toolbar.addSeparator()
-
-		self.tb_configure= QAction(icon_get("preferences-system"), wrap_text(_("Configure"),4), self)
-		toolbar.addAction(self.tb_configure)
 
 
 		toolbar.addSeparator()
@@ -134,27 +127,49 @@ class fit_ribbon(ribbon_base):
 		return toolbar
 
 
+	def minimizer(self):
+		toolbar = QToolBar()
+		toolbar.setToolButtonStyle( Qt.ToolButtonTextUnderIcon)
+		toolbar.setIconSize(QSize(42, 42))
 
-	def update(self):
-		print("update")
-		#self.device.update()
-		#self.simulations.update()
-		#self.configure.update()
-		#self.home.update()
+		self.tb_vars= QAction(icon_get("vars"), wrap_text(_("Fitting\nvariables"),4), self)
+		toolbar.addAction(self.tb_vars)
+
+		self.tb_duplicate= QAction(icon_get("duplicate"), wrap_text(_("Duplicate\nvariables"),4), self)
+		toolbar.addAction(self.tb_duplicate)
+
+		self.tb_rules= QAction(icon_get("rules"), wrap_text(_("Fit\nrules"),4), self)
+		toolbar.addAction(self.tb_rules)
+
+		toolbar.addSeparator()
+		self.combobox = QComboBoxLang()
+		self.combobox.setFixedHeight(40)  # Ensure the combo box is tall enough to display the icon
+		# Add items with icons and text
+		self.combobox.addItemLangIcon("simplex", _("Nelder–Mead\n(Downhill simplex)"), "downhill-simplex")
+		self.combobox.addItemLangIcon("FIT_NEWTON",  _("Newton"), "newton_fit")
+		self.combobox.addItemLangIcon("FIT_ANNEALING", _("Thermal\nAnnealing"), "thermal-annealing")
+		self.combobox.addItemLangIcon("FIT_MCMC", _("Markov chain\nMonte Carlo (MCMC)"), "mcmc")
+		self.combobox.addItemLangIcon("FIT_HMC", _("Hamiltonian\nMonte Carlo (HMC)"), "hmc")
+		self.combobox.addItemLangIcon("FIT_NUTS", _("No-U-Turn\nSampler (NUTS)"), "nuts" )
+
+		toolbar.addWidget(self.combobox)
+
+		self.tb_configure= QAction(icon_get("preferences-system"), wrap_text(_("Configure\nminimizer"),4), self)
+		toolbar.addAction(self.tb_configure)
+
+		return toolbar
 
 
 	def __init__(self):
 		ribbon_base.__init__(self)
-		#self.setStyleSheet("QWidget {	background-color:cyan; }")
-
 
 		w=self.file()
 		self.addTab(w,_("Experimental data"))
-		
-		#w=self.run()
-		#self.addTab(w,_("Run"))
 
-		sheet=self.readStyleSheet(os.path.join(get_css_path(),"style.css"))
+		w=self.minimizer()
+		self.addTab(w,_("Minimizer"))
+
+		sheet=self.readStyleSheet(os.path.join(sim_paths.get_css_path(),"style.css"))
 		if sheet!=None:
 			sheet=str(sheet,'utf-8')
 			self.setStyleSheet(sheet)

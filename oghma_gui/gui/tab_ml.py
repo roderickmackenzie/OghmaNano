@@ -32,44 +32,86 @@ import i18n
 _ = i18n.language.gettext
 
 #qt
+import os
 from gQtCore import QSize, Qt 
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTabWidget
 from PySide2.QtGui import QPainter,QIcon
 from tab import tab_class
-from css import css_apply
 from tab_ml_random import tab_ml_random
 from tab_ml_patch import tab_ml_patch
 from tab_ml_sims import tab_ml_sims
-from fit_duplicate import fit_duplicate
+from tab_ml_duplicate import tab_ml_duplicate
+from oghma_QTabWidget import oghma_QTabWidget
+from gQtCore import gSignal
+from cal_path import sim_paths
+from PySide2.QtWidgets import QMessageBox
+from json_c import json_tree_c
 
-class tab_ml(QTabWidget):
+class tab_ml(oghma_QTabWidget):
 
-
-	def __init__(self,data):
-		QTabWidget.__init__(self)
-		css_apply(self ,"tab_default.css")
-		self.data=data
-
+	tab_changed = gSignal(str)
+	def __init__(self,json_path,uid):
+		self.bin=json_tree_c()
+		oghma_QTabWidget.__init__(self)
+		self.last_page_index=0
+		self.json_path=json_path
+		self.uid=uid
+		path=self.refind_json_path()
 		self.setMovable(True)
 
-		tab=tab_ml_sims(self.data.id)
+		tab=tab_ml_sims(self.uid)
 		self.addTab(tab,_("Simulations"))
 
 
-		tab=tab_ml_random(self.data.id)
+		tab=tab_ml_random(self.uid)
 		self.addTab(tab,_("Random variables"))
 
-		tab=tab_ml_patch(self.data.id)
+		tab=tab_ml_patch(self.uid)
 		self.addTab(tab,_("Patch"))
 
-		tab=fit_duplicate(self.data.duplicate.id,search_path="json_root().ml")
+		duplicate_id=self.bin.get_token_value(path+".duplicate","id")
+		tab=tab_ml_duplicate(duplicate_id)
 		self.addTab(tab,_("Duplicate"))
+
+		from window_ml_networks import window_ml_networks
+		ml_networks_id=self.bin.get_token_value(path+".ml_networks","id")
+		self.net=window_ml_networks(ml_networks_id)
+		self.addTab(self.net,_("Neural networks"))
+
+		self.currentChanged.connect(self.callback_ribbon_changed)
 
 	def rename(self,tab_name):
 		self.data.name=tab_name
-		json_root().save()
+		self.bin.save()
 
 	def get_json_obj(self):
 		return self.data
 
+	def compile_to_json(self):
+		ret=self.bin.ml_make_nets_json(self.uid)
+		msgBox = QMessageBox(self)
+		msgBox.setIcon(QMessageBox.Information)
+		msgBox.setText("Compiled to json:")
+		
+		if ret==None:
+			msgBox.setInformativeText(_("Could not compile json."))
+			
+		else:
+			msgBox.setInformativeText(_("Json compiled to: ")+ret)
+
+		msgBox.setStandardButtons(QMessageBox.Ok )
+		msgBox.setDefaultButton(QMessageBox.Ok)
+		msgBox.setMinimumWidth(800)
+		msgBox.exec_()
+
+	def callback_ribbon_changed(self):
+		index = self.currentIndex()
+		if self.tabText(index)!=_("Neural networks"):
+			self.last_page_index=index
+
+		self.tab_changed.emit(self.tabText(index))
+
+	def refind_json_path(self):
+		ret=self.bin.find_path_by_uid("ml",self.uid)
+		return ret
 

@@ -39,21 +39,42 @@ from QComboBoxLang import QComboBoxLang
 
 #cal_path
 from cal_path import sim_paths
-from epitaxy import get_epi
-from inp import inp
-from dos_io import gen_fermi_from_np
-from dos_io import gen_np_from_fermi
-from bibtex import bibtex
 from lock import get_lock
 from icon_lib import icon_get
 from PySide2.QtGui import QFont
 from sim_name import sim_name
+import ctypes
+from json_c import json_c
+from bytes2str import str2bytes
+from json_c import json_string
 
 class cite_me(QLabel):
 
 	changed = gSignal()
 
-	def gen_window(self):
+	def __init__(self):
+		QLabel.__init__(self)
+		self.all_text=""
+		self.setWordWrap(True)
+		self.setMinimumWidth(350)
+		uid=get_lock().get_uid()
+		#FIX
+		import random, string
+		uid = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+		self.bin=json_c("file_defined")
+		self.bin.load(os.path.join(sim_paths.get_bib_path(),"cite.bib"))
+		single_quote = json_string()
+		three_quotes = json_string()
+		self.bin.lib.json_py_bib_get_oghma_citations(ctypes.byref(single_quote),ctypes.byref(three_quotes),ctypes.byref(self.bin),ctypes.c_char_p(str2bytes(uid)))
+
+		single_quote=single_quote.get_data()
+		self.all_text=three_quotes.get_data()
+
+		self.bin.free()
+
+		self.setText(single_quote)
+
+	def mousePressEvent(self, ev):
 		self.win=QWidget()
 		self.win.setWindowIcon(icon_get("icon"))
 		self.win.setWindowTitle(_("Please cite these papers:")) 
@@ -61,50 +82,20 @@ class cite_me(QLabel):
 
 		vbox=QVBoxLayout()
 
-		l=QLabel(_("If you publish a paper, book or thesis using results from "+sim_name.name+". You must cite these three papers listed below:"))
+		l=QLabel(_("If you publish a paper, book or thesis using results from "+sim_name.name+". You <b>must</b> cite these three papers listed below:"))
 		l.setFont(QFont('SansSerif', 14))
 		l.setWordWrap(True)
 		vbox.addWidget(l)
 
 		self.papers = QTextEdit()
+		self.papers.setFont(QFont('SansSerif', 11))
 		vbox.addWidget(self.papers)
 		self.papers.setText(self.all_text)
 		
 		self.win.setLayout(vbox)
 
-		self.win.setMinimumWidth(350)
-		#self.win.setMinimumHeight(500)
+		self.win.setMinimumWidth(400)
+		self.win.setMinimumHeight(500)
 		self.win.show()
-
-		
-	def __init__(self):
-		QLabel.__init__(self)
-		self.all_text=""
-		self.setWordWrap(True)
-		self.setMinimumWidth(350)
-		bib=bibtex()
-		#try:
-		bib.load(os.path.join(sim_paths.get_bib_path(),"cite.bib"))
-
-		number=sum(ord(c) for c in get_lock().get_uid()) %10
-
-		if number<len(bib.refs):
-			text=bib.refs[number].bib_short_cite()
-			count=0
-			pos=number
-			while count<3:
-				self.all_text=self.all_text+str(count+1)+". "+bib.refs[pos].bib_short_cite()+"\n\n"
-				count=count+1
-				pos=pos+1
-				if pos>len(bib.refs):
-					pos=0
-			self.all_text=self.all_text+"\n"+"Please do not cite the manual.  See the manual why I ask you to cite in this way. Thank you!"
-
-			self.setText("<b>If you publish results generated with OghmaNano in a paper, book or thesis you must cite this paper:</b> "+text+" and along with these <a href=\"https://scholar.google.co.uk/citations?user=jgQqfLsAAAAJ&hl=en\">two papers</a> in your work.")
-		#except:
-		#	pass
-
-	def mousePressEvent(self, ev):
-		self.gen_window()
 
 

@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -32,10 +30,21 @@
 
 
 #ifndef rand_h
-#include <sim_struct.h>
+	#include <g_io.h>
+	#include <sim_struct.h>
+	#include <rand_state.h>
 
-void randomize_input_files(struct simulation *sim);
-int random_int(struct simulation *sim, int in);
-int random_int_range(struct simulation *sim,int start_in,int stop_in);
-double random_double();
+	int rand_init(struct rand_state *r);
+	int rand_load(struct rand_state *r,struct json_obj *json_obj);
+	int rand_test(struct rand_state *r);
+	int rand_seed(struct rand_state* rand);
+	int rand_hex(struct rand_state* rand, char *out,int n);
+	int rand_int(struct rand_state* r);
+	int rand_int_range(struct rand_state* r,int start_in,int stop_in);
+	double rand_double(struct rand_state* r);
+
+	double rand_gaussian(struct rand_state* r, double mean, double stddev);
+	double rand_lin_range_double(struct rand_state *r,double min, double max);
+	double rand_log_range_double(struct rand_state *r,double min, double max);
+
 #endif

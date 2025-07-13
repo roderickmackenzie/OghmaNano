@@ -29,7 +29,7 @@
 #
 
 import os
-from import_archive import import_archive
+from copy_device import copy_device
 from open_save_dlg import save_as_simfile
 
 import i18n
@@ -41,7 +41,6 @@ from PySide2.QtWidgets import QPushButton,QCheckBox,QHBoxLayout, QListView, QLab
 from PySide2.QtGui import QIcon
 
 #calpath
-from cal_path import get_device_lib_path
 from icon_lib import icon_get
 from error_dlg import error_dlg
 
@@ -68,7 +67,7 @@ class new_simulation(QDialog):
 	def callback_next(self):
 		self.lib=sim_paths.get_dll_py()
 		self.lib.lock_decrypt_file.restype = ctypes.c_int
-		help_window().help_set_help(["document-save-as.png",_("<big><b>Now save the simulation</b></big><br>Now select where you would like to save the simulation directory.")])
+		help_window().help_set_help("document-save-as.png",_("<big><b>Now save the simulation</b></big><br>Now select where you would like to save the simulation directory."))
 
 		if len(self.viewer.selectedItems())>0:
 			device_lib_sim_file=self.viewer.file_path
@@ -80,6 +79,11 @@ class new_simulation(QDialog):
 					return
 				else:
 					device_lib_sim_file=decrypted_file
+
+			if os.path.isdir(device_lib_sim_file)==True:
+				temp_file=os.path.join(device_lib_sim_file,"sim.json")
+				if os.path.isfile(temp_file)==True:
+					device_lib_sim_file=temp_file
 
 			file_path=save_as_simfile(self)
 			#print(file_path,sim_paths.get_exe_path())
@@ -102,9 +106,9 @@ class new_simulation(QDialog):
 				self.ret_path=file_path
 
 				os.chdir(self.ret_path)
-				new_archive=os.path.join(os.getcwd(),"sim.oghma")
+				new_archive=os.path.join(self.ret_path,"sim.oghma")
 				archive_make_empty(new_archive)
-				import_archive(device_lib_sim_file,new_archive,False)
+				copy_device(device_lib_sim_file,self.ret_path,setup_sim_to_run=True)
 
 				self.close()
 		else:
@@ -124,7 +128,7 @@ class new_simulation(QDialog):
 		print(_("CIGS Solar cell"))
 
 	def callback_toggle_hidden(self):
-		self.viewer.set_show_hidden(self.show_hidden.isChecked())
+		self.viewer.data.show_hidden=self.show_hidden.isChecked()
 		self.viewer.fill_store()
 	
 	def __init__(self):
@@ -135,9 +139,9 @@ class new_simulation(QDialog):
 		self.setWindowIcon(icon_get("si"))
 		self.title=QLabel("<big><b>"+_("Which type of device would you like to simulate?")+" ("+_("Double click to open")+")</b></big>")
 
-		self.viewer=dir_viewer(get_device_lib_path())
+		self.viewer=dir_viewer(sim_paths.get_device_lib_path())
 		self.viewer.open_own_files=False
-		self.viewer.set_back_arrow(True)
+		self.viewer.data.show_back_arrow=True
 		self.viewer.set_enable_menu(False)
 		self.viewer.setViewMode(QListView.IconMode)
 		self.viewer.setSpacing(8)
@@ -168,7 +172,7 @@ class new_simulation(QDialog):
 		#if get_lock().is_next()==True:
 		hbox.addWidget(self.show_hidden)
 		self.show_hidden.setChecked(True)
-		self.viewer.set_show_hidden(True)
+		self.viewer.data.show_hidden=True
 
 		hbox.addStretch(1)
 		hbox.addWidget(self.cancelButton)
@@ -178,6 +182,7 @@ class new_simulation(QDialog):
 		self.main_vbox.addWidget(self.hwidget)
 
 		self.setLayout(self.main_vbox)
+		self.viewer.fill_store()
 		self.show()
 
 		self.ret_path=None

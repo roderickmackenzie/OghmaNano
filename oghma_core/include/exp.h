@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -32,75 +30,73 @@
 
 #ifndef exp_h
 #define exp_h
+#include <g_io.h>
 #include <device.h>
 
-gdouble get_jn_avg(struct device *in);
-gdouble get_jp_avg(struct device *in);
-gdouble get_charge_change(struct device *in);
-void cal_J_drift_diffusion(struct device *in);
-gdouble get_Jn_diffusion(struct device *in);
-gdouble get_Jn_drift(struct device *in);
-gdouble get_Jp_diffusion(struct device *in);
-gdouble get_Jp_drift(struct device *in);
-gdouble get_avg_field(struct device *in);
-gdouble get_np_tot(struct device *in);
-void reset_npequlib(struct device *in);
-void get_avg_np_pos(struct device *in,gdouble *nx,gdouble *px);
-gdouble get_background_charge(struct device *in);
-void reset_np_save(struct device *in);
-gdouble get_n_trapped_charge(struct device *in);
-gdouble get_p_trapped_charge(struct device *in);
-gdouble get_avg_recom(struct device *in);
-gdouble get_avg_recom_n(struct device *in);
-gdouble get_avg_recom_p(struct device *in);
-gdouble get_avg_Rn(struct device *in);
-gdouble get_avg_Rp(struct device *in);
-gdouble get_avg_k(struct device *in);
-void get_avg_mu(struct device *in,long double *ret_mue,long double *ret_muh);
-void get_avg_geom_micro_mu(struct device *in,long double *ret_mu);
-gdouble get_free_n_charge(struct device *in);
-gdouble get_free_p_charge(struct device *in);
-gdouble get_free_n_charge_delta(struct device *in);
-gdouble get_free_p_charge_delta(struct device *in);
-gdouble get_total_n_trapped_charge(struct device *in);
-gdouble get_total_p_trapped_charge(struct device *in);
-gdouble get_n_trapped_charge_delta(struct device *in);
-gdouble get_p_trapped_charge_delta(struct device *in);
-gdouble get_avg_relax_n(struct device *in);
-gdouble get_avg_relax_p(struct device *in);
-gdouble get_avg_J(struct device *in);
-gdouble get_free_np_avg(struct device *in);
-gdouble get_extracted_np(struct device *in);
-gdouble get_extracted_k(struct device *in);
-gdouble get_charge_delta(struct device *in);
-gdouble get_I_recomb(struct device *in);
-gdouble get_J_left(struct device *in);
-gdouble get_J_right(struct device *in);
-gdouble get_J_recom(struct device *in);
-gdouble get_I_ce(struct simulation *sim,struct device *in);
-gdouble get_equiv_I(struct simulation *sim,struct device *in);
+double get_jn_avg(struct device *dev);
+double get_jp_avg(struct device *dev);
+gdouble get_charge_change(struct device *dev);
+void cal_J_drift_diffusion(struct device *dev);
+double get_Jn_diffusion(struct device *dev);
+double get_Jn_drift(struct device *dev);
+double get_Jp_diffusion(struct device *dev);
+double get_Jp_drift(struct device *dev);
+gdouble get_avg_field(struct device *dev);
+gdouble get_np_tot(struct device *dev);
+void reset_npequlib(struct device *dev);
+void get_avg_np_pos(struct device *dev,gdouble *nx,gdouble *px);
+double get_background_charge(struct device *dev);
+void reset_np_save(struct device *dev);
+double get_avg_recom(struct device *dev);
+double get_avg_recom_n(struct device *dev);
+double get_avg_recom_p(struct device *dev);
+double get_avg_Rn(struct device *dev);
+double get_avg_Rp(struct device *dev);
+double get_avg_k(struct device *dev);
+void get_avg_mu(struct device *dev,double *ret_mue,double *ret_muh);
+void get_avg_geom_micro_mu(struct device *dev,double *ret_mu);
+void get_avg_conductance(struct device *dev,double *ret_sigma_e,double *ret_sigma_h);
+double get_free_n_charge_delta(struct device *dev);
+double get_free_p_charge_delta(struct device *dev);
+double get_total_n_trapped_charge(struct device *dev);
+double get_total_p_trapped_charge(struct device *dev);
+double get_n_trapped_charge_delta(struct device *dev);
+double get_p_trapped_charge_delta(struct device *dev);
+double get_avg_relax_n(struct device *dev);
+double get_avg_relax_p(struct device *dev);
+double get_avg_J(struct device *dev);
+double get_free_np_avg(struct device *dev);
+double get_extracted_np(struct device *dev);
+double get_extracted_k(struct device *dev);
+double get_charge_delta(struct device *dev);
+double get_I_recomb(struct device *dev);
+double get_J_left(struct device *dev);
+double get_J_right(struct device *dev);
+double get_J_recom(struct device *dev);
+double get_I_ce(struct simulation *sim,struct device *dev);
+double get_equiv_I(struct simulation *sim,struct device *dev);
 
-gdouble get_extracted_n(struct device *in);
-gdouble get_extracted_p(struct device *in);
-gdouble get_equiv_V(struct simulation *sim,struct device *in);
-gdouble get_equiv_J(struct simulation *sim,struct device *in);
-gdouble get_I(struct device *in);
-gdouble get_J(struct device *in);
-gdouble get_charge(struct device *in);
-gdouble get_avg_gen(struct device *in);
-void set_orig_charge_den(struct device *in);
-gdouble get_total_np(struct device *in);
-gdouble get_charge_tot(struct device *in);
-gdouble get_tot_photons_abs(struct device *in);
-gdouble get_i_intergration(struct device *in);
-gdouble get_avg_J_std(struct device *in);
-gdouble get_max_Jsc(struct device *in);
-void get_tau(struct device *dev, long double *ret_tau, long double *ret_tau_all);
+double get_extracted_n(struct device *dev);
+double get_extracted_p(struct device *dev);
+double get_equiv_V(struct simulation *sim,struct device *dev);
+double get_equiv_J(struct simulation *sim,struct device *dev);
+double get_I(struct device *dev);
+double get_J(struct device *dev);
+double get_charge(struct device *dev);
+double get_avg_gen(struct device *dev);
+void set_orig_charge_den(struct device *dev);
+double get_charge_tot(struct device *dev);
+double get_tot_photons_abs(struct device *dev);
+double get_i_intergration(struct device *dev);
+double get_avg_J_std(struct device *dev);
+double get_max_Jsc(struct device *dev);
+void get_tau(struct device *dev, double *ret_tau, double *ret_tau_all);
+int get_free_nf_pf_nt_pt_charge(struct device *dev,double *nf,double *pf,double *nt,double *pt);
 
 //thermal 
 
-long double get_avg_Tl(struct device *in);
-long double get_avg_Te(struct device *in);
-long double get_avg_Th(struct device *in);
-long double cal_contact_charge(struct device *in);
+gdouble get_avg_Tl(struct device *dev);
+gdouble get_avg_Te(struct device *dev);
+gdouble get_avg_Th(struct device *dev);
+gdouble cal_contact_charge(struct device *dev);
 #endif

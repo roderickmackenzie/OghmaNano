@@ -38,12 +38,20 @@ from PySide2.QtWidgets import QMenu,QAbstractItemView,QListWidgetItem,QPushButto
 from dlg_get_text2 import dlg_get_text2
 from cal_path import sim_paths
 from clone_materials import clone_material
+from json_c import json_c
+from error_dlg import error_dlg
 
 class dir_viewer_new():
 	def new_shape(self):
 		from shape_editor_io import shape_editor_io
-		a=shape_editor_io()
+		a=shape_editor_io(None)
 		a.new_shape(self.path)
+		self.fill_store()
+
+	def new_morphology(self):
+		from morphology_editor_io import morphology_editor_io
+		a=morphology_editor_io(None)
+		a.new_morphology(self.path)
 		self.fill_store()
 
 	def new_emission(self):
@@ -70,8 +78,8 @@ class dir_viewer_new():
 			if ret==False:
 				error_dlg(self,_("I cant write to:")+new_spectra+" "+_("This means either the disk is full or your system administrator has not given you write permissions to that location."))
 
-			from json_spectra_db_item import json_spectra_db_item
-			a=json_spectra_db_item()
+			a=json_c("spectra_db")
+			a.build_template()
 			a.save_as(os.path.join(new_spectra,"data.json"))
 
 			self.fill_store()
@@ -81,14 +89,15 @@ class dir_viewer_new():
 		new_sim_name=new_sim_name.ret
 		if new_sim_name!=None:
 			new_material=os.path.join(self.path,new_sim_name)
+			print(new_material)
 			try:
 				os.makedirs(new_material)
 			except:
 				error_dlg(self,_("I cant write to: ")+new_material+" "+_("This means either the disk is full or your system administrator has not given you write permissions to that location."))
-			from json_material_db_item import json_material_db_item
-			a=json_material_db_item()
+			
+			a=json_c("material_db")
+			a.build_template()
 			a.save_as(os.path.join(new_material,"data.json"))
-
 			self.fill_store()
 
 	def new_filter(self):
@@ -97,8 +106,9 @@ class dir_viewer_new():
 		if new_sim_name!=None:
 			new_filter=os.path.join(self.path,new_sim_name)
 			os.makedirs(new_filter)
-			from json_filter_db_item import json_filter_db_item
-			a=json_filter_db_item()
+
+			a=json_c("filter_db")
+			a.build_template()
 			a.save_as(os.path.join(new_filter,"data.json"))
 
 			self.fill_store()

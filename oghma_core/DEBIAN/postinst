@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Create symbolic link to launcher
+rm -f /bin/oghma
+ln -sf /usr/share/oghma_gui/gui/oghmanano.py /usr/bin/oghma
+
+update-desktop-database /usr/share/applications/
+update-mime-database /usr/share/mime/packages/
+gtk-update-icon-cache /usr/share/icons/hicolor/
+
+# Update shared library cache
+ldconfig
+
+exit 0

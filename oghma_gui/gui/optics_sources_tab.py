@@ -35,9 +35,7 @@ import os
 from gQtCore import QSize, Qt 
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QLabel,QHBoxLayout,QToolBar,QSizePolicy,QAction, QMenu
 
-from g_tab2 import g_tab2
-from json_root import json_root
-from json_light import json_light_spectrum
+from g_tab2_bin import g_tab2_bin
 from global_objects import global_object_run
 
 from plot_widget import plot_widget
@@ -45,24 +43,21 @@ from cal_path import sim_paths
 
 from icon_lib import icon_get
 from tab import tab_class
-from g_graph import g_graph
 import i18n
 _ = i18n.language.gettext
 from sim_name import sim_name
+from json_c import json_tree_c
 
 class optics_light_src(QWidget):
  
-	def get_json_obj(self):
-		json_root()
-		data_obj=eval(self.serach_path).find_object_by_id(self.uid)
-		return data_obj
-
 	def __init__(self,search_path,uid,name):
 		QWidget.__init__(self)
-		self.main_vbox_y0 = QVBoxLayout()
+		self.bin=json_tree_c()
+
 		self.serach_path=search_path
 		self.uid=uid
 
+		self.main_vbox_y0 = QVBoxLayout()
 		label_left=QLabel(name)
 		self.main_vbox_y0.addWidget(label_left)
 		toolbar2=QToolBar()
@@ -70,7 +65,7 @@ class optics_light_src(QWidget):
 
 		self.main_vbox_y0.addWidget(toolbar2)
 	
-		self.tab_y0 = g_tab2(toolbar=toolbar2)
+		self.tab_y0 = g_tab2_bin(toolbar=toolbar2)
 		self.tab_y0.set_tokens(["light_spectrum","light_multiplyer"])
 		self.tab_y0.set_labels([_("Spectrum"),_("Multiplyer")])
 		self.tab_y0.setColumnWidth(0, 250)
@@ -80,10 +75,9 @@ class optics_light_src(QWidget):
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		toolbar2.addWidget(spacer)
 
-
-
 		label = QLabel(_("External\ninterface:"))
 		toolbar2.addWidget(label)
+
 		#external interface
 		self.optical_external_interface = QAction(icon_get("reflection"), _("External\nReflection"), self)
 		self.optical_external_interface.setCheckable(True)
@@ -98,10 +92,9 @@ class optics_light_src(QWidget):
 		toolbar2.addAction(self.optical_external_interface)
 
 
-
-		self.tab_y0.json_search_path=search_path
+		self.tab_y0.json_root_path=self.serach_path
 		self.tab_y0.uid=uid
-		self.tab_y0.postfix="virtual_spectra.light_spectra.segments"
+		self.tab_y0.json_postfix="virtual_spectra.light_spectra"
 		self.tab_y0.populate()
 
 		self.tab_y0.new_row_clicked.connect(self.callback_new_row_clicked)
@@ -110,7 +103,7 @@ class optics_light_src(QWidget):
 
 		self.main_vbox_y0.addWidget(self.tab_y0)
 
-		self.plot_widget=plot_widget(enable_toolbar=False,widget_mode="g_graph")
+		self.plot_widget=plot_widget(enable_toolbar=False,widget_mode="graph")
 		self.plot_widget.set_labels([_("Light intensity")])
 		plot_file=os.path.join(sim_paths.get_sim_path(),"optical_output","light_src_"+self.uid+".csv")
 
@@ -125,37 +118,39 @@ class optics_light_src(QWidget):
 		self.main_vbox_y0.addWidget(self.plot_widget)
 		self.setLayout(self.main_vbox_y0)
 
+	def refind_json_path(self):
+		ret=self.bin.find_path_by_uid(self.serach_path,self.uid)
+		return ret
 
 	def callback_new_row_clicked(self,row):
-		obj=json_light_spectrum()
-		self.get_json_obj().virtual_spectra.light_spectra.segments.insert(row,obj)
-		self.tab_y0.insert_row(obj,row)
-		json_root().save()
 		self.plot_widget.do_plot()
 
 	def on_cell_edited(self):
-		json_root().save()
 		self.plot_widget.do_plot()
 		global_object_run("gl_force_redraw")
 
 	def update(self):
 		self.plot_widget.reload()
 		self.plot_widget.do_plot()
-
+		json_path=self.refind_json_path()
+		enabled=self.bin.get_token_value(json_path+".virtual_spectra.external_interface","enabled")
 		self.blockSignals(True)
-		self.optical_external_interface.setChecked(self.get_json_obj().virtual_spectra.external_interface.enabled)
+		self.optical_external_interface.setChecked(enabled)
 
 		self.blockSignals(False)
 
 	def callback_filter_clicked(self):
-		data=json_root()
-		path=self.get_json_obj().virtual_spectra
-		path.external_interface.enabled=self.optical_external_interface.isChecked()
-		data.save()
+		path=self.refind_json_path()
+		json_path=self.refind_json_path()
+		value=self.optical_external_interface.isChecked()
+		self.bin.set_token_value(json_path+".virtual_spectra.external_interface","enabled",value)
+		self.bin.save()
 
 
 	def callback_external_interface_window(self):
-		self.widget=tab_class(self.get_json_obj().virtual_spectra.external_interface)
+
+		json_path=self.refind_json_path()
+		self.widget=tab_class(json_path+".virtual_spectra.external_interface")
 		self.widget.setWindowIcon(icon_get("reflection"))
 
 		self.widget.setWindowTitle(_("Reflective interface editor")+sim_name.web_window_title)    

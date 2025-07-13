@@ -1,4 +1,18 @@
-\subsection{Tunnelling through heterojunctions}
+The equations below came from section 4.16.3.1 "Possible Conduction Mechanisms" of in the chapter "Electronic Properties of Alkanethiol Molecular Junctions: Conduction Mechanisms, Metal–Molecule Contacts, and Inelastic Transport" in the book, Comprehensive Nanoscience and Technology. They are referenced to Sze SM (1981) Physics of Semiconductor Devices.
+%But I can not see their table in Sze
+
+\subsection{Direct tunnelling}
+\begin{equation}
+\boldsymbol{J} = A(n-n^{eq}) Vexp  \left( -\frac{2d}{\hbar} \sqrt{2m q\phi}  \right)
+\end{equation}
+$A$ is a constant, $V$ is the applied bias, and $\phi$ is the barrier height calculated from the band structure, m is the mass of an electron, and d is the thickness of the barrier. In the model this is implemented as:
+\begin{equation}
+\boldsymbol{J} = A(n-n^{eq}) Vexp  \left( -B \sqrt{\phi}  \right)
+\end{equation}
+
+\subsection{Tunnelling organic-organic}
+This is not classical tunnelling, but assumes the carriers can drift into trap states at the interface, it is really only applicable for organics.
+
 Tunnelling of holes through hetrojunction interfaces are is give by
 \begin{equation}
 \boldsymbol{J_p} = q T_{h}  ((p_{1}-p_{1}^{eq})-(p_{0}-p_{0}^{eq})),
@@ -11,3 +25,31 @@ and for electrons
 \end{equation}
 
 Where $T_{h}$ and $T_{e}$ represent the rate constants of the tunnelling. This can be configured in the interfaces editor.
+
+%%%%%%%%%%%%%%%%%
+\subsection{Fowler–Nordheim tunnelling}
+\begin{equation}
+\boldsymbol{J} = A(n-n^{eq}) V^2 exp  \left( -\frac{q4d\sqrt{2m} \phi^{3/2}}{3q \hbar V}  \right)
+\end{equation}
+\emph{Not yet implemented but could be on request.} $A$ is a constant, $V$ is the applied bias, and $\phi$ is the barrier height calculated from the band structure, m is the mass of an electron, and d is the thickness of the barrier.  In the model this is implemented as:
+
+\begin{equation}
+\boldsymbol{J} = A(n-n^{eq}) V^2 exp  \left( -\frac{B \phi^{3/2}}{V}  \right)
+\end{equation}
+
+\subsection{Thermionic emission}
+\begin{equation}
+\boldsymbol{J} = A(n-n^{eq}) T^2 exp  \left( -\frac{q\phi -q\sqrt{qV/ 4 \pi \epsilon d}}{kT}  \right)
+\end{equation}
+
+\emph{Not yet implemented but could be on request.} $A$ is a constant, $V$ is the applied bias, and $\phi$ is the barrier height calculated from the band structure, m is the mass of an electron, and d is the thickness of the barrier.  In the model this is implemented as:
+
+\begin{equation}
+\boldsymbol{J} = A(n-n^{eq}) T^2 exp  \left( -\frac{q\phi -B\sqrt{V}}{kT}  \right)
+\end{equation}
+
+\subsection{Hopping conduction}
+\emph{Not yet implemented but could be on request.}
+\begin{equation}
+\boldsymbol{J} = A(n-n^{eq}) V exp  \left( -\frac{q\phi}{kT}  \right)
+\end{equation}

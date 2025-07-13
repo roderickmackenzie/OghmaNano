@@ -29,36 +29,31 @@
 #
 
 
-from cal_path import get_image_file_path
-
 #qt
 from gui_enable import gui_get
 
 if gui_get()==True:
 	from PySide2.QtWidgets import QTextEdit, QAction,QTableWidgetItem,QComboBox, QMessageBox, QDialog, QDialogButtonBox
-	from PySide2.QtWidgets import QListWidgetItem,QListView,QLineEdit,QWidget,QHBoxLayout,QPushButton
+	from PySide2.QtWidgets import QListWidgetItem,QListView,QLineEdit,QWidget,QHBoxLayout,QPushButton, QSpinBox
 	from PySide2.QtGui import QPixmap, QIcon
 	from gQtCore import QSize, Qt, QTimer
 	from QComboBoxLang import QComboBoxLang
 	from gtkswitch import gtkswitch
-	from g_select_material import g_select_material
-	from g_select_filter import g_select_filter
-	from g_select_shape import g_select_shape
 	from icon_widget import icon_widget
 	from leftright import leftright
 	from g_select import g_select
 	from QComboBoxLang import QComboBoxLang
 	from QColorPicker import QColorPicker
 	from QColorPicker import QColorPicker_one_line
-	from QComboBoxNewtonSelect import QComboBoxNewtonSelect
 	from QChangeLog import QChangeLog
 	from generic_switch import generic_switch
-	from shape_dos_switch import shape_dos_switch
-	from shape_electrical_switch import shape_electrical_switch
+	from g_select import g_select_electrical_edit
 	from mobility_widget import mobility_widget
 	from QComboBoxLayers import QComboBoxLayers
 	from QComboBoxOpenCL import QComboBoxOpenCL
-
+	from edit_with_units import edit_with_units
+	from QComboBoxNetworkInputs import QComboBoxNetworkInputs
+	from QComboBoxNetworkOutputs import QComboBoxNetworkOutputs
 #windows
 from icon_lib import icon_get
 from str2bool import str2bool
@@ -80,17 +75,9 @@ def yes_no_dlg(parent,text):
 def widget_get_value(widget):
 	if type(widget)==QLineEdit:
 		return widget.text()
-	elif type(widget)==gtkswitch:
-		return widget.get_value()
-	elif type(widget)==leftright:
-		return widget.get_value()
+	elif type(widget)==QSpinBox:
+		return widget.value()
 	elif type(widget)==g_select:
-		return widget.text()
-	elif type(widget)==g_select_material:
-		return widget.text()
-	elif type(widget)==g_select_filter:
-		return widget.text()
-	elif type(widget)==g_select_shape:
 		return widget.text()
 	elif type(widget)==icon_widget:
 		return widget.text()
@@ -98,45 +85,34 @@ def widget_get_value(widget):
 		return widget.itemText(widget.currentIndex())
 	elif type(widget)==QComboBoxLang:
 		return widget.currentText_english()
-	elif type(widget)==QColorPicker:
-		return widget.get_value()
 	elif type(widget)==QColorPicker_one_line:
 		return str(widget.r)+","+str(widget.g)+","+str(widget.b)+","+str(widget.alpha)
 	elif type(widget)==QChangeLog:
 		return widget.toPlainText()
-	elif type(widget)==QComboBoxNewtonSelect:
-		return widget.currentText()
 	elif type(widget)==QComboBoxLayers:
 		return widget.currentText()
 	elif type(widget)==QComboBoxOpenCL:
 		return widget.currentText()
-	elif type(widget)==generic_switch:
-		return widget.get_value()
-	elif type(widget)==shape_dos_switch:
-		return widget.get_value()
-	elif type(widget)==shape_electrical_switch:
-		return widget.get_value()
 	elif type(widget)==mobility_widget:
 		return widget.get_values()
 	else:
-		return None
+		try:
+			return widget.get_value()
+		except:
+			return None
 
-def widget_set_value(widget,value):
+def widget_set_value(widget,value,unit=""):
 
 	widget.blockSignals(True)
 	if type(widget)==QLineEdit:
 		widget.setText(str(value))
 	elif type(widget)==gtkswitch:
 		widget.set_value(str2bool(value))
+	elif type(widget)==QSpinBox:
+		widget.setValue(int(value))
 	elif type(widget)==leftright:
 		widget.set_value(str2bool(value))
 	elif type(widget)==g_select:
-		widget.setText(value)
-	elif type(widget)==g_select_material:
-		widget.setText(value)
-	elif type(widget)==g_select_filter:
-		widget.setText(value)
-	elif type(widget)==g_select_shape:
 		widget.setText(value)
 	elif type(widget)==icon_widget:
 		widget.setText(value)
@@ -154,22 +130,14 @@ def widget_set_value(widget,value):
 		widget.setText(value)
 	elif type(widget)==QChangeLog:
 		widget.setText(value)
-	elif type(widget)==QComboBoxNewtonSelect:
-		widget.setValue(value)
 	elif type(widget)==QComboBoxLayers:
 		return widget.setValue(value)
 	elif type(widget)==QComboBoxOpenCL:
 		pass
-	elif type(widget)==generic_switch:
-		widget.set_value(value)
-	elif type(widget)==shape_dos_switch:
-		widget.set_value(value)
-	elif type(widget)==shape_electrical_switch:
-		widget.set_value(value)
 	elif type(widget)==mobility_widget:
 		widget.set_values(value)
 	else:
-		print("ooops")
+		widget.set_value(value)
 
 	widget.blockSignals(False)
 

@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -32,6 +30,7 @@
 
 #ifndef md5_h
 #define md5_h
+#include <g_io.h>
 #include <stdint.h>
 #include <sim_struct.h>
 
@@ -41,11 +40,14 @@ struct md5
 	uint32_t b0;
 	uint32_t c0;
 	uint32_t d0;
+	int add_platform;
 };
 
 uint32_t leftrotate (uint32_t x, uint32_t c);
 void md5_init(struct md5* in);
 void md5_update(struct md5* in,char *data,int len);
+void md5_update_int(struct md5* in,int data_in);
+void md5_update_double(struct md5* in,double data_in);
 void md5_to_str(char *out,struct md5 *in);
 
 #endif

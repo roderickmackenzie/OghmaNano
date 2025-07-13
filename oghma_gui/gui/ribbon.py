@@ -30,8 +30,6 @@
 
 
 
-from json_local_root import json_local_root
-
 #qt
 from gQtCore import QSize, gSignal, Qt
 from PySide2.QtWidgets import QWidget,QLabel,QHBoxLayout,QToolBar, QToolButton,QMenu, QAction
@@ -65,15 +63,8 @@ from lock import get_lock
 from ribbon_thermal import ribbon_thermal
 from ribbon_automation import ribbon_automation
 from sim_name import sim_name
-from json_root import json_root
-
-class QLabel_click(QLabel):
-	clicked=gSignal()
-	def __init(self, parent):
-		QLabel.__init__(self, QMouseEvent)
-
-	def mousePressEvent(self, ev):
-		self.clicked.emit()
+from json_c import json_tree_c
+from QLabel_click import QLabel_click
 
 class ribbon(ribbon_base):
 
@@ -98,7 +89,7 @@ class ribbon(ribbon_base):
 		dlg.exec_()
 
 	def callback_questions(self):
-		webbrowser.open(sim_name.web+"/contact.html")
+		webbrowser.open(get_lock().get_help)
 
 	def mouseReleaseEvent(self,event):
 		if event.button()==Qt.RightButton:
@@ -106,6 +97,7 @@ class ribbon(ribbon_base):
 
 	def __init__(self):
 		ribbon_base.__init__(self)
+		self.bin=json_tree_c()
 		self.build_main_menu()
 		self.setContextMenuPolicy(Qt.CustomContextMenu)
 		#self.customContextMenuRequested.connect(self.callback_menu)
@@ -120,7 +112,7 @@ class ribbon(ribbon_base):
 		self.toolbar=QToolBar()
 		self.toolbar.setIconSize(QSize(32, 32))
 
-		self.help_message=QLabel_click(_(get_lock().question+" <a href=\""+get_lock().my_email+"\">"+get_lock().my_email+"</a>"))
+		self.help_message=QLabel_click(_(get_lock().question+" <a href=\""+get_lock().get_help+"\">"+get_lock().get_help+"</a>"))
 		self.help_message.clicked.connect(self.callback_questions)
 		self.about = QToolButton(self)
 		self.about.setText(_("About"))
@@ -156,9 +148,9 @@ class ribbon(ribbon_base):
 
 		css_apply(self,"style.css")
 
-		self.currentChanged.connect(self.changed_click)
 		self.setup_tabs()
 		self.menu_update()
+		self.currentChanged.connect(self.changed_click)
 
 	def callback_cluster_connect(self):
 		dialog=connect_to_cluster()
@@ -183,20 +175,19 @@ class ribbon(ribbon_base):
 			self.cluster_button.setIcon(icon_get("not_connected"))
 
 	def changed_click(self):
-
 		if self.tabText(self.currentIndex()).strip()==_("Editors"):
-			help_window().help_set_help(["sunsvoc.png",_("<big><b>Simulation Editors</b></big><br> Use this tab to edit the simulation you wish to perform, you can choose from steady state measurments such as JV curve/Suns-Voc, time domain or frequency domain.  You can also choose to use advanced optical models to understand your data.")])
+			help_window().help_set_help("sunsvoc.png",_("<big><b>Simulation Editors</b></big><br> Use this tab to edit the simulation you wish to perform, you can choose from steady state measurments such as JV curve/Suns-Voc, time domain or frequency domain.  You can also choose to use advanced optical models to understand your data."))
 
 		if self.tabText(self.currentIndex()).strip()==_("Configure"):
-			help_window().help_set_help(["preferences-system.png",_("<big><b>Configure</b></big><br> Use this tab to control advanced features of the simulation, such as finite difference mesh, amount of data written to disk, and the configuration of the back end numerical solvers.")])
+			help_window().help_set_help("preferences-system.png",_("<big><b>Configure</b></big><br> Use this tab to control advanced features of the simulation, such as finite difference mesh, amount of data written to disk, and the configuration of the back end numerical solvers."))
 		if self.tabText(self.currentIndex()).strip()==_("Simulation type"):
-			help_window().help_set_help(["jv.png",_("<big><b>Simulation type</b></big><br> Use this tab to select which simulation mode the model runs in, select between steady state, time domain, frequency domain and optical simulations.")])
+			help_window().help_set_help("jv.png",_("<big><b>Simulation type</b></big><br> Use this tab to select which simulation mode the model runs in, select between steady state, time domain, frequency domain and optical simulations."))
 
 		if self.tabText(self.currentIndex()).strip()==_("Databases"):
-			help_window().help_set_help(["spectra_file.png",_("<big><b>Databases</b></big><br> Use this tab to explore the materials and optical data bases, you can add and download more materials/optical models using the tools here.")])
+			help_window().help_set_help("spectra_file.png",_("<big><b>Databases</b></big><br> Use this tab to explore the materials and optical data bases, you can add and download more materials/optical models using the tools here."))
 
 		if self.tabText(self.currentIndex()).strip()==_("Information"):
-			help_window().help_set_help(["youtube.png",_("<big><b>Information</b></big><br> Access extra information about the model in this tab, there are lots of tutorial videos on YouTube, follow on Twitter for the latest updates.")])
+			help_window().help_set_help("youtube.png",_("<big><b>Information</b></big><br> Access extra information about the model in this tab, there are lots of tutorial videos on YouTube, follow on Twitter for the latest updates."))
 
 	def build_main_menu(self):
 		view_menu = QMenu(self)
@@ -240,63 +231,90 @@ class ribbon(ribbon_base):
 		self.menu_view_information.triggered.connect(self.menu_toggle_view)
 		self.menu_view_information.setCheckable(True)
 
-
 	def setup_tabs(self):
+		self.blockSignals(True)
 		self.clear()
 		self.addTab(self.file,_("File"))
 
-		if json_root().gui_config.main_ribbon.sim_mode_visible==True:
+		if self.bin.get_token_value("gui_config.main_ribbon","sim_mode_visible")==True:
 			self.addTab(self.ribbon_sim_mode,_("Simulation type"))
 
-		if json_root().gui_config.main_ribbon.editors_visible==True:
+		if self.bin.get_token_value("gui_config.main_ribbon","editors_visible")==True:
 			self.addTab(self.simulations,_("Editors"))
 
-		if json_root().gui_config.main_ribbon.automation_visible==True:
+		if self.bin.get_token_value("gui_config.main_ribbon","automation_visible")==True:
 			self.addTab(self.automation,_("Automation"))
 
-		if json_root().gui_config.main_ribbon.electrical_visible==True:
+		if self.bin.get_token_value("gui_config.main_ribbon","electrical_visible")==True:
 			self.addTab(self.electrical,_("Electrical"))
 
-		if json_root().gui_config.main_ribbon.optical_visible==True:
+		if self.bin.get_token_value("gui_config.main_ribbon","optical_visible")==True:
 			self.addTab(self.optical,_("Optical"))
 
-		if json_root().gui_config.main_ribbon.thermal_visible==True:
+		if self.bin.get_token_value("gui_config.main_ribbon","thermal_visible")==True:
 			self.addTab(self.thermal,_("Thermal"))
 
-		if json_root().gui_config.main_ribbon.database_visible==True:
+		if self.bin.get_token_value("gui_config.main_ribbon","database_visible")==True:
 			self.addTab(self.database,_("Databases"))
 
-		if json_root().gui_config.main_ribbon.cluster_visible==True:
+		if self.bin.get_token_value("gui_config.main_ribbon","cluster_visible")==True:
 			self.addTab(self.tb_cluster,_("Cluster"))
 
-		if json_root().gui_config.main_ribbon.information_visible==True:
+		if self.bin.get_token_value("gui_config.main_ribbon","information_visible")==True:
 			self.addTab(self.information,_("Information"))
+
+		self.blockSignals(False)
 
 
 	def menu_toggle_view(self):
-		json_root().gui_config.main_ribbon.sim_mode_visible=self.menu_view_sim_mode.isChecked()
-		json_root().gui_config.main_ribbon.editors_visible=self.menu_view_editors.isChecked()
-		json_root().gui_config.main_ribbon.automation_visible=self.menu_view_automation.isChecked()
-		json_root().gui_config.main_ribbon.electrical_visible=self.menu_view_electrical.isChecked()
-		json_root().gui_config.main_ribbon.optical_visible=self.menu_view_optical.isChecked()
-		json_root().gui_config.main_ribbon.thermal_visible=self.menu_view_thermal.isChecked()
-		json_root().gui_config.main_ribbon.database_visible=self.menu_view_database.isChecked()
-		json_root().gui_config.main_ribbon.cluster_visible=self.menu_view_cluster.isChecked()
-		json_root().gui_config.main_ribbon.information_visible=self.menu_view_information.isChecked()
-
+		self.bin.set_token_value("gui_config.main_ribbon","sim_mode_visible",self.menu_view_sim_mode.isChecked())
+		self.bin.set_token_value("gui_config.main_ribbon","editors_visible",self.menu_view_editors.isChecked())
+		self.bin.set_token_value("gui_config.main_ribbon","automation_visible",self.menu_view_automation.isChecked())
+		self.bin.set_token_value("gui_config.main_ribbon","electrical_visible",self.menu_view_electrical.isChecked())
+		self.bin.set_token_value("gui_config.main_ribbon","optical_visible",self.menu_view_optical.isChecked())
+		self.bin.set_token_value("gui_config.main_ribbon","thermal_visible",self.menu_view_thermal.isChecked())
+		self.bin.set_token_value("gui_config.main_ribbon","database_visible",self.menu_view_database.isChecked())
+		self.bin.set_token_value("gui_config.main_ribbon","cluster_visible",self.menu_view_cluster.isChecked())
+		self.bin.set_token_value("gui_config.main_ribbon","information_visible",self.menu_view_information.isChecked())
 		self.setup_tabs()
 
-		json_root().save()
+		self.bin.save()
 
 	def menu_update(self):
-		self.menu_view_sim_mode.setChecked(json_root().gui_config.main_ribbon.sim_mode_visible)
-		self.menu_view_editors.setChecked(json_root().gui_config.main_ribbon.editors_visible)
-		self.menu_view_automation.setChecked(json_root().gui_config.main_ribbon.automation_visible)
-		self.menu_view_electrical.setChecked(json_root().gui_config.main_ribbon.electrical_visible)
-		self.menu_view_optical.setChecked(json_root().gui_config.main_ribbon.optical_visible)
-		self.menu_view_thermal.setChecked(json_root().gui_config.main_ribbon.thermal_visible)
-		self.menu_view_database.setChecked(json_root().gui_config.main_ribbon.database_visible)
-		self.menu_view_cluster.setChecked(json_root().gui_config.main_ribbon.cluster_visible)
-		self.menu_view_information.setChecked(json_root().gui_config.main_ribbon.information_visible)
+		value=self.bin.get_token_value("gui_config.main_ribbon","sim_mode_visible")
+		if value!=None:
+			self.menu_view_sim_mode.setChecked(value)
+
+		value=self.bin.get_token_value("gui_config.main_ribbon","editors_visible")
+		if value!=None:
+			self.menu_view_editors.setChecked(value)
+
+		value=self.bin.get_token_value("gui_config.main_ribbon","automation_visible")
+		if value!=None:
+			self.menu_view_automation.setChecked(value)
+
+		value=self.bin.get_token_value("gui_config.main_ribbon","electrical_visible")
+		if value!=None:
+			self.menu_view_electrical.setChecked(value)
+
+		value=self.bin.get_token_value("gui_config.main_ribbon","optical_visible")
+		if value!=None:
+			self.menu_view_optical.setChecked(value)
+
+		value=self.bin.get_token_value("gui_config.main_ribbon","thermal_visible")
+		if value!=None:
+			self.menu_view_thermal.setChecked(value)
+
+		value=self.bin.get_token_value("gui_config.main_ribbon","database_visible")
+		if value!=None:
+			self.menu_view_database.setChecked(value)
+
+		value=self.bin.get_token_value("gui_config.main_ribbon","cluster_visible")
+		if value!=None:
+			self.menu_view_cluster.setChecked(value)
+
+		value=self.bin.get_token_value("gui_config.main_ribbon","information_visible")
+		if value!=None:
+			self.menu_view_information.setChecked(value)
 
 

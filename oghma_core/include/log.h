@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -32,17 +30,13 @@
 
 #ifndef _log
 #define _log
+#include <g_io.h>
 #include <sim_struct.h>
-
-#define log_level_none 0
-#define log_level_screen 1
-#define log_level_disk 2
-#define log_level_screen_and_disk 3
+#include <color_struct.h>
 
 void textcolor(struct simulation *sim,int color);
 void textcolor_rgb(struct simulation *sim, int r, int g, int b);
 void set_logging_level(struct simulation *sim, int value);
-void log_clear(struct simulation *sim);
 void printf_log(struct simulation *sim, const char *format, ...);
 void waveprint(struct simulation *sim, char *in,double wavelength);
 void rainbow_print(struct simulation *sim, double start, double stop, const char *format, ...);
@@ -50,4 +44,7 @@ void log_time_stamp(struct simulation *sim);
 int log_search_error(char *path);
 void log_write_file_access(struct simulation *sim,char * file,char mode);
 void log_tell_use_where_file_access_log_is(struct simulation *sim);
+void temperature_to_rgb(int *r,int *g,int *b,double T);
+void temperature_print(struct simulation *sim,char *in,double T);
+void color_map_print(struct simulation *sim, double start,double stop, struct color_map_item *color_map, const char *format, ...);
 #endif

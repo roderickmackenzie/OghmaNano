@@ -40,7 +40,6 @@ _ = i18n.language.gettext
 from inp import inp_load_file
 from inp import inp_read_next_item
 
-import pyqtgraph as pg
 #qt
 from gQtCore import QSize, Qt 
 from PySide2.QtWidgets import QWidget,QDialog,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget,QAbstractItemView
@@ -55,11 +54,12 @@ from error_dlg import error_dlg
 from help import help_window
 from QWidgetSavePos import QWidgetSavePos
 from gui_util import yes_no_dlg
-
 from gQtCore import gSignal
-from dat_file import dat_file
-
 from g_tab import g_tab
+import ctypes
+from bytes2str import str2bytes
+from graph import graph_widget
+from dat_file import dat_file
 
 class equation_editor(QWidgetSavePos):
 
@@ -133,17 +133,16 @@ class equation_editor(QWidgetSavePos):
 		self.draw_graph()
 
 	def draw_graph(self):
-		self.canvas.clear()
-		plot0=self.canvas.addPlot(row=0, col=0)
-		plot0.addLegend()
-
-		if self.data.y_scale!=None:
-			pen = pg.mkPen((255, 0, 0), width=3)
-			y_nm= [y * self.data.y_mul for y in self.data.y_scale]
-			plot0.plot(x=y_nm, y=self.data.data[0][0], pen=pen, name=_("Value"), symbol='o', symbolSize=8, symbolBrush =(255, 0, 0))
-			plot0.setLabel('left', _("Value")+" (au)", color='k')
-			plot0.setLabel('bottom', _("Wavelength") +" (nm)", color='k')
-			plot0.showGrid(x = True, y = True, alpha = 1.0)
+		self.data.cols=b"yd"
+		self.data.type=b"xy"
+		self.data.data_label=b"Value"
+		self.data.data_units=b"au"
+		self.data.y_label=b"Wavelength"
+		self.data.y_units=b"nm"
+		self.data.y_mul=1e9
+		self.canvas2.graph.show_key=True
+		self.canvas2.load([self.data])
+		self.canvas2.update()
 
 	def load_data(self):
 		self.tab.clear()
@@ -205,11 +204,12 @@ class equation_editor(QWidgetSavePos):
 						val=val+equ
 				if val<0.0:
 					val=1.0
-
-				self.data.y_scale[i]=w
-				self.data.data[0][0][i]=val
+				#print(i,self.data.y_len)
+				self.data.y_scaleC[i]=w
+				self.data.py_data[0][0][i]=val
 
 				w=w+dx
+		#self.data.dump_info()
 
 	def on_cell_edited(self, x,y):
 		self.build_mesh()
@@ -244,13 +244,15 @@ class equation_editor(QWidgetSavePos):
 
 		self.data.y_mul=1e9
 
-		self.data.init_mem()
+		self.canvas2.graph.lib.dat_file_malloc_py_data(ctypes.byref(self.data))
 
 		self.load_data()
-
-
 		self.build_mesh()
+
 		self.draw_graph()
+
+	def __del__(self):
+		self.canvas2.graph.lib.dat_file_free(ctypes.byref(self.data))
 
 	def __init__(self,path,equation_file,out_file):
 		QWidgetSavePos.__init__(self,"equation_editor")
@@ -266,9 +268,12 @@ class equation_editor(QWidgetSavePos):
 		self.equation_file=equation_file
 		self.out_file=out_file
 
-		pg.setConfigOption('background', 'w')
-		pg.setConfigOption('foreground', 'k')
-		self.canvas = pg.GraphicsLayoutWidget()
+		self.canvas2 = graph_widget()
+		self.canvas2.graph.axis_y.log_scale_auto=False
+		self.canvas2.graph.axis_y.log_scale=False
+ 
+		self.canvas2.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+		self.canvas2.setMinimumSize(400, 400)
 
 		self.main_vbox = QVBoxLayout()
 
@@ -287,7 +292,7 @@ class equation_editor(QWidgetSavePos):
 		self.main_vbox.addWidget(toolbar)
 
 
-		self.main_vbox.addWidget(self.canvas)
+		self.main_vbox.addWidget(self.canvas2)
 
 		#toolbar 2
 

@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -32,12 +30,13 @@
 
 #ifndef h_newton_interface
 #define h_newton_interface
+#include <g_io.h>
 #include <sim_struct.h>
 
 void newton_set_min_ittr(struct device *in,int ittr);
-void newton_init(struct simulation *sim,struct device *dev,char *solver_name);
+void newton_load_dll(struct simulation *sim,char *solver_name);
 int solve_cur(struct simulation *sim,struct device *in,int z, int x);
 void solver_realloc(struct simulation *sim,struct device * in);
 void solver_free_memory(struct simulation *sim,struct device * in);
-void newton_interface_free(struct simulation *sim,struct device * dev);
+void newton_interface_free(struct simulation *sim);
 #endif

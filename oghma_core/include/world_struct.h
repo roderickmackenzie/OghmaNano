@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -25,7 +23,6 @@
 // SOFTWARE.
 // 
 
-
 /** @file world_struct.h
 	@brief Struct containg the world
 */
@@ -33,22 +30,24 @@
 
 #ifndef world_struct_h
 #define world_struct_h
+#include <g_io.h>
 #include "advmath.h"
 #include <sim_struct.h>
 #include <shape_struct.h>
 #include <detector_struct.h>
+#include <box.h>
 
 struct world
 {
 	int items;
 	struct shape *shapes;
 	int world_automatic_size;
-	long double x0;
-	long double x1;
-	long double y0;
-	long double y1;
-	long double z0;
-	long double z1;
+	gdouble x0;
+	gdouble x1;
+	gdouble y0;
+	gdouble y1;
+	gdouble z0;
+	gdouble z1;
 
 	//objects
 		struct object *obj;		//This is the scene built from triangles
@@ -56,9 +55,15 @@ struct world
 		int triangles;
 
 	//detectors
-		struct detector *det;
-		int detectors;
+		struct detectors dets;
 		
+	//boxes
+		struct box b;
+
+	//calculated mix and max of world
+	struct vec min;
+	struct vec max;
+	struct vec delta;
 
 };
 

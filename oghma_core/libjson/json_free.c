@@ -40,16 +40,21 @@
 #include <cal_path.h>
 #include "lock.h"
 #include <json.h>
+#include <memory.h>
+#include <rand.h>
+#include <dat_file.h>
 
 void json_free(struct json *j)
 {
-	json_obj_all_free(j,&(j->obj));
-	free(j->raw_data);
+	json_obj_all_free(&(j->obj));
+	free_1d((void **)&(j->raw_data));
+	json_obj_all_free(&(j->bib_template));
 	json_init(j);
 
 }
 
-void json_objs_free(struct json_obj *obj)
+
+void json_obj_free(struct json_obj *obj)
 {
 	int i;
 	struct json_obj *objs;
@@ -60,41 +65,53 @@ void json_objs_free(struct json_obj *obj)
 		next_obj=&(objs[i]);
 		if (next_obj->data!=NULL)
 		{
-			free(next_obj->data);
-			next_obj->data=NULL;
+			free_1d((void **)&(next_obj->data));
 		}
 	}
 
 	if (obj->objs!=NULL)
 	{
 		//printf("'%s'\n",obj->name);
-		free(obj->objs);
-		obj->objs=NULL;
+		free_1d((void **)&(obj->objs));
 	}
 	obj->len=0;
 	obj->max_len=0;
 
+	free_1d((void **)&(obj->json_template));
+
 }
 
-void json_obj_all_free(struct json *j,struct json_obj *obj)
+void json_obj_all_free(struct json_obj *obj)
 {
 	int i;
-
+	//printf("enter\n");
 	struct json_obj *objs;
 	struct json_obj *next_obj;
 	objs=(struct json_obj* )obj->objs;
+
 	for (i=0;i<obj->len;i++)
 	{
 		next_obj=&(objs[i]);
-
-		if (next_obj->node==TRUE)
+		//printf("free: '%s'\n",next_obj->name);
+		if (next_obj->data_type==JSON_NODE)
 		{
-			json_obj_all_free(j,next_obj);
-
+			json_obj_all_free(next_obj);
+		}else
+		if (next_obj->data_type==JSON_DAT_FILE)
+		{
+			//printf("here!? %p %d %d\n",next_obj->data,next_obj->data_len,sizeof(struct dat_file));
+			//dat_file_dump_info((struct dat_file*)next_obj->data);
+			dat_file_free((struct dat_file*)(next_obj->data));
+			//printf("not here!?\n");
 		}
 	}
 
-	json_objs_free(obj);
+	if (obj->json_template!=NULL)
+	{
+		json_obj_all_free((struct json_obj *)obj->json_template);
+	}
+
+	json_obj_free(obj);
 
 }
 

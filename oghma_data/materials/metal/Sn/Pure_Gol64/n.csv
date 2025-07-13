@@ -1,0 +1,23 @@
+#oghma_csv {"title":"Refractive index","type":"xy","y_label":"Wavelength","data_label":"Refractive index","y_units":"nm","y_mul":1000000000.0,"data_units":"au","icon":"mat_file","time ":0.0,"Vexternal":0.0,"x_len":1,"y_len":22,"z_len":1,"cols":"yd"}*
+8E-07	2.38
+9E-07	2.94
+1E-06	3.46
+1.1E-06	3.68
+1.15E-06	3.75
+1.2E-06	3.74
+1.3E-06	3.65
+1.4E-06	3.46
+1.5E-06	3.29
+1.7E-06	3.12
+2E-06	3.09
+2.5E-06	3.62
+3E-06	4.4
+4E-06	6.18
+5E-06	8.49
+6E-06	11
+7E-06	13.8
+8E-06	16.6
+9E-06	19.3
+1E-05	22
+1.1E-05	24.8
+1.2E-05	27.8

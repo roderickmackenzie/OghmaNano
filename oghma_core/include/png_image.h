@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -25,21 +23,18 @@
 // SOFTWARE.
 // 
 
-
 /** @file png_image.h
 	@brief Header file for png_image.c
 */
 
 #ifndef png_image_h
 #define png_image_h
+	#include <g_io.h>
 	#include <enabled_libs.h>
 	#include <sim_struct.h>
-	//#ifndef windows
-		#define png_infopp_NULL (png_infopp)NULL
-		#define int_p_NULL (int*)NULL
-
-		#include <png.h>
-	//#endif
+	#define png_infopp_NULL (png_infopp)NULL
+	#define int_p_NULL (int*)NULL
+	#include <png.h>
 
 	struct png_image
 	{
@@ -47,15 +42,13 @@
 		int height;
 		int number_of_passes;
 
-		//#ifndef windows
-			png_byte color_type;
-			png_byte bit_depth;
+		png_byte color_type;
+		png_byte bit_depth;
 
-			png_structp png_ptr;
-			png_infop info_ptr;
+		png_structp png_ptr;
+		png_infop info_ptr;
 
-			png_bytep * row_pointers;
-		//#endif
+		png_bytep * row_pointers;
 	};
 
 

@@ -44,9 +44,9 @@ from cal_path import sim_paths
 from dat_file import dat_file
 from dat_files_to_gnuplot import dat_file_to_gnuplot_header
 from cal_path import subtract_paths
+
 if gui_get()==True:
 	from plot_window import plot_window
-from json_base import json_base
 
 class sim_dir:
 	def __init__(self):
@@ -101,13 +101,10 @@ class multiplot:
 		path=os.path.dirname(file_name)
 		if os.path.isdir(path)==False:
 			os.makedirs(path)
-			data=json_base("multi_plot_dir")
-			data.include_name=False
-			data.var_list.append(["icon","multi_plot_dir"])
-			data.var_list.append(["item_type","multi_plot_dir"])
-			data.var_list.append(["hidden","False"])
-			data.var_list_build()
+			data=json_c("folder_multi_plot_dir")
+			data.build_template()
 			data.save_as(os.path.join(path,"data.json"))
+			data.free()
 	
 	def gen_gnu_plot_files(self):
 		path=self.path
@@ -161,16 +158,5 @@ class multiplot:
 					f.lines=found_files
 					f.save_as(out_file)
 
-	def plot(self,file_name):
-		f=inp()
-		f.load(file_name)
-		files=f.lines[1:]
 
-		window=plot_window()
-		labels=[]
-		for f in files:
-			rel_path=subtract_paths(sim_paths.get_sim_path(),f)
-			rel_path=rel_path.replace("\\", "/")
-			labels.append(rel_path)
-		window.init(files,labels)
 

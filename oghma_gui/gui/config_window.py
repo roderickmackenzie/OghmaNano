@@ -43,14 +43,13 @@ from tab import tab_class
 from gQtCore import gSignal
 from global_objects import global_object_run
 
-from inp import inp
-
 from cal_path import sim_paths
 from QWidgetSavePos import QWidgetSavePos
 
 from css import css_apply
-from json_root import json_root
 from help import QAction_help
+from json_c import json_c
+from json_c import json_tree_c
 
 class class_config_window(QWidgetSavePos):
 
@@ -59,9 +58,16 @@ class class_config_window(QWidgetSavePos):
 	def callback_tab_changed(self):
 		self.changed.emit()
 
-	def __init__(self,files,description,title=_("Configure"),icon="preferences-system",data=json_root()):
+	def __init__(self,files,description,title=_("Configure"),icon="preferences-system",data=None,ro=False):
 		QWidgetSavePos.__init__(self,"config_window")
-		self.data=data
+		if data==None:
+			self.data=json_tree_c()
+		elif type(data)==str:
+			self.data=json_c("file_defined")
+			self.data.load(data)
+		else:
+			self.data=data
+
 		self.toolbar=QToolBar()
 		self.toolbar.setToolButtonStyle( Qt.ToolButtonTextUnderIcon)
 		self.toolbar.setIconSize(QSize(48, 48))
@@ -95,6 +101,8 @@ class class_config_window(QWidgetSavePos):
 				file_name=files[i]
 				tab=tab_class(file_name,data=self.data)
 				tab.tab.changed.connect(self.callback_tab_changed)
+				if ro==True:
+					tab.set_edit(False)
 				self.notebook.addTab(tab,description[i])
 
 		self.setLayout(self.main_vbox)

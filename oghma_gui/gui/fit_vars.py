@@ -28,7 +28,6 @@
 #  A window to define the fit variables.
 #
 
-from token_lib import tokens
 import i18n
 _ = i18n.language.gettext
 
@@ -37,10 +36,9 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QAbstractItemView, QMenuBar, QTableWidgetItem
 from PySide2.QtGui import QPainter,QIcon
 
-from g_tab2 import g_tab2
+from g_tab2_bin import g_tab2_bin
 from select_param import select_param
-from json_root import json_root
-from json_fit import json_fit_vars_line
+from json_c import json_tree_c
 
 class fit_vars(QWidget):
 
@@ -49,9 +47,7 @@ class fit_vars(QWidget):
 
 	def __init__(self):
 		QWidget.__init__(self)
-		data=json_root()
-		self.data=data.fits.vars
-
+		self.bin=json_tree_c()
 		self.vbox=QVBoxLayout()
 
 		toolbar=QToolBar()
@@ -60,10 +56,10 @@ class fit_vars(QWidget):
 		self.vbox.addWidget(toolbar)
 
 		#tab2
-		self.tab2 = g_tab2(toolbar=toolbar)
+		self.tab2 = g_tab2_bin(toolbar=toolbar)
 		self.tab2.set_tokens(["fit_var_enabled","human_var","min","max","error","log_fit","json_var"])
 		self.tab2.set_labels([_("Enabled"),_("Variable"), _("Min"), _("Max"), _("Error function"), _("Log scale"),_("JSON Variable")])
-		self.tab2.json_search_path="json_root().fits.vars.segments"
+		self.tab2.json_root_path="fits.vars"
 		self.tab2.fixup_new_row=self.fixup_new_row
 		self.tab2.setColumnWidth(1, 400)
 		self.tab2.setColumnWidth(2, 100)
@@ -71,7 +67,6 @@ class fit_vars(QWidget):
 		self.tab2.setColumnWidth(4, 100)
 		self.tab2.setColumnWidth(5, 100)
 		self.tab2.setColumnWidth(6, 20)
-		self.tab2.base_obj=json_fit_vars_line()
 		self.tab2.populate()
 		self.tab2.changed.connect(self.callback_save)
 		self.tab2.callback_a=self.callback_show_list
@@ -93,5 +88,5 @@ class fit_vars(QWidget):
 
 
 	def callback_save(self):
-		json_root().save()
+		self.bin.save()
 

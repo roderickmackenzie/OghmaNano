@@ -32,7 +32,6 @@ import os
 
 from token_lib import tokens
 from undo import undo_list_class
-from tab_base import tab_base
 from help import help_window
 
 from gQtCore import gSignal
@@ -50,18 +49,18 @@ _ = i18n.language.gettext
 
 from error_dlg import error_dlg
 
-from json_viewer import json_viewer
-from json_root import json_root
-from json_gl import json_gl_view
-from experiment import experiment
-from tab_gl_video_maker import tab_gl_video_maker
+from experiment_bin import experiment_bin
+from tab_jv import tab_jv
+from error_dlg import error_dlg
+from json_c import json_tree_c
 
-class gl_video_maker(experiment):
+class gl_video_maker(experiment_bin):
 
 	changed = gSignal()
 
 	def __init__(self,gl_widget):
-		experiment.__init__(self,"tab_gl_video_maker",window_save_name="tab_gl_video_maker", window_title=_("Flyby video maker"),json_search_path="json_root().gl.flybys",icon="fly")
+		experiment_bin.__init__(self,"tab_jv",window_save_name="tab_gl_video_maker", window_title=_("Flyby video maker"),json_search_path="gl.flybys",icon="fly")
+		self.bin=json_tree_c()
 
 		self.tb_start = QAction(icon_get("fly"), _("Set\nposition"), self)
 		self.ribbon.file.insertAction(self.ribbon.tb_rename,self.tb_start)
@@ -75,76 +74,78 @@ class gl_video_maker(experiment):
 		self.ribbon.file.insertAction(self.ribbon.tb_rename,self.tb_run)
 		self.tb_run.triggered.connect(self.callback_run)
 
-		self.notebook.currentChanged.connect(self.switch_page)
-		self.switch_page()
 		self.gl_widget=gl_widget
 
 	def callback_goto(self):
 		tab = self.notebook.currentWidget()
-		data=tab.get_json_obj()
-		self.gl_widget.viewtarget.xRot=data.xRot
-		self.gl_widget.viewtarget.yRot=data.yRot
-		self.gl_widget.viewtarget.zRot=data.zRot
-		self.gl_widget.viewtarget.x_pos=data.x_pos
-		self.gl_widget.viewtarget.y_pos=data.y_pos
-		self.gl_widget.viewtarget.zoom=data.zoom
+		if tab==None:
+			return
+		path=self.bin.find_path_by_uid("gl.flybys",tab.uid)
+
+		self.gl_widget.gl_main.view_target.xRot=self.bin.get_token_value(path,"xRot")
+		self.gl_widget.gl_main.view_target.yRot=self.bin.get_token_value(path,"yRot")
+		self.gl_widget.gl_main.view_target.zRot=self.bin.get_token_value(path,"zRot")
+		self.gl_widget.gl_main.view_target.x_pos=self.bin.get_token_value(path,"x_pos")
+		self.gl_widget.gl_main.view_target.y_pos=self.bin.get_token_value(path,"y_pos")
+		self.gl_widget.gl_main.view_target.zoom=self.bin.get_token_value(path,"zoom")
 
 		self.gl_widget.timer=QTimer()
 		self.gl_widget.timer.timeout.connect(self.gl_widget.ftimer_target)
 		self.gl_widget.timer.start(25)
-
-	def switch_page(self):
-		self.notebook.currentWidget()
-		#self.tb_lasers.update(tab.data)
-
 
 	def set_edit(self,editable):
 		self.tab.editable=editable
 
 	def callback_set_pos(self):
 		tab = self.notebook.currentWidget()
-		data=tab.get_json_obj()
-		data.xRot=self.gl_widget.views[0].xRot
-		data.yRot=self.gl_widget.views[0].yRot
-		data.zRot=self.gl_widget.views[0].zRot
-		data.x_pos=self.gl_widget.views[0].x_pos
-		data.y_pos=self.gl_widget.views[0].y_pos
-		data.zoom=self.gl_widget.views[0].zoom
-		json_root().save()
+		if tab==None:
+			return
+		path=self.bin.find_path_by_uid("gl.flybys",tab.uid)
+
+		self.bin.set_token_value(path,"xRot",self.gl_widget.gl_main.active_view.contents.xRot)
+		self.bin.set_token_value(path,"yRot",self.gl_widget.gl_main.active_view.contents.yRot)
+		self.bin.set_token_value(path,"zRot",self.gl_widget.gl_main.active_view.contents.zRot)
+		self.bin.set_token_value(path,"x_pos",self.gl_widget.gl_main.active_view.contents.x_pos)
+		self.bin.set_token_value(path,"y_pos",self.gl_widget.gl_main.active_view.contents.y_pos)
+		self.bin.set_token_value(path,"zoom",self.gl_widget.gl_main.active_view.contents.zoom)
+
+		self.bin.save()
 		tab.tab.tab.update_values()
 
 
 	def callback_run(self):
-		data=json_root()
 		if (self.gl_widget.width() % 2) != 0:
-			print("window width not divisible by two")
+			error_dlg(self,_("window width not divisible by two"))
 			return
 		if (self.gl_widget.height() % 2) != 0:
-			print("window height not divisible by two")
+			error_dlg(self,_("window height not divisible by two"))
 			return
 
-		self.gl_widget.views[0].xRot=data.gl.fly_by.segments[0].xRot
-		self.gl_widget.views[0].yRot=data.gl.fly_by.segments[0].yRot
-		self.gl_widget.views[0].zRot=data.gl.fly_by.segments[0].zRot
-		self.gl_widget.views[0].x_pos=data.gl.fly_by.segments[0].x_pos
-		self.gl_widget.views[0].y_pos=data.gl.fly_by.segments[0].y_pos
-		self.gl_widget.views[0].zoom=data.gl.fly_by.segments[0].zoom
-		self.gl_widget.views[0].max_angle_shift=1.0
+		path="gl.flybys.segment0"
+
+		self.gl_widget.gl_main.view_target.xRot=self.bin.get_token_value(path,"xRot")
+		self.gl_widget.gl_main.view_target.yRot=self.bin.get_token_value(path,"yRot")
+		self.gl_widget.gl_main.view_target.zRot=self.bin.get_token_value(path,"zRot")
+		self.gl_widget.gl_main.view_target.x_pos=self.bin.get_token_value(path,"x_pos")
+		self.gl_widget.gl_main.view_target.y_pos=self.bin.get_token_value(path,"y_pos")
+		self.gl_widget.gl_main.view_target.zoom=self.bin.get_token_value(path,"zoom")
+		self.gl_widget.gl_main.active_view.contents.max_angle_shift=1.0
 
 		self.next=1
 		self.set_next_target()
 
 	def set_next_target(self):
-		data=json_root()
-		if self.next<len(data.gl.fly_by.segments):
+		segments=self.bin.get_token_value("gl.flybys","segments")
 
-			self.gl_widget.viewtarget.xRot=data.gl.fly_by.segments[self.next].xRot
-			self.gl_widget.viewtarget.yRot=data.gl.fly_by.segments[self.next].yRot
-			self.gl_widget.viewtarget.zRot=data.gl.fly_by.segments[self.next].zRot
-			self.gl_widget.viewtarget.x_pos=data.gl.fly_by.segments[self.next].x_pos
-			self.gl_widget.viewtarget.y_pos=data.gl.fly_by.segments[self.next].y_pos
-			self.gl_widget.viewtarget.zoom=data.gl.fly_by.segments[self.next].zoom
-			self.gl_widget.viewtarget.max_angle_shift=1.0
+		if self.next<segments:
+			path="gl.flybys.segment"+str(self.next)
+			self.gl_widget.gl_main.view_target.xRot=self.bin.get_token_value(path,"xRot")
+			self.gl_widget.gl_main.view_target.yRot=self.bin.get_token_value(path,"yRot")
+			self.gl_widget.gl_main.view_target.zRot=self.bin.get_token_value(path,"zRot")
+			self.gl_widget.gl_main.view_target.x_pos=self.bin.get_token_value(path,"x_pos")
+			self.gl_widget.gl_main.view_target.y_pos=self.bin.get_token_value(path,"y_pos")
+			self.gl_widget.gl_main.view_target.zoom=self.bin.get_token_value(path,"zoom")
+			self.gl_widget.gl_main.active_view.max_angle_shift=1.0
 			self.next=self.next+1
 
 			self.gl_widget.timer_save_files=True

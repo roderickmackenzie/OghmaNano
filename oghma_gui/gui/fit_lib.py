@@ -37,7 +37,6 @@ _ = i18n.language.gettext
 from PIL import Image
 from util_latex import latex
 from token_lib import tokens
-from json_root import json_root
 from fit_lib_anal_results import fit_lib_anal_results
 from search import find_sims
 
@@ -45,6 +44,7 @@ class fit_lib(fit_lib_anal_results):
 
 
 	def gen_plots(self,scan_dir,plot_file,copy_fit_file=True):
+		#This needs converting to the binary json format but not now.
 		sims=find_sims(scan_dir)
 		for s in sims:
 			dest_plot_file=os.path.join(s,plot_file)
@@ -63,8 +63,9 @@ class fit_lib(fit_lib_anal_results):
 			lx.document_start()
 			lx.tab_start(["Parameter","Value","Units"])
 
-			for latex_line in data.optical.light.dump_as_latex(token_lib=tokens()):
-				lx.tab_add_row([latex_line.text,"$"+latex_line.value+"$","$"+latex_line.units+"$"])
+			#Put this back in when the below is fixed but not now
+			#for latex_line in data.optical.light.dump_as_latex(token_lib=tokens()):
+			#	lx.tab_add_row([latex_line.text,"$"+latex_line.value+"$","$"+latex_line.units+"$"])
 
 			for latex_line in data.parasitic.dump_as_latex(token_lib=tokens()):
 				lx.tab_add_row([latex_line.text,"$"+latex_line.value+"$","$"+latex_line.units+"$"])
@@ -74,8 +75,8 @@ class fit_lib(fit_lib_anal_results):
 					for latex_line in l.shape_dos.dump_as_latex(token_lib=tokens()):
 						ok=False
 						for v in data.fits.vars.segments:
-							print(latex_line.token, v.json_var.split("/")[-1])
-							if latex_line.token == v.json_var.split("/")[-1]:
+							print(latex_line.token, v.json_var.split(".")[-1])
+							if latex_line.token == v.json_var.split(".")[-1]:
 								ok=True
 								break
 						if ok==True:

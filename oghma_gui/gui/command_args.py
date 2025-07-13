@@ -31,13 +31,8 @@
 import sys
 import os
 
-from scan_io import scan_io
 from const_ver import const_ver
 
-from cal_path import get_exe_command
-from dat_file import dat_file
-from scan_plot import scan_gen_plot_data
-from win_lin import get_platform
 from cal_path import test_arg_for_sim_file
 from cal_path import set_sim_path
 
@@ -55,6 +50,7 @@ parser.add_argument("--cleanscandirs", help=_("Deletes the content of all scan d
 parser.add_argument("--load", help=_("Loads a simulation --load /path/containing/simulation/sim.oghma"), nargs=1)
 parser.add_argument("--unpack", help=_("Extract the sim.oghma archive --unpack"), action='store_true')
 parser.add_argument("--pack", help=_("Extract the sim.oghma archive --pack"), action='store_true')
+#parser.add_argument("--exit", help=_("Exit timer"), action='store_true')
 
 if test_arg_for_sim_file()==False:
 	args = parser.parse_args()
@@ -76,4 +72,5 @@ def command_args(argc,argv):
 			sys.exit(0)
 		elif args.load:
 			set_sim_path(os.path.dirname(args.load[0]))
-
+		#elif args.exit:
+		#	print("exit timer")

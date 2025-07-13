@@ -1,10 +1,11 @@
 all:
-	cd gpvdm_core && make -j 4
-	cd gpvdm_gui && make -j 4
-
+	cd oghma_core && make -j 8
+	cd oghma_gui && make -j 8
+py:
+	cd libpy && make -j 8
 clean:
-	cd gpvdm_core && make clean
+	cd oghma_core && make clean
 	rm *.c *.exe -f
 
 easy:
-	for i in `ls ./gpvdm_core|grep lib`; do echo $i; done
+	for i in `ls ./oghma_core|grep lib`; do echo $i; done

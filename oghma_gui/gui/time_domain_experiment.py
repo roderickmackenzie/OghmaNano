@@ -37,18 +37,26 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QMenuBar,QStatusBar, QMenu
 from PySide2.QtGui import QPainter,QIcon
 
-#window
-from gQtCore import gSignal
 from util import wrap_text
 
-from css import css_apply
-
-from json_root import json_root
-from experiment import experiment
+from experiment_bin import experiment_bin
 from tb_lasers import tb_lasers
 from config_window import class_config_window
 
-class time_domain_experiment(experiment):
+class time_domain_experiment(experiment_bin):
+
+	def __init__(self):
+		experiment_bin.__init__(self,"time_domain_experiment_tab",window_save_name="time_domain_experiment", window_title=_("Time domain experiment window"),json_search_path="sims.time_domain")
+
+		w=self.ribbon_simulation()
+		self.ribbon.addTab(w,_("Simulation"))
+
+		self.tb_laser_start_time.triggered.connect(self.callback_laser_start_time)
+
+		self.tb_start.triggered.connect(self.callback_start_time)
+
+		self.notebook.currentChanged.connect(self.switch_page)
+		self.switch_page()
 
 	def ribbon_simulation(self):
 		toolbar = QToolBar()
@@ -78,20 +86,6 @@ class time_domain_experiment(experiment):
 
 		return toolbar
 
-	def __init__(self):
-		json_root().sims.time_domain.fix_identical_uids([])
-		experiment.__init__(self,"time_domain_experiment_tab",window_save_name="time_domain_experiment", window_title=_("Time domain experiment window"),json_search_path="json_root().sims.time_domain")
-
-		w=self.ribbon_simulation()
-		self.ribbon.addTab(w,_("Simulation"))
-
-		self.tb_laser_start_time.triggered.connect(self.callback_laser_start_time)
-
-		self.tb_start.triggered.connect(self.callback_start_time)
-
-		self.notebook.currentChanged.connect(self.switch_page)
-		self.switch_page()
-
 	def callback_laser_start_time(self):
 		tab = self.notebook.currentWidget()
 		tab.tmesh.callback_laser()
@@ -103,20 +97,24 @@ class time_domain_experiment(experiment):
 	def switch_page(self):
 		tab = self.notebook.currentWidget()
 		if tab!=None:
-			self.tb_lasers.update(tab.data)
-			self.tb_loop.setChecked(tab.data.mesh.time_loop)
+			json_path=self.bin.find_path_by_uid("sims.time_domain",tab.uid)
+			laser_name=self.bin.get_token_value(json_path+".config","pump_laser")			
+			self.tb_lasers.update(laser_name)
 
 	def callback_loop(self):
 		tab = self.notebook.currentWidget()
 		if tab!=None:
-			tab.data.mesh.time_loop = not tab.data.mesh.time_loop
-			self.tb_loop.setChecked(tab.data.mesh.time_loop)
-			json_root().save()
+			json_path=self.bin.find_path_by_uid("sims.time_domain",tab.uid)
+			time_loop=self.bin.get_token_value(json_path+".mesh","time_loop")
+			time_loop=not time_loop
+			self.tb_loop.setChecked(time_loop)
+			self.bin.save()
 
 	def callback_loop_menu(self):
 		tab = self.notebook.currentWidget()
 		if tab!=None:
-			self.mesh_config=class_config_window([tab.data.mesh],[_("Config")],title=_("Loop configuration"),icon="loop")
+			json_path=self.bin.find_path_by_uid("sims.time_domain",tab.uid)
+			self.mesh_config=class_config_window([json_path+".mesh"],[_("Config")],title=_("Loop configuration"),icon="loop")
 			self.mesh_config.show()
 
 

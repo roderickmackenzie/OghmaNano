@@ -32,7 +32,7 @@ from PySide2.QtMultimediaWidgets import QVideoWidget
 from PySide2.QtWidgets import QHBoxLayout, QLabel, QPushButton, QSizePolicy, QSlider, QStyle, QVBoxLayout, QWidget,QDesktopWidget
 from PySide2.QtWidgets import QWidget, QPushButton, QAction
 from PySide2.QtGui import QIcon
-from cal_path import get_video_path
+from cal_path import sim_paths
 
 class video(QWidget):
 
@@ -89,7 +89,7 @@ class video(QWidget):
 
 
 	def openFile(self):
-		fileName=os.path.join(get_video_path(),"welcome.wmv")
+		fileName=os.path.join(sim_paths.get_video_path(),"welcome.wmv")
 		print(QUrl.fromLocalFile(fileName))
 		self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(fileName)))
 		self.playButton.setEnabled(True)

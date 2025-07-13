@@ -5,9 +5,8 @@ REM mkdir c:\tmp
 REM xcopy *.* C:\tmp
 REM C:
 REM cd C:\tmp\
-pyinstaller --onefile gpvdm.py --icon=C:\Users\rod\Desktop\share\pub\images\icon.ico
-move .\dist\*.exe C:\Users\rod\Desktop\share\pub\
-REM move .\dist\*.exe Z:\pub\
+REM pyinstaller oghmanano.py --exclude-module matplotlib --icon=Z:\pub\images\icon.ico
+pyinstaller oghmanano.py --exclude-module matplotlib --icon=C:\share\pub\images\icon.ico
 time /t
 REM z:
 REM cd z:\pub\gui

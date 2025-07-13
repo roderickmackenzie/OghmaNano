@@ -38,16 +38,12 @@ from tab import tab_class
 from server import server_get
 from gQtCore import gSignal
 from QWidgetSavePos import QWidgetSavePos
-from json_root import json_root
 from help import QAction_help
 from QAction_lock import QAction_lock
 from cal_path import sim_paths
 from QWidgetSavePos import QWidgetSavePos
 
 class server_config(QWidgetSavePos):
-
-	def callback_tab_changed(self):
-		self.changed.emit()
 
 	def __init__(self):
 		from server_cache_config import server_cache_config
@@ -70,6 +66,17 @@ class server_config(QWidgetSavePos):
 		toolbar.addAction(self.tb_benchmark)
 		self.tb_benchmark.clicked.connect(self.callback_benchmark)
 
+		self.tb_benchmark = QAction_lock("cpu", _("RNG\ntest"), self,"hardware_benchmark")
+		toolbar.addAction(self.tb_benchmark)
+		self.tb_benchmark.clicked.connect(self.callback_rand_test)
+
+		self.tb_color_test = QAction_lock("cpu", _("Color map\ntest"), self,"hardware_benchmark")
+		toolbar.addAction(self.tb_color_test)
+		self.tb_color_test.clicked.connect(self.callback_color_test)
+
+		self.tb_clear_newton_cache = QAction_lock("clean", _("Clear\nNewton cache"), self,"clean_newton_cache")
+		toolbar.addAction(self.tb_clear_newton_cache)
+
 		spacer = QWidget()
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
@@ -88,15 +95,25 @@ class server_config(QWidgetSavePos):
 
 		self.main_vbox.addWidget(self.notebook)
 
-		data=json_root()
-
-		tab=tab_class(data.server)
-		self.notebook.addTab(tab,_("Server configuration"))
+		tab=tab_class("server")
+		self.notebook.addTab(tab,_("CPU/GPU configuration"))
 
 		self.cache_config=server_cache_config()
-		self.notebook.addTab(self.cache_config,_("Cache"))
+		self.notebook.addTab(self.cache_config,_("Newton cache"))
+		self.tb_clear_newton_cache.clicked.connect(self.cache_config.callback_clear_cache)
+
+		tab=tab_class("math.random")
+		self.notebook.addTab(tab,_("Random numbers"))
+
+		tab=tab_class("math.matrix")
+		self.notebook.addTab(tab,_("Matrix solvers"))
+
 		self.my_server=server_get()
 		self.setLayout(self.main_vbox)
+		self.notebook.currentChanged.connect(self.callback_tab_changed)
+
+
+		self.callback_tab_changed()
 
 	def callback_benchmark(self):
 		self.my_server.clear_jobs()
@@ -104,4 +121,21 @@ class server_config(QWidgetSavePos):
 		#self.my_server.sim_finished.connect(self.optics_sim_finished)
 		self.my_server.start()
 
+	def callback_rand_test(self):
+		self.my_server.clear_jobs()
+		self.my_server.add_job(sim_paths.get_sim_path(),"--rand-test")
+		self.my_server.start()
+
+	def callback_color_test(self):
+		self.my_server.clear_jobs()
+		self.my_server.add_job(sim_paths.get_sim_path(),"--color-test")
+		self.my_server.start()
+
+	def callback_tab_changed(self):
+		index = self.notebook.currentIndex()
+		tab_ml=self.notebook.currentWidget()
+		if self.notebook.tabText(index)==_("Newton cache"):
+			self.tb_clear_newton_cache.setEnabled(True)
+		else:
+			self.tb_clear_newton_cache.setEnabled(False)
 

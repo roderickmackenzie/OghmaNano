@@ -28,82 +28,15 @@
 #  Do math on the dat file class.
 #
 
-from json_base import json_base
 from bytes2str import bytes2str
+import ctypes
+
 class dat_file_save():
 
-	def gen_header_new(self):
-		a=json_base("none")
-		a.include_name=False
-		a.var_list=[]
-		a.var_list.append(["title",bytes2str(self.title)])
-		a.var_list.append(["type",bytes2str(self.type)])
-
-		if self.x_label!=b"":
-			a.var_list.append(["x_label",bytes2str(self.x_label)])
-
-		if self.y_label!=b"":
-			a.var_list.append(["y_label",bytes2str(self.y_label)])
-
-		if self.z_label!=b"":
-			a.var_list.append(["z_label",bytes2str(self.z_label)])
-
-		if self.data_label!=b"":
-			a.var_list.append(["data_label",bytes2str(self.data_label)])
-
-		if self.x_units!=b"":
-			a.var_list.append(["x_units",bytes2str(self.x_units)])
-		if self.y_units!=b"":
-			a.var_list.append(["y_units",bytes2str(self.y_units)])
-		if self.z_units!=b"":
-			a.var_list.append(["z_units",bytes2str(self.z_units)])
-
-		if self.x_mul!=1.0:
-			a.var_list.append(["x_mul",self.x_mul])
-
-		if self.y_mul!=1.0:
-			a.var_list.append(["y_mul",self.y_mul])
-
-		if self.z_mul!=1.0:
-			a.var_list.append(["z_mul",self.z_mul])
-
-		if self.data_mul!=1.0:
-			a.var_list.append(["data_mul",self.data_mul])
-
-
-		if self.rgb_to_hex()!=None:
-			a.var_list.append(["rgb ",self.rgb_to_hex()])
-
-		if self.data_units!=b"":
-			a.var_list.append(["data_units",bytes2str(self.data_units)])
-
-		if self.logy!=False:
-			a.var_list.append(["logscale_y",self.logy])
-
-		if self.logx!=False:
-			a.var_list.append(["logscale_x",self.logx])
-
-		if self.logz!=False:
-			a.var_list.append(["logscale_z",self.logz])
-
-		if self.logdata!=False:
-			a.var_list.append(["logscale_data",self.logdata])
-
-		if self.icon!=None:
-			a.var_list.append(["icon",self.icon])
-
-		a.var_list.append(["time ",self.time])
-		a.var_list.append(["Vexternal",self.Vexternal])
-		a.var_list.append(["x_len",self.x_len])
-		a.var_list.append(["y_len",self.y_len])
-		a.var_list.append(["z_len",self.z_len])
-		a.var_list.append(["cols","yd"])
-		a.var_list_build()
-		ret="#oghma_csv"+"".join(a.gen_json()).replace("\t","")+"*"
-		return [ret]
-
 	def gen_output_data(self):
-		lines=self.gen_header_new()
+		self.lib.dat_file_reset(ctypes.byref(self))
+		self.lib.buffer_add_json(ctypes.byref(self))
+		lines=bytes2str(self.buf).splitlines()
 
 		for i in range(0,self.y_len):
 			y_text=str('{:.6e}'.format(float(self.y_scale[i])))
@@ -111,27 +44,6 @@ class dat_file_save():
 			lines.append(y_text+"\t"+data_text)
 
 		return lines
-
-	def save_as_csv(self,file_name):
-		if file_name.endswith(".csv")==False:
-			file_name=file_name+".csv"
-
-		lines=[]
-
-		lines.append(self.y_label+","+self.data_label)
-
-		for i in range(0,self.y_len):
-			y_text=str('{:.8e}'.format(float(self.y_scale[i])))
-			data_text=str('{:.8e}'.format(float(self.data[0][0][i])))
-			lines.append(y_text+","+data_text)
-
-		dump=""
-		for item in lines:
-			dump=dump+item+"\n"
-			
-		f=open(file_name, mode='w')
-		lines = f.write(dump)
-		f.close()
 
 	def save_as_txt(self,file_name):
 		if file_name.endswith(".txt")==False:
@@ -160,3 +72,5 @@ class dat_file_save():
 	def __str__(self):
 		return "\n".join(self.gen_output_data())
 
+	def dump_info(self):
+		self.lib.dat_file_dump_info(ctypes.byref(self))

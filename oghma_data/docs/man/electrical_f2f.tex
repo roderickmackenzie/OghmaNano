@@ -1,8 +1,19 @@
 
-\subsection{Free-to-free carrier recombination}
-A free-carrier-to-free-carrier recombination (bi-molecular) pathway is also included. However, most organic solar cells have a great deal of trap states and an ideality factor greater than 1.0 suggesting that free-to-free recombination is not the dominant mechanism.  Free-to-free recombination is described using equation \ref{equ:freetofree}
+\section{Free-to-free carrier recombination}
+A free-carrier-to-free-carrier recombination (bi-molecular) pathway is also included.  Free-to-free recombination is described using equation \ref{equ:freetofree}
 
 \begin{equation}
 R_{free}=k_{r}(n_{f}p_{f}-n_{0}p_{0})
 \label{equ:freetofree}
 \end{equation}
+
+in some situations where one is trying to fit rate equations to the model it can be useful to have equation \ref{equ:freetofree} written in another form,
+
+\begin{equation}
+R_{free}=k_{r}(n_{f}p_{f}-n_{0}p_{0})^{\frac{\lambda+1}{2}}
+\label{equ:freetofree_lambda}
+\end{equation}
+
+this can be turned on using the option called  \emph{Enable $\lambda$ power in free to free recombination.} in the configure window of the Electrical parameter editor.
+
+Free to free recombination is equivalent to Langevin recombination. However, most organic solar cells have a great deal of trap states and an ideality factor greater than 1.0 suggesting that free-to-free recombination is not the dominant mechanism. See section \ref{sec:the_need_for_trap_states} for a general discussion on the need for trap states and why generally Langevin recombination should not be used in organic solar device models. 

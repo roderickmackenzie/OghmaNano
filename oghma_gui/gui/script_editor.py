@@ -31,8 +31,6 @@
 
 import os
 
-from cal_path import get_css_path
-
 #qt
 from PySide2.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication, QShortcut
 from PySide2.QtGui import QIcon, QTextFormat,QTextOption, QKeySequence
@@ -48,7 +46,6 @@ from PySide2.QtGui import QFont, QSyntaxHighlighter, QTextCharFormat
 from code_editor import code_editor
 
 from inp import inp_load_file
-from oghma_api import oghma_api
 import imp
 from gQtCore import gSignal
 
@@ -62,9 +59,14 @@ class Highlighter(QSyntaxHighlighter):
 		keyword = QTextCharFormat()
 		keyword.setForeground( Qt.darkRed )
 		keyword.setFontWeight( QFont.Bold )
+		#python
+		#keywords = [ "break", "else", "for", "if", "in"
+		#			 "next", "repeat", "return", "switch",
+		#			 "try", "while","self" ] 
+		#lua
 		keywords = [ "break", "else", "for", "if", "in"
 					 "next", "repeat", "return", "switch",
-					 "try", "while","self" ] 
+					 "try", "while","then","end" ] 
 		for word in keywords:
 			pattern = QRegExp("\\b" + word + "\\b")
 			self.highlightingRules.append( (pattern, keyword) )
@@ -180,12 +182,4 @@ class script_editor(code_editor):
 	def save(self):
 		self.save_signal.emit()
 
-	def run(self):
-		print("Running:",self.file_name)
-		mod = imp.load_source("hi",self.file_name)
-		api=oghma_api(verbose=True)
-		api.callback=self.api_callback
-		api.path=os.path.dirname(self.file_name)
-		mod.gpvdm_plugin(api)
-		del mod
 

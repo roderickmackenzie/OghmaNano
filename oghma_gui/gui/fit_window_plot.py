@@ -39,6 +39,7 @@ from PySide2.QtWidgets import QWidget,QVBoxLayout
 from open_save_dlg import save_as_jpg
 
 from cal_path import sim_paths
+from json_c import json_tree_c
 
 class fit_window_plot(QWidget):
 
@@ -46,9 +47,13 @@ class fit_window_plot(QWidget):
 		self.draw_graph()
 
 	def draw_graph(self):
+		json_path=self.bin.find_path_by_uid("fits.fits",self.uid)
+		fit_name=self.bin.get_token_value(json_path,"name")
+		self.path=os.path.join(sim_paths.get_sim_path(),"sim",fit_name)
 		error_sim=os.path.join(self.path,"fit_error_sim.csv")
 		error_exp=os.path.join(self.path,"fit_error_exp.csv")
 		delta=os.path.join(self.path,"fit_error_delta.csv")
+
 		self.plot.load_data([error_sim,error_exp])
 		self.plot.set_labels(["Simulation","Experiment"])
 		self.plot.do_plot()
@@ -69,14 +74,15 @@ class fit_window_plot(QWidget):
 	def export_gnuplot(self):
 		self.plot.callback_save_gnuplot()
 
-	def __init__(self,path):
+	def __init__(self,uid):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
+		self.uid=uid
 		self.vbox=QVBoxLayout()
-		self.path=path
 
-		self.plot=plot_widget(enable_toolbar=False,widget_mode="pyqtgraph")
+		self.plot=plot_widget(enable_toolbar=False,widget_mode="graph")
 		self.vbox.addWidget(self.plot)
-		self.plot_delta=plot_widget(enable_toolbar=False,widget_mode="pyqtgraph")
+		self.plot_delta=plot_widget(enable_toolbar=False,widget_mode="graph")
 		self.vbox.addWidget(self.plot_delta)
 		
 		self.setLayout(self.vbox)

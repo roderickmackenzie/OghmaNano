@@ -39,7 +39,7 @@ from PySide2.QtWidgets import QMenu,QAbstractItemView,QListWidgetItem,QPushButto
 import shutil
 from dlg_get_text2 import dlg_get_text2
 from cal_path import sim_paths
-from util_zip import archive_decompress
+from util_zip import extract_file_from_archive
 from icon_lib import icon_get
 from safe_delete import safe_delete
 from gui_util import yes_no_dlg
@@ -54,7 +54,7 @@ class dir_viewer_menu():
 			return
 		menu = QMenu(self)
 		selected=self.get_selected()
-		if self.path!="/root":
+		if self.data.path!=b"/oghma_root":
 			menu_new = menu.addMenu(_("New"))
 
 			newdirAction = menu_new.addAction(icon_get("folder"),_("New directory"))
@@ -73,6 +73,15 @@ class dir_viewer_menu():
 
 			menu_new_filter = menu_new.addAction(icon_get("filter_wheel"),_("New filter"))
 			menu_new_filter.triggered.connect(self.new_filter)
+
+			menu_morphology = menu_new.addAction(icon_get("morphology1"),_("New morphology"))
+			menu_morphology.triggered.connect(self.new_morphology)
+
+		#menu_view = menu.addMenu(_("View"))
+
+		#menu_view_show_unknown_files = menu_view.addAction(_("Show unknown files"))
+		#menu_view_show_unknown_files.triggered.connect(self.menu_view_show_unknown_files)
+		#menu_view_show_unknown_files.setCheckable(True)
 
 		if len(selected)>0:
 			deleteAction = menu.addAction(icon_get("edit-delete"),_("Delete file"))
@@ -94,7 +103,7 @@ class dir_viewer_menu():
 
 		if len(selected)==1:
 			if selected[0].can_delete==True:
-				if can_i_delete(self.path)==True:
+				if can_i_delete(bytes2str(self.data.path))==True:
 					deleteAction.setEnabled(True)
 					renameAction.setEnabled(True)
 					cloneAction.setEnabled(True)
@@ -115,20 +124,30 @@ class dir_viewer_menu():
 		old_name=self.currentItem().text()
 		decode=self.decode_name(old_name)
 		if decode.type=="scan_dir":
-			new_sim_name=dlg_get_text2( _("Clone the file to be called:"), old_name+"_new","clone.png")
+			new_sim_name=dlg_get_text2( _("Copy the file to be called:"), old_name+"_new","clone.png")
 			new_sim_name=new_sim_name.ret
 
 			if new_sim_name!=None:
-				scans=scans_io(self.path)
+				scans=scans_io(bytes2str(self.data.path))
 				if scans.clone(new_sim_name,old_name)==False:
 					error_dlg(self,_("The file name already exists"))
 		else:
-			new_sim_name=dlg_get_text2( _("Clone the file to be called:"), old_name+"_new","clone.png")
+			#add _new before the . or at end
+			new_sim_name = f"{os.path.splitext(old_name)[0]}_new{os.path.splitext(old_name)[1]}"
+			new_sim_name=dlg_get_text2( _("Copy the file to be called:"), new_sim_name,"clone.png")
 			new_sim_name=new_sim_name.ret
 
 			if new_sim_name!=None:
-				if os.path.isdir(os.path.join(self.path,new_sim_name))==False:
-					shutil.copytree(os.path.join(self.path,old_name), os.path.join(self.path,new_sim_name))
+				new_name=os.path.join(bytes2str(self.data.path),new_sim_name)
+				old_name=os.path.join(bytes2str(self.data.path),old_name)
+				if os.path.isdir(new_name)==True or os.path.isfile(new_name)==True:
+					error_dlg(self,_("The file name already exists"))
+					return
+
+				if os.path.isdir(old_name)==True:
+					shutil.copytree(old_name, new_name)
+				elif os.path.isfile(old_name)==True:
+					shutil.copy(old_name, new_name)
 
 		self.fill_store()
 
@@ -141,15 +160,15 @@ class dir_viewer_menu():
 
 			if new_sim_name!=None:
 				scan=scan_io()
-				scan.load(os.path.join(self.path,decode.file_name))
+				scan.load(os.path.join(bytes2str(self.data.path),decode.file_name))
 				scan.rename(new_sim_name)
 		else:
 			new_sim_name=dlg_get_text2( _("Rename:"), self.currentItem().text(),"rename")
 			new_sim_name=new_sim_name.ret
 
 			if new_sim_name!=None:
-				new_name=os.path.join(self.path,new_sim_name)
-				old_name=os.path.join(self.path,old_name)
+				new_name=os.path.join(bytes2str(self.data.path),new_sim_name)
+				old_name=os.path.join(bytes2str(self.data.path),old_name)
 				os.rename(old_name, new_name)
 		self.fill_store()
 
@@ -161,7 +180,7 @@ class dir_viewer_menu():
 		process_events()
 
 		print("searching")
-		files=find_shapshots(self.path)
+		files=find_shapshots(bytes2str(self.data.path))
 		if len(files)<20:
 			disp="\n".join(files)
 		else:
@@ -185,23 +204,27 @@ class dir_viewer_menu():
 	def callback_unpack(self):
 		name=self.currentItem().text()
 		decode=self.decode_name(name)
-		if self.path=="/root" and decode.file_name=="sim.oghma":
-			full_file_name=os.path.join(sim_paths.get_sim_path(),decode.file_name)
-			archive_decompress(full_file_name)
+		if bytes2str(self.data.path)=="/oghma_root" and decode.file_name=="sim.oghma":
+			zip_file_path=os.path.join(bytes2str(self.data.path),decode.file_name)
+			extract_file_from_archive(bytes2str(self.data.path),zip_file_path,"/")
+
 			error_dlg(self,_("You should now have a sim.json file in: ")+ sim_paths.get_sim_path() + " " +_("Open this directory to see it."))
 	def callback_delete(self):
 		files=""
 		for i in self.selectedItems():
-			files=files+os.path.join(self.path,i.text())+"\n"
+			files=files+os.path.join(bytes2str(self.data.path),i.text())+"\n"
 		ret=yes_no_dlg(self,_("Are you sure you want to delete the files ?")+"\n\n"+files)
 		if ret==True:
 			for i in self.selectedItems():
 				decode=self.decode_name(i.text())
 				if decode.type=="scan_dir":
-					scans=scans_io(self.path)
+					scans=scans_io(bytes2str(self.data.path))
 					scans.delete(decode.display_name)
 				else:
-					file_to_remove=os.path.join(self.path,bytes2str(decode.file_name))
+					file_to_remove=os.path.join(bytes2str(self.data.path),bytes2str(decode.file_name))
 					safe_delete(file_to_remove,allow_dir_removal=True)
 		self.fill_store()
+
+	def menu_view_show_unknown_files(self):
+		print("ok")
 

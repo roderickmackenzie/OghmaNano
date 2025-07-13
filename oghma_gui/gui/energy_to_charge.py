@@ -38,14 +38,11 @@ from QComboBoxLang import QComboBoxLang
 
 #cal_path
 from gQtCore import gSignal
-
-from epitaxy import get_epi
 from dos_io import gen_fermi_from_np
 from dos_io import gen_np_from_fermi
 import decimal
 
-from json_root import json_root
-
+from json_c import json_tree_c
 import i18n
 _ = i18n.language.gettext
 
@@ -55,6 +52,7 @@ class energy_to_charge(QWidget):
 
 	def __init__(self):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.hbox=QHBoxLayout()
 		self.edit_m3=QLineEdit()
 		self.edit_m3.setMaximumWidth( 60 )
@@ -83,36 +81,40 @@ class energy_to_charge(QWidget):
 		self.setLayout(self.hbox)
 
 	def cal_ev(self):
-		self.find_layer_and_contact()
-		if self.contact.charge_type=="electron":
-			eV=gen_fermi_from_np(float(self.edit_m3.text()),self.layer.shape_dos.Nc,300.0)
+		layer_path,contact_path=self.find_layer_and_contact()
+		charge_type=self.bin.get_token_value(contact_path,"majority")
+		Nc=self.bin.get_token_value(layer_path+".shape_dos","Nc")
+		Nv=self.bin.get_token_value(layer_path+".shape_dos","Nv")
+
+		if charge_type=="electron":
+			eV=gen_fermi_from_np(float(self.edit_m3.text()),Nc,300.0)
 		else:
-			eV=gen_fermi_from_np(float(self.edit_m3.text()),self.layer.shape_dos.Nv,300.0)
+			eV=gen_fermi_from_np(float(self.edit_m3.text()),Nv,300.0)
 		return eV
 
 	def cal_m3(self):
-		self.find_layer_and_contact()
+		layer_path,contact_path=self.find_layer_and_contact()
+		charge_type=self.bin.get_token_value(contact_path,"majority")
+		Nc=self.bin.get_token_value(layer_path+".shape_dos","Nc")
+		Nv=self.bin.get_token_value(layer_path+".shape_dos","Nv")
+
 		try:
 			Ef=float(self.edit_eV.text())
 		except:
 			return False
 
-		if self.contact.charge_type=="electron":
-			n=gen_np_from_fermi(Ef,self.layer.shape_dos.Nc,300.0)
+		if charge_type=="electron":
+			n=gen_np_from_fermi(Ef,Nc,300.0)
 		else:
-			n=gen_np_from_fermi(Ef,self.layer.shape_dos.Nv,300.0)
+			n=gen_np_from_fermi(Ef,Nv,300.0)
 		return n
-
-
-	
 
 	def edit_m3_update(self,n):
 		try:
 			val=float(n)
 		except:
 			return
-		text='%.2e' % val
-		text=str(decimal.Decimal(text).normalize()).lower().replace('+', '')
+		text=self.bin.format_float(val)
 		self.edit_m3.setText(text)
 
 		#self.edit_m3.setText('%.0e' % n)
@@ -126,57 +128,76 @@ class energy_to_charge(QWidget):
 		self.edit_eV.setText('%.2f' % val)
 
 	def callback_eV_changed(self):
+		layer_path,contact_path=self.find_layer_and_contact()
 		n=self.cal_m3()
 		if n==False:
 			return
 		self.edit_m3.blockSignals(True)
 		self.edit_m3_update(n)
 		self.edit_m3.blockSignals(False)
-		self.contact.np=float(n)
-		json_root().save()
+		self.bin.set_token_value(contact_path,"np",float(n))
+		self.bin.save()
 
 	def callback_m3_changed(self):
+		layer_path,contact_path=self.find_layer_and_contact()
 		try:
 			ev=self.cal_ev()
 			self.edit_eV.blockSignals(True)
 			self.edit_eV_update(ev)
 			self.edit_eV.blockSignals(False)
-			self.contact.np=float(self.edit_m3.text())
+			self.bin.set_token_value(contact_path,"np",float(self.edit_m3.text()))
 		except:
 			pass
-		json_root().save()
+		self.bin.save()
 
 	def find_layer_and_contact(self):
-		self.layer=None
-		self.contact=None
-		for c in get_epi().contacts.segments:
-			if self.uid==c.id:
-				if c.position=="top":
-					for l in get_epi().layers:
-						if l.layer_type=="active":
-							self.layer=l
-							self.contact=c
+		layer_path=None
+		contact_path=None
+		found=False
+		contacts_segments=self.bin.get_token_value("epitaxy.contacts","segments")
+		epitaxy_segments=self.bin.get_token_value("epitaxy","segments")
+		for c in range(0,contacts_segments):
+			contact_path="epitaxy.contacts.segment"+str(c)
+			uid=self.bin.get_token_value(contact_path,"id")
+			position=self.bin.get_token_value(contact_path,"contact.position")
+			if uid==self.uid:
+				if position=="top":
+					for l in range(0,epitaxy_segments):
+						layer_path="epitaxy.segment"+str(l)
+						obj_type=self.bin.get_token_value(layer_path,"obj_type")
+						if obj_type=="active":
+							found=True
 							break
-				elif c.position=="bottom":
-					n=len(get_epi().layers)-1
-					while(n>=0):
-						l=get_epi().layers[n]
-						if l.layer_type=="active":
-							self.layer=l
-							self.contact=c
+				elif position=="bottom":
+					l=epitaxy_segments-1
+					while(l>=0):
+						layer_path="epitaxy.segment"+str(l)
+						obj_type=self.bin.get_token_value(layer_path,"obj_type")
+						if obj_type=="active":
+							found=True
 							break
-						n=n-1
+						l=l-1
+			if found==True:
+				break
+
+		if layer_path==None or contact_path==None:
+			layer_path=None
+			contact_path=None
+		if type(contact_path)==str:
+			contact_path=contact_path+".contact"
+		return layer_path,contact_path
 
 	def updateValue(self,uid):
 		self.uid=uid
 		self.update()
 
 	def update(self):
-		self.find_layer_and_contact()
-		if self.contact==None:
+		layer_path,contact_path=self.find_layer_and_contact()
+		if contact_path==None:
 			return
+		np=self.bin.get_token_value(contact_path,"np")
 		self.edit_m3.blockSignals(True)
-		self.edit_m3_update(self.contact.np)
+		self.edit_m3_update(np)
 		self.edit_m3.blockSignals(False)
 		ev=self.cal_ev()
 		self.edit_eV.blockSignals(True)
@@ -184,5 +205,7 @@ class energy_to_charge(QWidget):
 		self.edit_eV.blockSignals(False)
 
 	def text(self):
-		return self.contact.np
+		layer_path,contact_path=self.find_layer_and_contact()
+		np=self.bin.get_token_value(contact_path,"np")
+		return np
 		

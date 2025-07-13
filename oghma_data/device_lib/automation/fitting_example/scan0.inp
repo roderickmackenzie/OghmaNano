@@ -1,0 +1,141 @@
+#scan_name
+ml
+23
+dos1.inp
+#mue_y
+epitaxy/PM6:Y6/dos/Electron mobility y
+str(random_log(1e-10,1e-3))
+python_code
+notused
+dos1.inp
+#muh_y
+epitaxy/PM6:Y6/dos/Hole mobility y
+str(random_log(1e-10,1e-3))
+python_code
+notused
+dos1.inp
+#Etrape
+epitaxy/PM6:Y6/dos/Electron tail slope
+str(round(random.uniform(30, 100),2))+"e-3"
+python_code
+notused
+dos1.inp
+#Etraph
+epitaxy/PM6:Y6/dos/Hole tail slope
+str(round(random.uniform(30, 100),2))+"e-3"
+python_code
+notused
+dos1.inp
+#Ntrape
+epitaxy/PM6:Y6/dos/Electron trap density
+str(random_log(1e18,1e27))
+python_code
+notused
+dos1.inp
+#Ntraph
+epitaxy/PM6:Y6/dos/Hole trap density
+str(random_log(1e18,1e27))
+python_code
+notused
+dos1.inp
+#srhsigman_e
+epitaxy/PM6:Y6/dos/Free electron to Trapped electron
+str(random_log(1e-24,1e-18))
+python_code
+notused
+dos1.inp
+#srhsigmap_e
+epitaxy/PM6:Y6/dos/Trapped electron to Free hole
+str(random_log(1e-24,1e-18))
+python_code
+notused
+dos1.inp
+#srhsigman_h
+epitaxy/PM6:Y6/dos/Trapped hole to Free electron
+str(random_log(1e-24,1e-18))
+python_code
+notused
+dos1.inp
+#srhsigmap_h
+epitaxy/PM6:Y6/dos/Free hole to Trapped hole
+str(random_log(1e-24,1e-18))
+python_code
+notused
+parasitic.inp
+#Rshunt
+parasitic/Shunt resistance
+str(random_log(1e2,1e7))
+python_code
+notused
+parasitic.inp
+#Rcontact
+parasitic/Series resistance
+str(round(random.uniform(1.0, 40),2))
+python_code
+notused
+jv0.inp
+#jv_Rshunt
+jv0/Shunt resistance
+-1.0
+constant
+notused
+jv0.inp
+#jv_Rcontact
+jv0/Contact resistance
+-1.0
+constant
+notused
+jv0.inp
+#dump_verbosity
+jv/jv/Ouput verbosity to disk
+0
+constant
+notused
+dump.inp
+#dump_dynamic
+dump/Dump dynamic
+false
+constant
+notused
+dump.inp
+#dump_remove_dos_cache
+dump/Clean up DoS cache files
+true
+constant
+notused
+dump.inp
+#dump_optics
+dump/Dump optical information
+false
+constant
+notused
+dump.inp
+#dump_optics_verbose
+dump/Dump optics verbose
+false
+constant
+notused
+dump.inp
+#dump_write_converge
+dump/Write newton solver convergence to disk
+false
+constant
+notused
+dump.inp
+#dump_log_level
+dump/Log verbocity
+screen
+constant
+notused
+dos0.inp
+#srh_bands
+dos0/Number of traps
+20
+constant
+notused
+sim.inp
+#simmode
+sim mode
+jv@jv
+constant
+notused

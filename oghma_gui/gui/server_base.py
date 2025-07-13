@@ -32,53 +32,116 @@ import os
 
 import multiprocessing
 import time
-from cal_path import get_exe_name
-from cal_path import get_exe_args
-
 from win_lin import get_platform
 from progress_class import progress_class
-
-from cal_path import get_exe_command
 from stat import *
 
 import i18n
 _ = i18n.language.gettext
 from cluster import cluster
-
 from gui_enable import gui_get
-
 import time
-
 from cal_path import sim_paths
-from job import job
-
-my_server=False
-
 from datetime import datetime
-from json_root import json_root
 import socket
+from threading import Thread
+import ctypes
+from bytes2str import str2bytes
+from bytes2str import bytes2str
+from json_c import json_tree_c
+
 if gui_get()==True:
 	from process_events import process_events
 
-class node:
-	ip=""
-	load=""
-	cpus=""
+class ipc_data(ctypes.Structure):
+	_fields_ = [('connection', ctypes.c_void_p ),
+				('buf', ctypes.c_char * 4096 ),
+				('sock', ctypes.c_int64 ),
+				('clients', ctypes.c_void_p ),
+				('nclients', ctypes.c_int ),
+				('port', ctypes.c_int ) ]
 
-class job():
-	def __init__(self):
-		self.name=""
-		self.path=""
-		self.ip=""
-		self.args=""
-		self.start_time=0
-		self.stop=""		#this needs to go but later
-		self.cpus=1
-		self.status=0
-		self.full_command=""	#debug only
+class job_class(ctypes.Structure):
+	_fields_ = [('name', ctypes.c_char * 400),
+				('status', ctypes.c_int),
+				('batch_id', ctypes.c_int),
+				('fun', ctypes.c_char *8),		#Will only work on 64 bit systems
+				('sim', ctypes.c_void_p),
+				('server', ctypes.c_void_p),
+				('data0', ctypes.c_void_p),
+				('data1', ctypes.c_void_p),
+				('data2', ctypes.c_void_p),
+				('data3', ctypes.c_void_p),
+				('data4', ctypes.c_void_p),
+				('data5', ctypes.c_void_p),
+				('data_int0', ctypes.c_int),
+				('data_int1', ctypes.c_int),
+				('data_int2', ctypes.c_int),
+				('data_int3', ctypes.c_int),
+				('data_int4', ctypes.c_int),
+				('data_int5', ctypes.c_int),
+				('cpus', ctypes.c_int),
+				('worker', ctypes.c_void_p),
+				('process_type', ctypes.c_int),
+				('next', ctypes.c_void_p),
+				('micro_jobs_done', ctypes.c_int),
+				('micro_jobs_tot', ctypes.c_int),
+				('odes', ctypes.c_int),
+				('tot_jobs', ctypes.c_int),
+				('data_double0', ctypes.c_double),
+				('start_time', ctypes.c_longlong),
+				('end_time', ctypes.c_longlong),
+				('path', ctypes.c_char * 4096),
+				('args', ctypes.c_char * 4096),
+				('full_command', ctypes.c_char * 4096),
+				('ip', ctypes.c_char * 40),
+				('lock_file_name', ctypes.c_char * 40)]
+
+class server_class(ctypes.Structure):
+	_fields_ = [('dbus_finish_signal', ctypes.c_char * 256),
+				('lock_file', ctypes.c_char * 4096),
+				('jobs', ctypes.c_int),
+				('jobs_running', ctypes.c_int),
+				('min_cpus', ctypes.c_int),
+				('max_run_time', ctypes.c_int),
+				('start_time', ctypes.c_longlong),
+				('end_time', ctypes.c_longlong),
+				('last_job_ended_at', ctypes.c_int),
+				('allow_fake_forking_on_windows', ctypes.c_int),
+				('max_threads', ctypes.c_int),
+				('worker_max', ctypes.c_int),
+				('steel', ctypes.c_int),
+				('poll_time', ctypes.c_int),
+				('worker', ctypes.c_void_p),
+				('j', ctypes.c_void_p),
+				('send_progress_to_gui', ctypes.c_int),
+				('use_gpu', ctypes.c_int),
+				('enable_micro_job_reporting', ctypes.c_int),
+				('lock', ctypes.c_void_p),
+				('batch_id', ctypes.c_int),
+				('max_forks', ctypes.c_int),
+				('quiet', ctypes.c_int),
+				('tot_odes', ctypes.c_int),
+				('tot_jobs', ctypes.c_int),
+				('stats_start_time', ctypes.c_double),
+				('stats_stop_time', ctypes.c_double),
+				('server_jobs_per_s', ctypes.c_double),
+				('server_odes_per_s', ctypes.c_double),
+				('ipc',ipc_data)]
 
 class server_base():
+
 	def __init__(self):
+		print("1")
+		self.server=server_class()
+		self.bin=json_tree_c()
+		self.lib=sim_paths.get_dll_py()
+		self.lib.server_get_next_job.restype = ctypes.POINTER(job_class)
+		self.lib.server_jobs_find_by_lock_file_name.restype = ctypes.POINTER(job_class)
+		self.lib.server_jobs_find_by_number.restype = ctypes.POINTER(job_class)
+		self.lib.server_init(ctypes.byref(self.server))
+		self.lib.server_init(ctypes.byref(self.server))
+		self.lib.server2_malloc(None,ctypes.byref(self.server))
 		self.running=False
 		self.progress_window=progress_class()
 		self.stop_work=False
@@ -87,121 +150,88 @@ class server_base():
 		self.callback=None
 		self.max_job_time=None
 		self.time_out=False
+		self.quotes_around_windows_exe=False
+		self.pipe_to_null=True
+		self.enable_html_output=True
+
+	def __del__(self):
+		self.lib.server2_malloc(None,ctypes.byref(self.server))
+
+	def get_exe_args(self):
+		if self.enable_html_output==False:
+			return ""
+
+		if gui_get()==True:
+			return "--gui --html"
+		else:
+			return ""
 
 	def clear_jobs(self):
-		self.jobs=[]
-		self.jobs_running=0
-		self.jobs_run=0
-		self.finished_jobs=[]
+		self.lib.server_jobs_clear(ctypes.byref(self.server))
 		self.start_time=0
-		self.jobs_per_second=0
-		self.pipe_to_null=True
+
 
 	def server_base_init(self,sim_dir):
 		self.sim_dir=sim_dir
 
 	def update_cpu_number(self):
 		self.cpus=multiprocessing.cpu_count()
-		if self.cpus>4:
+		max=self.bin.get_token_value("server","max_core_instances")
+		if max=="0" or max==None:
+			self.cpus=1
+			return
+
+		if max=="all-div2":
+			self.cpus=self.cpus/2
+
+		if max=="all-2":
 			self.cpus=self.cpus-2
 
-		data=json_root()
-		max=data.server.max_core_instances
-		if max==False or str(max)=="none" or max==0:
+		if max=="all":
 			return
 
 		max=int(max)
 		self.cpus=max
 
-	def add_job(self,path,arg):
-		j=job()
-		j.path=path
-		j.args=arg
-		j.status=0
-		j.name="job"+str(len(self.jobs))
-		self.jobs.append(j)
-
-	def run_now(self):
-		self.exe_command(sim_paths.get_sim_path(),get_exe_command(),background=False)
+	def add_job(self,path,args):
+		self.lib.server_add_cmd_line_job(ctypes.byref(self.server),ctypes.c_char_p(str2bytes(sim_paths.get_exe_command())),ctypes.c_char_p(str2bytes(path)), ctypes.c_char_p(str2bytes(args)));
 
 	def check_warnings(self):
-		message=""
-		problem_found=False
-		#print(len(self.jobs))
-
-		for i in range(0,len(self.jobs)):
-			log_file=os.path.join(self.jobs[i].path,"log.dat")
-			if os.path.isfile(log_file):
-				f = open(log_file, "r")
-				lines = f.readlines()
-				f.close()
-				found=""
-				for l in range(0, len(lines)):
-					lines[l]=lines[l].rstrip()
-					if lines[l].startswith("error:") or lines[l].startswith("warning:"):
-						#print("whoo",lines[l])
-						found=found+lines[l]+"\n"
-						problem_found=True
-				if len(found)!=0:
-					message=message+self.jobs[i].path+":\n"+found+"\n"
-				else:
-					message=message+self.jobs[i].path+":OK\n\n"
-		if problem_found==False:
-			message=""
-
+		buf = (ctypes.c_char * 4096)()
+		self.lib.server_jobs_check_warnings(ctypes.byref(self.server),buf,4096)
+		message=bytes2str(ctypes.cast(buf, ctypes.c_char_p).value)
 		return message
 
 	def remove_debug_info(self):
-		for i in range(0, len(self.jobs)):
-			file_name=os.path.join(self.jobs[i].path,"gmon.out")
-			if os.path.isfile(file_name)==True:
-				os.unlink(file_name)
+		self.lib.server_remove_debug_info(ctypes.byref(self.server))
 
 	def print_jobs(self):
-		print("server job list:")
-		for job in self.jobs:
-			if job.status!=2:
-				start_time=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(job.start_time))
-				print("job",job.path,job.args,job.status,start_time,job.stop)	#,job.full_command
-		print("jobs running=",self.jobs_running,"jobs run=",self.jobs_run,"cpus=",self.cpus)
+		self.lib.server2_dump_jobs(ctypes.byref(self.server))
 
-
-	def exe_command(self,path,command,background=True):
-		command_sep=";"
-		cmd=""
-		if get_platform()=="linux":
-			cmd="cd "+path+command_sep	#remove you should not need this on linux with sim-root-path
-			cmd=cmd+ command+" --sim-root-path "+path
-		elif get_platform()=="wine":
-			cmd="/bin/wine "+command+" --sim-root-path "+path
+	def exe_command(self,job,background=True):
+		if background==True:
+			p = Thread(target=self.run_in_background,args=(job,))
+			p.daemon = True
+			p.start()
 		else:
-			command_sep=" & "
-			cmd="cd "+path+command_sep
-			cmd=cmd+command
+			self.lib.server_system_exe(ctypes.byref(self.server),job,ctypes.c_int(self.pipe_to_null))
 
-		if get_platform()=="linux" or get_platform()=="wine":
-			if self.pipe_to_null==True:
-				cmd=cmd+" 2>&1 > "+path+".dat" #"/dev/null "
-				if background==True:
-					cmd=cmd+" &"
-
-		cmd=cmd+"\n"
-		print("I will run:"+cmd)
-		os.system(cmd)
+	def run_in_background(self,job):
+		self.lib.server_system_exe(ctypes.byref(self.server),job,ctypes.c_int(self.pipe_to_null))
 
 	def server_base_process_jobs(self):
 		path=True
 		while(path!=False):
 			#self.print_jobs()
-			path,command=self.server_base_get_next_job_to_run(lock_file=True)
+			path,command,args,job=self.server_base_get_next_job_to_run(lock_file=True)
 			if path!=False:
-				#print(command)
-				print(">>",path,">",command)
-				self.exe_command(path,command)
-				if len(self.jobs)>1:
-					jobs_per_second="%.2f" % self.jobs_per_second
+				self.exe_command(job)
+				njobs=self.lib.server2_count_all_jobs(ctypes.byref(self.server))
+				jobs_run=self.lib.server2_count_finished_jobs(ctypes.byref(self.server))
+				if njobs>1:
+					jobs_per_second="%.2f" % self.server.server_jobs_per_s
 					self.progress_window.set_text(_("Running job ")+path+" jobs/s="+jobs_per_second)
-					self.progress_window.set_fraction(float(self.jobs_run)/float(len(self.jobs)))
+					self.progress_window.set_fraction(float(jobs_run)/float(njobs))
 					if gui_get()==True:
 						process_events()
 			else:
@@ -224,6 +254,7 @@ class server_base():
 		self.server_base_process_jobs()
 		dt=0.1
 		n=0
+
 		while(1):
 			ls=os.listdir(self.sim_dir)
 			#print(self.sim_dir,ls)
@@ -231,8 +262,10 @@ class server_base():
 				if ls[i][:4]=="lock" and ls[i][-4:]==".dat":
 					n=0
 					lock_file=ls[i]
+					#print("rod",lock_file)
 					os.remove(os.path.join(self.sim_dir,lock_file))
-					job=int(lock_file[4:-4])
+					job=lock_file[:-4]
+					#print("rod",job)
 					self.base_job_finished(job)
 
 			self.server_base_process_jobs()
@@ -240,7 +273,9 @@ class server_base():
 			#self.print_jobs()
 			self.server_base_check_for_crashed()
 			#self.print_jobs()
-			if self.jobs_run==len(self.jobs):
+			njobs=self.lib.server2_count_all_jobs(ctypes.byref(self.server))
+			jobs_run=self.lib.server2_count_finished_jobs(ctypes.byref(self.server))
+			if njobs==jobs_run:
 				self.remove_lock_files()
 				break
 
@@ -252,68 +287,80 @@ class server_base():
 					self.remove_lock_files()
 					break
 			n=n+dt
+		
 
-	def base_job_finished(self,job):
-		if self.jobs[job].status!=1:
-			print("This job never ran!!!",self.jobs[job].status)
-			#asdsadasd
-		self.jobs[job].status=2
-		self.jobs[job].stop=str(datetime.now())
-		self.jobs_run=self.jobs_run+1
-		self.jobs_running=self.jobs_running-1
-		self.jobs_per_second=self.jobs_run/(time.time()-self.start_time)
+	def base_job_finished(self,job_lock_file_name):
+		#print("SEARCH!!!!!!!!!!!!!",job_lock_file_name)
+		#self.lib.server2_dump_jobs(ctypes.byref(self.server))
+		njobs=self.lib.server2_count_all_jobs(ctypes.byref(self.server))
+		jobs_run=self.lib.server2_count_finished_jobs(ctypes.byref(self.server))
 
-		if self.jobs_running==0:
+		j=self.lib.server_jobs_find_by_lock_file_name(ctypes.byref(self.server), ctypes.c_char_p(str2bytes(job_lock_file_name)));
+		if bool(j)!=False:
+			self.lib.job_mark_as_finished(j)
+			#
+		jobs_running=self.lib.server_count_jobs_running(ctypes.byref(self.server),None)
+
+		if jobs_running==0:
 			if self.callback!=None:
 				self.callback()
 			self.callback=None
 
-		self.progress_window.set_fraction(float(self.jobs_run)/float(len(self.jobs)))
+		self.progress_window.set_fraction(float(jobs_run)/float(njobs))
 
 	def server_base_set_callback(self,callback):
 		self.callback=callback
 
 	def server_base_check_for_crashed(self):
+		#print("server_base_check_for_crashed")
 		if self.max_job_time==None:
 			return
 
-		for j in self.jobs:
-			if j.status==1:
-				if (time.time()-j.start_time)>self.max_job_time:
-					j.status=2
-					print("crashed:"+j.path)
+		self.lib.server_stop_crashed_jobs(ctypes.byref(self.server), ctypes.c_int(self.max_job_time))
+
 
 	def server_base_get_next_job_to_run(self,lock_file=False):
-		#print(get_exe_command())
-		if (len(self.jobs)==0):
-			return False,False
+		#print("server_base_get_next_job_to_run")
+		njobs=self.lib.server2_count_all_jobs(ctypes.byref(self.server))
+		jobs_running=self.lib.server_count_jobs_running(ctypes.byref(self.server),None)
+		jobs_run=self.lib.server2_count_finished_jobs(ctypes.byref(self.server))
 
-		for i in range(0, len(self.jobs)):
-			if (self.jobs_running<self.cpus):
-				if self.jobs[i].status==0:
-					self.jobs[i].status=1
-					self.jobs[i].start_time=time.time()
-					self.jobs[i].start=str(datetime.now())
-					self.jobs[i].ip=socket.gethostbyname(socket.gethostname())
-					#for r in range(0,len(self.jobs)):
-					#	print(self.jobs[i],self.args[i])
-					
-					self.jobs_running=self.jobs_running+1
+		if (njobs==0):
+			return False,False,False,False
 
-					if lock_file==True:
-						command_lock=" --lockfile "+os.path.join(self.sim_dir,"lock"+str(i)+".dat")
-					else:
-						command_lock=" --lock "+"lock"+str(i)
-					my_command=get_exe_command()
-					
-					#if get_platform()=="linux":
-					full_command=my_command+command_lock+" "+self.jobs[i].args+" "+get_exe_args()
-					#else:
-					#	full_command="\""+my_command+"\""+command_lock+" "+self.jobs[i].args+" "+get_exe_args()
-					self.jobs[i].full_command=full_command
-					return self.jobs[i].path,full_command
+		j=self.lib.server_get_next_job(ctypes.byref(self.server), None)
 
-		return False,False
+		if bool(j)!=False:
+			if (jobs_running<self.cpus):
+				self.lib.job_mark_as_running(j)
+
+				#set IP
+				ip=socket.gethostbyname(socket.gethostname())
+				self.lib.job_set_ip(j, ctypes.c_char_p(str2bytes(ip)));
+
+				#lock file
+				lock_name=bytes2str(j.contents.lock_file_name)
+				if lock_file==True:
+					lock_args=" --lockfile "+os.path.join(self.sim_dir,lock_name+".dat")
+				else:
+					lock_args=" --lock "+lock_name
+
+				#build args
+				args=bytes2str(j.contents.args)+" "+self.get_exe_args()+lock_args
+				self.lib.job_set_args(j, ctypes.c_char_p(str2bytes(args)))
+				#self.lib.server2_dump_jobs(ctypes.byref(self.server))
+
+				#exe command
+				command=sim_paths.get_exe_command()
+				if get_platform()=="win":
+					#The quotes are needed depending on how we are running this 
+					if self.quotes_around_windows_exe==True:
+						command="\""+command+"\""
+				#
+				self.lib.job_set_full_command(j, ctypes.c_char_p(str2bytes(command)));
+				return bytes2str(j.contents.path),command,args,j
+
+		return False,False,False,False
 
 	def tx_to_core(self,data):
 		path=os.path.join(sim_paths.get_sim_path(),"tx.dat")
@@ -329,11 +376,11 @@ class server_base():
 		#else:
 		self.tx_to_core("terminate")
 		#	if get_platform()=="linux":
-		#		cmd = 'killall '+get_exe_name()
+		#		cmd = 'killall '+sim_paths.get_exe_name()
 		#		os.system(cmd)
 		#		print(cmd)
 		#	else:
-		#		cmd="taskkill /im "+get_exe_name()
+		#		cmd="taskkill /im "+sim_paths.get_exe_name()
 		#		print(cmd)
 		#		os.system(cmd)
 

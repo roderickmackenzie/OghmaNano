@@ -31,22 +31,24 @@
 import os
 import locale
 import gettext
-from cal_path import get_lang_path
-from json_local_root import json_local_root
+from cal_path import sim_paths
+from json_c import json_local_root
 
-a=json_local_root()
+bin_local=json_local_root()
 
-if a.international.lang=="auto":
+lang=bin_local.get_token_value("international","lang")
+
+if lang=="auto":
 	current_locale, encoding = locale.getdefaultlocale()
 	if current_locale==None:
 		print("No local language set assuming en_US")	
 		current_locale="en_US"
 else:
-	current_locale=a.international.lang
-print(current_locale,get_lang_path())
-language = gettext.translation ('oghmanano', get_lang_path(), [current_locale], fallback=True )
+	current_locale=lang
+#print(current_locale,sim_paths.get_lang_path())
+language = gettext.translation ('oghmanano', sim_paths.get_lang_path(), [current_locale], fallback=True )
 language.install()
-
+locale.setlocale(locale.LC_NUMERIC, "C")
 
 
 def get_language():
@@ -57,12 +59,12 @@ def get_full_language():
 	return current_locale
 
 def get_full_desired_lang_path():
-	return os.path.join(get_lang_path(),get_full_language(),"LC_MESSAGES")
+	return os.path.join(sim_paths.get_lang_path(),get_full_language(),"LC_MESSAGES")
 
 def get_languages():
 	langs=[]
 	langs.append("en_US")
-	path=get_lang_path()
+	path=sim_paths.get_lang_path()
 	if os.path.isdir(path)==False:
 		return False
 

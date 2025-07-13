@@ -32,25 +32,18 @@
 from str2bool import str2bool
 
 import time
-from cal_path import get_exe_name
-from cal_path import get_exe_args
 
 from win_lin import get_platform
 from progress_class import progress_class
 
-from cal_path import get_exe_command
 from sim_warnings import sim_warnings
-import i18n
-_ = i18n.language.gettext
+
 from cluster import cluster
-
-
-from status_icon import status_icon_init
-from status_icon import status_icon_run
-from status_icon import status_icon_stop
 
 import codecs
 from gui_enable import gui_get
+import i18n
+_ = i18n.language.gettext
 
 if gui_get()==True:
 	from help import help_window
@@ -58,21 +51,21 @@ if gui_get()==True:
 	from PySide2.QtWidgets import QWidget
 	from gQtCore import QTimer
 	from process_events import process_events
-
+	from status_icon import status_icon_init
+	from status_icon import status_icon_run
+	from status_icon import status_icon_stop
 import time
 
 from cal_path import sim_paths
 from gui_enable import gui_get
-from job import job
 
 my_server=False
 
-#from lock import get_lock
-from json_root import json_root
-
 from server_base import server_base
+import ctypes
 
 if gui_get()==True:
+
 	class server(QWidget,server_base,cluster):
 		
 		sim_finished = gSignal()
@@ -87,6 +80,7 @@ if gui_get()==True:
 			self.gui_update_time= time.time()
 			self.timer=QTimer()
 			self.terminal=None
+			self.lib=sim_paths.get_dll_py()
 
 		def init(self,sim_dir):
 			self.server_base_init(sim_dir)
@@ -115,7 +109,7 @@ if gui_get()==True:
 			help_window().show()
 			status_icon_stop(self.cluster)
 
-			help_window().help_set_help(["plot.png",_("<big><b>Simulation finished!</b></big><br>Click on the plot icon to plot the results")])
+			help_window().help_set_help("plot.png",_("<big><b>Simulation finished!</b></big><br>Click on the plot icon to plot the results"))
 
 			if len(text)!=0:
 				self.dialog=sim_warnings(text)
@@ -135,11 +129,8 @@ if gui_get()==True:
 
 
 		def start(self):
-			self.finished_jobs=[]
 			if self.interactive_cluster==True or self.cluster==False:
 				self.progress_window.show()
-
-
 				self.gui_sim_start()
 
 			self.running=True
@@ -161,11 +152,11 @@ if gui_get()==True:
 				if self.terminal==None:
 					return False
 
-				path,command=self.server_base_get_next_job_to_run()
+				path,command,args,j=self.server_base_get_next_job_to_run()
 				self.jobs_update.emit()
 				if path!=False:
 
-					if self.terminal.run(path,command)==True:
+					if self.terminal.run(path,command+" "+args)==True:
 						time.sleep(0.1)
 						return True
 					else:
@@ -180,9 +171,7 @@ if gui_get()==True:
 			if self.interactive_cluster==True or self.cluster==False:
 				self.gui_sim_stop()
 
-			self.jobs=[]
-			self.jobs_running=0
-			self.jobs_run=0
+			self.lib.server_jobs_clear(ctypes.byref(self.server))
 			self.running=False
 
 			if self.display!=False:
@@ -204,29 +193,35 @@ if gui_get()==True:
 
 		def callback_dbus(self,data_in):
 			#print("server_in",data_in)
+			njobs=self.lib.server2_count_all_jobs(ctypes.byref(self.server))
+			jobs_run=self.lib.server2_count_finished_jobs(ctypes.byref(self.server))
 			if data_in.startswith("hex"):
 				data_in=data_in[3:]
-				data=codecs.decode(data_in, 'hex')
-				data=data.decode('ascii')
+				try:
+					data=codecs.decode(data_in, 'hex')
+					data=data.decode('ascii')
+				except:
+					print("data not decoded>",data_in,"<")
+					return
 				#print("Decoded ",data)
 				if data.startswith("lock"):
-					if len(self.jobs)==0:
+					if njobs==0:
 						#print(_("I did not think I was running any jobs"),data)
 						self.stop()
 					else:
-						if self.finished_jobs.count(data)==0:
-							job=int(data[4:])
-							self.base_job_finished(job)
+						job=data
+						self.base_job_finished(job)
 
-							self.finished_jobs.append(data)
+						self.progress_window.set_fraction(float(jobs_run)/float(njobs))
 
-							self.progress_window.set_fraction(float(self.jobs_run)/float(len(self.jobs)))
+						jobs_left=self.lib.server2_jobs_left(ctypes.byref(self.server),ctypes.c_void_p(None))
+						#print("decode",data,njobs,jobs_run,njobs)
 
-							if (self.jobs_run==len(self.jobs)):
-								self.stop()
+						if (jobs_left==0):
+							self.stop()
 
 				elif (data=="pulse"):
-					if len(self.jobs)==1:
+					if njobs==1:
 						splitup=data.split(":", 1)
 						if len(splitup)>1:
 							text=data.split(":")[1]
@@ -239,13 +234,13 @@ if gui_get()==True:
 						value=str2bool(data.split(":")[1])
 						self.progress_window.enable_pulse(value)
 				elif (data.startswith("percent")):
-					if len(self.jobs)==1:
+					if njobs==1:
 						splitup=data.split(":", 1)
 						if len(splitup)>1:
 							frac=float(data.split(":")[1])
 							self.progress_window.set_fraction(frac)
 				elif (data.startswith("text")):
-					if len(self.jobs)==1:
+					if njobs==1:
 						splitup=data.split(":", 1)
 						if len(splitup)>1:
 							self.progress_window.set_text(data.split(":", 1)[1])
@@ -266,7 +261,7 @@ if gui_get()==True:
 
 
 			else:
-				print("rx",data_in)
+				print("Data not decoded rx>",data_in,"<")
 
 def server_break():
 	global my_server

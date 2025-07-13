@@ -1,0 +1,5 @@
+David Nash (astronexus) HYG data set
+
+Creative Commons Attribution-ShareAlike license. For more details, read the Creative Commons page (https://creativecommons.org/licenses/by-sa/2.5/).
+
+https://github.com/astronexus/HYG-Database/blob/master/README.md

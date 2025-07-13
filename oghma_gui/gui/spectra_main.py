@@ -49,48 +49,26 @@ from QWidgetSavePos import QWidgetSavePos
 from ribbon_spectra import ribbon_spectra
 
 from import_data_json import import_data_json
-from json_spectra_db_item import json_spectra_db_item
 
 from ref import ref_window
-from bibtex import bibtex
 from sim_name import sim_name
+from json_c import json_c
 
 class spectra_main(QWidgetSavePos):
 
-	def changed_click(self):
-
-		if self.notebook.tabText(self.notebook.currentIndex()).strip()==_("Refractive index"):
-			b=bibtex()
-			if b.load(os.path.join(self.path,"spectra.bib"))!=False:
-				text=b.get_text()
-				help_window().help_set_help(["spectra_file.png",_("<big><b>Spectra</b></big><br>"+text)])
-
-	def update(self):
-		self.alpha.update()
-
-	def callback_ref(self):
-		self.ref_window=ref_window(os.path.join(self.path,"spectra.csv"),"spectra")
-		self.ref_window.show()
-
-	def callback_import(self):
-		self.im=import_data_json(self.data.spectra_import,export_path=self.path)
-		self.im.run()
-		self.update()
-
 	def __init__(self,path):
 		QWidgetSavePos.__init__(self,"spectra_main")
+		self.bin=json_c("spectra_db")
 		self.path=path
 		self.setMinimumSize(900, 600)
 		self.setWindowIcon(icon_get("spectra_file"))
 
 		self.setWindowTitle2(_("Optical spectrum editor")+" "+os.path.basename(self.path)) 
-		
 
 		self.main_vbox = QVBoxLayout()
 
 		self.ribbon=ribbon_spectra()
 		
-
 		self.ribbon.import_data.clicked.connect(self.callback_import)
 		self.ribbon.tb_ref.triggered.connect(self.callback_ref)
 
@@ -103,9 +81,8 @@ class spectra_main(QWidgetSavePos):
 		self.main_vbox.addWidget(self.notebook)
 
 		mat_file=os.path.join(self.path,"data.json")
-		self.data=json_spectra_db_item()
-		self.data.load(mat_file)
-		self.data.spectra_import.data_file="spectra.csv"
+		self.bin.load(mat_file)
+		self.bin.set_token_value("spectra_import","data_file","spectra.csv")
 
 		fname=os.path.join(self.path,"spectra.csv")
 		self.alpha=plot_widget(enable_toolbar=False)
@@ -116,14 +93,30 @@ class spectra_main(QWidgetSavePos):
 		self.alpha.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.notebook.addTab(self.alpha,_("Spectra"))
 
-		tab=tab_class(self.data)
+		tab=tab_class("",data=self.bin)
 		self.alpha.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.notebook.addTab(tab,_("Basic"))
-
+		tab.changed.connect(self.callback_edit)
 
 		self.setLayout(self.main_vbox)
 		
-		self.notebook.currentChanged.connect(self.changed_click)
+	def __del__(self):
+		self.bin.free()
 
+	def update(self):
+		self.alpha.update()
+
+	def callback_ref(self):
+		self.ref_window=ref_window(os.path.join(self.path,"spectra.bib"),"spectra")
+		self.ref_window.show()
+
+	def callback_import(self):
+		self.im=import_data_json(self.bin,"spectra_import",export_path=self.path)
+		self.im.run()
+		self.update()
+		self.bin.save()
+
+	def callback_edit(self):
+		self.bin.save()
 
 

@@ -29,8 +29,6 @@
 #
 
 
-from tab_base import tab_base
-
 from PySide2.QtWidgets import QTabWidget,QTextEdit,QWidget,QHBoxLayout
 from gQtCore import QProcess, Qt
 from PySide2.QtGui import QPalette,QColor,QFont
@@ -53,7 +51,7 @@ import subprocess
 import time
 from gQtCore import gSignal
 from threading import Thread
-from json_local_root import json_local_root
+from json_c import json_local_root
 
 class QProcess2(QWidget):
 	readyRead = gSignal()
@@ -138,7 +136,7 @@ class output_box(QTextEdit):
 		self.setPalette(pal)
 		self.device_type=device_type
 		self.setAcceptRichText(False)
-		self.setContextMenuPolicy(Qt.NoContextMenu)
+		#self.setContextMenuPolicy(Qt.NoContextMenu)
 		#self.setOpenLinks(False)
 		self.setReadOnly(True)
 		self.setUndoRedoEnabled(False)
@@ -152,7 +150,7 @@ class output_box(QTextEdit):
 		self.ensureCursorVisible()
 		self.setUpdatesEnabled(True)
 
-class tab_terminal(QWidget,tab_base):
+class tab_terminal(QWidget):
 
 	def __init__(self):
 		QWidget.__init__(self)
@@ -177,7 +175,7 @@ class tab_terminal(QWidget,tab_base):
 		if pos!=-1:
 			data=data[pos:]
 			self.terminals[i].clear()
-
+		#print("\n'"+data+"'\n")
 		self.terminals[i].add_text(data)
 
 
@@ -201,7 +199,8 @@ class tab_terminal(QWidget,tab_base):
 				cursor.insertHtml(path+"<br>")
 				self.process[i].setWorkingDirectory(path)
 
-				command=multiplatform_exe_command(command)
+				command=multiplatform_exe_command(command,port=self.my_server.server.ipc.port)
+				print(command)
 				#os.system(command)
 				#print("path: "+path)
 				#print("call: "+command)
@@ -250,7 +249,7 @@ class tab_terminal(QWidget,tab_base):
 		#self.jview.load_data(self.myserver.cluster_jobs)
 		self.tab.addTab(self.jview,"Jobs list")
 
-		if json_local_root().gui_config.enable_betafeatures==True:
+		if json_local_root().get_token_value("gui_config","enable_betafeatures")==True:
 			self.cluster=hpc_class()
 			self.tab.addTab(self.cluster,_("Nodes"))
 			global_object_register("cluster_tab",self.cluster)
@@ -264,5 +263,5 @@ class tab_terminal(QWidget,tab_base):
 		print(data+"\n")
 
 	def help(self):
-		my_help_class.help_set_help(["utilities-terminal.png","<big><b>The terminal window</b></big>\nThe model will run in this window.  You can also use it to enter bash commands."])
+		my_help_class.help_set_help("utilities-terminal.png","<big><b>The terminal window</b></big>\nThe model will run in this window.  You can also use it to enter bash commands.")
 

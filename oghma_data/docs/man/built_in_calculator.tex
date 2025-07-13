@@ -1,0 +1,51 @@
+\newpage
+\subsection{The built in calculator}
+\label{sec:calcualtor}
+
+OghmaNano has a built-in calculator that can be used to perform simple mathematical operations. This functionality is useful for setting up fitting procedures and defining equations in various parts of the code. The calculator is based on Reverse Polish Notation (RPN).
+
+\subsubsection{Supported Operations}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Operation} & \textbf{Operator} & \textbf{Example} \\
+        \hline
+        Exponentiation & \textasciicircum & 2 \textasciicircum 3 = 8 \\
+        Multiplication & $*$ & $2 * 3 = 6$ \\
+        Division & $/$ & $6 / 2 = 3$ \\
+        Addition & $+$ & $2 + 3 = 5$ \\
+        Subtraction & $-$ & $5 - 3 = 2$ \\
+        Greater than & $>$ & $5 > 3$ is 1 \\
+        Less than & $<$ & $2 < 5$ is 1 \\
+        Greater than or equal & $>=$ & $5 >= 5$ is 1 \\
+        Less than or equal & $<=$ & $3 <= 4$ is 1 \\
+        \hline
+    \end{tabular}
+    \caption{Arithmetic and Comparison Operators}
+\end{table}
+
+\subsubsection{Supported Functions}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Function Name} & \textbf{Function} & \textbf{Example} \\
+        \hline
+        Sine & sin & $\sin(\pi/2) = 1$ \\
+        Cosine & cos & $\cos(0) = 1$ \\
+        Absolute Value & abs & $\text{abs}(-3) = 3$ \\
+        Positive Value & pos & $\text{pos}(-3) = 0, \text{pos}(3) = 3$ \\
+        Logarithm (base 10) & log & $\log(100) = 2$ \\
+        Exponential & exp & $\exp(2) = e^2$ \\
+        Square Root & sqrt & $sqrt(9) = 3$ \\
+        Minimum & min & $\min(2, 3) = 2$ \\
+        Maximum & max & $\max(2, 3) = 3$ \\
+        Random & rand & $\text{rand}(a, b)$ generates a random number between $a$ and $b$ \\
+        Log-random & randlog & $\text{randlog}(a, b)$ generates a log-random number between $a$ and $b$ \\
+        \hline
+    \end{tabular}
+    \caption{Supported Functions}
+\end{table}

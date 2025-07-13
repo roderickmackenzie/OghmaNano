@@ -54,56 +54,14 @@ void json_cpy(struct simulation *sim,struct json *out,struct json *in)
 	out->pos=in->pos;
 	out->level=in->level;
 	strcpy(out->path,in->path);
+	out->compact=in->compact;
 	strcpy(out->file_path,in->file_path);
-	json_obj_cpy(sim,&(out->obj),&(in->obj));
+	json_obj_cpy(&(out->obj),&(in->obj));
+	out->is_template=in->is_template;
+	out->bib_file=in->bib_file;
+	out->yml_file=in->yml_file;
 }
 
-void json_obj_cpy_data(struct simulation *sim,struct json_obj *out,struct json_obj *in)
-{
-	out->len=in->len;
-	out->max_len=in->max_len;
-	out->type=in->type;
-	strcpy(out->name,in->name);
-	//printf("%s\n",out->name);
-	if (in->data!=NULL)
-	{
-		out->data_len=in->data_len;
-		out->data=malloc((in->data_len)*sizeof(char));
-		strcpy(out->data,in->data);
-	}
-
-	out->node=in->node;
-	if (out->max_len>0)
-	{
-		out->objs=(struct json_obj*)malloc(sizeof(struct json_obj)*out->max_len);
-	}
-}
-
-void json_obj_cpy(struct simulation *sim,struct json_obj *out,struct json_obj *in)
-{
-
-	int i;
-	json_obj_cpy_data(sim,out,in);
-
-	struct json_obj *objs_in;
-	struct json_obj *objs_out;
-
-	struct json_obj *obj_in;
-	struct json_obj *obj_out;
-
-	objs_in=(struct json_obj* )in->objs;
-	objs_out=(struct json_obj* )out->objs;
-
-	for (i=0;i<in->len;i++)
-	{
-		obj_in=&(objs_in[i]);
-		obj_out=&(objs_out[i]);
-
-		json_obj_cpy(sim,obj_out,obj_in);
-
-	}
-
-}
 
 
 

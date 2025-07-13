@@ -37,11 +37,10 @@ from gQtCore import QSize, Qt, QTimer
 from PySide2.QtWidgets import QApplication,QGraphicsScene,QWidget,QGraphicsView,QLabel,QVBoxLayout,QProgressBar
 
 #cal_path
-from cal_path import get_image_file_path
+from cal_path import sim_paths
 import time
 from sim_name import sim_name
 from PIL import Image as Image
-from PIL.ImageQt import ImageQt
 from cal_path import sim_paths
 from PIL import ImageDraw, ImageFont, ImageStat
 from const_ver import const_ver
@@ -100,8 +99,8 @@ class splash_window(QLabel):
 
 		QTimer.singleShot(2000, self.callback_destroy)
 
-		files=glob.glob(os.path.join(get_image_file_path(),"splash","*.jpg"))
-		files.extend(glob.glob(os.path.join(get_image_file_path(),"splash","*.png")))
+		files=glob.glob(os.path.join(sim_paths.get_image_file_path(),"splash","*.jpg"))
+		files.extend(glob.glob(os.path.join(sim_paths.get_image_file_path(),"splash","*.png")))
 
 		number=time.localtime().tm_yday
 
@@ -116,7 +115,7 @@ class splash_window(QLabel):
 		self.font_big = ImageFont.truetype(fonts_path, 80, encoding="unic")
 		self.font_small = ImageFont.truetype(fonts_path, 20, encoding="unic")
 		
-		image_path=os.path.join(get_image_file_path(),"splash",image_file)
+		image_path=os.path.join(sim_paths.get_image_file_path(),"splash",image_file)
 		if os.path.isfile(image_path):
 			scene = Image.open(image_path)
 			h = self.height()

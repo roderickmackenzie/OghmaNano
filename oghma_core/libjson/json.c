@@ -43,58 +43,8 @@
 #include <ctype.h>
 #include <g_io.h>
 #include <util_str.h>
-
+#include <memory.h>
 #include <zip.h>
-
-void json_obj_init(struct json_obj *obj)
-{
-	obj->type=0;
-	strcpy(obj->name,"");
-	obj->len=0;
-	obj->max_len=0;
-	obj->objs=NULL;
-	obj->data=NULL;
-	obj->data_len=0;
-	obj->node=FALSE;
-}
-
-void json_obj_realloc(struct json_obj *obj)
-{
-	if (obj->len>obj->max_len-5)
-	{
-		//printf("realloc\n");
-		obj->max_len+=100;
-		obj->objs=(struct json_obj*)realloc(obj->objs,sizeof(struct json_obj)*obj->max_len);
-	}
-
-}
-
-struct json_obj * json_obj_add(struct json_obj *obj,char *name,char *data)
-{
-	struct json_obj *objs;
-	struct json_obj *obj_next;
-
-	json_obj_realloc(obj);
-
-	objs=(struct json_obj* )obj->objs;
-	obj_next=&(objs[obj->len]);
-	json_obj_init(obj_next);
-
-	strcpy(obj_next->name,name);
-	if (obj_next->data!=NULL)
-	{
-		printf("json memory error\n");
-		getchar();
-	}
-	obj_next->data_len=strlen(data)+10;
-	obj_next->data=malloc((obj_next->data_len)*sizeof(char));
-	strcpy(obj_next->data,data);
-
-	obj->len++;
-
-	return obj_next;
-}
-
 
 void gobble(struct json *j)
 {
@@ -111,6 +61,78 @@ void gobble(struct json *j)
 
 	j->pos=j->raw_data_len-1;
 	
+}
+
+int json_remove_last_item_from_path(struct json *j)
+{
+	int ff;
+	int removed=0;
+	for (ff=strlen(j->path)-1;ff>0;ff--)
+	{
+		if (j->path[ff]=='.')
+		{
+			j->path[ff]=0;
+			removed=1;
+			break;
+		}
+	}
+
+	if (removed==0)
+	{
+		strcpy(j->path,"");
+	}
+
+	return 0;
+}
+
+void skip_past_next_ket(struct json *j)
+{
+	int sum=1;
+	while(j->pos<j->raw_data_len)
+	{
+		if (j->raw_data[j->pos]=='}')	//If it is not white space
+		{
+			sum--;
+		}else
+		if (j->raw_data[j->pos]=='{')	//If it is not white space
+		{
+			sum++;
+		}
+
+		j->pos++;
+
+		if (sum==0)
+		{
+			return;
+		}
+
+	}
+
+	j->pos=j->raw_data_len-1;
+	
+}
+
+void skip_array(struct json *j)
+{
+	if (j->raw_data[j->pos]=='[')
+	{
+		while(j->pos<j->raw_data_len)
+		{
+			if (j->raw_data[j->pos]==']')
+			{
+				j->pos++;
+				if (j->pos>=j->raw_data_len)
+				{
+					j->pos=j->raw_data_len-1;
+				}
+				return;
+			}
+
+			j->pos++;
+		}	
+	}
+
+	return;
 }
 
 void get_name(char *out,struct json *j)
@@ -140,7 +162,7 @@ void get_name(char *out,struct json *j)
 				return;
 			}else
 			{
-				printf("error '%s'\n",out);
+				printf("Json error '%s'\n",out);
 				exit(0);
 			}
 		}
@@ -155,7 +177,7 @@ void get_name(char *out,struct json *j)
 	return;
 }
 
-void get_value(char *out,struct json *j, int debug)
+void get_value(char *out,struct json *j, int debug,int *value_type)
 {
 	int i=0;
 	strcpy(out,"");
@@ -166,6 +188,7 @@ void get_value(char *out,struct json *j, int debug)
 	{
 
 		//This is to allow } and , inside of quotes.
+
 		if (j->raw_data[j->pos]=='"')
 		{
 			if (j->pos>0)
@@ -186,15 +209,31 @@ void get_value(char *out,struct json *j, int debug)
 		}
 		
 		out[i]=j->raw_data[j->pos];
-		out[i+1]=0;
+
+		if (i>STR_MAX)
+		{
+			out[i]=0;
+			printf("json.c: The string is too long so far I have: '%s'.\n",out);
+			exit(0);
+		}
 		i++;
 
 		j->pos++;
 
 	}
+	out[i]=0;
 
 	//Now try to remove the first and last quote if they exist
-	remove_quotes(out);
+	//printf("%s\n",out);
+	//printf("'%s'\n",out);
+	if (remove_quotes(out)==0)
+	{
+		*value_type=JSON_STRING;
+	}else
+	{
+		*value_type=JSON_INT;
+	}
+	//getchar();
 	return;
 }
 
@@ -216,13 +255,18 @@ void print_next_10(char *out,struct json *j)
 
 int json_decode(struct json *j,struct json_obj *obj)
 {
+	//printf("'>>%d'\n",j->pos);
 	int i;
 	char token[100];
 	char out[STR_MAX];
 	int debug=FALSE;
+	int decoded=FALSE;
+	int guessed_value_type;
 	struct json_obj *next_obj;
+	struct json_obj *tmp_obj;
 	gobble(j);
-
+	//printf("OBJs: %p\n",obj->objs);
+	//printf("'>>%d %d'\n",j->pos,j->is_template);
 	if (j->raw_data[j->pos]=='{')
 	{
 		j->pos++;
@@ -230,51 +274,135 @@ int json_decode(struct json *j,struct json_obj *obj)
 	{
 		j->level++;
 	}
+	//int step=FALSE;
+	//printf("::%s\n",j->path);
 	for (i=0;i<1000;i++)
 	{
 		gobble(j);
 		get_name(token,j);
+		//printf("TOKEN:%s\n",token);
 		//if (strcmp(token,"html_link")==0)
 		//{
 		//	debug=TRUE;
 		//}
+		json_compat(j,token,NULL);		//compat layer
 
 		gobble(j);
+
+		skip_array(j);
+
 		if (j->raw_data[j->pos]=='{')
 		{
-
 			if (strlen(j->path)!=0)
 			{
 				strcat(j->path,".");
 			}
 			strcat(j->path,token);
-
+			
 			j->pos++;
 			gobble(j);
-			//printf("%s %s\n",token,j->path);
+			//printf("%s %s %c\n",token,j->path,j->raw_data[j->pos]);
 			//getchar();
-			next_obj=json_obj_add(obj,token,"");
+			//printf(">> %c 1:'%c' 2:'%c' 3:'%c'\n",j->raw_data[j->pos-2],j->raw_data[j->pos-1],j->raw_data[j->pos],j->raw_data[j->pos+1]);
+			//json_dump_buffer(j);
+			if (j->is_template==TRUE)
+			{
+				//printf("TEMPLATE %s\n",token);
+				next_obj=json_obj_find(obj,token);
+				//printf(">%s %p\n",token,obj);
+				//json_dump_obj(obj);
+
+				if (next_obj!=NULL)
+				{
+					json_decode(j,next_obj);
+				}else
+				{
+					decoded=FALSE;
+					//printf("%s %s\n",j->path,token);
+					if (obj->json_template!=NULL)
+					{
+						//json_compat(j,token,NULL);
+						if (strcmp_begin(token,"segment")==0)
+						{
+							if (strcmp_begin(token,"segments")!=0)
+							{
+								//printf("copy %s\n",token);
+								next_obj=json_obj_add(obj,token,"",JSON_NODE);
+								json_obj_all_free(next_obj);
+								json_obj_cpy(next_obj,obj->json_template);
+								strcpy(next_obj->name,token);
+								//json_dump_obj(next_obj);
+								json_decode(j,next_obj);
+								decoded=TRUE;
+
+							}
+						}
+					}
+
+					if (strcmp_begin(token,"bib_")==0)
+					{
+						next_obj=json_add_bib_item(j, obj, token);
+						json_decode(j,next_obj);
+						decoded=TRUE;
+					}
+
+					if (decoded==FALSE)
+					{
+						//printf("SKIP!\n");
+						skip_past_next_ket(j);
+						json_remove_last_item_from_path(j);
+					}
+				}
+
+			}else
+			{
+
+				next_obj=json_obj_add(obj,token,"",JSON_NODE);
+				//printf("DECODE\n");
+				json_decode(j,next_obj);
+			}
+			//json_dump_buffer(j);
 			//printf("I am about to decode another\n");
 			//getchar();
-			next_obj->node=TRUE;
-			json_decode(j,next_obj);
+			
 			//get_name(token,j);
 			strcpy(out,"none");
 		}else
 		{
 			//if (debug==TRUE)
 			//{
-			//	printf("token=|%s|\n",token);
+			//	printf("%s token=|%s|\n",j->path,token);
 			//}
-			get_value(out,j,debug);
+			get_value(out,j,debug,&guessed_value_type);
+			json_compat(j,token,out);
 
+			if (j->is_template==TRUE)
+			{
+				tmp_obj=json_obj_find(obj,token);
+				//printf("%s %p\n",token,tmp_obj);
+				//json_dump_obj(obj);
+				if (tmp_obj!=NULL)
+				{
+					if (tmp_obj->data_type==JSON_STRING_HEX)
+					{
+						hex_to_string(out);
+					}
+					json_set_data(tmp_obj,out);
+				}
+			}else
+			{
+				json_obj_add(obj,token,out,guessed_value_type);
+			}
 			//if (debug==TRUE)
 			//{
 			//	printf("value=|%s|\n",out);
 			//}
 			//print_next_10(out,j);
 			//getchar();
-			json_obj_add(obj,token,out);
+			//tmp_obj=
+			
+			//printf("%d\n",guessed_value_type);
+			//getchar();
 		}
 
 		if (j->level==-1)
@@ -288,6 +416,7 @@ int json_decode(struct json *j,struct json_obj *obj)
 		//	printf("%d: path=%s %s=|%s|\n",j->level,j->path,token,out);
 		//}
 		gobble(j);
+
 		if (j->raw_data[j->pos]==',')
 		{
 			j->pos++;
@@ -295,34 +424,18 @@ int json_decode(struct json *j,struct json_obj *obj)
 
 		if (j->raw_data[j->pos]=='}')
 		{
-
+			//printf("yes\n");
 			j->pos++;
 			if (j->raw_data[j->pos]==',')
 			{
 				j->pos++;
 			}
 			j->level--;
-			int ff;
-			int removed=0;
-			for (ff=strlen(j->path)-1;ff>0;ff--)
-			{
-				if (j->path[ff]=='.')
-				{
-					j->path[ff]=0;
-					removed=1;
-					break;
-				}
-			}
-
-			if (removed==0)
-			{
-				strcpy(j->path,"");
-			}
+			json_remove_last_item_from_path(j);
 			//printf("exit here!!!!!!!!!\n");
 
 			return 0;
 		}
-
 
 	}
 	return 0;
@@ -337,27 +450,28 @@ int json_load_from_path(struct simulation *sim,struct json *j,char *path,char *f
 	return json_load(sim,j,full_file_name);
 }
 
-void json_from_buffer(struct simulation *sim,struct json *j,char *buf,int len)
-{
-	j->raw_data_len = len;
-	j->raw_data = malloc(((j->raw_data_len) + 1)*sizeof(char));
-	memcpy(j->raw_data, buf, j->raw_data_len);
-	j->raw_data[j->raw_data_len]=0;
-
-	json_decode(j,&(j->obj));
-}
-
 int json_load(struct simulation *sim,struct json *j,char *full_file_name)
 {
 	int ret;
 	strcpy(j->file_path,full_file_name);
+	if (strcmp_end(full_file_name,".bib")==0)
+	{
+		j->bib_file=TRUE;
+	}else
+	if (strcmp_end(full_file_name,".yml")==0)
+	{
+		j->yml_file=TRUE;
+	}
+
 	//printf("%s\n",full_file_name);
+	//getchar();
 	if (isfile(full_file_name)==0)
 	{
 		ret=g_read_file_to_buffer(&(j->raw_data), &j->raw_data_len,full_file_name,-1);
 
 		if (ret!=0)
 		{
+			j->pos=0;
 			return ret;
 		}
 
@@ -368,19 +482,32 @@ int json_load(struct simulation *sim,struct json *j,char *full_file_name)
 			log_write_file_access(sim,full_file_name,'r');
 		}
 
-		json_decode(j,&(j->obj));
+		if (j->bib_file==TRUE)
+		{
+			json_bib_decode(j,&(j->obj));
+		}else
+		if (j->yml_file==TRUE)
+		{
+			json_yml_decode(j,&(j->obj),0);
+		}else
+		{
+			json_decode(j,&(j->obj));
+		}
+
+		free_1d((void **)&(j->raw_data));
 		//json_dump_obj(&(j->obj));
 		//getchar();
+		j->pos=0;
 		return 0;
 
 	}
 	else
 	{	
-		char zip_path[1000];
-		char file_path[1000];
-		char file_name[1000];
+		char zip_path[OGHMA_PATH_MAX];
+		char file_path[OGHMA_PATH_MAX];
+		char file_name[OGHMA_PATH_MAX];
 
-		get_dir_name_from_path(file_path,full_file_name);
+		get_dir_name(file_path,full_file_name);
 		get_file_name_from_path(file_name,full_file_name,1000);
 
 		join_path(2,zip_path,file_path,"sim.oghma");
@@ -415,17 +542,19 @@ int json_load(struct simulation *sim,struct json *j,char *full_file_name)
 
 				if (f==NULL)
 				{
-					free(j->raw_data);
+					free_1d((void **)&(j->raw_data));
 					zip_close(z);
+					j->pos=0;
 					return -1;
 				}
 
 				ret=zip_fread(f, j->raw_data, st.size);
 				if (ret==-1)
 				{
-					free(j->raw_data);
+					free_1d((void **)&(j->raw_data));
 					zip_fclose(f);
 					zip_close(z);
+					j->pos=0;
 					return -1;
 				}
 
@@ -435,13 +564,26 @@ int json_load(struct simulation *sim,struct json *j,char *full_file_name)
 			{
 
 				zip_close(z);
+				j->pos=0;
 			 	return -1;
 			}
 
 			zip_close(z);
 
-			json_decode(j,&(j->obj));
+			if (j->bib_file==TRUE)
+			{
+				json_bib_decode(j,&(j->obj));
+			}else
+			if (j->yml_file==TRUE)
+			{
+				json_yml_decode(j,&(j->obj),0);
+			}else
+			{
+				json_decode(j,&(j->obj));
+			}
 
+			free_1d((void **)&(j->raw_data));
+			j->pos=0;
 			return 0;
 		}
 

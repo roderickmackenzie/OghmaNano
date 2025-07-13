@@ -1,0 +1,11 @@
+{
+	"item_type":"morphology",
+	"icon":"morphology1",
+	"status":"public",
+	"config": {
+		"morphology_nz":10,
+		"morphology_nx":10,
+		"morphology_ny":10,
+		"morphology_type":"test_box"
+		}
+}

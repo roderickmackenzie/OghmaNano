@@ -28,8 +28,6 @@
 #  A window to define the math fitting rules 
 #
 
-from token_lib import tokens
-
 from icon_lib import icon_get
 
 import i18n
@@ -42,32 +40,28 @@ from PySide2.QtGui import QPainter,QIcon
 from error_dlg import error_dlg
 
 from select_param import select_param
-from json_root import json_root
-from json_fit import json_fit_rules_line
-from g_tab2 import g_tab2
+from g_tab2_bin import g_tab2_bin
+from json_c import json_tree_c
 
 class fit_rules(QWidget):
 
 	def __init__(self):
 		QWidget.__init__(self)
-		data=json_root()
-		self.data=data.fits.rules
-
+		self.bin=json_tree_c()
 		self.vbox=QVBoxLayout()
 
 		toolbar=QToolBar()
 		toolbar.setIconSize(QSize(32, 32))
 
-
 		self.vbox.addWidget(toolbar)
 
 		#tab
-		self.tab2 = g_tab2(toolbar=toolbar)
+		self.tab2 = g_tab2_bin(toolbar=toolbar)
 		self.tab2.set_tokens(["fit_rule_enabled","human_x","human_y","function","json_x","json_y"])
 		self.tab2.set_labels([_("Enabled"),_("x"), _("y"), _("Function"), _("JSON x"), _("JSON y")])
 
 
-		self.tab2.json_search_path="json_root().fits.rules.segments"
+		self.tab2.json_root_path="fits.rules"
 		self.tab2.fixup_new_row=self.fixup_new_row
 		self.tab2.setColumnWidth(0, 100)
 		self.tab2.setColumnWidth(1, 300)
@@ -75,7 +69,6 @@ class fit_rules(QWidget):
 		self.tab2.setColumnWidth(3, 100)
 		self.tab2.setColumnWidth(4, 20)
 		self.tab2.setColumnWidth(5, 20)
-		self.tab2.base_obj=json_fit_rules_line()
 		self.tab2.populate()
 
 		self.tab2.changed.connect(self.callback_save)
@@ -99,7 +92,7 @@ class fit_rules(QWidget):
 		self.setLayout(self.vbox)
 
 	def callback_save(self):
-		json_root().save()
+		self.bin.save()
 
 	def callback_show_list_a(self):
 		self.select_param_window_a.show()

@@ -67,7 +67,10 @@ def global_object_run(name):
 	for i in range(0,len(global_objects)):
 		if global_objects[i].name==name:
 			blocked=True
-			global_objects[i].object_pointer()
+			try:
+				global_objects[i].object_pointer()
+			except:
+				pass
 			blocked=False
 			return
 

@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,9 +29,10 @@
 
 #ifndef h_light
 #define h_light
+#include <g_io.h>
 #include <complex.h>
 #include "advmath.h"
-#include "i.h"
+#include <math_xy.h>
 #include <sim_struct.h>
 #include <epitaxy_struct.h>
 #include <ray.h>
@@ -47,9 +46,6 @@ struct light_sources
 {
 	int nlight_sources;
 	struct light_src *light_sources;
-	long double lstart;
-	long double lstop;
-	int llen;
 
 	//for EQE
 	int use_flat_sepctrum;			
@@ -58,8 +54,12 @@ struct light_sources
 struct light_src
 {
 	int nspectra;
-	struct math_xy spectra_tot;
-	struct math_xy spectra_tot_no_filter;
+	struct math_xy spectra_tot;				//W*m-2
+	struct math_xy spectra_tot_no_filter;	//W*m-2
+
+	struct math_xy spectra_tot_photons;				//W*m-2
+	struct math_xy spectra_tot_no_filter_photons;	//W*m-2
+
 	struct math_xy *spectra;
 	double light_multiplyer[20];
 	//for EQE
@@ -68,55 +68,62 @@ struct light_src
 
 	//filter
 	int filter_enabled;
-	char filter_path[PATH_MAX];
+	char filter_path[OGHMA_PATH_MAX];
 	struct math_xy filter_read;
-	long double filter_dB;
+	double filter_dB;
 	int filter_invert;
-	long double local_ground_view_factor;
+	double local_ground_view_factor;
 
 	//external interface
-	long double n;
+	double n;
 	int external_interface_enabled;
 	char id[100];
-	long double lstart;
-	long double lstop;
 
 	//config
 	char illuminate_from[20];
-	long double x0;
-	long double y0;
-	long double z0;
+	double x0;
+	double y0;
+	double z0;
 
 	int theta_steps;
-	long double theta_start;
-	long double theta_stop;
+	double theta_start;
+	double theta_stop;
 
 	int phi_steps;
-	long double phi_start;
-	long double phi_stop;
+	double phi_start;
+	double phi_stop;
 
+	double dx_padding;
+	double dy_padding;
+	double dz_padding;
 
+	double dx;
+	double dy;
+	double dz;
+
+	int nx;
+	int ny;
+	int nz;
+
+	double rotate_x;
+	double rotate_y;
+
+	char light_profile[STR_MAX];
+	struct triangles light_profile_tri;
 };
 
 struct light
 {
 	//output files
-	char dump_dir[PATH_MAX];
-	struct dimensions dim;
+	char dump_dir[OGHMA_PATH_MAX];
 
-	//long double zxyl
+	//double zxyl
 	float ****Ep;
 	float ****Epz;
 	float ****En;
 	float ****Enz;
-	float ****n;
-	float ****alpha0;
-	float ****alpha;
 	double ****photons;
 	double ****photons_asb;
-	//float ****pointing_vector;
-	//float ****E_tot_r;
-	//float ****E_tot_i;
 	float ****H;
 
 	//complex zxyl
@@ -124,19 +131,18 @@ struct light
 	float complex ****r;
 	float complex ****nbar;
 
-	//zxy_p_object
-	struct object ****obj;
-
 	//3D arrrays
-	long double ***Gn;
-	long double ***Gp;
-	long double ***Htot;
-	long double ***photons_tot;
+	double ***Gn;
+	double ***Gp;
+	double ***Htot;
+	double ***photons_tot;
 
 
 	//1D arrays
-	long double *reflect;
-	long double *transmit;
+	double *reflect;
+	double *transmit;
+	double reflect_power_den;
+	double transmit_power_den;
 
 	//for EQE
 	int use_flat_sepctrum;			
@@ -145,20 +151,20 @@ struct light
 	struct light_src light_src_y0;
 	struct light_src light_src_y1;
 
-	long double *sun_y0;
-	long double *sun_y1;
-	long double *sun_photons_y0;
-	long double *sun_photons_y1;
+	double *sun_y0;
+	double *sun_y1;
+	double *sun_photons_y0;
+	double *sun_photons_y1;
 
 	//with no filter
-	long double *sun_y0_no_filter;
-	long double *sun_y1_no_filter;
-	long double *sun_photons_y0_no_filter;
-	long double *sun_photons_y1_no_filter;
+	double *sun_y0_no_filter;
+	double *sun_y1_no_filter;
+	double *sun_photons_y0_no_filter;
+	double *sun_photons_y1_no_filter;
 
 	//electricl field
-	long double *sun_E_y0;
-	long double *sun_E_y1;
+	double *sun_E_y0;
+	double *sun_E_y1;
 	char suns_spectrum_file[200];
 	char light_file_generation[300];
 
@@ -168,61 +174,49 @@ struct light
 	struct matrix_solver_memory *msm;
 
 	//laser
-	long double laser_wavelength;
+	double laser_wavelength;
 	int laser_pos;
-	long double ND;
-	long double spotx;
-	long double spoty;
-	long double pulseJ;
-	long double pulse_width;
+	double ND;
+	double spotx;
+	double spoty;
+	double pulseJ;
+	double pulse_width;
 
-	//long double device_ylen;
-	long double Psun;
-	long double laser_eff;
-	long double simplephotondensity;
-	long double simple_alpha;
-	long double Dphotoneff;
+	double Psun;
+	int incoherent_wavelengths;
+	double laser_eff;
+	double Dphotoneff;
 
 	//Dll section
 	void (*fn_init)();
 	void (*fn_solve_and_update)();
 	int (*fn_solve_lam_slice)();
-	long double (*fn_cal_photon_density)();
+	double (*fn_cal_photon_density)();
 	void (*light_ver)();
 	void *lib_handle;
 
 	//config
-	long double lstart;
-	long double lstop;
 	char mode[20];
-	long double electron_eff;
-	long double hole_eff;
 	int force_update;
-	int light_wavelength_auto_mesh;
-	long double *extract_eff;
+	double *extract_eff;
 
 	//Config values
-	int align_mesh;
 	int disable_transfer_to_electrical_mesh;
 	int disable_cal_photon_density;
-	long double light_file_generation_shift;
+	double light_file_generation_shift;
+	int calculate_reflection;
 
 	int print_wavlengths;
 
 	int finished_solveing;
 
-	long double last_Psun;
-	long double last_laser_eff;
-	long double last_wavelength_laser;
+	double last_Psun;
+	double last_laser_eff;
+	double last_wavelength_laser;
 
-
-	struct epitaxy *epi;
-
-	char light_profile[200];
-	struct triangles light_profile_tri;
-
-	char snapshot_path[PATH_MAX];
+	char snapshot_path[OGHMA_PATH_MAX];
 	int dump_verbosity;
+	int mesh_eq_device_layers;
 };
 
 #endif

@@ -38,21 +38,17 @@ from PySide2.QtWidgets import QTabWidget
 
 class tab_probes(QTabWidget):
 
-
-	def __init__(self,data):
+	def __init__(self,json_path,uid):
 		QTabWidget.__init__(self)
 		css_apply(self ,"tab_default.css")
-		self.data=data
+		self.json_path=json_path
+		self.uid=uid
 
 		self.setMovable(True)
-		tab=tab_probes_probes(self.data.id)
+		print(uid)
+		tab=tab_probes_probes(uid)
 		self.addTab(tab,_("Probes"))
 
-	def rename(self,tab_name):
-		self.data.name=tab_name
-		json_root().save()
 
-	def get_json_obj(self):
-		return self.data
 
 

@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -24,20 +22,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
 // SOFTWARE.
 // 
+
 /** @file solver_interface.h
 @brief an interface load and run sparse solvers from various dlls.
 */
 
 #ifndef h_solver_interface
 #define h_solver_interface
+#include <g_io.h>
 #include <sim_struct.h>
 #include <device.h>
-void solver_init(struct simulation *sim,char *solver_name);
-void solver_get_mem(struct simulation *sim,struct matrix_solver_memory *msm);
+int matrix_solver_dll_init(struct matrix_solver_dll *in);
+void matrix_solver_dll_load(struct simulation *sim,struct matrix_solver_dll *in);
+void matrix_solver_dll_get_mem(struct simulation *sim,struct matrix_solver_dll *in,struct matrix_solver_memory *msm);
 void dump_matrix(struct simulation *sim,struct device *in);
-void solver_free(struct simulation *sim,struct matrix_solver_memory *msm);
-void solver_unload_dll(struct simulation *sim);
+void matrix_solver_dll_free(struct simulation *sim,struct matrix_solver_dll *in,struct matrix_solver_memory *msm);
+void matrix_solver_dll_unload(struct simulation *sim,struct matrix_solver_dll *in);
 
+//These complex call should be merged witht the above
 void complex_solver_init(struct simulation *sim,char *solver_name);
 void complex_solver_get_mem(struct simulation *sim,struct matrix_solver_memory *msm);
 void complex_solver_free(struct simulation *sim,struct matrix_solver_memory *msm);

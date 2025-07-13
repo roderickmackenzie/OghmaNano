@@ -33,14 +33,14 @@ import os
 from math import *
 
 from dat_file import dat_file
-from cal_path import get_atmosphere_path
 from bytes2str import bytes2str
 import ctypes
 from cal_path import sim_paths
+from json_c import json_tree_c
 
 class spctral2():
 	def __init__(self):
-
+		self.bin=json_tree_c()
 		self.day=80		#winter equinox
 		self.lat=51		#london
 		self.hour=12
@@ -54,7 +54,7 @@ class spctral2():
 		self.lib=sim_paths.get_dll_py()
 		self.lib.zenith.restype = ctypes.c_double
 
-		file_name = os.path.join(get_atmosphere_path(), "spctral2", "etr.inp")
+		file_name = os.path.join(sim_paths.get_atmosphere_path(), "spctral2", "etr.inp")
 		#print(file_name)
 		self.etr=dat_file()
 		self.etr.y_mul=1e9
@@ -64,33 +64,33 @@ class spctral2():
 
 		self.etr.load(file_name)
 
-		file_name = os.path.join(get_atmosphere_path(), "spctral2", "h2o.inp")
+		file_name = os.path.join(sim_paths.get_atmosphere_path(), "spctral2", "h2o.inp")
 		self.aw=dat_file()
 		self.aw.load(file_name)
 
-		file_name = os.path.join(get_atmosphere_path(), "spctral2", "o3.inp")
+		file_name = os.path.join(sim_paths.get_atmosphere_path(), "spctral2", "o3.inp")
 		self.ao=dat_file()
 		self.ao.load(file_name)
 
-		file_name = os.path.join(get_atmosphere_path(), "spctral2", "uni_abs.inp")
+		file_name = os.path.join(sim_paths.get_atmosphere_path(), "spctral2", "uni_abs.inp")
 		self.au=dat_file()
 		self.au.load(file_name)
 
-		file_name = os.path.join(get_atmosphere_path(), "spctral2", "no2.inp")
+		file_name = os.path.join(sim_paths.get_atmosphere_path(), "spctral2", "no2.inp")
 		self.no2_data=dat_file()
 		self.no2_data.load(file_name)
 
-	def calc(self,json_data):
-		self.lat=json_data.spctral2_lat
+	def calc(self):
+		self.lat=self.bin.get_token_value("optical.spctral2","spctral2_lat")
 
-		self.day=json_data.spctral2_day		#80 winter equinox
-		self.hour=json_data.spctral2_hour
-		self.min=json_data.spctral2_minute
+		self.day=self.bin.get_token_value("optical.spctral2","spctral2_day")		#80 winter equinox
+		self.hour=self.bin.get_token_value("optical.spctral2","spctral2_hour")
+		self.min=self.bin.get_token_value("optical.spctral2","spctral2_minute")
 
-		self.P=json_data.spctral2_preasure
-		self.aod=json_data.spctral2_aod
-		self.W=json_data.spctral2_water	#precip water
-		self.No2_un=json_data.spctral2_no2
+		self.P=self.bin.get_token_value("optical.spctral2","spctral2_preasure")
+		self.aod=self.bin.get_token_value("optical.spctral2","spctral2_aod")
+		self.W=self.bin.get_token_value("optical.spctral2","spctral2_water")	#precip water
+		self.No2_un=self.bin.get_token_value("optical.spctral2","spctral2_no2")
 
 		self.debug=True
 		self.cal_earth_sun_distance()

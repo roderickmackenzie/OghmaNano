@@ -37,41 +37,30 @@ from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,Q
 from PySide2.QtGui import QPainter,QIcon
 from tab import tab_class
 from css import css_apply
+from global_objects import global_object_run
 from optics_sources_tab import optics_light_src
 from optics_filters_tab import optics_filters_tab
-from json_root import json_root
-from global_objects import global_object_run
 
 class tab_light_src(QTabWidget):
 
-	def get_json_obj(self):
-		data=json_root()
-		data_obj=data.optical.light_sources.lights.find_object_by_id(self.uid)
-		return data_obj
+	def __init__(self,json_path,uid, json_postfix=None):
+		QTabWidget.__init__(self)
+		css_apply(self ,"tab_default.css")
+
+		self.setMovable(True)
+		self.light_src=optics_light_src("optical.light_sources.lights",uid,_("Light source (y0)"))
+		self.addTab(self.light_src,_("Light source"))
+
+		self.light_filters=optics_filters_tab("optical.light_sources.lights",uid,_("Filters (y0)"))
+		self.addTab(self.light_filters,_("Filters"))
+
+		self.configure=tab_class(json_path,uid=uid, json_postfix=json_postfix)
+		self.addTab(self.configure,_("Configure"))
+		self.configure.tab.changed.connect(self.callback_configure_changed)
 
 	def update(self):
 		self.light_src.update()
 		self.light_filters.update()
-
-	def __init__(self,data):
-		QTabWidget.__init__(self)
-		css_apply(self ,"tab_default.css")
-		self.uid=data.id
-
-		self.setMovable(True)
-		self.light_src=optics_light_src("json_root().optical.light_sources.lights",self.uid,_("Light source (y0)"))
-		self.addTab(self.light_src,_("Light source"))
-
-		self.light_filters=optics_filters_tab("json_root().optical.light_sources.lights",self.uid,_("Filters (y0)"))
-		self.addTab(self.light_filters,_("Filters"))
-
-		self.configure=tab_class(self.get_json_obj())
-		self.addTab(self.configure,_("Configure"))
-		self.configure.tab.changed.connect(self.callback_configure_changed)
-
-	def rename(self,tab_name):
-		self.get_json_obj().name=tab_name
-		json_root().save()
 
 	def callback_configure_changed(self,item):
 		if item=="light_illuminate_from":

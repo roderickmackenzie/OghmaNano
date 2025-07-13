@@ -39,123 +39,32 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidgetItem,QAbstractItemView
 from PySide2.QtGui import QPainter,QIcon
 
-#pyqtgraph
-from pyqtgraph import PlotWidget, plot
-from pyqtgraph.graphicsItems.ViewBox import axisCtrlTemplate_pyside2
-from pyqtgraph.graphicsItems.PlotItem import plotConfigTemplate_pyside2
-from pyqtgraph.imageview import ImageViewTemplate_pyside2
-import pyqtgraph as pg
-
 from open_save_dlg import save_as_image
 from QWidgetSavePos import QWidgetSavePos
 from cal_path import sim_paths
 
-from epitaxy import epitaxy_get_epi
 from error_dlg import error_dlg
 
 #from file_watch import get_watch
-from g_tab2 import g_tab2
-from epitaxy import get_epi
-from json_root import json_root
+from g_tab2_bin import g_tab2_bin
 from help import QAction_help
-import numpy as np
+from mesh_math import mesh_math
+from json_c import json_tree_c
+import ctypes
+from bytes2str import str2bytes
+from graph import graph_widget
+from dat_file import dat_file
 
 class doping_window(QWidgetSavePos):
 
-
-	def update(self):
-		self.build_mesh()
-		self.draw_graph()
-
-
-	def draw_graph(self):
-		self.canvas.clear()
-
-		plot0=self.canvas
-		plot0.addLegend()
-		plot0.setLogMode(False, True)
-		plot0.setLabel('left', _("Charge denisty (m^{-3})"), color='k')
-		plot0.setLabel('bottom','Position (nm)', color='k')
-		plot0.getAxis('left').enableAutoSIPrefix(False)
-		plot0.showGrid(x = True, y = True, alpha = 1.0)
-
-		plot0.setRange(xRange=[min(self.x_pos),max(self.x_pos)])
-		
-		x_plot=[]
-		for i in range(0,len(self.x_pos)):
-			x_plot.append(self.x_pos[i]*1e9)
-
-		#self.ax1.set_yscale('symlog')
-		x = np.array(x_plot)
-		if self.Na_enabled==True:
-			pen = pg.mkPen((255, 0, 0), width=3)
-			plot0.plot(x=self.x_pos_Na, y=self.doping_Na, pen=pen, name=_("Na"), symbol='o', symbolSize=8, symbolBrush =(255, 0, 0))
-
-		if self.Nd_enabled==True:
-			pen = pg.mkPen(( 0, 255, 0), width=3)
-			plot0.plot(x=self.x_pos_Nd, y=self.doping_Nd, pen=pen, name=_("Nd"), symbol='o', symbolSize=8, symbolBrush =(0, 255, 0))
-
-		if self.nion_enabled==True:
-			pen = pg.mkPen(( 0, 0, 255), width=3)
-			plot0.plot(x=self.x_pos_ions, y=self.ions, pen=pen, name=_("Ions"), symbol='o', symbolSize=8, symbolBrush =(0, 0, 255))
-
-
-	def project(self,token0,token1):
-		x_out=[]
-		y_out=[]
-		data=json_root()
-		x,y =	data.electrical_solver.mesh.mesh_y.calculate_points()
-		#print(x)
-		device_start=data.epi.get_device_start(data)
-		try:
-			layer=self.epi.get_next_dos_layer(-1)
-
-			for i in range(0,len(x)):
-				if x[i]+device_start>self.epi.layers[layer].end:
-					layer=layer+1
-
-				Nad0=getattr(self.epi.layers[layer].shape_dos,token0)
-				Nad1=getattr(self.epi.layers[layer].shape_dos,token1)
-
-				dy=self.epi.layers[layer].dy
-				y[i]=Nad0+(Nad1-Nad0)*(x[i]-self.epi.layers[layer].start+device_start)/dy
-				if y[i]>0.0:
-					x_out.append(x[i])
-					y_out.append(y[i])
-		except:
-			pass
-		return x_out,y_out
-
-	def build_mesh(self):
-
-		self.x_pos_Na,self.doping_Na=self.project("Na0","Na1")
-		self.x_pos_Nd,self.doping_Nd=self.project("Nd0","Nd1")
-		self.x_pos_ions,self.ions=self.project("ion_density","ion_density")
-		self.x_pos,y =	json_root().electrical_solver.mesh.mesh_y.calculate_points()
-
-		self.nion_enabled=False
-		self.Nd_enabled=False
-		self.Na_enabled=False
-
-		if (len(self.x_pos_ions)>0):
-			self.nion_enabled=True
-
-		if (len(self.x_pos_Na)>0):
-			self.Na_enabled=True
-
-		if (len(self.x_pos_Nd)>0):
-			self.Nd_enabled=True
-
-		return True
-
-
 	def __init__(self):
 		QWidgetSavePos.__init__(self,"doping")
+		self.bin=json_tree_c()
 		self.setMinimumSize(1000, 600)
 		self.setWindowIcon(icon_get("doping"))
 		self.setWindowTitle2(_("Doping/Mobilie ion profile editor"))
 
-		self.epi=get_epi()
+		self.mesh_y=mesh_math("electrical_solver.mesh.mesh_y")
 
 		self.main_vbox=QVBoxLayout()
 
@@ -171,23 +80,24 @@ class doping_window(QWidgetSavePos):
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		toolbar.addWidget(spacer)
 
-
 		self.help = QAction_help()
 		toolbar.addAction(self.help)
 
 		self.main_vbox.addWidget(toolbar)
 
-		pg.setConfigOption('background', 'w')
-		pg.setConfigOption('foreground', 'k')
-		self.canvas = pg.PlotWidget()
-		self.canvas.getPlotItem().setMouseEnabled(x=False, y=False)
-		self.main_vbox.addWidget(self.canvas)
+		self.canvas2 = graph_widget()
+		self.main_vbox.addWidget(self.canvas2)
+		self.canvas2.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+		self.canvas2.setMinimumSize(400, 400)
+		self.Na=dat_file()
+		self.Nd=dat_file()
+		self.nion=dat_file()
 
 		#tab2
-		self.tab2 = g_tab2()
+		self.tab2 = g_tab2_bin()
 		self.tab2.set_tokens(["name","shape_dos.Na0","shape_dos.Na1","shape_dos.Nd0","shape_dos.Nd1","shape_dos.ion_density","shape_dos.ion_mobility"])
 		self.tab2.set_labels([_("Layer"),"Na0 (m^{-3})","Na1 (m^{-3})","Nd0 (m^{-3})","Nd1 (m^{-3})","Nion(+) (m^{-3})","Nion mu (m2 V^{-1}s^{-1})"])
-		self.tab2.json_search_path="json_root().epi.layers"
+		self.tab2.json_root_path="epitaxy"
 		self.tab2.setColumnWidth(1, 120)
 		self.tab2.setColumnWidth(2, 120)
 		self.tab2.setColumnWidth(3, 120)
@@ -205,12 +115,46 @@ class doping_window(QWidgetSavePos):
 
 		self.setLayout(self.main_vbox)
 
+
+
+	def update(self):
+		self.draw_graph()
+
+
+	def draw_graph(self):
+		self.nion_enabled=True
+		self.Nd_enabled=True
+		self.Na_enabled=True
+
+		if self.Na_enabled==True:
+			self.bin.lib.ui_project_val_to_mesh(ctypes.byref(self.Na), ctypes.c_char_p(str2bytes("shape_dos")), ctypes.c_char_p(str2bytes("Na0")), ctypes.c_char_p(str2bytes("Na1")), ctypes.byref(self.bin))
+
+		if self.Nd_enabled==True:
+			self.bin.lib.ui_project_val_to_mesh(ctypes.byref(self.Nd), ctypes.c_char_p(str2bytes("shape_dos")), ctypes.c_char_p(str2bytes("Nd0")), ctypes.c_char_p(str2bytes("Nd1")), ctypes.byref(self.bin))
+
+		if self.nion_enabled==True:
+			self.bin.lib.ui_project_val_to_mesh(ctypes.byref(self.nion), ctypes.c_char_p(str2bytes("shape_dos")), ctypes.c_char_p(str2bytes("ion_density")), ctypes.c_char_p(str2bytes("ion_density")), ctypes.byref(self.bin))
+
+		self.Nd.data_label=b"Charge density"
+		self.Nd.data_units=b"m^{-3}"
+
+		self.Na.data_label=b"Charge density"
+		self.Na.data_units=b"m^{-3}"
+
+		self.nion.data_label=b"Charge density"
+		self.nion.data_units=b"m^{-3}"
+		self.canvas2.graph.show_key=True
+		self.canvas2.load([self.Nd,self.Na,self.nion])
+		self.canvas2.update()
+
+
 	def callback_save(self):
 		self.update()
-		json_root().save()
+		self.bin.save()
 
-	def check_enabled(self,s,token):
-		if s.shape_dos.enabled==False:
+	def check_enabled(self,json_path,token):
+		enabled=self.bin.get_token_value(json_path+".shape_dos","enabled")
+		if enabled==False:
 			return False
 		if token=="name":
 			return False

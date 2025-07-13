@@ -47,21 +47,23 @@ from cal_path import sim_paths
 from global_objects import global_object_register
 from global_objects import global_object_run
 from global_objects import global_object_get
-from json_local_root import json_local_root
+from json_c import json_local_root
 from dat_file import dat_file
-from json_root import json_root
 import ctypes
+from json_c import json_tree_c
+
 open_gl_working=False
 
 class display_widget(QWidget):
 
 	def __init__(self):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.complex_display=False
 
 		self.hbox=QVBoxLayout()
 		data=json_local_root()
-		enable_3d=data.gui_config.enable_opengl
+		enable_3d=data.get_token_value("gui_config","enable_opengl")
 		
 		#if enable_3d==True:
 		self.display=glWidget(self)
@@ -77,7 +79,6 @@ class display_widget(QWidget):
 		global_object_register("display_set_selected_obj",self.set_selected_obj)
 		global_object_register("gl_force_redraw",self.display.force_redraw)
 		global_object_register("gl_force_redraw_hard",self.display.force_redraw_hard)
-		global_object_register("gl_do_draw",self.display.do_draw)
 
 		self.timer=QTimer()
 		self.timer.setSingleShot(True)
@@ -87,14 +88,10 @@ class display_widget(QWidget):
 	def fx_box_changed(self):
 		fx_box=global_object_get("main_fx_box")
 		files=fx_box.get_file_name()
-		self.display.ray_data=[]
-		for f in files:
-			d=dat_file()
-			if d.load(f)==True:
-				self.display.ray_data.append(d)
+		self.display.gl_graph_load_files(files)
 
-		json_root().optical.ray.rays_display=fx_box.get_english_text()
-		json_root().save()
+		self.bin.set_token_value("optical.ray","rays_display",fx_box.get_english_text())
+		self.bin.save()
 		self.display.force_redraw()
 
 	def set_selected_obj(self,obj_id):
@@ -108,22 +105,14 @@ class display_widget(QWidget):
 	def recalculate(self):
 		global_object_get("main_fx_box").update()
 		files=global_object_get("main_fx_box").get_file_name()
-		self.display.ray_data=[]
-		for f in files:
-			d=dat_file()
-			if d.load(f)==True:
-				self.display.ray_data.append(d)
+		self.display.gl_graph_load_files(files)
 		self.display.force_redraw()
 
 		
 	def update(self):
 		files=global_object_get("main_fx_box").get_file_name()
-		self.display.ray_data=[]
-		for f in files:
-			d=dat_file()
-			if d.load(f)==True:
-				self.display.ray_data.append(d)
-		self.display.rebuild_scene()
+		self.display.gl_graph_load_files(files)
+		self.display.force_redraw()
 
 	def callback_check_opengl_working(self):
 		if self.display.failed==True:

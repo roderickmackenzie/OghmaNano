@@ -30,14 +30,14 @@
 #qt
 from gQtCore import QSize, Qt,QFile,QIODevice
 from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QPushButton,QToolBar, QLineEdit, QToolButton, QTextEdit, QAction, QTabWidget, QMenu
-from json_local_root import json_local_root
+from json_c import json_local_root
 
 class ribbon_page(QToolBar):
 
 	def __init__(self):
 		QToolBar.__init__(self)
-
-		self.xy_size=json_local_root().gui_config.toolbar_icon_size
+		toolbar_icon_size=json_local_root().get_token_value("gui_config","toolbar_icon_size")
+		self.xy_size=toolbar_icon_size
 		if self.xy_size>24:
 			self.setToolButtonStyle( Qt.ToolButtonTextUnderIcon)
 		else:
@@ -46,9 +46,35 @@ class ribbon_page(QToolBar):
 		self.setIconSize(QSize(self.xy_size, self.xy_size))
 		self.setStyleSheet("QToolButton { padding-left: 0px; padding-right: 0px; padding-top: 0px;padding-bottom: 0px; margin: 0;} QToolBar { padding: 0; }")
 
+	def is_qobject_valid(obj):
+		try:
+		    return obj is not None and obj.parent() is not None
+		except RuntimeError:
+		    return False
+
 	def show_window(self,win):
 		win.show()
+		win.setAttribute(Qt.WA_DeleteOnClose, True)
 		win.setWindowState(Qt.WindowNoState)
+
+	def is_valid(self, val):
+		if val is None:
+		    return False
+		try:
+		    # This will raise RuntimeError if the underlying C++ object has been deleted
+		    val.metaObject()
+		    return True
+		except RuntimeError:
+		    return False
+
+	def close_window(self, val):
+		if val is not None:
+		    try:
+		        val.metaObject()  # Check if still valid
+		        val.close()
+		    except RuntimeError:
+		        pass  # Object has been deleted; nothing to do
+
 
 class ribbon_page2(QWidget):
 	def __init__(self):
@@ -69,5 +95,15 @@ class ribbon_page2(QWidget):
 		return t
 
 	def show_window(self,win):
-		win.show()
 		win.setWindowState(Qt.WindowNoState)
+		win.setAttribute(Qt.WA_DeleteOnClose, True)
+		win.show()
+
+
+	def close_window(self, val):
+		if val is not None:
+		    try:
+		        val.metaObject()  # Check if still valid
+		        val.close()
+		    except RuntimeError:
+		        pass

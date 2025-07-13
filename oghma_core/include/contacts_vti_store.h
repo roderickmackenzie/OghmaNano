@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -30,22 +28,17 @@
 */
 #ifndef contacts_vti_store_h
 #define contacts_vti_store_h
-#include "i.h"
-
-
-struct contacts_vti_store
-{
-//	struct math_xy x[10];
-//	struct math_xy v[10];
-	struct math_xy time_J[10];
-	struct math_xy time_v[10];
-	struct math_xy J[10];
-	struct math_xy J_external[10];
-};
+#include <device.h>
+#include <sim_struct.h>
+#include <contacts_vti_store_struct.h>
+#include <fom.h>
 
 void dump_contacts_init(struct simulation *sim,struct device *in,struct contacts_vti_store *store);
-void dump_contacts_save(struct simulation *sim,struct device *in,struct contacts_vti_store *store);
+void dump_contacts_malloc(struct simulation *sim,struct device *in,struct contacts_vti_store *store);
+void contacts_dump(struct simulation *sim,struct device *in,struct contacts_vti_store *store,int force);
 void dump_contacts_add_data(struct simulation *sim,struct device *in,struct contacts_vti_store *store);
 void dump_contacts_free(struct simulation *sim,struct device *in,struct contacts_vti_store *store);
-
+void contacts_cal_external_jv(struct simulation *sim,struct device *dev,struct contacts_vti_store *store);
+void contacts_dump_stats(struct device *dev,struct fom *fom,struct contacts_vti_store *store);
+void contacts_dump_calculated_curves(struct simulation *sim,struct device *dev,struct contacts_vti_store *store);
 #endif

@@ -36,26 +36,43 @@ from PySide2.QtGui import QIcon
 from gQtCore import QSize, Qt 
 from PySide2.QtWidgets import QSizePolicy,QVBoxLayout,QPushButton,QDialog,QFileDialog,QToolBar,QLabel,QComboBox
 from gQtCore import gSignal
+from icon_lib import icon_get
 
 class QComboBoxLang(QComboBox):
-
-	#changed = gSignal()
 	
+	class my_lang_obj():
+		def __init__(self):
+			self.english=""
+			self.lang=""
+			self.icon=None
+
 	def __init__(self):
 		QComboBox.__init__(self)
-		self.english_list=[]
-		self.lang_list=[]
-		
+		self.setIconSize(QSize(32, 32))
+		self.objs=[]
+
+	def addItemLangIcon(self,english,lang,icon):
+		obj=self.my_lang_obj()
+		obj.english=english
+		obj.lang=lang
+		obj.icon=icon
+		self.objs.append(obj)
+		print(icon)
+		icon_png=icon_get(icon)
+		super().addItem(icon_png, lang)
+		self.setItemIcon(self.count() - 1, icon_png)
 		
 	def addItemLang(self,english,lang):
+		obj=self.my_lang_obj()
+		obj.english=english
+		obj.lang=lang
+		self.objs.append(obj)
 		self.addItem(lang)
-		self.english_list.append(english)
-		self.lang_list.append(lang)
 	
 	def setValue_using_english(self,english):
 		pos=None
-		for i in range(0,len(self.english_list)):
-			if self.english_list[i]==english:
+		for i in range(0,len(self.objs)):
+			if self.objs[i].english==english:
 				pos=i
 				break
 
@@ -63,8 +80,12 @@ class QComboBoxLang(QComboBox):
 			self.setCurrentIndex(pos)
 
 	def currentText_english(self):
-		pos=self.lang_list.index(self.currentText())
-		return self.english_list[pos]
+		for i in range(0,len(self.objs)):
+			if self.objs[i].lang==self.currentText():
+				pos=i
+				break
+
+		return self.objs[pos].english
 	
 
 

@@ -41,6 +41,7 @@ _ = i18n.language.gettext
 
 
 class QLabel_click(QLabel):
+	clicked_dbl = gSignal()
 	clicked = gSignal()
 
 	def __init(self, parent):
@@ -48,10 +49,13 @@ class QLabel_click(QLabel):
 		self.main_menu=None
 
 	def mouseDoubleClickEvent(self, ev):
-		self.clicked.emit()
+		self.clicked_dbl.emit()
+
 
 	def mousePressEvent(self, event):
 		if event.button() == Qt.RightButton:
 			if self.main_menu!=None:
 				self.main_menu.exec_(event.globalPos())
-
+		elif event.button() == Qt.LeftButton:
+			self.clicked.emit()
+		

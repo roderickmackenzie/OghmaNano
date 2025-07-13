@@ -1,0 +1,9 @@
+{
+	"icon":"fdtd_output",
+	"sub_icon":"folder",
+	"name":"FDTD\nexamples",
+	"hide_this_json_file": "True",
+	"item_type":"dir",
+	"view_type":"list",
+	"status":"public"
+}

@@ -38,39 +38,45 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QAbstractItemView, QMenuBar, QTableWidgetItem
 from PySide2.QtGui import QPainter,QIcon
 
-from g_tab2 import g_tab2
-from json_root import json_root
-from json_ml import json_ml_output_vector_item
+from g_tab2_bin import g_tab2_bin
+from json_c import json_tree_c
 
 class tab_ml_output_vectors(QWidget):
 
 
-	def __init__(self,uid):
+	def __init__(self,uid_main_sim,uid_sub_sim):
 		QWidget.__init__(self)
-		self.uid=uid
-		self.vbox=QVBoxLayout()
+		self.bin=json_tree_c()
 
+		sub_sim_path=self.bin.find_path_by_uid("ml",uid_sub_sim)
+		sim_name=self.bin.get_token_value(sub_sim_path,"sim_name")
+		self.setWindowTitle(_("Output vectors for ")+sim_name)
+
+		self.uid_main_sim=uid_main_sim
+		self.uid_sub_sim=uid_sub_sim
+
+		self.vbox=QVBoxLayout()
+		self.setMinimumSize(1100,700)
 		toolbar=QToolBar()
 		toolbar.setIconSize(QSize(32, 32))
 
 		self.vbox.addWidget(toolbar)
 
 
-		self.tab2 = g_tab2(toolbar=toolbar)
+		self.tab2 = g_tab2_bin(toolbar=toolbar)
 
-		self.tab2.set_tokens(["ml_output_vector_item_enabled","file_name","ml_token_name","vectors"])
-		self.tab2.set_labels([_("Enabled"),_("File name"), _("ML Token"),_("Vectors")])
+		self.tab2.set_tokens(["ml_output_vector_item_enabled","file_name","ml_token_name","vectors","import_config.import_file_path"])
+		self.tab2.set_labels([_("Enabled"),_("File name"), _("ML Token"),_("Vectors"),_("Experimental file")])
 
-		self.tab2.json_search_path="json_root().ml"
-		self.tab2.uid=uid
-		self.tab2.postfix="ml_output_vectors.segments"
+		self.tab2.json_root_path="ml"
+		self.tab2.uid=self.uid_sub_sim
+		self.tab2.json_postfix="ml_output_vectors"
 
 		self.tab2.fixup_new_row=self.fixup_new_row
 		self.tab2.setColumnWidth(1, 100)
 		self.tab2.setColumnWidth(2, 100)
 		self.tab2.setColumnWidth(3, 400)
-		self.tab2.setColumnWidth(4, 20)
-		self.tab2.base_obj=json_ml_output_vector_item()
+		self.tab2.setColumnWidth(4, 300)
 		self.tab2.populate()
 		self.tab2.changed.connect(self.callback_save)
 		#self.tab2.callback_a=self.callback_show_list
@@ -80,9 +86,15 @@ class tab_ml_output_vectors(QWidget):
 		self.setLayout(self.vbox)
 
 	def fixup_new_row(self,row):
-		return
+		path=self.tab2.refind_json_path()
+		path=path+".segment"+str(row)
+		uid=self.bin.get_token_value(path,"id")
+		self.tab2.cellWidget(row, 4).uid_vector=uid
+		self.tab2.cellWidget(row, 4).uid_sub_sim=self.uid_sub_sim
+		self.tab2.cellWidget(row, 4).uid_main_sim=self.uid_main_sim
 
 
-	def callback_save(self):
-		json_root().save()
+	def callback_save(self,uid):
+		#print(self.uid_main_sim)
+		self.bin.save()
 

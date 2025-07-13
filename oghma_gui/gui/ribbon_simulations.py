@@ -31,8 +31,6 @@
 
 from icon_lib import icon_get
 
-from cal_path import get_css_path
-
 #qt
 
 from gQtCore import QSize, Qt
@@ -41,8 +39,6 @@ from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QPushB
 from help import help_window
 
 #experiments
-from sunsvoc import sunsvoc
-from sunsjsc import sunsjsc
 
 from util import wrap_text
 from global_objects import global_object_run
@@ -50,7 +46,6 @@ from gQtCore import gSignal
 from QAction_lock import QAction_lock
 from cal_path import sim_paths
 from lock import get_lock
-from json_root import json_root
 from ribbon_page import ribbon_page
 
 class ribbon_simulations(ribbon_page):
@@ -60,7 +55,6 @@ class ribbon_simulations(ribbon_page):
 		ribbon_page.__init__(self)
 
 		self.jvexperiment_window=None
-		self.exciton_window=None
 		self.experiment_window=None
 		self.fxexperiment_window=None
 		self.capacitance_voltage_window=None
@@ -78,6 +72,7 @@ class ribbon_simulations(ribbon_page):
 		self.server_config_window=None
 		self.equilibrium_window=None
 		self.window_output_files=None
+		self.poly_window=None
 
 		self.jv = QAction_lock("jv", _("JV\neditor"), self,"ribbon_simulations_jv")
 		self.jv.clicked.connect(self.callback_jv_window)
@@ -120,11 +115,6 @@ class ribbon_simulations(ribbon_page):
 		if sim_paths.is_plugin("pl_ss")==True:
 			self.addAction(self.pl)
 
-		self.exciton = QAction_lock("exciton", _("Exciton\neditor"), self,"ribbon_simulations_exciton")
-		self.exciton.clicked.connect(self.callback_exciton_window)
-		if sim_paths.is_plugin("exciton")==True:
-			self.addAction(self.exciton)
-
 		self.qe = QAction_lock("qe", _("Quantum\nefficiency"), self,"ribbon_simulations_qe")
 		self.qe.clicked.connect(self.callback_qe_window)
 		if sim_paths.is_plugin("eqe")==True:
@@ -135,7 +125,10 @@ class ribbon_simulations(ribbon_page):
 		if sim_paths.is_plugin("equilibrium")==True:
 			self.addAction(self.equilibrium)
 
-		#self.qe.setVisible(False)
+		self.poly = QAction_lock("poly", _("Polynomial\neditor"), self,"ribbon_simulations_poly")
+		self.poly.clicked.connect(self.callback_poly_window)
+		if sim_paths.is_plugin("poly")==True:
+			self.addAction(self.poly)
 
 		self.addSeparator()
 
@@ -166,47 +159,16 @@ class ribbon_simulations(ribbon_page):
 		self.experiments_changed.emit()
 
 	def update(self):
-		if self.qe_window!=None:
-			del self.qe_window
-			self.qe_window=None
-
-		if self.experiment_window!=None:
-			del self.experiment_window
-			self.experiment_window=None
-
-		if self.fxexperiment_window!=None:
-			del self.fxexperiment_window
-			self.fxexperiment_window=None
-
-		if self.capacitance_voltage_window!=None:
-			del self.capacitance_voltage_window
-			self.capacitance_voltage_window=None
-
-		if self.solar_spectrum_window!=None:
-			del self.solar_spectrum_window
-			self.solar_spectrum_window=None
-
-		if self.cost_window!=None:
-			del self.cost_window
-			self.cost_window=None
-
-		if self.spm_window!=None:
-			del self.spm_window
-			self.spm_window=None
-
-		if self.jvexperiment_window!=None:
-			del self.jvexperiment_window
-			self.jvexperiment_window=None
-
-		if self.exciton_window!=None:
-			del self.exciton_window
-			self.exciton_window=None
-
-		if self.window_output_files!=None:
-			del self.window_output_files
-			self.window_output_files=None
-
-		#self.mode.update()
+		self.close_window(self.qe_window)
+		self.close_window(self.experiment_window)
+		self.close_window(self.fxexperiment_window)
+		self.close_window(self.capacitance_voltage_window)
+		self.close_window(self.solar_spectrum_window)
+		self.close_window(self.cost_window)
+		self.close_window(self.spm_window)
+		self.close_window(self.jvexperiment_window)
+		self.close_window(self.window_output_files)
+		self.close_window(self.poly_window)
 
 	def setEnabled(self,val):
 
@@ -223,139 +185,134 @@ class ribbon_simulations(ribbon_page):
 		self.pl.setEnabled(val)
 		self.spm.setEnabled(val)
 		self.jv.setEnabled(val)
-		self.exciton.setEnabled(val)
 		self.server_config.setEnabled(val)
 		self.tb_output.setEnabled(val)
 
 	def callback_edit_experiment_window(self):
 		from time_domain_experiment import time_domain_experiment
-		if self.experiment_window==None:
-			self.experiment_window=time_domain_experiment()
-			self.experiment_window.changed.connect(self.callback_experiments_changed)
+		self.close_window(self.experiment_window)
+		self.experiment_window=time_domain_experiment()
+		self.experiment_window.changed.connect(self.callback_experiments_changed)
 			
-		help_window().help_set_help(["time.png",_("<big><b>The time mesh editor</b></big><br> To do time domain simulations one must define how voltage the light vary as a function of time.  This can be done in this window.  Also use this window to define the simulation length and time step.")])
+		help_window().help_set_help("time.png",_("<big><b>The time mesh editor</b></big><br> To do time domain simulations one must define how voltage the light vary as a function of time.  This can be done in this window.  Also use this window to define the simulation length and time step."))
 		self.show_window(self.experiment_window)
  
 	def callback_fxexperiment_window(self):
-		from fxexperiment import fxexperiment
-		if self.fxexperiment_window==None:
-			self.fxexperiment_window=fxexperiment()
+		from experiment_windows import fxexperiment
+		self.close_window(self.fxexperiment_window)
+		self.fxexperiment_window=fxexperiment()
 
-		help_window().help_set_help(["spectrum.png",_("<big><b>Frequency domain mesh editor</b></big><br> Some times it is useful to do frequency domain simulations such as when simulating impedance spectroscopy.  This window will allow you to choose which frequencies will be simulated.")])
+		help_window().help_set_help("spectrum.png",_("<big><b>Frequency domain mesh editor</b></big><br> Some times it is useful to do frequency domain simulations such as when simulating impedance spectroscopy.  This window will allow you to choose which frequencies will be simulated."))
 		self.show_window(self.fxexperiment_window)
 		
 	def callback_capacitance_voltage(self):
-		from cv_experiment import cv_experiment
-		if self.capacitance_voltage_window==None:
-			self.capacitance_voltage_window=cv_experiment()
+		from experiment_windows import cv_experiment
+		self.close_window(self.capacitance_voltage_window)
+		self.capacitance_voltage_window=cv_experiment()
 			
-		help_window().help_set_help(["cv.png",_("<big><b>Capacitance voltage editor</b></big><br> Use this editor to change serup capacitance voltage simulation.")])
+		help_window().help_set_help("cv.png",_("<big><b>Capacitance voltage editor</b></big><br> Use this editor to change serup capacitance voltage simulation."))
 		self.show_window(self.capacitance_voltage_window)
 
 
 	def callback_spm_window(self):
-		from spm_experiment import spm_experiment
-		if self.spm_window==None:
-			self.spm_window=spm_experiment()
+		from experiment_windows import spm_experiment
+		self.close_window(self.spm_window)
+		self.spm_window=spm_experiment()
 
-		help_window().help_set_help(["spm.png",_("<big><b>Scanning probe microscopy</b></big><br> Use this window to configure the scanning probe microscopy simulations.")])
+		help_window().help_set_help("spm.png",_("<big><b>Scanning probe microscopy</b></big><br> Use this window to configure the scanning probe microscopy simulations."))
 		self.show_window(self.spm_window)
 
 
 	def callback_pl_window(self):
-		from pl_experiment import pl_experiment
-		if self.plexperiment_window==None:
-			self.plexperiment_window=pl_experiment()
-			#self.experiment_window.changed.connect(self.callback_experiments_changed)
+		from experiment_windows import pl_experiment
+		self.close_window(self.plexperiment_window)
+		self.plexperiment_window=pl_experiment()
 
-		help_window().help_set_help(["pl.png",_("<big><b>PL simulation editor</b></big><br> Use this window to configure the steady state photoluminescence simulation."),"youtube",_("<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Watch the youtube video</a></b></big><br>Watch the video on perfomring PL simulation.")])
+		help_window().help_set_help("pl.png",_("<big><b>PL simulation editor</b></big><br> Use this window to configure the steady state photoluminescence simulation."))
+		help_window().help_append("youtube",_("<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Watch the youtube video</a></b></big><br>Watch the video on perfomring PL simulation."))
 		self.show_window(self.plexperiment_window)
 
 
 	def callback_sunsvoc_window(self):
+		from experiment_windows import sunsvoc
+		self.close_window(self.sunsvocexperiment_window)
+		self.sunsvocexperiment_window=sunsvoc()
 
-		if self.sunsvocexperiment_window==None:
-			self.sunsvocexperiment_window=sunsvoc()
-
-		help_window().help_set_help(["jv.png",_("<big><b>Suns voc simulation editor</b></big><br> Use this window to select the step size and parameters of the JV simulations.")])
+		help_window().help_set_help("jv.png",_("<big><b>Suns voc simulation editor</b></big><br> Use this window to select the step size and parameters of the JV simulations."))
 		self.show_window(self.sunsvocexperiment_window)
 
-
 	def callback_sunsjsc_window(self):
+		from experiment_windows import sunsjsc
+		self.close_window(self.sunsjsc_experiment_window)
+		self.sunsjsc_experiment_window=sunsjsc()
 
-		if self.sunsjsc_experiment_window==None:
-			self.sunsjsc_experiment_window=sunsjsc()
-
-		help_window().help_set_help(["jv.png",_("<big><b>Suns Jsc simulation editor</b></big><br> Use this window to select the step size and parameters of the JV simulations.")])
+		help_window().help_set_help("jv.png",_("<big><b>Suns Jsc simulation editor</b></big><br> Use this window to select the step size and parameters of the JV simulations."))
 		self.show_window(self.sunsjsc_experiment_window)
 
 	def callback_ce_window(self):
-		from window_ce import window_ce
-		if self.ce_experiment_window==None:
-			self.ce_experiment_window=window_ce()
+		from experiment_windows import window_ce
+		self.close_window(self.ce_experiment_window)
+		self.ce_experiment_window=window_ce()
 
-		help_window().help_set_help(["ce.png",_("<big><b>Charge Extraction editor</b></big><br> This performs charge extraction experiments in time domain, accounting for recombination losses.  If you don’t mind about accounting for recombination losses on extraction just run a JV curve or a Suns-Voc simulation and use the charge.dat file.")])
+		help_window().help_set_help("ce.png",_("<big><b>Charge Extraction editor</b></big><br> This performs charge extraction experiments in time domain, accounting for recombination losses.  If you don’t mind about accounting for recombination losses on extraction just run a JV curve or a Suns-Voc simulation and use the charge.dat file."))
 
 		self.show_window(self.ce_experiment_window)
 	
 	def callback_qe_window(self, widget):
-		from window_eqe import window_eqe
-		if self.qe_window==None:
-			self.qe_window=window_eqe()
+		from experiment_windows import window_eqe
+		self.close_window(self.qe_window)
+		self.qe_window=window_eqe()
 
 		self.show_window(self.qe_window)
 
 	def callback_equilibrium_window(self, widget):
-		from window_equilibrium import window_equilibrium
-		if self.equilibrium_window==None:
-			self.equilibrium_window=window_equilibrium()
+		from experiment_windows import window_equilibrium
+		self.close_window(self.equilibrium_window)
+		self.equilibrium_window=window_equilibrium()
 
 		self.show_window(self.equilibrium_window)
 
 	def callback_cost(self):
 		from cost import cost
-		help_window().help_set_help(["cost.png",_("<big><b>Costs window</b></big>\nUse this window to calculate the cost of the solar cell and the energy payback time.")])
-
-		if self.cost_window==None:
-			self.cost_window=cost()
-
+		help_window().help_set_help("cost.png",_("<big><b>Costs window</b></big>\nUse this window to calculate the cost of the solar cell and the energy payback time."))
+		self.close_window(self.cost_window)
+		self.cost_window=cost()
 		self.show_window(self.cost_window)
 
 	def callback_jv_window(self):
-		from jv_experiment import jv_experiment
-		if self.jvexperiment_window==None:
-			self.jvexperiment_window=jv_experiment()
-			#self.experiment_window.changed.connect(self.callback_experiments_changed)
-
-		help_window().help_set_help(["jv.png",_("<big><b>JV simulation editor</b></big><br> Use this window to configure JV simulations.")])
+		from experiment_windows import jv_experiment
+		self.close_window(self.jvexperiment_window)
+		self.jvexperiment_window=jv_experiment()
+		help_window().help_set_help("jv.png",_("<big><b>JV simulation editor</b></big><br> Use this window to configure JV simulations."))
 
 		self.show_window(self.jvexperiment_window)
 
-	def callback_exciton_window(self):
-		from window_exciton import window_exciton
-		if self.exciton_window==None:
-			self.exciton_window=window_exciton()
-			#self.experiment_window.changed.connect(self.callback_experiments_changed)
+	def callback_poly_window(self):
+		from experiment_windows import window_poly
+		self.close_window(self.poly_window)
+		self.poly_window=window_poly()
+		help_window().help_set_help("poly.png",_("<big><b>Polynomial editor</b></big><br> Use this window to generate random date sets for resting the fitting model."))
 
-		help_window().help_set_help(["exciton.png",_("<big><b>Exciton simulation editor</b></big><br> Use this window to configure exciton simulations.")])
-		self.show_window(self.exciton_window)
+		self.show_window(self.poly_window)
 
 	def callback_server_config(self):
-		help_window().help_set_help(["cpu.png",_("<big><b>Simulation hardware</b></big><br>Use this window to change how the model uses the computer's hardware.")])
+		help_window().help_set_help("cpu.png",_("<big><b>Simulation hardware</b></big><br>Use this window to change how the model uses the computer's hardware."))
 
-
-		if self.server_config_window==None:
-			from server_config import server_config
-			self.server_config_window=server_config()
-
+		from server_config import server_config
+		self.close_window(self.server_config_window)
+		self.server_config_window=server_config()
 		self.show_window(self.server_config_window)
 
 	def callback_output(self):
 		from tab_banned_files import tab_banned_files
+		from tab_banned_files import tab_noise
 		from config_window import class_config_window
-		data=json_root()
-		self.window_output_files=class_config_window([data.dump],[_("Output files")],title=_("Output files"),icon="newton")
+		self.window_output_files=class_config_window(["dump"],[_("Output files")],title=_("Output files"),icon="newton")
 
 		tab=tab_banned_files()
 		self.window_output_files.notebook.addTab(tab,_("Banned files and tokens"))
+
+		tab=tab_noise()
+		self.window_output_files.notebook.addTab(tab,_("Noise"))
 		self.window_output_files.show()
+

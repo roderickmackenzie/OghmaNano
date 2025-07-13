@@ -52,25 +52,21 @@ from QWidgetSavePos import QWidgetSavePos
 
 from css import css_apply
 
-from cal_path import get_cluster_path
-
 import i18n
 _ = i18n.language.gettext
 
 import random
 
-from experiment import experiment
-from json_local_root import json_local_root
-from json_root import json_root
+from experiment import experiment_bin
+from json_c import json_local_root
 from sim_name import sim_name
 
-class cluster_config_window(experiment):
+class cluster_config_window(experiment_bin):
 
 
-	def __init__(self,data=None):
+	def __init__(self,data=None):	
 		
-		
-		experiment.__init__(self,window_save_name="cluster_window", window_title=_("Configure")+sim_name.web_window_title,name_of_tab_class="cluster_tab",json_search_path="json_local_root().cluster",icon="preferences-system")
+		experiment_bin.__init__(self,window_save_name="cluster_window", window_title=_("Configure")+sim_name.web_window_title,name_of_tab_class="cluster_tab",json_search_path="cluster",icon="preferences-system",json_template="oghma_local")
 
 		self.ribbon.addTab(self.cluser_ribbon_ssh(),_("SSH"))
 
@@ -127,7 +123,6 @@ class cluster_config_window(experiment):
 
 	def switch_page(self):
 		self.notebook.currentWidget()
-		#self.tb_lasers.update(tab.data)
 
 	def generate_keys(self):
 		data=json_local_root()
@@ -140,6 +135,7 @@ class cluster_config_window(experiment):
 
 		key = random.getrandbits(128)
 		key="%032x" % key
+		
 		tab.data.config.cluster_key=key
 		tab.tab.tab.update_values()
 		data.save()
@@ -157,11 +153,11 @@ class cluster_config_window(experiment):
 		file_name=tab.file_name
 
 		cluster_ip=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),file_name), "#cluster_ip")
-		inp_update_token_value(os.path.join(get_cluster_path(),"node.inp"),"#master_ip",cluster_ip)
+		inp_update_token_value(os.path.join(sim_paths.get_cluster_path(),"node.inp"),"#master_ip",cluster_ip)
 
 		cluster_ip=inp_get_token_value(os.path.join(sim_paths.get_sim_path(),file_name), "#nodes")
 		print(cluster_ip)
-		inp_update_token_value(os.path.join(get_cluster_path(),"node_list.inp"),"#node_list",cluster_ip)
+		inp_update_token_value(os.path.join(sim_paths.get_cluster_path(),"node_list.inp"),"#node_list",cluster_ip)
 
 	def install_to_cluster(self):
 		self.get_config()
@@ -170,7 +166,7 @@ class cluster_config_window(experiment):
 		if len(self.cluster_dir)<2:
 			return
 
-		cpy_src="rsync -avh --delete -e ssh "+get_cluster_path()+"/ "+self.user_name+"@"+self.ip+":"+self.cluster_dir+"/"
+		cpy_src="rsync -avh --delete -e ssh "+sim_paths.get_cluster_path()+"/ "+self.user_name+"@"+self.ip+":"+self.cluster_dir+"/"
 
 		copy_to_nodes="ssh -n -f "+self.user_name+"@"+self.ip+" \"sh -c \'cd "+self.cluster_dir+"/; ./install.sh\'\""
 		command=cpy_src+";"+copy_to_nodes

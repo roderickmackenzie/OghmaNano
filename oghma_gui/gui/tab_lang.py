@@ -31,9 +31,7 @@
 
 from token_lib import tokens
 from undo import undo_list_class
-from tab_base import tab_base
 from util import latex_to_html
-from cal_path import get_share_path
 from help import help_window
 
 from PySide2.QtWidgets import QWidget, QScrollArea,QVBoxLayout,QProgressBar,QLabel,QDesktopWidget,QToolBar,QHBoxLayout,QAction, QSizePolicy, QTableWidget, QTableWidgetItem,QComboBox,QDialog,QAbstractItemView,QGridLayout,QLineEdit
@@ -43,10 +41,10 @@ from i18n import get_languages
 _ = i18n.language.gettext
 
 from error_dlg import error_dlg
-from json_local_root import json_local_root
+from json_c import json_local_root
 from sim_name import sim_name
 
-class language_tab_class(QWidget,tab_base):
+class language_tab_class(QWidget):
 
 	def __init__(self):
 		QWidget.__init__(self)
@@ -59,7 +57,7 @@ class language_tab_class(QWidget,tab_base):
 		title_label=QLabel()
 		title_label.setWordWrap(True)
 		title_label.setOpenExternalLinks(True)
-		title_label.setText(latex_to_html("<font size=5><b>Select the language you would like use.</b><br><br> If a translation to your language does not exist or could be improved, then please consider joining the <a href=\""+sim_name.web+"/translation.html\"> translation project</a>.  I would like "+sim_name.name+" translated into as many langauges as possible to improve access to high quality solar cell simulation tools for all.</font>"))
+		title_label.setText(latex_to_html("<font size=5><b>Select the language you would like use.</b><br><br> If a translation to your language does not exist or could be improved, then please consider joining the <a href=\""+sim_name.web+"/lang.php\"> translation project</a>.  I would like "+sim_name.name+" translated into as many langauges as possible to improve access to high quality solar cell simulation tools for all.</font>"))
 
 		self.vbox.addWidget(title_label)
 		self.vbox.addWidget(widget)
@@ -93,7 +91,7 @@ class language_tab_class(QWidget,tab_base):
 		for i in range(0,len(langs)):
 			self.lang_box.addItem(langs[i])
 		local=json_local_root()
-		token=local.international.lang
+		token=local.get_token_value("international","lang")
 		all_items  = [self.lang_box.itemText(i) for i in range(self.lang_box.count())]
 		for i in range(0,len(all_items)):
 			if all_items[i] == token:
@@ -103,7 +101,8 @@ class language_tab_class(QWidget,tab_base):
 
 	def callback_edit(self):
 		local=json_local_root()
-		local.international.lang=self.lang_box.itemText(self.lang_box.currentIndex())
+		lang=self.lang_box.itemText(self.lang_box.currentIndex())
+		local.set_token_value("international","lang",lang)
 		local.save()
 		error_dlg(self,"Please restart the software for the changes to take effect.")
 

@@ -31,7 +31,6 @@
 
 from token_lib import tokens
 from undo import undo_list_class
-from tab_base import tab_base
 from help import help_window
 
 from PySide2.QtWidgets import QTextEdit,QWidget, QScrollArea,QVBoxLayout,QLabel,QHBoxLayout,QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,QComboBox,QGridLayout,QLineEdit
@@ -43,26 +42,27 @@ from icon_lib import icon_get
 import i18n
 _ = i18n.language.gettext
 
-from json_viewer import json_viewer
-from json_root import json_root
+from json_viewer_bin import json_viewer_bin
+from json_c import json_tree_c
 
-class tab_class(QWidget,tab_base):
+class tab_class(QWidget):
 
 	changed = gSignal(str)
 
-	def __init__(self,template_widget,data=json_root(),db_json_file=None,json_path=None,uid=None,enable_apply_button=False,db_json_db_path=None):
+	def __init__(self,template_widget,data=json_tree_c(),db_json_file=None,json_path=None,uid=None,enable_apply_button=False,db_json_db_path=None, json_postfix=None):
 		QWidget.__init__(self)
 		self.editable=True
 		self.enable_apply_button=enable_apply_button
 		self.data=data
+
 		self.scroll=QScrollArea()
 		self.main_box_widget=QWidget()
 		self.vbox=QVBoxLayout()
 		self.main_vbox=QVBoxLayout()
 		self.main_vbox.setAlignment(Qt.AlignTop)
 
-		self.tab=json_viewer(db_json_file=db_json_file,db_json_db_path=db_json_db_path)
-		self.tab.populate(template_widget,json_path=json_path,uid=uid)
+		self.tab=json_viewer_bin(self.data,db_json_file=db_json_file,db_json_db_path=db_json_db_path)
+		self.tab.populate(template_widget,uid=uid,json_postfix=json_postfix)
 
 		self.vbox.addWidget(self.tab)
 
@@ -90,6 +90,7 @@ class tab_class(QWidget,tab_base):
 			self.tab.changed.connect(self.callback_edit)
 
 		self.setLayout(self.main_vbox)
+
 	def callback_edit(self,token):
 		if self.enable_apply_button==False:
 			self.data.save()

@@ -33,6 +33,7 @@ from util_zip import zip_get_data_file
 from str2bool import str2bool
 from inp import inp_save_lines_to_file
 
+#This exists in dat_file_save_as_gnuplot.c
 def dat_file_to_gnuplot_header(dat_file):
 	ret=[]
 	ret.append("set title '"+str(dat_file.title)+"'")
@@ -40,80 +41,19 @@ def dat_file_to_gnuplot_header(dat_file):
 	ret.append("set xlabel '"+str(dat_file.y_label)+" ("+str(dat_file.y_units)+")'")
 	ret.append("set key top left")
 	ret.append("set colors classic")
-	if dat_file.logdata==True:
+	if dat_file.logscale_data==True:
 		ret.append("set logscale y")
 		ret.append("set format y \"%2.0t{/Symbol \\264}10^{%L}\"")
 	else:
 		ret.append("#set logscale y")
 		ret.append("#set format y \"%2.0t{/Symbol \\264}10^{%L}\"")
 
-	if dat_file.logy==True:
+	if dat_file.logscale_y==True:
 		ret.append("set logscale x")
 	else:
 		ret.append("#set logscale x")
 
 	return ret
 
-def dat_files_to_gnuplot(out_dir,data):
-	os.mkdir(out_dir)
-	data_dir=os.path.join(out_dir,"data")
-	os.mkdir(data_dir)
 
-	makefile=[]
-	makefile.append("main:")
-	makefile.append("	gnuplot plot.plot >plot.eps")
-	makefile.append("	gs -dNOPAUSE -r600 -dEPSCrop -sDEVICE=jpeg -sOutputFile=plot.jpg plot.eps -c quit")
-	makefile.append("	xdg-open plot.jpg")
-	inp_save_lines_to_file(os.path.join(out_dir,"makefile"),makefile)
 
-	plotfile=[]
-	plotfile.append("set term postscript eps enhanced color solid \"Helvetica\" 25")
-	plotfile.extend(dat_file_to_gnuplot_header(data[0]))
-
-	plotfile.append("plot \\")
-
-	for i in range(0,len(data)):
-		d=data[i]
-		d.save_as_txt(os.path.join(data_dir,str(i)+".txt"))
-		file_path=os.path.join("data",str(i)+".txt")
-		file_path=str(d.file_name)
-		line="'"+file_path+"' using ($1):($2) with lp title '"+str(d.key_text)+"'"
-		#print(i,len(data))
-		if i<len(data)-1:
-			line=line+",\\"
-
-		plotfile.append(line)
-
-	inp_save_lines_to_file(os.path.join(out_dir,"plot.plot"),plotfile)
-
-def dat_files_to_gnuplot_files(out_dir,data):
-	if os.path.isdir(out_dir)==False:
-		os.mkdir(out_dir)
-	data_dir=os.path.join(out_dir,"data")
-
-	if os.path.isdir(data_dir)==False:
-		os.mkdir(data_dir)
-
-	makefile=[]
-	makefile.append("main:")
-	for i in range(0,len(data)):
-		makefile.append("	gnuplot "+str(i)+".plot >"+str(i)+".eps")
-		makefile.append("	gs -dNOPAUSE -r600 -dEPSCrop -sDEVICE=jpeg -sOutputFile="+str(i)+".jpg "+str(i)+".eps -c quit")
-		makefile.append("")
-
-	inp_save_lines_to_file(os.path.join(out_dir,"makefile"),makefile)
-
-	for i in range(0,len(data)):
-		plotfile=[]
-		plotfile.append("set term postscript eps enhanced color solid \"Helvetica\" 25")
-		plotfile.extend(dat_file_to_gnuplot_header(data[i]))
-
-		d=data[i]
-		d.save_as_txt(os.path.join(data_dir,str(i)+".txt"))
-		file_path=os.path.join("data",str(i)+".txt")
-		#file_path=d.file_name
-		line="plot '"+file_path+"' using ($1):($2) with lp title '"+d.key_text+"'"
-
-		plotfile.append(line)
-
-		inp_save_lines_to_file(os.path.join(out_dir,str(i)+".plot"),plotfile)

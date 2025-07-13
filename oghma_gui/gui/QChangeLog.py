@@ -33,8 +33,6 @@ from PySide2.QtWidgets import QTextEdit
 
 from QComboBoxLang import QComboBoxLang
 from QColorPicker import QColorPicker
-from QComboBoxNewtonSelect import QComboBoxNewtonSelect
-
 from gQtCore import QTimer
 
 import i18n

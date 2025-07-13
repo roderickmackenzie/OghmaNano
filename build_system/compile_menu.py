@@ -34,16 +34,9 @@ from make_m4 import make_m4
 
 from pathlib import Path
 from shutil import copyfile
+from deb import deb_update_control_file_with_deps
+from deb import deb_update_control_file_with_readme
 
-def write_includes(dbus=None,umfpack=None):
-	if dbus==None:
-		dbus="-I/usr/include/dbus-1.0/ `pkg-config --cflags dbus-1`"
-	f = open(os.path.join("oghma_core","includes.m4"), "w")
-	f.write( "AC_SUBST(I_DBUS,\"")
-	f.write(dbus)
-	f.write("\")")
-
-	f.close()
 
 def test(d):
 	if d.yesno("Run oghma") == d.OK:
@@ -100,35 +93,69 @@ def configure_for_fedora(d):
 	os.system("cd oghma_data;./configure &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-def configure_for_debian(d):
-	make_m4(hpc=False, win=False,usear=True,dbus=True)
-	#d.infobox("aclocal", width=0, height=0, title="configure")
-	build_configure_all()
-	os.system("cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &")
-	et=d.tailbox("log.txt", height=None, width=100)
-
-	os.system("cd oghma_gui;./configure &>../log.txt  &")
-	et=d.tailbox("log.txt", height=None, width=100)
-
-	os.system("cd oghma_data;./configure &>../log.txt  &")
-	et=d.tailbox("log.txt", height=None, width=100)
-
 
 def configure_for_ubuntu(d):
 	make_m4(hpc=False, win=False,usear=True,dbus=True)
-	write_includes()
-	build_configure_all()
 
+	control_file=os.path.join(os.getcwd(),"oghma_core/DEBIAN/control")
+	deb_update_control_file_with_deps(control_file,os.path.join(os.getcwd(),"build_system/dependency_scripts/packages_ubuntu.sh"),target="native_ubuntu")
+	deb_update_control_file_with_readme(control_file,"./oghma_core/README.md")
+
+	build_configure_all()
+	#oghma_core
 	mpi_include="-I/usr/lib/x86_64-linux-gnu/openmpi/include/ -L/usr/lib64/openmpi/lib/"
-	command="cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/ \" LDFLAGS=\"-lumfpack "+mpi_include+"\" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" >../log.txt 2>../log.txt &"
+	package_dirs=" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" --libdir=\"/usr/lib/\" --mandir=\"/usr/share/man/\""
+	command="cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/ \" LDFLAGS=\"-lumfpack "+mpi_include+"\" "+package_dirs+">../log.txt 2>../log.txt &"
 	print(command)
 	os.system(command)
 	et=d.tailbox("log.txt", height=None, width=100)
 
-	os.system("cd oghma_gui;./configure &>../log.txt  &")
+	#oghma_gui
+	os.system("cd oghma_gui;./configure --prefix=\"/usr/\" &>../log.txt  &")
+	et=d.tailbox("log.txt", height=None, width=100)
+
+	#oghma_data
+	os.system("cd oghma_data;./configure --prefix=\"/usr/\" &>../log.txt  &")
+	et=d.tailbox("log.txt", height=None, width=100)
+
+def configure_for_windows(d):
+	make_m4(hpc=False, win=True,usear=True,dbus=False)
+	build_configure_all()
+
+	home=str(Path.home())
+	flags=" -I"+home+"/windll/libpng/libpng-1.6.37/"
+	#+home+"-I/windll/OpenCL-Headers-master/"
+	#+"-I/windll/gsl-1.16/
+	os.system("cd oghma_core; ./configure --host=x86_64-w64-mingw32 CPPFLAGS=\""+flags+"\"  --enable-noplots --enable-noman  >../log.txt 2>../log.txt &")
+	ret=d.tailbox("log.txt", height=None, width=100)
+
+	os.system("cd oghma_gui;./configure --enable-nodesktop --enable-noman  &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 	os.system("cd oghma_data;./configure &>../log.txt  &")
+	et=d.tailbox("log.txt", height=None, width=100)
+
+def configure_for_hybrid_wine(d):
+	make_m4(hpc=False, win=True,usear=True,dbus=False,wine=True)
+
+	control_file=os.path.join(os.getcwd(),"oghma_core/DEBIAN/control")
+	deb_update_control_file_with_deps(control_file,os.path.join(os.getcwd(),"build_system/dependency_scripts/packages_ubuntu.sh"),target="hybrid")
+	deb_update_control_file_with_readme(control_file,"./oghma_core/README.md")
+
+	build_configure_all()
+
+	home=str(Path.home())
+	flags=" -I"+home+"/windll/libpng/libpng-1.6.37/"
+	#+home+"-I/windll/OpenCL-Headers-master/"
+	#+"-I/windll/gsl-1.16/
+	package_dirs=" --datadir=\"/usr/share/\" --bindir=\"/usr/bin/\" --libdir=\"/usr/lib/\" --mandir=\"/usr/share/man/\""
+	os.system("cd oghma_core; ./configure --host=x86_64-w64-mingw32 CPPFLAGS=\""+flags+"\"  --enable-hybrid --enable-noplots --enable-noman "+package_dirs+" >../log.txt 2>../log.txt &")
+	ret=d.tailbox("log.txt", height=None, width=100)
+
+	os.system("cd oghma_gui;./configure --enable-noman --prefix=\"/usr/\" &>../log.txt  &")
+	et=d.tailbox("log.txt", height=None, width=100)
+
+	os.system("cd oghma_data;./configure --prefix=\"/usr/\" &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
 def configure_for_ubuntu_with_flat_install(d):
@@ -145,90 +172,6 @@ def configure_for_ubuntu_with_flat_install(d):
 	os.system("cd oghma_data;./configure  --docdir=/ --datadir=/ --bindir=/  --libdir=/ &>../log.txt  &")
 	et=d.tailbox("log.txt", height=None, width=100)
 
-def configure_for_centos_hpc(d):
-	print("Running:configure_for_centos_hpc")
-	make_m4(hpc=True, win=False,usear=False,dbus=True)
-
-	build_configure_all()
-
-	os.system("cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/\" --enable-hpc --enable-noplots --enable-noman  --enable-nocluster")
-	# >../log.txt 2>../log.txt &
-
-	#et=d.tailbox("log.txt", height=None, width=100)
-
-	os.system("cd oghma_gui;./configure --enable-noman --enable-hpc --enable-nodesktop  --enable-noimages --enable-nohtml") #&>../log.txt  &
-	#et=d.tailbox("log.txt", height=None, width=100)
-
-	os.system("cd oghma_data;./configure --enable-nodevicelib") #&>../log.txt  &
-
-def configure_for_centos(d):
-	print("Running:configure_for_centos")
-	make_m4(hpc=False, win=False,usear=True,dbus=True)
-
-	build_configure_all()
-
-	os.system("cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/\" >../log.txt 2>../log.txt &")
-	et=d.tailbox("log.txt", height=None, width=100)
-
-	os.system("cd oghma_gui;./configure &>../log.txt  &")
-	et=d.tailbox("log.txt", height=None, width=100)
-
-	os.system("cd oghma_data;./configure &>../log.txt  &")
-	et=d.tailbox("log.txt", height=None, width=100)
-
-	make_all(d)
-
-def configure_for_arch(d):
-	make_m4(hpc=False, win=False,usear=True,dbus=True)
-
-	build_configure_all()
-
-	os.system("cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/\" >../log.txt 2>../log.txt &")
-	et=d.tailbox("log.txt", height=None, width=100)
-
-	os.system("cd oghma_gui;./configure &>../log.txt  &")
-	et=d.tailbox("log.txt", height=None, width=100)
-
-	os.system("cd oghma_data;./configure &>../log.txt  &")
-	et=d.tailbox("log.txt", height=None, width=100)
-
-	make_all(d)
-
-def configure_for_windows(d):
-	make_m4(hpc=False, win=True,usear=True,dbus=False)
-	write_includes(dbus="")
-	build_configure_all()
-
-	home=str(Path.home())
-	flags="-I"+home+"/windll/libzip/libzip-0.11.2/lib/ -I"+home+"/windll/libpng/libpng-1.6.37/"
-	#+home+"-I/windll/OpenCL-Headers-master/"
-	#+"-I/windll/gsl-1.16/
-	os.system("cd oghma_core; ./configure --host=x86_64-w64-mingw32 CPPFLAGS=\""+flags+"\"  --enable-noplots --enable-noman  >../log.txt 2>../log.txt &")
-	ret=d.tailbox("log.txt", height=None, width=100)
-
-	os.system("cd oghma_gui;./configure --enable-nodesktop --enable-noman  &>../log.txt  &")
-	et=d.tailbox("log.txt", height=None, width=100)
-
-	os.system("cd oghma_data;./configure &>../log.txt  &")
-	et=d.tailbox("log.txt", height=None, width=100)
-
-def configure_for_hybrid_wine(d):
-	make_m4(hpc=False, win=True,usear=True,dbus=False,wine=True)
-	write_includes(dbus="")
-	build_configure_all()
-
-	home=str(Path.home())
-	flags="-I"+home+"/windll/libzip/libzip-0.11.2/lib/ -I"+home+"/windll/libpng/libpng-1.6.37/"
-	#+home+"-I/windll/OpenCL-Headers-master/"
-	#+"-I/windll/gsl-1.16/
-	os.system("cd oghma_core; ./configure --host=x86_64-w64-mingw32 CPPFLAGS=\""+flags+"\"  --enable-hybrid --enable-noplots --enable-noman  >../log.txt 2>../log.txt &")
-	ret=d.tailbox("log.txt", height=None, width=100)
-
-	os.system("cd oghma_gui;./configure --enable-nodesktop --enable-noman  &>../log.txt  &")
-	et=d.tailbox("log.txt", height=None, width=100)
-
-	os.system("cd oghma_data;./configure &>../log.txt  &")
-	et=d.tailbox("log.txt", height=None, width=100)
 
 def configure_autodetect(d):
 	import distro
@@ -240,19 +183,13 @@ def configure_autodetect(d):
 	if plat=="fedora":
 		configured=True
 		configure_for_fedora(d)
-	elif plat=="debian":
-		configured=True
-		configure_for_debian(d)
+
 	elif plat=="ubuntu":
 		configured=True
 		configure_for_ubuntu(d)
-	elif plat=="centos":
-		configured=True
-		configure_for_centos_hpc(d)
 	elif plat=="arch":
 		configured=True
 		configure_for_arch(d)
-
 	if configured==True:
 		make_all(d)
 		d.msgbox("Built")
@@ -269,13 +206,6 @@ def select_distro_menu(d):
 								("(hybrid)", "Hybrid/Wine (x86_64)"),
 								("(ubuntu)", "Ubuntu (x86_64)"),
 								("(fedora)", "fedora (x86_64)"),
-								("(debian)", "debian (x86_64)"),
-								("(raspberry)", "Raspberry (ARM)"),
-								("(centos)", "CENTOS (x86_64)"),
-								("(mint)", "Mint (x86_64)"),
-								("(suse)", "Open Suse (x86_64)"),
-								("(arch)", "Arch (x86_64)"),
-								("(debian-i386)","Debian (i386)"),
 								("(default)", "generic Linux (x86_64)")
 								])
 
@@ -299,67 +229,9 @@ def select_distro_menu(d):
 			make_all(d)
 			d.msgbox("Built")
 
-
-		if tag=="(debian)":
-			configure_for_debian(d)
-			make_all(d)
-			d.msgbox("Built")
-
-		if tag=="(raspberry)":
-			make_m4(hpc=False, win=False,usear=True)
-
-			os.system("aclocal")
-			os.system("autoconf")
-			os.system("autoheader")
-			os.system("automake")
-			os.system("automake --add-missing")
-			os.system("automake")
-			os.system("cd oghma_core; ./configure CPPFLAGS=\"-I/usr/include/\" --host=arm-linux >../log.txt 2>../log.txt &")
-			et=d.tailbox("log.txt", height=None, width=100)
-
-			make_all(d)
-
-			d.msgbox("Built")
-
-
-		if tag=="(centos)":
-			configure_for_centos(d)
-
-			d.msgbox("Built")
-
-
-		if tag=="(mint)":
-			make_m4(hpc=False, win=False,usear=True)
-
-			build_configure_all()
-
-			os.system("cd oghma_core; ./configure CPPFLAGS=\"-I/usr/include/\" >../log.txt 2>../log.txt &")
-			et=d.tailbox("log.txt", height=None, width=100)
-
-			make_all(d)
-
-			d.msgbox("Built")
-
 		if tag=="(ubuntu)":
 			configure_for_ubuntu(d)
 			make_all(d)
-			d.msgbox("Built")
-
-		if tag=="(suse)":
-			make_m4(hpc=False, win=False,usear=True)
-
-			build_configure_all()
-
-			os.system("cd oghma_core; ./configure CPPFLAGS=\"-I/usr/include/\" >../log.txt 2>../log.txt &")
-			et=d.tailbox("log.txt", height=None, width=100)
-
-			make_all(d)
-
-			d.msgbox("Built")
-
-		if tag=="(arch)":
-			configure_for_arch(d)
-
 			d.msgbox("Built")
 		if tag=="(win)":
 			configure_for_windows(d)
@@ -369,19 +241,6 @@ def select_distro_menu(d):
 			configure_for_hybrid_wine(d)
 			make_all(d)
 			d.msgbox("Built")
-
-		if tag=="(debian-i386)":
-
-			make_m4(hpc=False, win=False,usear=True)
-			#d.infobox("aclocal", width=0, height=0, title="configure")
-			build_configure_all()
-			os.system("cd oghma_core;./configure CPPFLAGS=\"-I/usr/include/\" --host=i686-linux-gnu --build=i686-linux-gnu CC=\"gcc -m32\" CXX=\"g++ -m32\" >../log.txt 2>../log.txt &")
-			et=d.tailbox("log.txt", height=None, width=100)
-
-			make_all(d)
-
-			d.msgbox("Built")
-
 
 		
 def compile_menu(d):

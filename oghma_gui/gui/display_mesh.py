@@ -40,34 +40,35 @@ from gQtCore import QTimer
 from gQtCore import gSignal
 
 from icon_lib import icon_get
-
 from help import help_window
-
 from str2bool import str2bool
-
 from cal_path import sim_paths
 from global_objects import global_object_register
 from global_objects import global_object_run
 
 from dat_file import dat_file
 from server import server_get
-from json_root import json_root
+from json_c import json_tree_c
+from json_c import json_files_gui_config
+import ctypes
+from bytes2str import str2bytes
 
 class display_mesh(QWidget):
 
-
 	def __init__(self):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.complex_display=False
 
 		self.hbox=QHBoxLayout()
 		self.data=dat_file()
 		self.my_server=server_get()
 		self.my_server.sim_finished.connect(self.refresh_display)
-		data=json_root()
 		self.display=glWidget(self)
-		self.display.enable_views(["plot"])
-		if data.electrical_solver.solver_type=="circuit":
+		self.display.lib.gl_load_views( ctypes.byref(self.display.gl_main), ctypes.byref(json_files_gui_config), ctypes.c_char_p(str2bytes("circuit_plot_3d")))
+		self.display.enable_views(["circuit_plot_3d"],by_hash=True)
+
+		if self.bin.get_token_value("electrical_solver","solver_type")=="circuit":
 			
 
 			toolbar=QToolBar()
@@ -84,31 +85,26 @@ class display_mesh(QWidget):
 
 
 			toolbar.addWidget(self.display.toolbar0)
+			toolbar.addWidget(self.display.toolbar1)
+
 			self.hbox.addWidget(toolbar)
 			
-			self.display.find_active_view()
+			#self.display.find_active_view()
 			self.display.draw_electrical_mesh=False
-			self.display.active_view.draw_device=False
-			self.display.active_view.draw_rays=False
-			self.display.active_view.render_photons=False
-			self.display.active_view.plot_graph=True
+			self.display.gl_main.active_view.contents.draw_device=False
+			self.display.gl_main.active_view.contents.draw_rays=False
+			self.display.gl_main.active_view.contents.render_photons=False
+			self.display.gl_main.active_view.contents.plot_graph=True
 
 		self.hbox.addWidget(self.display)
 			
 		self.setLayout(self.hbox)
+		self.refresh_display()
 
 	def refresh_display(self):
-		nodes=dat_file()
-		links=dat_file()
-		self.display.graph_data=[]
-		if nodes.load(os.path.join(sim_paths.get_sim_path(),"electrical_nodes.csv"))!=False:
-			self.display.graph_data.append(nodes)
-
-		if links.load(os.path.join(sim_paths.get_sim_path(),"electrical_links.csv"))!=False:
-			self.display.graph_data.append(links)
-
+		self.display.gl_graph_load_files([os.path.join(sim_paths.get_sim_path(),"electrical_nodes.csv"), os.path.join(sim_paths.get_sim_path(),"electrical_links.csv") ])
 		self.display.force_redraw()
-		self.display.do_draw()
+		self.display.update()
 
 	def rebuild_mesh(self):
 		#try:

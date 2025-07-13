@@ -35,6 +35,8 @@ from cal_path import sim_paths
 
 def check_lib_in_bash_rc():
 	if get_platform()=="linux":
+		if sim_paths.installed_from_deb==True:
+			return
 		f=inp()
 		oghma_installed=-1
 		if f.load(os.path.join(sim_paths.get_home_path(),".bashrc"))!=False:

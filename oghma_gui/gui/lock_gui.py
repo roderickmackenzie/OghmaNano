@@ -31,6 +31,7 @@
 
 
 #qt
+import sys
 from gQtCore import Qt 
 from PySide2.QtWidgets import QWidget,QDialog
 
@@ -44,10 +45,11 @@ from lock import get_lock
 from lock_trial import lock_trial
 from msg_dlg import msg_dlg
 
-from cal_path import get_image_file_path
 from help import help_window
 from sim_name import sim_name
 from bytes2str import bytes2str
+import ctypes
+from cal_path import sim_paths
 
 class lock_gui(QWidget):
 	#disable_all=gSignal()
@@ -56,8 +58,16 @@ class lock_gui(QWidget):
 
 	def timer_callback(self):
 		self.timer.stop()
-
 		if get_lock().get_next_gui_action()=="register":
+			if get_lock().time_lock==True:			#no need to show the dialog if we are on a time lock
+				reg=get_lock().lib.lock_register(ctypes.byref(sim_paths),ctypes.byref(get_lock()))
+				if reg==-1:
+					if get_lock().ret_val==b"error:get_new_version":
+						error_dlg(self,_("Your version of OghmaNano is now out of date. To continue using OghmaNano please download a new version at https://www.oghma-nano.com."))
+						sys.exit(0)
+				get_lock().registered=True
+				#print("ok",get_lock().get_next_gui_action())
+				return
 			self.register=register()
 			ret=self.register.run()
 			if ret==QDialog.Accepted:
@@ -99,12 +109,14 @@ class lock_gui(QWidget):
 			return
 
 		if get_lock().update_available==True:
-			help_window().help_append(["star.png",_("<big><b>Update available!</b></big><br>Download it now from <a href=\""+sim_name.web+"\">"+sim_name.web+"</a>")])
-
-		if bytes2str(get_lock().message)!="":
+			help_window().help_append("star.png",_("<big><b>Update available!</b></big><br>Download it now from <a href=\""+sim_name.web+"\">"+sim_name.web+"</a>"))
+			
+		if get_lock().message!=b"":
 			msgBox = msg_dlg()
 			msgBox.setText(bytes2str(get_lock().message))
 			msgBox.exec_()
+			if get_lock().status==b"disabled":
+				sys.exit(0)
 
 	def __init__(self):
 		QWidget.__init__(self)

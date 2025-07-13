@@ -31,7 +31,7 @@
 
 import sys
 import time
-from math import exp
+from math import exp, isnan, isinf
 from gui_enable import gui_get
 	
 class progress_base():
@@ -39,6 +39,7 @@ class progress_base():
 		self.start_time=time.time()
 		self.fraction=0.0
 		self.finish_time=""
+		self.elapsed_time=""
 		self.avg=[]
 		self.text=""
 
@@ -57,8 +58,17 @@ class progress_base():
 				weight=exp(-(l-i)*1e-1)
 				t=t+self.avg[i]*weight
 				w_sum=w_sum+weight
+			if w_sum<=0.0:
+				return
 			t=t/w_sum
+
 			self.finish_time=time.strftime('%A %H:%M:%S', time.localtime(t))
+
+			s=time.time()-self.start_time
+			hours, remainder = divmod(s, 3600)
+			minutes, seconds = divmod(remainder, 60)
+
+			self.elapsed_time='{:02}:{:02}:{:02}'.format(int(hours), int(minutes), int(seconds))
 
 	def draw(self):
 		length=40
@@ -74,7 +84,7 @@ class progress_base():
 		sys.stdout.write("] "+str(self.fraction*100.0)+"% \n")
 		sys.stdout.write(self.text+"\n") 
 		if self.finish_time!="":
-			sys.stdout.write(_("Finish time:")+" "+self.finish_time+" \n")
+			sys.stdout.write(_("Finish time:")+" "+self.finish_time+" "+self.elapsed_time+" \n")
 			sys.stdout.write("\033[F\033[F\033[F")
 		else:
 			sys.stdout.write("\033[F\033[F")
@@ -84,9 +94,13 @@ class progress_base():
 		print("pulse")
 		
 	def set_fraction(self,fraction):
+		if isnan(fraction)==True or isinf(fraction)==True:
+			return False
 		self.fraction=fraction
-		self.draw()
 		self.left_time()
+		if gui_get()==False:
+			self.draw()
+		return True
 
 	def pulse(self):
 		print("pulse")
@@ -122,7 +136,9 @@ if gui_get()==True:
 			progress_base.__init__(self)
 			#self.setWindowFlags(Qt.FramelessWindowHint|Qt.WindowStaysOnTopHint)
 			self.setWindowTitle("Working...")
-			self.setWindowIcon(icon_get("icon"))
+			image=icon_get("icon")
+			if image!=False:
+				self.setWindowIcon(image)
 			self.setMinimumSize(400, 100)
 			main_vbox = QVBoxLayout()
 			hbox= QHBoxLayout()
@@ -155,11 +171,12 @@ if gui_get()==True:
 			self.progress.enablePulse(value)
 
 		def set_fraction(self,fraction):
-			self.fraction=fraction
+			if super().set_fraction(fraction)==False:
+				return
+
 			self.progress.setValue(fraction)
-			self.left_time()
 			if self.finish_time!="":
-				self.label_time.setText(_("Finish time:")+" "+self.finish_time)
+				self.label_time.setText(_("Finish time:")+" "+self.finish_time+" "+self.elapsed_time)
 
 		def pulse(self):
 			self.progress.pulse()

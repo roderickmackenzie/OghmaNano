@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,9 +29,9 @@
 
 #ifndef h_heat
 #define h_heat
+#include <g_io.h>
 #include <complex.h>
 #include "advmath.h"
-#include "i.h"
 #include <sim_struct.h>
 #include <epitaxy_struct.h>
 #include <ray.h>
@@ -47,29 +45,29 @@
 
 struct heat
 {
-	char dump_dir[PATH_MAX];
+	char dump_dir[OGHMA_PATH_MAX];
 	struct dimensions dim;
 	int thermal_model_type;
 	int dump_verbosity;
 
 	//zxy
-	long double ***Tl;
-	long double ***Te;
-	long double ***Th;
+	gdouble ***Tl;
+	gdouble ***Te;
+	gdouble ***Th;
 
-	long double ***Hl;
+	gdouble ***Hl;
 
-	long double ***H_optical;
-	long double ***H_joule;
-	long double ***H_parasitic;
-	long double ***H_recombination;
+	gdouble ***H_optical;
+	gdouble ***H_joule;
+	gdouble ***H_parasitic;
+	gdouble ***H_recombination;
 
-	long double ***He;
-	long double ***Hh;
+	gdouble ***He;
+	gdouble ***Hh;
 
-	long double ***kl;
-	long double ***ke;
-	long double ***kh;
+	gdouble ***kl;
+	gdouble ***ke;
+	gdouble ***kh;
 
 	//objects
 	struct object ****obj;
@@ -78,12 +76,12 @@ struct heat
 	struct matrix mx;
 
 	//boundry temperatures
-	long double Ty0;
-	long double Ty1;
-	long double Tx0;
-	long double Tx1;
-	long double Tz0;
-	long double Tz1;
+	gdouble Ty0;
+	gdouble Ty1;
+	gdouble Tx0;
+	gdouble Tx1;
+	gdouble Tz0;
+	gdouble Tz1;
 
 	//Boundry type
 	int Ty0_boundry;
@@ -94,19 +92,19 @@ struct heat
 	int Tz1_boundry;
 
 	//heat sink
-	long double heatsink_y0;
-	long double heatsink_y1;
-	long double heatsink_x0;
-	long double heatsink_x1;
-	long double heatsink_z0;
-	long double heatsink_z1;
+	gdouble heatsink_y0;
+	gdouble heatsink_y1;
+	gdouble heatsink_x0;
+	gdouble heatsink_x1;
+	gdouble heatsink_z0;
+	gdouble heatsink_z1;
 
-	long double heatsink_length_y0;
-	long double heatsink_length_y1;
-	long double heatsink_length_x0;
-	long double heatsink_length_x1;
-	long double heatsink_length_z0;
-	long double heatsink_length_z1;
+	gdouble heatsink_length_y0;
+	gdouble heatsink_length_y1;
+	gdouble heatsink_length_x0;
+	gdouble heatsink_length_x1;
+	gdouble heatsink_length_z0;
+	gdouble heatsink_length_z1;
 
 	int Tliso;
 	int Triso;
@@ -114,7 +112,7 @@ struct heat
 
 	//convergance
 	int thermal_conv;
-	long double min_error;
+	gdouble min_error;
 	int newton_enable_external_thermal;
 	int thermal_l;
 	int thermal_e;

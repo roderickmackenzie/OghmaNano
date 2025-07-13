@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -25,7 +23,6 @@
 // SOFTWARE.
 // 
 
-
 /** @file world.h
 	@brief Functions for the world
 */
@@ -33,14 +30,16 @@
 
 #ifndef world_h
 #define world_h
+#include <g_io.h>
 #include "advmath.h"
 #include <sim_struct.h>
 #include <shape_struct.h>
 #include <world_struct.h>
+#include <device.h>
 
 void world_init(struct simulation *sim,struct world *w);
 void world_cpy(struct simulation *sim,struct world *out,struct world *in);
-int world_load(struct simulation *sim,struct world *w, struct json_obj *json_world);
+int world_load(struct simulation *sim, struct device *dev, struct world *w, struct json_obj *json_world);
 void world_free(struct simulation *sim,struct world *w);
 void world_size(struct simulation *sim,struct vec *min,struct vec *max,struct world *w, struct device *dev);
 void world_objects_free(struct simulation *sim,struct world *w);

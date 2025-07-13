@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -32,15 +30,13 @@
 
 #ifndef sim_struct_h
 #define sim_struct_h
-
+#include <g_io.h>
 #include <enabled_libs.h>
 #include <stdio.h>
 #include <server_struct.h>
 #include "cache_struct.h"
 #include <hard_limit_struct.h>
-//#ifdef dbus
-//	#include <dbus/dbus.h>
-//#endif
+#include <g_io.h>
 
 	#include <sys/mman.h>
 	#include <sys/stat.h>
@@ -48,22 +44,32 @@
 	#include <unistd.h>
 
 #include <dirent.h>
-#include <i_struct.h>
+#include <math_xy_struct.h>
 #include <dos_struct.h>
 
 //<strip>
 
 
-#include <gpvdm_const.h>
-//</strip>
-
-
+#include <oghma_const.h>
+#include <mesh_struct.h>
+#include <paths.h>
+#include <rand_mtwister.h>
+#include <fit_struct.h>
 
 struct logging
 {
 	int log_level;
-	char path[PATH_MAX];
+	char path[OGHMA_PATH_MAX];
 	int html;
+};
+
+struct matrix_solver_dll
+{
+	char name[20];
+	void (*dll_matrix_init)();
+	void (*dll_matrix_solve)();
+	void (*dll_matrix_solver_free)();
+	void *dll_matrix_handle;
 };
 
 struct simulation
@@ -77,46 +83,39 @@ struct simulation
 	//struct dumpfiles_struct *dumpfile;
 
 	//paths
-	char root_simulation_path[PATH_MAX];
+	char root_simulation_path[OGHMA_PATH_MAX];
 
 	//struct logging log;
 	int log_level;
-	//char path[PATH_MAX];
 	int html;
 
-	char plugins_path[PATH_MAX];
-	char lang_path[PATH_MAX];
-	char share_path[PATH_MAX];
-	char exe_path[PATH_MAX];
-	char exe_path_dot_dot[PATH_MAX];
-	char materials_path[PATH_MAX];
-	char filter_path[PATH_MAX];
-	char cie_color_path[PATH_MAX];
-	char emission_path[PATH_MAX];
-	char spectra_path[PATH_MAX];
-	char home_path[PATH_MAX];
-	char shape_path[PATH_MAX];
-	char cache_path[PATH_MAX];
-	char cache_path_for_fit[PATH_MAX];
-	char gpvdm_local_path[PATH_MAX];
-	char tmp_path[PATH_MAX];
-	char command_line_path[PATH_MAX];
+	struct paths paths;
+	char share_path[OGHMA_PATH_MAX];
+	char exe_path[OGHMA_PATH_MAX];
+	char exe_path_dot_dot[OGHMA_PATH_MAX];
+	char cache_path[OGHMA_PATH_MAX];
+	char cache_path_for_fit[OGHMA_PATH_MAX];
+	char oghma_local_path[OGHMA_PATH_MAX];
+	char command_line_path[OGHMA_PATH_MAX];
 
 	//solver name
-	char solver_name[20];
 	char complex_solver_name[20];
+	char enable_optimizer[20];
 
 	//Matrix solver dll	- external
-	void (*dll_matrix_init)();
-	void (*dll_matrix_solve)();
-	void (*dll_matrix_solver_free)();
-	void *dll_matrix_handle;
+		struct matrix_solver_dll matrix;
 
-	//Complex matrix solver dll	- internal
-	void (*dll_complex_matrix_init)();
-	void (*dll_complex_matrix_solve)();
-	void (*dll_complex_matrix_solver_free)();
-	void *dll_complex_matrix_handle;
+	//Complex matrix solver dll	- thses should use the matrix_solver_dll structure
+		void (*dll_complex_matrix_init)();
+		void (*dll_complex_matrix_solve)();
+		void (*dll_complex_matrix_solver_free)();
+		void *dll_complex_matrix_handle;
+
+	//Newton solver dll
+		int (*dll_solve_cur)();
+		int (*dll_solver_realloc)();
+		int (*dll_solver_free_memory)();
+		void *dll_solver_handle;
 
 	//Solve dlls
 	char force_sim_mode[100];
@@ -124,18 +123,14 @@ struct simulation
 	//Fitting vars
 	double last_total_error;
 	int fitting;
+	int fit_dump_snapshots;
 	struct server_struct server;
 
 	int gui;
-
 	long int bytes_written;
 	long int bytes_read;
 	long int files_read;
 	long int files_written;
-
-	long double T0;
-	long double D0;
-	long double n0;
 
 	int math_stop_on_convergence_problem;
 
@@ -145,14 +140,6 @@ struct simulation
 
 	//gui
 	int mindbustx;
-	//#ifdef dbus
-	//	DBusConnection *connection;
-	//#endif
-
-	//#ifdef windows
-	//	HANDLE connection;
-	//#endif
-	void *connection;
 
 	struct math_xy cie_x;
 	struct math_xy cie_y;
@@ -166,7 +153,24 @@ struct simulation
 
 	struct hard_limit hl;
 	struct dos_cache doscache;
+	int running_on_real_windows;
 
+	struct mesh_obj meshdata_t;
+	double *T_dos;
+	int T_dos_len;
+
+	//random numbers
+	struct rand_state rand;
+
+	//configure	- used to derive non device paramters
+	struct json config;
+
+	//cache of math_xy data
+	struct hash_list math_xy_cache;
+	struct hash_list triangles_cache;
+
+	//Fit config
+	struct fitconfig fitconfig;
 };
 
 #endif

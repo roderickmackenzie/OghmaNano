@@ -1,0 +1,9 @@
+{
+	"icon":"mode_fiber",
+	"sub_icon":"folder",
+	"name":"Mode\nsolver",
+	"hide_this_json_file": "True",
+	"item_type":"dir",
+	"view_type":"list",
+	"status":"public"
+}

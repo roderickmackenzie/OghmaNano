@@ -44,16 +44,16 @@ from tab_mesh_editor import tab_mesh_editor
 from config_window import class_config_window
 from tab_view import tab_view
 
-from json_root import json_root
 from help import QAction_help
-from json_mesh import json_mesh_segment
 from gui_util import yes_no_dlg
+from json_c import json_tree_c
 
 class window_mesh_editor(QWidgetSavePos):
-
-	def __init__(self,json_path_to_mesh="json_root().electrical_solver.mesh",window_title=_("Electrical Mesh Editor")):
-		self.json_path_to_mesh=json_path_to_mesh
-		data=eval(json_path_to_mesh)
+	MESH_EDITOR_MODE_ELECTRICAL=0
+	MESH_EDITOR_MODE_OPTICAL=1
+	def __init__(self,json_path_to_mesh="electrical_solver.mesh",window_title=_("Electrical Mesh Editor"),mode=MESH_EDITOR_MODE_ELECTRICAL):
+		self.json_path=json_path_to_mesh
+		self.bin=json_tree_c()
 		QWidgetSavePos.__init__(self,"emesh")
 
 		self.setMinimumSize(1200, 600)
@@ -61,39 +61,38 @@ class window_mesh_editor(QWidgetSavePos):
 
 		self.setWindowTitle2(window_title)
 		
-
 		self.main_vbox = QVBoxLayout()
 
 		toolbar=QToolBar()
 		toolbar.setIconSize(QSize(48, 48))
 		toolbar.setToolButtonStyle( Qt.ToolButtonTextUnderIcon)
 
-		if data.mesh_y!=None:
+		if self.bin.is_token(self.json_path,"mesh_y")==True:
 			self.tb_y = QAction(icon_get("y"), _("Y\nDimension"), self)
 			self.tb_y.triggered.connect(self.callback_dim_y)
 			self.tb_y.setCheckable(True)
 			toolbar.addAction(self.tb_y)
 
-		if data.mesh_x!=None:
+		if self.bin.is_token(self.json_path,"mesh_x")==True:
 			self.tb_x = QAction(icon_get("x"), _("X\nDimension"), self)
 			self.tb_x.triggered.connect(self.callback_dim_x)
 			self.tb_x.setCheckable(True)
 			toolbar.addAction(self.tb_x)
 
-		if data.mesh_z!=None:
+		if self.bin.is_token(self.json_path,"mesh_z")==True:
 			self.tb_z = QAction(icon_get("z"), _("Z\nDimension"), self)
 			self.tb_z.triggered.connect(self.callback_dim_z)
 			self.tb_z.setCheckable(True)
 			toolbar.addAction(self.tb_z)
 
-		if data.mesh_l!=None:
+		if self.bin.is_token(self.json_path,"mesh_l")==True:
 			self.tb_l = QAction(icon_get("lambda"), _("Wavelength"), self)
 			self.tb_l.triggered.connect(self.callback_dim_l)
 			self.tb_l.setCheckable(True)
 			toolbar.addAction(self.tb_l)
 			self.tb_l.setChecked(True)
 
-		if data.mesh_t!=None:
+		if self.bin.is_token(self.json_path,"mesh_t")==True:
 			self.tb_t = QAction(icon_get("t"), _("Temperature"), self)
 			self.tb_t.triggered.connect(self.callback_dim_t)
 			self.tb_t.setCheckable(True)
@@ -104,9 +103,13 @@ class window_mesh_editor(QWidgetSavePos):
 		configure.triggered.connect(self.on_configure_click)
 		toolbar.addAction(configure)
 
-		mesh_import = QAction(icon_get("mesh_import"),  _("Import from\nlayer editor"), self)
-		mesh_import.triggered.connect(self.callback_mesh_import)
-		toolbar.addAction(mesh_import)
+		if self.bin.is_token(self.json_path,"mesh_y")==True:
+			mesh_import = QAction(icon_get("mesh_import"),  _("Import from\nlayer editor"), self)
+			mesh_import.triggered.connect(self.callback_mesh_import)
+			segments=self.bin.get_token_value("epitaxy","segments")
+			if segments==0:
+				mesh_import.setEnabled(False)
+			toolbar.addAction(mesh_import)
 
 		spacer = QWidget()
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -122,31 +125,38 @@ class window_mesh_editor(QWidgetSavePos):
 		mesh_hbox=QHBoxLayout()
 		widget.setLayout(mesh_hbox)
 		no_user_edit=False
-		if json_root().electrical_solver.solver_type=="circuit":
-			no_user_edit=True
+		show_auto_x=False
+		show_auto_z=False
+		one_point_per_layer=False
+		if mode==self.MESH_EDITOR_MODE_ELECTRICAL:
+			if self.bin.get_token_value("electrical_solver","solver_type")=="circuit":
+				circuit_mesh_src=self.bin.get_token_value("circuit.config","circuit_mesh_src")
+				if circuit_mesh_src=="from_layers":
+					no_user_edit=True
+					one_point_per_layer=True
 
-		if data.mesh_x!=None:
-			self.emesh_editor_x=tab_mesh_editor(self.json_path_to_mesh+".mesh_x")
+		if self.bin.is_token(self.json_path,"mesh_x")==True:
+			self.emesh_editor_x=tab_mesh_editor(self.json_path+".mesh_x",show_auto=show_auto_x)
 			self.emesh_editor_x.changed.connect(self.emit_now)
 			mesh_hbox.addWidget(self.emesh_editor_x)
 
-		if data.mesh_y!=None:
-			self.emesh_editor_y=tab_mesh_editor(self.json_path_to_mesh+".mesh_y",no_user_edit=no_user_edit)
+		if self.bin.is_token(self.json_path,"mesh_y")==True:
+			self.emesh_editor_y=tab_mesh_editor(self.json_path+".mesh_y",no_user_edit=no_user_edit, one_point_per_layer=one_point_per_layer)
 			self.emesh_editor_y.changed.connect(self.emit_now)
 			mesh_hbox.addWidget(self.emesh_editor_y)
 
-		if data.mesh_z!=None:
-			self.emesh_editor_z=tab_mesh_editor(self.json_path_to_mesh+".mesh_z")
+		if self.bin.is_token(self.json_path,"mesh_z")==True:
+			self.emesh_editor_z=tab_mesh_editor(self.json_path+".mesh_z",show_auto=show_auto_z)
 			self.emesh_editor_z.changed.connect(self.emit_now)
 			mesh_hbox.addWidget(self.emesh_editor_z)
 
-		if data.mesh_l!=None:
-			self.emesh_editor_l=tab_mesh_editor(self.json_path_to_mesh+".mesh_l")
+		if self.bin.is_token(self.json_path,"mesh_l")==True:
+			self.emesh_editor_l=tab_mesh_editor(self.json_path+".mesh_l")
 			self.emesh_editor_l.changed.connect(self.emit_now)
 			mesh_hbox.addWidget(self.emesh_editor_l)
 		
-		if data.mesh_t!=None:
-			self.emesh_editor_t=tab_mesh_editor(self.json_path_to_mesh+".mesh_t",show_auto=True)
+		if self.bin.is_token(self.json_path,"mesh_t")==True:
+			self.emesh_editor_t=tab_mesh_editor(self.json_path+".mesh_t",show_auto=True)
 			self.emesh_editor_t.changed.connect(self.emit_now)
 			mesh_hbox.addWidget(self.emesh_editor_t)			
 
@@ -159,9 +169,8 @@ class window_mesh_editor(QWidgetSavePos):
 		global_object_register("mesh_update",self.update)
 	
 	def on_configure_click(self):
-		if self.mesh_config==None:
-			data=eval(self.json_path_to_mesh)
-			self.mesh_config=class_config_window([data.config],[_("Remesh")],title=_("Configure mesh"),icon="mesh")
+		if self.bin.is_token(self.json_path,"config")==True:
+			self.mesh_config=class_config_window([self.json_path+".config"],[_("Remesh")],title=_("Configure mesh"),icon="mesh")
 			self.mesh_config.show()
 		self.mesh_config.show()
 
@@ -175,21 +184,21 @@ class window_mesh_editor(QWidgetSavePos):
 		self.update_dim()
 
 	def callback_dim_y(self):
-		data=eval(self.json_path_to_mesh)
-		data.mesh_y.enabled=not data.mesh_y.enabled
-		json_root().save()
+		enabled=self.bin.get_token_value(self.json_path+".mesh_y","enabled")
+		self.bin.set_token_value(self.json_path+".mesh_y","enabled",not enabled)
+		self.bin.save()
 		self.update_dim()
 		
 	def callback_dim_x(self):
-		data=eval(self.json_path_to_mesh)
-		data.mesh_x.enabled=not data.mesh_x.enabled
-		json_root().save()
+		enabled=self.bin.get_token_value(self.json_path+".mesh_x","enabled")
+		self.bin.set_token_value(self.json_path+".mesh_x","enabled",not enabled)
+		self.bin.save()
 		self.update_dim()
 
 	def callback_dim_z(self):
-		data=eval(self.json_path_to_mesh)
-		data.mesh_z.enabled=not data.mesh_z.enabled
-		json_root().save()
+		enabled=self.bin.get_token_value(self.json_path+".mesh_z","enabled")
+		self.bin.set_token_value(self.json_path+".mesh_z","enabled",not enabled)
+		self.bin.save()
 		self.update_dim()
 
 	def callback_dim_l(self):
@@ -199,28 +208,30 @@ class window_mesh_editor(QWidgetSavePos):
 		self.tb_t.setChecked(True)
 
 	def update_dim(self):
-		data=eval(self.json_path_to_mesh)
 
-		if data.mesh_x!=None:
-			if data.mesh_x.enabled==True:
+		if self.bin.is_token(self.json_path,"mesh_x")==True:
+			enabled=self.bin.get_token_value(self.json_path+".mesh_x","enabled")
+			if enabled==True:
 				self.emesh_editor_x.show()
 			else:
 				self.emesh_editor_x.hide()
-			self.tb_x.setChecked(data.mesh_x.enabled)
+			self.tb_x.setChecked(enabled)
 
-		if data.mesh_y!=None:
-			if data.mesh_y.enabled==True:
+		if self.bin.is_token(self.json_path,"mesh_y")==True:
+			enabled=self.bin.get_token_value(self.json_path+".mesh_y","enabled")
+			if enabled==True:
 				self.emesh_editor_y.show()
 			else:
 				self.emesh_editor_y.hide()
-			self.tb_y.setChecked(data.mesh_y.enabled)
+			self.tb_y.setChecked(enabled)
 
-		if data.mesh_z!=None:
-			if data.mesh_z.enabled==True:
+		if self.bin.is_token(self.json_path,"mesh_z")==True:
+			enabled=self.bin.get_token_value(self.json_path+".mesh_z","enabled")
+			if enabled==True:
 				self.emesh_editor_z.show()
 			else:
 				self.emesh_editor_z.hide()
-			self.tb_z.setChecked(data.mesh_z.enabled)
+			self.tb_z.setChecked(enabled)
 
 		self.emit_now()
 
@@ -230,15 +241,15 @@ class window_mesh_editor(QWidgetSavePos):
 	def callback_mesh_import(self):
 		if yes_no_dlg(self,_("Are you sure you want to overwrite the electrical mesh with a guessed mesh based on the layer structure?"))==True:
 			self.emesh_editor_y.tab.remove_all_rows()
-			data=eval(self.json_path_to_mesh)
-			data.mesh_y.segments=[]
-			for l in json_root().epi.layers:
-				a=json_mesh_segment()
-				a.len=l.dy
-				a.points=10.0
-				data.mesh_y.segments.append(a)
+			self.bin.clear_segments(self.json_path+".mesh_y")
+			segments=self.bin.get_token_value("epitaxy","segments")
+			for l in range(0,segments):
+				dy=self.bin.get_token_value("epitaxy."+"segment"+str(l),"dy")
+				path_of_new_segment=self.bin.make_new_segment(self.json_path+".mesh_y","",-1)
+				self.bin.set_token_value(path_of_new_segment,"len",dy)
+				self.bin.set_token_value(path_of_new_segment,"points",10)
 				
-			json_root().save()
+			self.bin.save()
 			
 			self.emesh_editor_y.tab.populate()
 			self.emesh_editor_y.redraw()

@@ -2,23 +2,23 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="48px"
    height="48px"
    id="svg3885"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    sodipodi:docname="qe.svg"
    inkscape:export-filename="/home/rod/panos/hpc/p1/orig/gui/qe.png"
    inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-ydpi="90"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs3887">
     <linearGradient
@@ -119,18 +119,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="22.738681"
-     inkscape:cx="-9.1021428"
-     inkscape:cy="16.750199"
+     inkscape:zoom="11.369341"
+     inkscape:cx="-21.109403"
+     inkscape:cy="19.218352"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
-     inkscape:window-width="1440"
-     inkscape:window-height="811"
+     inkscape:window-width="1920"
+     inkscape:window-height="974"
      inkscape:window-x="0"
-     inkscape:window-y="29"
-     inkscape:window-maximized="1" />
+     inkscape:window-y="33"
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="0" />
   <metadata
      id="metadata3890">
     <rdf:RDF>
@@ -139,7 +140,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
         <dc:creator>
           <cc:Agent>
             <dc:title>Roderick C. I. MacKenzie</dc:title>
@@ -195,16 +195,16 @@
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:'Standard Symbols L';-inkscape-font-specification:'Standard Symbols L';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="-23.711739"
-       y="8.2147608"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.92321px;line-height:0%;font-family:'Standard Symbols L';-inkscape-font-specification:'Standard Symbols L';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.826934px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-24.693321"
+       y="7.8416514"
        id="text4493"
-       sodipodi:linespacing="125%"
-       transform="matrix(1.6499599e-4,-0.99999999,0.99999999,1.6499599e-4,0,0)"><tspan
+       transform="rotate(-89.990546)"><tspan
          sodipodi:role="line"
          id="tspan4495"
-         x="-23.711739"
-         y="8.2147608">QE</tspan></text>
+         x="-24.693321"
+         y="7.8416514"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.26934px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.826934px">QE</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.86924511px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 11.421881,36.08005 C 22.862963,38.273519 17.525958,18.144763 21.94235,19.419 c 0,0 -0.07084,-0.770607 10.733003,1.753795 6.194687,-2.34957 4.534076,9.672443 7.013648,14.986973"

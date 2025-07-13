@@ -1,0 +1,9 @@
+{
+	"icon":"automation",
+	"sub_icon":"",
+	"name":"Scripting\nand fitting",
+	"hide_this_json_file": "True",
+	"item_type":"dir",
+	"view_type":"list",
+	"status":"public"
+}

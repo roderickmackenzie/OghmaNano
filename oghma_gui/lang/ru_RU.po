@@ -1,0 +1,7774 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Roderick C. I. MacKenzie
+# This file is distributed under the same license as the oghmanano package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: oghmanano 8.0\n"
+"Report-Msgid-Bugs-To: roderick.mackenzie@oghma-nano.com\n"
+"POT-Creation-Date: 2024-05-02 11:45+0100\n"
+"PO-Revision-Date: 2024-05-02 15:54+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+msgid "H_joule"
+msgstr "H_джоуль"
+
+msgid "H_recombination"
+msgstr "H_рекомбинация"
+
+msgid "H_parasitic"
+msgstr "H_паразитический"
+
+msgid "Single states"
+msgstr "Отдельные состояния"
+
+msgid "time"
+msgstr "время"
+
+msgid "Ns"
+msgstr "Ns"
+
+msgid "Triplet states"
+msgstr "Тройные состояния"
+
+msgid "Nt"
+msgstr "Nt"
+
+msgid "Singlets in donor"
+msgstr "Синглеты в доноре"
+
+msgid "Nsd"
+msgstr "НСД"
+
+msgid "Triplet in donor"
+msgstr "Триплет в доноре"
+
+msgid "Ntd"
+msgstr "NTD"
+
+msgid "Photon denisty"
+msgstr "Фотон Денисти"
+
+msgid "Npho"
+msgstr "Нфо"
+
+msgid "file name not set\n"
+msgstr "имя файла не задано\n"
+
+msgid "Time"
+msgstr "Время"
+
+msgid "Voltage"
+msgstr "Напряжение"
+
+msgid "Free electron generation rate"
+msgstr "Скорость генерации свободных электронов"
+
+msgid "Generation rate"
+msgstr "Скорость генерации"
+
+msgid "Free hole generation rate"
+msgstr "Скорость генерации свободной дыры"
+
+msgid "SRH recombination free electrons -> trapped holes"
+msgstr "Рекомбинация СРГ свободные электроны -> захваченные дырки"
+
+msgid "Recombination"
+msgstr "Рекомбинация"
+
+msgid "SRH recombination free holes -> trapped electrons"
+msgstr "SRH рекомбинация свободных дырок -> захваченные электроны"
+
+msgid "Surface recombination on left contact"
+msgstr "Поверхностная рекомбинация на левом контакте"
+
+msgid "Surface recombination on right contact"
+msgstr "Поверхностная рекомбинация при правильном контакте"
+
+msgid "Trapped electron density"
+msgstr "Плотность захваченных электронов"
+
+msgid "Electron density"
+msgstr "Электронная плотность"
+
+msgid "Trapped hole density"
+msgstr "Плотность захваченных отверстий"
+
+msgid "Hole density"
+msgstr "Плотность отверстий"
+
+msgid "Free electron density"
+msgstr "Плотность свободных электронов"
+
+msgid "Free hole density"
+msgstr "Свободная плотность отверстий"
+
+msgid "Total electron density"
+msgstr "Общая электронная плотность"
+
+msgid "Total hole density"
+msgstr "Общая плотность отверстий"
+
+msgid "Electron mobility"
+msgstr "Электронная подвижность"
+
+msgid "Mobility"
+msgstr "Мобильность"
+
+msgid "Hole mobility"
+msgstr "Подвижность отверстия"
+
+msgid "Average electron and hole mobility"
+msgstr "Средняя подвижность электронов и дырок"
+
+msgid "Total PL intensity"
+msgstr "Суммарная интенсивность ФЛ"
+
+msgid "Total PL Intensity"
+msgstr "Общая интенсивность PL"
+
+msgid "PL intensity at given energy"
+msgstr "Интенсивность ФЛ при данной энергии"
+
+msgid "PL Intensity"
+msgstr "ФЛ Интенсивность"
+
+msgid "Voltage applied to diode"
+msgstr "Напряжение, подаваемое на диод"
+
+msgid "band bend (percent)"
+msgstr "изгиб полосы (в процентах)"
+
+msgid "band bend"
+msgstr "изгиб полосы"
+
+msgid "percent"
+msgstr "процент"
+
+msgid "Dynamic quantum efficiency"
+msgstr "Динамическая квантовая эффективность"
+
+msgid "Percent"
+msgstr "Процент"
+
+msgid "Drift current density"
+msgstr "Плотность дрейфового тока"
+
+msgid "Position"
+msgstr "Должность"
+
+msgid "Electron current density (drift)"
+msgstr "Плотность электронного тока (дрейф)"
+
+msgid "Diffusion current density"
+msgstr "Плотность диффузионного тока"
+
+msgid "position"
+msgstr "должность"
+
+msgid "Electron current density (diffusion)"
+msgstr "Плотность электронного тока (диффузия)"
+
+msgid "Diffusion+Drift current density"
+msgstr "Плотность диффузионного + дрейфового тока"
+
+msgid "Drift current density (x)"
+msgstr "Плотность дрейфового тока (x)"
+
+msgid "Diffusion current density (x)"
+msgstr "Плотность диффузионного тока (x)"
+
+msgid "Hole current density (drift)"
+msgstr "Плотность тока отверстия (дрейф)"
+
+msgid "Hole current density (diffusion)"
+msgstr "Плотность дырочного тока (диффузия)"
+
+msgid "Current density"
+msgstr "Плотность тока"
+
+msgid "Electron current density"
+msgstr "Плотность электронного тока"
+
+msgid "Hole current density"
+msgstr "Плотность тока отверстия"
+
+msgid "Electron current density x"
+msgstr "Плотность электронного тока x"
+
+msgid "Total current density (Jn+Jp)"
+msgstr "Суммарная плотность тока (Jn+Jp)"
+
+msgid "|Jny|+|Jnx|"
+msgstr "|Jny|+|Jnx|"
+
+msgid "|Total current density|"
+msgstr "|Общая плотность тока|"
+
+msgid "|Jpy|+|Jpx|"
+msgstr "|jpy|+|jpx|"
+
+msgid "Free electron -> Free hole recombination rate"
+msgstr "Свободный электрон -> скорость рекомбинации свободных дырок"
+
+msgid "Free carrier recombination rate"
+msgstr "Скорость рекомбинации свободных носителей"
+
+msgid "Free electron loss due to SRH processes (including trapping)"
+msgstr "Потеря свободных электронов из-за процессов SRH (включая захват)"
+
+msgid "Free electron loss"
+msgstr "Потеря свободных электронов"
+
+msgid "Free hole loss due to SRH processes (including trapping)"
+msgstr "Потери свободного отверстия из-за процессов SRH (включая улавливание)"
+
+msgid "Free hole loss"
+msgstr "Свободная потеря отверстия"
+
+msgid "SRH relaxation free electrons -> trapped electrons"
+msgstr "Свободные электроны релаксации SRH -> захваченные электроны"
+
+msgid "Relaxation"
+msgstr "расслабление"
+
+msgid "SRH relaxation free holes -> trapped holes"
+msgstr "Отверстия без релаксации SRH -> захваченные дыры"
+
+msgid "Singlet density (S1)"
+msgstr ""
+
+msgid "Singlet density"
+msgstr "Единая плотность"
+
+msgid "Triplet density  (T1)"
+msgstr ""
+
+msgid "Triplet density"
+msgstr "Тройная плотность"
+
+msgid "Singlet CT (1C)"
+msgstr ""
+
+msgid "Triplet CT (3C)"
+msgstr ""
+
+msgid "Singlet S1 'IMREF'"
+msgstr ""
+
+msgid "Singlet energy"
+msgstr "Единая энергия"
+
+msgid "Triplet T1 'IMREF'"
+msgstr ""
+
+msgid "Triplet energy"
+msgstr "тройная энергия"
+
+msgid "Singlet CT (1C) 'IMREF'"
+msgstr ""
+
+msgid "Triplet CT (3C) 'IMREF'"
+msgstr ""
+
+msgid "Singlet in donor density"
+msgstr "Синглет по плотности донора"
+
+msgid "Triplet in donor density"
+msgstr "Триплет по плотности доноров"
+
+msgid "Ion density"
+msgstr "Ионная плотность"
+
+msgid "Singlet 'IMREF'"
+msgstr "Синглет «ИМРЕФ»"
+
+msgid "Triplet 'IMREF'"
+msgstr "Триплет «ИМРЕФ»"
+
+msgid "Singlet in donor 'IMREF'"
+msgstr "Синглет в доноре «IMREF»"
+
+msgid "Triplet in donor 'IMREF'"
+msgstr "Триплет в доноре «IMREF»"
+
+msgid "Ion energy"
+msgstr "Энергия ионов"
+
+msgid "Doping"
+msgstr "допинг"
+
+msgid "Doping density"
+msgstr "Плотность легирования"
+
+msgid "Free electron carrier density"
+msgstr "Плотность свободных электронных носителей"
+
+msgid "Carrier density"
+msgstr "Плотность несущей"
+
+msgid "Free hole carrier density"
+msgstr "Плотность носителей свободных дырок"
+
+msgid "Trapped electron carrier density"
+msgstr "Плотность захваченных электронных носителей"
+
+msgid "Trapped hole carrier density"
+msgstr "Плотность носителей захваченных дырок"
+
+msgid "Change in electron population"
+msgstr "Изменение электронной популяции"
+
+msgid "Total charge"
+msgstr "Полный заряд"
+
+msgid "Change in total charge"
+msgstr "Изменение общего заряда"
+
+msgid "Change in hole population"
+msgstr "Изменение популяции дыр"
+
+msgid "Excess electron density"
+msgstr "Избыточная электронная плотность"
+
+msgid "x-position"
+msgstr "x-позиция"
+
+msgid "y-position"
+msgstr "Y-позиция"
+
+msgid "z-position"
+msgstr "z-позиция"
+
+msgid "Excess hole density"
+msgstr "Избыточная плотность отверстий"
+
+msgid "Perovskite mobile ion density"
+msgstr "Плотность подвижных ионов перовскита"
+
+msgid "Interface free-to-free recombination constant"
+msgstr "Константа свободной рекомбинации интерфейса"
+
+msgid "Electron tunneling though the interface"
+msgstr "Туннелирование электронов через интерфейс"
+
+msgid "Tunneling-e"
+msgstr "Туннель-е"
+
+msgid "Hole tunneling though the interface"
+msgstr "Туннелирование отверстия через интерфейс"
+
+msgid "Tunneling-h"
+msgstr "Туннелирование-h"
+
+msgid "Interface free-to-trap recombination constant"
+msgstr "Константа рекомбинации свободной ловушки интерфейса"
+
+msgid "Interface free-to-trap  recombination constant"
+msgstr "Константа рекомбинации свободной ловушки интерфейса"
+
+msgid "Interface recombination rate"
+msgstr "Скорость рекомбинации интерфейса"
+
+msgid "Electron current density left contact (J_y0_n)"
+msgstr "Плотность электронного тока левого контакта (J_y0_n)"
+
+msgid "Hole current density left contact (J_y0_p)"
+msgstr "Плотность тока отверстия левый контакт (J_y0_p)"
+
+msgid "Electron current density right contact (J_y1_n)"
+msgstr "Правый контакт плотности электронного тока (J_y1_n)"
+
+msgid "Hole current density right contact (J_y1_p)"
+msgstr "Отверстие плотности тока правого контакта (J_y1_p)"
+
+msgid "Electron drift current"
+msgstr "Ток дрейфа электронов"
+
+msgid "Electron diffusion current"
+msgstr "Электронный диффузионный ток"
+
+msgid "Hole drift current"
+msgstr "Ток дрейфа отверстия"
+
+msgid "Hole diffusion current"
+msgstr "Дырочный диффузионный ток"
+
+msgid " Hole diffusion current"
+msgstr "Дырочный диффузионный ток"
+
+msgid "Electron drift+diffusion current"
+msgstr "Электронный дрейф + диффузионный ток"
+
+msgid "Hole diffusion+diffusion current"
+msgstr "Дырочная диффузия + диффузионный ток"
+
+msgid "Jn at contacts"
+msgstr "Jn в контактах"
+
+msgid "Jp at contacts"
+msgstr "JP в контактах"
+
+msgid "External Current"
+msgstr "Внешний ток"
+
+msgid "Current"
+msgstr "Текущий"
+
+msgid "Current density at contacts"
+msgstr "Плотность тока на контактах"
+
+msgid "Single states (S1)"
+msgstr ""
+
+msgid "Triplet states (T1)"
+msgstr ""
+
+msgid "Material fraction (x)"
+msgstr ""
+
+msgid "Fraction"
+msgstr ""
+
+msgid "Material fraction (y)"
+msgstr ""
+
+msgid "LUMO"
+msgstr "люмо"
+
+msgid "Electron Energy"
+msgstr "Электронная энергия"
+
+msgid "HOMO"
+msgstr "ГОМО"
+
+msgid "Lattice temperature"
+msgstr "Температура решетки"
+
+msgid "Temperature"
+msgstr "Температура"
+
+msgid "Electron temperature"
+msgstr "Электронная температура"
+
+msgid "Hole temperature"
+msgstr "Температура отверстия"
+
+msgid "Band gap"
+msgstr "запрещенная зона"
+
+msgid "Electron quasi Fermi-level"
+msgstr "Электронный квазиуровень Ферми"
+
+msgid "Hole quasi Fermi-level"
+msgstr "Дырочный квазиуровень Ферми"
+
+msgid "Potential"
+msgstr "потенциал"
+
+msgid "Equlibrium Fermi-level"
+msgstr "Равновесный уровень Ферми"
+
+msgid "Energy"
+msgstr "Энергия"
+
+msgid "Relative permittivity"
+msgstr "Относительная диэлектрическая проницаемость"
+
+msgid "Joule heating from device"
+msgstr "Джоулев нагрев от устройства"
+
+msgid "Heating"
+msgstr "Обогрев"
+
+msgid "Electron mobility z"
+msgstr "Электронная подвижность z"
+
+msgid "Electron mobility x"
+msgstr "Электронная подвижность х"
+
+msgid "Electron mobility y"
+msgstr "Электронная подвижность y"
+
+msgid "Hole mobility z"
+msgstr "Отверстие мобильностьz"
+
+msgid "Hole mobility x"
+msgstr "Подвижность отверстия х"
+
+msgid "Hole mobility y"
+msgstr "Подвижность отверстия y"
+
+msgid "Average electron mobility"
+msgstr "Средняя подвижность электронов"
+
+msgid "Recombination rate"
+msgstr "Скорость рекомбинации"
+
+msgid "Auger recombination"
+msgstr "Оже-рекомбинация"
+
+msgid "Rate"
+msgstr "оценивать"
+
+msgid "Trap fermi level"
+msgstr "Уровень Ферми ловушки"
+
+msgid "Electron Fermi level"
+msgstr "Электронный уровень Ферми"
+
+msgid "Material number"
+msgstr "Номер материала"
+
+msgid "Number"
+msgstr "Число"
+
+msgid "Passivated"
+msgstr "Пассивированный"
+
+msgid "True/False"
+msgstr "Верно/Неверно"
+
+msgid "Current map of the bottom contact"
+msgstr "Текущая карта нижнего контакта"
+
+msgid "Resistance of bottom of device"
+msgstr "Сопротивление нижней части устройства"
+
+msgid "Running Ray tracer\n"
+msgstr "Запуск трассировщика лучей\n"
+
+msgid "pulse mode not known\n"
+msgstr "импульсный режим неизвестен\n"
+
+msgid "pulse time"
+msgstr "время импульса"
+
+msgid "step"
+msgstr "шаг"
+
+msgid "current density"
+msgstr "плотность тока"
+
+msgid "current"
+msgstr "Текущий"
+
+msgid "Volts"
+msgstr "вольт"
+
+msgid "Photogeneration rate"
+msgstr "Скорость фотогенерации"
+
+msgid "Emission"
+msgstr "эмиссия"
+
+msgid "Charge density"
+msgstr "Плотность заряда"
+
+msgid "Suns"
+msgstr "Солнца"
+
+msgid "Charge"
+msgstr "Обвинение"
+
+msgid "ce mode not known\n"
+msgstr "режим ce неизвестен\n"
+
+msgid "ce mode not known"
+msgstr "режим ce неизвестен"
+
+msgid "ce time"
+msgstr "ce время"
+
+msgid "Simulated polynomial data"
+msgstr ""
+
+msgid "x"
+msgstr "Икс"
+
+msgid "y"
+msgstr "у"
+
+msgid "Full transfer matrix based light model"
+msgstr "Полная матрица переноса на основе световой модели"
+
+msgid "Generating mesh\n"
+msgstr "Создание сетки\n"
+
+msgid "The materials in your device are not configured to emit light\n"
+msgstr "Материалы на вашем устройстве не настроены на излучение света\n"
+
+msgid "Real"
+msgstr "Настоящий"
+
+msgid "Imaginary"
+msgstr "Мнимый"
+
+msgid "Re(i)"
+msgstr "Ре (я)"
+
+msgid "Im(i)"
+msgstr "Я (я)"
+
+msgid "Frequency"
+msgstr "Частота"
+
+msgid "Real(i)"
+msgstr "реальный (я)"
+
+msgid "Capacitance"
+msgstr "Емкость"
+
+msgid "1/C^2"
+msgstr "1/С^2"
+
+msgid "abs(i)"
+msgstr "абс (я)"
+
+msgid "phi(i)"
+msgstr "фи (я)"
+
+msgid "Phase"
+msgstr "Фаза"
+
+msgid "Fit error modulation"
+msgstr "Подгонка модуляции ошибки"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Fit error j/v"
+msgstr "Подгонка ошибки j/v"
+
+msgid "Resistance"
+msgstr "Сопротивление"
+
+msgid "Solving EQE at"
+msgstr "Решение EQE в"
+
+msgid "out of memory!\n"
+msgstr "нет памяти!\n"
+
+msgid "matrix is singular!\n"
+msgstr "матрица сингулярна!\n"
+
+msgid "Running scanning probe microscopy\n"
+msgstr "Запуск сканирующей зондовой микроскопии\n"
+
+msgid "no spm config file found"
+msgstr "файл конфигурации spm не найден"
+
+msgid "Running JV simulation\n"
+msgstr "Запуск моделирования совместного предприятия\n"
+
+msgid "Stopping because of Vexternal"
+msgstr "Остановка из-за Vexternal"
+
+msgid "Efficiency"
+msgstr "Эффективность"
+
+msgid "Voltage/Current across just the ideal diode"
+msgstr "Напряжение/ток только на идеальном диоде"
+
+msgid "Applied Voltage"
+msgstr "Прикладное напряжение"
+
+msgid "Recombination prefactor"
+msgstr "Префактор рекомбинации"
+
+msgid "Applied voltage"
+msgstr "Приложенное напряжение"
+
+msgid "Excess carrier density"
+msgstr "Избыточная плотность носителей"
+
+msgid "Excess charge density above equilibrium"
+msgstr "Избыточная плотность заряда выше равновесия"
+
+msgid "Charge density with correction for surface charge"
+msgstr "Плотность заряда с поправкой на поверхностный заряд"
+
+msgid "Total charge density"
+msgstr "Общая плотность заряда"
+
+msgid "EQE"
+msgstr ""
+
+msgid "Light flux"
+msgstr "световой поток"
+
+msgid "Power in Optical emission/Electrical power in"
+msgstr "Мощность в оптическом излучении/электрическая мощность в"
+
+msgid "Conductivity"
+msgstr "проводимость"
+
+msgid "Holes on left contact"
+msgstr "Отверстия на левом контакте"
+
+msgid "Electrons on left contact"
+msgstr "Электроны на левом контакте"
+
+msgid "Holes on right contact"
+msgstr "Отверстия на правом контакте"
+
+msgid "Electrons on right contact"
+msgstr "Электроны на правом контакте"
+
+msgid "Generating electrical mesh\n"
+msgstr "Создание электрической сетки\n"
+
+msgid "I can't solve the matrix because I don't have enough equations."
+msgstr "Я не могу решить матрицу, потому что у меня недостаточно уравнений."
+
+msgid "Wavelength"
+msgstr "длина волны"
+
+msgid "Probe load configuration"
+msgstr "Конфигурация нагрузки зонда"
+
+msgid "Probe calculate modes"
+msgstr "Режимы расчета зонда"
+
+msgid "Probe free memory"
+msgstr "Зонд свободной памяти"
+
+msgid "Photon generation rate"
+msgstr "Скорость генерации фотонов"
+
+msgid "Average photon generation rate (xz-plane)"
+msgstr "Средняя скорость генерации фотонов (плоскость xz)"
+
+msgid "Photon generation rate  (xz-plane)"
+msgstr "Скорость генерации фотонов (плоскость xz)"
+
+msgid "Absorption"
+msgstr "Поглощение"
+
+msgid "Extended opticla absorption"
+msgstr ""
+
+#, python-format
+msgid "Cleaning cache index: %s\n"
+msgstr ""
+
+msgid "Cache: checking cache free space\n"
+msgstr ""
+
+msgid "Freeing memory from the exciton model\n"
+msgstr "Освобождение памяти от экситонной модели\n"
+
+msgid "Mode E-field"
+msgstr ""
+
+msgid "E-field"
+msgstr "Электронное поле"
+
+msgid "Refractive index"
+msgstr "Реактивный индекс"
+
+msgid "Normalized photon ensity"
+msgstr ""
+
+msgid "Photon density"
+msgstr "Фотонная плотность"
+
+msgid "Mode Ey"
+msgstr ""
+
+msgid "Ey"
+msgstr ""
+
+msgid "E - Electric field"
+msgstr ""
+
+msgid "Job stalled. Time since last run:"
+msgstr "Работа застопорилась. Время с момента последнего запуска:"
+
+msgid "Bytes, written"
+msgstr "Байты, записанные"
+
+msgid ", read"
+msgstr ", читать"
+
+msgid "Files, read"
+msgstr "Файлы, читать"
+
+msgid " written"
+msgstr "написано"
+
+msgid "I have shut down the server"
+msgstr "я выключил сервер"
+
+msgid "Number of CPUs:"
+msgstr "Количество процессоров:"
+
+msgid "Start time"
+msgstr "время начала"
+
+msgid "End time"
+msgstr "Время окончания"
+
+msgid "All jobs finished jobs"
+msgstr "Все работы готовые работы"
+
+msgid "I have finished all my jobs"
+msgstr "Я закончил все свои дела"
+
+msgid "The server has detected a crash"
+msgstr "Сервер обнаружил сбой"
+
+msgid "Hole generation rate"
+msgstr "Скорость образования отверстий"
+
+msgid ""
+"Copyright (C) 2009-2022 Roderick C. I. MacKenzie, Releced the MIT License"
+msgstr "Copyright (C) 2009-2022 Roderick CI MacKenzie, выпустил лицензию MIT"
+
+msgid "options"
+msgstr "опции"
+
+msgid "Options"
+msgstr "Опции"
+
+msgid "Simulation root path"
+msgstr "Корневой путь моделирования"
+
+msgid "displays the current version"
+msgstr "отображает текущую версию"
+
+msgid "Dump know paths"
+msgstr ""
+
+msgid "Forces a simulation mode."
+msgstr "Режим имитации сил."
+
+msgid "sets the number of CPUs"
+msgstr "устанавливает количество процессоров"
+
+msgid "Runs the optimizer. Syntax --optimizer scan_name"
+msgstr ""
+
+msgid ""
+"Additional information about OghmaNano is available at https://www.Oghma-"
+"Nano.com."
+msgstr ""
+"Дополнительная информация об OghmaNano доступна на сайте https://www.Oghma-"
+"Nano.com."
+
+msgid "Report bugs to: roderick.mackenzie@oghma-nano.com"
+msgstr "Сообщайте об ошибках по адресу: roderick.mackenzie@oghma-nano.com"
+
+#, python-format
+msgid "oghma_core, Version %s\n"
+msgstr "oghma_core, версия %s\n"
+
+msgid "OghmaNano (Organic and hybrid Material Nano Simulation tool) core."
+msgstr ""
+"Ядро OghmaNano (инструмент моделирования органических и гибридных "
+"материалов)."
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2009-2022"
+msgstr "Copyright Roderick MacKenzie, выпущено по лицензии MIT 2009-2022."
+
+msgid "There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or\n"
+msgstr "НЕТ АБСОЛЮТНО НИКАКИХ ГАРАНТИЙ; даже не для ТОВАРНОЙ ПРИГОДНОСТИ или\n"
+
+msgid "FITNESS FOR A PARTICULAR PURPOSE.\n"
+msgstr "ПРИГОДНОСТЬ ДЛЯ КОНКРЕТНОЙ ЦЕЛИ.\n"
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2010-2019"
+msgstr "Copyright Roderick MacKenzie, выпущено по лицензии MIT 2010-2019."
+
+msgid "OghmaNano - Organic and hybrid Material Nano Simulation tool"
+msgstr ""
+"OghmaNano — инструмент моделирования органических и гибридных материалов."
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+msgstr "Авторское право (C) 2009–2022 Родерик С. И. Маккензи,\n"
+
+msgid "Released under the MIT software license"
+msgstr "Выпущено под лицензией на программное обеспечение MIT"
+
+msgid "If you wish to collaborate in anyway please get in touch:\n"
+msgstr "Если вы все равно хотите сотрудничать, пожалуйста, свяжитесь с нами:\n"
+
+msgid "dll not loaded"
+msgstr "dll не загружается"
+
+msgid "dll function outcoupling_dll_init not found\n"
+msgstr ""
+
+msgid "dll function outcoupling_dll_solve_lam_slice not found\n"
+msgstr ""
+
+msgid "dll function outcoupling_dll_ver not found\n"
+msgstr ""
+
+msgid "Generation rate - position"
+msgstr ""
+
+msgid "Photons escape probability - position"
+msgstr ""
+
+msgid "Photons escape probability"
+msgstr ""
+
+msgid "Position - Photon density"
+msgstr ""
+
+msgid "Photon Escape Probability Wavelength Averaged"
+msgstr ""
+
+msgid "Escape probability"
+msgstr ""
+
+msgid "Photon escape probability"
+msgstr "Вероятность побега фотона"
+
+msgid "Running FDTD simulation @"
+msgstr "Запуск симуляции FDTD @"
+
+msgid "Ex - Electric field"
+msgstr "Ex - электрическое поле"
+
+msgid "Ey - Electric field"
+msgstr "Е - электрическое поле"
+
+msgid "Ez - Electric field"
+msgstr "Ez - электрическое поле"
+
+msgid "Detectors"
+msgstr "Детекторы"
+
+msgid "Hx - Magnetic field"
+msgstr "Hx - Магнитное поле"
+
+msgid "H-field"
+msgstr "H-поле"
+
+msgid "Hy - Magnetic field"
+msgstr "Hy - Магнитное поле"
+
+msgid "Hz - Magnetic field"
+msgstr "Гц - Магнитное поле"
+
+msgid "Power den"
+msgstr "мощность логово"
+
+msgid "Tot power den"
+msgstr "Tot power den"
+
+msgid "epsilon_r - Premitivity"
+msgstr "epsilon_r - Премитивность"
+
+msgid "Permitivity"
+msgstr "Разрешение"
+
+msgid "sigma - ?"
+msgstr "сигма - ?"
+
+msgid "sigma"
+msgstr "сигма"
+
+msgid "Math_2d output"
+msgstr "Вывод Math_2d"
+
+msgid "Values"
+msgstr "Ценности"
+
+msgid "dll function dll_matrix_solve not found\n"
+msgstr "dll функция dll_matrix_solve не найдена\n"
+
+msgid "dll function dll_matrix_solver_free not found\n"
+msgstr "dll функция dll_matrix_solver_free не найдена\n"
+
+msgid "dll function dll_matrix_init not found\n"
+msgstr "dll функция dll_matrix_init не найдена\n"
+
+msgid "Error closing dll"
+msgstr "Ошибка закрытия dll"
+
+msgid "File not found\n"
+msgstr "Файл не найден\n"
+
+#, python-format
+msgid "File access log written to %s\n"
+msgstr "Журнал доступа к файлам записывается в %s\n"
+
+msgid "Equilibrium Fermi-level"
+msgstr "Равновесный уровень Ферми"
+
+msgid "dll function dll_complex_matrix_solver_free not found\n"
+msgstr "dll функция dll_complex_matrix_solver_free не найдена\n"
+
+msgid "Deleting directory: "
+msgstr "Удаление каталога:"
+
+msgid "Deleting directory"
+msgstr "Удалить каталог"
+
+msgid "Solver initialization\n"
+msgstr "Инициализация решателя\n"
+
+msgid "dll_solve_cur not NULL\n"
+msgstr ""
+
+msgid "dll function dll_solve_cur not found\n"
+msgstr "dll функция dll_solve_cur не найдена\n"
+
+msgid "dll_solver_realloc not NULL\n"
+msgstr ""
+
+msgid "dll function dll_solver_realloc not found\n"
+msgstr "dll функция dll_solver_realloc не найдена\n"
+
+msgid "dll_solver_free_memory not NULL\n"
+msgstr ""
+
+msgid "dll function dll_solver_free_memory not found\n"
+msgstr "dll функция dll_solver_free_memory не найдена\n"
+
+msgid ">I don't understand the command"
+msgstr ">Я не понимаю команду"
+
+msgid "Can not open file"
+msgstr "Не могу открыть файл"
+
+#, python-brace-format
+msgid "Average mobility at V_{oc}"
+msgstr "Средняя подвижность при V_{oc}"
+
+msgid "Recombination rate at Voc"
+msgstr "Скорость рекомбинации на Voc"
+
+#, python-brace-format
+msgid "Average mobility as J_{sc}"
+msgstr "Средняя подвижность как J_{sc}"
+
+#, python-brace-format
+msgid "Electron mobility at J_{sc}"
+msgstr ""
+
+#, python-brace-format
+msgid "Hole mobility at J_{sc}"
+msgstr ""
+
+#, python-brace-format
+msgid "Electron mobility at P_{max}"
+msgstr "Подвижность электронов при P_{max}"
+
+#, python-brace-format
+msgid "Hole mobility at P_{max}"
+msgstr "Подвижность отверстия при P_{max}"
+
+msgid "Recombination time constant at Voc"
+msgstr "Постоянная времени рекомбинации на Voc"
+
+msgid "Trapped electrons at Voc"
+msgstr "Захваченные электроны на Voc"
+
+msgid "Trapped holes at Voc"
+msgstr "Закрытые отверстия в Voc"
+
+msgid "Free electrons at Voc"
+msgstr "Свободные электроны в Voc"
+
+msgid "Free holes at Voc"
+msgstr "Свободные отверстия в Voc"
+
+msgid "Total carriers (n+p)/2 at Voc"
+msgstr "Всего носителей (n+p)/2 в Voc"
+
+#, python-brace-format
+msgid "Average mobility at P_{max}"
+msgstr "Средняя подвижность при P_{max}"
+
+msgid "<b>GPU</b>"
+msgstr "<b>Графический процессор</b>"
+
+msgid "Max Cahce Size"
+msgstr ""
+
+msgid "Minimum disk free"
+msgstr ""
+
+msgid "Number of simulations to keep"
+msgstr ""
+
+msgid "Enable cache"
+msgstr ""
+
+msgid "Cache path"
+msgstr ""
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Resistor"
+msgstr "Резистор"
+
+msgid "Capacitor"
+msgstr "Конденсатор"
+
+msgid "Inductance"
+msgstr "Индуктивность"
+
+msgid "I0"
+msgstr "I0"
+
+msgid "Ideality factor"
+msgstr "Фактор идеальности"
+
+msgid "Layer"
+msgstr "Слой"
+
+msgid "Single point"
+msgstr "Единая точка"
+
+msgid "Start intensity"
+msgstr "Начальная интенсивность"
+
+msgid "Stop intensity"
+msgstr "Остановить интенсивность"
+
+msgid "step multiplier"
+msgstr "ступенчатый множитель"
+
+msgid "dx of Honeycomb"
+msgstr "дх сот"
+
+msgid "dy of Honeycomb"
+msgstr "ды из сот"
+
+msgid "Line width"
+msgstr "Ширина линии"
+
+msgid "x shift"
+msgstr "xshift"
+
+msgid "y shift"
+msgstr "yshift"
+
+msgid "Rotate"
+msgstr "Повернуть"
+
+msgid "Enable fit variable"
+msgstr "Включить подходящую переменную"
+
+msgid "Select"
+msgstr "Выбирать"
+
+msgid "Shift experimental y"
+msgstr ""
+
+msgid "Invert simulated data (y)"
+msgstr "Инвертировать смоделированные данные (y)"
+
+msgid "Subtract lowest point"
+msgstr "Вычесть самую низкую точку"
+
+msgid "Set first point to zero"
+msgstr "Установить первую точку на ноль"
+
+msgid "Fit df(x)/dx"
+msgstr "Подгонка df(x)/dx"
+
+msgid "Fit error multiplyer"
+msgstr "Многопользовательская игра с ошибкой фита"
+
+msgid "Stall steps"
+msgstr "Шаги киоска"
+
+msgid "Fit define convergence"
+msgstr "Подходящая конвергенция определения"
+
+msgid "<b>Fit method</b>"
+msgstr ""
+
+msgid "Fiting method"
+msgstr "Метод установки"
+
+msgid "Nelder–Mead (Downhill simplex)"
+msgstr ""
+
+msgid "Thermal Annealing"
+msgstr ""
+
+msgid "Markov chain Monte Carlo (MCMC)"
+msgstr ""
+
+msgid "Markov chain Monte Carlo (HMC)"
+msgstr ""
+
+msgid "No-U-Turn Sampler (NUTS)"
+msgstr ""
+
+msgid "Newton"
+msgstr ""
+
+msgid "Broyden–Fletcher–Goldfarb–Shanno (BFGS)"
+msgstr ""
+
+msgid "Start simplex step multiplication"
+msgstr "Начать симплексное ступенчатое умножение"
+
+msgid "Enable simplex reset steps"
+msgstr ""
+
+msgid "Simplex reset steps"
+msgstr "Шаги симплексного сброса"
+
+msgid "Disable reset at level"
+msgstr "Отключить сброс на уровне"
+
+msgid "On stall randomize fit"
+msgstr ""
+
+msgid "Number of iterations between random reset"
+msgstr "Количество итераций между случайным сбросом"
+
+msgid "Sigma"
+msgstr ""
+
+msgid "Dump every n steps"
+msgstr ""
+
+msgid "Leapfrog steps"
+msgstr ""
+
+msgid "Cooling constant"
+msgstr ""
+
+msgid "Annealing steps"
+msgstr ""
+
+msgid "Randomize variables at begining"
+msgstr ""
+
+msgid "<b>Fit control</b>"
+msgstr ""
+
+msgid "Set error to zero before"
+msgstr "Установите ошибку на ноль перед"
+
+msgid "Enable snapshots during fit"
+msgstr ""
+
+msgid "Normalize data at x point"
+msgstr ""
+
+msgid "Random funciton"
+msgstr ""
+
+msgid "Mersenne Twister"
+msgstr ""
+
+msgid "C rand"
+msgstr ""
+
+msgid "Random initialization"
+msgstr ""
+
+msgid "Wall clock"
+msgstr ""
+
+msgid "Constant value"
+msgstr ""
+
+msgid "/dev/urandom"
+msgstr ""
+
+msgid "Random seed value"
+msgstr ""
+
+msgid "Add noise"
+msgstr ""
+
+msgid "Noise level"
+msgstr ""
+
+msgid "a"
+msgstr "а"
+
+msgid "b"
+msgstr "б"
+
+msgid "c"
+msgstr "с"
+
+msgid "Range start x0"
+msgstr ""
+
+msgid "Range stop x1"
+msgstr ""
+
+msgid "JV voltage step multiplyer"
+msgstr "Ступенчатый умножитель напряжения СП"
+
+msgid "Maximum current density"
+msgstr "Максимальная плотность тока"
+
+msgid "JV curve photon generation efficiency"
+msgstr "Кривая JV эффективность генерации фотонов"
+
+#, python-brace-format
+msgid "Average carrier density at P_{max}"
+msgstr "Средняя плотность носителей при P_{max}"
+
+msgid "Start voltage"
+msgstr "Пусковое напряжение"
+
+msgid "Stop voltage"
+msgstr "Стоп-напряжение"
+
+msgid "Voltage step"
+msgstr "Шаг напряжения"
+
+msgid "Points"
+msgstr ""
+
+msgid "Detector input hist"
+msgstr "История входа детектора"
+
+msgid "Counts"
+msgstr "Считает"
+
+msgid "Detected light"
+msgstr "Обнаруженный свет"
+
+msgid "Efficiency of emission"
+msgstr "Эффективность выброса"
+
+msgid "Detector"
+msgstr "Детектор"
+
+msgid "Power"
+msgstr "Сила"
+
+msgid "Solving the initial electrostatic field."
+msgstr "Решение начального электростатического поля."
+
+msgid "Electrostatic solver f()="
+msgstr "Электростатический решатель f()="
+
+msgid "Converged"
+msgstr "Сошлись"
+
+msgid "Finding equilibrium conditions"
+msgstr "Нахождение условий равновесия"
+
+msgid "Finished finding equilibrium conditions"
+msgstr "Закончен поиск условий равновесия"
+
+msgid "Finished generating DoS....\n"
+msgstr "Завершено создание DoS....\n"
+
+msgid "load: config files"
+msgstr "загрузить: файлы конфигурации"
+
+msgid "Intrinsic Fermi - position"
+msgstr "Внутренний Ферми - положение"
+
+msgid "LUMO energy - position"
+msgstr "Энергия LUMO - позиция"
+
+msgid "HOMO energy - position"
+msgstr "Энергия HOMO - положение"
+
+msgid "Electron density - position"
+msgstr "Электронная плотность - положение"
+
+msgid "Hole density - position"
+msgstr "Плотность отверстий - положение"
+
+msgid "Potential - position"
+msgstr "Потенциал - позиция"
+
+msgid "Loading electrical dll\n"
+msgstr "Загрузка электрической DLL\n"
+
+msgid "dll function dll_run_simulation not found\n"
+msgstr "dll функция dll_run_simulation не найдена\n"
+
+msgid "Electrical objects"
+msgstr "Электрические объекты"
+
+msgid "Running simulation"
+msgstr ""
+
+msgid "Solved"
+msgstr "Решено"
+
+msgid "Equations"
+msgstr "Уравнения"
+
+msgid "I can't allocate a device with less than 1 mesh point."
+msgstr "Я не могу выделить устройство с менее чем 1 точкой сетки."
+
+msgid ""
+"You are asking me to simulate a device with more than 50000 mesh points, "
+"although I could do this I am not going to because it seems a bad idea to me."
+msgstr ""
+"Вы просите меня смоделировать устройство с более чем 50 000 точек сетки, "
+"хотя я мог бы этого делать, но не собираюсь, потому что мне это кажется "
+"плохой идеей."
+
+msgid "Current "
+msgstr ""
+
+msgid "Voltage - Current density"
+msgstr "Напряжение - плотность тока"
+
+msgid "Voltage - Current"
+msgstr "Напряжение - Ток"
+
+msgid "Time - Current density"
+msgstr "Время - плотность тока"
+
+msgid "Time - Voltage"
+msgstr "Время - Напряжение"
+
+msgid "Fit error"
+msgstr "ошибка соответствия"
+
+msgid "Step"
+msgstr "Шаг"
+
+msgid "au"
+msgstr "ау"
+
+msgid "Speed"
+msgstr "Скорость"
+
+msgid "odes/s"
+msgstr "оды/с"
+
+msgid "Chain all"
+msgstr ""
+
+msgid "Value"
+msgstr "Ценность"
+
+msgid "Chain accepted"
+msgstr ""
+
+msgid "Hist chain accepted"
+msgstr ""
+
+msgid "Freeing memory from the heat model\n"
+msgstr "Освобождение памяти от тепловой модели\n"
+
+msgid "Loading file"
+msgstr "Загрузка файла"
+
+#, python-format
+msgid "Expected dos size is different from generated %d %d\n"
+msgstr "Ожидаемый размер DOS отличается от сгенерированного %d %d\n"
+
+#, python-format
+msgid "genndosfdgaus: I can not write to the file %s\n"
+msgstr ""
+
+msgid "Computer cores:"
+msgstr "Компьютерные ядра:"
+
+msgid "Max threads:"
+msgstr "Максимальное количество потоков:"
+
+msgid "You must load the optical plugin before making the time mesh"
+msgstr ""
+"Перед созданием временной сетки необходимо загрузить оптический плагин."
+
+msgid "The electrical mesh does not match the device length"
+msgstr "Электросетка не соответствует длине устройства"
+
+msgid "Can't generate a mesh with zero points"
+msgstr "Невозможно создать сетку с нулевыми точками"
+
+msgid "If you want to run perovskite in fx-domain send me an e-mail."
+msgstr ""
+"Если вы хотите запустить перовскит в fx-домене, напишите мне по электронной "
+"почте."
+
+msgid "fxdomain mode not known"
+msgstr "режим fxdomain неизвестен"
+
+msgid "Running frequency"
+msgstr "Рабочая частота"
+
+msgid ""
+"Optical modulation will come in the next version.  If you want to use it "
+"drop me a mail..."
+msgstr ""
+"Оптическая модуляция появится в следующей версии. Если вы хотите "
+"использовать его, напишите мне письмо..."
+
+msgid "fxdomain time"
+msgstr "fxdomain время"
+
+msgid "Light intensity"
+msgstr "Интенсивность света"
+
+msgid "Ion density - position"
+msgstr "Ионная плотность - положение"
+
+msgid "Ion free"
+msgstr "без ионов"
+
+msgid "Ion convergence="
+msgstr "Ионная конвергенция ="
+
+msgid "Ion diffusion"
+msgstr "Ионная диффузия"
+
+msgid "R spm"
+msgstr "R уд/мин"
+
+msgid "Vlost spm"
+msgstr "Влость спм"
+
+msgid "V spm"
+msgstr "В уд/мин"
+
+msgid "Electrical circuit"
+msgstr "электрическая цепь"
+
+msgid "Circuit"
+msgstr "Схема"
+
+msgid "Current vector plot"
+msgstr "Текущий векторный график"
+
+msgid "Real refractive index"
+msgstr "Реальный показатель преломления"
+
+msgid "|Electric field|"
+msgstr "|Электрическое поле|"
+
+msgid "Transmittance"
+msgstr "Коэффициент пропускания"
+
+msgid "Reflectance"
+msgstr "отражение"
+
+msgid "Solve optical slice at"
+msgstr "Решите оптический срез в"
+
+msgid "It was dark I did not solve any slices\n"
+msgstr "Было темно, я не решил ни одного фрагмента\n"
+
+msgid "Initializing optical model"
+msgstr "Инициализация оптической модели"
+
+msgid "dll function light_dll_init not found\n"
+msgstr "dll функция light_dll_init не найдена\n"
+
+msgid "dll function light_dll_solve_lam_slice not found\n"
+msgstr "dll функция light_dll_solve_lam_slice не найдена\n"
+
+msgid "dll function light_dll_ver not found\n"
+msgstr "dll функция light_dll_ver не найдена\n"
+
+msgid "Power density of the optical spectra (no filter):"
+msgstr "Плотность мощности оптических спектров (без фильтра):"
+
+msgid "File not found"
+msgstr "Файл не найден"
+
+msgid "Light: Load filter"
+msgstr "Свет: Загрузить фильтр"
+
+msgid "Refractive index - position"
+msgstr ""
+
+msgid "Absorption - position"
+msgstr ""
+
+msgid "Photons absorbed - position"
+msgstr ""
+
+msgid "Photons absorbed"
+msgstr "Поглощенные фотоны"
+
+msgid "Position - Electric field (y+)"
+msgstr ""
+
+msgid "Position - Electric field (y-)"
+msgstr ""
+
+msgid "Freeing memory from the optical model\n"
+msgstr "Освобождение памяти от оптической модели\n"
+
+msgid "Electron generation rate"
+msgstr "Скорость генерации электронов"
+
+msgid "Optical heating"
+msgstr "Оптический нагрев"
+
+msgid "Charge carrier generation rate"
+msgstr ""
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Copy as JSON"
+msgstr "Скопировать как JSON"
+
+msgid "Copy json/python path"
+msgstr "Скопируйте путь json/python"
+
+msgid "Copy ObjID"
+msgstr "Копировать идентификатор объекта"
+
+msgid "Copy as LaTex"
+msgstr "Копировать как LaTex"
+
+msgid "Copy as csv"
+msgstr "Скопировать как CSV"
+
+msgid "Paste"
+msgstr "Вставить"
+
+msgid "Reimport from database"
+msgstr "Реимпорт из базы данных"
+
+msgid "Are you sure you want reimport the material values from:"
+msgstr ""
+
+msgid "File not found:"
+msgstr ""
+
+msgid "Edit reference"
+msgstr ""
+
+msgid "Delete reference"
+msgstr ""
+
+msgid "Add reference"
+msgstr ""
+
+msgid "This simulation"
+msgstr "Это моделирование"
+
+msgid "Electrical parameter editor for shape"
+msgstr "Редактор электрических параметров для формы"
+
+msgid "Reference"
+msgstr ""
+
+msgid "Bibliography editor"
+msgstr ""
+
+msgid "Electrical Mesh Editor"
+msgstr "Редактор электрических сетей"
+
+msgid ""
+"Y\n"
+"Dimension"
+msgstr ""
+
+msgid ""
+"X\n"
+"Dimension"
+msgstr ""
+
+msgid ""
+"Z\n"
+"Dimension"
+msgstr ""
+
+msgid ""
+"Configure\n"
+"mesh"
+msgstr ""
+
+msgid ""
+"Import from\n"
+"layer editor"
+msgstr ""
+
+msgid "Remesh"
+msgstr "Изменить сетку"
+
+msgid "Configure mesh"
+msgstr "Настроить сетку"
+
+msgid ""
+"Are you sure you want to overwrite the electrical mesh with a guessed mesh "
+"based on the layer structure?"
+msgstr ""
+
+msgid "New simulation"
+msgstr "Новая симуляция"
+
+msgid ""
+"Open\n"
+"simulation"
+msgstr ""
+"Открыть\n"
+"моделирование"
+
+msgid ""
+"Export\n"
+"Zip"
+msgstr ""
+"Экспорт\n"
+"Архив"
+
+msgid ""
+"Run\n"
+"simulation"
+msgstr ""
+"Запустить\n"
+"моделирование"
+
+msgid "Run simulation"
+msgstr "Запустить симуляцию"
+
+msgid "Tutorials"
+msgstr "Учебники"
+
+msgid "Manual"
+msgstr "Руководство"
+
+msgid ""
+"Follow on\n"
+"Twitter"
+msgstr ""
+"Подпишитесь на\n"
+"Твиттер"
+
+msgid ""
+"Subscribe\n"
+"on Youtube"
+msgstr ""
+"Подпишись\n"
+"не на ютуб"
+
+msgid "Getting started"
+msgstr "Начиная"
+
+msgid "1D Simulations"
+msgstr "1D-моделирование"
+
+msgid "Carrier trapping"
+msgstr "Ловушка носителя"
+
+msgid "2D electrical structures (OFETs)"
+msgstr "2D электрические конструкции (OFET)"
+
+msgid "Large area devices/circuit models"
+msgstr "Устройства/схемы большой площади"
+
+msgid "OLEDs"
+msgstr "OLED"
+
+msgid "Material databases"
+msgstr "Базы данных материалов"
+
+msgid "Scripting"
+msgstr "Сценарии"
+
+msgid "Frequency domain simulations"
+msgstr "Моделирование в частотной области"
+
+msgid "Transient simulations"
+msgstr "Моделирование переходных процессов"
+
+msgid "Optical simulations"
+msgstr "Оптическое моделирование"
+
+msgid "Excitonic simulations"
+msgstr "Экситонное моделирование"
+
+msgid "Fitting"
+msgstr "примерка"
+
+msgid "Misc"
+msgstr "Разное"
+
+msgid "Basics"
+msgstr "Основы"
+
+msgid ""
+"<big><b>Now save the simulation</b></big><br>Now select where you would like "
+"to save the simulation directory."
+msgstr ""
+"<big><b>Теперь сохраните симуляцию</b></big><br>Теперь выберите, где вы "
+"хотите сохранить каталог симуляции."
+
+msgid "password:"
+msgstr "пароль:"
+
+msgid "Wrong password"
+msgstr "неправильный пароль"
+
+msgid ""
+"It's not a good idea to save the simulation in the installation directory.  "
+"Try saving it somewhere else, such as your desktop or home directory."
+msgstr ""
+"Не рекомендуется сохранять симуляцию в каталоге установки. Попробуйте "
+"сохранить его в другом месте, например, на рабочем столе или домашнем "
+"каталоге."
+
+msgid ""
+"It's not a good idea to save the simulation in the oghma_local directory."
+msgstr "Не рекомендуется сохранять симуляцию в каталоге oghma_local."
+
+msgid ""
+"That directory already exists.  Pick another name or delete the old one."
+msgstr "Этот каталог уже существует. Выберите другое имя или удалите старое."
+
+msgid "Please select a device before clicking next"
+msgstr "Пожалуйста, выберите устройство, прежде чем нажимать «Далее»."
+
+msgid "Organic LED"
+msgstr "Органический светодиод"
+
+msgid "Crystalline silicon solar cell"
+msgstr "Солнечный элемент из кристаллического кремния"
+
+msgid "a-Si solar cell "
+msgstr "солнечный элемент a-Si"
+
+msgid "polycrystalline silicon "
+msgstr "поликристаллический кремний"
+
+msgid "OFET "
+msgstr "ОФЕТ"
+
+msgid "Perovskite solar cell"
+msgstr "Перовскитовый солнечный элемент"
+
+msgid "CIGS Solar cell"
+msgstr "Солнечная батарея CIGS"
+
+msgid "Which type of device would you like to simulate?"
+msgstr "Какой тип устройства вы хотите смоделировать?"
+
+msgid "Double click to open"
+msgstr "Дважды щелкните, чтобы открыть"
+
+msgid "Close"
+msgstr "Закрывать"
+
+msgid "Show hidden"
+msgstr "Показать скрытое"
+
+msgid "Object editor"
+msgstr "Редактор объектов"
+
+msgid ""
+"Object\n"
+"enabled"
+msgstr ""
+"Объект\n"
+"включен"
+
+msgid ""
+"Object\n"
+"disabled"
+msgstr ""
+"Объект\n"
+"отключен"
+
+msgid "About"
+msgstr "Информация"
+
+msgid ""
+"Written by Roderick MacKenzie 2012-2023, released under the MIT software "
+"license."
+msgstr ""
+
+msgid "Version "
+msgstr "Версия"
+
+msgid ""
+" is a general-purpose tool for simulation of light harvesting devices. It "
+"was originally written to simulate organic solar cells and OLEDs, but it has "
+"recently been extended to simulate other devices including silicon based "
+"devices. Currently the model can sumulate:"
+msgstr ""
+"это инструмент общего назначения для моделирования светособирающих "
+"устройств. Первоначально он был написан для моделирования органических "
+"солнечных элементов и органических светодиодов, но недавно был расширен для "
+"моделирования других устройств, включая устройства на основе кремния. В "
+"настоящее время модель может суммировать:"
+
+msgid "Organic solar cells"
+msgstr "Органические солнечные батареи"
+
+msgid "Organic LEDs"
+msgstr "Органические светодиоды"
+
+msgid "Crystalline silicon solar cells"
+msgstr "Солнечные батареи из кристаллического кремния"
+
+msgid "a-Si solar cells"
+msgstr "a-Si солнечные элементы"
+
+msgid "CIGS solar cells"
+msgstr "Солнечные батареи CIGS"
+
+msgid ""
+"The model solves both electron and hole drift-diffusion, and carrier "
+"continuity equations in position space to describe the movement of charge "
+"within the device. The model also solves Poisson's equation to calculate the "
+"internal electrostatic potential. Recombination and carrier trapping are "
+"described within the model using a Shockley-Read-Hall (SRH) formalism, the "
+"distribution of trap sates can be arbitrarily defined. All equations can be "
+"solved either in steady state or in time domain. A fuller description of the "
+"model can be found in the here, in the associated publications and in the "
+"manual."
+msgstr ""
+"Модель решает уравнения дрейфа-диффузии электронов и дырок, а также "
+"уравнения непрерывности носителей в пространстве положений для описания "
+"движения заряда внутри устройства. Модель также решает уравнение Пуассона "
+"для расчета внутреннего электростатического потенциала. Рекомбинация и "
+"захват носителей описываются в рамках модели с использованием формализма "
+"Шокли-Рид-Холла (SRH), распределение мест ловушек может быть задано "
+"произвольно. Все уравнения могут быть решены либо в установившемся режиме, "
+"либо во временной области. Более полное описание модели можно найти здесь, в "
+"соответствующих публикациях и в руководстве."
+
+msgid "Legal"
+msgstr "Юридический"
+
+msgid "Translations"
+msgstr "Переводы"
+
+msgid "Paths"
+msgstr "Пути"
+
+msgid ""
+"Materials\n"
+"database"
+msgstr ""
+"Материалы\n"
+"база данных"
+
+msgid ""
+"Optical\n"
+"database"
+msgstr ""
+"Оптическая\n"
+"база данных"
+
+msgid ""
+"User\n"
+"data"
+msgstr ""
+"Пользователь\n"
+"данные"
+
+msgid ""
+"Shape\n"
+"database"
+msgstr ""
+"Форма\n"
+"база данных"
+
+msgid ""
+"Filters\n"
+"database"
+msgstr ""
+"Фильтры\n"
+"база данных"
+
+msgid ""
+"Backup\n"
+"Simulaion"
+msgstr ""
+"Резервное копирование\n"
+"Моделирование"
+
+msgid ""
+"Solar spectrum\n"
+"generator"
+msgstr ""
+"Генератор\n"
+"солнечного спектра"
+
+msgid "Add Material"
+msgstr "Добавить материал"
+
+msgid "Add Filter"
+msgstr "Добавить фильтр"
+
+msgid "Add Spectra"
+msgstr "Добавить спектры"
+
+msgid "Add Shape"
+msgstr "Добавить форму"
+
+msgid "New backup"
+msgstr "Новая резервная копия"
+
+msgid "New backup:"
+msgstr "Новая резервная копия:"
+
+msgid "New backup name"
+msgstr "Новое имя резервной копии"
+
+msgid "Shape"
+msgstr "Форма"
+
+msgid "<big><b>Shape file</b></big><br>"
+msgstr "<big><b>Файл формы</b></big><br>"
+
+msgid "Blur menu"
+msgstr "Размытие меню"
+
+msgid "Normalization editor"
+msgstr "Редактор нормализации"
+
+msgid "Shape editor"
+msgstr "Редактор форм"
+
+msgid "Configure honeycomb"
+msgstr "Настроить соты"
+
+msgid "Configure photonic xtal"
+msgstr "Настроить фотонный xtal"
+
+msgid "Configure photonic lens"
+msgstr "Настроить фотонный объектив"
+
+msgid "Configure saw wave"
+msgstr "Настроить пилообразную волну"
+
+msgid "Configure gaussian"
+msgstr "Настроить гаусс"
+
+msgid "Configure boundary"
+msgstr "Настроить границу"
+
+msgid "Configure threshold"
+msgstr "Настроить порог"
+
+msgid "Configure"
+msgstr "Настроить"
+
+msgid "Show labels"
+msgstr "Показать ярлыки"
+
+msgid "Show data"
+msgstr "Показать данные"
+
+msgid "Show axis"
+msgstr "Показать ось"
+
+msgid "Normalize layer width"
+msgstr "Нормализация ширины слоя"
+
+msgid "Copy to clipboard"
+msgstr "Скопировать в буфер обмена"
+
+msgid "Save as SVG"
+msgstr "Сохранить как SVG"
+
+msgid "Redraw"
+msgstr "перерисовать"
+
+msgid "Active layer"
+msgstr "Активный слой"
+
+msgid "From electrical parameters"
+msgstr "Из электрических параметров"
+
+msgid "From material db"
+msgstr "Из материала БД"
+
+msgid "<big><b>Spectra</b></big><br>"
+msgstr "<big><b>Спектры</b></big><br>"
+
+msgid "Optical spectrum editor"
+msgstr "Редактор оптического спектра"
+
+msgid "Spectra"
+msgstr "Спектры"
+
+msgid "Basic"
+msgstr "Базовый"
+
+msgid "Frequency mesh"
+msgstr "Частотная сетка"
+
+msgid "Additional information about gpvdm is available at"
+msgstr "Дополнительная информация о gpvdm доступна по адресу"
+
+msgid "Report bugs to:"
+msgstr "Сообщайте об ошибках по адресу:"
+
+msgid "Deletes the content of all scan directories."
+msgstr "Удаляет содержимое всех каталогов сканирования."
+
+msgid "Loads a simulation --load /path/containing/simulation/sim.oghma"
+msgstr "Загружает симуляцию --load /path/content/simulation/sim.oghma"
+
+msgid "Extract the sim.oghma archive --unpack"
+msgstr "Распакуйте архив sim.oghma --unpack"
+
+msgid "Extract the sim.oghma archive --pack"
+msgstr "Распакуйте архив sim.oghma --pack"
+
+msgid "Electrical parameter editor"
+msgstr "Редактор электрических параметров"
+
+msgid "Device"
+msgstr "Устройство"
+
+msgid ""
+"Simulation\n"
+"Notes"
+msgstr ""
+"Моделирование\n"
+"Примечания"
+
+msgid ""
+"Hints\n"
+"Window"
+msgstr ""
+"Подсказки\n"
+"Окно"
+
+msgid ""
+"Interface\n"
+"Language"
+msgstr ""
+"Интерфейс\n"
+"Язык"
+
+msgid "Assosiated paper"
+msgstr "Связанный документ"
+
+msgid "Documentation"
+msgstr "Документация"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid ""
+"<big><b>Record notes about the simulation here</b></big><br>Use this window "
+"to make notes about the simulation."
+msgstr ""
+"<big><b>Записывайте здесь заметки о симуляции</b></big><br>Используйте это "
+"окно, чтобы делать заметки о симуляции."
+
+msgid "Charge denisty (m^{-3})"
+msgstr "Плотность заряда (м^{-3})"
+
+msgid "Material gradient editor"
+msgstr ""
+
+msgid "Save"
+msgstr "Сохранять"
+
+msgid "New scan"
+msgstr "новое сканирование"
+
+msgid "Delete scan"
+msgstr "Удалить сканирование"
+
+msgid "Clone scan"
+msgstr "Клонировать сканирование"
+
+msgid "Rename scan"
+msgstr "Переименовать сканирование"
+
+msgid "Clean all"
+msgstr "Очистить все"
+
+msgid "Run all scans"
+msgstr "Запустить все сканирования"
+
+msgid "Help"
+msgstr "Помощь"
+
+msgid "Plot fits"
+msgstr "сюжет подходит"
+
+msgid "Run simulation no generation"
+msgstr "Запустить симуляцию без генерации"
+
+msgid "Run single fit"
+msgstr "Бег в одиночной посадке"
+
+msgid "Clean unconverged simulation"
+msgstr "Чистое неконвергентное моделирование"
+
+msgid "Clean simulation output"
+msgstr "Чистый вывод моделирования"
+
+msgid "Push unconverged to hpc"
+msgstr "Внедрение неконвергентных данных в высокопроизводительные компьютеры"
+
+msgid "Change dir"
+msgstr "Изменить каталог"
+
+msgid "Report"
+msgstr "Отчет"
+
+msgid "Scan"
+msgstr "Сканировать"
+
+msgid "Advanced"
+msgstr "Передовой"
+
+msgid "JV experiment window"
+msgstr "Окно эксперимента СП"
+
+msgid ""
+"Import data\n"
+"from file"
+msgstr ""
+"Импорт данных\n"
+"из файла"
+
+msgid ""
+"From\n"
+"Equation"
+msgstr ""
+"Из\n"
+"Уравнение"
+
+msgid "Reference information"
+msgstr "Справочная информация"
+
+msgid "Cost"
+msgstr "Расходы"
+
+msgid "Cost of material"
+msgstr "Стоимость материалов"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Align and distribute"
+msgstr "Выровнять и распределить"
+
+msgid "Left"
+msgstr "Оставил"
+
+msgid "Right"
+msgstr "Верно"
+
+msgid "Distribute"
+msgstr "распространять"
+
+msgid "z"
+msgstr "г"
+
+msgid "Exciton simulation editor"
+msgstr "Редактор экситонного моделирования"
+
+msgid ""
+"From\n"
+"File"
+msgstr ""
+"Из\n"
+"файла"
+
+msgid "Insert reference information"
+msgstr "Вставьте справочную информацию"
+
+msgid ""
+"Are you sure you want to edit the circuit directly?  The circuit will no "
+"longer automaticly be updated as you change the layer structure, and the "
+"electrical parameters editor will be disabled.  Use can use the reset "
+"function in the circuit diagram editor to resore this functionality"
+msgstr ""
+"Вы уверены, что хотите редактировать схему напрямую? Схема больше не будет "
+"автоматически обновляться при изменении структуры слоев, а редактор "
+"электрических параметров будет отключен. Используйте функцию сброса в "
+"редакторе схем, чтобы восстановить эту функцию."
+
+msgid "Component"
+msgstr "Составная часть"
+
+msgid "Circuit diagram"
+msgstr "Принципиальная электрическая схема"
+
+msgid "Use epitaxy as base"
+msgstr "Используйте эпитаксию в качестве основы"
+
+msgid "Free hand drawing"
+msgstr "Рисование от руки"
+
+msgid "Enabled"
+msgstr "Включено"
+
+msgid "Variable"
+msgstr "Переменная"
+
+msgid "Min"
+msgstr "Мин."
+
+msgid "Max"
+msgstr "Максимум"
+
+msgid "Random function"
+msgstr "случайная функция"
+
+msgid "JSON Variable"
+msgstr "JSONПеременная"
+
+msgid "FDTD Editor"
+msgstr "Редактор FDTD"
+
+msgid "Configure hardware"
+msgstr "Настройка оборудования"
+
+msgid ""
+"Hardware\n"
+"benchmark"
+msgstr ""
+"Аппаратное обеспечение\n"
+"тест"
+
+msgid ""
+"RNG\n"
+"test"
+msgstr ""
+
+msgid ""
+"Clear\n"
+"Newton cache"
+msgstr ""
+
+msgid "CPU/GPU configuration"
+msgstr ""
+
+msgid "Newton cache"
+msgstr ""
+
+msgid "Random numbers"
+msgstr ""
+
+msgid "Electrostatic solver"
+msgstr "Электростатический решатель"
+
+msgid "Drift diffusion"
+msgstr "дрейфовая диффузия"
+
+msgid "Simple circuit solver"
+msgstr "Простой решатель схем"
+
+msgid "Poission solver"
+msgstr "Ядовитый решатель"
+
+msgid "Poission solver configuration"
+msgstr "Конфигурация решателя ядов"
+
+msgid "Newton solver"
+msgstr "Решатель Ньютона"
+
+msgid "Exciton solver"
+msgstr "Экситонный решатель"
+
+msgid "Singlet solver"
+msgstr ""
+
+msgid "Newton solver configuration"
+msgstr "Конфигурация решателя Ньютона"
+
+msgid "Configuration"
+msgstr "Конфигурация"
+
+msgid "Circuit solver configuration"
+msgstr "Конфигурация решателя цепей"
+
+msgid "Data imported from: "
+msgstr "Данные импортированы из:"
+
+msgid "Layer editor"
+msgstr "редактор слоев"
+
+msgid "Layer name"
+msgstr "Имя слоя"
+
+msgid "Thicknes"
+msgstr "Толщина"
+
+msgid "Optical material"
+msgstr "оптический материал"
+
+msgid "Layer type"
+msgstr "Тип слоя"
+
+msgid ""
+"Solve optical\n"
+"problem"
+msgstr ""
+"Решение оптической\n"
+"проблемы"
+
+msgid ""
+"Solve thermal\n"
+"problem"
+msgstr ""
+"Решить тепловую\n"
+"проблему"
+
+msgid "ID"
+msgstr "Я БЫ"
+
+msgid "start:"
+msgstr ""
+
+msgid "stop:"
+msgstr ""
+
+msgid "Red=not found in materials DB"
+msgstr ""
+
+msgid ""
+"Enable\n"
+"Drift Diff."
+msgstr ""
+"Включить\n"
+"Дрейф диф."
+
+msgid ""
+"Enable\n"
+"Auger"
+msgstr ""
+"Включить\n"
+"Оже"
+
+msgid ""
+"Dynamic\n"
+"SRH traps"
+msgstr ""
+"Динамические\n"
+"ловушки SRH"
+
+msgid "Min trap depth"
+msgstr ""
+
+msgid "Max trap depth"
+msgstr "Максимальная глубина ловушки"
+
+msgid "Min Fermi level"
+msgstr "Минимальный уровень Ферми"
+
+msgid "Fn points"
+msgstr ""
+
+msgid "Fermi integral points"
+msgstr ""
+
+msgid ""
+"Equilibrium\n"
+"SRH traps"
+msgstr ""
+"Равновесные\n"
+"ловушки СРЗ"
+
+msgid "Excitons"
+msgstr "экситоны"
+
+msgid ""
+"Excited\n"
+"states laser"
+msgstr ""
+
+msgid "Photon rate equation"
+msgstr ""
+
+msgid ""
+"Excited\n"
+"states OPV"
+msgstr ""
+
+msgid "Carrier density points"
+msgstr ""
+
+msgid "Fermi-dirac integral steps"
+msgstr ""
+
+msgid "Minimum trap depth (eV):"
+msgstr ""
+
+msgid "That's not a number.."
+msgstr "Это не число.."
+
+msgid "Maximum trap depth (eV):"
+msgstr "Максимальная глубина ловушки (эВ):"
+
+msgid "Minimum fermi level (eV):"
+msgstr "Минимальный уровень Ферми (эВ):"
+
+msgid "Number of carrier density points to calculate:"
+msgstr ""
+
+msgid "Number of steps in the Fermi-dirac integral:"
+msgstr ""
+
+msgid "DoS Config"
+msgstr "DoSConfig"
+
+msgid "Dos Config"
+msgstr "Дос Конфигурация"
+
+msgid ""
+"Light\n"
+"Sources"
+msgstr ""
+"Свет\n"
+"Источники"
+
+msgid ""
+"Lasers\n"
+"(fs)"
+msgstr ""
+"Лазеры\n"
+"(fs)"
+
+msgid ""
+"Transfer\n"
+"Matrix"
+msgstr ""
+
+msgid ""
+"Optical\n"
+"Outcoupling"
+msgstr ""
+
+msgid ""
+"Ray tracing\n"
+"editor"
+msgstr ""
+"Трассировка лучей\n"
+"редактор"
+
+msgid ""
+"Optical\n"
+"Detectors"
+msgstr ""
+"Оптические\n"
+"детекторы"
+
+msgid ""
+"FDTD\n"
+"Simulation"
+msgstr ""
+"FDTD\n"
+"Моделирование"
+
+msgid ""
+"Mode\n"
+"Calculator"
+msgstr ""
+
+msgid ""
+"Optical\n"
+"thickness"
+msgstr ""
+
+msgid ""
+"Optical\n"
+"mesh"
+msgstr ""
+"Оптическая\n"
+"сетка"
+
+msgid ""
+"Boundary\n"
+"Conditions"
+msgstr ""
+"Граница\n"
+"Условия"
+
+msgid ""
+"<big><b>Laser setup</b></big><br> Use this window to set up your lasers."
+msgstr ""
+"<big><b>Настройка лазера</b></big><br> Используйте это окно для настройки "
+"лазеров."
+
+msgid ""
+"<big><b>The light sources window</b></big><br>Use this window to setup "
+"optical sources for the transfer matrix, ray tracing and FDTD simulations."
+msgstr ""
+"<big><b>Окно источников света</b></big><br>Используйте это окно для "
+"настройки оптических источников для матрицы переноса, трассировки лучей и "
+"моделирования FDTD."
+
+msgid ""
+"<big><b>The ray tracing editor</b></big><br> Use this window to configure "
+"ray tracing."
+msgstr ""
+"<big><b>Редактор трассировки лучей</b></big><br> Используйте это окно для "
+"настройки трассировки лучей."
+
+msgid ""
+"<big><b>The detectors window</b></big><br>Use this window to setup optical "
+"detectors.  These can be used for the ray tracing simulations."
+msgstr ""
+"<big><b>Окно детекторов</b></big><br>Используйте это окно для настройки "
+"оптических детекторов. Их можно использовать для моделирования трассировки "
+"лучей."
+
+msgid ""
+"<big><b>FDTD</b></big><br> Use this window to setup a finite difference time "
+"domain simulation."
+msgstr ""
+"<big><b>FDTD</b></big><br> Используйте это окно для настройки симуляции "
+"конечной разности во временной области."
+
+msgid ""
+"<big><b>Mode calculator</b></big><br> Use this window to setup a the optical "
+"mode calculator."
+msgstr ""
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh, the window can also be used to change the "
+"dimensionality of the simulation."
+msgstr ""
+"<big><b>Редактор сетки</b></big>\n"
+"Используйте это окно для настройки сетки, окно также можно использовать для "
+"изменения размерности моделирования."
+
+msgid "Optical Mesh Editor"
+msgstr "Редактор оптической сетки"
+
+msgid "Boundary conditions"
+msgstr "Граничные условия"
+
+msgid ""
+"<big><b>The optical simulation window</b></big><br>Use this window to "
+"perform optical simulations.  Click on the play button to run a simulation."
+msgstr ""
+"<big><b>Окно оптического моделирования</b></big><br>Используйте это окно для "
+"выполнения оптического моделирования. Нажмите на кнопку воспроизведения, "
+"чтобы запустить симуляцию."
+
+msgid ""
+"Click on the play button to run an optical simulation.  The results will be "
+"displayed in the tabs to the right."
+msgstr ""
+"Нажмите кнопку воспроизведения, чтобы запустить оптическую симуляцию. "
+"Результаты будут отображаться на вкладках справа."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Tutorial "
+"video</b></big><br>Designing optical filters and reflective coatings."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Обучающее "
+"видео</b></big><br>Разработка оптических фильтров и отражающих покрытий."
+
+msgid ""
+"<big><b>The optical outcoupling window</b></big><br>Use this window to "
+"calculate how much light escapes the device. This is useful whend designing "
+"OLEDs and other light emitting structures."
+msgstr ""
+
+msgid ""
+"<big><b>Optical thickness</b></big><br>Usually the optical thickness of a "
+"layer will be taken from the layer structure set out in the layer editor. "
+"However, sometimes one wants to simulate very thick layers. This window will "
+"enable you to force the optical thickness to a value while maintaining it's "
+"physical thickness."
+msgstr ""
+
+msgid "Edit parasitic components"
+msgstr "Изменить паразитные компоненты"
+
+msgid "Parasitic components"
+msgstr "Паразитические компоненты"
+
+msgid "Registration window"
+msgstr "окно регистрации"
+
+msgid "Enter the license key below:"
+msgstr "Введите лицензионный ключ ниже:"
+
+msgid "Key"
+msgstr "Ключ"
+
+msgid "Can't open file "
+msgstr "Не могу открыть файл"
+
+msgid "back"
+msgstr "назад"
+
+msgid "home"
+msgstr "дом"
+
+msgid "Scanning probe microscopy editor"
+msgstr "Редактор сканирующей зондовой микроскопии"
+
+msgid "No files were given to load"
+msgstr "Не дали файлы для загрузки"
+
+msgid ""
+"3D\n"
+"Mode"
+msgstr ""
+"3D\n"
+"Режим"
+
+msgid "New"
+msgstr "Новый"
+
+msgid "Rename"
+msgstr "Переименовать"
+
+msgid "Run"
+msgstr "Бежать"
+
+msgid ""
+"Plot\n"
+"File"
+msgstr ""
+"График\n"
+"Файл"
+
+msgid ""
+"View raw\n"
+"json"
+msgstr ""
+"Просмотр необработанных данных\n"
+"json"
+
+msgid "Cache path:"
+msgstr ""
+
+msgid "Newton cache used"
+msgstr ""
+
+msgid "The cache directory does not exist"
+msgstr ""
+
+msgid "The cache path needs to end in cache."
+msgstr ""
+
+msgid "The cache is empty"
+msgstr ""
+
+msgid "I have emptied the cache"
+msgstr ""
+
+msgid ""
+"<big><b>Simulation finished!</b></big><br>Click on the plot icon to plot the "
+"results"
+msgstr ""
+"<big><b>Моделирование завершено!</b></big><br>Нажмите на значок графика, "
+"чтобы отобразить результаты."
+
+msgid "Ray trace editor"
+msgstr "Редактор трассировки лучей"
+
+msgid "Fit configure"
+msgstr "Подгонка"
+
+msgid "Duplicate variables"
+msgstr "Повторяющиеся переменные"
+
+msgid "Fit variables"
+msgstr "Подходящие переменные"
+
+msgid "Fit rules"
+msgstr "подходят правила"
+
+msgid "Configure minimizer"
+msgstr "Настроить минимизатор"
+
+msgid "Generaton rate editor"
+msgstr "Создать редактор ставок"
+
+msgid "Generation rate (m^{-3}s^{-1})"
+msgstr "Скорость генерации (м^{-3}с^{-1})"
+
+msgid "json id"
+msgstr "json-идентификатор"
+
+msgid "Reference manager"
+msgstr "менеджер ссылок"
+
+msgid ""
+"Layer\n"
+"editor"
+msgstr ""
+"Слой\n"
+"редактор"
+
+msgid "Contacts"
+msgstr "Контакты"
+
+msgid ""
+"Electrical\n"
+"parameters"
+msgstr ""
+"Электрические\n"
+"параметры"
+
+msgid ""
+"Emission\n"
+"parameters"
+msgstr ""
+"Эмиссия\n"
+"параметры"
+
+msgid ""
+"Substrate\n"
+"xz-size"
+msgstr ""
+"Подложка\n"
+"xz-size"
+
+msgid ""
+"<big><b>Contacts window</b></big>\n"
+"Use this window to change the layout of the contacts on the device"
+msgstr ""
+"<big><b>Окно контактов</b></big>\n"
+"Используйте это окно, чтобы изменить расположение контактов на устройстве."
+
+msgid ""
+"<big><b>Device layers</b></big>\n"
+"Use this window to configure the structure of the device."
+msgstr ""
+"<big><b>Уровни устройства</b></big>\n"
+"Используйте это окно для настройки структуры устройства."
+
+msgid ""
+"<big><b>xz dimension editor</b></big>\n"
+"Use this window to configure the xz size of the device."
+msgstr ""
+"<big><b>редактор размера xz</b></big>\n"
+"Используйте это окно для настройки размера xz устройства."
+
+msgid ""
+"<big><b>Electrical parameters</b></big>\n"
+"Use this window to change the electrical parameters of each layer."
+msgstr ""
+"<big><b>Электрические параметры</b></big>\n"
+"Используйте это окно для изменения электрических параметров каждого слоя."
+
+msgid ""
+"<big><b>Emission parameters</b></big>\n"
+"Use this window to set if a layer emits light or not.  You can choose "
+"between theoretically calculated emission spectra and imported experimental "
+"spectra."
+msgstr ""
+"<big><b>Параметры излучения</b></big>\n"
+"Используйте это окно, чтобы указать, излучает ли слой свет или нет. Вы "
+"можете выбирать между теоретически рассчитанными спектрами излучения и "
+"импортированными экспериментальными спектрами."
+
+msgid "Frequency start"
+msgstr "Начало частоты"
+
+msgid "Frequency stop"
+msgstr "Остановка частоты"
+
+msgid "Max points"
+msgstr "Максимальное количество баллов"
+
+msgid "Multiply"
+msgstr "Умножить"
+
+msgid "Paramter to change"
+msgstr "Параметр для изменения"
+
+msgid "Parameter scan window"
+msgstr "Окно сканирования параметров"
+
+msgid "Calculate"
+msgstr "Рассчитать"
+
+msgid "Export spectrum"
+msgstr "Экспорт спектра"
+
+msgid "Spectrum"
+msgstr "Спектр"
+
+msgid "mode Editor"
+msgstr ""
+
+msgid "Edit contacts"
+msgstr "Изменить контакты"
+
+msgid "Top/Bottom"
+msgstr "Верх/Низ"
+
+msgid ""
+"Applied\n"
+"voltage"
+msgstr ""
+"приложенное\n"
+"напряжение"
+
+msgid "Start"
+msgstr "Начинать"
+
+msgid "Width"
+msgstr "Ширина"
+
+msgid "Contact resistance\n"
+msgstr "контактное сопротивление\n"
+
+msgid "Shunt resistance"
+msgstr "Сопротивление шунта"
+
+msgid ""
+"Charge density/\n"
+"Fermi-offset"
+msgstr ""
+"Плотность заряда/\n"
+"смещение Ферми"
+
+msgid ""
+"Majority\n"
+"carrier"
+msgstr ""
+"Большинство\n"
+"перевозчик"
+
+msgid "ve0 (m/s)"
+msgstr "ve0 (м/с)"
+
+msgid "vh0 (m/s)"
+msgstr "vh0 (м/с)"
+
+msgid ""
+"Physical\n"
+"model"
+msgstr ""
+"Физическая\n"
+"модель"
+
+msgid "Neural networks editor"
+msgstr ""
+
+msgid ""
+"Compile\n"
+"to json"
+msgstr ""
+
+msgid "Reporting error...."
+msgstr "Ошибка отчета...."
+
+msgid "Diode"
+msgstr "Диод"
+
+msgid "Power law"
+msgstr "сила закона"
+
+msgid "Barrier"
+msgstr ""
+
+msgid "Wire"
+msgstr "Проволока"
+
+msgid "Ground"
+msgstr "Земля"
+
+msgid "Voltage source"
+msgstr "Источник напряжения"
+
+msgid "Pointer"
+msgstr "Указатель"
+
+msgid "Scroll"
+msgstr ""
+
+msgid "Clean"
+msgstr "Чистый"
+
+msgid "Input vector"
+msgstr ""
+
+msgid "Output vector"
+msgstr ""
+
+msgid "Enter the time at which the laser pulse will fire (-1) to turn it off"
+msgstr ""
+"Введите время, в которое сработает лазерный импульс (-1), чтобы выключить "
+"его."
+
+msgid "Sun"
+msgstr ""
+
+msgid "Laser"
+msgstr ""
+
+msgid "fs Laser"
+msgstr ""
+
+msgid "Enter the start time of the simulation"
+msgstr "Введите время начала моделирования"
+
+msgid "Length"
+msgstr "Длина"
+
+msgid "dt"
+msgstr "дт"
+
+msgid "Start Voltage"
+msgstr "Стартовое напряжение"
+
+msgid "Stop Voltage"
+msgstr "Стоп-напряжение"
+
+msgid "step multiplyer"
+msgstr "пошаговый мультиплеер"
+
+msgid "Sun start"
+msgstr "начало солнца"
+
+msgid "Sun stop"
+msgstr "Остановка солнца"
+
+msgid "Laser start"
+msgstr "Лазерный старт"
+
+msgid "Laser stop"
+msgstr "Лазерная остановка"
+
+msgid ""
+"Save\n"
+"video"
+msgstr ""
+"Сохранить\n"
+"видео"
+
+msgid ""
+"Storyboard\n"
+"to clipboard"
+msgstr ""
+"Раскадровка\n"
+"в буфер обмена"
+
+msgid "Autoscale"
+msgstr "автомасштабирование"
+
+msgid "Set log scale y"
+msgstr "Установить масштаб логарифма y"
+
+msgid "Set log scale x"
+msgstr "Установить масштаб журнала x"
+
+msgid "Plot"
+msgstr "Сюжет"
+
+msgid "Scale"
+msgstr "Шкала"
+
+msgid "Video"
+msgstr "видео"
+
+msgid ""
+"Set\n"
+"Temperature"
+msgstr ""
+"Установить\n"
+"температуру"
+
+msgid ""
+"Configure\n"
+"Model"
+msgstr ""
+"Настроить\n"
+"Модель"
+
+msgid ""
+"Joule\n"
+"Heating"
+msgstr ""
+"Джоуль\n"
+"Нагрев"
+
+msgid ""
+"Parasitic\n"
+"Heating"
+msgstr ""
+"Паразитический\n"
+"Отопление"
+
+msgid ""
+"Optical\n"
+"Heating"
+msgstr ""
+"Оптический\n"
+"Нагрев"
+
+msgid ""
+"Recombination\n"
+"heating"
+msgstr ""
+"Рекомбинация\n"
+"нагрев"
+
+msgid ""
+"Thermal\n"
+"parameters"
+msgstr ""
+"Тепловые\n"
+"параметры"
+
+msgid ""
+"Thermal\n"
+"mesh"
+msgstr ""
+
+msgid ""
+"<big><b>Thermal parameters</b></big>\n"
+"Use this window to change the thermal parameters of each layer."
+msgstr ""
+"<big><b>Тепловые параметры</b></big>\n"
+"Используйте это окно для изменения тепловых параметров каждого слоя."
+
+msgid "Enter the new temperature"
+msgstr "Введите новую температуру"
+
+msgid "Thermal boundary conditions"
+msgstr "Тепловые граничные условия"
+
+msgid "Configure thermal model"
+msgstr "Настроить тепловую модель"
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh."
+msgstr ""
+
+msgid "Thermal Mesh Editor"
+msgstr ""
+
+msgid "Experimental data"
+msgstr "Экспериментальные данные"
+
+msgid "Delta=Experiment - Simulation"
+msgstr "Дельта=Эксперимент - Моделирование"
+
+msgid "Configure fit"
+msgstr "Настроить посадку"
+
+msgid "Fit patch"
+msgstr "патч"
+
+msgid "Local duplicate"
+msgstr "Локальный дубликат"
+
+msgid "Function"
+msgstr "Функция"
+
+msgid "JSON x"
+msgstr "JSON х"
+
+msgid "JSON y"
+msgstr "JSONy"
+
+msgid "Frequency domain experiment window"
+msgstr "Окно эксперимента в частотной области"
+
+msgid "Thermal parameter editor"
+msgstr "Редактор тепловых параметров"
+
+msgid "Device structure"
+msgstr "Структура устройства"
+
+msgid ""
+"<big><b>The device structure tab</b></big><br> Use this tab to change the "
+"structure of the device, the layer thicknesses and to perform optical "
+"simulations.  You can also browse the materials data base and  edit the "
+"electrical mesh."
+msgstr ""
+"<big><b>Вкладка структуры устройства</b></big><br> Используйте эту вкладку, "
+"чтобы изменить структуру устройства, толщину слоев и выполнить оптическое "
+"моделирование. Вы также можете просматривать базу данных материалов и "
+"редактировать электрическую сетку."
+
+msgid "Terminal"
+msgstr "Терминал"
+
+msgid ""
+"<big><b>The terminal window</b></big><br>The output of the model will be "
+"displayed in this window, watch this screen for debugging and convergence "
+"information."
+msgstr ""
+"<big><b>Окно терминала</b></big><br>Вывод модели будет отображаться в этом "
+"окне, следите за этим экраном для получения информации об отладке и "
+"сходимости."
+
+msgid "Tutorials/Documentation"
+msgstr "Учебники/Документация"
+
+msgid ""
+"<big><b>Tutorials/Documentation</b></big><br>Here you can find tutorials, "
+"videos, worksheets, and talks about this software and simulating opto-"
+"electronic devices in general.  Although this software is easy to use with "
+"it's friendly interface, under the hood it is a highly complex model and "
+"powerful model, it is worth taking time to read the documentation to "
+"understand it.  This will enable you to get the most out of this software "
+"and your experimental data."
+msgstr ""
+"<big><b>Учебники/Документация</b></big><br>Здесь вы можете найти учебные "
+"пособия, видеоролики, рабочие листы и доклады об этом программном "
+"обеспечении и моделировании оптоэлектронных устройств в целом. Хотя это "
+"программное обеспечение простое в использовании благодаря дружественному "
+"интерфейсу, под капотом это очень сложная модель и мощная модель, стоит "
+"потратить время на чтение документации, чтобы понять ее. Это позволит вам "
+"получить максимальную отдачу от этого программного обеспечения и ваших "
+"экспериментальных данных."
+
+msgid ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Watch the video</a></b></"
+"big><br> Performing my first solar cell simulation"
+msgstr ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Посмотреть видео</a></b></"
+"big><br> Мое первое моделирование солнечной батареи"
+
+msgid "Output"
+msgstr "Выход"
+
+msgid ""
+"<big><b>Output</b></big><br>This shows the root simulation directory, this "
+"is where the results are stored.  Double click on a file to see what is in "
+"it.."
+msgstr ""
+"<big><b>Выходные данные</b></big><br>Показывает корневой каталог "
+"моделирования, где хранятся результаты. Дважды щелкните файл, чтобы увидеть, "
+"что в нем находится."
+
+msgid "Information"
+msgstr "Информация"
+
+msgid ""
+"<big><b>The fitting variables window</b></big><br> Use this window to select "
+"the variables use to perform the fit."
+msgstr ""
+"<big><b>Окно переменных подгонки</b></big><br> Используйте это окно для "
+"выбора переменных, используемых для подгонки."
+
+msgid "Fit the simulation to experimental data"
+msgstr "Соответствуйте моделированию экспериментальным данным"
+
+msgid "Data sets"
+msgstr "Наборы данных"
+
+msgid "Rename the fit:"
+msgstr "Переименуйте посадку:"
+
+msgid "Clone the experiment:"
+msgstr "Клонируйте эксперимент:"
+
+msgid "Export the simulation"
+msgstr "Экспорт моделирования"
+
+msgid "Zip file"
+msgstr "zip-файл"
+
+msgid "Are you sure you want to delete the experiment: "
+msgstr "Вы уверены, что хотите удалить эксперимент:"
+
+msgid "Make a new fit:"
+msgstr "Сделайте новую подгонку:"
+
+msgid "Error function"
+msgstr "Функция ошибки"
+
+msgid "Log scale"
+msgstr "Логарифмическая шкала"
+
+msgid "Open file"
+msgstr "Открыть файл"
+
+msgid "Back"
+msgstr "назад"
+
+msgid "Home"
+msgstr "Дом"
+
+msgid "is not a number.."
+msgstr "это не число.."
+
+msgid "Complex Density of states editor"
+msgstr "Редактор комплексной плотности состояний"
+
+msgid "LUMO numerical"
+msgstr "LUMO числовой"
+
+msgid "HOMO numerical"
+msgstr "ВЗМО числовой"
+
+msgid "Please cite these papers:"
+msgstr "Процитируйте эти документы:"
+
+msgid "If you publish a paper, book or thesis using results from "
+msgstr "Если вы публикуете статью, книгу или диссертацию, используя результаты"
+
+msgid "This is not a valide e-mail address"
+msgstr "Это недействительный адрес электронной почты"
+
+msgid "The e-mail addresses do not match."
+msgstr "Адреса электронной почты не совпадают."
+
+msgid "Please enter your first name."
+msgstr "Пожалуйста, введите ваше имя."
+
+msgid "Please enter your surname."
+msgstr "Пожалуйста, введите вашу фамилию."
+
+msgid "Please enter your Company/University."
+msgstr "Пожалуйста, введите название вашей компании/университета."
+
+msgid "Please enter how you heard about OghmaNano."
+msgstr ""
+
+msgid "Please enter what you plan on using OghmaNano for."
+msgstr ""
+
+msgid ""
+"Your version of OghmaNano is too old to register, please download the latest "
+"version."
+msgstr ""
+
+msgid "Please register to use OghmaNano. Thanks!"
+msgstr ""
+
+msgid "First name"
+msgstr "Имя"
+
+msgid "Surname"
+msgstr "фамилия"
+
+msgid "Company/University"
+msgstr "Компания/Университет"
+
+msgid "E-mail"
+msgstr "Эл. почта"
+
+msgid "Confirm e-mail"
+msgstr "Подтвердить Email"
+
+msgid "I heard about OghmaNano from:"
+msgstr ""
+
+msgid "I am most interested in simulating:"
+msgstr "Меня больше всего интересует моделирование:"
+
+msgid " will not work until you register.  Would do you want to exit?"
+msgstr "не будет работать, пока вы не зарегистрируетесь. Вы хотите выйти?"
+
+msgid "Suns v.s. Voc"
+msgstr "Солнца против Вок"
+
+msgid "Light source (y0)"
+msgstr "источник света (y0)"
+
+msgid "Light source"
+msgstr "источник света"
+
+msgid "Filters (y0)"
+msgstr "Фильтры (y0)"
+
+msgid "Filters"
+msgstr "Фильтры"
+
+msgid "Run optical simulation"
+msgstr "Запустите оптическое моделирование"
+
+msgid ""
+"Transfer\n"
+"matrix"
+msgstr ""
+"Трансфер\n"
+"матрица"
+
+msgid ""
+"Transfer\n"
+"matrix FD"
+msgstr ""
+
+msgid ""
+"Exponential\n"
+"profile"
+msgstr ""
+"Экспоненциальный\n"
+"профиль"
+
+msgid ""
+"Flat\n"
+"profile"
+msgstr ""
+"Плоский\n"
+"профиль"
+
+msgid ""
+"From\n"
+"file"
+msgstr ""
+"Из\n"
+"файла"
+
+msgid ""
+"From QE\n"
+"spectra"
+msgstr ""
+"Из QE\n"
+"спектра"
+
+msgid ""
+"Constant\n"
+"value"
+msgstr ""
+"Постоянное\n"
+"значение"
+
+msgid "Edit constant"
+msgstr "Изменить константу"
+
+msgid "Optics"
+msgstr "Оптика"
+
+msgid ""
+"Machine\n"
+"Learning"
+msgstr ""
+"Машинное\n"
+"обучение"
+
+msgid ""
+"Edit\n"
+"Probes"
+msgstr ""
+"Изменить\n"
+"Пробы"
+
+msgid ""
+"Parameter\n"
+"scan"
+msgstr ""
+"Параметр\n"
+"scan"
+
+msgid ""
+"Fit to\n"
+"experiment"
+msgstr ""
+"Подходит для\n"
+"эксперимента"
+
+msgid ""
+"Json\n"
+"explorer"
+msgstr ""
+"Json\n"
+"исследователь"
+
+msgid "Matlab paths"
+msgstr "Пути Matlab"
+
+msgid "Python paths"
+msgstr "Пути Python"
+
+msgid ""
+"Script\n"
+"Editor"
+msgstr ""
+"Скрипт\n"
+"Редактор"
+
+msgid ""
+"<big><b>Probes window</b></big><br>Use this window to setup simulation "
+"probes, which can be used to extract values from the simulations at any "
+"given mesh point."
+msgstr ""
+"<big><b>Окно зондов</b></big><br>Используйте это окно для настройки зондов "
+"симуляции, которые можно использовать для извлечения значений из симуляций в "
+"любой заданной точке сетки."
+
+msgid ""
+"<big><b>Machine learning window</b></big><br>Use this window to generate "
+"machine learning vectors"
+msgstr ""
+"<big><b>Окно машинного обучения</b></big><br>Используйте это окно для "
+"создания векторов машинного обучения"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Very often it is useful to be able to "
+"systematically very a device parameter such as mobility or density of trap "
+"states.  This window allows you to do just that."
+msgstr ""
+"<big><b>Окно сканирования</b></big><br> Очень часто полезно иметь "
+"возможность систематически проверять параметры устройства, такие как "
+"мобильность или плотность состояний ловушек. Это окно позволяет сделать "
+"именно это."
+
+msgid "Use the plus icon to add a new scan line to the list."
+msgstr ""
+"Используйте значок плюса, чтобы добавить новую строку сканирования в список."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Tutorial "
+"video</b></big><br>Using the parameter scan window."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Обучающее "
+"видео</b></big><br>Использование окна сканирования параметров ."
+
+msgid ""
+"<big><b>Fit window</b></big><br> Use this window to fit the simulation to "
+"experimental data.  The model uses advanced and optimized fitting algorithms "
+"to fit the model to your experimental data, so that material parameters such "
+"as mobilities and recombination rates can be extracted."
+msgstr ""
+"<big><b>Окно «Подгонка»</b></big><br> Используйте это окно, чтобы подогнать "
+"модель к экспериментальным данным. Модель использует расширенные и "
+"оптимизированные алгоритмы подгонки, чтобы подогнать модель под ваши "
+"экспериментальные данные, чтобы можно было извлечь такие параметры "
+"материала, как подвижность и скорость рекомбинации."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Watch the "
+"tutorial video 1</b></big><br>Fitting the model to experimental data to "
+"extract mobility and recombination rate parameters."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Посмотрите "
+"обучающее видео 1</b></big><br>Подгонка модели к экспериментальные данные "
+"для извлечения параметров подвижности и скорости рекомбинации."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Watch the "
+"tutorial video 2</b></big><br>Fitting the model to large area solar cells"
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Посмотрите "
+"обучающее видео 2</b></big><br>Подгонка модели к солнечные батареи большой "
+"площади"
+
+msgid "Run scan"
+msgstr "запустить сканирование"
+
+msgid "Clean simulation"
+msgstr "Чистое моделирование"
+
+msgid "Fast Optimizer"
+msgstr ""
+
+msgid "Build scan"
+msgstr "Билдскан"
+
+msgid "Rerun"
+msgstr "Повтор"
+
+msgid "Archive simulations"
+msgstr "Архив симуляций"
+
+msgid "Notes"
+msgstr "Заметки"
+
+msgid "Simulations"
+msgstr "Симуляторы"
+
+msgid "New experiment"
+msgstr "новый эксперимент"
+
+msgid "Delete experiment"
+msgstr "Удалить эксперимент"
+
+msgid "Refresh"
+msgstr "Обновить"
+
+msgid "Clone experiment"
+msgstr "Клонировать эксперимент"
+
+msgid "Rename experiment"
+msgstr "Переименовать эксперимент"
+
+msgid ""
+"Export\n"
+"Data"
+msgstr ""
+"Экспорт\n"
+"Данные"
+
+msgid "Import data"
+msgstr "Импорт данных"
+
+msgid "One itteration"
+msgstr "Одна нота"
+
+msgid "Run fit"
+msgstr "беги в хорошей форме"
+
+msgid ""
+"Fit this\n"
+"data set"
+msgstr ""
+"Соответствовать этому\n"
+"набору данных"
+
+msgid ""
+"Dont' fit this\n"
+"data set"
+msgstr ""
+"Не подходит к этому\n"
+"набору данных"
+
+msgid "Mesh point"
+msgstr "Точка сетки"
+
+msgid "Average"
+msgstr "Средний"
+
+msgid "Max pos y-slice"
+msgstr "Max pos y-срез"
+
+msgid "Max pos y-slice STD-Left"
+msgstr "Max pos y-slice STD-Left"
+
+msgid "Max pos y-slice STD-Right"
+msgstr "Max pos y-slice STD-Right"
+
+msgid "Max pos y-slice val"
+msgstr "Max pos y-slice val"
+
+msgid "Max pos y-slice STD-Left val"
+msgstr "Max pos y-slice STD-Left val"
+
+msgid "Max pos y-slice STD-Right val"
+msgstr "Max pos y-slice STD-Right val"
+
+msgid "x:"
+msgstr "Икс:"
+
+msgid "y:"
+msgstr "у:"
+
+msgid "z:"
+msgstr "я:"
+
+msgid "Move up"
+msgstr "Вверх"
+
+msgid "Move down"
+msgstr "Вниз"
+
+msgid "Add layer"
+msgstr "Добавить слой"
+
+msgid "Add object inside"
+msgstr "Добавить объект внутри"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Copy json"
+msgstr "Скопировать json"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Join mesh"
+msgstr ""
+
+msgid "Group (Ctrl+G)"
+msgstr ""
+
+msgid "Ungroup (Ctrl+U)"
+msgstr ""
+
+msgid "Script"
+msgstr "сценарий"
+
+msgid "Copy path (Python)"
+msgstr "Копировать путь (Python)"
+
+msgid "View"
+msgstr "Вид"
+
+msgid "Show solid"
+msgstr "Шоусолид"
+
+msgid "Show mesh"
+msgstr "Показать сетку"
+
+msgid "Show cut through x"
+msgstr "Показать разрез через x"
+
+msgid "Show cut through y"
+msgstr "Показать разрез через y"
+
+msgid "Hidden"
+msgstr "Скрытый"
+
+msgid "New shape name"
+msgstr "Имя новой фигуры"
+
+msgid "Rename the layer:"
+msgstr "Переименуйте слой:"
+
+msgid ""
+"Thermal model\n"
+"enabled"
+msgstr ""
+"Тепловая модель\n"
+"включена"
+
+msgid ""
+"<big><b>Thermal solver switched on</b></big><br>The heat equation will be "
+"solved across the device"
+msgstr ""
+"<big><b>Тепловой решатель включен</b></big><br>Уравнение теплопроводности "
+"будет решаться на всем устройстве"
+
+msgid ""
+"Iso-thermal\n"
+"model"
+msgstr ""
+"Изотермическая\n"
+"модель"
+
+msgid ""
+"<big><b>Isothermal mode</b></big><br>A single temperature will be assumed "
+"across the entire device."
+msgstr ""
+"<big><b>Изотермический режим</b></big><br>Для всего устройства "
+"предполагается единая температура."
+
+msgid "Isothermal"
+msgstr "Изотермический"
+
+msgid "Add"
+msgstr "Добавлять"
+
+msgid "Delete row"
+msgstr "Удалить строку"
+
+msgid "Laser start time"
+msgstr "Время запуска лазера"
+
+msgid "Simulation start time"
+msgstr "Время начала моделирования"
+
+msgid "Loop"
+msgstr "Петля"
+
+msgid "Time domain experiment window"
+msgstr "Окно эксперимента во временной области"
+
+msgid "Simulation"
+msgstr "Моделирование"
+
+msgid "Config"
+msgstr "Конфигурация"
+
+msgid "Loop configuration"
+msgstr "Конфигурация цикла"
+
+msgid "Random variables"
+msgstr "Случайные переменные"
+
+msgid "Patch"
+msgstr "Пластырь"
+
+msgid "Duplicate"
+msgstr "Дублировать"
+
+msgid "Neural networks"
+msgstr ""
+
+msgid "Compiled json written to "
+msgstr ""
+
+msgid "Copying files and configuring"
+msgstr ""
+
+msgid "Finish time:"
+msgstr "Время окончания:"
+
+msgid "Running"
+msgstr "Бег"
+
+msgid "Cluster status"
+msgstr "Статус кластера"
+
+msgid "Constant bias"
+msgstr "постоянное смещение"
+
+msgid "Change"
+msgstr "Изменять"
+
+msgid "From file"
+msgstr "Из файла"
+
+msgid ""
+"Export\n"
+"image"
+msgstr ""
+"Экспорт\n"
+"image"
+
+msgid "<big><b>Filters</b></big><br>Use this tab to edit the optical filters"
+msgstr ""
+"<big><b>Фильтры</b></big><br>Используйте эту вкладку для редактирования "
+"оптических фильтров."
+
+msgid "Filter editor"
+msgstr "фильтрредактор"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Not a valid license number"
+msgstr "Недействительный номер лицензии"
+
+msgid "This key has been used too many times."
+msgstr "Этот ключ использовался слишком много раз."
+
+msgid "This key has expired."
+msgstr "Срок действия этого ключа истек."
+
+msgid ""
+"This version of OghmaNano is too old to validate it's key, please download "
+"the latest version."
+msgstr ""
+"Эта версия OghmaNano слишком старая для проверки ключа, пожалуйста, "
+"загрузите последнюю версию."
+
+msgid "Can't access the internet"
+msgstr "Не могу получить доступ к Интернету"
+
+msgid "Key manager"
+msgstr "Ключевой менеджер"
+
+msgid "Data"
+msgstr "Данные"
+
+msgid ""
+"JV\n"
+"editor"
+msgstr ""
+"СП\n"
+"редактор"
+
+msgid ""
+"Time domain\n"
+"editor."
+msgstr ""
+"Временной домен \n"
+" neditor."
+
+msgid ""
+"FX domain\n"
+"editor"
+msgstr ""
+"FX домен\n"
+"редактор"
+
+msgid ""
+"CV\n"
+"editor"
+msgstr ""
+"CV\n"
+"редактор"
+
+msgid ""
+"Suns Voc\n"
+"editor"
+msgstr ""
+"Suns Voc\n"
+"редактор"
+
+msgid ""
+"Suns Jsc\n"
+"editor"
+msgstr ""
+"Suns Jsc\n"
+"редактор"
+
+msgid ""
+"CE\n"
+"editor"
+msgstr ""
+"CE\n"
+"редактор"
+
+msgid ""
+"PL\n"
+"editor"
+msgstr ""
+"PL\n"
+"редактор"
+
+msgid ""
+"Exciton\n"
+"editor"
+msgstr ""
+"Экситон\n"
+"редактор"
+
+msgid ""
+"Quantum\n"
+"efficiency"
+msgstr ""
+"Квант\n"
+"эффективность"
+
+msgid ""
+"Electrical\n"
+"equilibrium"
+msgstr ""
+
+msgid ""
+"Polynomial\n"
+"editor"
+msgstr ""
+
+msgid ""
+"Calculate\n"
+"the cost"
+msgstr ""
+"Рассчитать\n"
+"стоимость"
+
+msgid ""
+"scanning probe\n"
+"microscopy"
+msgstr ""
+"сканирующий зонд\n"
+"микроскопия"
+
+msgid ""
+"Output\n"
+"Files"
+msgstr ""
+
+msgid ""
+"Simulation\n"
+"Hardware"
+msgstr ""
+"Моделирование\n"
+"Оборудование"
+
+msgid ""
+"<big><b>The time mesh editor</b></big><br> To do time domain simulations one "
+"must define how voltage the light vary as a function of time.  This can be "
+"done in this window.  Also use this window to define the simulation length "
+"and time step."
+msgstr ""
+"<big><b>Редактор временной сетки</b></big><br> Чтобы выполнить моделирование "
+"во временной области, необходимо определить, как напряжение света изменяется "
+"в зависимости от времени. Это можно сделать в этом окне. Также используйте "
+"это окно, чтобы определить длину симуляции и временной шаг."
+
+msgid ""
+"<big><b>Frequency domain mesh editor</b></big><br> Some times it is useful "
+"to do frequency domain simulations such as when simulating impedance "
+"spectroscopy.  This window will allow you to choose which frequencies will "
+"be simulated."
+msgstr ""
+"<big><b>Редактор сетки в частотной области</b></big><br> Иногда полезно "
+"выполнять моделирование в частотной области, например, при моделировании "
+"импедансной спектроскопии. Это окно позволит вам выбрать, какие частоты "
+"будут имитироваться."
+
+msgid ""
+"<big><b>Capacitance voltage editor</b></big><br> Use this editor to change "
+"serup capacitance voltage simulation."
+msgstr ""
+"<big><b>Редактор напряжения емкости</b></big><br> Используйте этот редактор "
+"для изменения имитации напряжения емкости."
+
+msgid ""
+"<big><b>Scanning probe microscopy</b></big><br> Use this window to configure "
+"the scanning probe microscopy simulations."
+msgstr ""
+"<big><b>Сканирующая зондовая микроскопия</b></big><br> Используйте это окно "
+"для настройки моделирования сканирующей зондовой микроскопии."
+
+msgid ""
+"<big><b>PL simulation editor</b></big><br> Use this window to configure the "
+"steady state photoluminescence simulation."
+msgstr ""
+"<big><b>Редактор моделирования PL</b></big><br> Используйте это окно для "
+"настройки моделирования стационарной фотолюминесценции."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Watch the "
+"youtube video</a></b></big><br>Watch the video on perfomring PL simulation."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Посмотреть "
+"видео на YouTube</a></b></big><br>Посмотреть видео по выполнению "
+"моделирования PL."
+
+msgid ""
+"<big><b>Suns voc simulation editor</b></big><br> Use this window to select "
+"the step size and parameters of the JV simulations."
+msgstr ""
+"<big><b>Редактор моделирования Suns voc</b></big><br> Используйте это окно "
+"для выбора размера шага и параметров моделирования JV."
+
+msgid ""
+"<big><b>Suns Jsc simulation editor</b></big><br> Use this window to select "
+"the step size and parameters of the JV simulations."
+msgstr ""
+"<big><b>Редактор моделирования Suns Jsc</b></big><br> Используйте это окно "
+"для выбора размера шага и параметров моделирования JV."
+
+msgid ""
+"<big><b>Charge Extraction editor</b></big><br> This performs charge "
+"extraction experiments in time domain, accounting for recombination losses.  "
+"If you don’t mind about accounting for recombination losses on extraction "
+"just run a JV curve or a Suns-Voc simulation and use the charge.dat file."
+msgstr ""
+"<big><b>Редактор извлечения заряда</b></big><br> Выполняет эксперименты по "
+"извлечению заряда во временной области с учетом рекомбинационных потерь. "
+"Если вы не возражаете против учета рекомбинационных потерь при извлечении, "
+"просто запустите кривую JV или моделирование Suns-Voc и используйте файл "
+"charge.dat."
+
+msgid ""
+"<big><b>Costs window</b></big>\n"
+"Use this window to calculate the cost of the solar cell and the energy "
+"payback time."
+msgstr ""
+"<big><b>Окно «Стоимость»</b></big>\n"
+"Используйте это окно для расчета стоимости солнечной батареи и времени "
+"окупаемости энергии."
+
+msgid ""
+"<big><b>JV simulation editor</b></big><br> Use this window to configure JV "
+"simulations."
+msgstr ""
+"<big><b>Редактор моделирования JV</b></big><br> Используйте это окно для "
+"настройки моделирования JV."
+
+msgid ""
+"<big><b>Polynomial editor</b></big><br> Use this window to generate random "
+"date sets for resting the fitting model."
+msgstr ""
+
+msgid ""
+"<big><b>Exciton simulation editor</b></big><br> Use this window to configure "
+"exciton simulations."
+msgstr ""
+"<big><b>Редактор моделирования экситонов</b></big><br> Используйте это окно "
+"для настройки моделирования экситонов."
+
+msgid ""
+"<big><b>Simulation hardware</b></big><br>Use this window to change how the "
+"model uses the computer's hardware."
+msgstr ""
+"<big><b>Оборудование моделирования</b></big><br>Используйте это окно, чтобы "
+"изменить то, как модель использует оборудование компьютера."
+
+msgid "Output files"
+msgstr "Выходные файлы"
+
+msgid "Banned files and tokens"
+msgstr ""
+
+msgid "Probes"
+msgstr "зонды"
+
+msgid "File name"
+msgstr "Имя файла"
+
+msgid "Probe"
+msgstr "Зонд"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Now using the drop down menu in the "
+"prameter to change 'column', select the device parameter you wish to vary, "
+"an example may be dos0/Electron Mobility. Now enter the values you would "
+"like it to scan oveer in the  'Values', an example could be '1e-3 1e-4 1e-5 "
+"1e-6'.  And hit the double arrorw to run the simulation."
+msgstr ""
+"<big><b>Окно сканирования</b></big><br> Теперь, используя раскрывающееся "
+"меню в параметре для изменения «столбца», выберите параметр устройства, "
+"который вы хотите изменить, например, dos0/ Электронная подвижность. Теперь "
+"введите значения, которые вы хотите просмотреть, в «Значения», например, "
+"«1e-3 1e-4 1e-5 1e-6». И нажмите двойную ошибку, чтобы запустить симуляцию."
+
+msgid "Neural network editor"
+msgstr ""
+
+msgid "ML Input vector"
+msgstr ""
+
+msgid "ML Output vector"
+msgstr ""
+
+msgid "Optimizer"
+msgstr ""
+
+msgid "Scan - Configure Optimizer"
+msgstr ""
+
+msgid "Solar Spectrum Generator"
+msgstr "Генератор солнечного спектра"
+
+msgid "Show energies"
+msgstr "Показать энергию"
+
+msgid "Plot token values"
+msgstr "Значения маркеров графика"
+
+msgid "Suns Jsc simulation editor"
+msgstr "Редактор моделирования Suns Jsc"
+
+msgid "Disabled"
+msgstr "Неполноценный"
+
+msgid ""
+"Ray\n"
+"trace"
+msgstr ""
+
+msgid ""
+"Perfect\n"
+"outcoupling"
+msgstr ""
+
+msgid "time mesh"
+msgstr "сетка времени"
+
+msgid "Explore the simulation data structure"
+msgstr "Исследуйте структуру данных моделирования"
+
+msgid "Interface editor"
+msgstr "редактор интерфейса"
+
+msgid "Sim name"
+msgstr "Имя сима"
+
+msgid "Vectors"
+msgstr "Векторы"
+
+msgid "Cluster get data"
+msgstr "Кластер получает данные"
+
+msgid "Copy src to cluster"
+msgstr "Скопируйте src в кластер"
+
+msgid "Make on cluster"
+msgstr "Сделать на кластере"
+
+msgid "Clean cluster"
+msgstr "Чистый кластер"
+
+msgid "Kill all cluster code"
+msgstr "Убить весь код кластера"
+
+msgid "Sync"
+msgstr "Синхронизировать"
+
+msgid "Cluster"
+msgstr "Кластер"
+
+msgid "3D object viewer"
+msgstr "Средство просмотра 3D-объектов"
+
+msgid "Machine learning"
+msgstr "Машинное обучение"
+
+msgid ""
+"Build\n"
+"vectors"
+msgstr ""
+"Построить\n"
+"векторы"
+
+msgid ""
+"Norm\n"
+"vectors"
+msgstr ""
+
+msgid ""
+"Run\n"
+"Generator"
+msgstr ""
+"Запустить\n"
+"Генератор"
+
+msgid "Clean files"
+msgstr "Чистые файлы"
+
+msgid "Generator"
+msgstr ""
+
+msgid "Clone"
+msgstr "Клон"
+
+msgid "Building simulations: "
+msgstr "Симуляции зданий:"
+
+msgid "Building vectors: "
+msgstr ""
+
+msgid "The directory does not exist: "
+msgstr "Каталог не существует:"
+
+msgid "Loading"
+msgstr "Загрузка"
+
+msgid "Rename:"
+msgstr "Переименовать:"
+
+msgid "Clone:"
+msgstr "Клон:"
+
+msgid "Are you sure you want to delete : "
+msgstr "Вы уверены, что хотите удалить :"
+
+msgid "Make a new:"
+msgstr "Сделать новый:"
+
+msgid "Delete file"
+msgstr "Удалить файл"
+
+msgid "Clone object"
+msgstr "Клонировать объект"
+
+msgid "New shape name:"
+msgstr "Имя новой формы:"
+
+msgid "I cant write to:"
+msgstr "Я могу написать:"
+
+msgid ""
+"This means either the disk is full or your system administrator has not "
+"given you write permissions to that location."
+msgstr ""
+"Это означает, что либо диск заполнен, либо ваш системный администратор не "
+"дал вам разрешения на запись в это место."
+
+msgid "Merge shapes to new"
+msgstr ""
+
+msgid "name"
+msgstr "имя"
+
+msgid "path"
+msgstr "дорожка"
+
+msgid "ip"
+msgstr "IP"
+
+msgid "start"
+msgstr "Начало"
+
+msgid "stop"
+msgstr "остановка"
+
+msgid "CPUs"
+msgstr "процессоры"
+
+msgid "status"
+msgstr "статус"
+
+msgid "Adding: "
+msgstr "Добавление:"
+
+msgid "No sim dir name"
+msgstr "Нет имени сим-директора"
+
+msgid ""
+"I can't load flat_list.inp.  This usually means there is a problem with how "
+"you have set up your scan."
+msgstr ""
+"Я не могу загрузить flat_list.inp. Обычно это означает, что возникла "
+"проблема с настройкой сканирования."
+
+msgid "Problem loading file."
+msgstr ""
+
+msgid "Problem generating tree."
+msgstr "Дерево генерации задач."
+
+msgid "Lambda stop"
+msgstr "лямбда-стоп"
+
+msgid "File containing generation rate"
+msgstr "Файл, содержащий скорость генерации"
+
+msgid "Photon efficiency"
+msgstr "Фотонная эффективность"
+
+msgid "QE spectra file"
+msgstr "Файл спектров QE"
+
+msgid "Incoherent wavelengths"
+msgstr ""
+
+msgid "Mesh layers must equal device layers"
+msgstr ""
+
+msgid "Light spectrum"
+msgstr "Световой спектр"
+
+msgid "Light multiplyer"
+msgstr "Легкий мультиплеер"
+
+msgid "Photo current density"
+msgstr "Плотность фототока"
+
+msgid "Photo current"
+msgstr "Фото текущее"
+
+msgid "Invert"
+msgstr "инвертировать"
+
+msgid "Optical filter material"
+msgstr "Материал оптического фильтра"
+
+msgid "dB"
+msgstr "дБ"
+
+msgid "Degrees"
+msgstr "Степени"
+
+msgid "n"
+msgstr "н"
+
+msgid "Illuminate from"
+msgstr "Осветить от"
+
+msgid "Top (y0)"
+msgstr "верх (y0)"
+
+msgid "Bottom (y1)"
+msgstr "Внизу (y1)"
+
+msgid "Left (x0)"
+msgstr "Слева (x0)"
+
+msgid "Right (x1)"
+msgstr "Вправо (x1)"
+
+msgid "Front (z0)"
+msgstr "передний (z0)"
+
+msgid "Back (z1)"
+msgstr "назад (з1)"
+
+msgid "xyz"
+msgstr "xyz"
+
+msgid "Log fit"
+msgstr "Лог подходит"
+
+msgid "Opperation"
+msgstr "Операция"
+
+msgid "Enable vector"
+msgstr "Включить вектор"
+
+msgid "Edit patch"
+msgstr "Изменить патч"
+
+msgid "Edit vectors"
+msgstr "Редактировать векторы"
+
+msgid "Number of archives"
+msgstr "Количество архивов"
+
+msgid "Simulations per archive"
+msgstr "Симуляций в архиве"
+
+msgid "Random distribution"
+msgstr "Случайное распределение"
+
+msgid "Log"
+msgstr "Журнал"
+
+msgid "Linear"
+msgstr "Линейный"
+
+msgid "Archive path"
+msgstr "Путь к архиву"
+
+msgid "Vector file name"
+msgstr "Имя векторного файла"
+
+msgid "Crash time"
+msgstr ""
+
+msgid "Build vectors when done"
+msgstr ""
+
+msgid "ML Output Vector"
+msgstr ""
+
+msgid "ML Input Vector"
+msgstr ""
+
+msgid "file"
+msgstr ""
+
+msgid "Experimental file"
+msgstr ""
+
+msgid "multiplier"
+msgstr "множитель"
+
+msgid "Multiplier"
+msgstr "Множитель"
+
+msgid "json_src"
+msgstr "json_src"
+
+msgid "json_dest"
+msgstr "json_dest"
+
+msgid "Laser wavelength"
+msgstr "Длина волны лазера"
+
+msgid "Length of pulse"
+msgstr "Длина импульса"
+
+msgid "Spot size x"
+msgstr "Размер пятна х"
+
+msgid "Spot size y"
+msgstr "Размер пятна у"
+
+msgid "Energy in pulse"
+msgstr "Энергия в импульсе"
+
+msgid "Efficiency of photons"
+msgstr "Эффективность фотонов"
+
+msgid "Solve optical problem"
+msgstr "Решить оптическую проблему"
+
+msgid "Yes - n/k"
+msgstr ""
+
+msgid "Yes - k"
+msgstr ""
+
+msgid "No"
+msgstr "Нет"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "contact"
+msgstr "контакт"
+
+msgid "active layer"
+msgstr "активный слой"
+
+msgid "other"
+msgstr "Другой"
+
+msgid "Optical thickness"
+msgstr ""
+
+msgid "Free carrier statistics"
+msgstr "Бесплатная статистика оператора"
+
+msgid "Maxwell Boltzmann - analytic"
+msgstr "Максвелл Больцман - Аналитика"
+
+msgid "Maxwell Boltzmann - numerical+analytic"
+msgstr "Максвелл Больцман - числовой + аналитический"
+
+msgid "Maxwell Boltzmann - full numerical"
+msgstr "Максвелл Больцман - полное числовое"
+
+msgid "Ferm-Dirac - numerical"
+msgstr "Ферм-Дирак - числовой"
+
+msgid "<b>Free carriers</b>"
+msgstr "<b>Бесплатные перевозчики</b>"
+
+msgid "Effective density of free electron states (@300K)"
+msgstr "Эффективная плотность состояний свободных электронов (@300K)"
+
+msgid "Effective density of free hole states (@300K)"
+msgstr "Эффективная плотность состояний свободных дырок (@300K)"
+
+msgid "Enable T dependent free carrier mob"
+msgstr "Включить Т-зависимого бесплатного перевозчика"
+
+msgid "Enable \\u03BB power in free to free recombination"
+msgstr ""
+
+msgid "Show excited singlet states"
+msgstr ""
+
+msgid "<b>Equilibrium SRH traps</b>"
+msgstr "<b>Равновесные ловушки SRH</b>"
+
+#, python-brace-format
+msgid "n_{1}"
+msgstr "н_{1}"
+
+#, python-brace-format
+msgid "p_{1}"
+msgstr "р_{1}"
+
+#, python-brace-format
+msgid "tau_{n}"
+msgstr ""
+
+#, python-brace-format
+msgid "tau_{p}"
+msgstr ""
+
+msgid "<b>Non-equilibrium SRH traps</b>"
+msgstr "<b>Неравновесные ловушки СРЗ</b>"
+
+msgid "Number of traps"
+msgstr "Количество ловушек"
+
+msgid "DoS distribution"
+msgstr "DoS-распространение"
+
+msgid "Complex"
+msgstr "Сложный"
+
+msgid "Exponential"
+msgstr "экспоненциальный"
+
+msgid "Electron trap density"
+msgstr "Плотность электронных ловушек"
+
+msgid "Hole trap density"
+msgstr "Плотность дырочной ловушки"
+
+msgid "Electron tail slope"
+msgstr "Наклон электронного хвоста"
+
+msgid "Hole tail slope"
+msgstr "Наклон хвостовой части отверстия"
+
+msgid "Free electron to Trapped electron"
+msgstr "Свободный электрон в захваченный электрон"
+
+msgid "Trapped electron to Free hole"
+msgstr "Захваченный электрон в свободную дырку"
+
+msgid "Trapped hole to Free electron"
+msgstr "Захваченная дырка к свободному электрону"
+
+msgid "Free hole to Trapped hole"
+msgstr "Свободная дыра в ловушке"
+
+msgid "Enable/Disable"
+msgstr ""
+
+msgid "<b>Excitons</b>"
+msgstr "<b>Экситоны</b>"
+
+msgid "Scattering length"
+msgstr "Длина рассеяния"
+
+msgid "Life time"
+msgstr "продолжительность жизни"
+
+#, python-brace-format
+msgid "k_{pl}"
+msgstr ""
+
+#, python-brace-format
+msgid "k_{fret}"
+msgstr ""
+
+#, python-brace-format
+msgid "k_{alpha}"
+msgstr ""
+
+#, python-brace-format
+msgid "k_{dis}"
+msgstr ""
+
+msgid "Max itterations"
+msgstr "Максимальное количество итераций"
+
+msgid "Convergence error"
+msgstr "Ошибка сходимости"
+
+#, python-brace-format
+msgid "Boundary condition for y_{min}"
+msgstr "Граничное условие для y_{min}"
+
+msgid "Dirichlet"
+msgstr "Дирихле"
+
+msgid "ABC"
+msgstr "азбука"
+
+msgid "Periodic"
+msgstr "периодический"
+
+#, python-brace-format
+msgid "Boundary condition for y_{max}"
+msgstr "Граничное условие для y_{max}"
+
+#, python-brace-format
+msgid "Boundary condition for x_{min}"
+msgstr "Граничное условие для x_{min}"
+
+#, python-brace-format
+msgid "Boundary condition for x_{max}"
+msgstr "Граничное условие для x_{max}"
+
+#, python-brace-format
+msgid "Boundary condition for z_{min}"
+msgstr "Граничное условие для z_{min}"
+
+#, python-brace-format
+msgid "Boundary condition for z_{max}"
+msgstr "Граничное условие для z_{max}"
+
+msgid "Neumann (==0)"
+msgstr "Нейманн (==0)"
+
+msgid "Heatsink"
+msgstr "радиатор"
+
+#, python-brace-format
+msgid "Exciton density at y_{min}"
+msgstr "Плотность экситонов при y_{min}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{min}"
+msgstr "Проводимость радиатора y_{min}"
+
+#, python-brace-format
+msgid "Heat sink length y_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Exciton density at y_{max}"
+msgstr "Плотность экситонов при y_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{max}"
+msgstr "Проводимость радиатора y_{max}"
+
+#, python-brace-format
+msgid "Heat sink length y_{max}"
+msgstr "Длина радиатора y_{max}"
+
+#, python-brace-format
+msgid "Exciton density at x_{min}"
+msgstr "Плотность экситонов при x_{min}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{min}"
+msgstr "Проводимость радиатора x_{min}"
+
+#, python-brace-format
+msgid "Heat sink length x_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Exciton density at x_{max}"
+msgstr "Плотность экситонов при x_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{max}"
+msgstr "Проводимость радиатора x_{max}"
+
+#, python-brace-format
+msgid "Heat sink length x_{max}"
+msgstr "Длина радиатора x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{min}"
+msgstr "Проводимость радиатора z_{min}"
+
+#, python-brace-format
+msgid "Heat sink length z_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Exciton density at z_{max}"
+msgstr "Плотность экситонов при z_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{max}"
+msgstr "Проводимость радиатора z_{max}"
+
+#, python-brace-format
+msgid "Heat sink length z_{max}"
+msgstr "Длина радиатора z_{max}"
+
+msgid "<b>Auger recombination</b>"
+msgstr "<b>Оже-рекомбинация</b>"
+
+#, python-brace-format
+msgid "Auger C_{n}"
+msgstr "Оже C_{n}"
+
+#, python-brace-format
+msgid "Auger C_{p}"
+msgstr "Оже C_{p}"
+
+msgid "Start temperature"
+msgstr "Начальная температура"
+
+msgid "Stop temperature"
+msgstr "Остановить температуру"
+
+msgid "Temperature steps"
+msgstr "Ступени температуры"
+
+msgid "Perovskite ion density"
+msgstr "Плотность ионов перовскита"
+
+msgid "Doping density (x=0)"
+msgstr "Плотность легирования (x=0)"
+
+msgid "Doping density (x=max)"
+msgstr "Плотность легирования (x = макс.)"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} Recombination rate constant"
+msgstr "n_{free} to p_{free} Константа скорости рекомбинации"
+
+msgid "<b>Electrostatics</b>"
+msgstr "<b>Электростатика</b>"
+
+msgid "Eg"
+msgstr "Например"
+
+msgid "Xi"
+msgstr "Си"
+
+msgid "<b>Excited states</b>"
+msgstr "<b>Возбужденные состояния</b>"
+
+msgid "Forster transfer rate"
+msgstr "Скорость передачи Форстера"
+
+msgid "Host singlet-exciton decay rate"
+msgstr "Скорость распада синглетного экситона хозяина"
+
+msgid "Host inter-system crossing rate"
+msgstr "Скорость межсистемного пересечения хоста"
+
+msgid "Host singlet-singlet annihilation (SSA) rate"
+msgstr "Скорость синглетно-одиночной аннигиляции хозяина (SSA)"
+
+msgid "Host singlet-polaron annihilation (SPA) rate"
+msgstr "Скорость синглетно-поляронной аннигиляции хозяина (SPA)"
+
+msgid "Host singlet-triplet annihilation (STA) rate"
+msgstr "Скорость синглетно-триплетной аннигиляции хозяина (STA)"
+
+msgid "Dexter transfer rate"
+msgstr "Скорость передачи Декстера"
+
+msgid "Host triplet decay rate"
+msgstr "Скорость распада триплета хозяина"
+
+msgid "Host triplet-polaron annihilation (TPA) rate"
+msgstr "Скорость аннигиляции триплетного полярона хозяина (TPA)"
+
+msgid "Host triplet-triplet annihilation (TTA) rate"
+msgstr "Скорость триплет-триплетной аннигиляции хозяина (TTA)"
+
+msgid "Dopant singlet-exciton decay rate"
+msgstr "Скорость распада одного экситона легирующей примеси"
+
+msgid "Dopant inter-system crossing rate"
+msgstr "Скорость межсистемного пересечения легирующей примеси"
+
+msgid "Dopant singlet-polaron annihilation (SPA) rate"
+msgstr "Скорость синглетно-поляронной аннигиляции легирующей примеси (SPA)"
+
+msgid "Dopant singlet-triplet annihilation (STA) rate"
+msgstr "Скорость синглет-триплетной аннигиляции (STA) допанта"
+
+msgid "Dopant singlet-singlet annihilation (SSA) rate"
+msgstr "Скорость синглетно-одиночной аннигиляции легирующей примеси (SSA)"
+
+msgid "Dopant triplet decay rate"
+msgstr "Скорость распада триплета легирующей примеси"
+
+msgid "Dopant triplet-triplet annihilation (TTA) rate"
+msgstr "Скорость триплет-триплетной аннигиляции (ТТА) легирующей примеси"
+
+msgid "Dopant triplet-polaron annihilation (TPA) rate"
+msgstr "Скорость триплетно-поляронной аннигиляции легирующей примеси (TPA)"
+
+msgid "Confinement factor"
+msgstr "Фактор удержания"
+
+msgid "Dopant concentration"
+msgstr "Концентрация легирующей примеси"
+
+msgid "Spectral overlap"
+msgstr "Спектральное перекрытие"
+
+#, python-brace-format
+msgid "k_{RISC} Reverse Inter-System crossing rate"
+msgstr ""
+
+#, python-brace-format
+msgid "\\u03C3_{em} Stimulated Emission cross section"
+msgstr ""
+
+#, python-brace-format
+msgid "\\u03C3_{t1tn} Triplet Absorption cross section"
+msgstr ""
+
+msgid "\\u03C3_{n,p} Polaron Absorption cross section"
+msgstr ""
+
+msgid "e-h separation distance"
+msgstr ""
+
+msgid "<b>Photon rate equation</b>"
+msgstr ""
+
+msgid "Spontaneous emission factor"
+msgstr "Коэффициент спонтанных выбросов"
+
+msgid "Cavity photon decay rate"
+msgstr "Скорость распада фотонов резонатора"
+
+msgid "Density of guest molecules"
+msgstr "Плотность гостевых молекул"
+
+msgid "\\u03BE Stimulated emission gain coefficient"
+msgstr "\\u03BE Коэффициент усиления вынужденного излучения"
+
+msgid "<b>Excited states for OPV</b>"
+msgstr ""
+
+#, python-brace-format
+msgid "Decay of singlets to 1C (k_{ds})"
+msgstr ""
+
+#, python-brace-format
+msgid "Inter system crossing (k_{isc})"
+msgstr ""
+
+#, python-brace-format
+msgid "Reverse inter system crossing (k_{risc})"
+msgstr ""
+
+#, python-brace-format
+msgid "Triplet-triplet annihilation (k_{tta})"
+msgstr ""
+
+#, python-brace-format
+msgid "Singlet-triplet annihilation (k_{sta})"
+msgstr ""
+
+#, python-brace-format
+msgid "Singlet-singlet annihilation (k_{ssa})"
+msgstr ""
+
+msgid "Alpha fraction (alpha)"
+msgstr ""
+
+#, python-brace-format
+msgid "Singlet to ground state (k_{fs})"
+msgstr ""
+
+#, python-brace-format
+msgid "Decay of triplets (k_{dt})"
+msgstr ""
+
+#, python-brace-format
+msgid "Triplet to ground state (k_{ft})"
+msgstr ""
+
+#, python-brace-format
+msgid "Decay of 3C to np (k_{dct})"
+msgstr ""
+
+msgid "Inter system crossing CT (k_{isc ct})"
+msgstr ""
+
+msgid "Reverse inter system crossing CT (k_{risc ct})"
+msgstr ""
+
+#, python-brace-format
+msgid "3C and 1C to ground state (k_{f})"
+msgstr ""
+
+msgid "Blended material"
+msgstr "Смешанный материал"
+
+#, python-brace-format
+msgid "Eg_{0}"
+msgstr "например_{0}"
+
+#, python-brace-format
+msgid "Xi_{0}"
+msgstr "Си_{0}"
+
+#, python-brace-format
+msgid "Eg_{1}"
+msgstr "например_{1}"
+
+#, python-brace-format
+msgid "Xi_{1}"
+msgstr "Си_{1}"
+
+msgid "Thermal conductivity"
+msgstr "Теплопроводность"
+
+msgid "Electron relaxation time"
+msgstr "Время релаксации электронов"
+
+msgid "Hole relaxation time"
+msgstr "Время релаксации отверстия"
+
+msgid "Density"
+msgstr "Плотность"
+
+msgid "Cost per Kg"
+msgstr "Стоимость за кг"
+
+msgid "Energy per Kg"
+msgstr "Энергия на кг"
+
+msgid "Link"
+msgstr "Ссылка на сайт"
+
+msgid "Shunt resistivity"
+msgstr "Сопротивление шунта"
+
+msgid "Series resistivity"
+msgstr "серияудельное сопротивление"
+
+msgid "Series resistivity z"
+msgstr "серияудельное сопротивлениеz"
+
+msgid "Series resistivity x"
+msgstr "Серияудельное сопротивление x"
+
+msgid "Series resistivity y"
+msgstr "серияудельное сопротивление"
+
+msgid "Layer ideality factor"
+msgstr "Фактор идеальности слоя"
+
+msgid "Reverse bias current"
+msgstr "Ток обратного смещения"
+
+msgid ""
+"Enable optical charge\n"
+"carrier generation"
+msgstr ""
+"Включить генерацию\n"
+"носителей оптического заряда"
+
+msgid "Scan section"
+msgstr "Скан-секция"
+
+msgid "Whole device"
+msgstr "Все устройство"
+
+msgid "Box section"
+msgstr "Коробчатая секция"
+
+msgid "x-Scan"
+msgstr "рентген"
+
+msgid "x-start"
+msgstr "х-старт"
+
+msgid "z-start"
+msgstr "z-старт"
+
+msgid "x-stop"
+msgstr "х-стоп"
+
+msgid "z-stop"
+msgstr "z-стоп"
+
+msgid "Dump only at end"
+msgstr ""
+
+msgid "Shape type"
+msgstr "Тип фигуры"
+
+msgid "Rotate around y-axis"
+msgstr "Повернуть вокруг оси Y"
+
+msgid "y-axis"
+msgstr "ось Y"
+
+msgid "x-axis"
+msgstr "ось x"
+
+msgid "Rotate around x-axis"
+msgstr "Повернуть вокруг оси X"
+
+msgid "dx of the object"
+msgstr "dx объекта"
+
+msgid "dy of the object"
+msgstr "ды объекта"
+
+msgid "dz of the object"
+msgstr "дз объекта"
+
+msgid "dx padding"
+msgstr "дх заполнение"
+
+msgid "padding"
+msgstr "набивка"
+
+msgid "dy padding"
+msgstr "набивка"
+
+msgid "dz padding"
+msgstr "набивка дз"
+
+msgid "Number of objects x"
+msgstr "Количество объектов х"
+
+msgid "Number of objects"
+msgstr "Количество объектов"
+
+msgid "Number of objects y"
+msgstr "Количество объектов"
+
+msgid "Number of objects z"
+msgstr "Количество объектов z"
+
+msgid "<b>Object</b>"
+msgstr "<b>Объект</b>"
+
+msgid "<b>Attributes</b>"
+msgstr "<b>Атрибуты</b>"
+
+msgid "x offset"
+msgstr "xсмещение"
+
+msgid "Offset"
+msgstr "Компенсировать"
+
+msgid "y offset"
+msgstr "Y смещение"
+
+msgid "z offset"
+msgstr "zoffset"
+
+msgid "Web page link"
+msgstr "Ссылка на веб-страницу"
+
+msgid "Text label"
+msgstr "Текстовая метка"
+
+msgid "Texture"
+msgstr ""
+
+msgid ""
+"Circuit model\n"
+"parameters"
+msgstr ""
+"Модель схемы\n"
+"параметры"
+
+msgid "Color"
+msgstr "Цвет"
+
+msgid "Interface model"
+msgstr "модель интерфейса"
+
+msgid "None"
+msgstr "Никто"
+
+msgid "Free-to-Free"
+msgstr "Бесплатно"
+
+msgid "Free-to-trap (SRH)"
+msgstr "Свободная ловушка (SRH)"
+
+msgid "Recombination constant"
+msgstr "Константа рекомбинации"
+
+msgid "Interface doping LHS"
+msgstr "Легирование интерфейса LHS"
+
+msgid "Doping LHS"
+msgstr "Допинг LHS"
+
+msgid "Electron tunneling"
+msgstr "Электронное туннелирование"
+
+msgid "Electron tunneling (T)"
+msgstr "Электронное туннелирование (T)"
+
+msgid "Hole tunneling"
+msgstr "Проходка отверстий"
+
+msgid "Hole tunneling (T)"
+msgstr "Проходка скважин (T)"
+
+msgid "Interface doping RHS"
+msgstr "Легирование интерфейса RHS"
+
+msgid "Doping RHS"
+msgstr "Допинг RHS"
+
+msgid "startime"
+msgstr "звездное время"
+
+msgid "ea_factor"
+msgstr "ea_factor"
+
+msgid "Np"
+msgstr "Нп"
+
+msgid "den"
+msgstr "логово"
+
+msgid "externalv"
+msgstr "внешнийv"
+
+msgid "dt_neg_time"
+msgstr "dt_neg_time"
+
+msgid "dt_mull"
+msgstr "dt_mull"
+
+msgid "stark"
+msgstr "суровый"
+
+msgid "lasereff"
+msgstr "лазерефф"
+
+msgid "sim_contacts"
+msgstr "sim_contacts"
+
+msgid "Website"
+msgstr "Веб-сайт"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Journal"
+msgstr "Журнал"
+
+msgid "Title"
+msgstr "Заголовок"
+
+msgid "Volume"
+msgstr "Объем"
+
+msgid "Pages"
+msgstr "Страницы"
+
+msgid "Year"
+msgstr "Год"
+
+msgid "DOI"
+msgstr "DOI"
+
+msgid "Book title"
+msgstr "Название книги"
+
+msgid "Publisher"
+msgstr "Издатель"
+
+msgid "ISBN"
+msgstr "ISBN"
+
+msgid "Scraped text"
+msgstr "Вырезанный текст"
+
+#, python-brace-format
+msgid "R_{short}"
+msgstr ""
+
+#, python-brace-format
+msgid "V_{bias}"
+msgstr ""
+
+msgid "Efficiency of light"
+msgstr "Эффективность света"
+
+msgid "subtract DC"
+msgstr "вычесть постоянный ток"
+
+msgid "External load resistor"
+msgstr "Внешний нагрузочный резистор"
+
+msgid "Material type"
+msgstr "Тип материала"
+
+msgid "Organic"
+msgstr "Органический"
+
+msgid "Oxide"
+msgstr "окись"
+
+msgid "Inorganic"
+msgstr "неорганический"
+
+msgid "Metal"
+msgstr "Металл"
+
+msgid "Other"
+msgstr "Другой"
+
+msgid "Transparency"
+msgstr "Прозрачность"
+
+msgid "Privicy options"
+msgstr "Параметры конфиденциальности"
+
+msgid "Public - everyone"
+msgstr "Публичные - все"
+
+msgid "Public - within org"
+msgstr "Общедоступный - внутри организации"
+
+msgid "Private - never publish"
+msgstr "Личное - никогда не публиковать"
+
+msgid "Change log"
+msgstr "Список изменений"
+
+msgid ""
+"Use external\n"
+"voltage as stop"
+msgstr ""
+"Использовать внешнее\n"
+"напряжение в качестве останова"
+
+msgid "<b>Output</b>"
+msgstr "<b>Вывод</b>"
+
+msgid "Dump trap distribution"
+msgstr "Распределение свалки-ловушки"
+
+msgid "False"
+msgstr "ЛОЖЬ"
+
+msgid "Energy space map"
+msgstr "Энергетическая космическая карта"
+
+msgid "Single mesh point"
+msgstr "Одна точка сетки"
+
+#, python-brace-format
+msgid "V_{oc}"
+msgstr "V_{oc}"
+
+#, python-brace-format
+msgid "V_{bi}"
+msgstr ""
+
+msgid "Power conversion efficiency (PCE)"
+msgstr "Эффективность преобразования мощности (PCE)"
+
+msgid "Fill factor"
+msgstr "коэффициент заполнения"
+
+msgid "Max power"
+msgstr "максимальная мощность"
+
+msgid "Voltage at max power"
+msgstr "Напряжение при максимальной мощности"
+
+msgid "Current density at max power"
+msgstr "Плотность тока при максимальной мощности"
+
+msgid "Current density at Voc"
+msgstr "Плотность тока при Voc"
+
+#, python-brace-format
+msgid "J_{sc}"
+msgstr "J_{sc}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free P_{max}"
+msgstr "Theta_{SRH} - бесплатно P_{max}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free-trap P_{max}"
+msgstr "Theta_{SRH} - свободная ловушка P_{max}"
+
+msgid "Recombination time constant"
+msgstr "Постоянная времени рекомбинации"
+
+msgid "Device capacitance"
+msgstr "Емкость устройства"
+
+msgid "Photos absorbed in active layer"
+msgstr "Фотографии, поглощенные активным слоем"
+
+msgid "Peak height Rp"
+msgstr "Высота пика Rp"
+
+msgid "RMS height Rq"
+msgstr "Среднеквадратичная высота Rq"
+
+msgid "Average height Ra"
+msgstr "Средняя высота Ра"
+
+msgid "dV step"
+msgstr "шаг dV"
+
+msgid "Left hole density"
+msgstr "Плотность левого отверстия"
+
+msgid "Left electron density"
+msgstr "Левая электронная плотность"
+
+msgid "Right hole density"
+msgstr "Плотность правого отверстия"
+
+msgid "Right electron density"
+msgstr "Правильная электронная плотность"
+
+msgid "Built in potential"
+msgstr "Встроенный потенциал"
+
+msgid "Electron affinity left"
+msgstr "Осталось сродство к электрону"
+
+msgid "Electron affinity right"
+msgstr "Право сродства к электрону"
+
+msgid "<b>CPU</b>"
+msgstr "<b>ЦП</b>"
+
+msgid "Number of threads used by the backend"
+msgstr "Количество потоков, используемых серверной частью"
+
+msgid "No threading"
+msgstr ""
+
+msgid "Maximum number of core instances"
+msgstr "Максимальное количество экземпляров ядра"
+
+msgid "Path to source code"
+msgstr "Путь к исходному коду"
+
+msgid "Path to compiled libs for cluster"
+msgstr "Путь к скомпилированным библиотекам для кластера"
+
+msgid "Make command"
+msgstr "Сделать команду"
+
+msgid "exe name"
+msgstr "имя исполняемого файла"
+
+msgid "Store DoS on disk"
+msgstr "Хранить DoS на диске"
+
+msgid "Remote cluster directory"
+msgstr "Каталог удаленного кластера"
+
+msgid "Remote node list"
+msgstr "Список удаленных узлов"
+
+msgid "IV"
+msgstr "IV"
+
+msgid "x-triangles"
+msgstr "x-треугольники"
+
+msgid "y-triangles"
+msgstr "Y-треугольники"
+
+msgid "Method"
+msgstr "Метод"
+
+msgid "Node reduce"
+msgstr "Узел уменьшить"
+
+msgid "No reduce"
+msgstr "Нет уменьшения"
+
+msgid "Min allowable angle"
+msgstr "Минимальный допустимый угол"
+
+msgid "Gaussian blur"
+msgstr "Размытие по Гауссу"
+
+msgid "Percent of histogram to ignore"
+msgstr "Процент гистограммы для игнорирования"
+
+msgid "Sigma of gaussian"
+msgstr "Сигма Гаусса"
+
+msgid "Gaussian offset x"
+msgstr "Гауссово смещение x"
+
+msgid "Gaussian offset y"
+msgstr "Гауссово смещение y"
+
+msgid "Threshold value"
+msgstr "Пороговое значение"
+
+msgid "dr"
+msgstr "доктор"
+
+msgid "dx"
+msgstr "дх"
+
+msgid "dy"
+msgstr "ды"
+
+msgid "offset"
+msgstr "компенсировать"
+
+msgid "Lens type"
+msgstr "Тип объектива"
+
+msgid "Convex"
+msgstr "Выпуклый"
+
+msgid "Concave"
+msgstr "Вогнутый"
+
+msgid "Lens size"
+msgstr ""
+
+msgid "length"
+msgstr "длина"
+
+msgid "Waveform"
+msgstr "форма волны"
+
+msgid "Square"
+msgstr "Площадь"
+
+msgid "Saw wave"
+msgstr "Пила волна"
+
+msgid "pixels"
+msgstr "пикселей"
+
+msgid "Boundary x0"
+msgstr "Граница x0"
+
+msgid "Boundary x1"
+msgstr "Граница x1"
+
+msgid "Boundary y0"
+msgstr "Граница у0"
+
+msgid "Boundary y1"
+msgstr "Граница y1"
+
+msgid "<b>Fist iteration</b>"
+msgstr "<b>Первая итерация</b>"
+
+msgid "Max Electrical iterations (first step)"
+msgstr "Максимальное количество электрических итераций (первый шаг)"
+
+msgid "Electrical clamp (first step)"
+msgstr "Электрический зажим (первый шаг)"
+
+msgid "Desired solver error (first step)"
+msgstr "Желаемая ошибка решателя (первый шаг)"
+
+msgid "<b>Later iterations</b>"
+msgstr "<b>Последние версии</b>"
+
+msgid "Max electrical iterations"
+msgstr "Максимальное количество электрических итераций"
+
+msgid "Electrical clamp"
+msgstr "электрический зажим"
+
+msgid "Desired solver error"
+msgstr "Желаемый решатель ошибок"
+
+msgid "<b>Exit strategy</b>"
+msgstr "<b>Стратегия выхода</b>"
+
+msgid "Newton minimum iterations"
+msgstr "Минимальные итерации Ньютона"
+
+msgid "<b>Solver type</b>"
+msgstr "<b>Тип решателя</b>"
+
+msgid "dll name"
+msgstr "имя dll"
+
+msgid "Complex matrix solver to use"
+msgstr "Сложный матричный решатель для использования"
+
+msgid "Quit on convergence problem"
+msgstr "Выход из проблемы сходимости"
+
+msgid "Quit on inverted Fermi-level"
+msgstr "Выйти на перевернутом уровне Ферми"
+
+msgid "Circuit diagram mode"
+msgstr ""
+
+msgid "Hand drawn"
+msgstr ""
+
+msgid "From layer structure"
+msgstr ""
+
+msgid "From electrical mesh"
+msgstr ""
+
+msgid "Poisson solver max iterations"
+msgstr "Максимальное количество итераций решателя Пуассона"
+
+msgid "Poisson clamping"
+msgstr "Зажим яда"
+
+msgid "Enable poisson solver"
+msgstr "Включить решатель ядов"
+
+msgid "Output verbosity to disk"
+msgstr "Вывод подробностей на диск"
+
+msgid "Nothing"
+msgstr "Ничего такого"
+
+msgid "Write everything to disk"
+msgstr "Записать все на диск"
+
+msgid "Matrix solver"
+msgstr "матричный решатель"
+
+msgid "Newton solver to use"
+msgstr "Решатель Ньютона для использования"
+
+msgid "Slotboom T0"
+msgstr "Слотбум T0"
+
+msgid "Slotboom D0"
+msgstr "Слотбум D0"
+
+msgid "Slotboom n0"
+msgstr "Слотбум n0"
+
+msgid "Calculate current at"
+msgstr ""
+
+msgid "Mid point"
+msgstr ""
+
+msgid "Solve Kirchhoff's current law in Newton solver"
+msgstr "Решите текущий закон Кирхгофа в решателе Ньютона"
+
+msgid "filename"
+msgstr "имя файла"
+
+msgid "log x"
+msgstr "logx"
+
+msgid "log y"
+msgstr "войти у"
+
+msgid "Keep sign for log y "
+msgstr "Сохраняйте знак для журнала y"
+
+msgid "Point to normalize"
+msgstr ""
+
+msgid "Fit against simulation"
+msgstr "Соответствие симуляции"
+
+msgid "File or token banned"
+msgstr ""
+
+msgid "EQE Voltage"
+msgstr "Напряжение EQE"
+
+msgid "Optical power"
+msgstr "Оптическая мощность"
+
+msgid "Single optical power"
+msgstr ""
+
+msgid "Optical power start"
+msgstr ""
+
+msgid "Optical power stop"
+msgstr ""
+
+msgid "Use electrical DoS at low energy"
+msgstr ""
+
+msgid "Max iterations "
+msgstr ""
+
+msgid "Stop error"
+msgstr ""
+
+msgid "Number of x eigenmodes"
+msgstr ""
+
+msgid "Number of y eigenmodes"
+msgstr ""
+
+msgid "TE/TM"
+msgstr ""
+
+msgid "Transverse Electric (TE)"
+msgstr ""
+
+msgid "Transverse Magnetic (TM)"
+msgstr ""
+
+msgid "Find only fundamental"
+msgstr ""
+
+msgid "Thermal model type"
+msgstr "Тип тепловой модели"
+
+msgid "Hydrodynamic"
+msgstr "Гидродинамический"
+
+msgid "Lattice heat"
+msgstr "Латексное тепло"
+
+#, python-brace-format
+msgid "Device temperature at y_{min}"
+msgstr "Температура устройства в y_{min}"
+
+#, python-brace-format
+msgid "Device temperature at y_{max}"
+msgstr "Температура устройства при y_{max}"
+
+#, python-brace-format
+msgid "Device temperature at x_{min}"
+msgstr ""
+
+#, python-brace-format
+msgid "Device temperature at x_{max}"
+msgstr "Температура устройства при x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{max}"
+msgstr "Температура устройства при z_{max}"
+
+msgid "Lattice heat model"
+msgstr "Решетчатая тепловая модель"
+
+msgid "Electron heat model"
+msgstr "Модель электронного тепла"
+
+msgid "Hole heat model"
+msgstr "Тепловая модель отверстия"
+
+msgid "Max thermal solver iterations"
+msgstr "Максимальное количество итераций теплового решателя"
+
+msgid "Desired thermal error"
+msgstr "Желаемая тепловая ошибка"
+
+msgid "Force use of thermal mesh"
+msgstr ""
+
+msgid "Minimum device temperature"
+msgstr "Минимальная температура устройства"
+
+msgid "Maximum device temperature"
+msgstr "Максимальная температура устройства"
+
+msgid "Thermal mesh points"
+msgstr "Точки тепловой сетки"
+
+msgid "Interpolate"
+msgstr "Интерполировать"
+
+msgid "Constant"
+msgstr "Постоянный"
+
+#, python-brace-format
+msgid "Boundary value for y_{min}"
+msgstr "Граничное значение для y_{min}"
+
+#, python-brace-format
+msgid "Boundary value for y_{max}"
+msgstr "Граничное значение для y_{max}"
+
+#, python-brace-format
+msgid "Boundary value for x_{min}"
+msgstr "Граничное значение для x_{min}"
+
+#, python-brace-format
+msgid "Boundary value for x_{max}"
+msgstr "Граничное значение для x_{max}"
+
+msgid "Couple to electrical solver"
+msgstr "Пара к электрическому решателю"
+
+msgid "Dump slices"
+msgstr "Срезы дампа"
+
+msgid "Dump dynamic"
+msgstr "Дамп динамический"
+
+msgid "Write out band structure"
+msgstr "Напишите структуру группы"
+
+msgid "Write newton solver convergence to disk"
+msgstr "Записать сходимость решателя Ньютона на диск"
+
+msgid "Print poisson solver convergence"
+msgstr "Распечатать конвергенцию решателя яда"
+
+msgid "Normalize output x-time to one"
+msgstr "Нормировать вывод x-time к единице"
+
+msgid "Dump the built in voltage."
+msgstr "Сбросить встроенное напряжение."
+
+msgid "Dump optical probe spectrum"
+msgstr "Сброс спектра оптического зонда"
+
+msgid "Write file access log to disk."
+msgstr "Запись журнала доступа к файлам на диск."
+
+msgid "Write headers to output files"
+msgstr "Запись головок в выходные файлы"
+
+msgid "Write first guess to equations"
+msgstr "Напишите первое предположение к уравнениям"
+
+msgid "Log verbocity"
+msgstr "Журнал подробностей"
+
+msgid "Screen"
+msgstr "Экран"
+
+msgid "Disk"
+msgstr "Диск"
+
+msgid "Screen and disk"
+msgstr "Экран и диск"
+
+msgid "PL dump Energy"
+msgstr "Дамп ПЛ Энергия"
+
+msgid "Clean up DoS cache files"
+msgstr "Очистить файлы кеша DoS"
+
+msgid "Write binary data where possible"
+msgstr ""
+
+msgid "Probe enabled"
+msgstr "Зонд включен"
+
+msgid "Probe type"
+msgstr "Тип зонда"
+
+msgid "Device state"
+msgstr "Состояние устройства"
+
+msgid "Voc"
+msgstr "Вок"
+
+msgid "Jsc"
+msgstr "АО"
+
+msgid "<b>Run control</b>"
+msgstr ""
+
+msgid "<b>Solver control</b>"
+msgstr ""
+
+msgid "Dump absorption profile"
+msgstr "Профиль поглощения сброса"
+
+msgid "Run the ray tracer"
+msgstr "Запустите трассировщик лучей"
+
+msgid "When called"
+msgstr ""
+
+msgid "Once per simulation"
+msgstr "Один раз для симуляции"
+
+msgid "Each simulation step"
+msgstr "Каждый шаг моделирования"
+
+msgid "Every nth simulation step"
+msgstr ""
+
+msgid "Each n steps"
+msgstr ""
+
+msgid "Theta steps"
+msgstr "Тета шаги"
+
+msgid "Theta start"
+msgstr "Тета старт"
+
+msgid "Theta stop"
+msgstr "Тета-стоп"
+
+msgid "Phi steps"
+msgstr "Фи-шаги"
+
+msgid "Phi start"
+msgstr "Фи старт"
+
+msgid "Phi stop"
+msgstr "Фи стоп"
+
+msgid "Escape bins"
+msgstr "Спасатели"
+
+msgid "Emit from"
+msgstr "Излучать из"
+
+msgid "Center of each layer"
+msgstr "Центр каждого слоя"
+
+msgid "Each electrical mesh point"
+msgstr "Каждая точка электрической сетки"
+
+msgid "Center of y slice"
+msgstr ""
+
+msgid "Super sample x"
+msgstr ""
+
+msgid "Super sample x points"
+msgstr ""
+
+msgid "<b>Ray tracing</b>"
+msgstr "<b>Трассировка лучей</b>"
+
+msgid "Minimum ray intensity"
+msgstr ""
+
+msgid "Maximum number of bounces"
+msgstr ""
+
+msgid "Simulate transmitted rays"
+msgstr ""
+
+msgid "Simulate reflected rays"
+msgstr ""
+
+msgid "Mesh points x"
+msgstr "Точки сетки х"
+
+msgid "Mesh points z"
+msgstr "Точки сетки z"
+
+msgid "<b>Detector</b>"
+msgstr "<b>Детектор</b>"
+
+msgid "LED extraction efficiency"
+msgstr "Эффективность извлечения светодиодов"
+
+msgid "Series resistance"
+msgstr "Серийное сопротивление"
+
+msgid "Other layers"
+msgstr "Другие слои"
+
+msgid "debug (ignore)"
+msgstr "отлаживать (игнорировать)"
+
+msgid "Contact charge density"
+msgstr "Контактная плотность заряда"
+
+msgid "Contact position"
+msgstr "контактное положение"
+
+msgid "top"
+msgstr "Топ"
+
+msgid "bottom"
+msgstr "нижний"
+
+msgid "right"
+msgstr "Правильно"
+
+msgid "left"
+msgstr "оставил"
+
+msgid "Charge type"
+msgstr "тип заряда"
+
+msgid "Electron"
+msgstr "Электрон"
+
+msgid "Hole"
+msgstr "Отверстие"
+
+msgid "Physical model"
+msgstr "физическая модель"
+
+msgid "Ohmic"
+msgstr "омический"
+
+msgid "Schottky"
+msgstr "Шоттки"
+
+msgid "Automatic remesh x"
+msgstr "Автоматический сброс х"
+
+msgid "Automatic remesh y"
+msgstr "Автоматический сброс"
+
+msgid "Automatic remesh z"
+msgstr "Автоматический сброс z"
+
+msgid "Left/Right"
+msgstr "Лево право"
+
+msgid "Mesh dy"
+msgstr ""
+
+#, python-brace-format
+msgid "n_{free} to p_{free} photon generation efficiency"
+msgstr "Эффективность генерации фотонов от n_{free} до p_{free}"
+
+#, python-brace-format
+msgid "n_{free} to n_{trap} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "n_{trap} to p_{free} photon generation efficiency"
+msgstr "Эффективность генерации фотонов от n_{trap} до p_{free}"
+
+#, python-brace-format
+msgid "p_{trap} to n_{free} photon generation efficiency"
+msgstr "Эффективность генерации фотонов от p_{trap} до n_{free}"
+
+#, python-brace-format
+msgid "p_{free} to p_{trap} photon generation efficiency"
+msgstr "Эффективность генерации фотонов от p_{free} до p_{trap}"
+
+msgid "Experimental emission spectra"
+msgstr "Экспериментальные спектры излучения"
+
+msgid "Icon"
+msgstr "Значок"
+
+msgid "Experimental emission efficiency"
+msgstr "Экспериментальная эффективность выбросов"
+
+msgid "Use experimental emission spectra"
+msgstr "Используйте экспериментальные спектры излучения"
+
+msgid "Free-to-free emission"
+msgstr ""
+
+msgid "Free-to-trap emission"
+msgstr ""
+
+#, python-brace-format
+msgid "V_{external}"
+msgstr ""
+
+msgid "Load resistor"
+msgstr "Нагрузочный резистор"
+
+msgid "fx domain mesh points"
+msgstr "точки сетки домена fx"
+
+msgid "Cycles to simulate"
+msgstr "Циклы для моделирования"
+
+msgid "Voltage modulation depth"
+msgstr "Глубина модуляции напряжения"
+
+msgid "Excite with"
+msgstr "Возбуждать с"
+
+msgid "Light"
+msgstr "Легкий"
+
+msgid "Measure"
+msgstr "Мера"
+
+msgid "Light modulation depth"
+msgstr "Глубина модуляции света"
+
+msgid "Run fit after simulation"
+msgstr "Подгонка после симуляции"
+
+msgid "Periods to fit"
+msgstr "Периоды, чтобы соответствовать"
+
+msgid "Normalize transfer functon by light intensity"
+msgstr "Нормировать передаточную функцию по интенсивности света"
+
+msgid "Re(J)"
+msgstr "Ре (Дж)"
+
+msgid "Im(J)"
+msgstr "Я (Дж)"
+
+msgid "fx"
+msgstr "FX"
+
+msgid "di"
+msgstr "ди"
+
+msgid "dmodulation"
+msgstr "модуляция"
+
+msgid "dphase"
+msgstr "dфаза"
+
+msgid "Simulation type"
+msgstr "Тип моделирования"
+
+msgid "Large signal"
+msgstr "большой сигнал"
+
+msgid "Fourier"
+msgstr "Фурье"
+
+msgid "Node list"
+msgstr "Список узлов"
+
+msgid "Initialization vector"
+msgstr "Векторы инициализации"
+
+msgid "Cryptographic key"
+msgstr "Криптографический ключ"
+
+msgid "Intensity of the sun"
+msgstr "Интенсивность солнца"
+
+msgid "#saturation_n0"
+msgstr "#насыщенность_n0"
+
+msgid "#saturation_rate"
+msgstr "#saturation_rate"
+
+msgid "Absorption of material"
+msgstr "Поглощение материала"
+
+msgid "Simulation mode"
+msgstr ""
+
+msgid "start voltage"
+msgstr "пусковое напряжение"
+
+msgid "Max voltage"
+msgstr "Максимальное напряжение"
+
+msgid "Invert output"
+msgstr "Инвертировать выход"
+
+msgid "Use capacitor"
+msgstr "Используйте конденсатор"
+
+msgid "External C"
+msgstr "ВнешнийC"
+
+msgid "External R"
+msgstr "ВнешнийR"
+
+msgid "Resistance of scope"
+msgstr "Сопротивление области"
+
+msgid "Photon Flux"
+msgstr "Фотонный поток"
+
+msgid "device width"
+msgstr "ширина устройства"
+
+msgid "device breadth"
+msgstr "ширина устройства"
+
+msgid "Start light intensity"
+msgstr "Начальная интенсивность света"
+
+msgid "Stop light intensity"
+msgstr "Стоп интенсивность света"
+
+msgid "Numer of steps"
+msgstr "Количество шагов"
+
+msgid "CE light on time"
+msgstr "CE свет вовремя"
+
+msgid "CE light off time"
+msgstr "Время выключения света CE"
+
+msgid "Automatic world size"
+msgstr "Автоматический размер мира"
+
+msgid "World fills mesh"
+msgstr ""
+
+msgid "x0"
+msgstr "х0"
+
+msgid "x1"
+msgstr "х1"
+
+msgid "y0"
+msgstr "у0"
+
+msgid "y1"
+msgstr "у1"
+
+msgid "z0"
+msgstr "z0"
+
+msgid "z1"
+msgstr "z1"
+
+msgid "margin x0"
+msgstr "поле x0"
+
+msgid "margin x1"
+msgstr "поле x1"
+
+msgid "margin y0"
+msgstr "маргин0"
+
+msgid "margin y1"
+msgstr "маргини1"
+
+msgid "margin z0"
+msgstr "поле z0"
+
+msgid "margin z1"
+msgstr "поле z1"
+
+msgid "Active layer width"
+msgstr "Ширина активного слоя"
+
+msgid "Reset time to zero each cycle"
+msgstr "Сброс времени до нуля в каждом цикле"
+
+msgid "OpenCL GPU acceleration"
+msgstr "Ускорение графического процессора OpenCL"
+
+msgid "GPU name"
+msgstr "имя графического процессора"
+
+msgid "<b>Excitation type</b>"
+msgstr "<b>Тип возбуждения</b>"
+
+msgid "FDTD Slice"
+msgstr "Срез FDTD"
+
+msgid "Sin"
+msgstr "Грех"
+
+msgid "Pulse"
+msgstr "Пульс"
+
+msgid "Start wavelength"
+msgstr "Начальная длина волны"
+
+msgid "Stop wavelength"
+msgstr "Остановить длину волны"
+
+msgid "Wavelength steps"
+msgstr "Шаги длины волны"
+
+msgid "Pulse length"
+msgstr "длительность импульса"
+
+msgid "Excite Ex"
+msgstr "возбудить бывшего"
+
+msgid "Excite Ey"
+msgstr "Возбуждать Эй"
+
+msgid "Excite Ez"
+msgstr "Возбуждать Эз"
+
+msgid "<b>FDTD mesh</b>"
+msgstr "<b>Сетка FDTD</b>"
+
+msgid "zy"
+msgstr "зы"
+
+msgid "zx"
+msgstr "зх"
+
+msgid "xy"
+msgstr "ху"
+
+msgid "Mesh points y"
+msgstr "Точки сетки y"
+
+msgid "Use gnuplot to visualize"
+msgstr "Используйте gnuplot для визуализации"
+
+msgid "<b>Simulation time</b>"
+msgstr "<b>Время моделирования</b>"
+
+msgid "Stop time"
+msgstr "Остановить время"
+
+msgid "Max steps"
+msgstr "Максимальное количество шагов"
+
+msgid "Key results"
+msgstr "Ключевые результаты"
+
+msgid "Write everything to disk every 2nd step"
+msgstr "Записывать все на диск каждый второй шаг"
+
+msgid "Write everything to disk every 5th step"
+msgstr "Записывать все на диск каждый 5-й шаг"
+
+msgid "Write everything to disk every 10th step"
+msgstr "Записывать все на диск каждый 10-й шаг"
+
+msgid "Output verbosity to screen"
+msgstr "Вывод подробностей на экран"
+
+msgid "Show lots"
+msgstr "Показать лоты"
+
+msgid "Show key results"
+msgstr "Показать ключевые результаты"
+
+msgid "Solver output verbosity"
+msgstr "Детализация вывода решателя"
+
+msgid "As answers are found"
+msgstr "По мере нахождения ответов"
+
+msgid "Each step"
+msgstr "Каждый шаг"
+
+msgid "Source"
+msgstr "Источник"
+
+msgid "x rotation"
+msgstr "х вращение"
+
+msgid "y rotation"
+msgstr "у вращение"
+
+msgid "z rotation"
+msgstr "Z вращение"
+
+msgid "x pos"
+msgstr "х поз."
+
+msgid "y pos"
+msgstr "у поз"
+
+msgid "zoom"
+msgstr "зум"
+
+msgid "The following erros/warning were found while running the simulations:"
+msgstr ""
+"Во время моделирования были обнаружены следующие ошибки/предупреждения:"
+
+msgid "Output vectors for "
+msgstr ""
+
+msgid "ML Token"
+msgstr "Токен ML"
+
+msgid "Symmetric"
+msgstr "Симметричный"
+
+msgid "Asymmetric"
+msgstr "Асимметричный"
+
+msgid "Gaussian"
+msgstr "гауссовский"
+
+msgid "Lorentzian"
+msgstr "Лоренцев"
+
+msgid "Colors"
+msgstr ""
+
+msgid "Save as"
+msgstr "Сохранить как"
+
+msgid "Save as image"
+msgstr "Сохранить как изображение"
+
+msgid "Save as gobj"
+msgstr "Сохранить как гобж"
+
+msgid "Optical"
+msgstr "оптический"
+
+msgid "Show photons"
+msgstr "Показать фото"
+
+msgid "FDTD grid"
+msgstr "Сетка FDTD"
+
+msgid "Optical mode"
+msgstr "Оптический режим"
+
+msgid "Rays"
+msgstr "Лучи"
+
+msgid "Solid rays"
+msgstr "Сплошные лучи"
+
+msgid "Show detectors"
+msgstr "Показать детекторы"
+
+msgid "Electrical mesh"
+msgstr "Электрическая сетка"
+
+msgid "Show device"
+msgstr "Показать устройство"
+
+msgid "Grid"
+msgstr "Сетка"
+
+msgid "Coordinates"
+msgstr "Координаты"
+
+msgid "Show text"
+msgstr "Показать текст"
+
+msgid "Show Dimensions"
+msgstr ""
+
+msgid "Show plot"
+msgstr "Показать сюжет"
+
+msgid "Transparent objects"
+msgstr "Прозрачные объекты"
+
+msgid "Ray tracing mesh"
+msgstr "Сетка трассировки лучей"
+
+msgid "Show world box"
+msgstr "Показать коробку мира"
+
+msgid "Lock view"
+msgstr "блокировка просмотра"
+
+msgid "Show gl lights"
+msgstr "Показать светящиеся огни"
+
+msgid "Show buttons"
+msgstr "Показать кнопки"
+
+msgid "Stars"
+msgstr "Звезды"
+
+msgid "Font"
+msgstr "Шрифт"
+
+msgid "Background color"
+msgstr "фоновый цвет"
+
+msgid "Interface background color"
+msgstr ""
+
+msgid "Interface text color"
+msgstr ""
+
+msgid "Objects"
+msgstr "Объекты"
+
+msgid "New free object"
+msgstr "Новые бесплатные объекты"
+
+msgid "New light source"
+msgstr "Новый источник света"
+
+msgid "New detector"
+msgstr "новый детектор"
+
+msgid "Rescale"
+msgstr "Изменить масштаб"
+
+msgid "Object tree"
+msgstr ""
+
+msgid "Copy image"
+msgstr "Копировать изображение"
+
+msgid "Object tree viewer"
+msgstr ""
+
+msgid "Device view"
+msgstr "вид устройства"
+
+msgid "Charge extraction experiment window"
+msgstr "Окно эксперимента по извлечению заряда"
+
+msgid "Python Equation"
+msgstr "Уравнение Питона"
+
+msgid "You've made a mistake in the equation, use w for wavelength. "
+msgstr "Вы допустили ошибку в уравнении, используя w вместо длины волны."
+
+msgid "Are you sure you wisht to import this, it will overwrite "
+msgstr "Вы уверены, что хотели импортировать это, оно перезапишется"
+
+msgid "Equation editor"
+msgstr "Редактор формул"
+
+msgid ""
+"Import\n"
+"into model"
+msgstr ""
+"Импорт\n"
+"в модель"
+
+msgid "Add section"
+msgstr "Добавитьраздел"
+
+msgid "Delete section"
+msgstr "Удалить раздел"
+
+msgid ""
+"Your version of OghmaNano is now out of date. To continue using OghmaNano "
+"please download a new version at https://www.oghma-nano.com."
+msgstr ""
+
+msgid "<big><b>Update available!</b></big><br>Download it now from <a href=\""
+msgstr ""
+"<big><b>Доступно обновление!</b></big><br>Загрузите его прямо сейчас с сайта "
+"<a href=\""
+
+msgid "Optical detectors editor"
+msgstr "Редактор оптических детекторов"
+
+msgid "Na"
+msgstr ""
+
+msgid "Nd"
+msgstr ""
+
+msgid "Ions"
+msgstr ""
+
+msgid "Doping/Mobilie ion profile editor"
+msgstr "Редактор профилей допинга/мобильных ионов"
+
+msgid "New emission spectra name:"
+msgstr "Новое название спектров излучения:"
+
+msgid "New emission spectra name"
+msgstr "Новое название спектров излучения"
+
+msgid "New spectra name:"
+msgstr "Новое название спектра:"
+
+msgid "New spectra name"
+msgstr "Новое название спектра"
+
+msgid "New material name:"
+msgstr "Новое название материала:"
+
+msgid "New material name"
+msgstr "Новое название материала"
+
+msgid "I cant write to: "
+msgstr "Я могу написать:"
+
+msgid "New filter name:"
+msgstr "Имя нового фильтра:"
+
+msgid "New filter name"
+msgstr "Новое имя фильтра"
+
+msgid "New directory name:"
+msgstr "Имя нового каталога:"
+
+msgid "New directory"
+msgstr "Новый каталог"
+
+msgid "Save a the simulation as"
+msgstr "Сохранить симуляцию как"
+
+msgid "Directory"
+msgstr "Каталог"
+
+msgid "Simulation information"
+msgstr "Информация о моделировании"
+
+msgid "yz"
+msgstr "yz"
+
+msgid "xz"
+msgstr "хз"
+
+msgid "Orthographic"
+msgstr "орфографический"
+
+msgid "Fly"
+msgstr ""
+
+msgid "Running job "
+msgstr "текущая работа"
+
+msgid "The file to import:"
+msgstr "Файл для импорта:"
+
+msgid "The imported file, the numbers should now be in SI units"
+msgstr "Импортированный файл, числа теперь должны быть в единицах СИ"
+
+msgid "x units:"
+msgstr "х единиц:"
+
+msgid "y units:"
+msgstr "у единиц:"
+
+msgid "Title:"
+msgstr "Заголовок:"
+
+msgid "x-label:"
+msgstr "x-метка:"
+
+msgid "x-column:"
+msgstr "х-столбец:"
+
+msgid "y-label:"
+msgstr "Y-метка:"
+
+msgid "y-column:"
+msgstr "Y-столбец:"
+
+msgid "device area:"
+msgstr "площадь устройства:"
+
+msgid "Can not load file "
+msgstr "Не могу загрузить файл"
+
+msgid "I can't read the file: "
+msgstr "Я не могу прочитать файл:"
+
+msgid ""
+"I can only read plain text files such as csv formats. I can not read binary "
+"files such as excel documents."
+msgstr ""
+"Я могу читать только простые текстовые файлы, такие как форматы csv. Я не "
+"могу читать двоичные файлы, такие как документы Excel."
+
+msgid "Photonenergy"
+msgstr "фотонэнергия"
+
+msgid "J"
+msgstr "Дж"
+
+msgid "IMPS Re(Z)"
+msgstr "ИМПС Re(Z)"
+
+msgid "IMPS Im(Z)"
+msgstr "ИМПС Im(Z)"
+
+msgid "IMVS Re(Z)"
+msgstr "ИМВС Ре(З)"
+
+msgid "IMVS Im(Z)"
+msgstr "ИМВС Им(Z)"
+
+msgid "Amps"
+msgstr "Ампер"
+
+msgid "Amps - no convert"
+msgstr "Амперы - без преобразования"
+
+msgid "I"
+msgstr "я"
+
+msgid "-Voltage"
+msgstr "-Напряжение"
+
+msgid "Angular frequency"
+msgstr "Угловая частота"
+
+msgid "Attenuation coefficient"
+msgstr "Коэффициент затухания"
+
+msgid "Intensity"
+msgstr "Интенсивность"
+
+msgid "mA"
+msgstr "мА"
+
+msgid "Simulation notes"
+msgstr "Примечания к моделированию"
+
+msgid "Bibtex reference"
+msgstr "ссылка на бибтекс"
+
+msgid "Simulation Notes"
+msgstr "Примечания к моделированию"
+
+msgid "Simulation snapshots"
+msgstr "Моментальные снимки моделирования"
+
+msgid "Running: "
+msgstr "Бег:"
+
+msgid "I could not find a free cpu to run the command on"
+msgstr "Я не смог найти свободный процессор для запуска команды"
+
+msgid "CPU"
+msgstr "Процессор"
+
+msgid "Nodes"
+msgstr "Узлы"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Generate keys"
+msgstr "Сгенерировать ключи"
+
+msgid "Install to cluster"
+msgstr "Установитькластер"
+
+msgid "Boot cluster"
+msgstr "Загрузочный кластер"
+
+msgid "Stop cluster"
+msgstr "Остановить кластер"
+
+msgid "Remove from cluster"
+msgstr "Удалить из кластера"
+
+msgid "CV experiment window"
+msgstr "Окно эксперимента с резюме"
+
+msgid ""
+"Doping/\n"
+"Ions"
+msgstr ""
+"Легирование/\n"
+"Ионы"
+
+msgid ""
+"Material\n"
+"Gradients"
+msgstr ""
+
+msgid "Interfaces"
+msgstr "интерфейсы"
+
+msgid ""
+"Parasitic\n"
+" components"
+msgstr ""
+"Паразитические\n"
+" компоненты"
+
+msgid ""
+"Mobile\n"
+"Ion solver"
+msgstr ""
+"Мобильный\n"
+"Ионный решатель"
+
+msgid ""
+"Electrical\n"
+"mesh"
+msgstr ""
+"Электрика\n"
+"mesh"
+
+msgid ""
+"<big><b>Interface editor</b></big>\n"
+"Use this window to edit how electrical interfaces behave."
+msgstr ""
+"<big><b>Редактор интерфейса</b></big>\n"
+"Используйте это окно, чтобы изменить поведение электрических интерфейсов."
+
+msgid "Electrical boundary conditions"
+msgstr "Электрические граничные условия"
+
+msgid "Excitonic boundary conditions"
+msgstr "Экситонные граничные условия"
+
+msgid ""
+"<big><b>Doping window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr ""
+"<big><b>Окно легирования</b></big>\n"
+"Используйте это окно, чтобы добавить легирование в симуляцию"
+
+msgid ""
+"<big><b>Gradients window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr ""
+
+msgid ""
+"<big><b>Parasitic components</b></big>\n"
+"Use this window to edit the shunt and series resistance."
+msgstr ""
+"<big><b>Паразитные компоненты</b></big>\n"
+"Используйте это окно для редактирования шунтирующего и последовательного "
+"сопротивления."
+
+msgid "Load type"
+msgstr "Тип нагрузки"
+
+msgid "Multiplyer"
+msgstr "мультиплеер"
+
+msgid ""
+"External\n"
+"interface:"
+msgstr ""
+"Внешний\n"
+"интерфейс:"
+
+msgid ""
+"External\n"
+"Reflection"
+msgstr ""
+"Внешнее\n"
+"Отражение"
+
+msgid "Reflective interface editor"
+msgstr "Редактор рефлексивного интерфейса"
+
+msgid "Connect to cluster"
+msgstr "Подключить к кластеру"
+
+msgid "Connect"
+msgstr "Соединять"
+
+msgid "Disconnect"
+msgstr "Отключить"
+
+msgid "Cancel"
+msgstr "отменить"
+
+msgid ""
+"<big><b>The device structure tab</b></big>\n"
+" Use this tab to change the structure of the device, the layer thicknesses "
+"and to perform optical simulations.  You can also browse the materials data "
+"base and  edit the electrical mesh."
+msgstr ""
+"<big><b>Вкладка структуры устройства</b></big>\n"
+"Используйте эту вкладку, чтобы изменить структуру устройства, толщину слоев "
+"и выполнить оптическое моделирование. Вы также можете просматривать базу "
+"данных материалов и редактировать электрическую сетку."
+
+msgid "<big><b>Update available!</b></big><br>"
+msgstr "<big><b>Доступно обновление!</b></big><br>"
+
+msgid "File to plot"
+msgstr "Файл для построения"
+
+msgid "Plot type"
+msgstr "тип участка"
+
+msgid "Play"
+msgstr "Играть в"
+
+msgid "Snapshot slider"
+msgstr "Ползунок снимка"
+
+msgid "Fit variables duplicate window"
+msgstr "Подгонка переменных дублирует окно"
+
+msgid "Destination"
+msgstr "Назначения"
+
+msgid "Source (JSON)"
+msgstr "Источник (JSON)"
+
+msgid "Destination (JSON)"
+msgstr "Место назначения (JSON)"
+
+msgid "Open data file"
+msgstr "Открыть файл данных"
+
+msgid "Load/Import"
+msgstr "Загрузка/импорт"
+
+msgid "Next"
+msgstr "Следующий"
+
+msgid "Online help"
+msgstr "Онлайн помощь"
+
+msgid "On line help"
+msgstr "Онлайн помощь"
+
+msgid "Hide"
+msgstr "Скрывать"
+
+msgid "OghmaNano in your language!"
+msgstr "ОгмаНано на вашем языке!"
+
+msgid "OghmaNano translated by:"
+msgstr "ОгмаНано в переводе:"
+
+msgid "Dimension editor"
+msgstr "Редактор измерений"
+
+msgid "Substrate xz size"
+msgstr "Размер подложки xz"
+
+msgid "World size"
+msgstr "размер мира"
+
+msgid "Select simulation parameter"
+msgstr "Выберите параметр моделирования"
+
+msgid "OK"
+msgstr "ХОРОШО"
+
+msgid "No row selected in the scan window, can't insert the selection"
+msgstr "В окне сканирования не выбрана строка, не удается вставить выделение"
+
+msgid "New material"
+msgstr "Новый материал"
+
+msgid "New spectra"
+msgstr "Новые спектры"
+
+msgid "New shape"
+msgstr "новая форма"
+
+msgid "New filter"
+msgstr "Новый фильтр"
+
+msgid "Unpack archive"
+msgstr "Распаковать архив"
+
+msgid "Clone the file to be called:"
+msgstr "Клонируйте файл, который будет вызываться:"
+
+msgid "The file name already exists"
+msgstr "Имя файла уже существует"
+
+msgid "Rename the simulation to be called:"
+msgstr "Переименуйте симуляцию, чтобы она называлась:"
+
+msgid "Are you sure you want to delete the files ?"
+msgstr "Вы уверены, что хотите удалить файлы?"
+
+msgid "You should now have a sim.json file in: "
+msgstr "Теперь у вас должен быть файл sim.json в:"
+
+msgid "Open this directory to see it."
+msgstr "Откройте этот каталог, чтобы увидеть его."
+
+msgid "Image"
+msgstr "Изображение"
+
+msgid "Gnuplot"
+msgstr "Гнуплот"
+
+msgid "Csv"
+msgstr "CSV"
+
+msgid "Text file (txt)"
+msgstr "Текстовый файл (txt)"
+
+msgid "MS Excel (xlsx)"
+msgstr "MS Excel (xlsx)"
+
+msgid "Graph"
+msgstr "график"
+
+msgid "Show title"
+msgstr "Показать заголовок"
+
+msgid "Show key"
+msgstr "Показать ключ"
+
+msgid "Light source editor"
+msgstr "редактор источника света"
+
+msgid "Rebuild"
+msgstr "Восстановить"
+
+msgid "Electrical parameters"
+msgstr "электрические параметры"
+
+msgid ""
+"<big><b>Electrical parameters</b></big><br>Use this tab to configure the "
+"electrical parameters for the material."
+msgstr ""
+"<big><b>Электрические параметры</b></big><br>Используйте эту вкладку для "
+"настройки электрических параметров материала."
+
+msgid "<big><b>Absorption</b></big><br>"
+msgstr "<big><b>Поглощение</b></big><br>"
+
+msgid "<big><b>Refractive index</b></big><br>"
+msgstr "<big><b>Показатель преломления</b></big><br>"
+
+msgid ""
+"<big><b>Emission spectrum</b></big><br>Use this tab to edit the emission "
+"spectrum."
+msgstr ""
+"<big><b>Спектр излучения</b></big><br>Используйте эту вкладку для "
+"редактирования спектра излучения."
+
+msgid "Material editor"
+msgstr "Редактор материалов"
+
+msgid "Thermal parameters"
+msgstr "Тепловые параметры"
+
+msgid "Life cycle"
+msgstr "жизненный цикл"
+
+msgid "Refractive index (n)"
+msgstr ""
+
+msgid "k"
+msgstr ""
+
+msgid "Don't run me as root!!"
+msgstr "Не запускайте меня как root!!"
+
+msgid "I can't run from inside a zip file!"
+msgstr "Я не могу запустить из zip-файла!"
+
+msgid ""
+"<big><b>New simulation!</b></big><br> Now selected the type of device you "
+"would like to simulate."
+msgstr ""
+"<big><b>Новое моделирование!</b></big><br> Теперь выбран тип устройства, "
+"которое вы хотите смоделировать."
+
+msgid ""
+"<big><b>Now run the simulation</b></big><br> Click on the play icon to start "
+"a simulation."
+msgstr ""
+"<big><b>Теперь запустите симуляцию</b></big><br> Нажмите на значок "
+"воспроизведения, чтобы начать симуляцию."
+
+msgid ""
+"<big><b>Hi!</b></big><br> I'm the on-line help system :).  If you have any "
+"questions or find any bugs please send them to <a href=\"mailto:"
+msgstr ""
+"<big><b>Привет!</b></big><br> Я интерактивная справочная система :). Если у "
+"вас есть какие-либо вопросы или вы обнаружили какие-либо ошибки, отправьте "
+"их по адресу <a href=\"mailto:"
+
+msgid "Click on the new icon to make a new simulation directory."
+msgstr "Нажмите на новый значок, чтобы создать новый каталог моделирования."
+
+msgid "Open an existing simulation"
+msgstr "Откройте существующую симуляцию"
+
+msgid ""
+"To open this file I need to rename it to have a .oghma extention. Do you "
+"want me to do that?. I would rename the file: "
+msgstr ""
+"Чтобы открыть этот файл, мне нужно переименовать его, чтобы он имел "
+"расширение .oghma. Вы хотите, чтобы я это сделал? Я бы переименовал файл:"
+
+msgid "The simulation directory has been deleted."
+msgstr "Каталог моделирования был удален."
+
+msgid "Desktop"
+msgstr "рабочий стол"
+
+msgid "Downloads"
+msgstr "Загрузки"
+
+msgid ""
+"<big><b>Examine the results in time domain</b></big><br> After you have run "
+"a simulation in time domain, if is often nice to be able to step through the "
+"simulation and look at the results.  This is what this window does.  Use the "
+"slider bar to move through the simulation.  When you are simulating a JV "
+"curve, the slider sill step through voltage points rather than time points."
+msgstr ""
+"<big><b>Изучите результаты во временной области</b></big><br> После того, "
+"как вы запустили симуляцию во временной области, часто приятно иметь "
+"возможность пошагово выполнить симуляцию и посмотреть на результаты. Это то, "
+"что делает это окно. Используйте ползунок для перемещения по симуляции. "
+"Когда вы моделируете кривую JV, ползунок будет перемещаться по точкам "
+"напряжения, а не по времени."
+
+msgid ""
+"Are you sure you want restore this file from the backup, it will overwrite "
+"all files in the simulation directory?"
+msgstr ""
+"Вы уверены, что хотите восстановить этот файл из резервной копии, иначе все "
+"файлы в каталоге симуляции будут перезаписаны?"
+
+msgid "title"
+msgstr "заглавие"
+
+msgid "x axis"
+msgstr "ось х"
+
+msgid "y axis"
+msgstr "ось Y"
+
+msgid "equilibrium"
+msgstr "равновесие"
+
+msgid "This contains the simulation output at 0V in the dark."
+msgstr "Он содержит вывод симуляции при 0 В в темноте."
+
+msgid "Attenuation"
+msgstr "Затухание"
+
+msgid "Luminescence editor"
+msgstr "Редактор люминесценции"
+
+msgid ""
+"Optical\n"
+"Emission"
+msgstr ""
+
+msgid ""
+"<big><b>Luminescence</b></big>\n"
+"If you set 'Turn on luminescence' to true, the simulation will assume "
+"recombination is a raditave process and intergrate it to produce Voltage-"
+"Light intensity curves (lv.dat).  Each number in the tab tells the model how "
+"efficient each recombination mechanism is at producing photons."
+msgstr ""
+"<big><b>Люминесценция</b></big>\n"
+"Если вы установите для параметра Включить люминесценцию значение true, при "
+"моделировании рекомбинация будет считаться радиационным процессом, и она "
+"будет интегрирована для получения кривых интенсивности света от напряжения "
+"(lv.dat ). Каждое число на вкладке сообщает модели, насколько эффективен "
+"каждый механизм рекомбинации при производстве фотонов."
+
+msgid "All"
+msgstr "Все"
+
+msgid "Wavelengths"
+msgstr "Длины волн"
+
+msgid "Electrical equilibrium solver"
+msgstr ""
+
+msgid "Polynomial data generator"
+msgstr ""
+
+msgid "Laser editor"
+msgstr "лазерный редактор"
+
+msgid "Youtube channel"
+msgstr "Канал YouTube"
+
+msgid "Quit"
+msgstr "Покидать"
+
+msgid ""
+"Stop\n"
+"simulation"
+msgstr ""
+"Остановить\n"
+"моделирование"
+
+msgid "Thickness"
+msgstr "толщина"
+
+msgid "Mesh Auto"
+msgstr ""
+
+msgid "Stop"
+msgstr "Останавливаться"
+
+msgid "Step multiply"
+msgstr "Шаг умножить"
+
+msgid "points"
+msgstr "точки"
+
+msgid "Mesh points"
+msgstr "Точки сетки"
+
+msgid "PL experiment window"
+msgstr "Окно эксперимента PL"
+
+msgid "Script editor"
+msgstr "редактор сценариев"
+
+msgid "Rename the script:"
+msgstr "Переименуйте скрипт:"
+
+msgid "active"
+msgstr "активный"
+
+msgid "Flyby video maker"
+msgstr "Создатель видео Flyby"
+
+msgid ""
+"Set\n"
+"position"
+msgstr ""
+"установить\n"
+"позицию"
+
+msgid "Goto"
+msgstr "Перейти к"
+
+msgid "window width not divisible by two"
+msgstr ""
+
+msgid "window height not divisible by two"
+msgstr ""
+
+msgid "and "
+msgstr "а также"
+
+msgid " more."
+msgstr "более."
+
+msgid "Should I delete these files?:\n"
+msgstr "Должен ли я удалить эти файлы?:\n"
+
+msgid "command line tool"
+msgstr "инструмент командной строки"
+
+msgid "Prints the used paths"
+msgstr "Печатает используемые пути"
+
+msgid "www.pvlighthouse.com.au sync"
+msgstr "www.pvlighthouse.com.au синхронизация"
+
+msgid "Load new image"
+msgstr "Загрузить новое изображение"
+
+msgid ""
+"Original\n"
+"image"
+msgstr ""
+"Исходное\n"
+"изображение"
+
+msgid ""
+"Generate\n"
+"Image"
+msgstr ""
+"Создать\n"
+"изображение"
+
+msgid ""
+"Show\n"
+"Mesh"
+msgstr ""
+"Показать\n"
+"Сетка"
+
+msgid ""
+"Edit\n"
+"Mesh"
+msgstr ""
+"Редактировать\n"
+"Сетка"
+
+msgid ""
+"Build\n"
+"Mesh"
+msgstr ""
+"Построить\n"
+"Сетку"
+
+msgid ""
+"Generate\n"
+"Honeycomb"
+msgstr ""
+"Сгенерировать\n"
+"Сотовый"
+
+msgid ""
+"Generate\n"
+"Xtal"
+msgstr ""
+"Сгенерировать\n"
+"Xtal"
+
+msgid ""
+"Generate\n"
+"lens"
+msgstr ""
+"Создать\n"
+"объектив"
+
+msgid ""
+"Generate\n"
+"Gaussian"
+msgstr ""
+"Сгенерировать\n"
+"гауссовский"
+
+msgid ""
+"Saw\n"
+"wave"
+msgstr ""
+"Пила\n"
+"волна"
+
+msgid "Blur"
+msgstr "Размытие"
+
+msgid "Edit blur"
+msgstr "Размытие"
+
+msgid ""
+"Normalize\n"
+"y"
+msgstr ""
+"Нормализация\n"
+"y"
+
+msgid "Edit histogram"
+msgstr "Изменить гистограмму"
+
+msgid ""
+"Normalize\n"
+"z"
+msgstr ""
+"Нормализация\n"
+"z"
+
+msgid "Threshold"
+msgstr "Порог"
+
+msgid "Boundary"
+msgstr "граница"
+
+msgid "Apply"
+msgstr "Подать заявление"
+
+msgid "2D Image"
+msgstr "2D-изображение"
+
+msgid "I don't know how to process this type of file!"
+msgstr "Я не знаю, как обрабатывать этот тип файла!"
+
+msgid " <a href=\""
+msgstr "<a href=\""
+
+msgid "Can not connect to cluster."
+msgstr "Не удается подключиться к кластеру."
+
+msgid "Editors"
+msgstr "Редакторы"
+
+msgid ""
+"<big><b>Simulation Editors</b></big><br> Use this tab to edit the simulation "
+"you wish to perform, you can choose from steady state measurments such as JV "
+"curve/Suns-Voc, time domain or frequency domain.  You can also choose to use "
+"advanced optical models to understand your data."
+msgstr ""
+"<big><b>Редакторы моделирования</b></big><br> Используйте эту вкладку для "
+"редактирования моделирования, которое вы хотите выполнить, вы можете выбрать "
+"измерения стационарного состояния, такие как кривая JV/Suns-Voc, временная "
+"область или частотная область. Вы также можете использовать расширенные "
+"оптические модели для понимания ваших данных."
+
+msgid ""
+"<big><b>Configure</b></big><br> Use this tab to control advanced features of "
+"the simulation, such as finite difference mesh, amount of data written to "
+"disk, and the configuration of the back end numerical solvers."
+msgstr ""
+"<big><b>Настроить</b></big><br> Используйте эту вкладку для управления "
+"расширенными функциями моделирования, такими как конечно-разностная сетка, "
+"объем данных, записываемых на диск, и конфигурация серверных числовых "
+"значений. решатели."
+
+msgid ""
+"<big><b>Simulation type</b></big><br> Use this tab to select which "
+"simulation mode the model runs in, select between steady state, time domain, "
+"frequency domain and optical simulations."
+msgstr ""
+"<big><b>Тип симуляции</b></big><br> Используйте эту вкладку, чтобы выбрать "
+"режим симуляции, в котором работает модель, выберите между стационарным "
+"режимом, временной областью, частотной областью и оптическим моделированием."
+
+msgid "Databases"
+msgstr "базы данных"
+
+msgid ""
+"<big><b>Databases</b></big><br> Use this tab to explore the materials and "
+"optical data bases, you can add and download more materials/optical models "
+"using the tools here."
+msgstr ""
+"<big><b>Базы данных</b></big><br> Используйте эту вкладку для изучения "
+"материалов и оптических баз данных. Вы можете добавлять и загружать "
+"дополнительные материалы/оптические модели с помощью инструментов здесь."
+
+msgid ""
+"<big><b>Information</b></big><br> Access extra information about the model "
+"in this tab, there are lots of tutorial videos on YouTube, follow on Twitter "
+"for the latest updates."
+msgstr ""
+"<big><b>Информация</b></big><br> Получите доступ к дополнительной информации "
+"о модели на этой вкладке, на YouTube есть множество обучающих видео, следите "
+"за последними обновлениями в Twitter."
+
+msgid "Automation"
+msgstr "Автоматизация"
+
+msgid "Electrical"
+msgstr "Электрический"
+
+msgid "Thermal"
+msgstr "Термальный"
+
+msgid "<big><b>Simulation mode changed</b></big><br>"
+msgstr "<big><b>Режим моделирования изменен</b></big><br>"
+
+msgid "Key not found"
+msgstr "Ключ не найден"
+
+msgid "User not found"
+msgstr "Пользователь не найден"
+
+msgid ""
+"This version of the software is too old to validate it's key, please "
+"download the latest version."
+msgstr ""
+"Эта версия программного обеспечения слишком старая для проверки ключа, "
+"пожалуйста, загрузите последнюю версию."
+
+msgid "OghmaNano trial"
+msgstr "Испытание ОгмаНано"
+
+msgid "Optical simulation editor"
+msgstr "Редактор оптического моделирования"
+
+msgid "Photon distribution"
+msgstr "Распределение фотонов"
+
+msgid "Photon distribution absorbed"
+msgstr "Поглощенное распределение фотонов"
+
+msgid "m"
+msgstr "м"
+
+msgid "cm"
+msgstr ""
+
+msgid "mm"
+msgstr ""
+
+msgid "um"
+msgstr ""
+
+msgid "nm"
+msgstr ""
+
+msgid "pm"
+msgstr ""
+
+msgid "fm"
+msgstr ""
+
+msgid "Optical thickness editor"
+msgstr ""
+
+msgid "File or token to ban"
+msgstr ""
+
+msgid "Laser:"
+msgstr "Лазер:"
+
+msgid "Export"
+msgstr "Экспорт"
+
+msgid "Cost and energy payback calculator"
+msgstr "Калькулятор стоимости и окупаемости энергии"
+
+msgid "Re-calcualte"
+msgstr "Пересчитать"
+
+msgid "material"
+msgstr "материал"
+
+msgid "Mass"
+msgstr "масса"
+
+msgid "Optical outcoupling"
+msgstr ""
+
+msgid "Photon distribution (norm)"
+msgstr ""
+
+msgid "Escape probability (1D in y)"
+msgstr ""
+
+msgid ""
+"You have not selected any parameters to scan through.  Use the add button."
+msgstr ""
+"Вы не выбрали параметры для сканирования. Используйте кнопку добавления."
+
+msgid "Parameter scan editor"
+msgstr ""
+
+msgid "Parameter to scan"
+msgstr "Параметр для сканирования"
+
+msgid "JSON Variable 0"
+msgstr ""
+
+msgid "JSON Variable 1"
+msgstr ""
+
+msgid ""
+"<big><b>Fast optimizer</b></big><br>When the fast optimizer is enabled "
+"simulation results are not written to disk and instead only key paramters "
+"are saved in a csv file. Using a spreadsheet you can then search/sort for "
+"the desired device parameters. This enables very fast parameter optimization "
+"of layer thicknesses."
+msgstr ""
+
+msgid "Quantum efficiency editor"
+msgstr "Редактор квантовой эффективности"
+
+#~ msgid "Dummy variables"
+#~ msgstr "Фиктивные переменные"
+
+#~ msgid "Banned files"
+#~ msgstr "Запрещенные файлы"
+
+#~ msgid "Thermal mesh"
+#~ msgstr "Термосетка"
+
+#~ msgid "replaces file in device lib --replace file.inp path_to_device_lib"
+#~ msgstr ""
+#~ "заменяет файл в библиотеке устройства --replace file.inp "
+#~ "path_to_device_lib"
+
+#~ msgid ""
+#~ "Changes the value of a token device lib --token_set file.inp \\#token "
+#~ "value"
+#~ msgstr ""
+#~ "Изменяет значение токена устройства lib --token_set file.inp \\#token "
+#~ "value"
+
+#~ msgid "Repair --token_repair dest_file.inp \\#token \\#src_file.inp \\token"
+#~ msgstr ""
+#~ "Repair --token_repair dest_file.inp \\#token \\#src_file.inp \\token"
+
+#~ msgid "Fix ver --token_fix_ver file.inp version"
+#~ msgstr "Fix ver --token_fix_ver версия файла.inp"
+
+#~ msgid "deletes file in device lib --file_delete file.inp"
+#~ msgstr "удаляет файл в библиотеке устройства --file_delete file.inp"
+
+#~ msgid "Refractiveindex info sync"
+#~ msgstr "Синхронизация информации об индексе преломления"
+
+#~ msgid "Adds an inp file to a json file inp_file.inp"
+#~ msgstr "Добавляет файл inp в файл json inp_file.inp"
+
+#~ msgid ""
+#~ "Emission\n"
+#~ "database"
+#~ msgstr ""
+#~ "Выбросы\n"
+#~ "база данных"
+
+#~ msgid "y-dimension"
+#~ msgstr "Y-размер"
+
+#~ msgid "x-dimension"
+#~ msgstr "x-размер"
+
+#~ msgid "z-dimension"
+#~ msgstr "Z-размер"
+
+#~ msgid ""
+#~ "Subtract\n"
+#~ "first frame"
+#~ msgstr ""
+#~ "Вычесть\n"
+#~ "первый кадр"
+
+#~ msgid "Insert python command"
+#~ msgstr "Вставить команду питона"
+
+#~ msgid "Luminescence"
+#~ msgstr "Люминесценция"
+
+#~ msgid ""
+#~ "<big><b>Luminescence</b></big><br>Use this tab to edit the materials "
+#~ "Luminescence."
+#~ msgstr ""
+#~ "<big><b>Люминесценция</b></big><br>Используйте эту вкладку для "
+#~ "редактирования материалов Люминесценции."
+
+#~ msgid "Ray trace"
+#~ msgstr "Трассировка лучей"
+
+#~ msgid "Black"
+#~ msgstr "Черный"
+
+#~ msgid "Rainbow"
+#~ msgstr "радуга"
+
+#~ msgid "Subtract first point"
+#~ msgstr "Вычесть первую точку"
+
+#~ msgid "Add min point"
+#~ msgstr "Добавить минимальную точку"
+
+#~ msgid "Invert y-axis"
+#~ msgstr "Инвертный Y-ось"
+
+#~ msgid "abs(f())"
+#~ msgstr "абс (е())"
+
+#~ msgid "Norm to peak of all data"
+#~ msgstr "От нормы до пика всех данных"
+
+#~ msgid "Heat map"
+#~ msgstr "Тепловая карта"
+
+#~ msgid "Heat map edit"
+#~ msgstr "Редактирование тепловой карты"
+
+#~ msgid "Math"
+#~ msgstr "Математика"
+
+#~ msgid ""
+#~ "Excited\n"
+#~ "states"
+#~ msgstr ""
+#~ "Возбужденные\n"
+#~ "состояния"
+
+#~ msgid "Voltage (Volts)"
+#~ msgstr "Напряжение (Вольт)"
+
+#~ msgid "Luminescence of "
+#~ msgstr "Люминесценция"
+
+#~ msgid "Automatically mesh wavelength space"
+#~ msgstr "Автоматически создавать сетку пространства длин волн"
+
+#~ msgid "Mesh points (lambda)"
+#~ msgstr "Точки сетки (лямбда)"
+
+#~ msgid "Lambda start"
+#~ msgstr "лямбда-старт"
+
+#~ msgid "Electron generation efficiency"
+#~ msgstr "Эффективность генерации электронов"
+
+#~ msgid "Hole generation efficiency"
+#~ msgstr "Эффективность образования отверстий"
+
+#~ msgid "wavelength"
+#~ msgstr "длина волны"
+
+#~ msgid "JV curve contact resistance"
+#~ msgstr "Контактное сопротивление кривой JV"
+
+#~ msgid "JV curve shunt resistance"
+#~ msgstr "Шунтирующее сопротивление кривой СП"
+
+#~ msgid "y size"
+#~ msgstr "у размер"
+
+#~ msgid "x size"
+#~ msgstr "х размер"
+
+#~ msgid "Use newton cache (experimental)"
+#~ msgstr "Использовать кеш Ньютона (экспериментальный)"
+
+#~ msgid "Randomize fit"
+#~ msgstr "Рандомизировать подгонку"
+
+#~ msgid "Enable simplex reset"
+#~ msgstr "Включить симплексный сброс"
+
+#~ msgid "Never"
+#~ msgstr "Никогда"
+
+#~ msgid "Automatic wavelength range"
+#~ msgstr "Автоматический диапазон длин волн"
+
+#~ msgid "Emission enabled from this layer"
+#~ msgstr "Излучение включено из этого слоя"
+
+#~ msgid "#imps_saturate"
+#~ msgstr "#imps_saturate"
+
+#~ msgid "#simmode"
+#~ msgstr "#симмод"
+
+#~ msgid "#function"
+#~ msgstr "#функция"
+
+#~ msgid "Time of pause"
+#~ msgstr "Время паузы"
+
+#~ msgid "Pause between iterations"
+#~ msgstr "Пауза между повторениями"
+
+#~ msgid "Backgroud light bias"
+#~ msgstr "Смещение фонового света"
+
+#~ msgid "Modulation depth"
+#~ msgstr "Глубина модуляции"
+
+#~ msgid "Modulation frequency"
+#~ msgstr "Частота модуляции"
+
+#~ msgid "High light multiplyer"
+#~ msgstr "Мультиплеер с ярким светом"
+
+#~ msgid "Phase shift"
+#~ msgstr "Сдвиг фазы"
+
+#~ msgid "Wavelengths to simulate"
+#~ msgstr "Длины волн для моделирования"
+
+#~ msgid "External voltage"
+#~ msgstr "Внешнее напряжение"
+
+#, python-brace-format
+#~ msgid "V_{0}"
+#~ msgstr "В_{0}"
+
+#~ msgid "d"
+#~ msgstr "д"
+
+#~ msgid "Magnitude"
+#~ msgstr "величина"
+
+#~ msgid "Position (nm)"
+#~ msgstr "Позиция (нм)"
+
+#~ msgid "Debug"
+#~ msgstr "Отлаживать"
+
+#~ msgid ""
+#~ "Written by Roderick MacKenzie 2012-2022, released under the MIT software "
+#~ "license."
+#~ msgstr ""
+#~ "Написано Родериком Маккензи, 2012–2022 гг., выпущено под лицензией на "
+#~ "программное обеспечение MIT."
+
+#~ msgid "Materials library path"
+#~ msgstr "Путь к библиотеке материалов"
+
+#~ msgid "Device library path"
+#~ msgstr "Путь к библиотеке устройств"
+
+#~ msgid "Binary path"
+#~ msgstr "Бинарный путь"
+
+#~ msgid "Plugins path"
+#~ msgstr "Путь к плагинам"
+
+#~ msgid "Binary name"
+#~ msgstr "Двоичное имя"
+
+#~ msgid "Install ID"
+#~ msgstr "Идентификатор установки"
+
+#~ msgid "Please enter what you plan on using "
+#~ msgstr "Пожалуйста, укажите, что вы планируете использовать"
+
+#~ msgid "Your version of "
+#~ msgstr "Ваша версия"
+
+#~ msgid "Please register to use "
+#~ msgstr "Пожалуйста, зарегистрируйтесь, чтобы использовать"
+
+#~ msgid "See Parasitic window"
+#~ msgstr "См. Паразитическое окно"
+
+#~ msgid "Emission editor"
+#~ msgstr "Редактор эмиссии"
+
+#~ msgid "PL/EL spectra"
+#~ msgstr "Спектр PL/EL"
+
+#~ msgid "File to ban"
+#~ msgstr "Файл для запрета"
+
+#~ msgid ""
+#~ "<big><b>The electrical parameters</b></big><br>This tab contains the "
+#~ "electrical model parameters, such as mobility, tail slope energy, and "
+#~ "band gap."
+#~ msgstr ""
+#~ "<big><b>Электрические параметры</b></big><br>Эта вкладка содержит "
+#~ "параметры электрической модели, такие как подвижность, энергия наклона "
+#~ "хвоста и ширина запрещенной зоны."
+
+#~ msgid "Dump"
+#~ msgstr "Свалка"
+
+#~ msgid "Dump 1D slices"
+#~ msgstr "Дамп 1D-срезов"
+
+#~ msgid "Don't dump 1D slice"
+#~ msgstr "Не сбрасывать 1D-срез"
+
+#~ msgid "Set verbose electrical solver dumping"
+#~ msgstr "Установить подробный дамп электрического решателя"
+
+#~ msgid "Unset verbose electrical solver dumping"
+#~ msgstr "Отменить подробный дамп электрического решателя"
+
+#~ msgid ""
+#~ "Optical\n"
+#~ "Simulation"
+#~ msgstr ""
+#~ "Оптический\n"
+#~ "Моделирование"
+
+#~ msgid "Server configuration"
+#~ msgstr "Конфигурация сервера"
+
+#~ msgid "Cache"
+#~ msgstr "Кэш"
+
+#~ msgid ""
+#~ "You should not try to open simulations in the root simulation directory."
+#~ msgstr ""
+#~ "Вы не должны пытаться открывать симуляции в корневом каталоге симуляций."
+
+#~ msgid "True"
+#~ msgstr "Истинный"
+
+#~ msgid ""
+#~ "It does not make sense to simulate a PL spectra with experimental "
+#~ "emission turned on"
+#~ msgstr ""
+#~ "Не имеет смысла моделировать спектры ФЛ при включенном экспериментальном "
+#~ "излучении."
+
+#~ msgid "1D position space output"
+#~ msgstr "Вывод 1D-позиции"
+
+#~ msgid "Transport"
+#~ msgstr "Транспорт"
+
+#~ msgid "Absorbed photons at"
+#~ msgstr "Поглощенные фотографии на"
+
+#~ msgid "load: materials"
+#~ msgstr "нагрузка: материалы"
+
+#~ msgid "Runing simulation"
+#~ msgstr "работающая симуляция"
+
+#~ msgid "zip the results"
+#~ msgstr "заархивировать результаты"
+
+#~ msgid "Error writing file"
+#~ msgstr "Ошибка записи файла"
+
+#~ msgid "Can not read file"
+#~ msgstr "Не могу прочитать файл"
+
+#~ msgid "Material parameters"
+#~ msgstr "Параметры материала"
+
+#~ msgid "Chaerge density"
+#~ msgstr "Плотность заряда"
+
+#~ msgid "Interface recombination"
+#~ msgstr "Рекомбинация интерфейса"

@@ -4,12 +4,12 @@
 import os
 import sys
 
-from gpvdm_api import gpvdm_api
+from model_api import model_api
 
 class gpvdm_plugin:
 
 	def __init__(self,api):
-		a=gpvdm_api(verbose=True)
+		a=model_api(verbose=True)
 		a.load_snapshots("snapshots")
 		#a.edit("light.inp","#light_model","qe")
 		#a.edit("jv0.inp","#Vstop","0.8")

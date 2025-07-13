@@ -41,18 +41,18 @@ from gQtCore import QSize, Qt
 from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QPushButton,QDialog,QFileDialog,QToolBar,QLabel,QComboBox
 from gQtCore import gSignal
 
-from json_root import json_root
 from global_objects import global_object_run
 from QAction_lock import QAction_lock
 from config_window import class_config_window
+from json_c import json_tree_c
 
 class tb_item_solvers(QToolBar):
 
 	changed = gSignal()
 	
-
 	def __init__(self,orientation=Qt.Vertical):
 		QToolBar.__init__(self)
+		self.bin=json_tree_c()
 		self.setOrientation(orientation)
 		self.setToolButtonStyle( Qt.ToolButtonTextBesideIcon)
 		self.setStyleSheet(" QToolButton { padding-left: 0px; padding-right: 0px; padding-top: 0px;padding-bottom: 0px; width: 200px;} QToolButton:checked {background-color: LightBlue; }")
@@ -73,11 +73,17 @@ class tb_item_solvers(QToolBar):
 		self.tb_item_newton.setCheckable(True)
 
 		self.menu_newton = QMenu(self)
+		self.tb_item_newton.setMenu(self.menu_newton)
+		self.addAction(self.tb_item_newton)
+
 		configure_item=QAction(_("Configure"), self)
 		self.menu_newton.addAction(configure_item)
-		self.tb_item_newton.setMenu(self.menu_newton)
 		configure_item.triggered.connect(self.callback_newton)
-		self.addAction(self.tb_item_newton)
+
+		micro_code=QAction(_("Edit microcode"), self)
+		self.menu_newton.addAction(micro_code)
+		micro_code.triggered.connect(self.callback_micro_code)
+
 
 		self.tb_item_circuit = QAction_lock("kirchhoff", _("Simple circuit solver"), self,"ribbon_thermal_recombination")
 		self.tb_item_circuit.clicked.connect(self.callback_circuit_clicked)
@@ -89,28 +95,27 @@ class tb_item_solvers(QToolBar):
 		self.tb_item_circuit.setMenu(self.menu_circuit_config)
 		configure_item.triggered.connect(self.callback_circuit_config)
 		self.addAction(self.tb_item_circuit)
-
 		self.update()
 
 	def update(self):
-		data=json_root()
 
 		self.tb_item_newton.blockSignals(True)
 		self.tb_item_poisson.blockSignals(True)
 		self.tb_item_circuit.blockSignals(True)
-		if data.electrical_solver.solver_type=="drift-diffusion":
+		solver_type=self.bin.get_token_value("electrical_solver","solver_type")
+		if solver_type=="drift-diffusion":
 			self.tb_item_poisson.setChecked(True)
 			self.tb_item_newton.setChecked(True)
 			self.tb_item_circuit.setChecked(False)
-		elif data.electrical_solver.solver_type=="poisson":
+		elif solver_type=="poisson":
 			self.tb_item_poisson.setChecked(True)
 			self.tb_item_newton.setChecked(False)
 			self.tb_item_circuit.setChecked(False)
-		elif data.electrical_solver.solver_type=="circuit":
+		elif solver_type=="circuit":
 			self.tb_item_poisson.setChecked(False)
 			self.tb_item_newton.setChecked(False)
 			self.tb_item_circuit.setChecked(True)
-		elif data.electrical_solver.solver_type=="none":
+		elif solver_type=="none":
 			self.tb_item_poisson.setChecked(False)
 			self.tb_item_newton.setChecked(False)
 			self.tb_item_circuit.setChecked(False)
@@ -119,57 +124,56 @@ class tb_item_solvers(QToolBar):
 		self.tb_item_circuit.blockSignals(False)
 
 	def callback_poisson(self):
-		data=json_root()
-		self.mesh_config=class_config_window([data.electrical_solver.poisson],[_("Poission solver")],title=_("Poission solver configuration"),icon="poisson")
+		self.mesh_config=class_config_window(["electrical_solver.poisson"],[_("Poission solver")],title=_("Poission solver configuration"),icon="poisson")
 		self.mesh_config.show()
 
 	def callback_newton(self):
-		data=json_root()
-		self.mesh_config=class_config_window([data.math,data.exciton],[_("Newton solver"),_("Exciton solver")],title=_("Newton solver configuration"),icon="newton")
+		self.mesh_config=class_config_window(["math","singlet"],[_("Newton solver"),_("Singlet solver")],title=_("Newton solver configuration"),icon="newton")
 		self.mesh_config.show()
 
+	def callback_micro_code(self):
+		from window_code_editor import window_code_editor
+		self.a=window_code_editor()
+		self.a.show()
+
 	def callback_circuit_config(self):
-		data=json_root()
-		self.mesh_config=class_config_window([data.circuit.config],[_("Configuration")],title=_("Circuit solver configuration"),icon="newton")
+		self.mesh_config=class_config_window(["circuit.config"],[_("Configuration")],title=_("Circuit solver configuration"),icon="newton")
 
 		self.mesh_config.show()
 
 	def callback_solver_poisson_click(self):
-		data=json_root()
 		pos=self.tb_item_poisson.isChecked()
 		self.tb_item_newton.isChecked()
 		self.tb_item_circuit.isChecked()
 		if pos==True:
-			data.electrical_solver.solver_type="poisson"
+			self.bin.set_token_value("electrical_solver","solver_type","poisson")
 		else:
-			data.electrical_solver.solver_type="none"
-		data.save()
+			self.bin.set_token_value("electrical_solver","solver_type","none")
+		self.bin.save()
 		self.update()
 		self.changed.emit()
 
 	def callback_solver_newton_click(self):
-		data=json_root()
 		self.tb_item_poisson.isChecked()
 		dd=self.tb_item_newton.isChecked()
 		self.tb_item_circuit.isChecked()
 		if dd==True:
-			data.electrical_solver.solver_type="drift-diffusion"
+			self.bin.set_token_value("electrical_solver","solver_type","drift-diffusion")
 		else:
-			data.electrical_solver.solver_type="none"
-		data.save()
+			self.bin.set_token_value("electrical_solver","solver_type","none")
+		self.bin.save()
 		self.update()
 		self.changed.emit()
 
 	def callback_circuit_clicked(self):
-		data=json_root()
 		self.tb_item_poisson.isChecked()
 		self.tb_item_newton.isChecked()
 		cir=self.tb_item_circuit.isChecked()
 		if cir==True:
-			data.electrical_solver.solver_type="circuit"
+			self.bin.set_token_value("electrical_solver","solver_type","circuit")
 		else:
-			data.electrical_solver.solver_type="none"
-		data.save()
+			self.bin.set_token_value("electrical_solver","solver_type","none")
+		self.bin.save()
 		self.update()
 		self.changed.emit()
 		

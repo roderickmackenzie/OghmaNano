@@ -28,15 +28,13 @@
 #  The main tab class, used to display material properties.
 #
 
-from tab_base import tab_base
-
 from gQtCore import gSignal
 
 from PySide2.QtWidgets import QTextEdit,QWidget, QScrollArea,QVBoxLayout,QLabel,QHBoxLayout,QPushButton, QSizePolicy, QDialog
 from gQtCore import QSize, Qt
 from PySide2.QtGui import QPixmap, QIcon
 from icon_lib import icon_get
-from json_viewer import json_viewer
+from json_viewer_bin import json_viewer_bin
 
 import i18n
 _ = i18n.language.gettext
@@ -44,7 +42,7 @@ from sim_name import sim_name
 
 class json_dialog(QDialog):
 
-	def __init__(self,title=sim_name.name,icon="icon"):
+	def __init__(self,data,title=sim_name.name,icon="icon"):
 		QDialog.__init__(self)
 		self.editable=True
 		self.setWindowTitle(title)
@@ -56,7 +54,7 @@ class json_dialog(QDialog):
 		self.hbox=QHBoxLayout()
 		self.hbox.setAlignment(Qt.AlignTop)
 
-		self.tab=json_viewer()
+		self.tab=json_viewer_bin(data)
 		self.tab.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.vbox.addWidget(self.tab)
 
@@ -75,8 +73,8 @@ class json_dialog(QDialog):
 	def callback_apply(self):
 		self.accept()
 
-	def run(self,data):
-		self.tab.populate(data)
+	def run(self):
+		self.tab.populate("")
 		return self.exec_()
 
 	def gen_button_box_widget(self):

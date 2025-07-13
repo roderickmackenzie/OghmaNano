@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -25,7 +23,6 @@
 // SOFTWARE.
 // 
 
-
 /** @file component.h
 	@brief Component
 */
@@ -33,6 +30,7 @@
 
 #ifndef component_struct_h
 #define component_struct_h
+#include <g_io.h>
 #include "advmath.h"
 #include <sim_struct.h>
 #include <shape_struct.h>
@@ -40,14 +38,15 @@
 struct component
 {
 	//circult elements
+	int enabled;
 	char component[100];
-	long double shunt;
-	long double series_z;
-	long double series_x;
-	long double series_y;
+	double shunt;
+	double series_z;
+	double series_x;
+	double series_y;
 
-	long double n_ideality;
-	long double J0;
+	double n_ideality;
+	double J0;
 	int electrical_enable_generation;
 };
 

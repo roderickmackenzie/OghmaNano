@@ -28,10 +28,7 @@
 #  A ribbon for the materials window.
 #
 
-
 import os
-
-from cal_path import get_css_path
 
 #qt
 from PySide2.QtGui import QIcon
@@ -40,15 +37,10 @@ from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QPushB
 
 from win_lin import desktop_open
 
-#windows
-
 from icon_lib import icon_get
-
 from cal_path import sim_paths
 from util import wrap_text
-
 from ribbon_base import ribbon_base
-
 from QAction_lock import QAction_lock
 
 
@@ -63,10 +55,6 @@ class ribbon_spectra(ribbon_base):
 
 		self.tb_ref= QAction(icon_get("ref"), wrap_text(_("Insert reference information"),8), self)
 		self.main_toolbar.addAction(self.tb_ref)
-
-		#self.tb_save = QAction(icon_get("document-save-as"), _("Save image"), self)
-		#self.main_toolbar.addAction(self.tb_save)
-
 
 		spacer = QWidget()
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -85,7 +73,7 @@ class ribbon_spectra(ribbon_base):
 		w=self.main_toolbar()
 		self.addTab(w,_("File"))
 
-		sheet=self.readStyleSheet(os.path.join(get_css_path(),"style.css"))
+		sheet=self.readStyleSheet(os.path.join(sim_paths.get_css_path(),"style.css"))
 		if sheet!=None:
 			sheet=str(sheet,'utf-8')
 			self.setStyleSheet(sheet)

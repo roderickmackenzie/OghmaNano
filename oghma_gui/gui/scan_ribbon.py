@@ -30,7 +30,7 @@
 
 import os
 
-from cal_path import get_css_path
+from cal_path import sim_pahts
 
 #qt
 from PySide2.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
@@ -45,7 +45,7 @@ from about import about_dlg
 
 from util import wrap_text
 
-from json_local_root import json_local_root
+from json_c import json_local_root
 
 from ribbon_base import ribbon_base
 from play import play
@@ -148,11 +148,11 @@ class scan_ribbon(ribbon_base):
 
 
 		w=self.advanced()
-		if json_local_root().gui_config.enable_betafeatures==True:
+		if json_local_root().get_token_value("gui_config","enable_betafeatures")==True:
 			self.addTab(w,_("Advanced"))
 
 
-		sheet=self.readStyleSheet(os.path.join(get_css_path(),"style.css"))
+		sheet=self.readStyleSheet(os.path.join(sim_paths.get_css_path(),"style.css"))
 		if sheet!=None:
 			sheet=str(sheet,'utf-8')
 			self.setStyleSheet(sheet)

@@ -34,16 +34,18 @@ _ = i18n.language.gettext
 from gQtCore import QSize, Qt 
 from PySide2.QtWidgets import QSizePolicy,QComboBox
 from gQtCore import gSignal
-from json_root import json_root
+from json_c import json_tree_c
 
 class QComboBoxLayers(QComboBox):
 	
 	def __init__(self):
 		QComboBox.__init__(self)
-		data=json_root()
-		for l in data.epi.layers:
-			self.addItem(l.name)
-
+		self.bin=json_tree_c()
+		segments=self.bin.get_token_value("epitaxy","segments")
+		for s in range(0,segments):
+			path="epitaxy.segment"+str(s)
+			name=self.bin.get_token_value(path,"name")
+			self.addItem(name)
 		self.addItem("none")
 	
 	def setValue(self,value):

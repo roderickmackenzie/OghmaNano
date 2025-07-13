@@ -47,8 +47,7 @@ from help import help_window
 from tab import tab_class
 
 from server import server_get
-from json_local_root import json_local_root
-from json_cluster import json_cluster_node
+from json_c import json_local_root
 from sim_name import sim_name
 
 class connect_to_cluster(QDialog):

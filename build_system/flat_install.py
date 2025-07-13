@@ -1,3 +1,30 @@
+# 
+# General-purpose Photovoltaic Device Model oghma-nano.com - a drift diffusion
+# base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
+# The model can simulate OLEDs, Perovskite cells, and OFETs.
+# 
+# Copyright 2008-2022 Roderick C. I. MacKenzie https://www.oghma-nano.com
+# r.c.i.mackenzie at googlemail.com
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a
+# copy of this software and associated documentation files (the "Software"),
+# to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+# and/or sell copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+# SOFTWARE.
+# 
+
 import os
 import sys
 import shutil
@@ -6,10 +33,10 @@ try:
 except:
 	from menu import Dialog
 
-
 from shutil import copyfile
 from shutil import rmtree
 from util import copytree
+from install import do_install
 
 def find_installed_dir(src_path,search_name,directory=True):
 	found=[]
@@ -65,17 +92,7 @@ def flat_install(d):
 	if os.path.isdir(pub_path)==True:
 		rmtree(pub_path)
 
-	os.makedirs(output_path)
-	interactive=">../log.txt 2>../log.txt &"
-	interactive=""
-	os.system("cd oghma_core; make DESTDIR="+output_path+" install "+interactive)
-	#ret=d.tailbox("log.txt", height=None, width=150)
-
-	os.system("cd oghma_gui; make DESTDIR="+output_path+" install "+interactive)
-	#ret=d.tailbox("log.txt", height=None, width=150)
-
-	os.system("cd oghma_data; make DESTDIR="+output_path+" install "+interactive)
-	#ret=d.tailbox("log.txt", height=None, width=150)
+	do_install(d,output_path)
 
 	#This needs fixing
 	intelligent_move(flat_path,output_path,"oghma_core")

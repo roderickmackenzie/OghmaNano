@@ -1,0 +1,56 @@
+{
+	"item_type":"material",
+	"color_r":0.7,
+	"color_g":0.7,
+	"color_b":0.7,
+	"color_alpha":1.0,
+	"material_type":"organic",
+	"status":"public",
+	"changelog":"From Jun added 18/01/2022",
+	"mat_src":"unknown",
+	"n_import": {
+		"import_file_path":"/home/rod/gpvdm_local/materials/private/jun/data.txt",
+		"import_x_combo_pos":0,
+		"import_data_combo_pos":20,
+		"import_x_spin":0,
+		"import_data_spin":1,
+		"import_title":"Wavelength - Refractive index",
+		"import_xlabel":"Wavelength",
+		"import_data_label":"Refractive index",
+		"import_area":0.104,
+		"import_data_invert":"False",
+		"import_x_invert":"False",
+		"data_file":"n.gmat"
+		},
+	"alpha_import": {
+		"import_file_path":"/home/rod/gpvdm_local/materials/private/jun/data.txt",
+		"import_x_combo_pos":0,
+		"import_data_combo_pos":23,
+		"import_x_spin":0,
+		"import_data_spin":2,
+		"import_title":"Wavelength - Absorption",
+		"import_xlabel":"Wavelength",
+		"import_data_label":"Absorption",
+		"import_area":0.104,
+		"import_data_invert":"False",
+		"import_x_invert":"False",
+		"data_file":"alpha.gmat"
+		},
+	"electrical_constants": {
+		"material_blend":"False",
+		"Xi0":-3.92,
+		"Eg0":1.32,
+		"Xi1":-3.0,
+		"Eg1":1.0
+		},
+	"thermal_constants": {
+		"thermal_kl":1.0,
+		"thermal_tau_e":1e-08,
+		"thermal_tau_h":1e-09
+		},
+	"lca": {
+		"lca_density":2400,
+		"lca_cost":0.47,
+		"lca_energy":37450374.430606
+		}
+	}

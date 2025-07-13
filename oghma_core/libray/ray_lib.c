@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -27,7 +25,7 @@
 
 #include <stdio.h>
 #include <ray.h>
-#include <gpvdm_const.h>
+#include <oghma_const.h>
 #include <math.h>
 #include <stdlib.h>
 #include <cal_path.h>
@@ -42,8 +40,8 @@ void ray_init(struct ray *a)
 {
 	a->state=-1.0;
 	a->bounce=-1.0;
-	a->mag=-1.0;
-
+	a->mag0=-1.0;
+	a->mag1=-1.0;
 }
 
 void ray_cpy(struct ray *a,struct ray *b)
@@ -53,6 +51,7 @@ void ray_cpy(struct ray *a,struct ray *b)
 	vec_cpy(&a->dir,&b->dir);
 	a->state=b->state;
 	a->bounce=b->state;
-	a->mag=b->mag;
+	a->mag0=b->mag0;
+	a->mag1=b->mag1;
 }
 

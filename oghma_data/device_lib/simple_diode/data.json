@@ -1,0 +1,9 @@
+{
+	"icon":"diode",
+	"sub_icon":"folder",
+	"name":"Simple\ndiode models",
+	"hide_this_json_file": "True",
+	"item_type":"dir",
+	"view_type":"list",
+	"status":"public"
+}

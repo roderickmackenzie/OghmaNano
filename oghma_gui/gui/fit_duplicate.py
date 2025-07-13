@@ -39,18 +39,16 @@ _ = i18n.language.gettext
 from gQtCore import QSize, Qt 
 from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QAbstractItemView, QMenuBar, QTableWidgetItem
 from PySide2.QtGui import QPainter,QIcon
-
 from gtkswitch import gtkswitch
-
-from g_tab2 import g_tab2
-from json_root import json_root
-from json_fit import json_duplicate_line
+from g_tab2_bin import g_tab2_bin
 from sim_name import sim_name
+from json_c import json_tree_c
 
 class fit_duplicate(QWidget):
 
-	def __init__(self,uid,search_path="json_root().fits"):
+	def __init__(self,json_path,uid):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.setWindowTitle(_("Fit variables duplicate window")+sim_name.web_window_title)   
 		self.setWindowIcon(icon_get("duplicate"))
 
@@ -59,19 +57,16 @@ class fit_duplicate(QWidget):
 		toolbar=QToolBar()
 		toolbar.setIconSize(QSize(32, 32))
 
-
 		self.vbox.addWidget(toolbar)
 
-		self.tab = g_tab2(toolbar=toolbar)
+		self.tab = g_tab2_bin(toolbar=toolbar)
 		self.tab.set_tokens(["duplicate_var_enabled","human_src","human_dest","multiplier","json_src","json_dest"])
 		self.tab.set_labels([_("Enabled"),_("Source")+" (x)", _("Destination")+" (y)", _("Function")+" y=f(x)", _("Source (JSON)"), _("Destination (JSON)")])
-		self.tab.json_search_path=search_path
+		self.tab.json_root_path=json_path
 		self.tab.uid=uid
-		self.tab.postfix="segments"
 
 		self.tab.fixup_new_row=self.fixup_new_row
 		self.tab.populate()
-		self.tab.base_obj=json_duplicate_line()
 		self.tab.changed.connect(self.callback_save)
 		self.tab.callback_a=self.callback_show_list_a
 		self.tab.callback_b=self.callback_show_list_b
@@ -100,7 +95,7 @@ class fit_duplicate(QWidget):
 		self.setLayout(self.vbox)
 
 	def callback_save(self):
-		json_root().save()
+		self.bin.save()
 
 	def callback_show_list_a(self):
 		self.select_param_window_a.show()

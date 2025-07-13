@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -25,22 +23,34 @@
 // SOFTWARE.
 // 
 
-/** @file inp_struct.h
+/** @file list_struct.h
 @brief structure to hold input files.
 */
 
 
 #ifndef list_struct_h
 #define list_struct_h
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
+#include <g_io_defs.h>
 
 struct list
 {
 	char **names;
 	int len;
+	int len_max;
 };
 
+struct hash_list
+{
+	char **names;
+	void *data;
+	unsigned long *index0;
+	unsigned long *index1;
+	int len;
+	int len_max;
+	int item_size;
+	void (*free_function)(void *);
+	int thread_safe;
+	int all_data_valid;
+};
 #endif

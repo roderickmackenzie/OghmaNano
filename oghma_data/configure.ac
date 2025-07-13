@@ -1,5 +1,4 @@
-AC_INIT([gpvdm_data], [5.3])
-AC_CONFIG_SRCDIR([./docs/man/gpvdm.tex])
+AC_INIT([oghma_data], [5.3])
 AC_CANONICAL_TARGET
 AC_CANONICAL_HOST
 #AM_GNU_GETTEXT([external])
@@ -7,11 +6,11 @@ AC_CANONICAL_HOST
 #AC_CONFIG_FILES
 m4_include([config_files.m4])
 
-
-AC_ARG_ENABLE(nodocs, "used to disable compilation of docs",
-[AM_CONDITIONAL([INCLUDE_DOCS],[false])],
-[AM_CONDITIONAL([INCLUDE_DOCS],[true])]
+AC_ARG_ENABLE(nodevicelib, "used to disable the device lib",
+[AM_CONDITIONAL([INCLUDE_DEVICELIB],[false])],
+[AM_CONDITIONAL([INCLUDE_DEVICELIB],[true])]
 )
+
 AC_MSG_NOTICE([$target])
 AC_MSG_NOTICE([$target_alias])
 AC_MSG_NOTICE([$target_cpu])
@@ -29,7 +28,7 @@ AS_CASE([$target_os],
 AC_MSG_NOTICE([*****************************])
 AC_MSG_NOTICE([*Setting up config for linux*])
 AC_MSG_NOTICE([*****************************])
-AC_SUBST(GPVDM_DIR, "gpvdm" )
+AC_SUBST(oghma_DIR, "oghma" )
 
 
 ]
@@ -47,13 +46,7 @@ if test "$PKG_HELP2MAN" = "no"; then
 	AC_MSG_ERROR([help2man is not installed.])
 fi
 
-AC_CHECK_PROG([PKG_PDFLATEX], pdflatex, pdflatex,no)
-if test "$PKG_PDFLATEX" = "no"; then
-	AC_MSG_WARN([pdflatex is not installed.])
-	AC_SUBST(DOC_DIR, "" )
-else
-	AC_SUBST(DOC_DIR, "docs/man" )
-fi
+
 
 AC_CHECK_PROG([PKG_BIBTEX], bibtex, bibtex,no)
 if test "$PKG_PDFLATEX" = "no"; then
@@ -68,4 +61,4 @@ m4_include([ar.m4])
 
 AC_OUTPUT
 
-AC_MSG_NOTICE([gpvdm_data build finished. (gpvdm_build_finished)])
+AC_MSG_NOTICE([oghma_data build finished. (oghma_build_finished)])

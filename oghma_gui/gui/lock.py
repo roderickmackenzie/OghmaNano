@@ -39,7 +39,6 @@ from i18n import get_full_language
 
 from threading import Thread
 
-from cal_path import get_exe_command
 from const_ver import const_ver
 
 if get_platform()=="win":
@@ -50,7 +49,6 @@ from inp import inp
 from cal_path import multiplatform_exe_command
 from cal_path import sim_paths
 import json
-from json_base import json_base
 from str2bool import str2bool
 from sim_name import sim_name
 from bytes2str import str2bytes
@@ -83,26 +81,32 @@ class lock(ctypes.Structure):
 				('institution', ctypes.c_char * 1000),
 				('machine_locked', ctypes.c_int),
 				('update_available', ctypes.c_int),
-				('message', ctypes.c_char * 4000)]
+				('message', ctypes.c_char * 4000),
+				('time_lock', ctypes.c_int),
+				('ret_val', ctypes.c_char * 400),
+				('ver_when_li_fetched', ctypes.c_char * 100),
+				('debug', ctypes.c_int)]
 
 	def __init__(self):
 		self.lock_enabled=True
 		self.registered=False
 		self.error=""
 		self.open_gl_working=True
-		self.reg_client_ver="ver"
+		self.ver_in_registry="ver"
 		self.website="oghma-nano.com"
 		self.port="/api"
 		self.my_email="roderick.mackenzie@oghma-nano.com"
-		self.question="Questions? Contact: "
+		self.get_help="https://www.oghma-nano.com/forum/"
+		self.question="Questions? Ask on the user forum: "
 		self.lib=sim_paths.get_dll_py()
 		self.lib.lock_load.restype = ctypes.c_int
-		self.data=json_base("lock")
-		self.data.locked={}
+		self.locked={}
 		self.lib.lock_init(ctypes.byref(self))
-
-		if self.load()==True:
-			if self.data.client_ver!=self.reg_client_ver:
+		self.load()
+		ver_in_li=bytes2str(self.ver_when_li_fetched)
+		ver_in_reg=bytes2str(self.ver_in_registry)
+		if self.registered==True:
+			if ver_in_reg.startswith(ver_in_li)==False:	#Checks if major ver is the same
 				self.get_license()
 
 	def __del__(self):
@@ -112,15 +116,10 @@ class lock(ctypes.Structure):
 		if self.lock_enabled==False:
 			return None
 
-		command=multiplatform_exe_command(get_exe_command()+" --use")
-		os.system(command)
+		self.lib.lock_update_license(ctypes.byref(sim_paths),ctypes.byref(self))
 
 	def report_bug(self,data):
-		self.lib.lock_send_error_report(None,ctypes.byref(self),ctypes.c_char_p(str2bytes(data)),ctypes.c_char_p(str2bytes(const_ver()+" "+self.reg_client_ver)))
-		#a=http_get()
-		#params = {'action':"crash_report",'ver_core': const_ver()+" "+self.reg_client_ver, 'uid': bytes2str(self.uid),'data':data}
-		#tx_string="http://"+sim_name.web_register_domain+self.port+"/debug?"+urllib.parse.urlencode(params)
-		#a.get(tx_string)
+		self.lib.lock_send_error_report(None,ctypes.byref(self),ctypes.c_char_p(str2bytes(data)),ctypes.c_char_p(str2bytes(const_ver()+" "+self.ver_in_registry)))
 
 	def check_license_thread(self):
 		if self.lock_enabled==False:
@@ -130,34 +129,14 @@ class lock(ctypes.Structure):
 		p.daemon = True
 		p.start()
 
-	def register(self,user_data):
+	def register(self):
 		if self.lock_enabled==False:
 			return None
 
-		reg_path=os.path.join(sim_paths.get_tmp_path(),"reg.txt")
-		user_data.save_as(reg_path,do_tab=False)
-
-		command=multiplatform_exe_command(get_exe_command()+" --register")
-		os.system(command)
-
-		l=inp()
-		l.load(os.path.join(sim_paths.get_tmp_path(),"ret.txt"))
-		lines=l.get_token("#ret")
-		#print(lines)
-		if lines==False:
+		if self.lib.lock_register(ctypes.byref(sim_paths),ctypes.byref(self))==-1:
 			return False
 
-		if lines=="error:no_internet":
-			self.error="no_internet"
-			return False
-
-		if lines=="error:error_server":
-			self.error="no_internet"
-			return False
-
-		if lines=="error:too_old":
-			self.error="too_old"
-			return False
+		lines=bytes2str(self.ret_val)
 
 		self.uid=str2bytes(lines)
 
@@ -175,12 +154,8 @@ class lock(ctypes.Structure):
 		if uid==None:
 			uid=bytes2str(self.uid)
 
-		command=multiplatform_exe_command(get_exe_command()+" --license")
-		os.system(command)
-
-		l=inp()
-		l.load(os.path.join(sim_paths.get_tmp_path(),"ret.txt"))
-		lines=l.get_token("#ret")
+		self.lib.lock_get_li(ctypes.byref(sim_paths),ctypes.byref(self))
+		lines=bytes2str(self.ret_val)
 		if lines==False:
 			return False
 
@@ -195,6 +170,8 @@ class lock(ctypes.Structure):
 		self.load()
 
 		self.registered=True
+
+
 		return True
 
 	def get_uid(self):
@@ -217,7 +194,7 @@ class lock(ctypes.Structure):
 		if self.lock_enabled==False:
 			return False
 
-		for key in self.data.locked:
+		for key in self.locked:
 			if key==id:
 				return True
 		return False
@@ -233,24 +210,17 @@ class lock(ctypes.Structure):
 
 		lines=[]
 		data_path=None
-
 		if sim_paths.get_li_path()==None:
 			return False
-
 		if sim_paths.get_li_path().endswith("settings.json"):
 			data_path=sim_paths.get_li_path()
 		else:
-			data_path=os.path.join(sim_paths.get_user_settings_dir(),"settings2.inp")
-
-		self.reg_client_ver=self.get_reg_key("ver")
-		if self.reg_client_ver==False:
-			self.reg_client_ver="linux"
-
-		if self.lib.lock_load(None,ctypes.byref(self),ctypes.c_char_p(str2bytes(data_path)))==-1:
+			data_path=os.path.join(sim_paths.get_user_settings_dir(),"settings3.inp")
+		self.ver_in_registry=self.get_reg_key("ver")
+		if self.ver_in_registry==False:
+			self.ver_in_registry="8.1"	#then it is linux
+		if self.lib.lock_load(ctypes.byref(self),ctypes.c_char_p(str2bytes(data_path)))==-1:
 			return False
-		#self.lib.lock_dump(ctypes.byref(self))
-
-
 		self.registered=True
 		return True
 
@@ -288,16 +258,11 @@ class lock(ctypes.Structure):
 		return True
 
 	def validate_key(self,key):
-		command=multiplatform_exe_command(get_exe_command()+" --validate "+key)
-		os.system(command)
-
-		l=inp()
-		l.load(os.path.join(sim_paths.get_tmp_path(),"ret.txt"))
-		lines=l.get_token("#ret")
-
-		if lines==False:
+		print("validate_key")
+		if self.lib.lock_validate_key(ctypes.byref(sim_paths),ctypes.byref(self))==-1:
 			self.error="no_internet"
 			return False
+		lines=bytes2str(self.ret_val)
 
 		if lines=="ok":
 			self.load()
@@ -309,7 +274,13 @@ class lock(ctypes.Structure):
 		self.error=lines
 		return False
 
-	
+	def lock_ping_server(self):
+		p = Thread(target=self.lock_do_ping, args=(10,))
+		p.daemon = True
+		p.start()
+
+	def lock_do_ping(self,n):
+		self.lib.lock_ping_server(ctypes.byref(self))	
 
 my_lock=lock()
 

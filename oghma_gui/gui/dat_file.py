@@ -34,7 +34,6 @@ from inp import inp
 from quiver import quiver
 from util import is_number
 from dat_file_math import dat_file_math
-from dat_file_trap_map import dat_file_trap_map
 import codecs
 from dat_file_save import dat_file_save
 from cal_path import sim_paths
@@ -44,8 +43,26 @@ from bytes2str import str2bytes
 from vec import vec
 from g_io import list_struct
 from dat_file_decode import dat_file_decode
+from color_map import rgb_char
 
-class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,ctypes.Structure):
+class dat_file_display_options(ctypes.Structure):
+	_fields_ = [('normal_graph', ctypes.c_int),
+				('threeD_world', ctypes.c_int)]
+
+class dat_file_trap_map(ctypes.Structure):
+
+	_fields_ = [('Ec_f', ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.c_double) )) ),
+				('nf', ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.c_double) )) ),
+				('Ec', ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.c_double) ))) ),
+				('nt', ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.c_double) ))) ),
+				('Ev_f', ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.c_double) )) ),
+				('pf', ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.c_double) )) ),
+				('Ev', ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.c_double) ))) ),
+				('pt', ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.c_double) ))) ),
+				('Ec_max', ctypes.c_double),
+				('Ev_min', ctypes.c_double)]
+
+class dat_file(dat_file_math,dat_file_save,dat_file_decode,ctypes.Structure):
 
 	_fields_ = [('title', ctypes.c_char * 100),
 					('type', ctypes.c_char * 100),
@@ -63,11 +80,8 @@ class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,cty
 					('x_units', ctypes.c_char * 100),
 					('y_units', ctypes.c_char * 100),
 					('z_units', ctypes.c_char * 100),
-					('rgb', ctypes.c_char * 100),
+					('rgb', rgb_char),
 					('icon', ctypes.c_char * 100),
-					('r', ctypes.c_double ),
-					('g', ctypes.c_double ),
-					('b', ctypes.c_double ),
 					('data_units', ctypes.c_char * 100),
 					('logscale_x', ctypes.c_int ),
 					('logscale_y', ctypes.c_int ),
@@ -76,13 +90,14 @@ class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,cty
 					('write_to_zip', ctypes.c_int ),
 					('norm_x_axis', ctypes.c_int ),
 					('norm_y_axis', ctypes.c_int ),
-					('data_max', ctypes.c_double ),
 					('data_min', ctypes.c_double ),
+					('data_max', ctypes.c_double ),
+					('data_min1', ctypes.c_double ),
+					('data_max1', ctypes.c_double ),
 					('x_len', ctypes.c_int ),
 					('y_len', ctypes.c_int ),
 					('z_len', ctypes.c_int ),
 					('srh_bands', ctypes.c_int ),
-					('dump_gnu_plot_file', ctypes.c_int ),
 					('time', ctypes.c_double ),
 					('Vexternal', ctypes.c_double ),
 					('buf', ctypes.c_char_p ),
@@ -102,15 +117,22 @@ class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,cty
 					('py_data', ctypes.POINTER(ctypes.POINTER(ctypes.POINTER(ctypes.c_double) ))),
 					('encrypted', ctypes.c_int ),
 					('list', list_struct ),
-					('col_count', ctypes.c_int )]
+					('col_count', ctypes.c_int ),
+					('append', ctypes.c_int ),
+					('part', ctypes.c_int ),
+					('search_started', ctypes.c_int ),
+					('include_json_header', ctypes.c_int ),
+					('xlsx_format', ctypes.c_int ),
+					('plotted', ctypes.c_int ),
+					('transpose', ctypes.c_int ),
+					('flip_z', ctypes.c_int ),
+					('flip_x', ctypes.c_int ),
+					('flip_y', ctypes.c_int ),
+					('trap_map', dat_file_trap_map)]
 
 	def __init__(self):
 		self.grid=False
 		self.show_pointer=False
-		self.logy=False
-		self.logx=False
-		self.logz=False
-		self.logdata=False
 		self.label_data=False
 		self.invert_y=False
 		self.normalize=False
@@ -125,7 +147,6 @@ class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,cty
 		self.zmax=-1
 		self.zmin=-1
 		self.plot_type=""		#wireframe/heat etc...
-		self.plotted=False
 
 		self.key_units=""
 		self.key_text=""
@@ -154,11 +175,20 @@ class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,cty
 		self.error=""
 		self.lib=sim_paths.get_dll_py()
 		self.lib.dat_file_init(ctypes.byref(self))
+		self.convert_to_yd=False		#This is used for converting xd files to yd files
 
 	def __del__(self):
+		self.free()
+
+	def free(self):
 		lib=sim_paths.get_dll_py()
 		if lib!=None:
 			lib.dat_file_free(ctypes.byref(self))
+
+	def how_can_i_display(self):
+		a=dat_file_display_options()
+		ret=self.lib.dat_file_how_can_i_display_the_data(ctypes.byref(a), ctypes.byref(self))
+		return a
 
 	def load_yd_from_csv(self,file_name,x_col=0,y_col=1,skip_lines=0,known_col_sep=None):
 		self.lib.dat_file_load_yd_from_csv(ctypes.byref(self), bytes(file_name, encoding='utf8'), x_col, y_col, skip_lines )
@@ -229,7 +259,7 @@ class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,cty
 		self.x_len=1
 		self.y_len=len(self.data[0][0])
 		self.z_len=1
-
+		self.cols=b"yd"
 		return True
 
 	def import_xy_data(self,x,y):
@@ -306,79 +336,6 @@ class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,cty
 		return True
 
 
-	def cal_min_max(self):
-		self.ymax=0.0
-		self.ymin=0.0
-		self.xmax=0.0
-		self.xmin=0.0
-		self.zmax=0.0
-		self.zmin=0.0
-
-		if self.type==b"quiver":
-			for d in self.data:
-				if d.x>self.xmax:
-					self.xmax=d.x
-
-				if d.y>self.ymax:
-					self.ymax=d.y
-
-				if d.z>self.zmax:
-					self.zmax=d.z
-
-	def decode_quiver_lines(self,lines):
-		self.data=[]
-
-		for line in lines:
-			s,label=self.decode_line(line)
-			l=len(s)
-			if l>0:
-				if s[0].startswith("#")==False:
-					s=list(map(float, s))
-					q=quiver()
-					q.x=s[0]
-					q.y=s[1]
-					q.z=s[2]
-					q.dx=s[3]
-					q.dy=s[4]
-					q.dz=s[5]
-					q.mag=s[6]
-
-
-					self.data.append(q)
-
-		self.cal_min_max()
-		self.valid_data=True
-		return True
-
-	def decode_yrgb(self):
-		self.data=[]
-		z=0
-		x=0
-		self.init_mem()
-		self.y_scale= [self.y_scaleC[y] for y in range(self.y_len)]
-		for y in range(0,self.y_len):
-			self.data[0][0][y]=[self.py_data[z][x][y*3],self.py_data[z][x][y*3+1],self.py_data[z][x][y*3+2]]
-		self.valid_data=True
-
-	def decode_zxrgb(self):
-		self.data=[]
-		z=0
-		x=0
-		self.y_len=1
-		self.init_mem(dim="zx")
-		self.z_scale= [self.z_scaleC[z] for z in range(self.z_len)]
-		self.x_scale= [self.x_scaleC[x] for x in range(self.x_len)]
-
-		for z in range(0,self.z_len):
-			for x in range(0,self.x_len):
-				self.data[z][x]=[self.py_data[z][x][0],self.py_data[z][x][1],self.py_data[z][x][2]]
-
-		#print(self.z_scale)
-		#print(self.x_scale)
-		#print(self.data)
-		self.valid_data=True
-
-
 	def have_i_loaded_this(self,file_name):
 		if os.path.isfile(file_name)==True:
 			age=os.path.getmtime(file_name)
@@ -400,13 +357,29 @@ class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,cty
 		return False
 
 	def convert_from_C_to_python(self):
-		self.data=[[[float(self.py_data[z][x][y]) for y in range(self.y_len)] for x in range(self.x_len)] for z in range(self.z_len)]
-		self.x_scale= [self.x_scaleC[x] for x in range(self.x_len)]
-		self.y_scale= [self.y_scaleC[y] for y in range(self.y_len)]
-		self.z_scale= [self.z_scaleC[z] for z in range(self.z_len)]
+		done=False
 		self.labels=[]
+
+		if self.convert_to_yd==True:
+			if self.y_len==1 and self.z_len==1 and self.x_len>=1:
+				self.data=[[[float(self.py_data[z][x][y]) for x in range(self.x_len)] for y in range(self.y_len)] for z in range(self.z_len)]
+				self.x_scale= [self.y_scaleC[y] for y in range(self.y_len)]
+				self.y_scale= [self.x_scaleC[x] for x in range(self.x_len)]
+				self.z_scale= [self.z_scaleC[z] for z in range(self.z_len)]
+				tmp=self.x_len
+				self.x_len=self.y_len
+				self.y_len=tmp
+				done=True
+
+		if done==False:
+			self.data=[[[float(self.py_data[z][x][y]) for y in range(self.y_len)] for x in range(self.x_len)] for z in range(self.z_len)]
+			self.x_scale= [self.x_scaleC[x] for x in range(self.x_len)]
+			self.y_scale= [self.y_scaleC[y] for y in range(self.y_len)]
+			self.z_scale= [self.z_scaleC[z] for z in range(self.z_len)]
+
 		for l in range(0,self.list.len):
 			self.labels.append(bytes2str(self.list.names[l]))
+
 
 		self.valid_data=True
 
@@ -419,14 +392,12 @@ class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,cty
 
 
 		ret=self.lib.dat_file_load(ctypes.byref(self), bytes(file_name, encoding='utf8'))
-
+		#print(self.cols,file_name,self.type)
 		if ret==0:
 			if self.cols==b"yrgb" or self.type==b"yrgb":
-				self.decode_yrgb()
 				self.valid_data=True
 				return True
 			if self.cols==b"zxrgb":
-				self.decode_zxrgb()
 				self.valid_data=True
 				return True
 			elif self.cols==b"poly" or self.type==b"poly":
@@ -436,7 +407,6 @@ class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,cty
 				self.valid_data=True
 				return True
 			elif self.cols==b"zxyEd":
-				self.load_trap_map()
 				self.valid_data=True
 				return True
 			if self.cols==b"zxyrgb":
@@ -458,14 +428,12 @@ class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,cty
 			#print("Dll fail for the file",self.file_name)
 			pass
 		
-
 		if self.have_i_loaded_this(file_name)==True:
 			return True
 
 		found,lines=zip_get_data_file(file_name)
 		if found==False:
 			return False
-
 
 		self.x_scale=[]
 		self.y_scale=[]
@@ -475,42 +443,6 @@ class dat_file(dat_file_math,dat_file_trap_map,dat_file_save,dat_file_decode,cty
 		if self.type==b"circuit":
 			return self.decode_circuit_lines(lines)
 
-		if self.type==b"quiver":
-			return self.decode_quiver_lines(lines)
 
 		return False
-
-	#This does not belong here but it will do for the time being
-	def gl_triangles_get_min(self):
-		a=vec()
-		self.lib.gl_triangles_get_min(ctypes.byref(a),ctypes.byref(self))
-		return a
-
-	def gl_triangles_get_max(self):
-		a=vec()
-		self.lib.gl_triangles_get_max(ctypes.byref(a),ctypes.byref(self))
-		return a
-
-	def gl_triangles_sub_vec(self,a):
-		self.lib.gl_triangles_sub_vec(ctypes.byref(self),ctypes.byref(a))
-
-	def gl_triangles_div_vec(self,a):
-		self.lib.gl_triangles_div_vec(ctypes.byref(self),ctypes.byref(a))
-
-	#vectors
-	def gl_vectors_get_min(self):
-		a=vec()
-		self.lib.gl_vectors_get_min(ctypes.byref(a),ctypes.byref(self))
-		return a
-
-	def gl_vectors_get_max(self):
-		a=vec()
-		self.lib.gl_vectors_get_max(ctypes.byref(a),ctypes.byref(self))
-		return a
-
-	def gl_vectors_sub_vec(self,a):
-		self.lib.gl_vectors_sub_vec(ctypes.byref(self),ctypes.byref(a))
-
-	def gl_vectors_div_vec(self,a):
-		self.lib.gl_vectors_div_vec(ctypes.byref(self),ctypes.byref(a))
 

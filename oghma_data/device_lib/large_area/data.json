@@ -1,0 +1,9 @@
+{
+	"icon":"large_area_device",
+	"sub_icon":"folder",
+	"name":"Large area 3D\ndevice models",
+	"hide_this_json_file": "True",
+	"item_type":"dir",
+	"view_type":"list",
+	"status":"public"
+}

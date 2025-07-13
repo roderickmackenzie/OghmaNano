@@ -1,5 +1,5 @@
-AC_INIT([gpvdm_gui], [5.3])
-AC_CONFIG_SRCDIR([./gui/gpvdm.py])
+AC_INIT([oghma_gui], [5.3])
+AC_CONFIG_SRCDIR([./gui/oghmanano.py])
 AC_CANONICAL_TARGET
 AC_CANONICAL_HOST
 #AM_GNU_GETTEXT([external])
@@ -48,7 +48,7 @@ AS_CASE([$target_os],
 AC_MSG_NOTICE([*****************************])
 AC_MSG_NOTICE([*Setting up config for linux*])
 AC_MSG_NOTICE([*****************************])
-AC_SUBST(GPVDM_DIR, "gpvdm" )
+AC_SUBST(OGHMA_DIR, "oghma" )
 
 AC_ARG_ENABLE(hpc, "used to turn on HPC compatability",
   [
@@ -126,4 +126,4 @@ m4_include([config_files.m4])
 
 AC_OUTPUT
 
-AC_MSG_NOTICE([gpvdm_gui build finished (gpvdm_build_finished).])
+AC_MSG_NOTICE([oghma_gui build finished (oghma_build_finished).])

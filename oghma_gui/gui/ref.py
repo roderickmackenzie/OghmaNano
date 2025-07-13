@@ -33,31 +33,28 @@ from icon_lib import icon_get
 
 #qt
 from gQtCore import QSize, Qt
-from PySide2.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget,QAbstractItemView,QPushButton
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QTableWidget,QAbstractItemView,QPushButton, QTextEdit
 from PySide2.QtGui import QPainter,QIcon
 
 #windows
 
 from tab import tab_class
 
-from bibtex import bibtex
-
 from QWidgetSavePos import QWidgetSavePos
 from QWidgetSavePos import resize_window_to_be_sane
 from help import QAction_help
+from json_c import json_c
 
 class ref_window(QWidgetSavePos):
-	def __init__(self,bib_file,token,show_toolbar=True):
-		"""Pass this the file name of the file you want referenced."""
+	def __init__(self,bib_file,token,show_toolbar=True,simple_text=""):
 		QWidgetSavePos.__init__(self,"ref_window")
-		resize_window_to_be_sane(self,0.5,0.5)
-		self.bib_file=bib_file
-		self.token=token
+		resize_window_to_be_sane(self,0.4,0.4)
+		self.bin=json_c("file_defined")
+		
 		self.setWindowIcon(icon_get("ref"))
 		self.setWindowTitle2(_("Reference manager"))
 
 		self.vbox=QVBoxLayout()
-
 
 		self.toolbar=QToolBar()
 		self.toolbar.setIconSize(QSize(48, 48))
@@ -81,20 +78,24 @@ class ref_window(QWidgetSavePos):
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
 		self.button_hbox.addWidget(spacer)
 
+		if bib_file!=None:
+			self.bin.load(bib_file)
+			self.bin.json_py_bib_enforce_citation(token)
+			self.tab=tab_class(token,data=self.bin)
 
-		self.b=bibtex()
-		self.b.load(self.bib_file)
-		self.item=self.b.get_ref(self.token)
-		if self.item==False:
-			self.item=self.b.new()
-			self.item.token=token
+		else:
+			self.tab = QTextEdit(simple_text)
+			self.tab.setReadOnly(True)
 
-		self.tab=tab_class(self.item,data=self.item)
-		#self.item.bib_dump()
+			font = self.tab.font()
+			font.setPointSize(16)
+			self.tab.setFont(font)
+
 		self.tab.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.vbox.addWidget(self.tab)
 
 		self.vbox.addWidget(self.button_widget)
 		self.setLayout(self.vbox)
 
-
+	def __del__(self):
+		self.bin.free()

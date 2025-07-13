@@ -32,6 +32,31 @@
 
 double bessel1( double x );
 
+#define swap_double(a, b) do { \
+    double temp = (a);         \
+    (a) = (b);                 \
+    (b) = temp;                \
+} while (0)
+
+#define swap_int(a, b) do { \
+    int temp = (a);         \
+    (a) = (b);                 \
+    (b) = temp;                \
+} while (0)
+
+#define swap_double_ptr(a, b) do { \
+    double* temp = (a);            \
+    (a) = (b);                     \
+    (b) = temp;                    \
+} while (0)
+
+#define swap_string(a, b) do {  \
+    char temp[OGHMA_PATH_MAX];  \
+	strcpy(temp,(a));			\
+    strcpy((a) , (b));          \
+    strcpy((b), temp);          \
+} while (0)
+
 #define div_1d_1d				\
 	int y;						\
 	for (y=0;y<len;y++)			\

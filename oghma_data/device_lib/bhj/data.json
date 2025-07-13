@@ -1,0 +1,9 @@
+{
+	"icon":"p3ht_pcbm",
+	"sub_icon":"folder",
+	"name":"Organic\nsolar cells",
+	"hide_this_json_file": "True",
+	"item_type":"dir",
+	"view_type":"list",
+	"status":"public"
+}

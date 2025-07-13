@@ -38,23 +38,10 @@ from cal_path import sim_paths
 from win_lin import get_platform
 from bytes2str import bytes2str
 
-if get_platform()=="linux" or get_platform()=="wine":
-	import dbus
-	from dbus.mainloop.glib import DBusGMainLoop
-	DBusGMainLoop(set_as_default=True)
+import time
 
-class ipc_data(ctypes.Structure):
-	_fields_ = [('connection', ctypes.c_void_p ),
-				('buf', ctypes.c_char * 4096 )]
 
-class oghma_ipc(QWidget):
-	new_data = gSignal(str)
-
-	def __init__(self):
-		QWidget.__init__(self)
-		self.lib=sim_paths.get_dll_py()
-		self.lib.ipc_read.restype = ctypes.c_int
-
+class oghma_ipc_win_pipes():
 	def windows_pipe_read(self,data):
 		while(1):
 			ret = self.lib.ipc_read(ctypes.byref(data))
@@ -64,35 +51,59 @@ class oghma_ipc(QWidget):
 			else:
 				print("no more data")
 				break
-			#except:
-			#	print("pipe closed")
-			#	break
-#		win32pipe.DisconnectNamedPipe(p)
+
+	def windows_main_loop(self):
+		while(1):
+			self.lib.ipc_win_pipe_listen_open(ctypes.byref(self.data))
+			th = Thread(target=self.windows_pipe_read, args=(self.data,))
+			th.daemon = True
+			th.start()
+
+class oghma_ipc(QWidget,oghma_ipc_win_pipes):
+	new_data = gSignal(str)
+
+	def __init__(self,ipc_data):
+		QWidget.__init__(self)
+		self.data=ipc_data
+		self.lib=sim_paths.get_dll_py()
+		self.lib.ipc_read.restype = ctypes.c_int
 
 	def callback_dbus(self,bus, message):
 		data=message.get_member()
 		if data!=None:
 			self.new_data.emit(data)
 
-	def windows_main_loop(self):
+	def dbus_main_loop(self):
 		while(1):
-			data=ipc_data()
-			self.lib.ipc_open_listen(ctypes.byref(data))
-			th = Thread(target=self.windows_pipe_read, args=(data,))
-			th.daemon = True
-			th.start()
+			ret=self.lib.ipc_read(ctypes.byref(self.data))
+			if ret == -2:
+				time.sleep(1)
+
+			if ret>0:
+				decoded_data=bytes2str(ctypes.cast(self.data.buf, ctypes.c_char_p).value)
+				for d in decoded_data.split("\n"):
+					if len(d)>0:
+						self.new_data.emit(d)
+
+		#print("exit")
 
 	def start(self):
 		if get_platform()=="linux":
-			self.bus = dbus.SessionBus()
-			self.bus.add_match_string_non_blocking("type='signal',interface='org.my.oghmanano'")
-			self.bus.add_message_filter(self.callback_dbus)
+			self.lib.ipc_open_listen(ctypes.byref(self.data))
+			p = Thread(target=self.dbus_main_loop)
+			p.daemon = True
+			p.start()
 		elif get_platform()=="wine":
-			self.bus = dbus.SessionBus()
-			self.bus.add_match_string_non_blocking("type='signal',interface='org.my.oghmanano'")
-			self.bus.add_message_filter(self.callback_dbus)
+			self.lib.ipc_open_listen(ctypes.byref(self.data))
+			p = Thread(target=self.dbus_main_loop)
+			p.daemon = True
+			p.start()
 		else:
-			p = Thread(target=self.windows_main_loop)
+			#p = Thread(target=self.windows_main_loop)
+			#p.daemon = True
+			#p.start()
+			self.lib.ipc_open_listen(ctypes.byref(self.data))
+			p = Thread(target=self.dbus_main_loop)
 			p.daemon = True
 			p.start()
 

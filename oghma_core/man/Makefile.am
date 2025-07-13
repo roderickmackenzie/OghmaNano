@@ -3,14 +3,14 @@ HELP2MAN=help2man
 lib=-L../../
 inc=-I../../include/
 
-all: gpvdm_core.1
+all: oghma_core.1
 	echo "Man page built"
 
 
 
-gpvdm_core.1: ../gpvdm_core@EXE_EXT@
-	cd ..; $(HELP2MAN) --output=./man/gpvdm_core.1 --name="A solar cell device model" ./gpvdm_core@EXE_EXT@
+oghma_core.1: ../oghma_core@EXE_EXT@
+	cd ..; $(HELP2MAN) --output=./man/oghma_core.1 --name="A solar cell device model" ./oghma_core@EXE_EXT@
 
 clean:
-	rm *.1 -f
+	rm *.1 stk* -f
 

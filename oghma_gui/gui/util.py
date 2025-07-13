@@ -98,14 +98,6 @@ def isfiletype(file_name,ext_in):
 		return True
 	return False
 
-
-def pygtk_to_latex_subscript(in_string):
-	out_string=in_string.replace("<sub>","_{")
-	out_string=out_string.replace("</sub>","}")
-	out_string=out_string.replace("<sup>","^{")
-	out_string=out_string.replace("</sup>","}")
-	return out_string
-
 def latex_to_html(in_string):
 	in_string=bytes2str(in_string)
 	out=re.compile(r"_\{([^\]]*?)\}").sub("<sub>\\1</sub>", in_string)

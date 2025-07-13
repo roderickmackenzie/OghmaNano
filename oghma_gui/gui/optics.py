@@ -30,14 +30,10 @@
 
 
 import os
-from plot_gen import plot_gen
 from icon_lib import icon_get
 from tab import tab_class
 from progress_class import progress_class
 from help import my_help_class
-
-#path
-from cal_path import get_exe_command
 
 #qt
 from gQtCore import QSize, Qt 
@@ -45,8 +41,6 @@ from PySide2.QtWidgets import QWidget,QHBoxLayout,QVBoxLayout,QToolBar,QSizePoli
 from PySide2.QtGui import QIcon
 
 #windows
-from band_graph2 import band_graph2
-
 from plot_widget import plot_widget
 
 from server import server_get
@@ -59,14 +53,17 @@ from optics_ribbon import optics_ribbon
 
 from css import css_apply
 from gui_util import yes_no_dlg
-from json_root import json_root
 from config_window import class_config_window
 from help import help_window
+from json_c import json_tree_c
+from graph import graph_widget
+from global_objects import global_object_run
 
 class class_optical(QWidgetSavePos):
 
 	def __init__(self):
 		QWidgetSavePos.__init__(self,"optics")
+		self.bin=json_tree_c()
 
 		self.setWindowIcon(icon_get("optics"))
 
@@ -95,8 +92,6 @@ class class_optical(QWidgetSavePos):
 
 		self.ribbon.optics.configwindow.triggered.connect(self.callback_configwindow)
 
-		self.ribbon.optics.optical_thickness.triggered.connect(self.callback_optical_thickness)
-
 		self.ribbon.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
 
 		self.main_vbox.addWidget(self.ribbon)
@@ -112,8 +107,8 @@ class class_optical(QWidgetSavePos):
 		self.plot_widgets=[]
 		self.progress_window.start()
 		for i in range(0,len(self.input_files)):
-			self.plot_widgets.append(plot_widget(enable_toolbar=False,widget_mode="pyqtgraph_imageview"))	#matplotlib
-			self.plot_widgets[i].hide_title=True
+			self.plot_widgets.append(plot_widget(enable_toolbar=False,widget_mode="graph",color_widget_in=self.ribbon.optics.color_map))
+			self.plot_widgets[i].canvas.graph.show_title=False
 			self.plot_widgets[i].set_labels([self.plot_labels[0]])
 			self.plot_widgets[i].load_data([self.input_files[i]])
 			#self.plot_widgets[i].watermark_alpha=0.5
@@ -122,18 +117,28 @@ class class_optical(QWidgetSavePos):
 			self.notebook.addTab(self.plot_widgets[i],self.plot_labels[i])
 
 		self.input_files.append(os.path.join(sim_paths.get_sim_path(),"optical_output","G_y.csv"))
-		self.fig_gen_rate = band_graph2()
-		self.fig_gen_rate.set_data_file(self.input_files[-1])
+		self.fig_gen_rate = graph_widget()
+		self.fig_gen_rate.load([os.path.join(sim_paths.get_sim_path(),"optical_output","G_y.csv")])
+		self.fig_gen_rate.graph.load_bands(self.bin)
+		self.fig_gen_rate.graph.show_title=False
 		self.notebook.addTab(self.fig_gen_rate,_("Generation rate"))
 
+		self.check_sim_button_is_there()
+		file_name=os.path.join(sim_paths.get_sim_path(),"optical_output","reflect.csv")
+		self.input_files.append(file_name)
+		self.plot_widgets.append(plot_widget(enable_toolbar=False,widget_mode="graph"))
+		self.plot_widgets[-1].canvas.graph.show_title=False
+		self.plot_widgets[-1].set_labels(["Reflected light"])
+		self.plot_widgets[-1].load_data([file_name])
+		self.plot_widgets[-1].do_plot()
+		self.notebook.addTab(self.plot_widgets[-1],"Reflected light")
 
-		self.fig_gen_rate.draw_graph()
 		self.progress_window.stop()
 
 		self.notebook.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.main_vbox.addWidget(self.notebook)
 
-
+		self.ribbon.optics.color_map.changed.connect(self.callback_color_map)
 		self.setLayout(self.main_vbox)
 
 		if os.path.isfile(os.path.join(sim_paths.get_sim_path(),"optical_output","photons_yl.csv"))==False:
@@ -148,27 +153,19 @@ class class_optical(QWidgetSavePos):
 		self.notebook.currentChanged.connect(self.changed_click)
 		self.changed_click()
 
-	def callback_configwindow(self):
-		data=json_root()
-		self.config_window=class_config_window([data.optical.light],[_("Output files")])
-		self.config_window.show()
+	def check_sim_button_is_there(self):
+		segments=self.bin.get_token_value("sims.transfer_matrix","segments")
+		if segments==0:
+			self.bin.make_new_segment("sims.transfer_matrix","Transfer matrix",-1)
+			global_object_run("ribbon_sim_mode_update")
 
-	def callback_optical_thickness(self):
-		from optical_thickness_editor import optical_thickness_editor
-		self.window_optical_thickness=optical_thickness_editor()
-		self.window_optical_thickness.show()
-		help_window().help_set_help(["optical_thickness",_("<big><b>Optical thickness</b></big><br>Usually the optical thickness of a layer will be taken from the layer structure set out in the layer editor. However, sometimes one wants to simulate very thick layers. This window will enable you to force the optical thickness to a value while maintaining it's physical thickness.")])
+	def callback_configwindow(self):
+		self.config_window=class_config_window(["optical.light"],[_("Configure transfer matrix solver")])
+		self.config_window.show()
 
 	def callback_save(self):
 		tab = self.notebook.currentWidget()
 		tab.save_image()
-
-	def onclick(self, event):
-		for i in range(0,len(self.layer_end)):
-			if (self.layer_end[i]>event.xdata):
-				break
-		pwd=sim_paths.get_sim_path()
-		plot_gen([os.path.join(pwd,"materials",self.layer_name[i],"alpha.csv")],[],None,"")
 
 
 	def closeEvent(self, event):
@@ -177,28 +174,24 @@ class class_optical(QWidgetSavePos):
 		event.accept()
 
 	def optics_sim_finished(self):
-		data=json_root()
-		data.optical.light.dump_verbosity=self.dump_verbosity
-		data.save()
+		self.bin.set_token_value("optical.light","dump_verbosity",self.dump_verbosity)
+		self.bin.save()
 		self.force_redraw()
 
 	def force_redraw(self):
-		self.fig_gen_rate.build_bands()
-		self.fig_gen_rate.draw_graph()
+		self.fig_gen_rate.load([os.path.join(sim_paths.get_sim_path(),"optical_output","G_y.csv")])
+		self.fig_gen_rate.graph.load_bands(self.bin)
 
-		#print("redraw optics3")
 		for i in range(0,len(self.plot_widgets)):
 			self.plot_widgets[i].update()
-		#print("redraw optics4")			
+
 		self.ribbon.update()
 		
 	def callback_run(self):
-		data=json_root()
 		self.my_server=server_get()
-		self.dump_verbosity=data.optical.light.dump_verbosity
-
-		data.optical.light.dump_verbosity=1
-		data.save()
+		self.dump_verbosity=self.bin.get_token_value("optical.light","dump_verbosity")
+		self.bin.set_token_value("optical.light","dump_verbosity",1)
+		self.bin.save()
 
 		self.my_server.clear_cache()
 		self.my_server.clear_jobs()
@@ -209,3 +202,10 @@ class class_optical(QWidgetSavePos):
 	def changed_click(self):
 		i = self.notebook.currentIndex()
 		self.status_bar.showMessage(self.input_files[i])
+
+	def callback_color_map(self):
+		#tab = self.notebook.currentWidget()
+		#self.force_redraw()
+		for i in range(0,len(self.plot_widgets)):
+			self.plot_widgets[i].callback_color_map()
+

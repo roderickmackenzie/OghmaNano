@@ -35,21 +35,17 @@ _ = i18n.language.gettext
 
 #qt
 from gQtCore import QSize, Qt 
-from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar,QSizePolicy,QAction,QTabWidget,QAbstractItemView, QMenuBar, QTableWidgetItem
+from PySide2.QtWidgets import QWidget,QVBoxLayout,QToolBar
 from PySide2.QtGui import QPainter,QIcon
 
-from g_tab2 import g_tab2
-from json_root import json_root
-from json_dump import json_banned_file
+from g_tab2_bin import g_tab2_bin
+from json_c import json_tree_c
 
 class tab_banned_files(QWidget):
 
-	def callback_show_list(self):
-		self.select_param_window.show()
-
 	def __init__(self):
 		QWidget.__init__(self)
-
+		self.bin=json_tree_c()
 		self.vbox=QVBoxLayout()
 
 		toolbar=QToolBar()
@@ -57,15 +53,14 @@ class tab_banned_files(QWidget):
 
 		self.vbox.addWidget(toolbar)
 
-		self.tab2 = g_tab2(toolbar=toolbar)
+		self.tab2 = g_tab2_bin(toolbar=toolbar)
 		self.tab2.set_tokens(["banned_enabled","banned_file_name"])
 		self.tab2.set_labels([_("Enabled"),_("File or token to ban")])
 
-		self.tab2.json_search_path="json_root().dump.banned_files.segments"
+		self.tab2.json_root_path="dump.banned_files"
 		self.tab2.setColumnWidth(1, 400)
 		self.tab2.setColumnWidth(2, 100)
 
-		self.tab2.base_obj=json_banned_file()
 		self.tab2.populate()
 		self.tab2.changed.connect(self.callback_save)
 
@@ -74,7 +69,36 @@ class tab_banned_files(QWidget):
 		self.setLayout(self.vbox)
 
 
+	def callback_save(self):
+		self.bin.save()
+
+class tab_noise(QWidget):
+
+	def __init__(self):
+		QWidget.__init__(self)
+		self.bin=json_tree_c()
+		self.vbox=QVBoxLayout()
+
+		toolbar=QToolBar()
+		toolbar.setIconSize(QSize(32, 32))
+
+		self.vbox.addWidget(toolbar)
+
+		self.tab2 = g_tab2_bin(toolbar=toolbar)
+		self.tab2.set_tokens(["noise_enabled","noise_file_name","noise_sigma"])
+		self.tab2.set_labels([_("Enabled"),_("File name"),_("Sigma of noise")])
+
+		self.tab2.json_root_path="dump.noise"
+		self.tab2.setColumnWidth(1, 400)
+		self.tab2.setColumnWidth(2, 100)
+		self.tab2.setColumnWidth(3, 100)
+		self.tab2.populate()
+		self.tab2.changed.connect(self.callback_save)
+
+		self.vbox.addWidget(self.tab2)
+
+		self.setLayout(self.vbox)
+
 
 	def callback_save(self):
-		json_root().save()
-
+		self.bin.save()

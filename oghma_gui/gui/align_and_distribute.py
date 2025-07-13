@@ -34,11 +34,14 @@ from gQtCore import QSize
 from PySide2.QtWidgets import QVBoxLayout,QToolBar,QToolBar, QAction, QLabel
 from QWidgetSavePos import QWidgetSavePos
 from icon_lib import icon_get
-from json_root import json_root
+from json_c import json_tree_c
+from bytes2str import str2bytes
+import ctypes
 
 class align_and_distribute(QWidgetSavePos):
 	def __init__(self,gl_interface):
 		QWidgetSavePos.__init__(self,"align_and_distribute")
+		self.bin=json_tree_c()
 		self.main_vbox = QVBoxLayout()
 
 		self.setWindowIcon(icon_get("thermal_kappa"))
@@ -94,80 +97,25 @@ class align_and_distribute(QWidgetSavePos):
 		self.setLayout(self.main_vbox)
 
 	def callback_align_left_x(self):
-		data=json_root()
-		x=[]
-
-		objs=self.gl_interface.gl_objects_get_selected()
-		for obj in objs:
-			s=data.find_object_by_id(obj.id[0])
-			if s!=None:
-				x.append(s.x0)
-
-		x_new=min(x)
-		for obj in objs:
-			s=data.find_object_by_id(obj.id[0])
-			if s!=None:
-				s.x0=x_new
-		data.save()
+		self.bin.lib.gl_objects_align(ctypes.byref(json_tree_c()), ctypes.byref(self.gl_interface.gl_main), ctypes.c_char_p(str2bytes("x0")), ctypes.c_int(True))
+		self.bin.save()
 		self.gl_interface.force_redraw() 
 
 	def callback_align_y_min(self):
-		data=json_root()
-		y=[]
-
-		objs=self.gl_interface.gl_objects_get_selected()
-		for obj in objs:
-			s=data.find_object_by_id(obj.id[0])
-			if s!=None:
-				y.append(s.y0)
-
-		y_new=min(y)
-		for obj in objs:
-			s=data.find_object_by_id(obj.id[0])
-			if s!=None:
-				s.y0=y_new
-		data.save()
+		self.bin.lib.gl_objects_align(ctypes.byref(json_tree_c()), ctypes.byref(self.gl_interface.gl_main), ctypes.c_char_p(str2bytes("y0")), ctypes.c_int(True))
+		self.bin.save()
 		self.gl_interface.force_redraw() 
+
 
 	def callback_align_right_x(self):
-		data=json_root()
-		x=[]
-
-		objs=self.gl_interface.gl_objects_get_selected()
-		for obj in objs:
-			s=data.find_object_by_id(obj.id[0])
-			if s!=None:
-				x.append(s.x0+s.dx)
-
-		x_new=max(x)
-		for obj in objs:
-			s=data.find_object_by_id(obj.id[0])
-			if s!=None:
-				s.x0=x_new-s.dx
-		data.save()
+		self.bin.lib.gl_objects_align(ctypes.byref(json_tree_c()), ctypes.byref(self.gl_interface.gl_main), ctypes.c_char_p(str2bytes("x0")), ctypes.c_int(False))
+		self.bin.save()
 		self.gl_interface.force_redraw() 
+
 
 	def callback_distribute_z(self):
-		data=json_root()
-		z=[]
-		objs=self.gl_interface.gl_objects_get_selected()
-
-		for obj in objs:
-			s=data.find_object_by_id(obj.id[0])
-			if s!=None:
-				z.append(s.z0+s.dz/2.0)
-
-		z.sort()
-		#for i in range(0,len(z)):
-			
-		return
-		pos=s0.z0
-		for obj in objs:
-			s=data.find_object_by_id(obj.id[0])
-			if s!=None:
-				s.z0=pos
-				pos=pos+dz
-
-		#data.save()
+		self.bin.lib.gl_objects_distribute(ctypes.byref(json_tree_c()), ctypes.byref(self.gl_interface.gl_main), ctypes.c_char_p(str2bytes("z0")), ctypes.c_char_p(str2bytes("dz")))
+		self.bin.save()
 		self.gl_interface.force_redraw() 
+
 

@@ -40,7 +40,6 @@ from used_files import used_files_load
 
 from util import wrap_text
 
-from scripts import scripts
 from cite_me import cite_me
 from ribbon_page import ribbon_page
 from play import play
@@ -106,7 +105,7 @@ class ribbon_file(ribbon_page):
 		w=self.widgetForAction(self.tb_manual)
 		w.setMinimumWidth(100)
 
-		self.twitter = QAction(icon_get("twitter"), _("Follow on\nTwitter"), self)
+		self.twitter = QAction(icon_get("bluesky"), _("Follow on\nBluesky"), self)
 		self.twitter.triggered.connect(self.callback_twitter)
 		self.addAction(self.twitter)
 
@@ -121,11 +120,6 @@ class ribbon_file(ribbon_page):
 			self.addWidget(self.cite_me)
 
 		#self.home_help = QAction(icon_get("internet-web-browser"), _("Help"), self)
-		#self.addAction(self.home_help)
-		#self.tb_script_editor = QAction_lock("script", _("Script\nEditor"), self,"script_editor")
-		#self.tb_script_editor.clicked.connect(self.callback_script)
-		#self.addAction(self.tb_script_editor)
-
 
 	def build_tutorial_list(self):
 		self.tutorials=[]
@@ -136,7 +130,6 @@ class ribbon_file(ribbon_page):
 		self.tutorials.append([_("Large area devices/circuit models"),"large_area"])
 		self.tutorials.append([_("OLEDs"),"oleds"])
 		self.tutorials.append([_("Material databases"),"materials"])
-		self.tutorials.append([_("Scripting"),"scripting"])
 		self.tutorials.append([_("Frequency domain simulations"),"fxdomain"])
 		self.tutorials.append([_("Transient simulations"),"transient"])
 		self.tutorials.append([_("Optical simulations"),"optical"])
@@ -190,7 +183,6 @@ class ribbon_file(ribbon_page):
 
 	def setEnabled_other(self,val):
 		self.home_export.setEnabled(val)
-		#self.tb_script_editor.setEnabled(val)
 		self.run.setEnabled(val)
 		self.cite_me.setEnabled(val)
 
@@ -204,7 +196,7 @@ class ribbon_file(ribbon_page):
 		webbrowser.open("https://www.oghma-nano.com/docs.html?page=Manual")
 
 	def callback_twitter(self):
-		webbrowser.open("https://twitter.com/OghmaNano")
+		webbrowser.open("https://bsky.app/profile/oghmanano.bsky.social")
 
 	def callback_youtube(self):
 		webbrowser.open("https://www.youtube.com/channel/UCbm_0AKX1SpbMMT7jilxFfA")

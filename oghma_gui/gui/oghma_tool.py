@@ -47,7 +47,6 @@ from cal_path import calculate_paths_init
 
 calculate_paths_init()
 calculate_paths()
-from cal_path import get_lang_path
 
 import i18n
 _ = i18n.language.gettext

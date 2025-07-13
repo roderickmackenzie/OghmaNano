@@ -1,10 +1,8 @@
 //
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -27,7 +25,7 @@
 
 #include <stdio.h>
 #include <ray.h>
-#include <gpvdm_const.h>
+#include <oghma_const.h>
 #include <math.h>
 #include <stdlib.h>
 #include <cal_path.h>
@@ -38,6 +36,7 @@
 #include <triangles.h>
 #include <objects.h>
 #include <string.h>
+#include <g_io.h>
 
 /** @file ray_search_intersect.c
 	@brief Ray tracing for the optical model, this should really be split out into it's own library.
@@ -89,8 +88,8 @@ tri_ret=NULL;
 		{
 			for (i=0;i<obj->tri.len;i++)
 			{
-				//dump_plane(sim,in);
-				//dump_plane_to_file("triangles.dat",in);
+				//ray_dump_all_to_screen(sim,in);
+				//ray_dump_all_rays("triangles.dat",in);
 				found=ray_intersect(&ret,&(obj->tri.data[i]),my_ray);
 				//vec_print(&ret);
 
@@ -98,7 +97,7 @@ tri_ret=NULL;
 
 				if (found==TRUE)
 				{
-					vec_cpy(&tmp,&ret);
+					vec_cpy((&tmp),(&ret));
 					//vec_print(&ret);
 					//getchar();
 					//vec_print(&(in->rays[ray].xy));
@@ -112,7 +111,7 @@ tri_ret=NULL;
 							tri_ret=&(obj->tri.data[i]);
 							if (do_update==TRUE)
 							{
-								vec_cpy(&(my_ray->xy_end),&ret);
+								vec_cpy((&(my_ray->xy_end)),(&ret));
 							}
 							min_dist=dist;
 						}
@@ -210,7 +209,7 @@ struct intersections
 {
 	int intersections;
 	int uid;
-	struct vec points[30];
+	struct vec points[100];
 	int n_points;
 };
 
@@ -274,7 +273,7 @@ vec_cpy(&(my_ray.xy),xyz);
 vec_cpy(&(my_ray.dir),&tmp);
 
 	//FILE *out;
-	//out=fopen("inter.dat","w");
+	//out=g_fopen("inter.dat","w");
 	for (o=0;o<w->objects;o++)
 	{
 		obj=&(w->obj[o]);
@@ -292,8 +291,8 @@ vec_cpy(&(my_ray.dir),&tmp);
 				}
 				//printf("bing->%s\n",obj->name);
 				//getchar();
-				//dump_plane(sim,in);
-				//dump_plane_to_file("triangles.dat",in);
+				//ray_dump_all_to_screen(sim,in);
+				//ray_dump_all_rays("triangles.dat",in);
 
 				found=ray_intersect(&ret,&(obj->tri.data[i]),&(my_ray));
 
@@ -333,7 +332,7 @@ vec_cpy(&(my_ray.dir),&tmp);
 								
 								//vec_print(&(points[ii]));
 								//vec_print(&ret);
-								//FILE *oh1=fopen("oh.dat","a");
+								//FILE *oh1=g_fopen("oh.dat","a");
 								//fprintf(oh1,"%le %le %le\n",ret.z,ret.x,ret.y);
 								//fclose(oh1);
 
@@ -360,7 +359,7 @@ vec_cpy(&(my_ray.dir),&tmp);
 						//dist[objs_found]=vec_fabs(&tmp);
 						ft[objs_found].intersections=1;
 						ft[objs_found].n_points=1;
-						//FILE *oh=fopen("oh.dat","w");
+						//FILE *oh=g_fopen("oh.dat","w");
 						//fclose(oh);
 						//printf("here1\n");
 						objs_found++;
@@ -496,8 +495,8 @@ vec_init(&tmp);
 			for (i=0;i<obj->tri.len;i++)
 			{
 				//printf("%d %d %d\n",o,i,obj->tri[i].object_uid);
-				//dump_plane(sim,in);
-				//dump_plane_to_file("triangles.dat",in);
+				//ray_dump_all_to_screen(sim,in);
+				//ray_dump_all_rays("triangles.dat",in);
 				found=ray_intersect(&ret,&(obj->tri.data[i]),in_ray);
 				uid=obj->tri.data[i].object_uid;
 

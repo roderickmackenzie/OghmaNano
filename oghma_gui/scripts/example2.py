@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 #This is an example of changing two layer widths at the same time
 import os
-import sys
 
 class gpvdm_plugin:
 

@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -55,7 +53,7 @@ void complex_error_report(int status, const char *file, const char *func, int li
 
 
 
-int complex_umfpack_solver(struct matrix_solver_memory *msm,int c_col,int c_nz,int *c_Ti,int *c_Tj, long double *c_Tx,long double *c_Txz,long double *c_b,long double *c_bz)
+int complex_umfpack_solver(struct matrix_solver_memory *msm,int c_col,int c_nz,int *c_Ti,int *c_Tj, gdouble *c_Tx,gdouble *c_Txz,gdouble *c_b,gdouble *c_bz)
 {
 	int i;
 	void *Symbolic, *Numeric;

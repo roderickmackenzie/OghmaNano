@@ -31,12 +31,10 @@
 
 from icon_lib import icon_get
 
-from cal_path import get_css_path
-
 #qt
 from PySide2.QtGui import QIcon
 from gQtCore import QSize, Qt,QFile,QIODevice
-from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QPushButton,QToolBar, QLineEdit, QToolButton, QTextEdit, QAction, QTabWidget
+from PySide2.QtWidgets import QWidget,QSizePolicy,QVBoxLayout,QHBoxLayout,QPushButton,QToolBar, QLineEdit, QToolButton, QTextEdit, QAction, QTabWidget, QMenu
 
 from help import help_window
 
@@ -46,17 +44,18 @@ from g_open import g_open
 from QAction_lock import QAction_lock
 
 from lock import get_lock
-from json_root import json_root
 from cal_path import sim_paths
 from tb_item_solvers import tb_item_solvers
 from ribbon_page import ribbon_page
 from config_window import class_config_window
 from lock import get_lock
 from ribbon_page import ribbon_page2
+from json_c import json_tree_c
 
 class ribbon_electrical(ribbon_page2):
 	def __init__(self):
 		ribbon_page2.__init__(self)
+		self.bin=json_tree_c()
 		self.enabled=False
 		self.config_window=None
 		self.electrical_mesh=None
@@ -64,8 +63,8 @@ class ribbon_electrical(ribbon_page2):
 		self.doping_window=None
 		self.parasitic_window=None
 		self.gradients_window=None
-
-		
+		self.window_code_editor=None
+		self.window_exciton_config=None
 		pan=self.add_panel()
 
 		self.doping = QAction_lock("doping", _("Doping/\nIons"), self,"ribbon_device_doping")
@@ -97,11 +96,23 @@ class ribbon_electrical(ribbon_page2):
 		self.perovskite.setCheckable(True)
 		pan.addAction(self.perovskite)
 
-		self.singlet = QAction_lock("singlet", _("Excited\nstates"), self,"ribbon_device_mobile_singlet")
-		self.singlet.clicked.connect(self.callback_singlet)
-		self.singlet.setCheckable(True)
-		if get_lock().is_next()==True:
-			pan.addAction(self.singlet)
+		self.exciton = QAction_lock("exciton", _("Exciton\nsolver"), self,"ribbon_device_exciton")
+		self.exciton.clicked.connect(self.callback_exciton)
+		self.exciton.setCheckable(True)
+
+		self.menu_exciton = QMenu(self)
+		self.exciton.setMenu(self.menu_exciton)
+		pan.addAction(self.exciton)
+		button = pan.widgetForAction(self.exciton)
+		button.setMinimumWidth(80)
+
+		configure_item=QAction(_("Configure"), self)
+		self.menu_exciton.addAction(configure_item)
+		configure_item.triggered.connect(self.callback_configure_exciton)
+
+		micro_code=QAction(_("Edit microcode"), self)
+		self.menu_exciton.addAction(micro_code)
+		micro_code.triggered.connect(self.callback_exciton_micro_code)
 
 		self.mesh = QAction_lock("mesh", _("Electrical\nmesh"), self,"ribbon_config_mesh")
 		self.mesh.triggered.connect(self.callback_edit_mesh)
@@ -110,52 +121,27 @@ class ribbon_electrical(ribbon_page2):
 		self.boundary = QAction_lock("boundary", _("Boundary\nConditions"), self,"ribbon_electrical_boundary")
 		self.boundary.clicked.connect(self.callback_boundary)
 		pan.addAction(self.boundary)
-
-		#a.setStyleSheet("QToolBar {margin-top: 0px;margin-bottom: 0px; padding 0px;}")
-#		spacer = QWidget()
-#		spacer.setMinimumSize(100,20)
-#		self.addWidget(spacer)
-
+		global_object_register("ribon_electrical_update_buttons",self.update_buttons)
 
 	def update(self):
-		if self.electrical_mesh!=None:
-			self.electrical_mesh.hide()
-			del self.electrical_mesh
-			self.electrical_mesh=None
-
-		if self.config_window!=None:
-			self.config_window.hide()
-			del self.config_window
-			self.config_window=None
-
-		if self.doping_window!=None:
-			self.doping_window.hide()
-			del self.doping_window
-			self.doping_window=None
-
-		if self.gradients_window!=None:
-			self.gradients_window.hide()
-			del self.gradients_window
-			self.gradients_window=None
-
-		if self.parasitic_window!=None:
-			self.parasitic_window.hide()
-			del self.parasitic_window
-			self.parasitic_window=None
-
-		if self.electrical_interfaces!=None:
-			self.electrical_interfaces.hide()
-			del self.electrical_interfaces
-			self.electrical_interfaces=None
-
+		self.close_window(self.electrical_mesh)
+		self.close_window(self.config_window)
+		self.close_window(self.doping_window)
+		self.close_window(self.gradients_window)
+		self.close_window(self.parasitic_window)
+		self.close_window(self.electrical_interfaces)
+		self.close_window(self.window_code_editor)
+		self.close_window(self.window_exciton_config)
 		self.tb_solvers.update()
 		self.update_buttons()
 
 
 	def update_buttons(self):
-		data=json_root()
+		solver_type=self.bin.get_token_value("electrical_solver","solver_type")
+		perovskite_enabled=self.bin.get_token_value("perovskite","perovskite_enabled")
+		exciton_enabled=self.bin.get_token_value("exciton","exciton_enabled")
 		if self.enabled==True:
-			if data.electrical_solver.solver_type=="drift-diffusion":
+			if solver_type=="drift-diffusion":
 				self.mesh.setEnabled(True)
 				self.doping.setEnabled(True)
 				self.gradients.setEnabled(True)
@@ -163,8 +149,10 @@ class ribbon_electrical(ribbon_page2):
 				self.parasitic.setEnabled(True)
 				self.boundary.setEnabled(True)
 				self.perovskite.setEnabled(True)
-				self.singlet.setEnabled(True)
-			elif data.electrical_solver.solver_type=="poisson":
+				self.perovskite.setChecked(perovskite_enabled)
+				self.exciton.setEnabled(True)
+				self.exciton.setChecked(exciton_enabled)
+			elif solver_type=="poisson":
 				self.mesh.setEnabled(True)
 				self.doping.setEnabled(True)
 				self.gradients.setEnabled(True)
@@ -172,8 +160,10 @@ class ribbon_electrical(ribbon_page2):
 				self.parasitic.setEnabled(False)
 				self.boundary.setEnabled(True)
 				self.perovskite.setEnabled(False)
-				self.singlet.setEnabled(False)
-			elif data.electrical_solver.solver_type=="circuit":
+				self.perovskite.setChecked(perovskite_enabled)
+				self.exciton.setEnabled(False)
+				self.exciton.setChecked(exciton_enabled)
+			elif solver_type=="circuit":
 				self.mesh.setEnabled(True)
 				self.doping.setEnabled(False)
 				self.gradients.setEnabled(False)
@@ -181,7 +171,9 @@ class ribbon_electrical(ribbon_page2):
 				self.parasitic.setEnabled(False)
 				self.boundary.setEnabled(False)
 				self.perovskite.setEnabled(False)
-				self.singlet.setEnabled(False)
+				self.perovskite.setChecked(perovskite_enabled)
+				self.exciton.setEnabled(False)
+				self.exciton.setChecked(exciton_enabled)
 			else:
 				self.mesh.setEnabled(False)
 				self.doping.setEnabled(False)
@@ -190,20 +182,18 @@ class ribbon_electrical(ribbon_page2):
 				self.parasitic.setEnabled(False)
 				self.boundary.setEnabled(False)
 				self.perovskite.setEnabled(False)
-				self.singlet.setEnabled(False)
-
-		self.perovskite.setChecked(data.perovskite.perovskite_enabled)
-		self.singlet.setChecked(data.singlet.singlet_enabled)
+				self.perovskite.setChecked(False)		
+				self.exciton.setEnabled(False)
+				self.exciton.setChecked(False)	
+		
 
 	def callback_perovskite(self):
-		data=json_root()
-		data.perovskite.perovskite_enabled=self.perovskite.isChecked()
-		data.save()
+		self.bin.set_token_value("perovskite","perovskite_enabled",self.perovskite.isChecked())
+		self.bin.save()
 
-	def callback_singlet(self):
-		data=json_root()
-		data.singlet.singlet_enabled=self.singlet.isChecked()
-		data.save()
+	def callback_exciton(self):
+		self.bin.set_token_value("exciton","exciton_enabled",self.exciton.isChecked())
+		self.bin.save()
 
 	def setEnabled(self,val):
 		self.enabled=val
@@ -215,60 +205,66 @@ class ribbon_electrical(ribbon_page2):
 		self.tb_solvers.setEnabled(val)
 		self.boundary.setEnabled(val)
 		self.perovskite.setEnabled(val)
-		self.singlet.setEnabled(val)
+		self.exciton.setEnabled(val)
 		self.update_buttons()
-
-
 
 	def callback_edit_mesh(self):
 		from window_mesh_editor import window_mesh_editor
-		help_window().help_set_help(["mesh.png",_("<big><b>Mesh editor</b></big>\nUse this window to setup the mesh, the window can also be used to change the dimensionality of the simulation.")])
-
-		if self.electrical_mesh==None:
-			self.electrical_mesh=window_mesh_editor(json_path_to_mesh="json_root().electrical_solver.mesh")
+		help_window().help_set_help("mesh.png",_("<big><b>Mesh editor</b></big>\nUse this window to setup the mesh, the window can also be used to change the dimensionality of the simulation."))
+		self.close_window(self.electrical_mesh)
+		self.electrical_mesh=window_mesh_editor(json_path_to_mesh="electrical_solver.mesh")
 
 		self.show_window(self.electrical_mesh)
 
 	def callback_interfaces(self):
 		from interface_editor import interface_editor
-		help_window().help_set_help(["interfaces.png",_("<big><b>Interface editor</b></big>\nUse this window to edit how electrical interfaces behave.")])
+		help_window().help_set_help("interfaces.png",_("<big><b>Interface editor</b></big>\nUse this window to edit how electrical interfaces behave."))
 
-		if self.electrical_interfaces==None:
-			self.electrical_interfaces=interface_editor()
+		self.close_window(self.electrical_interfaces)
+		self.electrical_interfaces=interface_editor()
 
 		self.electrical_interfaces.show()
 		self.electrical_interfaces.setWindowState(Qt.WindowNoState)
 
 	def callback_boundary(self):
-		data=json_root()
-		self.config_window=class_config_window([data.electrical_solver.boundary,data.exciton.exciton_boundary],[_("Electrical boundary conditions"),_("Excitonic boundary conditions")],title=_("Electrical boundary conditions"),icon="electrical")
+		self.config_window=class_config_window(["electrical_solver.boundary","exciton.exciton_boundary"],[_("Electrical boundary conditions"),_("Excitonic boundary conditions")],title=_("Electrical boundary conditions"),icon="electrical")
 		self.show_window(self.config_window)
 
 	def callback_doping(self):
 		from doping import doping_window
-		help_window().help_set_help(["doping.png",_("<big><b>Doping window</b></big>\nUse this window to add doping to the simulation")])
+		help_window().help_set_help("doping.png",_("<big><b>Doping window</b></big>\nUse this window to add doping to the simulation"))
 
-		if self.doping_window==None:
-			self.doping_window=doping_window()
+		self.close_window(self.doping_window)
+		self.doping_window=doping_window()
 
 		self.show_window(self.doping_window)
 
 	def callback_gradients(self):
 		from window_material_gradients import window_material_gradients
-		help_window().help_set_help(["gradients.png",_("<big><b>Gradients window</b></big>\nUse this window to add doping to the simulation")])
+		help_window().help_set_help("gradients.png",_("<big><b>Gradients window</b></big>\nUse this window to add doping to the simulation"))
 
-		if self.gradients_window==None:
-			self.gradients_window=window_material_gradients()
+		self.close_window(self.gradients_window)
+		self.gradients_window=window_material_gradients()
 
 		self.show_window(self.gradients_window)
 
 
 	def callback_parasitic(self):
 		from parasitic import parasitic
-		help_window().help_set_help(["parasitic.png",_("<big><b>Parasitic components</b></big>\nUse this window to edit the shunt and series resistance.")])
+		help_window().help_set_help("parasitic.png",_("<big><b>Parasitic components</b></big>\nUse this window to edit the shunt and series resistance."))
 
-		if self.parasitic_window==None:
-			self.parasitic_window=parasitic()
+		self.close_window(self.parasitic_window)
+		self.parasitic_window=parasitic()
 
 		self.show_window(self.parasitic_window)
+
+
+	def callback_configure_exciton(self):
+		self.window_exciton_config=class_config_window(["exciton"],[_("Exciton solver")],title=_("Exciton configuration"),icon="exciton")
+		self.window_exciton_config.show()
+
+	def callback_exciton_micro_code(self):
+		from window_code_editor import window_code_editor
+		self.window_code_editor=window_code_editor()
+		self.window_code_editor.show()
 

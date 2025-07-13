@@ -106,18 +106,6 @@ class dat_file_math():
 		return a
 
 
-	def chop_y(self,y0,y1):
-		if y0==0 and y1==0:
-			return
-
-		self.y_scale=self.y_scale[y0:y1]
-		self.y_len=len(self.y_scale)
-
-		for z in range(0,len(self.z_scale)):
-			for x in range(0,len(self.x_scale)):
-				self.data[z][x]=self.data[z][x][y0:y1]
-				#for y in range(0,len(self.y_scale)):
-				#	self.data[z][x][y]=val
 
 	def __mul__(self,in_data):
 		a=self.__class__()
@@ -140,46 +128,5 @@ class dat_file_math():
 		return self.__mul__(in_data)
 
 
-	def max_min(self,cur_min=None,cur_max=None,only_use_data=False):
-		my_max = (ctypes.POINTER(ctypes.c_double) * 1)()
-		my_min = (ctypes.POINTER(ctypes.c_double) * 1)()
-		self.lib.dat_file_min_max(ctypes.byref(my_min),ctypes.byref(my_max),ctypes.byref(self))
-
-		my_max=ctypes.cast(my_max, ctypes.POINTER(ctypes.c_double)).contents.value
-		my_min=ctypes.cast(my_min, ctypes.POINTER(ctypes.c_double)).contents.value
-
-		if cur_min!=None:
-			if cur_min<my_min:
-				my_min=cur_min
-
-		if cur_max!=None:
-			if cur_max>my_max:
-				my_max=cur_max
-		return [my_max,my_min]
-
-	def dat_file_sub(self,one):
-		if (self.x_len==one.x_len) and (self.y_len==one.y_len) and (self.z_len==one.z_len):
-			for z in range(0,self.z_len):
-				for x in range(0,self.x_len):
-					for y in range(0,self.y_len):
-						self.data[z][x][y]=self.data[z][x][y]-one.data[z][x][y]
-
-	def dat_file_sub_float(self,val):
-			for z in range(0,self.z_len):
-				for x in range(0,self.x_len):
-					for y in range(0,self.y_len):
-						self.data[z][x][y]=self.data[z][x][y]-val
-						
-	def dat_file_mul(self,val):
-			for z in range(0,self.z_len):
-				for x in range(0,self.x_len):
-					for y in range(0,self.y_len):
-						self.data[z][x][y]*=val
-
-	def abs(self):
-			for z in range(0,self.z_len):
-				for x in range(0,self.x_len):
-					for y in range(0,self.y_len):
-						self.data[z][x][y]=abs(self.data[z][x][y])
 
 

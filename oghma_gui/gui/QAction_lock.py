@@ -29,8 +29,6 @@
 #
 
 
-from cal_path import get_css_path
-
 #qt
 from PySide2.QtWidgets import QTextEdit, QAction
 from gQtCore import QSize, Qt,QFile,QIODevice
@@ -47,21 +45,25 @@ from sim_name import sim_name
 class QAction_lock(QAction):
 	clicked=gSignal(QAction)
 
-	def __init__(self,icon_name,text,s,id):
+	def __init__(self,icon_name,text,s,id,icon_pressed=""):
 		sub_icon=None
 		self.locked=False
-		self.text=text
-		
+		self.icon_normal=icon_get(icon_name,sub_icon=sub_icon)
+		self.icon_pressed=None
+		if icon_pressed!="":
+			self.icon_pressed=icon_get(icon_pressed,sub_icon=sub_icon)
+
 		if get_lock().is_function_locked(id)==True:
 			self.locked=True
 
 		if self.locked==True:
 			sub_icon="lock"
-		QAction.__init__(self,icon_get(icon_name,sub_icon=sub_icon), text, s)
+		QAction.__init__(self,self.icon_normal, text, s)
 		self.triggered.connect(self.callback_secure_click)
 
 	def callback_secure_click(self):
 		if self.locked==False:
+			self.update_icon(self.isChecked())
 			self.clicked.emit(self)
 		else:
 			self.setChecked(False)
@@ -73,5 +75,16 @@ class QAction_lock(QAction):
 				msgBox = msg_dlg()
 				msgBox.setText("Thank you for buying "+sim_name.name+" - please restart "+sim_name.name+" to enable the new features")
 				msgBox.exec_()
+
+	def setChecked(self,value):
+		super().setChecked(value)
+		self.update_icon(value)
+
+	def update_icon(self, checked):
+		if self.icon_pressed!=None:
+			if checked:
+				self.setIcon(self.icon_pressed)
+			else:
+				self.setIcon(self.icon_normal)
 
 

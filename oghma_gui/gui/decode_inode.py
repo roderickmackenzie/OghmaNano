@@ -32,7 +32,7 @@
 
 import os
 from inp import inp
-from file_store import file_store
+from inode import inode
 from str2bool import str2bool
 import json
 from icon_lib import icon_get
@@ -86,7 +86,7 @@ def decode_inode_from_json(ret,decode):
 	return ret
 
 def decode_inode(file_name):
-	ret=file_store()
+	ret=inode()
 	ret.file_name=str2bytes(os.path.basename(file_name))
 	ext=""
 	try:

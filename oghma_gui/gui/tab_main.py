@@ -28,7 +28,6 @@
 #  The main tab in the simulation window which displays the picture of the device.
 #
 
-from tab_base import tab_base
 from help import help_window
 from display import display_widget
 from PySide2.QtWidgets import QWidget,QHBoxLayout,QSplitter
@@ -39,7 +38,7 @@ from ribbon_device import ribbon_device
 import i18n
 _ = i18n.language.gettext
 
-class tab_main(QWidget,tab_base):
+class tab_main(QWidget):
 
 	
 	def __init__(self):
@@ -65,5 +64,5 @@ class tab_main(QWidget,tab_base):
 		self.setLayout(hbox)
 		
 	def help(self):
-		help_window().help_set_help(["device.png",_("<big><b>The device structure tab</b></big>\n Use this tab to change the structure of the device, the layer thicknesses and to perform optical simulations.  You can also browse the materials data base and  edit the electrical mesh.")])
+		help_window().help_set_help("device.png",_("<big><b>The device structure tab</b></big>\n Use this tab to change the structure of the device, the layer thicknesses and to perform optical simulations.  You can also browse the materials data base and  edit the electrical mesh."))
 

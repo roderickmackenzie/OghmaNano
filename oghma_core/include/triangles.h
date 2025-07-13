@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -30,15 +28,15 @@
 */
 #ifndef triangles_io_h
 #define triangles_io_h
-
+#include <g_io.h>
 #include <vec.h>
 #include <triangle.h>
 #include <vectors.h>
-void triangle_load_from_file(struct simulation *sim,struct triangles *in,char *file_name);
+#include <dat_file_struct.h>
 void triangle_print(struct triangle *in);
 void triangles_print(struct triangles *in);
 void triangles_free(struct triangles *in);
-void triangles_cpy(struct triangles *out,struct triangles *in);
+void triangles_cpy(struct triangles *out,struct triangles *in, int alloc);
 void triangles_find_min(struct vec *out,struct triangles *in);
 void triangles_find_max(struct vec *out,struct triangles *in);
 void triangles_sub_vec(struct triangles *in,struct vec *v);
@@ -47,12 +45,9 @@ void triangles_div_vec(struct triangles *in,struct vec *v);
 void triangles_mul_vec(struct triangles *in,struct vec *v);
 void triangles_cal_edges(struct triangles *in);
 void triangles_init(struct triangles *tri);
-void triangles_malloc(struct triangles *tri);
-void triangles_save(struct simulation *sim,char *file_name,struct triangles *in);
 void triangles_add_triangle(struct triangles *obj, struct triangle *tri);
 void triangles_set_object_type(struct triangles *in,int object_type);
 double triangles_interpolate(struct triangles *in,struct vec *p);
-void triangles_to_dat_file(struct dat_file *buf,struct triangles *in);
 void triangles_reduce(struct simulation *sim,struct triangles *in, double min_allowable_ang);
 struct triangle *triangles_find_by_zx(struct triangles *in,double z0,double x0,double z1,double x1,double z2,double x2);
 void triangles_calculate_cog(struct triangles *in);
@@ -70,10 +65,15 @@ double triangles_get_delta(struct triangles *many,struct triangles *few);
 void triangles_remove_triangles(struct triangles *full_list, struct triangles *to_remove);
 void triangles_add_many(struct triangles *full_list, struct triangles *in);
 void triangles_cal_angles(struct vectors* out,struct triangles* in);
-void triangles_remove_y_zero_triangles(struct triangles *in);
+void triangles_remove_y(struct triangles *in, double value, double tol);
 void triangles_make_btm_layer_from_top(struct triangles *in);
 void triangles_rotate_y(struct triangles *in,double ang);
 void triangles_rotate_x(struct triangles *in,double ang);
+void triangles_to_1d_array(double *data_1d,struct triangles *in);
+int triangles_join(struct simulation *sim,char *output_file,char *file0,char *file1, double mul0, double mul1);
+void triangles_norm(struct triangles *in);
+void triangles_set_group(struct triangles *in,int group);
+int triangles_flip_y(struct triangles *in);
 
 //flags
 void triangles_set_flag(struct triangles *obj,int flag);
@@ -83,4 +83,12 @@ double triangle_Ra(struct simulation *sim,struct triangles *obj);
 
 //Roughness
 double triangle_Rq(struct simulation *sim,struct triangles *obj);
+
+//load/save
+int triangle_load_from_buffer(struct simulation *sim,struct triangles *in,char *data, long data_len);
+int triangles_from_dat_file(struct triangles *out,struct dat_file *dat);
+int triangles_to_dat_file(struct dat_file *out,struct triangles *in);
+void triangles_to_dat_file_buffer(struct simulation *sim,struct dat_file *buf,struct triangles *in);
+void triangles_save(struct simulation *sim, char *file_name,struct triangles *in);
+void triangles_malloc(struct triangles *tri);
 #endif

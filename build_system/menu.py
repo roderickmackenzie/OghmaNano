@@ -84,3 +84,14 @@ class Dialog():
 		text_out=input(':')
 
 		return self.OK,text_out
+
+	def mixedgauge(self, text="", percent=0, width=50, height=10, elements=None):
+		bar_len = width
+		filled_len = int(bar_len * percent // 100)
+		bar = "#" * filled_len + "-" * (bar_len - filled_len)
+
+		sys.stdout.write("\r")
+		sys.stdout.write("[" + bar + f"] {percent:3d}%\n")
+		sys.stdout.write(text + "\n")
+		sys.stdout.flush()
+

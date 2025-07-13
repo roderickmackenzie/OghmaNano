@@ -52,19 +52,20 @@ from ribbon_emission_db import ribbon_emission_db
 from ribbon_filter_db import ribbon_filter_db
 from import_data_json import import_data_json
 from equation_editor import equation_editor
-from json_filter_db_item import json_filter_db_item
+from json_c import json_c
 
 class filter_main(QWidgetSavePos):
 
 	def changed_click(self):
 		if self.notebook.tabText(self.notebook.currentIndex()).strip()==_("Filters"):
-			help_window().help_set_help(["filter_wheel.png",_("<big><b>Filters</b></big><br>Use this tab to edit the optical filters")])
+			help_window().help_set_help("filter_wheel.png",_("<big><b>Filters</b></big><br>Use this tab to edit the optical filters"))
 			self.ribbon.tb_save.setEnabled(True)
 			self.ribbon.import_data.setEnabled(True)
 
 
 	def __init__(self,path):
 		QWidgetSavePos.__init__(self,"filter_main")
+		self.bin=json_c("filter_db")
 		self.path=path
 		self.setFixedSize(900, 600)
 		self.setWindowIcon(icon_get("filter_wheel"))
@@ -99,12 +100,12 @@ class filter_main(QWidgetSavePos):
 
 
 		mat_file=os.path.join(self.path,"data.json")
-		self.data=json_filter_db_item()
-		self.data.load(mat_file)
-		self.data.filter_import.data_file="filter.csv"
+		self.bin.load(mat_file)
+		self.bin.set_token_value("filter_import","data_file","filter.csv")
 
-		tab=tab_class(self.data,data=self.data)
+		tab=tab_class("",data=self.bin)
 		self.notebook.addTab(tab,_("Basic"))
+		tab.changed.connect(self.callback_edit)
 
 		self.setLayout(self.main_vbox)
 		
@@ -134,10 +135,10 @@ class filter_main(QWidgetSavePos):
 		self.equation_editor.show()
 
 	def import_data(self):
-		self.im=import_data_json(self.data.filter_import,export_path=self.path)
+		self.im=import_data_json(self.bin,"filter_import",export_path=self.path)
 		self.im.run()
 		self.update()
-		self.data.save()
+		self.bin.save()
 
 	def update(self):
 		self.emission.update()
@@ -150,4 +151,7 @@ class filter_main(QWidgetSavePos):
 		if file_name!=None:
 			self.ref_window=ref_window(os.path.join(self.path,file_name),"filter")
 			self.ref_window.show()
+
+	def callback_edit(self):
+		self.bin.save()
 

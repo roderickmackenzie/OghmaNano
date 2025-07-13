@@ -34,36 +34,23 @@ from PySide2.QtWidgets import QMessageBox, QDialog
 from PySide2.QtWidgets import QLineEdit,QWidget,QHBoxLayout,QPushButton
 from gQtCore import gSignal
 from cal_path import subtract_paths
+from g_select_base import g_select_base
+from cal_path import sim_paths
 
 import i18n
 _ = i18n.language.gettext
 
 
-class g_select_from_db(QWidget):
+class g_select_from_db(g_select_base):
 
 	changed = gSignal()
 
 	def __init__(self,path,file_box=True):
-		QWidget.__init__(self)
+		g_select_base.__init__(self)
 		self.path=path
-		self.hbox=QHBoxLayout()
-		self.edit=QLineEdit()
-		self.button=QPushButton()
-		self.button.setFixedSize(25, 25)
-		self.button.setText("...")
-
-		if file_box==True:
-			self.hbox.addWidget(self.button)
-
-		self.hbox.addWidget(self.edit)
-
-		self.hbox.setContentsMargins(0, 0, 0, 0)
-		self.edit.setStyleSheet("QLineEdit { border: none }");
-
 
 		self.button.clicked.connect(self.callback_button_click)
 		self.edit.textChanged.connect(self.text_changed)
-		self.setLayout(self.hbox)
 
 	def text_changed(self):
 		self.changed.emit()
@@ -77,14 +64,43 @@ class g_select_from_db(QWidget):
 			file_name=dialog.get_filename()
 			rel_path=subtract_paths(self.path,file_name)
 			rel_path=rel_path.replace("\\", "/")
-			self.setText(rel_path)
+			self.set_value(rel_path)
 			self.changed.emit()
-
-	def setText(self,text):
-		self.edit.blockSignals(True)
-		self.edit.setText(text)
-		self.edit.blockSignals(False)
-	
-	def text(self):
-		return self.edit.text()
 		
+
+class g_select_filter(g_select_from_db):
+	def __init__(self):
+		g_select_from_db.__init__(self,sim_paths.get_filters_path())
+
+class g_select_shape(g_select_from_db):
+	def __init__(self):
+		g_select_from_db.__init__(self,sim_paths.get_shape_path())
+
+class g_select_material(g_select_from_db):
+	def __init__(self):
+		g_select_from_db.__init__(self,sim_paths.get_materials_path())
+
+class g_select_morphology(g_select_from_db):
+	def __init__(self):
+		g_select_from_db.__init__(self,sim_paths.get_morphology_path())
+
+class g_select_cache(g_select_from_db):
+	def __init__(self):
+		self.internal_value="none_none_none_default"
+		g_select_from_db.__init__(self,sim_paths.get_home_path())
+		self.edit.setEnabled(False)
+		self.button.setEnabled(False)
+
+	def set_value(self,value):
+		self.edit.blockSignals(True)
+		if value=="none_none_none_default":
+			self.edit.setText(sim_paths.get_newton_cache_path())
+		else:
+			self.edit.setText(value)
+
+		self.internal_value=value
+		self.edit.blockSignals(False)
+
+	def get_value(self):
+		return self.internal_value
+

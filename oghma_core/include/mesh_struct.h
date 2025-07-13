@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -31,29 +29,43 @@
 
 #ifndef mesh_struct_h
 #define mesh_struct_h
+#include <g_io.h>
 
 struct mesh_layer
 {
-	long double dx;
-	long double len;
-	long double mul;
-	long double *dmesh;
+	double dx;
+	double len;
+	double mul;
+	gdouble *dmesh;
 	int n_points;
 	int left_right;
 	int start_at_edge_left;
 	int start_at_edge_right;
 
-	long double start;
-	long double end;
+	double start;
+	double end;
 };
 
 struct mesh
 {
-	long double start;
-	struct mesh_layer *layers;
+	int enabled;
 	int nlayers;
 	int remesh;
+
+	struct mesh_layer *layers;
+
+	double start;
+	double stop;
+
 	int tot_points;
+	int automatic;
+
+	int start_at_zero;
+	int stop_at_end;
+
+	//These are used if we want to store the mesh in this object
+	double *mesh;
+	double *dmesh;
 };
 
 struct mesh_obj
@@ -61,6 +73,8 @@ struct mesh_obj
 	struct mesh meshdata_x;
 	struct mesh meshdata_y;
 	struct mesh meshdata_z;
+	struct mesh meshdata_l;
+	struct mesh meshdata_t;
 };
 
 #endif

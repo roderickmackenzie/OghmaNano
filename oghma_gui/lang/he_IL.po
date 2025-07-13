@@ -1,0 +1,7278 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Roderick C. I. MacKenzie
+# This file is distributed under the same license as the oghmanano package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: oghmanano 8.0\n"
+"Report-Msgid-Bugs-To: roderick.mackenzie@oghma-nano.com\n"
+"POT-Creation-Date: 2024-05-02 11:45+0100\n"
+"PO-Revision-Date: 2024-05-13 13:12+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : "
+"2);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+msgid "H_joule"
+msgstr "H_joule"
+
+msgid "H_recombination"
+msgstr "H_recombination"
+
+msgid "H_parasitic"
+msgstr "H_טפיל"
+
+msgid "Single states"
+msgstr "מדינות בודדות"
+
+msgid "time"
+msgstr "זְמַן"
+
+msgid "Ns"
+msgstr "נ.ס"
+
+msgid "Triplet states"
+msgstr "טריפלט מדינות"
+
+msgid "Nt"
+msgstr "Nt"
+
+msgid "Singlets in donor"
+msgstr "סינגלים אצל תורם"
+
+msgid "Nsd"
+msgstr "Nsd"
+
+msgid "Triplet in donor"
+msgstr "שלישייה בתורם"
+
+msgid "Ntd"
+msgstr "Ntd"
+
+msgid "Photon denisty"
+msgstr "דחיסות פוטון"
+
+msgid "Npho"
+msgstr "Npho"
+
+msgid "file name not set\n"
+msgstr "שם הקובץ לא מוגדר\n"
+
+msgid "Time"
+msgstr "זְמַן"
+
+msgid "Voltage"
+msgstr "מתח"
+
+msgid "Free electron generation rate"
+msgstr "קצב יצירת אלקטרונים חופשי"
+
+msgid "Generation rate"
+msgstr "קצב דורות"
+
+msgid "Free hole generation rate"
+msgstr "קצב יצירת חורים חינם"
+
+msgid "SRH recombination free electrons -> trapped holes"
+msgstr "אלקטרונים חופשיים ברקומבינציה SRH -> חורים לכודים"
+
+msgid "Recombination"
+msgstr "ריקומבינציה"
+
+msgid "SRH recombination free holes -> trapped electrons"
+msgstr "חורים ללא רקומבינציה SRH -> אלקטרונים לכודים"
+
+msgid "Surface recombination on left contact"
+msgstr "ריקומבינציה פני השטח במגע שמאלי"
+
+msgid "Surface recombination on right contact"
+msgstr "ריקומבינציה פני השטח במגע נכון"
+
+msgid "Trapped electron density"
+msgstr "צפיפות אלקטרונים לכודים"
+
+msgid "Electron density"
+msgstr "צפיפות אלקטרונים"
+
+msgid "Trapped hole density"
+msgstr "צפיפות חורים לכודים"
+
+msgid "Hole density"
+msgstr "צפיפות חורים"
+
+msgid "Free electron density"
+msgstr "צפיפות אלקטרונים חופשית"
+
+msgid "Free hole density"
+msgstr "צפיפות חורים חופשית"
+
+msgid "Total electron density"
+msgstr "צפיפות אלקטרונים כוללת"
+
+msgid "Total hole density"
+msgstr "צפיפות חורים כוללת"
+
+msgid "Electron mobility"
+msgstr "ניידות אלקטרונים"
+
+msgid "Mobility"
+msgstr "ניידות"
+
+msgid "Hole mobility"
+msgstr "ניידות חורים"
+
+msgid "Average electron and hole mobility"
+msgstr "ניידות אלקטרונים וחורים ממוצעת"
+
+msgid "Total PL intensity"
+msgstr "עוצמת PL כוללת"
+
+msgid "Total PL Intensity"
+msgstr "עוצמת PL כוללת"
+
+msgid "PL intensity at given energy"
+msgstr "עוצמת PL באנרגיה נתונה"
+
+msgid "PL Intensity"
+msgstr "עוצמת PL"
+
+msgid "Voltage applied to diode"
+msgstr "מתח מופעל על דיודה"
+
+msgid "band bend (percent)"
+msgstr "כיפוף להקה (אחוז)"
+
+msgid "band bend"
+msgstr "לכופף להקה"
+
+msgid "percent"
+msgstr "אָחוּז"
+
+msgid "Dynamic quantum efficiency"
+msgstr "יעילות קוונטית דינמית"
+
+msgid "Percent"
+msgstr "אָחוּז"
+
+msgid "Drift current density"
+msgstr "צפיפות זרם הסחף"
+
+msgid "Position"
+msgstr "עמדה"
+
+msgid "Electron current density (drift)"
+msgstr "צפיפות זרם האלקטרונים (סחף)"
+
+msgid "Diffusion current density"
+msgstr "צפיפות זרם דיפוזיה"
+
+msgid "position"
+msgstr "עמדה"
+
+msgid "Electron current density (diffusion)"
+msgstr "צפיפות זרם האלקטרונים (דיפוזיה)"
+
+msgid "Diffusion+Drift current density"
+msgstr "צפיפות זרם דיפוזיה+Drift"
+
+msgid "Drift current density (x)"
+msgstr "צפיפות זרם הסחף (x)"
+
+msgid "Diffusion current density (x)"
+msgstr "צפיפות זרם דיפוזיה (x)"
+
+msgid "Hole current density (drift)"
+msgstr "צפיפות זרם חור (סחף)"
+
+msgid "Hole current density (diffusion)"
+msgstr "צפיפות זרם חור (דיפוזיה)"
+
+msgid "Current density"
+msgstr "צפיפות נוכחית"
+
+msgid "Electron current density"
+msgstr "צפיפות זרם האלקטרונים"
+
+msgid "Hole current density"
+msgstr "צפיפות זרם חור"
+
+msgid "Electron current density x"
+msgstr "צפיפות זרם האלקטרונים x"
+
+msgid "Total current density (Jn+Jp)"
+msgstr "צפיפות זרם כוללת (Jn+Jp)"
+
+msgid "|Jny|+|Jnx|"
+msgstr "|Jny|+|Jnx|"
+
+msgid "|Total current density|"
+msgstr "|צפיפות זרם כוללת|"
+
+msgid "|Jpy|+|Jpx|"
+msgstr "|Jpy|+|Jpx|"
+
+msgid "Free electron -> Free hole recombination rate"
+msgstr "אלקטרון חופשי -> קצב ריקומבינציה של חורים חופשיים"
+
+msgid "Free carrier recombination rate"
+msgstr "שיעור ריקומבינציה חינם של ספק"
+
+msgid "Free electron loss due to SRH processes (including trapping)"
+msgstr "אובדן אלקטרונים חופשי עקב תהליכי SRH (כולל לכידה)"
+
+msgid "Free electron loss"
+msgstr "אובדן אלקטרונים חופשי"
+
+msgid "Free hole loss due to SRH processes (including trapping)"
+msgstr "אובדן חורים חינם עקב תהליכי SRH (כולל לכידה)"
+
+msgid "Free hole loss"
+msgstr "אובדן חורים חינם"
+
+msgid "SRH relaxation free electrons -> trapped electrons"
+msgstr "אלקטרונים חופשיים להרפיה SRH -> אלקטרונים לכודים"
+
+msgid "Relaxation"
+msgstr "הַרפָּיָה"
+
+msgid "SRH relaxation free holes -> trapped holes"
+msgstr "חורים ללא הרפיה SRH -> חורים לכודים"
+
+msgid "Singlet density (S1)"
+msgstr "צפיפות סינגל (S1)"
+
+msgid "Singlet density"
+msgstr "צפיפות סינגל"
+
+msgid "Triplet density  (T1)"
+msgstr "צפיפות שלישיה (T1)"
+
+msgid "Triplet density"
+msgstr "צפיפות שלישיה"
+
+msgid "Singlet CT (1C)"
+msgstr "סינגלט CT (1C)"
+
+msgid "Triplet CT (3C)"
+msgstr "טריפלט CT (3C)"
+
+msgid "Singlet S1 'IMREF'"
+msgstr "Singlet S1 'IMREF'"
+
+msgid "Singlet energy"
+msgstr "אנרגיית סינגל"
+
+msgid "Triplet T1 'IMREF'"
+msgstr "טריפלט T1 'IMREF'"
+
+msgid "Triplet energy"
+msgstr "אנרגיית שלישיה"
+
+msgid "Singlet CT (1C) 'IMREF'"
+msgstr "Singlet CT (1C) 'IMREF'"
+
+msgid "Triplet CT (3C) 'IMREF'"
+msgstr "טריפלט CT (3C) 'IMREF'"
+
+msgid "Singlet in donor density"
+msgstr "סינגל בצפיפות התורם"
+
+msgid "Triplet in donor density"
+msgstr "שלישייה בצפיפות התורמים"
+
+msgid "Ion density"
+msgstr "צפיפות יונים"
+
+msgid "Singlet 'IMREF'"
+msgstr "סינגל 'IMREF'"
+
+msgid "Triplet 'IMREF'"
+msgstr "טריפלט 'IMREF'"
+
+msgid "Singlet in donor 'IMREF'"
+msgstr "סינגלט בתורם 'IMREF'"
+
+msgid "Triplet in donor 'IMREF'"
+msgstr "שלישייה בתורם 'IMREF'"
+
+msgid "Ion energy"
+msgstr "אנרגיית יונים"
+
+msgid "Doping"
+msgstr "סמים"
+
+msgid "Doping density"
+msgstr "צפיפות סמים"
+
+msgid "Free electron carrier density"
+msgstr "צפיפות נושאת אלקטרונים חופשית"
+
+msgid "Carrier density"
+msgstr "צפיפות נשא"
+
+msgid "Free hole carrier density"
+msgstr "צפיפות נושאת חורים חופשית"
+
+msgid "Trapped electron carrier density"
+msgstr "צפיפות נשא אלקטרונים לכודים"
+
+msgid "Trapped hole carrier density"
+msgstr "צפיפות נושאת חור לכוד"
+
+msgid "Change in electron population"
+msgstr "שינוי באוכלוסיית האלקטרונים"
+
+msgid "Total charge"
+msgstr "תשלום כולל"
+
+msgid "Change in total charge"
+msgstr "שינוי בתשלום הכולל"
+
+msgid "Change in hole population"
+msgstr "שינוי באוכלוסיית החורים"
+
+msgid "Excess electron density"
+msgstr "צפיפות אלקטרונים עודפת"
+
+msgid "x-position"
+msgstr "מיקום x"
+
+msgid "y-position"
+msgstr "עמדת y"
+
+msgid "z-position"
+msgstr "עמדת z"
+
+msgid "Excess hole density"
+msgstr "צפיפות חורים עודפת"
+
+msgid "Perovskite mobile ion density"
+msgstr "צפיפות יונים ניידת של פרוסקיט"
+
+msgid "Interface free-to-free recombination constant"
+msgstr "קבוע ריקומבינציה של ממשק חופשי לחופש"
+
+msgid "Electron tunneling though the interface"
+msgstr "מנהור אלקטרוני דרך הממשק"
+
+msgid "Tunneling-e"
+msgstr "מנהור-ה"
+
+msgid "Hole tunneling though the interface"
+msgstr "מנהור חורים דרך הממשק"
+
+msgid "Tunneling-h"
+msgstr "מנהור-ח"
+
+msgid "Interface free-to-trap recombination constant"
+msgstr "קבוע של ריקומבינציה של ממשק חופשי ללכידת"
+
+msgid "Interface free-to-trap  recombination constant"
+msgstr "קבוע של ריקומבינציה חופשית למלכודת ממשק"
+
+msgid "Interface recombination rate"
+msgstr "קצב ריקומבינציה של ממשק"
+
+msgid "Electron current density left contact (J_y0_n)"
+msgstr "צפיפות זרם האלקטרונים מגע שמאלי (J_y0_n)"
+
+msgid "Hole current density left contact (J_y0_p)"
+msgstr "צפיפות זרם חור מגע שמאלי (J_y0_p)"
+
+msgid "Electron current density right contact (J_y1_n)"
+msgstr "מגע ימני של צפיפות זרם האלקטרונים (J_y1_n)"
+
+msgid "Hole current density right contact (J_y1_p)"
+msgstr "מגע ימני של צפיפות זרם חור (J_y1_p)"
+
+msgid "Electron drift current"
+msgstr "זרם סחיפת אלקטרונים"
+
+msgid "Electron diffusion current"
+msgstr "זרם דיפוזיה של אלקטרונים"
+
+msgid "Hole drift current"
+msgstr "זרם סחף חור"
+
+msgid "Hole diffusion current"
+msgstr "זרם דיפוזיה של חור"
+
+msgid " Hole diffusion current"
+msgstr "זרם דיפוזיה של חור"
+
+msgid "Electron drift+diffusion current"
+msgstr "סחיפה של אלקטרונים+זרם דיפוזיה"
+
+msgid "Hole diffusion+diffusion current"
+msgstr "דיפוזי חור+זרם דיפוזיה"
+
+msgid "Jn at contacts"
+msgstr "Jn באנשי קשר"
+
+msgid "Jp at contacts"
+msgstr "Jp באנשי קשר"
+
+msgid "External Current"
+msgstr "זרם חיצוני"
+
+msgid "Current"
+msgstr "נוֹכְחִי"
+
+msgid "Current density at contacts"
+msgstr "צפיפות זרם במגעים"
+
+msgid "Single states (S1)"
+msgstr "מדינות בודדות (S1)"
+
+msgid "Triplet states (T1)"
+msgstr "מדינות טריפלט (T1)"
+
+msgid "Material fraction (x)"
+msgstr "שבר חומר (x)"
+
+msgid "Fraction"
+msgstr "שבריר"
+
+msgid "Material fraction (y)"
+msgstr "שבר חומר (y)"
+
+msgid "LUMO"
+msgstr "LUMO"
+
+msgid "Electron Energy"
+msgstr "אנרגיית אלקטרונים"
+
+msgid "HOMO"
+msgstr "הומו"
+
+msgid "Lattice temperature"
+msgstr "טמפרטורת הסריג"
+
+msgid "Temperature"
+msgstr "טֶמפֶּרָטוּרָה"
+
+msgid "Electron temperature"
+msgstr "טמפרטורת האלקטרונים"
+
+msgid "Hole temperature"
+msgstr "טמפרטורת החור"
+
+msgid "Band gap"
+msgstr "פער להקה"
+
+msgid "Electron quasi Fermi-level"
+msgstr "אלקטרונים ברמת פרמי כמעט"
+
+msgid "Hole quasi Fermi-level"
+msgstr "חור כמעט ברמת פרמי"
+
+msgid "Potential"
+msgstr "פוטנציאל"
+
+msgid "Equlibrium Fermi-level"
+msgstr "שיווי משקל ברמת פרמי"
+
+msgid "Energy"
+msgstr "אֵנֶרְגִיָה"
+
+msgid "Relative permittivity"
+msgstr "היתריות יחסית"
+
+msgid "Joule heating from device"
+msgstr "חימום ג'ול מהמכשיר"
+
+msgid "Heating"
+msgstr "הַסָקָה"
+
+msgid "Electron mobility z"
+msgstr "ניידות אלקטרונים z"
+
+msgid "Electron mobility x"
+msgstr "ניידות אלקטרונים x"
+
+msgid "Electron mobility y"
+msgstr "ניידות אלקטרונים y"
+
+msgid "Hole mobility z"
+msgstr "ניידות חור z"
+
+msgid "Hole mobility x"
+msgstr "ניידות חור x"
+
+msgid "Hole mobility y"
+msgstr "ניידות חור י"
+
+msgid "Average electron mobility"
+msgstr "ניידות אלקטרונים ממוצעת"
+
+msgid "Recombination rate"
+msgstr ""
+"שיעור ריקומבינציהTranslation typesText translationSource text4,943 / 5,000Translation "
+"resultsTranslation result"
+
+msgid "Auger recombination"
+msgstr "ריקומבינציה של אוגר"
+
+msgid "Rate"
+msgstr "ציון"
+
+msgid "Trap fermi level"
+msgstr "מלכודת רמת פרמי"
+
+msgid "Electron Fermi level"
+msgstr "רמת אלקטרון פרמי"
+
+msgid "Material number"
+msgstr "מספר חומר"
+
+msgid "Number"
+msgstr "מספר"
+
+msgid "Passivated"
+msgstr "פסיבי"
+
+msgid "True/False"
+msgstr "אמת שקר"
+
+msgid "Current map of the bottom contact"
+msgstr "מפה נוכחית של איש הקשר התחתון"
+
+msgid "Resistance of bottom of device"
+msgstr "התנגדות של תחתית המכשיר"
+
+msgid "Running Ray tracer\n"
+msgstr "הפעלת Ray Tracer\n"
+
+msgid "pulse mode not known\n"
+msgstr "מצב דופק לא ידוע\n"
+
+msgid "pulse time"
+msgstr "זמן דופק"
+
+msgid "step"
+msgstr "שלב"
+
+msgid "current density"
+msgstr "צפיפות נוכחית"
+
+msgid "current"
+msgstr "נוֹכְחִי"
+
+msgid "Volts"
+msgstr "וולט"
+
+msgid "Photogeneration rate"
+msgstr "קצב יצירת פוטו"
+
+msgid "Emission"
+msgstr "פְּלִיטָה"
+
+msgid "Charge density"
+msgstr "צפיפות מטען"
+
+msgid "Suns"
+msgstr "שמשות"
+
+msgid "Charge"
+msgstr "לחייב"
+
+msgid "ce mode not known\n"
+msgstr "מצב ce לא ידוע\n"
+
+msgid "ce mode not known"
+msgstr "מצב ce לא ידוע"
+
+msgid "ce time"
+msgstr "ce זמן"
+
+msgid "Simulated polynomial data"
+msgstr "נתונים פולינומיים מדומים"
+
+msgid "x"
+msgstr "איקס"
+
+msgid "y"
+msgstr "y"
+
+msgid "Full transfer matrix based light model"
+msgstr "דגם אור מבוסס מטריצת העברה מלאה"
+
+msgid "Generating mesh\n"
+msgstr "יוצר רשת\n"
+
+msgid "The materials in your device are not configured to emit light\n"
+msgstr "החומרים במכשיר שלך אינם מוגדרים לפלוט אור\n"
+
+msgid "Real"
+msgstr "אמיתי"
+
+msgid "Imaginary"
+msgstr "דִמיוֹנִי"
+
+msgid "Re(i)"
+msgstr "Re(i)"
+
+msgid "Im(i)"
+msgstr "אני (i)"
+
+msgid "Frequency"
+msgstr "תדירות"
+
+msgid "Real(i)"
+msgstr "אמיתי (i)"
+
+msgid "Capacitance"
+msgstr "קיבול"
+
+msgid "1/C^2"
+msgstr "1/C^2"
+
+msgid "abs(i)"
+msgstr "abs(i)"
+
+msgid "phi(i)"
+msgstr "phi(i)"
+
+msgid "Phase"
+msgstr "שלב"
+
+msgid "Fit error modulation"
+msgstr "אפנון שגיאת התאמה"
+
+msgid "Error"
+msgstr "שְׁגִיאָה"
+
+msgid "Fit error j/v"
+msgstr "שגיאת התאמה j/v"
+
+msgid "Resistance"
+msgstr "הִתנַגְדוּת"
+
+msgid "Solving EQE at"
+msgstr "פתרון EKE ב"
+
+msgid "out of memory!\n"
+msgstr "חסר זיכרון!\n"
+
+msgid "matrix is singular!\n"
+msgstr "המטריצה היא יחידה!\n"
+
+msgid "Running scanning probe microscopy\n"
+msgstr "הפעלת מיקרוסקופ בדיקה סריקה\n"
+
+msgid "no spm config file found"
+msgstr "לא נמצא קובץ תצורה spm"
+
+msgid "Running JV simulation\n"
+msgstr "הפעלת סימולציית JV\n"
+
+msgid "Stopping because of Vexternal"
+msgstr "עוצרים בגלל Vexternal"
+
+msgid "Efficiency"
+msgstr "יְעִילוּת"
+
+msgid "Voltage/Current across just the ideal diode"
+msgstr "מתח/זרם על פני הדיודה האידיאלית בלבד"
+
+msgid "Applied Voltage"
+msgstr "מתח מופעל"
+
+msgid "Recombination prefactor"
+msgstr "קדם ריקומבינציה"
+
+msgid "Applied voltage"
+msgstr "מתח מופעל"
+
+msgid "Excess carrier density"
+msgstr "צפיפות נשא עודפת"
+
+msgid "Excess charge density above equilibrium"
+msgstr "צפיפות מטען עודפת מעל שיווי משקל"
+
+msgid "Charge density with correction for surface charge"
+msgstr "צפיפות מטען עם תיקון למטען פני השטח"
+
+msgid "Total charge density"
+msgstr "צפיפות מטען כוללת"
+
+msgid "EQE"
+msgstr "EQE"
+
+msgid "Light flux"
+msgstr "שטף אור"
+
+msgid "Power in Optical emission/Electrical power in"
+msgstr "הספק בפליטה אופטית/הספק חשמלי פנימה"
+
+msgid "Conductivity"
+msgstr "מוֹלִיכוּת"
+
+msgid "Holes on left contact"
+msgstr "חורים במגע שמאלי"
+
+msgid "Electrons on left contact"
+msgstr "אלקטרונים במגע שמאלי"
+
+msgid "Holes on right contact"
+msgstr "חורים במגע נכון"
+
+msgid "Electrons on right contact"
+msgstr "אלקטרונים במגע ימני"
+
+msgid "Generating electrical mesh\n"
+msgstr "יצירת רשת חשמלית\n"
+
+msgid "I can't solve the matrix because I don't have enough equations."
+msgstr "אני לא יכול לפתור את המטריצה כי אין לי מספיק משוואות."
+
+msgid "Wavelength"
+msgstr "אֹרֶך גַל"
+
+msgid "Probe load configuration"
+msgstr "תצורת עומס בדיקה"
+
+msgid "Probe calculate modes"
+msgstr "מצבי חישוב בדיקה"
+
+msgid "Probe free memory"
+msgstr "חפש זיכרון פנוי"
+
+msgid "Photon generation rate"
+msgstr "קצב יצירת פוטון"
+
+msgid "Average photon generation rate (xz-plane)"
+msgstr "קצב יצירת פוטון ממוצע (xz-plane)"
+
+msgid "Photon generation rate  (xz-plane)"
+msgstr "קצב יצירת פוטון (xz-plane)"
+
+msgid "Absorption"
+msgstr "קְלִיטָה"
+
+msgid "Extended opticla absorption"
+msgstr "ספיגת אופטיקה מורחבת"
+
+#, python-format
+msgid "Cleaning cache index: %s\n"
+msgstr "ניקוי אינדקס מטמון: %s\n"
+
+msgid "Cache: checking cache free space\n"
+msgstr "מטמון: בדיקת שטח פנוי במטמון\n"
+
+msgid "Freeing memory from the exciton model\n"
+msgstr "שחרור זיכרון ממודל האקציטון\n"
+
+msgid "Mode E-field"
+msgstr "מצב E-שדה"
+
+msgid "E-field"
+msgstr "שדה אלקטרוני"
+
+msgid "Refractive index"
+msgstr "מקדם השבירה"
+
+msgid "Normalized photon ensity"
+msgstr "צפיפות פוטון מנורמלת"
+
+msgid "Photon density"
+msgstr "צפיפות פוטון"
+
+msgid "Mode Ey"
+msgstr "מצב אי"
+
+msgid "Ey"
+msgstr "אי"
+
+msgid "E - Electric field"
+msgstr "E - שדה חשמלי"
+
+msgid "Job stalled. Time since last run:"
+msgstr "איוב נתקע. זמן מאז הריצה האחרונה:"
+
+msgid "Bytes, written"
+msgstr "בייטים, כתוב"
+
+msgid ", read"
+msgstr ", לקרוא"
+
+msgid "Files, read"
+msgstr "קבצים, קרא"
+
+msgid " written"
+msgstr "כתוב"
+
+msgid "I have shut down the server"
+msgstr "סגרתי את השרת"
+
+msgid "Number of CPUs:"
+msgstr "מספר מעבדים:"
+
+msgid "Start time"
+msgstr "שעת התחלה"
+
+msgid "End time"
+msgstr "שעת סיום"
+
+msgid "All jobs finished jobs"
+msgstr "כל העבודות סיימו עבודות"
+
+msgid "I have finished all my jobs"
+msgstr "סיימתי את כל העבודות שלי"
+
+msgid "The server has detected a crash"
+msgstr "השרת זיהה קריסה"
+
+msgid "Hole generation rate"
+msgstr "קצב יצירת חורים"
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie, Releced the MIT License"
+msgstr "זכויות יוצרים (C) 2009-2022 Roderick C. I. MacKenzie, Releced the MIT License"
+
+msgid "options"
+msgstr "אפשרויות"
+
+msgid "Options"
+msgstr "אפשרויות"
+
+msgid "Simulation root path"
+msgstr "נתיב שורש סימולציה"
+
+msgid "displays the current version"
+msgstr "מציג את הגרסה הנוכחית"
+
+msgid "Dump know paths"
+msgstr "לזרוק יודע שבילים"
+
+msgid "Forces a simulation mode."
+msgstr "מאלץ מצב סימולציה."
+
+msgid "sets the number of CPUs"
+msgstr "קובע את מספר המעבדים"
+
+msgid "Runs the optimizer. Syntax --optimizer scan_name"
+msgstr "מפעיל את האופטימיזציה. תחביר --optimizer scan_name"
+
+msgid "Additional information about OghmaNano is available at https://www.Oghma-Nano.com."
+msgstr "מידע נוסף על OghmaNano זמין בכתובת https://www.Oghma-Nano.com."
+
+msgid "Report bugs to: roderick.mackenzie@oghma-nano.com"
+msgstr "דווח על באגים ל: roderick.mackenzie@oghma-nano.com"
+
+#, python-format
+msgid "oghma_core, Version %s\n"
+msgstr "oghma_core, גרסה %s\n"
+
+msgid "OghmaNano (Organic and hybrid Material Nano Simulation tool) core."
+msgstr "ליבת OghmaNano (כלי סימולציית ננו חומר אורגני והיברידית)."
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2009-2022"
+msgstr "זכויות יוצרים Roderick MacKenzie, שוחרר תחת רישיון MIT 2009-2022"
+
+msgid "There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or\n"
+msgstr "אין אחריות לחלוטין; אפילו לא עבור סחירות או\n"
+
+msgid "FITNESS FOR A PARTICULAR PURPOSE.\n"
+msgstr "התאמה למטרה מסוימת.\n"
+
+msgid "Copyright Roderick MacKenzie, released under the MIT License 2010-2019"
+msgstr "זכויות יוצרים Roderick MacKenzie, שוחרר תחת רישיון MIT 2010-2019"
+
+msgid "OghmaNano - Organic and hybrid Material Nano Simulation tool"
+msgstr "OghmaNano - כלי סימולציית ננו של חומרים אורגניים והיברידיים"
+
+msgid "Copyright (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+msgstr "זכויות יוצרים (C) 2009-2022 Roderick C. I. MacKenzie,\n"
+
+msgid "Released under the MIT software license"
+msgstr "שוחרר תחת רישיון התוכנה MIT"
+
+msgid "If you wish to collaborate in anyway please get in touch:\n"
+msgstr "אם אתה רוצה לשתף פעולה בכל מקרה, צור קשר:\n"
+
+msgid "dll not loaded"
+msgstr "dll לא נטען"
+
+msgid "dll function outcoupling_dll_init not found\n"
+msgstr "פונקציית dll outcoupling_dll_init לא נמצאה\n"
+
+msgid "dll function outcoupling_dll_solve_lam_slice not found\n"
+msgstr "פונקציית dll outcoupling_dll_solve_lam_slice לא נמצאה\n"
+
+msgid "dll function outcoupling_dll_ver not found\n"
+msgstr "פונקציית dll outcoupling_dll_ver לא נמצאה\n"
+
+msgid "Generation rate - position"
+msgstr "קצב דורות - עמדה"
+
+msgid "Photons escape probability - position"
+msgstr "הסתברות לברוח פוטונים - מיקום"
+
+msgid "Photons escape probability"
+msgstr "פוטונים בורחים מהסתברות"
+
+msgid "Position - Photon density"
+msgstr "מיקום - צפיפות פוטון"
+
+msgid "Photon Escape Probability Wavelength Averaged"
+msgstr "הסתברות בריחה של פוטון אורך גל ממוצע"
+
+msgid "Escape probability"
+msgstr "הסתברות לברוח"
+
+msgid "Photon escape probability"
+msgstr "הסתברות לבריחה של פוטון"
+
+msgid "Running FDTD simulation @"
+msgstr "הפעלת סימולציית FDTD @"
+
+msgid "Ex - Electric field"
+msgstr "אקס - שדה חשמלי"
+
+msgid "Ey - Electric field"
+msgstr "Ey - שדה חשמלי"
+
+msgid "Ez - Electric field"
+msgstr "Ez - שדה חשמלי"
+
+msgid "Detectors"
+msgstr "גלאים"
+
+msgid "Hx - Magnetic field"
+msgstr "Hx - שדה מגנטי"
+
+msgid "H-field"
+msgstr "H-field"
+
+msgid "Hy - Magnetic field"
+msgstr "Hy - שדה מגנטי"
+
+msgid "Hz - Magnetic field"
+msgstr "Hz - שדה מגנטי"
+
+msgid "Power den"
+msgstr "מארת כוח"
+
+msgid "Tot power den"
+msgstr "מארת כוח טוט"
+
+msgid "epsilon_r - Premitivity"
+msgstr "epsilon_r - פרימיטיביות"
+
+msgid "Permitivity"
+msgstr "מתירנות"
+
+msgid "sigma - ?"
+msgstr "סיגמא - ?"
+
+msgid "sigma"
+msgstr "סיגמא"
+
+msgid "Math_2d output"
+msgstr "פלט Math_2d"
+
+msgid "Values"
+msgstr "ערכים"
+
+msgid "dll function dll_matrix_solve not found\n"
+msgstr "פונקציית dll dll_matrix_solve לא נמצאה\n"
+
+msgid "dll function dll_matrix_solver_free not found\n"
+msgstr "פונקציית dll dll_matrix_solver_free לא נמצאה\n"
+
+msgid "dll function dll_matrix_init not found\n"
+msgstr "פונקציית dll dll_matrix_init לא נמצאה\n"
+
+msgid "Error closing dll"
+msgstr "שגיאה בסגירת dll"
+
+msgid "File not found\n"
+msgstr "הקובץ לא נמצא\n"
+
+#, python-format
+msgid "File access log written to %s\n"
+msgstr "יומן גישה לקובץ נכתב אל %s\n"
+
+msgid "Equilibrium Fermi-level"
+msgstr "שיווי משקל ברמת פרמי"
+
+msgid "dll function dll_complex_matrix_solver_free not found\n"
+msgstr "פונקציית dll dll_complex_matrix_solver_free לא נמצאה\n"
+
+msgid "Deleting directory: "
+msgstr "מוחק ספרייה:"
+
+msgid "Deleting directory"
+msgstr "מוחק ספרייה"
+
+msgid "Solver initialization\n"
+msgstr "אתחול הפותר\n"
+
+msgid "dll_solve_cur not NULL\n"
+msgstr "dll_solve_cur לא NULL\n"
+
+msgid "dll function dll_solve_cur not found\n"
+msgstr "פונקציית dll dll_solve_cur לא נמצאה\n"
+
+msgid "dll_solver_realloc not NULL\n"
+msgstr "dll_solver_realloc לא NULL\n"
+
+msgid "dll function dll_solver_realloc not found\n"
+msgstr "פונקציית dll dll_solver_realloc לא נמצאה\n"
+
+msgid "dll_solver_free_memory not NULL\n"
+msgstr "dll_solver_free_memory לא NULL\n"
+
+msgid "dll function dll_solver_free_memory not found\n"
+msgstr "פונקציית dll dll_solver_free_memory לא נמצאה\n"
+
+msgid ">I don't understand the command"
+msgstr "> אני לא מבין את הפקודה"
+
+msgid "Can not open file"
+msgstr "אי אפשר לפתוח קובץ"
+
+#, python-brace-format
+msgid "Average mobility at V_{oc}"
+msgstr "ניידות ממוצעת ב-V_{oc}"
+
+msgid "Recombination rate at Voc"
+msgstr "קצב ריקומבינציה ב-Voc"
+
+#, python-brace-format
+msgid "Average mobility as J_{sc}"
+msgstr "ניידות ממוצעת בתור J_{sc}"
+
+#, python-brace-format
+msgid "Electron mobility at J_{sc}"
+msgstr "ניידות אלקטרונים ב-J_{sc}"
+
+#, python-brace-format
+msgid "Hole mobility at J_{sc}"
+msgstr "ניידות חורים ב-J_{sc}"
+
+#, python-brace-format
+msgid "Electron mobility at P_{max}"
+msgstr "ניידות אלקטרונים ב-P_{max}"
+
+#, python-brace-format
+msgid "Hole mobility at P_{max}"
+msgstr "ניידות חורים ב-P_{max}"
+
+msgid "Recombination time constant at Voc"
+msgstr "קבוע זמן ריקומבינציה ב-Voc"
+
+msgid "Trapped electrons at Voc"
+msgstr "אלקטרונים לכודים ב-Voc"
+
+msgid "Trapped holes at Voc"
+msgstr "חורים לכודים ב-Voc"
+
+msgid "Free electrons at Voc"
+msgstr "אלקטרונים חופשיים ב-Voc"
+
+msgid "Free holes at Voc"
+msgstr "חורים חינם ב-Voc"
+
+msgid "Total carriers (n+p)/2 at Voc"
+msgstr "סך הספקים (n+p)/2 ב-Voc"
+
+#, python-brace-format
+msgid "Average mobility at P_{max}"
+msgstr "ניידות ממוצעת ב-P_{max}"
+
+msgid "<b>GPU</b>"
+msgstr "<b>GPU</b>"
+
+msgid "Max Cahce Size"
+msgstr "Max Cahce גודל"
+
+msgid "Minimum disk free"
+msgstr "מינימום דיסק פנוי"
+
+msgid "Number of simulations to keep"
+msgstr "מספר סימולציות שיש לשמור"
+
+msgid "Enable cache"
+msgstr "אפשר מטמון"
+
+msgid "Cache path"
+msgstr "נתיב מטמון"
+
+msgid "Name"
+msgstr "שֵׁם"
+
+msgid "Resistor"
+msgstr "נַגָד"
+
+msgid "Capacitor"
+msgstr "קַבָּל"
+
+msgid "Inductance"
+msgstr "הַשׁרָאוּת"
+
+msgid "I0"
+msgstr "I0"
+
+msgid "Ideality factor"
+msgstr "גורם אידאליות"
+
+msgid "Layer"
+msgstr "שִׁכבָה"
+
+msgid "Single point"
+msgstr "נקודה בודדת"
+
+msgid "Start intensity"
+msgstr "התחל אינטנסיביות"
+
+msgid "Stop intensity"
+msgstr "עצור אינטנסיביות"
+
+msgid "step multiplier"
+msgstr "מכפיל צעדים"
+
+msgid "dx of Honeycomb"
+msgstr "dx של חלת דבש"
+
+msgid "dy of Honeycomb"
+msgstr "dy של חלת דבש"
+
+msgid "Line width"
+msgstr "רוחב קו"
+
+msgid "x shift"
+msgstr "x משמרת"
+
+msgid "y shift"
+msgstr "y משמרת"
+
+msgid "Rotate"
+msgstr "להתחלף"
+
+msgid "Enable fit variable"
+msgstr "אפשר משתנה התאמה"
+
+msgid "Select"
+msgstr "בחר"
+
+msgid "Shift experimental y"
+msgstr "Shift ניסיוני y"
+
+msgid "Invert simulated data (y)"
+msgstr "הפוך נתונים מדומים (y)"
+
+msgid "Subtract lowest point"
+msgstr "הורידו את הנקודה הנמוכה ביותר"
+
+msgid "Set first point to zero"
+msgstr "הגדר את הנקודה הראשונה לאפס"
+
+msgid "Fit df(x)/dx"
+msgstr "התאם df(x)/dx"
+
+msgid "Fit error multiplyer"
+msgstr "מכפיל שגיאות התאמה"
+
+msgid "Stall steps"
+msgstr "מדרגות דוכן"
+
+msgid "Fit define convergence"
+msgstr "התאמה מגדירה התכנסות"
+
+msgid "<b>Fit method</b>"
+msgstr "<b>שיטת התאמה</b>"
+
+msgid "Fiting method"
+msgstr "שיטת התאמה"
+
+msgid "Nelder–Mead (Downhill simplex)"
+msgstr "Nelder–Mead (Downhill Simplex)"
+
+msgid "Thermal Annealing"
+msgstr "חישול תרמי"
+
+msgid "Markov chain Monte Carlo (MCMC)"
+msgstr "רשת מרקוב מונטה קרלו (MCMC)"
+
+msgid "Markov chain Monte Carlo (HMC)"
+msgstr "רשת מרקוב מונטה קרלו (HMC)"
+
+msgid "No-U-Turn Sampler (NUTS)"
+msgstr "מדגם ללא פניית פרסה (NUTS)"
+
+msgid "Newton"
+msgstr "ניוטון"
+
+msgid "Broyden–Fletcher–Goldfarb–Shanno (BFGS)"
+msgstr "ברוידן-פלטשר-גולדפרב-שאנו (BFGS)"
+
+msgid "Start simplex step multiplication"
+msgstr "התחל את הכפל צעד סימפלקס"
+
+msgid "Enable simplex reset steps"
+msgstr "אפשר שלבי איפוס סימפלקס"
+
+msgid "Simplex reset steps"
+msgstr "שלבי איפוס פשוטים"
+
+msgid "Disable reset at level"
+msgstr "השבת את האיפוס ברמה"
+
+msgid "On stall randomize fit"
+msgstr "על דוכן התאמה אקראית"
+
+msgid "Number of iterations between random reset"
+msgstr "מספר האיטרציות בין איפוס אקראי"
+
+msgid "Sigma"
+msgstr "סיגמא"
+
+msgid "Dump every n steps"
+msgstr "זרוק כל n צעדים"
+
+msgid "Leapfrog steps"
+msgstr "צעדי קפיצה"
+
+msgid "Cooling constant"
+msgstr "קבוע קירור"
+
+msgid "Annealing steps"
+msgstr "שלבי חישול"
+
+msgid "Randomize variables at begining"
+msgstr "בצע באקראי משתנים בהתחלה"
+
+msgid "<b>Fit control</b>"
+msgstr "<b>בקרת התאמה</b>"
+
+msgid "Set error to zero before"
+msgstr "הגדר את השגיאה לאפס לפני"
+
+msgid "Enable snapshots during fit"
+msgstr "אפשר צילומי מצב במהלך ההתאמה"
+
+msgid "Normalize data at x point"
+msgstr "נרמל נתונים בנקודת x"
+
+msgid "Random funciton"
+msgstr "פונקציה אקראית"
+
+msgid "Mersenne Twister"
+msgstr "מרסן טוויסטר"
+
+msgid "C rand"
+msgstr "ג ראנד"
+
+msgid "Random initialization"
+msgstr "אתחול אקראי"
+
+msgid "Wall clock"
+msgstr "שעון קיר"
+
+msgid "Constant value"
+msgstr "ערך קבוע"
+
+msgid "/dev/urandom"
+msgstr "/dev/urandom"
+
+msgid "Random seed value"
+msgstr "ערך זרע אקראי"
+
+msgid "Add noise"
+msgstr "הוסף רעש"
+
+msgid "Noise level"
+msgstr "רמת רעש"
+
+msgid "a"
+msgstr "א"
+
+msgid "b"
+msgstr "ב"
+
+msgid "c"
+msgstr "ג"
+
+msgid "Range start x0"
+msgstr "תחילת טווח x0"
+
+msgid "Range stop x1"
+msgstr "עצירת טווח x1"
+
+msgid "JV voltage step multiplyer"
+msgstr "מכפיל צעדי מתח JV"
+
+msgid "Maximum current density"
+msgstr "צפיפות זרם מקסימלית"
+
+msgid "JV curve photon generation efficiency"
+msgstr "יעילות ייצור פוטון עקומת JV"
+
+#, python-brace-format
+msgid "Average carrier density at P_{max}"
+msgstr "צפיפות הספק הממוצעת ב-P_{max}"
+
+msgid "Start voltage"
+msgstr "מתח התחלה"
+
+msgid "Stop voltage"
+msgstr "עצור מתח"
+
+msgid "Voltage step"
+msgstr "שלב מתח"
+
+msgid "Points"
+msgstr "נקודות"
+
+msgid "Detector input hist"
+msgstr "היסט קלט של גלאי"
+
+msgid "Counts"
+msgstr "סופר"
+
+msgid "Detected light"
+msgstr "אור זוהה"
+
+msgid "Efficiency of emission"
+msgstr "יעילות הפליטה"
+
+msgid "Detector"
+msgstr "גַלַאִי"
+
+msgid "Power"
+msgstr "כּוֹחַ"
+
+msgid "Solving the initial electrostatic field."
+msgstr "פתרון השדה האלקטרוסטטי הראשוני."
+
+msgid "Electrostatic solver f()="
+msgstr "פותר אלקטרוסטטי f()="
+
+msgid "Converged"
+msgstr "התכנסו"
+
+msgid "Finding equilibrium conditions"
+msgstr "מציאת תנאי שיווי משקל"
+
+msgid "Finished finding equilibrium conditions"
+msgstr "סיים למצוא תנאי שיווי משקל"
+
+msgid "Finished generating DoS....\n"
+msgstr "הסתיימה יצירת DoS...\n"
+
+msgid "load: config files"
+msgstr "טען: קבצי תצורה"
+
+msgid "Intrinsic Fermi - position"
+msgstr "Intrinsic Fermi - עמדה"
+
+msgid "LUMO energy - position"
+msgstr "LUMO energy - עמדה"
+
+msgid "HOMO energy - position"
+msgstr "HOMO energy - עמדה"
+
+msgid "Electron density - position"
+msgstr "צפיפות אלקטרונים - מיקום"
+
+msgid "Hole density - position"
+msgstr "צפיפות חורים - מיקום"
+
+msgid "Potential - position"
+msgstr "פוטנציאל - עמדה"
+
+msgid "Loading electrical dll\n"
+msgstr "טוען dll חשמלי\n"
+
+msgid "dll function dll_run_simulation not found\n"
+msgstr "פונקציית dll dll_run_simulation לא נמצאה\n"
+
+msgid "Electrical objects"
+msgstr "חפצים חשמליים"
+
+msgid "Running simulation"
+msgstr "הפעלת סימולציה"
+
+msgid "Solved"
+msgstr "נפתר"
+
+msgid "Equations"
+msgstr "משוואות"
+
+msgid "I can't allocate a device with less than 1 mesh point."
+msgstr "אני לא יכול להקצות מכשיר עם פחות מנקודת רשת אחת."
+
+msgid ""
+"You are asking me to simulate a device with more than 50000 mesh points, although I could do this "
+"I am not going to because it seems a bad idea to me."
+msgstr ""
+"אתה מבקש ממני לדמות מכשיר עם יותר מ-50000 נקודות רשת, למרות שאני יכול לעשות זאת, אני לא מתכוון "
+"לעשות זאת כי זה נראה לי רעיון רע."
+
+msgid "Current "
+msgstr "נוֹכְחִי"
+
+msgid "Voltage - Current density"
+msgstr "מתח - צפיפות זרם"
+
+msgid "Voltage - Current"
+msgstr "מתח - זרם"
+
+msgid "Time - Current density"
+msgstr "זמן - צפיפות זרם"
+
+msgid "Time - Voltage"
+msgstr "זמן - מתח"
+
+msgid "Fit error"
+msgstr "שגיאת התאמה"
+
+msgid "Step"
+msgstr "שלב"
+
+msgid "au"
+msgstr "au"
+
+msgid "Speed"
+msgstr "מְהִירוּת"
+
+msgid "odes/s"
+msgstr "אודות/ים"
+
+msgid "Chain all"
+msgstr "שרשרת הכל"
+
+msgid "Value"
+msgstr "ערך"
+
+msgid "Chain accepted"
+msgstr "שרשרת התקבלה"
+
+msgid "Hist chain accepted"
+msgstr "שרשרת היסט התקבלה"
+
+msgid "Freeing memory from the heat model\n"
+msgstr "שחרור זיכרון מדגם החום\n"
+
+msgid "Loading file"
+msgstr "טוען קובץ"
+
+#, python-format
+msgid "Expected dos size is different from generated %d %d\n"
+msgstr ""
+
+#, python-format
+msgid "genndosfdgaus: I can not write to the file %s\n"
+msgstr "genndosfdgaus: אני לא יכול לכתוב לקובץ %s\n"
+
+msgid "Computer cores:"
+msgstr "ליבות מחשב:"
+
+msgid "Max threads:"
+msgstr "מקסימום חוטים:"
+
+msgid "You must load the optical plugin before making the time mesh"
+msgstr "עליך לטעון את התוסף האופטי לפני ביצוע רשת הזמן"
+
+msgid "The electrical mesh does not match the device length"
+msgstr "הרשת החשמלית אינה תואמת את אורך המכשיר"
+
+msgid "Can't generate a mesh with zero points"
+msgstr "לא ניתן ליצור רשת עם אפס נקודות"
+
+msgid "If you want to run perovskite in fx-domain send me an e-mail."
+msgstr "אם אתה רוצה להפעיל perovskite ב-FX-domain שלח לי דואר אלקטרוני."
+
+msgid "fxdomain mode not known"
+msgstr "מצב fxdomain לא ידוע"
+
+msgid "Running frequency"
+msgstr "תדירות ריצה"
+
+msgid "Optical modulation will come in the next version.  If you want to use it drop me a mail..."
+msgstr "אפנון אופטי יגיע בגרסה הבאה. אם אתה רוצה להשתמש בו שלח לי מייל..."
+
+msgid "fxdomain time"
+msgstr "זמן fxdomain"
+
+msgid "Light intensity"
+msgstr "עוצמת האור"
+
+msgid "Ion density - position"
+msgstr "צפיפות יונים - מיקום"
+
+msgid "Ion free"
+msgstr "ללא יונים"
+
+msgid "Ion convergence="
+msgstr "התכנסות יונים="
+
+msgid "Ion diffusion"
+msgstr "דיפוזיה של יונים"
+
+msgid "R spm"
+msgstr "R spm"
+
+msgid "Vlost spm"
+msgstr "Vlost spm"
+
+msgid "V spm"
+msgstr "V spm"
+
+msgid "Electrical circuit"
+msgstr "מעגל חשמלי"
+
+msgid "Circuit"
+msgstr "מעגל חשמלי"
+
+msgid "Current vector plot"
+msgstr "עלילה וקטורית נוכחית"
+
+msgid "Real refractive index"
+msgstr "מקדם שבירה אמיתי"
+
+msgid "|Electric field|"
+msgstr "|שדה חשמלי|"
+
+msgid "Transmittance"
+msgstr "שידור"
+
+msgid "Reflectance"
+msgstr "השתקפות"
+
+msgid "Solve optical slice at"
+msgstr "פתור פרוסה אופטית ב"
+
+msgid "It was dark I did not solve any slices\n"
+msgstr "היה חשוך לא פתרתי שום פרוסות\n"
+
+msgid "Initializing optical model"
+msgstr "אתחול המודל האופטי"
+
+msgid "dll function light_dll_init not found\n"
+msgstr "פונקציית dll light_dll_init לא נמצאה\n"
+
+msgid "dll function light_dll_solve_lam_slice not found\n"
+msgstr "פונקציית dll light_dll_solve_lam_slice לא נמצאה\n"
+
+msgid "dll function light_dll_ver not found\n"
+msgstr "פונקציית dll light_dll_ver לא נמצאה\n"
+
+msgid "Power density of the optical spectra (no filter):"
+msgstr "צפיפות הספק של הספקטרום האופטי (ללא מסנן):"
+
+msgid "File not found"
+msgstr "הקובץ לא נמצא"
+
+msgid "Light: Load filter"
+msgstr "אור: טען מסנן"
+
+msgid "Refractive index - position"
+msgstr "מקדם שבירה - מיקום"
+
+msgid "Absorption - position"
+msgstr "קליטה - עמדה"
+
+msgid "Photons absorbed - position"
+msgstr "פוטונים נספגים - מיקום"
+
+msgid "Photons absorbed"
+msgstr "פוטונים נספגו"
+
+msgid "Position - Electric field (y+)"
+msgstr "מיקום - שדה חשמלי (y+)"
+
+msgid "Position - Electric field (y-)"
+msgstr "מיקום - שדה חשמלי (y-)"
+
+msgid "Freeing memory from the optical model\n"
+msgstr "שחרור זיכרון מהדגם האופטי\n"
+
+msgid "Electron generation rate"
+msgstr "קצב ייצור אלקטרונים"
+
+msgid "Optical heating"
+msgstr "חימום אופטי"
+
+msgid "Charge carrier generation rate"
+msgstr "קצב יצירת נושא הטעינה"
+
+msgid "Copy"
+msgstr "עותק"
+
+msgid "Copy as JSON"
+msgstr "העתק בתור JSON"
+
+msgid "Copy json/python path"
+msgstr "העתק נתיב json/python"
+
+msgid "Copy ObjID"
+msgstr "העתק את ObjID"
+
+msgid "Copy as LaTex"
+msgstr "העתק בתור LaTex"
+
+msgid "Copy as csv"
+msgstr "העתק כ-csv"
+
+msgid "Paste"
+msgstr "לְהַדבִּיק"
+
+msgid "Reimport from database"
+msgstr "ייבא מחדש ממסד הנתונים"
+
+msgid "Are you sure you want reimport the material values from:"
+msgstr "האם אתה בטוח שברצונך לייבא מחדש את ערכי החומר מ:"
+
+msgid "File not found:"
+msgstr "הקובץ לא נמצא:"
+
+msgid "Edit reference"
+msgstr "ערוך הפניה"
+
+msgid "Delete reference"
+msgstr "מחק הפניה"
+
+msgid "Add reference"
+msgstr "הוסף הפניה"
+
+msgid "This simulation"
+msgstr "הסימולציה הזו"
+
+msgid "Electrical parameter editor for shape"
+msgstr "עורך פרמטרים חשמליים לצורה"
+
+msgid "Reference"
+msgstr "התייחסות"
+
+msgid "Bibliography editor"
+msgstr "עורך ביבליוגרפיה"
+
+msgid "Electrical Mesh Editor"
+msgstr "עורך רשת חשמל"
+
+msgid ""
+"Y\n"
+"Dimension"
+msgstr ""
+"Y\n"
+"מימד"
+
+msgid ""
+"X\n"
+"Dimension"
+msgstr ""
+"X\n"
+"מימד"
+
+msgid ""
+"Z\n"
+"Dimension"
+msgstr ""
+"Z\n"
+"מימד"
+
+msgid ""
+"Configure\n"
+"mesh"
+msgstr ""
+"הגדר\n"
+"רשת"
+
+msgid ""
+"Import from\n"
+"layer editor"
+msgstr ""
+
+msgid "Remesh"
+msgstr "רמש"
+
+msgid "Configure mesh"
+msgstr "הגדר רשת"
+
+msgid ""
+"Are you sure you want to overwrite the electrical mesh with a guessed mesh based on the layer "
+"structure?"
+msgstr "האם אתה בטוח שברצונך להחליף את הרשת החשמלית ברשת מנחשת על סמך מבנה השכבה?"
+
+msgid "New simulation"
+msgstr "סימולציה חדשה"
+
+msgid ""
+"Open\n"
+"simulation"
+msgstr ""
+"פתח\n"
+"סימולציה"
+
+msgid ""
+"Export\n"
+"Zip"
+msgstr ""
+"ייצוא\n"
+"מיקוד"
+
+msgid ""
+"Run\n"
+"simulation"
+msgstr ""
+"הפעל\n"
+"סימולציה"
+
+msgid "Run simulation"
+msgstr "הפעל סימולציה"
+
+msgid "Tutorials"
+msgstr "הדרכות"
+
+msgid "Manual"
+msgstr "מדריך ל"
+
+msgid ""
+"Follow on\n"
+"Twitter"
+msgstr ""
+"עקוב ב-\n"
+"טוויטר"
+
+msgid ""
+"Subscribe\n"
+"on Youtube"
+msgstr ""
+
+msgid "Getting started"
+msgstr "מתחילים"
+
+msgid "1D Simulations"
+msgstr "הדמיות 1D"
+
+msgid "Carrier trapping"
+msgstr "לכידת מנשא"
+
+msgid "2D electrical structures (OFETs)"
+msgstr "מבנים חשמליים דו מימדיים (OFET)"
+
+msgid "Large area devices/circuit models"
+msgstr "התקנים/דגמי מעגלים בשטח גדול"
+
+msgid "OLEDs"
+msgstr "OLEDs"
+
+msgid "Material databases"
+msgstr "מאגרי מידע חומרים"
+
+msgid "Scripting"
+msgstr "סקריפטים"
+
+msgid "Frequency domain simulations"
+msgstr "סימולציות של תחום תדרים"
+
+msgid "Transient simulations"
+msgstr "סימולציות חולפות"
+
+msgid "Optical simulations"
+msgstr "הדמיות אופטיות"
+
+msgid "Excitonic simulations"
+msgstr "סימולציות אקציטוניות"
+
+msgid "Fitting"
+msgstr "הוֹלֵם"
+
+msgid "Misc"
+msgstr "שונות"
+
+msgid "Basics"
+msgstr "יסודות"
+
+msgid ""
+"<big><b>Now save the simulation</b></big><br>Now select where you would like to save the "
+"simulation directory."
+msgstr "<big><b>עכשיו שמור את הסימולציה</b></big><br>עכשיו בחר היכן תרצה לשמור את ספריית הסימולציה."
+
+msgid "password:"
+msgstr "סיסמה:"
+
+msgid "Wrong password"
+msgstr "סיסמה שגויה"
+
+msgid ""
+"It's not a good idea to save the simulation in the installation directory.  Try saving it "
+"somewhere else, such as your desktop or home directory."
+msgstr ""
+"זה לא רעיון טוב לשמור את הסימולציה בספריית ההתקנה. נסה לשמור אותו במקום אחר, כגון שולחן העבודה או "
+"ספריית הבית שלך."
+
+msgid "It's not a good idea to save the simulation in the oghma_local directory."
+msgstr "זה לא רעיון טוב לשמור את הסימולציה בספרייה oghma_local."
+
+msgid "That directory already exists.  Pick another name or delete the old one."
+msgstr "הספרייה הזו כבר קיימת. בחר שם אחר או מחק את הישן."
+
+msgid "Please select a device before clicking next"
+msgstr "אנא בחר מכשיר לפני שתלחץ על הבא"
+
+msgid "Organic LED"
+msgstr "LED אורגני"
+
+msgid "Crystalline silicon solar cell"
+msgstr "תא סולרי סיליקון גבישי"
+
+msgid "a-Si solar cell "
+msgstr "תא סולארי a-Si"
+
+msgid "polycrystalline silicon "
+msgstr "סיליקון רב גבישי"
+
+msgid "OFET "
+msgstr "OFET"
+
+msgid "Perovskite solar cell"
+msgstr "תא סולארי פרוסקיט"
+
+msgid "CIGS Solar cell"
+msgstr "תא סולארי CIGS"
+
+msgid "Which type of device would you like to simulate?"
+msgstr "איזה סוג מכשיר תרצה לדמות?"
+
+msgid "Double click to open"
+msgstr "לחץ פעמיים כדי לפתוח"
+
+msgid "Close"
+msgstr "סגור"
+
+msgid "Show hidden"
+msgstr "הראה את המוסתר"
+
+msgid "Object editor"
+msgstr "עורך אובייקטים"
+
+msgid ""
+"Object\n"
+"enabled"
+msgstr ""
+
+msgid ""
+"Object\n"
+"disabled"
+msgstr ""
+
+msgid "About"
+msgstr "על אודות"
+
+msgid "Written by Roderick MacKenzie 2012-2023, released under the MIT software license."
+msgstr "נכתב על ידי Roderick MacKenzie 2012-2023, שוחרר תחת רישיון התוכנה MIT."
+
+msgid "Version "
+msgstr "גִרְסָה"
+
+msgid ""
+" is a general-purpose tool for simulation of light harvesting devices. It was originally written "
+"to simulate organic solar cells and OLEDs, but it has recently been extended to simulate other "
+"devices including silicon based devices. Currently the model can sumulate:"
+msgstr ""
+"הוא כלי לשימוש כללי לסימולציה של מכשירי קצירת אור. הוא נכתב במקור כדי לדמות תאים סולאריים אורגניים "
+"ו-OLED, אך הוא הורחב לאחרונה לדמות מכשירים אחרים כולל מכשירים מבוססי סיליקון. נכון לעכשיו המודל "
+"יכול לסכם:"
+
+msgid "Organic solar cells"
+msgstr "תאים סולאריים אורגניים"
+
+msgid "Organic LEDs"
+msgstr "לדים אורגניים"
+
+msgid "Crystalline silicon solar cells"
+msgstr "תאים סולאריים מסיליקון גבישי"
+
+msgid "a-Si solar cells"
+msgstr "תאים סולאריים a-Si"
+
+msgid "CIGS solar cells"
+msgstr "תאים סולאריים של CIGS"
+
+msgid ""
+"The model solves both electron and hole drift-diffusion, and carrier continuity equations in "
+"position space to describe the movement of charge within the device. The model also solves "
+"Poisson's equation to calculate the internal electrostatic potential. Recombination and carrier "
+"trapping are described within the model using a Shockley-Read-Hall (SRH) formalism, the "
+"distribution of trap sates can be arbitrarily defined. All equations can be solved either in "
+"steady state or in time domain. A fuller description of the model can be found in the here, in the "
+"associated publications and in the manual."
+msgstr ""
+"המודל פותר הן משוואות סחיפה של אלקטרונים והן של חור, והן משוואות המשכיות נושא במרחב המיקום כדי "
+"לתאר את תנועת המטען בתוך המכשיר. המודל גם פותר את משוואת פואסון לחישוב הפוטנציאל האלקטרוסטטי "
+"הפנימי. רקומבינציה ולכידת נשא מתוארים בתוך המודל תוך שימוש בפורמליזם של Shockley-Read-Hall (SRH), "
+"ניתן להגדיר את התפלגות מצבי המלכודות באופן שרירותי. ניתן לפתור את כל המשוואות במצב יציב או בתחום "
+"זמן. תיאור מלא יותר של הדגם ניתן למצוא כאן, בפרסומים הקשורים ובמדריך."
+
+msgid "Legal"
+msgstr "משפטי"
+
+msgid "Translations"
+msgstr "תרגומים"
+
+msgid "Paths"
+msgstr "שבילים"
+
+msgid ""
+"Materials\n"
+"database"
+msgstr ""
+"חומרים\n"
+"מסד נתונים"
+
+msgid ""
+"Optical\n"
+"database"
+msgstr ""
+
+msgid ""
+"User\n"
+"data"
+msgstr ""
+"משתמש\n"
+"נתונים"
+
+msgid ""
+"Shape\n"
+"database"
+msgstr ""
+"צורה\n"
+"בסיס נתונים"
+
+msgid ""
+"Filters\n"
+"database"
+msgstr ""
+"מסננים\n"
+"מסד נתונים"
+
+msgid ""
+"Backup\n"
+"Simulaion"
+msgstr ""
+"גיבוי\n"
+"סימולציה"
+
+msgid ""
+"Solar spectrum\n"
+"generator"
+msgstr ""
+"ספקטרום שמש\n"
+"מחולל"
+
+msgid "Add Material"
+msgstr "הוסף חומר"
+
+msgid "Add Filter"
+msgstr "הוסף מסנן"
+
+msgid "Add Spectra"
+msgstr "הוסף את ספקטרה"
+
+msgid "Add Shape"
+msgstr "הוסף צורה"
+
+msgid "New backup"
+msgstr "גיבוי חדש"
+
+msgid "New backup:"
+msgstr "גיבוי חדש:"
+
+msgid "New backup name"
+msgstr "שם גיבוי חדש"
+
+msgid "Shape"
+msgstr "צוּרָה"
+
+msgid "<big><b>Shape file</b></big><br>"
+msgstr "<big><b>קובץ Shape</b></big><br>"
+
+msgid "Blur menu"
+msgstr "תפריט טשטוש"
+
+msgid "Normalization editor"
+msgstr "עורך נורמליזציה"
+
+msgid "Shape editor"
+msgstr "עורך צורות"
+
+msgid "Configure honeycomb"
+msgstr "הגדר חלת דבש"
+
+msgid "Configure photonic xtal"
+msgstr "הגדר xtal פוטוני"
+
+msgid "Configure photonic lens"
+msgstr "הגדר עדשה פוטונית"
+
+msgid "Configure saw wave"
+msgstr "הגדר גל מסור"
+
+msgid "Configure gaussian"
+msgstr "הגדר גאוסית"
+
+msgid "Configure boundary"
+msgstr "הגדר גבול"
+
+msgid "Configure threshold"
+msgstr "הגדר סף"
+
+msgid "Configure"
+msgstr "הגדר"
+
+msgid "Show labels"
+msgstr "הצג תוויות"
+
+msgid "Show data"
+msgstr "הצג נתונים"
+
+msgid "Show axis"
+msgstr "הצג ציר"
+
+msgid "Normalize layer width"
+msgstr "נרמל את רוחב השכבה"
+
+msgid "Copy to clipboard"
+msgstr "העתק ללוח"
+
+msgid "Save as SVG"
+msgstr "שמור כ-SVG"
+
+msgid "Redraw"
+msgstr "צייר מחדש"
+
+msgid "Active layer"
+msgstr "שכבה פעילה"
+
+msgid "From electrical parameters"
+msgstr "מפרמטרים חשמליים"
+
+msgid "From material db"
+msgstr "מחומר db"
+
+msgid "<big><b>Spectra</b></big><br>"
+msgstr "<big><b>ספקטרה</b></big><br>"
+
+msgid "Optical spectrum editor"
+msgstr "עורך ספקטרום אופטי"
+
+msgid "Spectra"
+msgstr "ספקטרה"
+
+msgid "Basic"
+msgstr "בסיסי"
+
+msgid "Frequency mesh"
+msgstr "רשת תדר"
+
+msgid "Additional information about gpvdm is available at"
+msgstr "מידע נוסף על gpvdm זמין בכתובת"
+
+msgid "Report bugs to:"
+msgstr "דווח על באגים ל:"
+
+msgid "Deletes the content of all scan directories."
+msgstr "מוחק את התוכן של כל ספריות הסריקה."
+
+msgid "Loads a simulation --load /path/containing/simulation/sim.oghma"
+msgstr "טוען סימולציה --load /path/containing/simulation/sim.oghma"
+
+msgid "Extract the sim.oghma archive --unpack"
+msgstr "חלץ את ארכיון sim.oghma -- unpack"
+
+msgid "Extract the sim.oghma archive --pack"
+msgstr "חלץ את ארכיון sim.oghma --pack"
+
+msgid "Electrical parameter editor"
+msgstr "עורך פרמטרים חשמליים"
+
+msgid "Device"
+msgstr "התקן"
+
+msgid ""
+"Simulation\n"
+"Notes"
+msgstr ""
+"סימולציה\n"
+"הערות"
+
+msgid ""
+"Hints\n"
+"Window"
+msgstr ""
+"רמזים\n"
+"חלון"
+
+msgid ""
+"Interface\n"
+"Language"
+msgstr ""
+"ממשק\n"
+"שפה"
+
+msgid "Assosiated paper"
+msgstr "נייר משולב"
+
+msgid "Documentation"
+msgstr "תיעוד"
+
+msgid "Language"
+msgstr "שפה"
+
+msgid ""
+"<big><b>Record notes about the simulation here</b></big><br>Use this window to make notes about "
+"the simulation."
+msgstr ""
+"<big><b>רשום הערות לגבי הסימולציה כאן</b></big><br>השתמש בחלון זה כדי לרשום הערות לגבי הסימולציה."
+
+msgid "Charge denisty (m^{-3})"
+msgstr "צפיפות מטען (m^{-3})"
+
+msgid "Material gradient editor"
+msgstr "עורך מעברי חומר"
+
+msgid "Save"
+msgstr "להציל"
+
+msgid "New scan"
+msgstr "סריקה חדשה"
+
+msgid "Delete scan"
+msgstr "מחק סריקה"
+
+msgid "Clone scan"
+msgstr "סריקת שיבוט"
+
+msgid "Rename scan"
+msgstr "שנה את שם הסריקה"
+
+msgid "Clean all"
+msgstr "לנקות הכל"
+
+msgid "Run all scans"
+msgstr "הפעל את כל הסריקות"
+
+msgid "Help"
+msgstr "עֶזרָה"
+
+msgid "Plot fits"
+msgstr "העלילה מתאימה"
+
+msgid "Run simulation no generation"
+msgstr "הפעל סימולציה ללא דור"
+
+msgid "Run single fit"
+msgstr "הפעל התאמה יחידה"
+
+msgid "Clean unconverged simulation"
+msgstr "סימולציה נקייה לא מתכנסת"
+
+msgid "Clean simulation output"
+msgstr "פלט סימולציה נקי"
+
+msgid "Push unconverged to hpc"
+msgstr "דחוף לא מתכנס ל-hpc"
+
+msgid "Change dir"
+msgstr "שנה דיר"
+
+msgid "Report"
+msgstr "להגיש תלונה"
+
+msgid "Scan"
+msgstr "לִסְרוֹק"
+
+msgid "Advanced"
+msgstr "מִתקַדֵם"
+
+msgid "JV experiment window"
+msgstr "חלון ניסוי JV"
+
+msgid ""
+"Import data\n"
+"from file"
+msgstr ""
+"ייבא נתונים\n"
+"מהקובץ"
+
+msgid ""
+"From\n"
+"Equation"
+msgstr ""
+"מ\n"
+"משוואה"
+
+msgid "Reference information"
+msgstr "מידע התייחסות"
+
+msgid "Cost"
+msgstr "עֲלוּת"
+
+msgid "Cost of material"
+msgstr "עלות החומר"
+
+msgid "File"
+msgstr "קוֹבֶץ"
+
+msgid "Align and distribute"
+msgstr "יישר והפצה"
+
+msgid "Left"
+msgstr "שמאלה"
+
+msgid "Right"
+msgstr "ימין"
+
+msgid "Distribute"
+msgstr "לְהָפִיץ"
+
+msgid "z"
+msgstr "ז"
+
+msgid "Exciton simulation editor"
+msgstr "עורך הדמיית אקסיטון"
+
+msgid ""
+"From\n"
+"File"
+msgstr ""
+"מ\n"
+"קובץ"
+
+msgid "Insert reference information"
+msgstr "הכנס מידע התייחסות"
+
+msgid ""
+"Are you sure you want to edit the circuit directly?  The circuit will no longer automaticly be "
+"updated as you change the layer structure, and the electrical parameters editor will be disabled.  "
+"Use can use the reset function in the circuit diagram editor to resore this functionality"
+msgstr ""
+"האם אתה בטוח שברצונך לערוך את המעגל ישירות? המעגל כבר לא יתעדכן אוטומטית כאשר תשנה את מבנה השכבה, "
+"ועורך הפרמטרים החשמליים יושבת. השימוש יכול להשתמש בפונקציית האיפוס בעורך דיאגרמת המעגלים כדי לנצל "
+"את הפונקציונליות הזו"
+
+msgid "Component"
+msgstr "רְכִיב"
+
+msgid "Circuit diagram"
+msgstr "דיאגרמת מעגל"
+
+msgid "Use epitaxy as base"
+msgstr "השתמש באפיטקסיה כבסיס"
+
+msgid "Free hand drawing"
+msgstr "ציור ביד חופשית"
+
+msgid "Enabled"
+msgstr "מופעל"
+
+msgid "Variable"
+msgstr "מִשְׁתַנֶה"
+
+msgid "Min"
+msgstr "מינימום"
+
+msgid "Max"
+msgstr "מקסימום"
+
+msgid "Random function"
+msgstr "פונקציה אקראית"
+
+msgid "JSON Variable"
+msgstr "משתנה JSON"
+
+msgid "FDTD Editor"
+msgstr "עורך FDTD"
+
+msgid "Configure hardware"
+msgstr "הגדר חומרה"
+
+msgid ""
+"Hardware\n"
+"benchmark"
+msgstr ""
+"חומרה\n"
+"מדד"
+
+msgid ""
+"RNG\n"
+"test"
+msgstr ""
+"RNG\n"
+"בדיקה"
+
+msgid ""
+"Clear\n"
+"Newton cache"
+msgstr ""
+"נקה\n"
+"מטמון ניוטון"
+
+msgid "CPU/GPU configuration"
+msgstr "תצורת CPU/GPU"
+
+msgid "Newton cache"
+msgstr "מטמון ניוטון"
+
+msgid "Random numbers"
+msgstr "מספרים אקראיים"
+
+msgid "Electrostatic solver"
+msgstr "פותר אלקטרוסטטי"
+
+msgid "Drift diffusion"
+msgstr "דיפוזיה של סחף"
+
+msgid "Simple circuit solver"
+msgstr "פותר מעגלים פשוט"
+
+msgid "Poission solver"
+msgstr "פותר רעלים"
+
+msgid "Poission solver configuration"
+msgstr "תצורת פותר רעלים"
+
+msgid "Newton solver"
+msgstr "פותר ניוטון"
+
+msgid "Exciton solver"
+msgstr "פותר אקסיטון"
+
+msgid "Singlet solver"
+msgstr "פותר סינגלטים"
+
+msgid "Newton solver configuration"
+msgstr "תצורת פותר ניוטון"
+
+msgid "Configuration"
+msgstr "תְצוּרָה"
+
+msgid "Circuit solver configuration"
+msgstr "תצורת פותר מעגלים"
+
+msgid "Data imported from: "
+msgstr "נתונים מיובאים מ:"
+
+msgid "Layer editor"
+msgstr "עורך שכבות"
+
+msgid "Layer name"
+msgstr "שם השכבה"
+
+msgid "Thicknes"
+msgstr "ת'יקנס"
+
+msgid "Optical material"
+msgstr "חומר אופטי"
+
+msgid "Layer type"
+msgstr "סוג שכבה"
+
+msgid ""
+"Solve optical\n"
+"problem"
+msgstr ""
+
+msgid ""
+"Solve thermal\n"
+"problem"
+msgstr ""
+
+msgid "ID"
+msgstr "תְעוּדַת זֶהוּת"
+
+msgid "start:"
+msgstr "הַתחָלָה:"
+
+msgid "stop:"
+msgstr "תפסיק:"
+
+msgid "Red=not found in materials DB"
+msgstr "אדום=לא נמצא בחומרים DB"
+
+msgid ""
+"Enable\n"
+"Drift Diff."
+msgstr ""
+"הפעל\n"
+"Drift Diff."
+
+msgid ""
+"Enable\n"
+"Auger"
+msgstr ""
+"הפעל\n"
+"מגבן"
+
+msgid ""
+"Dynamic\n"
+"SRH traps"
+msgstr ""
+"מלכודות\n"
+"SRH דינמיות"
+
+msgid "Min trap depth"
+msgstr "עומק מלכודת מינימלית"
+
+msgid "Max trap depth"
+msgstr "עומק מלכודת מקסימלי"
+
+msgid "Min Fermi level"
+msgstr "רמת פרמי מינימלית"
+
+msgid "Fn points"
+msgstr "נקודות Fn"
+
+msgid "Fermi integral points"
+msgstr "נקודות אינטגרליות של פרמי"
+
+msgid ""
+"Equilibrium\n"
+"SRH traps"
+msgstr ""
+"שיווי משקל\n"
+"מלכודות SRH"
+
+msgid "Excitons"
+msgstr "אקסיטונים"
+
+msgid ""
+"Excited\n"
+"states laser"
+msgstr ""
+"נרגש\n"
+"מצב לייזר"
+
+msgid "Photon rate equation"
+msgstr "משוואת קצב פוטון"
+
+msgid ""
+"Excited\n"
+"states OPV"
+msgstr ""
+"נרגש\n"
+"מצבי OPV"
+
+msgid "Carrier density points"
+msgstr "נקודות צפיפות נשא"
+
+msgid "Fermi-dirac integral steps"
+msgstr "מדרגות אינטגרליות של פרמי-דיראק"
+
+msgid "Minimum trap depth (eV):"
+msgstr "עומק מלכודת מינימלי (eV):"
+
+msgid "That's not a number.."
+msgstr "זה לא מספר.."
+
+msgid "Maximum trap depth (eV):"
+msgstr "עומק לכידה מרבי (eV):"
+
+msgid "Minimum fermi level (eV):"
+msgstr "רמת fermi מינימלית (eV):"
+
+msgid "Number of carrier density points to calculate:"
+msgstr "מספר נקודות צפיפות הספק לחישוב:"
+
+msgid "Number of steps in the Fermi-dirac integral:"
+msgstr "מספר השלבים באינטגרל פרמי-דיראק:"
+
+msgid "DoS Config"
+msgstr "תצורת DoS"
+
+msgid "Dos Config"
+msgstr "Dos Config"
+
+msgid ""
+"Light\n"
+"Sources"
+msgstr ""
+
+msgid ""
+"Lasers\n"
+"(fs)"
+msgstr ""
+"לייזרים\n"
+"(fs)"
+
+msgid ""
+"Transfer\n"
+"Matrix"
+msgstr ""
+"העברה\n"
+"מטריקס"
+
+msgid ""
+"Optical\n"
+"Outcoupling"
+msgstr ""
+"אופטי\n"
+"צימוד יציאה"
+
+msgid ""
+"Ray tracing\n"
+"editor"
+msgstr ""
+"מעקב אחר קרניים\n"
+"עורך"
+
+msgid ""
+"Optical\n"
+"Detectors"
+msgstr ""
+"אופטיים\n"
+"גלאים"
+
+msgid ""
+"FDTD\n"
+"Simulation"
+msgstr ""
+"FDTD\n"
+"סימולציה"
+
+msgid ""
+"Mode\n"
+"Calculator"
+msgstr ""
+"מצב\n"
+"מחשבון"
+
+msgid ""
+"Optical\n"
+"thickness"
+msgstr ""
+"עובי\n"
+"אופטי"
+
+msgid ""
+"Optical\n"
+"mesh"
+msgstr ""
+"רשת\n"
+"אופטית"
+
+msgid ""
+"Boundary\n"
+"Conditions"
+msgstr ""
+"גבולות\n"
+"תנאים"
+
+msgid "<big><b>Laser setup</b></big><br> Use this window to set up your lasers."
+msgstr "<big><b>הגדרת לייזר</b></big><br> השתמש בחלון זה כדי להגדיר את הלייזרים שלך."
+
+msgid ""
+"<big><b>The light sources window</b></big><br>Use this window to setup optical sources for the "
+"transfer matrix, ray tracing and FDTD simulations."
+msgstr ""
+"<big><b>חלון מקורות האור</b></big><br>השתמש בחלון זה כדי להגדיר מקורות אופטיים עבור מטריצת ההעברה, "
+"מעקב אחר קרניים וסימולציות FDTD."
+
+msgid "<big><b>The ray tracing editor</b></big><br> Use this window to configure ray tracing."
+msgstr "<big><b>עורך מעקב קרניים</b></big><br> השתמש בחלון זה כדי להגדיר מעקב אחר קרניים."
+
+msgid ""
+"<big><b>The detectors window</b></big><br>Use this window to setup optical detectors.  These can "
+"be used for the ray tracing simulations."
+msgstr ""
+"<big><b>חלון הגלאים</b></big><br>השתמש בחלון זה כדי להגדיר גלאים אופטיים. אלה יכולים לשמש עבור "
+"סימולציות מעקב קרניים."
+
+msgid ""
+"<big><b>FDTD</b></big><br> Use this window to setup a finite difference time domain simulation."
+msgstr "<big><b>FDTD</b></big><br> השתמש בחלון זה כדי להגדיר הדמיית תחום זמן סופי של הבדלים."
+
+msgid "<big><b>Mode calculator</b></big><br> Use this window to setup a the optical mode calculator."
+msgstr "<big><b>מחשבון מצב</b></big><br> השתמש בחלון זה כדי להגדיר מחשבון מצב אופטי."
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh, the window can also be used to change the dimensionality of the "
+"simulation."
+msgstr ""
+"<big><b>עורך Mesh</b></big>\n"
+"השתמש בחלון זה כדי להגדיר את הרשת, ניתן להשתמש בחלון גם כדי לשנות את הממדיות של הסימולציה."
+
+msgid "Optical Mesh Editor"
+msgstr "עורך רשת אופטית"
+
+msgid "Boundary conditions"
+msgstr "תנאי גבולות"
+
+msgid ""
+"<big><b>The optical simulation window</b></big><br>Use this window to perform optical "
+"simulations.  Click on the play button to run a simulation."
+msgstr ""
+"<big><b>חלון הסימולציה האופטית</b></big><br>השתמש בחלון זה כדי לבצע הדמיות אופטיות. לחץ על כפתור "
+"ההפעלה כדי להפעיל סימולציה."
+
+msgid ""
+"Click on the play button to run an optical simulation.  The results will be displayed in the tabs "
+"to the right."
+msgstr "לחץ על כפתור ההפעלה כדי להפעיל סימולציה אופטית. התוצאות יוצגו בלשוניות מימין."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">Tutorial video</b></"
+"big><br>Designing optical filters and reflective coatings."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=A_3meKTBuWk\">סרטון הדרכה</b></big><br>עיצוב "
+"מסננים אופטיים וציפויים מחזירי אור."
+
+msgid ""
+"<big><b>The optical outcoupling window</b></big><br>Use this window to calculate how much light "
+"escapes the device. This is useful whend designing OLEDs and other light emitting structures."
+msgstr ""
+"<big><b>חלון החיבור האופטי</b></big><br>השתמש בחלון זה כדי לחשב כמה אור בורח מהמכשיר. זה שימושי "
+"בעת תכנון OLED ומבנים אחרים פולטי אור."
+
+msgid ""
+"<big><b>Optical thickness</b></big><br>Usually the optical thickness of a layer will be taken from "
+"the layer structure set out in the layer editor. However, sometimes one wants to simulate very "
+"thick layers. This window will enable you to force the optical thickness to a value while "
+"maintaining it's physical thickness."
+msgstr ""
+"<big><b>עובי אופטי</b></big><br>בדרך כלל העובי האופטי של שכבה יילקח ממבנה השכבה שנקבע בעורך "
+"השכבות. עם זאת, לפעמים רוצים לדמות שכבות עבות מאוד. חלון זה יאפשר לך לאלץ את העובי האופטי לערך תוך "
+"שמירה על העובי הפיזי שלו."
+
+msgid "Edit parasitic components"
+msgstr "ערוך רכיבים טפיליים"
+
+msgid "Parasitic components"
+msgstr "רכיבים טפיליים"
+
+msgid "Registration window"
+msgstr "חלון הרשמה"
+
+msgid "Enter the license key below:"
+msgstr "הזן את מפתח הרישיון למטה:"
+
+msgid "Key"
+msgstr "מַפְתֵחַ"
+
+msgid "Can't open file "
+msgstr "לא מצליח לפתוח את הקובץ"
+
+msgid "back"
+msgstr "חזור"
+
+msgid "home"
+msgstr "בית"
+
+msgid "Scanning probe microscopy editor"
+msgstr "עורך מיקרוסקופ בדיקה סורק"
+
+msgid "No files were given to load"
+msgstr "לא ניתנו קבצים לטעינה"
+
+msgid ""
+"3D\n"
+"Mode"
+msgstr ""
+"3D\n"
+"מצב"
+
+msgid "New"
+msgstr "חָדָשׁ"
+
+msgid "Rename"
+msgstr "שנה שם"
+
+msgid "Run"
+msgstr "לָרוּץ"
+
+msgid ""
+"Plot\n"
+"File"
+msgstr ""
+"עלילה\n"
+"קובץ"
+
+msgid ""
+"View raw\n"
+"json"
+msgstr ""
+"הצג את raw\n"
+"json"
+
+msgid "Cache path:"
+msgstr "נתיב מטמון:"
+
+msgid "Newton cache used"
+msgstr "נעשה שימוש במטמון ניוטון"
+
+msgid "The cache directory does not exist"
+msgstr "ספריית המטמון אינה קיימת"
+
+msgid "The cache path needs to end in cache."
+msgstr "נתיב המטמון צריך להסתיים במטמון."
+
+msgid "The cache is empty"
+msgstr "המטמון ריק"
+
+msgid "I have emptied the cache"
+msgstr "רוקנתי את המטמון"
+
+msgid "<big><b>Simulation finished!</b></big><br>Click on the plot icon to plot the results"
+msgstr "<big><b>הסימולציה הסתיימה!</b></big><br>לחץ על סמל העלילה כדי לשרטט את התוצאות"
+
+msgid "Ray trace editor"
+msgstr "עורך עקבות ריי"
+
+msgid "Fit configure"
+msgstr "התאמה אישית"
+
+msgid "Duplicate variables"
+msgstr "שכפול משתנים"
+
+msgid "Fit variables"
+msgstr "התאם משתנים"
+
+msgid "Fit rules"
+msgstr "התאמה לכללים"
+
+msgid "Configure minimizer"
+msgstr "הגדר מזער"
+
+msgid "Generaton rate editor"
+msgstr "עורך שיעורי Generat"
+
+msgid "Generation rate (m^{-3}s^{-1})"
+msgstr "קצב ייצור (m^{-3}s^{-1})"
+
+msgid "json id"
+msgstr "מזהה json"
+
+msgid "Reference manager"
+msgstr "מנהל הפניות"
+
+msgid ""
+"Layer\n"
+"editor"
+msgstr ""
+
+msgid "Contacts"
+msgstr "אנשי קשר"
+
+msgid ""
+"Electrical\n"
+"parameters"
+msgstr "פרמטרים חשמליים"
+
+msgid ""
+"Emission\n"
+"parameters"
+msgstr ""
+"פליטה\n"
+"פרמטרים"
+
+msgid ""
+"Substrate\n"
+"xz-size"
+msgstr ""
+"מצע\n"
+"xz בגודל"
+
+msgid ""
+"<big><b>Contacts window</b></big>\n"
+"Use this window to change the layout of the contacts on the device"
+msgstr ""
+"<big><b>חלון אנשי קשר</b></big>\n"
+"השתמש בחלון זה כדי לשנות את הפריסה של אנשי הקשר במכשיר"
+
+msgid ""
+"<big><b>Device layers</b></big>\n"
+"Use this window to configure the structure of the device."
+msgstr ""
+"<big><b>שכבות מכשיר</b></big>\n"
+"השתמש בחלון זה כדי להגדיר את מבנה המכשיר."
+
+msgid ""
+"<big><b>xz dimension editor</b></big>\n"
+"Use this window to configure the xz size of the device."
+msgstr ""
+"<big><b>עורך ממדי xz</b></big>\n"
+"השתמש בחלון זה כדי להגדיר את גודל xz של המכשיר."
+
+msgid ""
+"<big><b>Electrical parameters</b></big>\n"
+"Use this window to change the electrical parameters of each layer."
+msgstr ""
+"<big><b>פרמטרים חשמליים</b></big>\n"
+"השתמש בחלון זה כדי לשנות את הפרמטרים החשמליים של כל שכבה."
+
+msgid ""
+"<big><b>Emission parameters</b></big>\n"
+"Use this window to set if a layer emits light or not.  You can choose between theoretically "
+"calculated emission spectra and imported experimental spectra."
+msgstr ""
+"<big><b>פרמטרי פליטה</b></big>\n"
+"השתמש בחלון זה כדי להגדיר אם שכבה פולטת אור או לא. אתה יכול לבחור בין ספקטרום פליטה מחושב תיאורטית "
+"לבין ספקטרום ניסוי מיובאים."
+
+msgid "Frequency start"
+msgstr "התחלת תדר"
+
+msgid "Frequency stop"
+msgstr "עצירת תדר"
+
+msgid "Max points"
+msgstr "מקסימום נקודות"
+
+msgid "Multiply"
+msgstr "לְהַכפִּיל"
+
+msgid "Paramter to change"
+msgstr "פרמטר לשינוי"
+
+msgid "Parameter scan window"
+msgstr "חלון סריקת פרמטרים"
+
+msgid "Calculate"
+msgstr "לחשב"
+
+msgid "Export spectrum"
+msgstr "ספקטרום ייצוא"
+
+msgid "Spectrum"
+msgstr "ספֵּקטרוּם"
+
+msgid "mode Editor"
+msgstr "עורך מצב"
+
+msgid "Edit contacts"
+msgstr "ערוך אנשי קשר"
+
+msgid "Top/Bottom"
+msgstr "מלמעלה למטה"
+
+msgid ""
+"Applied\n"
+"voltage"
+msgstr ""
+"מופעל\n"
+"מתח"
+
+msgid "Start"
+msgstr "הַתחָלָה"
+
+msgid "Width"
+msgstr "רוֹחַב"
+
+msgid "Contact resistance\n"
+msgstr "התנגדות למגע\n"
+
+msgid "Shunt resistance"
+msgstr "התנגדות שאנט"
+
+msgid ""
+"Charge density/\n"
+"Fermi-offset"
+msgstr ""
+"צפיפות מטען/\n"
+"היסט פרמי"
+
+msgid ""
+"Majority\n"
+"carrier"
+msgstr ""
+"רוב \n"
+"ספק"
+
+msgid "ve0 (m/s)"
+msgstr "ve0 (מ/ש)"
+
+msgid "vh0 (m/s)"
+msgstr "vh0 (מ/ש)"
+
+msgid ""
+"Physical\n"
+"model"
+msgstr "מודל פיזי"
+
+msgid "Neural networks editor"
+msgstr "עורך רשתות עצביות"
+
+msgid ""
+"Compile\n"
+"to json"
+msgstr ""
+"הידור\n"
+"ל-json"
+
+msgid "Reporting error...."
+msgstr "דיווח על שגיאה...."
+
+msgid "Diode"
+msgstr "דיודה"
+
+msgid "Power law"
+msgstr "חוק כוח"
+
+msgid "Barrier"
+msgstr "מַחסוֹם"
+
+msgid "Wire"
+msgstr "חוּט"
+
+msgid "Ground"
+msgstr "קרקע, אדמה"
+
+msgid "Voltage source"
+msgstr "מקור מתח"
+
+msgid "Pointer"
+msgstr "מַצבִּיעַ"
+
+msgid "Scroll"
+msgstr "גְלִילָה"
+
+msgid "Clean"
+msgstr "לְנַקוֹת"
+
+msgid "Input vector"
+msgstr "וקטור קלט"
+
+msgid "Output vector"
+msgstr "וקטור פלט"
+
+msgid "Enter the time at which the laser pulse will fire (-1) to turn it off"
+msgstr "הזן את השעה שבה דופק הלייזר יידלק (-1) כדי לכבות אותו"
+
+msgid "Sun"
+msgstr "שמש"
+
+msgid "Laser"
+msgstr "לייזר"
+
+msgid "fs Laser"
+msgstr "fs לייזר"
+
+msgid "Enter the start time of the simulation"
+msgstr "הזן את שעת ההתחלה של הסימולציה"
+
+msgid "Length"
+msgstr "אורך"
+
+msgid "dt"
+msgstr "dt"
+
+msgid "Start Voltage"
+msgstr "מתח התחלה"
+
+msgid "Stop Voltage"
+msgstr "עצירת מתח"
+
+msgid "step multiplyer"
+msgstr "מכפיל צעדים"
+
+msgid "Sun start"
+msgstr "התחלה של שמש"
+
+msgid "Sun stop"
+msgstr "עצירת שמש"
+
+msgid "Laser start"
+msgstr "התחלת לייזר"
+
+msgid "Laser stop"
+msgstr "עצירת לייזר"
+
+msgid ""
+"Save\n"
+"video"
+msgstr ""
+"שמור\n"
+"סרטון"
+
+msgid ""
+"Storyboard\n"
+"to clipboard"
+msgstr ""
+"לוח סיפור\n"
+"ללוח"
+
+msgid "Autoscale"
+msgstr "קנה מידה אוטומטי"
+
+msgid "Set log scale y"
+msgstr "הגדר את סולם יומן y"
+
+msgid "Set log scale x"
+msgstr "הגדר את סולם יומן x"
+
+msgid "Plot"
+msgstr "עלילה"
+
+msgid "Scale"
+msgstr "סוּלָם"
+
+msgid "Video"
+msgstr "וִידֵאוֹ"
+
+msgid ""
+"Set\n"
+"Temperature"
+msgstr ""
+"הגדר\n"
+"טמפרטורה"
+
+msgid ""
+"Configure\n"
+"Model"
+msgstr ""
+"הגדר\n"
+"דגם"
+
+msgid ""
+"Joule\n"
+"Heating"
+msgstr ""
+"ג'ול\n"
+"חימום"
+
+msgid ""
+"Parasitic\n"
+"Heating"
+msgstr ""
+"טפילי\n"
+"חימום"
+
+msgid ""
+"Optical\n"
+"Heating"
+msgstr ""
+"אופטי\n"
+"חימום"
+
+msgid ""
+"Recombination\n"
+"heating"
+msgstr ""
+"ריקומבינציה\n"
+"חימום"
+
+msgid ""
+"Thermal\n"
+"parameters"
+msgstr "פרמטרים תרמיים"
+
+msgid ""
+"Thermal\n"
+"mesh"
+msgstr ""
+"תרמית\n"
+"רשת"
+
+msgid ""
+"<big><b>Thermal parameters</b></big>\n"
+"Use this window to change the thermal parameters of each layer."
+msgstr ""
+"<big><b>פרמטרים תרמיים</b></big>\n"
+"השתמש בחלון זה כדי לשנות את הפרמטרים התרמיים של כל שכבה."
+
+msgid "Enter the new temperature"
+msgstr "הזן את הטמפרטורה החדשה"
+
+msgid "Thermal boundary conditions"
+msgstr "תנאי גבול תרמיים"
+
+msgid "Configure thermal model"
+msgstr "הגדר מודל תרמי"
+
+msgid ""
+"<big><b>Mesh editor</b></big>\n"
+"Use this window to setup the mesh."
+msgstr ""
+"<big><b>עורך Mesh</b></big>\n"
+"השתמש בחלון זה כדי להגדיר את הרשת."
+
+msgid "Thermal Mesh Editor"
+msgstr "עורך רשת תרמית"
+
+msgid "Experimental data"
+msgstr "נתונים ניסיוניים"
+
+msgid "Delta=Experiment - Simulation"
+msgstr "דלתא=ניסוי - סימולציה"
+
+msgid "Configure fit"
+msgstr "הגדר התאמה"
+
+msgid "Fit patch"
+msgstr "תיקון מתאים"
+
+msgid "Local duplicate"
+msgstr "שכפול מקומי"
+
+msgid "Function"
+msgstr "פוּנקצִיָה"
+
+msgid "JSON x"
+msgstr "JSON x"
+
+msgid "JSON y"
+msgstr "JSON y"
+
+msgid "Frequency domain experiment window"
+msgstr "חלון ניסוי בתחום התדר"
+
+msgid "Thermal parameter editor"
+msgstr "עורך פרמטרים תרמיים"
+
+msgid "Device structure"
+msgstr "מבנה המכשיר"
+
+msgid ""
+"<big><b>The device structure tab</b></big><br> Use this tab to change the structure of the device, "
+"the layer thicknesses and to perform optical simulations.  You can also browse the materials data "
+"base and  edit the electrical mesh."
+msgstr ""
+"<big><b>כרטיסיית מבנה המכשיר</b></big><br> השתמש בכרטיסייה זו כדי לשנות את מבנה המכשיר, את עובי "
+"השכבה ולבצע הדמיות אופטיות. אתה יכול גם לעיין במאגר הנתונים של החומרים ולערוך את רשת החשמל."
+
+msgid "Terminal"
+msgstr "מָסוֹף"
+
+msgid ""
+"<big><b>The terminal window</b></big><br>The output of the model will be displayed in this window, "
+"watch this screen for debugging and convergence information."
+msgstr ""
+"<big><b>חלון הטרמינל</b></big><br>הפלט של המודל יוצג בחלון זה, צפה במסך זה למידע על ניפוי באגים "
+"והתכנסות."
+
+msgid "Tutorials/Documentation"
+msgstr "הדרכות/תיעוד"
+
+msgid ""
+"<big><b>Tutorials/Documentation</b></big><br>Here you can find tutorials, videos, worksheets, and "
+"talks about this software and simulating opto-electronic devices in general.  Although this "
+"software is easy to use with it's friendly interface, under the hood it is a highly complex model "
+"and powerful model, it is worth taking time to read the documentation to understand it.  This will "
+"enable you to get the most out of this software and your experimental data."
+msgstr ""
+"<big><b>הדרכות/תיעוד</b></big><br>כאן תוכל למצוא הדרכות, סרטונים, דפי עבודה והרצאות על תוכנה זו "
+"והדמיית מכשירים אופטו-אלקטרוניים באופן כללי. למרות שתוכנה זו קלה לשימוש עם הממשק הידידותי שלה, "
+"מתחת למכסה המנוע מדובר בדגם מורכב ביותר ודגם רב עוצמה, כדאי להקדיש זמן לקרוא את התיעוד כדי להבין "
+"אותו. זה יאפשר לך להפיק את המרב מהתוכנה הזו ומהנתונים הניסיוניים שלך."
+
+msgid ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">Watch the video</a></b></big><br> Performing my "
+"first solar cell simulation"
+msgstr ""
+"<big><b><a href=\"https://youtu.be/XBbaogu61Ps\">צפו בסרטון</a></b></big><br> ביצוע הדמיית תאים "
+"סולאריים ראשונה שלי"
+
+msgid "Output"
+msgstr "תְפוּקָה"
+
+msgid ""
+"<big><b>Output</b></big><br>This shows the root simulation directory, this is where the results "
+"are stored.  Double click on a file to see what is in it.."
+msgstr ""
+"<big><b>פלט</b></big><br>זה מציג את ספריית הדמיית השורש, כאן מאוחסנות התוצאות. לחץ פעמיים על קובץ "
+"כדי לראות מה יש בו.."
+
+msgid "Information"
+msgstr "מֵידָע"
+
+msgid ""
+"<big><b>The fitting variables window</b></big><br> Use this window to select the variables use to "
+"perform the fit."
+msgstr ""
+"<big><b>חלון המשתנים המתאימים</b></big><br> השתמש בחלון זה כדי לבחור את המשתנים שישמשו לביצוע "
+"ההתאמה."
+
+msgid "Fit the simulation to experimental data"
+msgstr "התאם את הסימולציה לנתונים ניסיוניים"
+
+msgid "Data sets"
+msgstr "מערכי נתונים"
+
+msgid "Rename the fit:"
+msgstr "שנה את שם ההתאמה:"
+
+msgid "Clone the experiment:"
+msgstr "שכפל את הניסוי:"
+
+msgid "Export the simulation"
+msgstr "ייצא את הסימולציה"
+
+msgid "Zip file"
+msgstr "קובץ Zip"
+
+msgid "Are you sure you want to delete the experiment: "
+msgstr "האם אתה בטוח שברצונך למחוק את הניסוי:"
+
+msgid "Make a new fit:"
+msgstr "עשה התאמה חדשה:"
+
+msgid "Error function"
+msgstr "פונקציית שגיאה"
+
+msgid "Log scale"
+msgstr "סולם יומן"
+
+msgid "Open file"
+msgstr "קובץ פתוח"
+
+msgid "Back"
+msgstr "חזור"
+
+msgid "Home"
+msgstr "בית"
+
+msgid "is not a number.."
+msgstr "זה לא מספר.."
+
+msgid "Complex Density of states editor"
+msgstr "עורך צפיפות מורכבת של מדינות"
+
+msgid "LUMO numerical"
+msgstr "מספרי LUMO"
+
+msgid "HOMO numerical"
+msgstr "מספרי HOMO"
+
+msgid "Please cite these papers:"
+msgstr "נא לצטט את המסמכים הבאים:"
+
+msgid "If you publish a paper, book or thesis using results from "
+msgstr "אם אתה מפרסם מאמר, ספר או תזה באמצעות תוצאות מ"
+
+msgid "This is not a valide e-mail address"
+msgstr "זו אינה כתובת דואר אלקטרוני חוקית"
+
+msgid "The e-mail addresses do not match."
+msgstr "כתובות המייל אינן תואמות."
+
+msgid "Please enter your first name."
+msgstr "נא להזין את שמך הפרטי."
+
+msgid "Please enter your surname."
+msgstr "נא להזין את שם המשפחה שלך."
+
+msgid "Please enter your Company/University."
+msgstr "אנא הזן את החברה/האוניברסיטה שלך."
+
+msgid "Please enter how you heard about OghmaNano."
+msgstr "אנא הזן איך שמעת על OghmaNano."
+
+msgid "Please enter what you plan on using OghmaNano for."
+msgstr "אנא הכנס לשם מה אתה מתכנן להשתמש ב-OghmaNano."
+
+msgid "Your version of OghmaNano is too old to register, please download the latest version."
+msgstr "הגרסה שלך של OghmaNano ישנה מכדי להירשם, אנא הורד את הגרסה העדכנית ביותר."
+
+msgid "Please register to use OghmaNano. Thanks!"
+msgstr "נא להירשם כדי להשתמש ב-OghmaNano. תודה!"
+
+msgid "First name"
+msgstr "שם פרטי"
+
+msgid "Surname"
+msgstr "שֵׁם מִשׁפָּחָה"
+
+msgid "Company/University"
+msgstr "חברה/אוניברסיטה"
+
+msgid "E-mail"
+msgstr "אימייל"
+
+msgid "Confirm e-mail"
+msgstr "אשר אימייל"
+
+msgid "I heard about OghmaNano from:"
+msgstr "שמעתי על OghmaNano מ:"
+
+msgid "I am most interested in simulating:"
+msgstr "הכי מעניין אותי לדמות:"
+
+msgid " will not work until you register.  Would do you want to exit?"
+msgstr "לא יעבוד עד שתירשם. האם תרצה לצאת?"
+
+msgid "Suns v.s. Voc"
+msgstr "Suns v.s. ווק"
+
+msgid "Light source (y0)"
+msgstr "מקור אור (y0)"
+
+msgid "Light source"
+msgstr "מקור אור"
+
+msgid "Filters (y0)"
+msgstr "מסננים (y0)"
+
+msgid "Filters"
+msgstr "מסננים"
+
+msgid "Run optical simulation"
+msgstr "הפעל סימולציה אופטית"
+
+msgid ""
+"Transfer\n"
+"matrix"
+msgstr ""
+"העבר\n"
+"מטריקס"
+
+msgid ""
+"Transfer\n"
+"matrix FD"
+msgstr ""
+"העברה\n"
+"FD של מטריקס"
+
+msgid ""
+"Exponential\n"
+"profile"
+msgstr ""
+"פרופיל\n"
+"מעריכי"
+
+msgid ""
+"Flat\n"
+"profile"
+msgstr ""
+"פרופיל\n"
+" שטוח"
+
+msgid ""
+"From\n"
+"file"
+msgstr ""
+"מ\n"
+"קובץ"
+
+msgid ""
+"From QE\n"
+"spectra"
+msgstr ""
+"מ-QE\n"
+"spectra"
+
+msgid ""
+"Constant\n"
+"value"
+msgstr ""
+"ערך\n"
+" קבוע"
+
+msgid "Edit constant"
+msgstr "ערוך קבוע"
+
+msgid "Optics"
+msgstr "אוֹפְּטִיקָה"
+
+msgid ""
+"Machine\n"
+"Learning"
+msgstr ""
+"מכונה\n"
+"למידה"
+
+msgid ""
+"Edit\n"
+"Probes"
+msgstr ""
+"ערוך\n"
+"בדיקות"
+
+msgid ""
+"Parameter\n"
+"scan"
+msgstr ""
+"פרמטר\n"
+"סרוק"
+
+msgid ""
+"Fit to\n"
+"experiment"
+msgstr ""
+"התאם ל\n"
+"ניסוי"
+
+msgid ""
+"Json\n"
+"explorer"
+msgstr ""
+"Json\n"
+"explorer"
+
+msgid "Matlab paths"
+msgstr "שבילי מטלב"
+
+msgid "Python paths"
+msgstr "נתיבי פייתון"
+
+msgid ""
+"Script\n"
+"Editor"
+msgstr ""
+"סקריפט\n"
+"עורך"
+
+msgid ""
+"<big><b>Probes window</b></big><br>Use this window to setup simulation probes, which can be used "
+"to extract values from the simulations at any given mesh point."
+msgstr ""
+"<big><b>חלון בדיקות</b></big><br>השתמש בחלון זה כדי להגדיר בדיקות סימולציה, בהן ניתן להשתמש כדי "
+"לחלץ ערכים מהסימולציות בכל נקודת רשת נתונה."
+
+msgid ""
+"<big><b>Machine learning window</b></big><br>Use this window to generate machine learning vectors"
+msgstr "<big><b>חלון למידת מכונה</b></big><br>השתמש בחלון זה כדי ליצור וקטורים למידת מכונה"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Very often it is useful to be able to systematically very a "
+"device parameter such as mobility or density of trap states.  This window allows you to do just "
+"that."
+msgstr ""
+"<big><b>חלון הסריקה</b></big><br> לעתים קרובות מאוד שימושי להיות מסוגל להתאים באופן שיטתי פרמטר "
+"מכשיר כגון ניידות או צפיפות מצבי מלכודת. חלון זה מאפשר לך לעשות בדיוק את זה."
+
+msgid "Use the plus icon to add a new scan line to the list."
+msgstr "השתמש בסמל הפלוס כדי להוסיף שורת סריקה חדשה לרשימה."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">Tutorial video</b></big><br>Using "
+"the parameter scan window."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=cpkPht-CKeE\">סרטון הדרכה</b></big><br>שימוש "
+"בחלון סריקת הפרמטרים ."
+
+msgid ""
+"<big><b>Fit window</b></big><br> Use this window to fit the simulation to experimental data.  The "
+"model uses advanced and optimized fitting algorithms to fit the model to your experimental data, "
+"so that material parameters such as mobilities and recombination rates can be extracted."
+msgstr ""
+"<big><b>חלון התאמה</b></big><br> השתמש בחלון זה כדי להתאים את הסימולציה לנתונים ניסיוניים. המודל "
+"משתמש באלגוריתמי התאמה מתקדמים ומותאמים כדי להתאים את המודל לנתוני הניסוי שלך, כך שניתן לחלץ "
+"פרמטרים חומריים כגון ניידות וקצבי שילוב מחדש."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">Watch the tutorial video 1</b></"
+"big><br>Fitting the model to experimental data to extract mobility and recombination rate "
+"parameters."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=61umU4hrsqk\">צפו בסרטון ההדרכה 1</b></"
+"big><br>התאמת הדגם ל נתונים ניסיוניים לחילוץ פרמטרים של ניידות וקצב ריקומבינציה."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">Watch the tutorial video 2</b></"
+"big><br>Fitting the model to large area solar cells"
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=_cm3Cb3kzUg\">צפו בסרטון ההדרכה 2</b></"
+"big><br>התאמת הדגם ל תאים סולאריים בשטח גדול"
+
+msgid "Run scan"
+msgstr "הפעל סריקה"
+
+msgid "Clean simulation"
+msgstr "סימולציה נקייה"
+
+msgid "Fast Optimizer"
+msgstr "מייעל מהיר"
+
+msgid "Build scan"
+msgstr "סריקת בנייה"
+
+msgid "Rerun"
+msgstr "הפעלה חוזרת"
+
+msgid "Archive simulations"
+msgstr "הדמיות ארכיון"
+
+msgid "Notes"
+msgstr "הערות"
+
+msgid "Simulations"
+msgstr "סימולציות"
+
+msgid "New experiment"
+msgstr "ניסוי חדש"
+
+msgid "Delete experiment"
+msgstr "מחק את הניסוי"
+
+msgid "Refresh"
+msgstr "לְרַעֲנֵן"
+
+msgid "Clone experiment"
+msgstr "ניסוי שיבוט"
+
+msgid "Rename experiment"
+msgstr "שנה את שם הניסוי"
+
+msgid ""
+"Export\n"
+"Data"
+msgstr ""
+"ייצוא\n"
+"נתונים"
+
+msgid "Import data"
+msgstr "ייבוא נתונים"
+
+msgid "One itteration"
+msgstr "איטרציה אחת"
+
+msgid "Run fit"
+msgstr "רץ בכושר"
+
+msgid ""
+"Fit this\n"
+"data set"
+msgstr ""
+"התאם\n"
+" מערך הנתונים הזה"
+
+msgid ""
+"Dont' fit this\n"
+"data set"
+msgstr ""
+"לא מתאים\n"
+"לסט הנתונים הזה"
+
+msgid "Mesh point"
+msgstr "נקודת רשת"
+
+msgid "Average"
+msgstr "מְמוּצָע"
+
+msgid "Max pos y-slice"
+msgstr "מקסימום פרוסה y"
+
+msgid "Max pos y-slice STD-Left"
+msgstr "מקסימום מיקום y-פרוסת STD-שמאל"
+
+msgid "Max pos y-slice STD-Right"
+msgstr "Max pos y-slice STD-Right"
+
+msgid "Max pos y-slice val"
+msgstr "מקסימום נפח y-slice"
+
+msgid "Max pos y-slice STD-Left val"
+msgstr "מקסימום מיקום y-Slice STD-Left val"
+
+msgid "Max pos y-slice STD-Right val"
+msgstr "מקסימום פוזי y-slice STD-Right val"
+
+msgid "x:"
+msgstr "איקס:"
+
+msgid "y:"
+msgstr "y:"
+
+msgid "z:"
+msgstr "z:"
+
+msgid "Move up"
+msgstr "לזוז למעלה"
+
+msgid "Move down"
+msgstr "לרדת"
+
+msgid "Add layer"
+msgstr "הוסף שכבה"
+
+msgid "Add object inside"
+msgstr "הוסף אובייקט פנימה"
+
+msgid "Delete"
+msgstr "לִמְחוֹק"
+
+msgid "Copy json"
+msgstr "העתק את json"
+
+msgid "Edit"
+msgstr "לַעֲרוֹך"
+
+msgid "Join mesh"
+msgstr "הצטרף לרשת"
+
+msgid "Group (Ctrl+G)"
+msgstr "קבוצה (Ctrl+G)"
+
+msgid "Ungroup (Ctrl+U)"
+msgstr "בטל קבוצה (Ctrl+U)"
+
+msgid "Script"
+msgstr "תַסרִיט"
+
+msgid "Copy path (Python)"
+msgstr "העתקת נתיב (Python)"
+
+msgid "View"
+msgstr "נוף"
+
+msgid "Show solid"
+msgstr "הראה מוצק"
+
+msgid "Show mesh"
+msgstr "הצג רשת"
+
+msgid "Show cut through x"
+msgstr "הצג חתך דרך x"
+
+msgid "Show cut through y"
+msgstr "הראה חתך דרך y"
+
+msgid "Hidden"
+msgstr "מוּסתָר"
+
+msgid "New shape name"
+msgstr "שם צורה חדש"
+
+msgid "Rename the layer:"
+msgstr "שנה את שם השכבה:"
+
+msgid ""
+"Thermal model\n"
+"enabled"
+msgstr ""
+
+msgid ""
+"<big><b>Thermal solver switched on</b></big><br>The heat equation will be solved across the device"
+msgstr "<big><b>פותר תרמי מופעל</b></big><br>משוואת החום תיפתר על פני המכשיר"
+
+msgid ""
+"Iso-thermal\n"
+"model"
+msgstr "דגם איזו-תרמי"
+
+msgid ""
+"<big><b>Isothermal mode</b></big><br>A single temperature will be assumed across the entire device."
+msgstr "<big><b>מצב איזותרמי</b></big><br>תתקבל טמפרטורה בודדת על פני המכשיר כולו."
+
+msgid "Isothermal"
+msgstr "איזותרמית"
+
+msgid "Add"
+msgstr "לְהוֹסִיף"
+
+msgid "Delete row"
+msgstr "מחק שורה"
+
+msgid "Laser start time"
+msgstr "זמן התחלה של לייזר"
+
+msgid "Simulation start time"
+msgstr "זמן התחלה של סימולציה"
+
+msgid "Loop"
+msgstr "לוּלָאָה"
+
+msgid "Time domain experiment window"
+msgstr "חלון ניסוי תחום זמן"
+
+msgid "Simulation"
+msgstr "סימולציה"
+
+msgid "Config"
+msgstr "Config"
+
+msgid "Loop configuration"
+msgstr "תצורת לולאה"
+
+msgid "Random variables"
+msgstr "משתנים אקראיים"
+
+msgid "Patch"
+msgstr "תיקון"
+
+msgid "Duplicate"
+msgstr "לְשַׁכְפֵּל"
+
+msgid "Neural networks"
+msgstr "רשתות עצביות"
+
+msgid "Compiled json written to "
+msgstr "הידור json שנכתב אל"
+
+msgid "Copying files and configuring"
+msgstr "העתקת קבצים והגדרת תצורה"
+
+msgid "Finish time:"
+msgstr "זמן סיום:"
+
+msgid "Running"
+msgstr "רץ"
+
+msgid "Cluster status"
+msgstr "מצב אשכול"
+
+msgid "Constant bias"
+msgstr "הטיה מתמדת"
+
+msgid "Change"
+msgstr "שינוי"
+
+msgid "From file"
+msgstr "מתוך קובץ"
+
+msgid ""
+"Export\n"
+"image"
+msgstr ""
+"ייצוא\n"
+"תמונה"
+
+msgid "<big><b>Filters</b></big><br>Use this tab to edit the optical filters"
+msgstr "<big><b>מסננים</b></big><br>השתמש בכרטיסייה זו כדי לערוך את המסננים האופטיים"
+
+msgid "Filter editor"
+msgstr "עורך מסננים"
+
+msgid "Filter"
+msgstr "לְסַנֵן"
+
+msgid "Not a valid license number"
+msgstr "לא מספר רישיון תקף"
+
+msgid "This key has been used too many times."
+msgstr "המפתח הזה היה בשימוש יותר מדי פעמים."
+
+msgid "This key has expired."
+msgstr "פג תוקף המפתח הזה."
+
+msgid ""
+"This version of OghmaNano is too old to validate it's key, please download the latest version."
+msgstr "גרסה זו של OghmaNano ישנה מכדי לאמת את המפתח שלה, אנא הורד את הגרסה העדכנית ביותר."
+
+msgid "Can't access the internet"
+msgstr "לא מצליח לגשת לאינטרנט"
+
+msgid "Key manager"
+msgstr "מנהל מפתח"
+
+msgid "Data"
+msgstr "נתונים"
+
+msgid ""
+"JV\n"
+"editor"
+msgstr ""
+"JV\n"
+"עורך"
+
+msgid ""
+"Time domain\n"
+"editor."
+msgstr ""
+"תחום זמן\n"
+"עורך."
+
+msgid ""
+"FX domain\n"
+"editor"
+msgstr "עורך דומיין FX"
+
+msgid ""
+"CV\n"
+"editor"
+msgstr ""
+"קורות חיים\n"
+"עורך"
+
+msgid ""
+"Suns Voc\n"
+"editor"
+msgstr ""
+"Suns Voc\n"
+"עורך"
+
+msgid ""
+"Suns Jsc\n"
+"editor"
+msgstr ""
+"Suns Jsc\n"
+"עורך"
+
+msgid ""
+"CE\n"
+"editor"
+msgstr ""
+"CE\n"
+"עורך"
+
+msgid ""
+"PL\n"
+"editor"
+msgstr ""
+"PL\n"
+"עורך"
+
+msgid ""
+"Exciton\n"
+"editor"
+msgstr ""
+"Exciton\n"
+"עורך"
+
+msgid ""
+"Quantum\n"
+"efficiency"
+msgstr "יעילות קוונטית"
+
+msgid ""
+"Electrical\n"
+"equilibrium"
+msgstr ""
+
+msgid ""
+"Polynomial\n"
+"editor"
+msgstr ""
+"פולינום\n"
+"עורך"
+
+msgid ""
+"Calculate\n"
+"the cost"
+msgstr ""
+"חשב\n"
+"את העלות"
+
+msgid ""
+"scanning probe\n"
+"microscopy"
+msgstr ""
+"בדיקה סורקת\n"
+"מיקרוסקופיה"
+
+msgid ""
+"Output\n"
+"Files"
+msgstr ""
+"פלט\n"
+"קבצים"
+
+msgid ""
+"Simulation\n"
+"Hardware"
+msgstr ""
+"סימולציה\n"
+"חומרה"
+
+msgid ""
+"<big><b>The time mesh editor</b></big><br> To do time domain simulations one must define how "
+"voltage the light vary as a function of time.  This can be done in this window.  Also use this "
+"window to define the simulation length and time step."
+msgstr ""
+"<big><b>עורך רשת הזמן</b></big><br> כדי לעשות סימולציות של תחום זמן יש להגדיר כיצד המתח האור משתנה "
+"כפונקציה של הזמן. ניתן לעשות זאת בחלון זה. השתמש גם בחלון זה כדי להגדיר את אורך הסימולציה ושלב "
+"הזמן."
+
+msgid ""
+"<big><b>Frequency domain mesh editor</b></big><br> Some times it is useful to do frequency domain "
+"simulations such as when simulating impedance spectroscopy.  This window will allow you to choose "
+"which frequencies will be simulated."
+msgstr ""
+"<big><b>עורך רשת תחום תדר</b></big><br> לפעמים זה שימושי לעשות סימולציות של תחום תדר, כגון בעת "
+"הדמיית ספקטרוסקופיה של עכבה. חלון זה יאפשר לכם לבחור אילו תדרים יחולו."
+
+msgid ""
+"<big><b>Capacitance voltage editor</b></big><br> Use this editor to change serup capacitance "
+"voltage simulation."
+msgstr "<big><b>עורך מתח קיבול</b></big><br> השתמש בעורך זה כדי לשנות סימולציית מתח קיבול של סירופ."
+
+msgid ""
+"<big><b>Scanning probe microscopy</b></big><br> Use this window to configure the scanning probe "
+"microscopy simulations."
+msgstr ""
+"<big><b>מיקרוסקופיה של בדיקה סריקה</b></big><br> השתמש בחלון זה כדי להגדיר את סימולציות "
+"המיקרוסקופיה של בדיקה הסריקה."
+
+msgid ""
+"<big><b>PL simulation editor</b></big><br> Use this window to configure the steady state "
+"photoluminescence simulation."
+msgstr ""
+"<big><b>עורך הדמיית PL</b></big><br> השתמש בחלון זה כדי להגדיר את סימולציית הפוטו-לומיננסנציה במצב "
+"יציב."
+
+msgid ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">Watch the youtube video</a></b></"
+"big><br>Watch the video on perfomring PL simulation."
+msgstr ""
+"<big><b><a href=\"https://www.youtube.com/watch?v=pgaJg6dErP4\">צפו בסרטון היוטיוב</a></b></"
+"big><br>צפו הסרטון על ביצוע הדמיית PL."
+
+msgid ""
+"<big><b>Suns voc simulation editor</b></big><br> Use this window to select the step size and "
+"parameters of the JV simulations."
+msgstr ""
+"<big><b>עורך סימולציית Suns voc</b></big><br> השתמש בחלון זה כדי לבחור את גודל הצעד והפרמטרים של "
+"הדמיות JV."
+
+msgid ""
+"<big><b>Suns Jsc simulation editor</b></big><br> Use this window to select the step size and "
+"parameters of the JV simulations."
+msgstr ""
+"<big><b>עורך סימולציית Suns Jsc</b></big><br> השתמש בחלון זה כדי לבחור את גודל הצעד והפרמטרים של "
+"הדמיות JV."
+
+msgid ""
+"<big><b>Charge Extraction editor</b></big><br> This performs charge extraction experiments in time "
+"domain, accounting for recombination losses.  If you don’t mind about accounting for recombination "
+"losses on extraction just run a JV curve or a Suns-Voc simulation and use the charge.dat file."
+msgstr ""
+"<big><b>עורך חילוץ חיובים</b></big><br> זה מבצע ניסויים של חילוץ חיובים בתחום הזמן, תוך מתן "
+"חשבונות להפסדי שילוב מחדש. אם לא אכפת לך לקחת בחשבון הפסדי רקומבינציה בחילוץ פשוט הפעל עקומת JV או "
+"הדמיית Suns-Voc והשתמש בקובץ charge.dat."
+
+msgid ""
+"<big><b>Costs window</b></big>\n"
+"Use this window to calculate the cost of the solar cell and the energy payback time."
+msgstr ""
+"<big><b>חלון עלויות</b></big>\n"
+"השתמש בחלון זה כדי לחשב את עלות התא הסולארי ואת זמן החזר האנרגיה."
+
+msgid "<big><b>JV simulation editor</b></big><br> Use this window to configure JV simulations."
+msgstr "<big><b>עורך סימולציות JV</b></big><br> השתמש בחלון זה כדי להגדיר סימולציות של JV."
+
+msgid ""
+"<big><b>Polynomial editor</b></big><br> Use this window to generate random date sets for resting "
+"the fitting model."
+msgstr ""
+"<big><b>עורך פולינומי</b></big><br> השתמש בחלון זה כדי ליצור ערכות תאריכים אקראיות להנחת המודל "
+"המתאים."
+
+msgid ""
+"<big><b>Exciton simulation editor</b></big><br> Use this window to configure exciton simulations."
+msgstr "<big><b>עורך סימולציית אקסיטון</b></big><br> השתמש בחלון זה כדי להגדיר סימולציות של אקסיטון."
+
+msgid ""
+"<big><b>Simulation hardware</b></big><br>Use this window to change how the model uses the "
+"computer's hardware."
+msgstr ""
+"<big><b>חומרת סימולציה</b></big><br>השתמש בחלון זה כדי לשנות את האופן שבו הדגם משתמש בחומרת המחשב."
+
+msgid "Output files"
+msgstr "קבצי פלט"
+
+msgid "Banned files and tokens"
+msgstr "קבצים ואסימונים אסורים"
+
+msgid "Probes"
+msgstr "בדיקות"
+
+msgid "File name"
+msgstr "שם קובץ"
+
+msgid "Probe"
+msgstr "בְּדִיקָה"
+
+msgid ""
+"<big><b>The scan window</b></big><br> Now using the drop down menu in the prameter to change "
+"'column', select the device parameter you wish to vary, an example may be dos0/Electron Mobility. "
+"Now enter the values you would like it to scan oveer in the  'Values', an example could be '1e-3 "
+"1e-4 1e-5 1e-6'.  And hit the double arrorw to run the simulation."
+msgstr ""
+"<big><b>חלון הסריקה</b></big><br> כעת השתמש בתפריט הנפתח ב-prameter כדי לשנות 'עמודה', בחר את "
+"פרמטר ההתקן שברצונך לשנות, דוגמה עשויה להיות dos0/ ניידות אלקטרונים. כעת הזן את הערכים שאתה רוצה "
+"שהוא יסרוק ב'ערכים', דוגמה יכולה להיות '1e-3 1e-4 1e-5 1e-6'. ולחץ על החץ הכפול כדי להפעיל את "
+"הסימולציה."
+
+msgid "Neural network editor"
+msgstr "עורך רשת עצבית"
+
+msgid "ML Input vector"
+msgstr "וקטור קלט ML"
+
+msgid "ML Output vector"
+msgstr "וקטור פלט ML"
+
+msgid "Optimizer"
+msgstr "מייעל"
+
+msgid "Scan - Configure Optimizer"
+msgstr "סריקה - הגדר את כלי האופטימיזציה"
+
+msgid "Solar Spectrum Generator"
+msgstr "מחולל ספקטרום שמש"
+
+msgid "Show energies"
+msgstr "הראה אנרגיות"
+
+msgid "Plot token values"
+msgstr "תכנן ערכי אסימון"
+
+msgid "Suns Jsc simulation editor"
+msgstr "עורך סימולציה של Suns Jsc"
+
+msgid "Disabled"
+msgstr "נָכֶה"
+
+msgid ""
+"Ray\n"
+"trace"
+msgstr ""
+"Ray\n"
+"מעקב"
+
+msgid ""
+"Perfect\n"
+"outcoupling"
+msgstr ""
+"צימוד\n"
+"מושלם"
+
+msgid "time mesh"
+msgstr "רשת זמן"
+
+msgid "Explore the simulation data structure"
+msgstr "חקור את מבנה נתוני הסימולציה"
+
+msgid "Interface editor"
+msgstr "עורך ממשק"
+
+msgid "Sim name"
+msgstr "שם סים"
+
+msgid "Vectors"
+msgstr "וקטורים"
+
+msgid "Cluster get data"
+msgstr "קבל נתונים באשכול"
+
+msgid "Copy src to cluster"
+msgstr "העתק src לאשכול"
+
+msgid "Make on cluster"
+msgstr "עשה על אשכול"
+
+msgid "Clean cluster"
+msgstr "אשכול נקי"
+
+msgid "Kill all cluster code"
+msgstr "הרוג את כל קוד האשכול"
+
+msgid "Sync"
+msgstr "סינכרון"
+
+msgid "Cluster"
+msgstr "אֶשׁכּוֹל"
+
+msgid "3D object viewer"
+msgstr "מציג אובייקטים תלת מימדיים"
+
+msgid "Machine learning"
+msgstr "למידת מכונה"
+
+msgid ""
+"Build\n"
+"vectors"
+msgstr ""
+"בנה\n"
+"וקטורים"
+
+msgid ""
+"Norm\n"
+"vectors"
+msgstr ""
+"נורמה\n"
+"וקטורים"
+
+msgid ""
+"Run\n"
+"Generator"
+msgstr ""
+"הפעל\n"
+"מחולל"
+
+msgid "Clean files"
+msgstr "תיקיות נקיות"
+
+msgid "Generator"
+msgstr "גֵנֵרָטוֹר"
+
+msgid "Clone"
+msgstr "שיבוט"
+
+msgid "Building simulations: "
+msgstr "סימולציות בנייה:"
+
+msgid "Building vectors: "
+msgstr "בניית וקטורים:"
+
+msgid "The directory does not exist: "
+msgstr "הספרייה לא קיימת:"
+
+msgid "Loading"
+msgstr "טוען"
+
+msgid "Rename:"
+msgstr "שנה שם:"
+
+msgid "Clone:"
+msgstr "שיבוט:"
+
+msgid "Are you sure you want to delete : "
+msgstr "אתה בטוח שאתה רוצה למחוק :"
+
+msgid "Make a new:"
+msgstr "צור חדש:"
+
+msgid "Delete file"
+msgstr "מחק קובץ"
+
+msgid "Clone object"
+msgstr "שיבוט אובייקט"
+
+msgid "New shape name:"
+msgstr "שם צורה חדשה:"
+
+msgid "I cant write to:"
+msgstr "אני לא יכול לכתוב ל:"
+
+msgid ""
+"This means either the disk is full or your system administrator has not given you write "
+"permissions to that location."
+msgstr "המשמעות היא שהדיסק מלא או שמנהל המערכת שלך לא נתן לך הרשאות כתיבה למיקום זה."
+
+msgid "Merge shapes to new"
+msgstr "מיזוג צורות לחדשות"
+
+msgid "name"
+msgstr "שֵׁם"
+
+msgid "path"
+msgstr "נָתִיב"
+
+msgid "ip"
+msgstr "ip"
+
+msgid "start"
+msgstr "הַתחָלָה"
+
+msgid "stop"
+msgstr "תפסיק"
+
+msgid "CPUs"
+msgstr "מעבדים"
+
+msgid "status"
+msgstr "סטָטוּס"
+
+msgid "Adding: "
+msgstr "מוֹסִיף:"
+
+msgid "No sim dir name"
+msgstr "אין שם dir SIM"
+
+msgid ""
+"I can't load flat_list.inp.  This usually means there is a problem with how you have set up your "
+"scan."
+msgstr "אני לא יכול לטעון flat_list.inp. זה בדרך כלל אומר שיש בעיה עם אופן הגדרת הסריקה שלך."
+
+msgid "Problem loading file."
+msgstr "בעיה בטעינת הקובץ."
+
+msgid "Problem generating tree."
+msgstr "בעיה ביצירת עץ."
+
+msgid "Lambda stop"
+msgstr "עצירת למדה"
+
+msgid "File containing generation rate"
+msgstr "קובץ המכיל קצב יצירה"
+
+msgid "Photon efficiency"
+msgstr "יעילות פוטון"
+
+msgid "QE spectra file"
+msgstr "קובץ ספקטרה QE"
+
+msgid "Incoherent wavelengths"
+msgstr "אורכי גל לא קוהרנטיים"
+
+msgid "Mesh layers must equal device layers"
+msgstr "שכבות רשת חייבות להיות שוות לשכבות המכשיר"
+
+msgid "Light spectrum"
+msgstr "ספקטרום אור"
+
+msgid "Light multiplyer"
+msgstr "מכפיל אור"
+
+msgid "Photo current density"
+msgstr "צפיפות זרם תמונה"
+
+msgid "Photo current"
+msgstr "תמונה עדכנית"
+
+msgid "Invert"
+msgstr "לַהֲפוֹך"
+
+msgid "Optical filter material"
+msgstr "חומר מסנן אופטי"
+
+msgid "dB"
+msgstr "dB"
+
+msgid "Degrees"
+msgstr "מעלות"
+
+msgid "n"
+msgstr "נ"
+
+msgid "Illuminate from"
+msgstr "להאיר מ"
+
+msgid "Top (y0)"
+msgstr "למעלה (y0)"
+
+msgid "Bottom (y1)"
+msgstr "תחתון (y1)"
+
+msgid "Left (x0)"
+msgstr "שמאל (x0)"
+
+msgid "Right (x1)"
+msgstr "ימין (x1)"
+
+msgid "Front (z0)"
+msgstr "קדמי (z0)"
+
+msgid "Back (z1)"
+msgstr "אחורה (z1)"
+
+msgid "xyz"
+msgstr "xyz"
+
+msgid "Log fit"
+msgstr "התאמת יומן"
+
+msgid "Opperation"
+msgstr "מבצע"
+
+msgid "Enable vector"
+msgstr "אפשר וקטור"
+
+msgid "Edit patch"
+msgstr "ערוך תיקון"
+
+msgid "Edit vectors"
+msgstr "ערוך וקטורים"
+
+msgid "Number of archives"
+msgstr "מספר ארכיונים"
+
+msgid "Simulations per archive"
+msgstr "סימולציות לכל ארכיון"
+
+msgid "Random distribution"
+msgstr "הפצה אקראית"
+
+msgid "Log"
+msgstr "עֵץ"
+
+msgid "Linear"
+msgstr "ליניארי"
+
+msgid "Archive path"
+msgstr "נתיב ארכיון"
+
+msgid "Vector file name"
+msgstr "שם קובץ וקטור"
+
+msgid "Crash time"
+msgstr "זמן התרסקות"
+
+msgid "Build vectors when done"
+msgstr "בנה וקטורים בסיום"
+
+msgid "ML Output Vector"
+msgstr "וקטור פלט ML"
+
+msgid "ML Input Vector"
+msgstr "וקטור קלט ML"
+
+msgid "file"
+msgstr "קוֹבֶץ"
+
+msgid "Experimental file"
+msgstr "קובץ ניסיוני"
+
+msgid "multiplier"
+msgstr "מַכפִּיל"
+
+msgid "Multiplier"
+msgstr "מַכפִּיל"
+
+msgid "json_src"
+msgstr "json_src"
+
+msgid "json_dest"
+msgstr "json_dest"
+
+msgid "Laser wavelength"
+msgstr "אורך גל לייזר"
+
+msgid "Length of pulse"
+msgstr "אורך הדופק"
+
+msgid "Spot size x"
+msgstr "גודל כתם x"
+
+msgid "Spot size y"
+msgstr "גודל ספוט y"
+
+msgid "Energy in pulse"
+msgstr "אנרגיה בדופק"
+
+msgid "Efficiency of photons"
+msgstr "יעילות פוטונים"
+
+msgid "Solve optical problem"
+msgstr "לפתור בעיה אופטית"
+
+msgid "Yes - n/k"
+msgstr "כן - לא"
+
+msgid "Yes - k"
+msgstr "כן - ק"
+
+msgid "No"
+msgstr "לא"
+
+msgid "Yes"
+msgstr "כן"
+
+msgid "contact"
+msgstr "איש קשר"
+
+msgid "active layer"
+msgstr "שכבה פעילה"
+
+msgid "other"
+msgstr "אַחֵר"
+
+msgid "Optical thickness"
+msgstr "עובי אופטי"
+
+msgid "Free carrier statistics"
+msgstr "סטטיסטיקות של ספקים בחינם"
+
+msgid "Maxwell Boltzmann - analytic"
+msgstr "מקסוול בולצמן - אנליטי"
+
+msgid "Maxwell Boltzmann - numerical+analytic"
+msgstr "מקסוול בולצמן - מספרי+אנליטי"
+
+msgid "Maxwell Boltzmann - full numerical"
+msgstr "מקסוול בולצמן - מספרי מלא"
+
+msgid "Ferm-Dirac - numerical"
+msgstr "פרם-דיראק - מספרי"
+
+msgid "<b>Free carriers</b>"
+msgstr "<b>ספקים בחינם</b>"
+
+msgid "Effective density of free electron states (@300K)"
+msgstr "צפיפות אפקטיבית של מצבי אלקטרונים חופשיים (@300K)"
+
+msgid "Effective density of free hole states (@300K)"
+msgstr "צפיפות אפקטיבית של מצבי חורים חופשיים (@300K)"
+
+msgid "Enable T dependent free carrier mob"
+msgstr "אפשר אספסוף של ספק חינמי תלוי T"
+
+msgid "Enable \\u03BB power in free to free recombination"
+msgstr "הפעל כוח \\u03BB בשילוב מחדש בחינם לחופשי"
+
+msgid "Show excited singlet states"
+msgstr "הצג מצבי סינגל נרגשים"
+
+msgid "<b>Equilibrium SRH traps</b>"
+msgstr "<b>מלכודות SRH בשיווי משקל</b>"
+
+#, python-brace-format
+msgid "n_{1}"
+msgstr "n_{1}"
+
+#, python-brace-format
+msgid "p_{1}"
+msgstr "p_{1}"
+
+#, python-brace-format
+msgid "tau_{n}"
+msgstr "tau_{n}"
+
+#, python-brace-format
+msgid "tau_{p}"
+msgstr "tau_{p}"
+
+msgid "<b>Non-equilibrium SRH traps</b>"
+msgstr "<b>מלכודות SRH שאינן בשיווי משקל</b>"
+
+msgid "Number of traps"
+msgstr "מספר מלכודות"
+
+msgid "DoS distribution"
+msgstr "הפצת DoS"
+
+msgid "Complex"
+msgstr "מורכב"
+
+msgid "Exponential"
+msgstr "אקספוננציאלי"
+
+msgid "Electron trap density"
+msgstr "צפיפות מלכודת אלקטרונים"
+
+msgid "Hole trap density"
+msgstr "צפיפות מלכודת חורים"
+
+msgid "Electron tail slope"
+msgstr "שיפוע זנב אלקטרוני"
+
+msgid "Hole tail slope"
+msgstr "שיפוע זנב חור"
+
+msgid "Free electron to Trapped electron"
+msgstr "אלקטרון חופשי לאקטרון לכוד"
+
+msgid "Trapped electron to Free hole"
+msgstr "אלקטרון לכוד לחור חופשי"
+
+msgid "Trapped hole to Free electron"
+msgstr "חור כלוא לאקטרון החופשי"
+
+msgid "Free hole to Trapped hole"
+msgstr "חור חופשי לחור לכוד"
+
+msgid "Enable/Disable"
+msgstr "הפעל/השבת"
+
+msgid "<b>Excitons</b>"
+msgstr "<b>אקסיטונים</b>"
+
+msgid "Scattering length"
+msgstr "אורך פיזור"
+
+msgid "Life time"
+msgstr "לכל החיים"
+
+#, python-brace-format
+msgid "k_{pl}"
+msgstr "k_{pl}"
+
+#, python-brace-format
+msgid "k_{fret}"
+msgstr ""
+
+#, python-brace-format
+msgid "k_{alpha}"
+msgstr ""
+
+#, python-brace-format
+msgid "k_{dis}"
+msgstr "k_{dis}"
+
+msgid "Max itterations"
+msgstr "מקסימום איטרציות"
+
+msgid "Convergence error"
+msgstr "שגיאת התכנסות"
+
+#, python-brace-format
+msgid "Boundary condition for y_{min}"
+msgstr "תנאי גבול עבור y_{min}"
+
+msgid "Dirichlet"
+msgstr "דיריכלה"
+
+msgid "ABC"
+msgstr "א ב ג"
+
+msgid "Periodic"
+msgstr "תְקוּפָתִי"
+
+#, python-brace-format
+msgid "Boundary condition for y_{max}"
+msgstr "תנאי גבול עבור y_{max}"
+
+#, python-brace-format
+msgid "Boundary condition for x_{min}"
+msgstr "תנאי גבול עבור x_{min}"
+
+#, python-brace-format
+msgid "Boundary condition for x_{max}"
+msgstr "תנאי גבול עבור x_{max}"
+
+#, python-brace-format
+msgid "Boundary condition for z_{min}"
+msgstr "תנאי גבול עבור z_{min}"
+
+#, python-brace-format
+msgid "Boundary condition for z_{max}"
+msgstr "תנאי גבול עבור z_{max}"
+
+msgid "Neumann (==0)"
+msgstr "נוימן (==0)"
+
+msgid "Heatsink"
+msgstr "מפזר חום"
+
+#, python-brace-format
+msgid "Exciton density at y_{min}"
+msgstr "צפיפות אקסיטונים ב-y_{min}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{min}"
+msgstr "מוליכות של גוף קירור y_{min}"
+
+#, python-brace-format
+msgid "Heat sink length y_{min}"
+msgstr "אורך גוף קירור y_{min}"
+
+#, python-brace-format
+msgid "Exciton density at y_{max}"
+msgstr "צפיפות אקסיטונים ב-y_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink y_{max}"
+msgstr "מוליכות של גוף קירור y_{max}"
+
+#, python-brace-format
+msgid "Heat sink length y_{max}"
+msgstr "אורך גוף קירור y_{max}"
+
+#, python-brace-format
+msgid "Exciton density at x_{min}"
+msgstr "צפיפות אקסיטונים ב-x_{min}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{min}"
+msgstr "מוליכות של גוף קירור x_{min}"
+
+#, python-brace-format
+msgid "Heat sink length x_{min}"
+msgstr "אורך גוף קירור x_{min}"
+
+#, python-brace-format
+msgid "Exciton density at x_{max}"
+msgstr "צפיפות אקסיטונים ב-x_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink x_{max}"
+msgstr "מוליכות של גוף קירור x_{max}"
+
+#, python-brace-format
+msgid "Heat sink length x_{max}"
+msgstr "אורך גוף קירור x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{min}"
+msgstr "טמפרטורת המכשיר ב-z_{min}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{min}"
+msgstr "מוליכות של גוף קירור z_{min}"
+
+#, python-brace-format
+msgid "Heat sink length z_{min}"
+msgstr "אורך גוף קירור z_{min}"
+
+#, python-brace-format
+msgid "Exciton density at z_{max}"
+msgstr "צפיפות אקסיטונים ב-z_{max}"
+
+#, python-brace-format
+msgid "Conductivity of heat sink z_{max}"
+msgstr "מוליכות של גוף קירור z_{max}"
+
+#, python-brace-format
+msgid "Heat sink length z_{max}"
+msgstr "אורך גוף קירור z_{max}"
+
+msgid "<b>Auger recombination</b>"
+msgstr "<b>שילוב מחדש של גלגלת</b>"
+
+#, python-brace-format
+msgid "Auger C_{n}"
+msgstr "אוגר C_{n}"
+
+#, python-brace-format
+msgid "Auger C_{p}"
+msgstr "אוגר C_{p}"
+
+msgid "Start temperature"
+msgstr "טמפרטורת התחלה"
+
+msgid "Stop temperature"
+msgstr "עצור טמפרטורה"
+
+msgid "Temperature steps"
+msgstr "שלבי טמפרטורה"
+
+msgid "Perovskite ion density"
+msgstr "צפיפות יוני פרוסקיט"
+
+msgid "Doping density (x=0)"
+msgstr "צפיפות סימום (x=0)"
+
+msgid "Doping density (x=max)"
+msgstr "צפיפות סימום (x=מקסימום)"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} Recombination rate constant"
+msgstr "n_{free} to p_{free} קבוע קצב ריקומבינציה"
+
+msgid "<b>Electrostatics</b>"
+msgstr "<b>אלקטרוסטטיקה</b>"
+
+msgid "Eg"
+msgstr "לְמָשָׁל"
+
+msgid "Xi"
+msgstr "שי"
+
+msgid "<b>Excited states</b>"
+msgstr "<b>מצבים נרגשים</b>"
+
+msgid "Forster transfer rate"
+msgstr "קצב העברה של פורסטר"
+
+msgid "Host singlet-exciton decay rate"
+msgstr "קצב ריקבון מארח סינגל-אקסיטון"
+
+msgid "Host inter-system crossing rate"
+msgstr "קצב מעבר בין מערכות מארח"
+
+msgid "Host singlet-singlet annihilation (SSA) rate"
+msgstr "קצב השמדת יחיד-יחיד מארח (SSA)."
+
+msgid "Host singlet-polaron annihilation (SPA) rate"
+msgstr "שיעור השמדת יחיד-פולרון מארח (SPA)."
+
+msgid "Host singlet-triplet annihilation (STA) rate"
+msgstr "שיעור השמדת יחיד-טריפלט מארח (STA)."
+
+msgid "Dexter transfer rate"
+msgstr "קצב העברה של דקסטר"
+
+msgid "Host triplet decay rate"
+msgstr "קצב ריקבון של שלישיית מארח"
+
+msgid "Host triplet-polaron annihilation (TPA) rate"
+msgstr "קצב השמדת טריפלט-פולרון מארח (TPA)."
+
+msgid "Host triplet-triplet annihilation (TTA) rate"
+msgstr "שיעור השמדת שלישיה-שלישיה מארח (TTA)."
+
+msgid "Dopant singlet-exciton decay rate"
+msgstr "קצב דעיכה של סינגל-אקסיטון דופנט"
+
+msgid "Dopant inter-system crossing rate"
+msgstr "קצב מעבר בין-מערכתי דופנט"
+
+msgid "Dopant singlet-polaron annihilation (SPA) rate"
+msgstr "שיעור השמדת סינגל-פולרון (SPA)."
+
+msgid "Dopant singlet-triplet annihilation (STA) rate"
+msgstr "שיעור השמדה של סינגל-טריפלט (STA)."
+
+msgid "Dopant singlet-singlet annihilation (SSA) rate"
+msgstr "שיעור השמדת סינגל-יחיד (SSA)."
+
+msgid "Dopant triplet decay rate"
+msgstr "קצב ריקבון של שלישיה דופנט"
+
+msgid "Dopant triplet-triplet annihilation (TTA) rate"
+msgstr "שיעור השמדת טריפלט-שלישיה (TTA) Dopant"
+
+msgid "Dopant triplet-polaron annihilation (TPA) rate"
+msgstr "שיעור השמדת טריפלט-פולרון (TPA)."
+
+msgid "Confinement factor"
+msgstr "גורם כליאה"
+
+msgid "Dopant concentration"
+msgstr "ריכוז סמים"
+
+msgid "Spectral overlap"
+msgstr "חפיפה ספקטרלית"
+
+#, python-brace-format
+msgid "k_{RISC} Reverse Inter-System crossing rate"
+msgstr "k_{RISC} קצב מעבר בין-מערכת הפוך"
+
+#, python-brace-format
+msgid "\\u03C3_{em} Stimulated Emission cross section"
+msgstr "\\u03C3_{em} חתך פליטה מעוררת"
+
+#, python-brace-format
+msgid "\\u03C3_{t1tn} Triplet Absorption cross section"
+msgstr "\\u03C3_{t1tn} חתך ספיגה של טריפלט"
+
+msgid "\\u03C3_{n,p} Polaron Absorption cross section"
+msgstr "\\u03C3_{n,p} חתך רוחב קליטת פולארון"
+
+msgid "e-h separation distance"
+msgstr "מרחק הפרדה e-h"
+
+msgid "<b>Photon rate equation</b>"
+msgstr "<b>משוואת שיעור צילום</b>"
+
+msgid "Spontaneous emission factor"
+msgstr "גורם פליטה ספונטני"
+
+msgid "Cavity photon decay rate"
+msgstr "קצב ריקבון פוטון חלל"
+
+msgid "Density of guest molecules"
+msgstr "צפיפות מולקולות אורחים"
+
+msgid "\\u03BE Stimulated emission gain coefficient"
+msgstr "\\u03BE מקדם רווח פליטה מעורר"
+
+msgid "<b>Excited states for OPV</b>"
+msgstr "<b>מצבים נרגשים עבור OPV</b>"
+
+#, python-brace-format
+msgid "Decay of singlets to 1C (k_{ds})"
+msgstr "דעיכה של סינגלטים ל-1C (k_{ds})"
+
+#, python-brace-format
+msgid "Inter system crossing (k_{isc})"
+msgstr "מעבר בין מערכת (k_{isc})"
+
+#, python-brace-format
+msgid "Reverse inter system crossing (k_{risc})"
+msgstr "מעבר בין מערכת לאחור (k_{risc})"
+
+#, python-brace-format
+msgid "Triplet-triplet annihilation (k_{tta})"
+msgstr "השמדת שלישיה-שלישית (k_{tta})"
+
+#, python-brace-format
+msgid "Singlet-triplet annihilation (k_{sta})"
+msgstr "השמדת סינגל-טריפלט (k_{sta})"
+
+#, python-brace-format
+msgid "Singlet-singlet annihilation (k_{ssa})"
+msgstr "השמדת סינגל-סינגלט (k_{ssa})"
+
+msgid "Alpha fraction (alpha)"
+msgstr "שבר אלפא (אלפא)"
+
+#, python-brace-format
+msgid "Singlet to ground state (k_{fs})"
+msgstr "מצב שלט לקרקע (k_{fs})"
+
+#, python-brace-format
+msgid "Decay of triplets (k_{dt})"
+msgstr "דעיכה של שלישיות (k_{dt})"
+
+#, python-brace-format
+msgid "Triplet to ground state (k_{ft})"
+msgstr "טריפלט למצב קרקע (k_{ft})"
+
+#, python-brace-format
+msgid "Decay of 3C to np (k_{dct})"
+msgstr "דעיכה של 3C ל-np (k_{dct})"
+
+msgid "Inter system crossing CT (k_{isc ct})"
+msgstr "מעבר מערכת CT (k_{isc ct})"
+
+msgid "Reverse inter system crossing CT (k_{risc ct})"
+msgstr "מעבר בין מערכת הפוכה CT (k_{risc ct})"
+
+#, python-brace-format
+msgid "3C and 1C to ground state (k_{f})"
+msgstr "3C ו-1C למצב קרקע (k_{f})"
+
+msgid "Blended material"
+msgstr "חומר מעורבב"
+
+#, python-brace-format
+msgid "Eg_{0}"
+msgstr "למשל_{0}"
+
+#, python-brace-format
+msgid "Xi_{0}"
+msgstr "שי_{0}"
+
+#, python-brace-format
+msgid "Eg_{1}"
+msgstr "למשל_{1}"
+
+#, python-brace-format
+msgid "Xi_{1}"
+msgstr "שי_{1}"
+
+msgid "Thermal conductivity"
+msgstr "מוליכות תרמית"
+
+msgid "Electron relaxation time"
+msgstr "זמן הרפיה של אלקטרונים"
+
+msgid "Hole relaxation time"
+msgstr "זמן הרפיה של חור"
+
+msgid "Density"
+msgstr "צְפִיפוּת"
+
+msgid "Cost per Kg"
+msgstr ""
+
+msgid "Energy per Kg"
+msgstr ""
+
+msgid "Link"
+msgstr "קישור"
+
+msgid "Shunt resistivity"
+msgstr "התנגדות שאנט"
+
+msgid "Series resistivity"
+msgstr "התנגדות סדרה"
+
+msgid "Series resistivity z"
+msgstr "התנגדות סדרה z"
+
+msgid "Series resistivity x"
+msgstr "התנגדות סדרה x"
+
+msgid "Series resistivity y"
+msgstr "התנגדות סדרה y"
+
+msgid "Layer ideality factor"
+msgstr "גורם אידיאליות השכבה"
+
+msgid "Reverse bias current"
+msgstr "זרם הטיה הפוכה"
+
+msgid ""
+"Enable optical charge\n"
+"carrier generation"
+msgstr ""
+"אפשר יצירת טעינה אופטית\n"
+"ספק"
+
+msgid "Scan section"
+msgstr "סעיף סריקה"
+
+msgid "Whole device"
+msgstr "מכשיר שלם"
+
+msgid "Box section"
+msgstr "קטע קופסה"
+
+msgid "x-Scan"
+msgstr "x-Scan"
+
+msgid "x-start"
+msgstr "x-start"
+
+msgid "z-start"
+msgstr "z-start"
+
+msgid "x-stop"
+msgstr "x-stop"
+
+msgid "z-stop"
+msgstr "z-stop"
+
+msgid "Dump only at end"
+msgstr "לזרוק רק בסוף"
+
+msgid "Shape type"
+msgstr "סוג צורה"
+
+msgid "Rotate around y-axis"
+msgstr "סובב סביב ציר ה-y"
+
+msgid "y-axis"
+msgstr "ציר y"
+
+msgid "x-axis"
+msgstr "ציר x"
+
+msgid "Rotate around x-axis"
+msgstr "סובב סביב ציר x"
+
+msgid "dx of the object"
+msgstr "dx של האובייקט"
+
+msgid "dy of the object"
+msgstr "dy של האובייקט"
+
+msgid "dz of the object"
+msgstr "dz של האובייקט"
+
+msgid "dx padding"
+msgstr "ריפוד dx"
+
+msgid "padding"
+msgstr "ריפוד"
+
+msgid "dy padding"
+msgstr "די ריפוד"
+
+msgid "dz padding"
+msgstr "ריפוד dz"
+
+msgid "Number of objects x"
+msgstr "מספר עצמים x"
+
+msgid "Number of objects"
+msgstr "מספר חפצים"
+
+msgid "Number of objects y"
+msgstr "מספר חפצים y"
+
+msgid "Number of objects z"
+msgstr "מספר אובייקטים z"
+
+msgid "<b>Object</b>"
+msgstr "<b>אובייקט</b>"
+
+msgid "<b>Attributes</b>"
+msgstr "<b>מאפיינים</b>"
+
+msgid "x offset"
+msgstr "x היסט"
+
+msgid "Offset"
+msgstr "לְקַזֵז"
+
+msgid "y offset"
+msgstr "y offset"
+
+msgid "z offset"
+msgstr "z offset"
+
+msgid "Web page link"
+msgstr "קישור לדף אינטרנט"
+
+msgid "Text label"
+msgstr "תווית טקסט"
+
+msgid "Texture"
+msgstr "מרקם"
+
+msgid ""
+"Circuit model\n"
+"parameters"
+msgstr ""
+"דגם מעגל\n"
+"פרמטרים"
+
+msgid "Color"
+msgstr "צֶבַע"
+
+msgid "Interface model"
+msgstr "דגם ממשק"
+
+msgid "None"
+msgstr "אף אחד"
+
+msgid "Free-to-Free"
+msgstr "חינם לחופשי"
+
+msgid "Free-to-trap (SRH)"
+msgstr "חופשי למלכודת (SRH)"
+
+msgid "Recombination constant"
+msgstr "קבוע רקומבינציה"
+
+msgid "Interface doping LHS"
+msgstr "סימום ממשק LHS"
+
+msgid "Doping LHS"
+msgstr "סימום LHS"
+
+msgid "Electron tunneling"
+msgstr "מנהור אלקטרונים"
+
+msgid "Electron tunneling (T)"
+msgstr "מנהור אלקטרונים (T)"
+
+msgid "Hole tunneling"
+msgstr "מנהור חורים"
+
+msgid "Hole tunneling (T)"
+msgstr "מנהור חורים (T)"
+
+msgid "Interface doping RHS"
+msgstr "סימום ממשק RHS"
+
+msgid "Doping RHS"
+msgstr "סימום RHS"
+
+msgid "startime"
+msgstr "זמן התחלה"
+
+msgid "ea_factor"
+msgstr "ea_factor"
+
+msgid "Np"
+msgstr "Np"
+
+msgid "den"
+msgstr "גוֹב"
+
+msgid "externalv"
+msgstr "externv"
+
+msgid "dt_neg_time"
+msgstr "dt_neg_time"
+
+msgid "dt_mull"
+msgstr "dt_mull"
+
+msgid "stark"
+msgstr "מוּחלָט"
+
+msgid "lasereff"
+msgstr "lasereff"
+
+msgid "sim_contacts"
+msgstr "sim_contacts"
+
+msgid "Website"
+msgstr "אתר אינטרנט"
+
+msgid "Author"
+msgstr "מְחַבֵּר"
+
+msgid "Journal"
+msgstr "כתב עת"
+
+msgid "Title"
+msgstr "כותרת"
+
+msgid "Volume"
+msgstr "כרך"
+
+msgid "Pages"
+msgstr "דפים"
+
+msgid "Year"
+msgstr "שָׁנָה"
+
+msgid "DOI"
+msgstr "DOI"
+
+msgid "Book title"
+msgstr "כותרת הספר"
+
+msgid "Publisher"
+msgstr "מוֹצִיא לָאוֹר"
+
+msgid "ISBN"
+msgstr "ISBN"
+
+msgid "Scraped text"
+msgstr "טקסט מגורד"
+
+#, python-brace-format
+msgid "R_{short}"
+msgstr ""
+
+#, python-brace-format
+msgid "V_{bias}"
+msgstr ""
+
+msgid "Efficiency of light"
+msgstr "יעילות האור"
+
+msgid "subtract DC"
+msgstr "לחסר DC"
+
+msgid "External load resistor"
+msgstr "נגד עומס חיצוני"
+
+msgid "Material type"
+msgstr "סוג החומר"
+
+msgid "Organic"
+msgstr "אורגני"
+
+msgid "Oxide"
+msgstr "תַחמוֹצֶת"
+
+msgid "Inorganic"
+msgstr "דוֹמֵם"
+
+msgid "Metal"
+msgstr "מַתֶכֶת"
+
+msgid "Other"
+msgstr "אַחֵר"
+
+msgid "Transparency"
+msgstr "שְׁקִיפוּת"
+
+msgid "Privicy options"
+msgstr "אפשרויות פרטיות"
+
+msgid "Public - everyone"
+msgstr "ציבורי - כולם"
+
+msgid "Public - within org"
+msgstr "ציבורי - בתוך הארגון"
+
+msgid "Private - never publish"
+msgstr "פרטי - לעולם אל תפרסם"
+
+msgid "Change log"
+msgstr "יומן שינוי"
+
+msgid ""
+"Use external\n"
+"voltage as stop"
+msgstr ""
+"השתמש\n"
+"במתח חיצוני כעצירה"
+
+msgid "<b>Output</b>"
+msgstr "<b>פלט</b>"
+
+msgid "Dump trap distribution"
+msgstr "הפצת מלכודות מזבלה"
+
+msgid "False"
+msgstr "שֶׁקֶר"
+
+msgid "Energy space map"
+msgstr "מפת חלל אנרגיה"
+
+msgid "Single mesh point"
+msgstr "נקודת רשת אחת"
+
+#, python-brace-format
+msgid "V_{oc}"
+msgstr "V_{oc}"
+
+#, python-brace-format
+msgid "V_{bi}"
+msgstr "V_{bi}"
+
+msgid "Power conversion efficiency (PCE)"
+msgstr "יעילות המרת הספק (PCE)"
+
+msgid "Fill factor"
+msgstr "גורם מילוי"
+
+msgid "Max power"
+msgstr "כוח מקסימלי"
+
+msgid "Voltage at max power"
+msgstr "מתח בהספק מקסימלי"
+
+msgid "Current density at max power"
+msgstr "צפיפות זרם בהספק מרבי"
+
+msgid "Current density at Voc"
+msgstr "צפיפות זרם ב-Voc"
+
+#, python-brace-format
+msgid "J_{sc}"
+msgstr "J_{sc}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free P_{max}"
+msgstr "Theta_{SRH} - חינם P_{max}"
+
+#, python-brace-format
+msgid "Theta_{SRH} - free-trap P_{max}"
+msgstr "Theta_{SRH} - מלכודת חופשית P_{max}"
+
+msgid "Recombination time constant"
+msgstr "קבוע זמן ריקומבינציה"
+
+msgid "Device capacitance"
+msgstr "קיבול מכשיר"
+
+msgid "Photos absorbed in active layer"
+msgstr "תמונות שנספגו בשכבה פעילה"
+
+msgid "Peak height Rp"
+msgstr "שיא גובה Rp"
+
+msgid "RMS height Rq"
+msgstr "גובה RMS Rq"
+
+msgid "Average height Ra"
+msgstr "גובה ממוצע Ra"
+
+msgid "dV step"
+msgstr "שלב dV"
+
+msgid "Left hole density"
+msgstr "צפיפות החור השמאלי"
+
+msgid "Left electron density"
+msgstr "צפיפות האלקטרון השמאלי"
+
+msgid "Right hole density"
+msgstr "צפיפות חורים ימנית"
+
+msgid "Right electron density"
+msgstr "צפיפות אלקטרונים נכונה"
+
+msgid "Built in potential"
+msgstr "פוטנציאל מובנה"
+
+msgid "Electron affinity left"
+msgstr "נשארה זיקה אלקטרונית"
+
+msgid "Electron affinity right"
+msgstr "זיקה אלקטרונית זכות"
+
+msgid "<b>CPU</b>"
+msgstr "<b>מעבד</b>"
+
+msgid "Number of threads used by the backend"
+msgstr "מספר החוטים בשימוש הקצה האחורי"
+
+msgid "No threading"
+msgstr "אין שרשור"
+
+msgid "Maximum number of core instances"
+msgstr "מספר מרבי של מופעי ליבה"
+
+msgid "Path to source code"
+msgstr "נתיב לקוד המקור"
+
+msgid "Path to compiled libs for cluster"
+msgstr "נתיב ל-libs הידור עבור אשכול"
+
+msgid "Make command"
+msgstr "בצע פקודה"
+
+msgid "exe name"
+msgstr "שם exe"
+
+msgid "Store DoS on disk"
+msgstr "אחסן DoS בדיסק"
+
+msgid "Remote cluster directory"
+msgstr "ספריית אשכול מרוחק"
+
+msgid "Remote node list"
+msgstr "רשימת צמתים מרוחקים"
+
+msgid "IV"
+msgstr "IV"
+
+msgid "x-triangles"
+msgstr "משולשי x"
+
+msgid "y-triangles"
+msgstr "משולשי y"
+
+msgid "Method"
+msgstr "שיטה"
+
+msgid "Node reduce"
+msgstr "צמצום הצומת"
+
+msgid "No reduce"
+msgstr "לא להפחית"
+
+msgid "Min allowable angle"
+msgstr "זווית מינימלית מותרת"
+
+msgid "Gaussian blur"
+msgstr "טישטוש גאוסיאני"
+
+msgid "Percent of histogram to ignore"
+msgstr "אחוז ההיסטוגרמה שיש להתעלם ממנו"
+
+msgid "Sigma of gaussian"
+msgstr "סיגמה של גאוסיאנית"
+
+msgid "Gaussian offset x"
+msgstr "היסט גאוסי x"
+
+msgid "Gaussian offset y"
+msgstr "היסט גאוס י"
+
+msgid "Threshold value"
+msgstr "ערך סף"
+
+msgid "dr"
+msgstr ""
+
+msgid "dx"
+msgstr "dx"
+
+msgid "dy"
+msgstr "dy"
+
+msgid "offset"
+msgstr "לְקַזֵז"
+
+msgid "Lens type"
+msgstr "סוג עדשה"
+
+msgid "Convex"
+msgstr "קָמוּר"
+
+msgid "Concave"
+msgstr "קָעוּר"
+
+msgid "Lens size"
+msgstr "גודל עדשה"
+
+msgid "length"
+msgstr "אורך"
+
+msgid "Waveform"
+msgstr "צורת גל"
+
+msgid "Square"
+msgstr "כיכר"
+
+msgid "Saw wave"
+msgstr "ראה גל"
+
+msgid "pixels"
+msgstr "פיקסלים"
+
+msgid "Boundary x0"
+msgstr "גבול x0"
+
+msgid "Boundary x1"
+msgstr "גבול x1"
+
+msgid "Boundary y0"
+msgstr "גבול y0"
+
+msgid "Boundary y1"
+msgstr "גבול y1"
+
+msgid "<b>Fist iteration</b>"
+msgstr "<b>איטרציה אגרוף</b>"
+
+msgid "Max Electrical iterations (first step)"
+msgstr "מקסימום איטרציות חשמליות (שלב ראשון)"
+
+msgid "Electrical clamp (first step)"
+msgstr "מהדק חשמלי (שלב ראשון)"
+
+msgid "Desired solver error (first step)"
+msgstr "שגיאת פותר רצויה (שלב ראשון)"
+
+msgid "<b>Later iterations</b>"
+msgstr "<b>איטרציות מאוחרות יותר</b>"
+
+msgid "Max electrical iterations"
+msgstr "מקסימום איטרציות חשמליות"
+
+msgid "Electrical clamp"
+msgstr "מהדק חשמלי"
+
+msgid "Desired solver error"
+msgstr "שגיאת פותר רצויה"
+
+msgid "<b>Exit strategy</b>"
+msgstr "<b>יציאה מאסטרטגיה</b>"
+
+msgid "Newton minimum iterations"
+msgstr "איטרציות מינימום של ניוטון"
+
+msgid "<b>Solver type</b>"
+msgstr "<b>סוג פותר</b>"
+
+msgid "dll name"
+msgstr "שם dll"
+
+msgid "Complex matrix solver to use"
+msgstr "פותר מטריקס מורכב לשימוש"
+
+msgid "Quit on convergence problem"
+msgstr "עזוב על בעיית התכנסות"
+
+msgid "Quit on inverted Fermi-level"
+msgstr "צא ברמת פרמי הפוכה"
+
+msgid "Circuit diagram mode"
+msgstr "מצב דיאגרמת מעגל"
+
+msgid "Hand drawn"
+msgstr "מצוייר ביד"
+
+msgid "From layer structure"
+msgstr "ממבנה השכבה"
+
+msgid "From electrical mesh"
+msgstr "מרשת חשמלית"
+
+msgid "Poisson solver max iterations"
+msgstr "איטרציות מקסימליות של פותר Poisson"
+
+msgid "Poisson clamping"
+msgstr "הידוק פויסון"
+
+msgid "Enable poisson solver"
+msgstr "אפשר פותר רעלים"
+
+msgid "Output verbosity to disk"
+msgstr "פלט מילוליות לדיסק"
+
+msgid "Nothing"
+msgstr "שום דבר"
+
+msgid "Write everything to disk"
+msgstr "כתוב הכל לדיסק"
+
+msgid "Matrix solver"
+msgstr "פותר מטריקס"
+
+msgid "Newton solver to use"
+msgstr "פותר ניוטון לשימוש"
+
+msgid "Slotboom T0"
+msgstr "Slotboom T0"
+
+msgid "Slotboom D0"
+msgstr "Slotboom D0"
+
+msgid "Slotboom n0"
+msgstr "Slotboom n0"
+
+msgid "Calculate current at"
+msgstr "חשב זרם ב"
+
+msgid "Mid point"
+msgstr "נקודת אמצע"
+
+msgid "Solve Kirchhoff's current law in Newton solver"
+msgstr "פתור את החוק הנוכחי של קירכהוף בפותר ניוטון"
+
+msgid "filename"
+msgstr "שם קובץ"
+
+msgid "log x"
+msgstr "log x"
+
+msgid "log y"
+msgstr "log y"
+
+msgid "Keep sign for log y "
+msgstr "שמור סימן עבור log y"
+
+msgid "Point to normalize"
+msgstr "הצבע לנרמל"
+
+msgid "Fit against simulation"
+msgstr "התאמה נגד סימולציה"
+
+msgid "File or token banned"
+msgstr "קובץ או אסימון נאסרו"
+
+msgid "EQE Voltage"
+msgstr "מתח EKE"
+
+msgid "Optical power"
+msgstr "כוח אופטי"
+
+msgid "Single optical power"
+msgstr "כוח אופטי יחיד"
+
+msgid "Optical power start"
+msgstr "התחלת הפעלה אופטית"
+
+msgid "Optical power stop"
+msgstr "עצירת חשמל אופטית"
+
+msgid "Use electrical DoS at low energy"
+msgstr "השתמש ב-DoS חשמלי באנרגיה נמוכה"
+
+msgid "Max iterations "
+msgstr "מקסימום איטרציות"
+
+msgid "Stop error"
+msgstr "שגיאת עצור"
+
+msgid "Number of x eigenmodes"
+msgstr "מספר x מצבים עצמיים"
+
+msgid "Number of y eigenmodes"
+msgstr "מספר מצבים עצמיים y"
+
+msgid "TE/TM"
+msgstr "TE/TM"
+
+msgid "Transverse Electric (TE)"
+msgstr "חשמלי רוחבי (TE)"
+
+msgid "Transverse Magnetic (TM)"
+msgstr "רוחבי מגנטי (TM)"
+
+msgid "Find only fundamental"
+msgstr "מצא רק יסוד"
+
+msgid "Thermal model type"
+msgstr "סוג דגם תרמי"
+
+msgid "Hydrodynamic"
+msgstr "הידרודינמית"
+
+msgid "Lattice heat"
+msgstr "חום סריג"
+
+#, python-brace-format
+msgid "Device temperature at y_{min}"
+msgstr "טמפרטורת המכשיר ב-y_{min}"
+
+#, python-brace-format
+msgid "Device temperature at y_{max}"
+msgstr "טמפרטורת המכשיר ב-y_{max}"
+
+#, python-brace-format
+msgid "Device temperature at x_{min}"
+msgstr "טמפרטורת המכשיר ב-x_{min}"
+
+#, python-brace-format
+msgid "Device temperature at x_{max}"
+msgstr "טמפרטורת המכשיר ב-x_{max}"
+
+#, python-brace-format
+msgid "Device temperature at z_{max}"
+msgstr "טמפרטורת המכשיר ב-z_{max}"
+
+msgid "Lattice heat model"
+msgstr "דגם חום סריג"
+
+msgid "Electron heat model"
+msgstr "דגם חום אלקטרוני"
+
+msgid "Hole heat model"
+msgstr "דגם חום חור"
+
+msgid "Max thermal solver iterations"
+msgstr "מקסימום איטרציות של פותר תרמי"
+
+msgid "Desired thermal error"
+msgstr "שגיאה תרמית רצויה"
+
+msgid "Force use of thermal mesh"
+msgstr "שימוש בכוח ברשת תרמית"
+
+msgid "Minimum device temperature"
+msgstr "טמפרטורת מכשיר מינימלית"
+
+msgid "Maximum device temperature"
+msgstr "טמפרטורת מכשיר מקסימלית"
+
+msgid "Thermal mesh points"
+msgstr "נקודות רשת תרמיות"
+
+msgid "Interpolate"
+msgstr "אינטרפולציה"
+
+msgid "Constant"
+msgstr "קָבוּעַ"
+
+#, python-brace-format
+msgid "Boundary value for y_{min}"
+msgstr "ערך גבול עבור y_{min}"
+
+#, python-brace-format
+msgid "Boundary value for y_{max}"
+msgstr "ערך גבול עבור y_{max}"
+
+#, python-brace-format
+msgid "Boundary value for x_{min}"
+msgstr "ערך גבול עבור x_{min}"
+
+#, python-brace-format
+msgid "Boundary value for x_{max}"
+msgstr "ערך גבול עבור x_{max}"
+
+msgid "Couple to electrical solver"
+msgstr "זוג לפותר חשמל"
+
+msgid "Dump slices"
+msgstr "לזרוק פרוסות"
+
+msgid "Dump dynamic"
+msgstr "dump דינמיקה"
+
+msgid "Write out band structure"
+msgstr "כתוב את מבנה הלהקה"
+
+msgid "Write newton solver convergence to disk"
+msgstr "כתוב התכנסות של פותר ניוטון לדיסק"
+
+msgid "Print poisson solver convergence"
+msgstr "הדפס התכנסות של פותר רעלים"
+
+msgid "Normalize output x-time to one"
+msgstr "נרמל פלט x-time לאחד"
+
+msgid "Dump the built in voltage."
+msgstr "זרוק את המתח המובנה."
+
+msgid "Dump optical probe spectrum"
+msgstr "זרוק ספקטרום בדיקה אופטית"
+
+msgid "Write file access log to disk."
+msgstr "כתוב יומן גישה לקובץ לדיסק."
+
+msgid "Write headers to output files"
+msgstr "כתוב כותרות לקבצי פלט"
+
+msgid "Write first guess to equations"
+msgstr "כתוב ניחוש ראשון למשוואות"
+
+msgid "Log verbocity"
+msgstr "מילולית יומן"
+
+msgid "Screen"
+msgstr "מָסָך"
+
+msgid "Disk"
+msgstr "דִיסק"
+
+msgid "Screen and disk"
+msgstr "מסך ודיסק"
+
+msgid "PL dump Energy"
+msgstr "PL מזרוק אנרגיה"
+
+msgid "Clean up DoS cache files"
+msgstr "נקה קבצי מטמון DoS"
+
+msgid "Write binary data where possible"
+msgstr "כתוב נתונים בינאריים במידת האפשר"
+
+msgid "Probe enabled"
+msgstr "בדיקה מופעלת"
+
+msgid "Probe type"
+msgstr "סוג בדיקה"
+
+msgid "Device state"
+msgstr "מצב המכשיר"
+
+msgid "Voc"
+msgstr "ווק"
+
+msgid "Jsc"
+msgstr "Jsc"
+
+msgid "<b>Run control</b>"
+msgstr "<b>הפעל שליטה</b>"
+
+msgid "<b>Solver control</b>"
+msgstr "<b>בקרת פותר</b>"
+
+msgid "Dump absorption profile"
+msgstr "פרופיל ספיגת המזבלה"
+
+msgid "Run the ray tracer"
+msgstr "הפעל את מעקב הקרניים"
+
+msgid "When called"
+msgstr "כשמתקשרים"
+
+msgid "Once per simulation"
+msgstr "פעם אחת לכל סימולציה"
+
+msgid "Each simulation step"
+msgstr "כל שלב סימולציה"
+
+msgid "Every nth simulation step"
+msgstr "כל שלב סימולציה n"
+
+msgid "Each n steps"
+msgstr "כל n צעדים"
+
+msgid "Theta steps"
+msgstr "מדרגות תטא"
+
+msgid "Theta start"
+msgstr "התחל תטא"
+
+msgid "Theta stop"
+msgstr "תטא עצירה"
+
+msgid "Phi steps"
+msgstr "פי צעדים"
+
+msgid "Phi start"
+msgstr "התחלה פי"
+
+msgid "Phi stop"
+msgstr "פי סטופ"
+
+msgid "Escape bins"
+msgstr "פחי מילוט"
+
+msgid "Emit from"
+msgstr "פולט מ"
+
+msgid "Center of each layer"
+msgstr "מרכז כל שכבה"
+
+msgid "Each electrical mesh point"
+msgstr "כל נקודת רשת חשמלית"
+
+msgid "Center of y slice"
+msgstr "מרכז פרוסה Y"
+
+msgid "Super sample x"
+msgstr "סופר מדגם x"
+
+msgid "Super sample x points"
+msgstr "סופר מדגם x נקודות"
+
+msgid "<b>Ray tracing</b>"
+msgstr "<b>מעקב אחר קרניים</b>"
+
+msgid "Minimum ray intensity"
+msgstr "עוצמת קרן מינימלית"
+
+msgid "Maximum number of bounces"
+msgstr "מספר הקפצות מקסימלי"
+
+msgid "Simulate transmitted rays"
+msgstr "הדמיית קרניים משודרות"
+
+msgid "Simulate reflected rays"
+msgstr "הדמיית קרניים מוחזרות"
+
+msgid "Mesh points x"
+msgstr "נקודות רשת x"
+
+msgid "Mesh points z"
+msgstr "נקודות רשת z"
+
+msgid "<b>Detector</b>"
+msgstr "<b>גלאי</b>"
+
+msgid "LED extraction efficiency"
+msgstr "יעילות חילוץ LED"
+
+msgid "Series resistance"
+msgstr "התנגדות סדרה"
+
+msgid "Other layers"
+msgstr "שכבות אחרות"
+
+msgid "debug (ignore)"
+msgstr "ניפוי באגים (התעלם)"
+
+msgid "Contact charge density"
+msgstr "צפיפות מטען במגע"
+
+msgid "Contact position"
+msgstr "עמדת קשר"
+
+msgid "top"
+msgstr "חלק עליון"
+
+msgid "bottom"
+msgstr "תַחתִית"
+
+msgid "right"
+msgstr "ימין"
+
+msgid "left"
+msgstr "שמאלה"
+
+msgid "Charge type"
+msgstr "סוג טעינה"
+
+msgid "Electron"
+msgstr "אֶלֶקטרוֹן"
+
+msgid "Hole"
+msgstr "חור"
+
+msgid "Physical model"
+msgstr "מודל פיזי"
+
+msgid "Ohmic"
+msgstr "אוהמי"
+
+msgid "Schottky"
+msgstr "שוטקי"
+
+msgid "Automatic remesh x"
+msgstr "חידוש אוטומטי x"
+
+msgid "Automatic remesh y"
+msgstr "חידוש אוטומטי י"
+
+msgid "Automatic remesh z"
+msgstr "חידוש אוטומטי z"
+
+msgid "Left/Right"
+msgstr "שמאל/ימין"
+
+msgid "Mesh dy"
+msgstr "Mesh dy"
+
+#, python-brace-format
+msgid "n_{free} to p_{free} photon generation efficiency"
+msgstr "יעילות יצירת פוטונים של n_{free} עד p_{free}"
+
+#, python-brace-format
+msgid "n_{free} to n_{trap} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "n_{trap} to p_{free} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "p_{trap} to n_{free} photon generation efficiency"
+msgstr ""
+
+#, python-brace-format
+msgid "p_{free} to p_{trap} photon generation efficiency"
+msgstr ""
+
+msgid "Experimental emission spectra"
+msgstr "ספקטרום פליטה ניסיוני"
+
+msgid "Icon"
+msgstr "סמל"
+
+msgid "Experimental emission efficiency"
+msgstr "יעילות פליטת ניסוי"
+
+msgid "Use experimental emission spectra"
+msgstr "השתמש בספקטרום פליטה ניסיוני"
+
+msgid "Free-to-free emission"
+msgstr "פליטה חופשית ללא תשלום"
+
+msgid "Free-to-trap emission"
+msgstr "פליטה חופשית למלכודת"
+
+#, python-brace-format
+msgid "V_{external}"
+msgstr ""
+
+msgid "Load resistor"
+msgstr "נגד עומס"
+
+msgid "fx domain mesh points"
+msgstr "נקודות רשת של תחום fx"
+
+msgid "Cycles to simulate"
+msgstr "מחזורים לדמות"
+
+msgid "Voltage modulation depth"
+msgstr "עומק אפנון מתח"
+
+msgid "Excite with"
+msgstr "להתרגש עם"
+
+msgid "Light"
+msgstr "אוֹר"
+
+msgid "Measure"
+msgstr "מידה"
+
+msgid "Light modulation depth"
+msgstr "עומק אפנון אור"
+
+msgid "Run fit after simulation"
+msgstr "הפעלת כושר לאחר סימולציה"
+
+msgid "Periods to fit"
+msgstr "תקופות להתאמה"
+
+msgid "Normalize transfer functon by light intensity"
+msgstr "נרמל את פונקציית ההעברה לפי עוצמת האור"
+
+msgid "Re(J)"
+msgstr "Re(J)"
+
+msgid "Im(J)"
+msgstr "אני (J)"
+
+msgid "fx"
+msgstr "למשל"
+
+msgid "di"
+msgstr "די"
+
+msgid "dmodulation"
+msgstr "dmodulation"
+
+msgid "dphase"
+msgstr "dphase"
+
+msgid "Simulation type"
+msgstr "סוג סימולציה"
+
+msgid "Large signal"
+msgstr "אות גדול"
+
+msgid "Fourier"
+msgstr "פורייה"
+
+msgid "Node list"
+msgstr "רשימת צמתים"
+
+msgid "Initialization vector"
+msgstr "וקטור אתחול"
+
+msgid "Cryptographic key"
+msgstr "מפתח קריפטוגרפי"
+
+msgid "Intensity of the sun"
+msgstr "עוצמת השמש"
+
+msgid "#saturation_n0"
+msgstr "#saturation_n0"
+
+msgid "#saturation_rate"
+msgstr "#שיעור_רוויה"
+
+msgid "Absorption of material"
+msgstr "קליטת חומר"
+
+msgid "Simulation mode"
+msgstr "מצב סימולציה"
+
+msgid "start voltage"
+msgstr "מתח התחלה"
+
+msgid "Max voltage"
+msgstr "מתח מקסימלי"
+
+msgid "Invert output"
+msgstr "הפוך פלט"
+
+msgid "Use capacitor"
+msgstr "השתמש בקבלים"
+
+msgid "External C"
+msgstr "חיצוני C"
+
+msgid "External R"
+msgstr "חיצוני R"
+
+msgid "Resistance of scope"
+msgstr "התנגדות של היקף"
+
+msgid "Photon Flux"
+msgstr "שטף פוטון"
+
+msgid "device width"
+msgstr "רוחב המכשיר"
+
+msgid "device breadth"
+msgstr "רוחב המכשיר"
+
+msgid "Start light intensity"
+msgstr "התחל את עוצמת האור"
+
+msgid "Stop light intensity"
+msgstr "עצור את עוצמת האור"
+
+msgid "Numer of steps"
+msgstr "מספר שלבים"
+
+msgid "CE light on time"
+msgstr "נורית CE עומדת בזמן"
+
+msgid "CE light off time"
+msgstr "זמן כיבוי של נורת CE"
+
+msgid "Automatic world size"
+msgstr "גודל עולם אוטומטי"
+
+msgid "World fills mesh"
+msgstr "עולם ממלא רשת"
+
+msgid "x0"
+msgstr "x0"
+
+msgid "x1"
+msgstr "x1"
+
+msgid "y0"
+msgstr "y0"
+
+msgid "y1"
+msgstr "y1"
+
+msgid "z0"
+msgstr "z0"
+
+msgid "z1"
+msgstr "z1"
+
+msgid "margin x0"
+msgstr "שוליים x0"
+
+msgid "margin x1"
+msgstr "שוליים x1"
+
+msgid "margin y0"
+msgstr "שוליים y0"
+
+msgid "margin y1"
+msgstr "שוליים y1"
+
+msgid "margin z0"
+msgstr "שוליים z0"
+
+msgid "margin z1"
+msgstr "שוליים z1"
+
+msgid "Active layer width"
+msgstr "רוחב שכבה פעילה"
+
+msgid "Reset time to zero each cycle"
+msgstr "אפס את הזמן לאפס בכל מחזור"
+
+msgid "OpenCL GPU acceleration"
+msgstr "האצת OpenCL GPU"
+
+msgid "GPU name"
+msgstr "שם GPU"
+
+msgid "<b>Excitation type</b>"
+msgstr "<b>סוג עירור</b>"
+
+msgid "FDTD Slice"
+msgstr "פרוסת FDTD"
+
+msgid "Sin"
+msgstr "חטא"
+
+msgid "Pulse"
+msgstr "דוֹפֶק"
+
+msgid "Start wavelength"
+msgstr "התחל אורך גל"
+
+msgid "Stop wavelength"
+msgstr "עצור את אורך הגל"
+
+msgid "Wavelength steps"
+msgstr "צעדי אורך גל"
+
+msgid "Pulse length"
+msgstr "אורך דופק"
+
+msgid "Excite Ex"
+msgstr "Excite Ex"
+
+msgid "Excite Ey"
+msgstr "לרגש את Ey"
+
+msgid "Excite Ez"
+msgstr "לרגש את א.ז"
+
+msgid "<b>FDTD mesh</b>"
+msgstr "<b>רשת FDTD</b>"
+
+msgid "zy"
+msgstr "zy"
+
+msgid "zx"
+msgstr "zx"
+
+msgid "xy"
+msgstr "xy"
+
+msgid "Mesh points y"
+msgstr "נקודות רשת y"
+
+msgid "Use gnuplot to visualize"
+msgstr "השתמש ב-gnuplot כדי לדמיין"
+
+msgid "<b>Simulation time</b>"
+msgstr "<b>זמן סימולציה</b>"
+
+msgid "Stop time"
+msgstr "זמן עצירה"
+
+msgid "Max steps"
+msgstr "מקסימום צעדים"
+
+msgid "Key results"
+msgstr "תוצאות מפתח"
+
+msgid "Write everything to disk every 2nd step"
+msgstr "כתוב הכל לדיסק כל שלב שני"
+
+msgid "Write everything to disk every 5th step"
+msgstr "כתוב הכל לדיסק כל שלב 5"
+
+msgid "Write everything to disk every 10th step"
+msgstr "כתוב הכל לדיסק כל שלב 10"
+
+msgid "Output verbosity to screen"
+msgstr "פלט מילוליות למסך"
+
+msgid "Show lots"
+msgstr "הצג המון"
+
+msgid "Show key results"
+msgstr "הצג תוצאות מפתח"
+
+msgid "Solver output verbosity"
+msgstr "מילוליות פלט של פותר"
+
+msgid "As answers are found"
+msgstr "ככל שנמצאו תשובות"
+
+msgid "Each step"
+msgstr "כל צעד"
+
+msgid "Source"
+msgstr "מָקוֹר"
+
+msgid "x rotation"
+msgstr "x סיבוב"
+
+msgid "y rotation"
+msgstr "סיבוב y"
+
+msgid "z rotation"
+msgstr "סיבוב z"
+
+msgid "x pos"
+msgstr "x pos"
+
+msgid "y pos"
+msgstr "y pos"
+
+msgid "zoom"
+msgstr "תקריב"
+
+msgid "The following erros/warning were found while running the simulations:"
+msgstr "השגיאות/אזהרה הבאות נמצאו במהלך הפעלת הסימולציות:"
+
+msgid "Output vectors for "
+msgstr "וקטור פלט עבור"
+
+msgid "ML Token"
+msgstr "אסימון ML"
+
+msgid "Symmetric"
+msgstr "סימטרי"
+
+msgid "Asymmetric"
+msgstr "אסימטרית"
+
+msgid "Gaussian"
+msgstr "גאוס"
+
+msgid "Lorentzian"
+msgstr "לורנציאן"
+
+msgid "Colors"
+msgstr "צבעים"
+
+msgid "Save as"
+msgstr "שמור כ"
+
+msgid "Save as image"
+msgstr "שמור כתמונה"
+
+msgid "Save as gobj"
+msgstr "שמור כ-gobj"
+
+msgid "Optical"
+msgstr "אוֹפּטִי"
+
+msgid "Show photons"
+msgstr "הצג פוטונים"
+
+msgid "FDTD grid"
+msgstr "רשת FDTD"
+
+msgid "Optical mode"
+msgstr "מצב אופטי"
+
+msgid "Rays"
+msgstr "קרניים"
+
+msgid "Solid rays"
+msgstr "קרניים מוצקות"
+
+msgid "Show detectors"
+msgstr "הצג גלאים"
+
+msgid "Electrical mesh"
+msgstr "רשת חשמלית"
+
+msgid "Show device"
+msgstr "הצג מכשיר"
+
+msgid "Grid"
+msgstr "רֶשֶׁת"
+
+msgid "Coordinates"
+msgstr "קואורדינטות"
+
+msgid "Show text"
+msgstr "הצג טקסט"
+
+msgid "Show Dimensions"
+msgstr "הצג מידות"
+
+msgid "Show plot"
+msgstr "הצג עלילה"
+
+msgid "Transparent objects"
+msgstr "חפצים שקופים"
+
+msgid "Ray tracing mesh"
+msgstr "רשת איתור ריי"
+
+msgid "Show world box"
+msgstr "הצג תיבת עולם"
+
+msgid "Lock view"
+msgstr "מנעול תצוגת"
+
+msgid "Show gl lights"
+msgstr "הצג אורות gl"
+
+msgid "Show buttons"
+msgstr "הצג כפתורים"
+
+msgid "Stars"
+msgstr "כוכבים"
+
+msgid "Font"
+msgstr "גוֹפָן"
+
+msgid "Background color"
+msgstr "צבע רקע"
+
+msgid "Interface background color"
+msgstr "צבע רקע של ממשק"
+
+msgid "Interface text color"
+msgstr "צבע טקסט בממשק"
+
+msgid "Objects"
+msgstr "חפצים"
+
+msgid "New free object"
+msgstr "חפץ חדש בחינם"
+
+msgid "New light source"
+msgstr "מקור אור חדש"
+
+msgid "New detector"
+msgstr "גלאי חדש"
+
+msgid "Rescale"
+msgstr "קנה מידה מחדש"
+
+msgid "Object tree"
+msgstr "עץ חפצים"
+
+msgid "Copy image"
+msgstr "העתק תמונה"
+
+msgid "Object tree viewer"
+msgstr "מציג עץ אובייקט"
+
+msgid "Device view"
+msgstr "תצוגת מכשיר"
+
+msgid "Charge extraction experiment window"
+msgstr "חלון ניסוי חילוץ טעינה"
+
+msgid "Python Equation"
+msgstr "משוואת פייתון"
+
+msgid "You've made a mistake in the equation, use w for wavelength. "
+msgstr "עשית טעות במשוואה, השתמש ב-w עבור אורך הגל."
+
+msgid "Are you sure you wisht to import this, it will overwrite "
+msgstr "האם אתה בטוח שברצונך לייבא את זה, זה ידרוס"
+
+msgid "Equation editor"
+msgstr "עורך משוואות"
+
+msgid ""
+"Import\n"
+"into model"
+msgstr ""
+"ייבוא\n"
+"לדגם"
+
+msgid "Add section"
+msgstr "הוסף סעיף"
+
+msgid "Delete section"
+msgstr "מחק קטע"
+
+msgid ""
+"Your version of OghmaNano is now out of date. To continue using OghmaNano please download a new "
+"version at https://www.oghma-nano.com."
+msgstr ""
+"הגרסה שלך של OghmaNano אינה מעודכנת. כדי להמשיך להשתמש ב-OghmaNano, הורד גרסה חדשה בכתובת https://"
+"www.oghma-nano.com."
+
+msgid "<big><b>Update available!</b></big><br>Download it now from <a href=\""
+msgstr "<big><b>עדכון זמין!</b></big><br>הורד אותו עכשיו מ-<a href=\""
+
+msgid "Optical detectors editor"
+msgstr "עורך גלאים אופטיים"
+
+msgid "Na"
+msgstr "לא"
+
+msgid "Nd"
+msgstr "Nd"
+
+msgid "Ions"
+msgstr "יונים"
+
+msgid "Doping/Mobilie ion profile editor"
+msgstr "עורך פרופיל סימום/Mobilie ion"
+
+msgid "New emission spectra name:"
+msgstr "שם ספקטרום פליטה חדש:"
+
+msgid "New emission spectra name"
+msgstr "שם ספקטרום פליטה חדש"
+
+msgid "New spectra name:"
+msgstr "שם ספקטר חדש:"
+
+msgid "New spectra name"
+msgstr "שם ספקטר חדש"
+
+msgid "New material name:"
+msgstr "שם חומר חדש:"
+
+msgid "New material name"
+msgstr "שם חומר חדש"
+
+msgid "I cant write to: "
+msgstr "אני לא יכול לכתוב ל:"
+
+msgid "New filter name:"
+msgstr "שם מסנן חדש:"
+
+msgid "New filter name"
+msgstr "שם מסנן חדש"
+
+msgid "New directory name:"
+msgstr "שם ספרייה חדשה:"
+
+msgid "New directory"
+msgstr "ספרייה חדשה"
+
+msgid "Save a the simulation as"
+msgstr "שמור את הסימולציה בשם"
+
+msgid "Directory"
+msgstr "מַדרִיך"
+
+msgid "Simulation information"
+msgstr "מידע על סימולציה"
+
+msgid "yz"
+msgstr "yz"
+
+msgid "xz"
+msgstr "xz"
+
+msgid "Orthographic"
+msgstr "אורתוגרפי"
+
+msgid "Fly"
+msgstr "לטוס, זבוב"
+
+msgid "Running job "
+msgstr "עבודת ריצה"
+
+msgid "The file to import:"
+msgstr "הקובץ לייבוא:"
+
+msgid "The imported file, the numbers should now be in SI units"
+msgstr "הקובץ המיובא, המספרים צריכים להיות כעת ביחידות SI"
+
+msgid "x units:"
+msgstr "x יחידות:"
+
+msgid "y units:"
+msgstr "יחידות y:"
+
+msgid "Title:"
+msgstr "כותרת:"
+
+msgid "x-label:"
+msgstr "תווית x:"
+
+msgid "x-column:"
+msgstr "עמודה x:"
+
+msgid "y-label:"
+msgstr "תווית y:"
+
+msgid "y-column:"
+msgstr "עמודה y:"
+
+msgid "device area:"
+msgstr "אזור המכשיר:"
+
+msgid "Can not load file "
+msgstr "לא ניתן לטעון קובץ"
+
+msgid "I can't read the file: "
+msgstr "אני לא יכול לקרוא את הקובץ:"
+
+msgid ""
+"I can only read plain text files such as csv formats. I can not read binary files such as excel "
+"documents."
+msgstr ""
+"אני יכול לקרוא רק קבצי טקסט רגיל כגון פורמטים של csv. אני לא יכול לקרוא קבצים בינאריים כמו מסמכי "
+"אקסל."
+
+msgid "Photonenergy"
+msgstr "פוטוננרגיה"
+
+msgid "J"
+msgstr "י"
+
+msgid "IMPS Re(Z)"
+msgstr "IMPS Re(Z)"
+
+msgid "IMPS Im(Z)"
+msgstr "IMPS Im(Z)"
+
+msgid "IMVS Re(Z)"
+msgstr "IMVS Re(Z)"
+
+msgid "IMVS Im(Z)"
+msgstr "IMVS Im(Z)"
+
+msgid "Amps"
+msgstr "אמפר"
+
+msgid "Amps - no convert"
+msgstr "אמפר - ללא המרה"
+
+msgid "I"
+msgstr "אני"
+
+msgid "-Voltage"
+msgstr "-מתח"
+
+msgid "Angular frequency"
+msgstr "תדר זוויתי"
+
+msgid "Attenuation coefficient"
+msgstr "מקדם הנחתה"
+
+msgid "Intensity"
+msgstr "עָצמָה"
+
+msgid "mA"
+msgstr "אִמָא"
+
+msgid "Simulation notes"
+msgstr "הערות סימולציה"
+
+msgid "Bibtex reference"
+msgstr "התייחסות לביבטקס"
+
+msgid "Simulation Notes"
+msgstr "הערות סימולציה"
+
+msgid "Simulation snapshots"
+msgstr "תמונת מצב של סימולציה"
+
+msgid "Running: "
+msgstr "רץ:"
+
+msgid "I could not find a free cpu to run the command on"
+msgstr "לא הצלחתי למצוא מעבד פנוי להפעיל את הפקודה"
+
+msgid "CPU"
+msgstr "מעבד"
+
+msgid "Nodes"
+msgstr "צמתים"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Generate keys"
+msgstr "צור מפתחות"
+
+msgid "Install to cluster"
+msgstr "התקן לאשכול"
+
+msgid "Boot cluster"
+msgstr "אשכול אתחול"
+
+msgid "Stop cluster"
+msgstr "עצור אשכול"
+
+msgid "Remove from cluster"
+msgstr "הסר מהאשכול"
+
+msgid "CV experiment window"
+msgstr "חלון ניסוי קורות חיים"
+
+msgid ""
+"Doping/\n"
+"Ions"
+msgstr ""
+"סימום/\n"
+"יונים"
+
+msgid ""
+"Material\n"
+"Gradients"
+msgstr ""
+"חומר\n"
+"הדרגות"
+
+msgid "Interfaces"
+msgstr "ממשקים"
+
+msgid ""
+"Parasitic\n"
+" components"
+msgstr ""
+
+msgid ""
+"Mobile\n"
+"Ion solver"
+msgstr ""
+"נייד\n"
+"פותר יונים"
+
+msgid ""
+"Electrical\n"
+"mesh"
+msgstr ""
+
+msgid ""
+"<big><b>Interface editor</b></big>\n"
+"Use this window to edit how electrical interfaces behave."
+msgstr ""
+"<big><b>עורך ממשקים</b></big>\n"
+"השתמש בחלון זה כדי לערוך את אופן הפעולה של ממשקים חשמליים."
+
+msgid "Electrical boundary conditions"
+msgstr "תנאי גבול חשמליים"
+
+msgid "Excitonic boundary conditions"
+msgstr "תנאי גבול אקציטוניים"
+
+msgid ""
+"<big><b>Doping window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr ""
+"<big><b>חלון סימום</b></big>\n"
+"השתמש בחלון זה כדי להוסיף סימום לסימולציה"
+
+msgid ""
+"<big><b>Gradients window</b></big>\n"
+"Use this window to add doping to the simulation"
+msgstr ""
+"<big><b>חלון מעברים</b></big>\n"
+"השתמש בחלון זה כדי להוסיף סימום לסימולציה"
+
+msgid ""
+"<big><b>Parasitic components</b></big>\n"
+"Use this window to edit the shunt and series resistance."
+msgstr ""
+"<big><b>רכיבים טפילים</b></big>\n"
+"השתמש בחלון זה כדי לערוך את התנגדות ה-shunt והסדרה."
+
+msgid "Load type"
+msgstr "סוג עומס"
+
+msgid "Multiplyer"
+msgstr "מכפיל"
+
+msgid ""
+"External\n"
+"interface:"
+msgstr ""
+"ממשק\n"
+" חיצוני:"
+
+msgid ""
+"External\n"
+"Reflection"
+msgstr ""
+"חיצוני\n"
+"השתקפות"
+
+msgid "Reflective interface editor"
+msgstr "עורך ממשק רפלקטיבי"
+
+msgid "Connect to cluster"
+msgstr "התחבר לאשכול"
+
+msgid "Connect"
+msgstr "לְחַבֵּר"
+
+msgid "Disconnect"
+msgstr "לְנַתֵק"
+
+msgid "Cancel"
+msgstr "לְבַטֵל"
+
+msgid ""
+"<big><b>The device structure tab</b></big>\n"
+" Use this tab to change the structure of the device, the layer thicknesses and to perform optical "
+"simulations.  You can also browse the materials data base and  edit the electrical mesh."
+msgstr ""
+"<big><b>כרטיסיית מבנה המכשיר</b></big>\n"
+" השתמש בכרטיסייה זו כדי לשנות את מבנה המכשיר, את עובי השכבות ולבצע סימולציות אופטיות. אתה יכול גם "
+"לעיין במאגר הנתונים של החומרים ולערוך את רשת החשמל."
+
+msgid "<big><b>Update available!</b></big><br>"
+msgstr "<big><b>עדכון זמין!</b></big><br>"
+
+msgid "File to plot"
+msgstr "קובץ לעלילה"
+
+msgid "Plot type"
+msgstr "סוג העלילה"
+
+msgid "Play"
+msgstr "לְשַׂחֵק"
+
+msgid "Snapshot slider"
+msgstr "מחוון תמונת מצב"
+
+msgid "Fit variables duplicate window"
+msgstr "חלון כפול של התאמה למשתנים"
+
+msgid "Destination"
+msgstr "יַעַד"
+
+msgid "Source (JSON)"
+msgstr "מקור (JSON)"
+
+msgid "Destination (JSON)"
+msgstr "יעד (JSON)"
+
+msgid "Open data file"
+msgstr "פתח את קובץ הנתונים"
+
+msgid "Load/Import"
+msgstr "טען/ייבוא"
+
+msgid "Next"
+msgstr "הַבָּא"
+
+msgid "Online help"
+msgstr "עזרה אינטרנטית"
+
+msgid "On line help"
+msgstr "עזרה אינטרנטית"
+
+msgid "Hide"
+msgstr "להתחבא"
+
+msgid "OghmaNano in your language!"
+msgstr "OghmaNano בשפה שלך!"
+
+msgid "OghmaNano translated by:"
+msgstr "OghmaNano תורגם על ידי:"
+
+msgid "Dimension editor"
+msgstr "עורך מימדים"
+
+msgid "Substrate xz size"
+msgstr "גודל מצע xz"
+
+msgid "World size"
+msgstr "גודל עולמי"
+
+msgid "Select simulation parameter"
+msgstr "בחר פרמטר סימולציה"
+
+msgid "OK"
+msgstr "בסדר"
+
+msgid "No row selected in the scan window, can't insert the selection"
+msgstr "לא נבחרה שורה בחלון הסריקה, לא ניתן להכניס את הבחירה"
+
+msgid "New material"
+msgstr "חומר חדש"
+
+msgid "New spectra"
+msgstr "ספקטרום חדש"
+
+msgid "New shape"
+msgstr "צורה חדשה"
+
+msgid "New filter"
+msgstr "מסנן חדש"
+
+msgid "Unpack archive"
+msgstr "פרק את הארכיון"
+
+msgid "Clone the file to be called:"
+msgstr "שכפל את הקובץ שיקראו לו:"
+
+msgid "The file name already exists"
+msgstr "שם הקובץ כבר קיים"
+
+msgid "Rename the simulation to be called:"
+msgstr "שנה את שם הסימולציה שתיקרא:"
+
+msgid "Are you sure you want to delete the files ?"
+msgstr "האם אתה בטוח שברצונך למחוק את הקבצים?"
+
+msgid "You should now have a sim.json file in: "
+msgstr "כעת אמור להיות לך קובץ sim.json ב:"
+
+msgid "Open this directory to see it."
+msgstr "פתח את הספרייה הזו כדי לראות אותה."
+
+msgid "Image"
+msgstr "תמונה"
+
+msgid "Gnuplot"
+msgstr "גנופלוט"
+
+msgid "Csv"
+msgstr "Csv"
+
+msgid "Text file (txt)"
+msgstr "קובץ טקסט (txt)"
+
+msgid "MS Excel (xlsx)"
+msgstr "MS Excel (xlsx)"
+
+msgid "Graph"
+msgstr "גרָף"
+
+msgid "Show title"
+msgstr "הראה כותרת"
+
+msgid "Show key"
+msgstr "הצג מפתח"
+
+msgid "Light source editor"
+msgstr "עורך מקור אור"
+
+msgid "Rebuild"
+msgstr "לִבנוֹת מִחָדָשׁ"
+
+msgid "Electrical parameters"
+msgstr "פרמטרים חשמליים"
+
+msgid ""
+"<big><b>Electrical parameters</b></big><br>Use this tab to configure the electrical parameters for "
+"the material."
+msgstr ""
+"<big><b>פרמטרים חשמליים</b></big><br>השתמש בכרטיסייה זו כדי להגדיר את הפרמטרים החשמליים עבור החומר."
+
+msgid "<big><b>Absorption</b></big><br>"
+msgstr "<big><b>ספיגה</b></big><br>"
+
+msgid "<big><b>Refractive index</b></big><br>"
+msgstr "<big><b>אינדקס השבירה</b></big><br>"
+
+msgid "<big><b>Emission spectrum</b></big><br>Use this tab to edit the emission spectrum."
+msgstr "<big><b>ספקטרום הפליטה</b></big><br>השתמש בכרטיסייה זו כדי לערוך את ספקטרום הפליטה."
+
+msgid "Material editor"
+msgstr "עורך חומרים"
+
+msgid "Thermal parameters"
+msgstr "פרמטרים תרמיים"
+
+msgid "Life cycle"
+msgstr "מעגל החיים"
+
+msgid "Refractive index (n)"
+msgstr "מקדם שבירה (n)"
+
+msgid "k"
+msgstr "ק"
+
+msgid "Don't run me as root!!"
+msgstr "אל תפעיל אותי כשורש!!"
+
+msgid "I can't run from inside a zip file!"
+msgstr "אני לא יכול לרוץ מתוך קובץ zip!"
+
+msgid ""
+"<big><b>New simulation!</b></big><br> Now selected the type of device you would like to simulate."
+msgstr "<big><b>סימולציה חדשה!</b></big><br> כעת בחר את סוג המכשיר שברצונך לדמות."
+
+msgid "<big><b>Now run the simulation</b></big><br> Click on the play icon to start a simulation."
+msgstr "<big><b>עכשיו הפעל את הסימולציה</b></big><br> לחץ על סמל ההפעלה כדי להתחיל סימולציה."
+
+msgid ""
+"<big><b>Hi!</b></big><br> I'm the on-line help system :).  If you have any questions or find any "
+"bugs please send them to <a href=\"mailto:"
+msgstr ""
+"<big><b>היי!</b></big><br> אני מערכת העזרה המקוונת :). אם יש לך שאלות או מוצאים באגים, שלח אותם אל "
+"<a href=\"mailto:"
+
+msgid "Click on the new icon to make a new simulation directory."
+msgstr "לחץ על הסמל החדש כדי ליצור ספריית סימולציה חדשה."
+
+msgid "Open an existing simulation"
+msgstr "פתח סימולציה קיימת"
+
+msgid ""
+"To open this file I need to rename it to have a .oghma extention. Do you want me to do that?. I "
+"would rename the file: "
+msgstr ""
+"כדי לפתוח את הקובץ הזה, אני צריך לשנות את שמו ל-.oghma extension. אתה רוצה שאני אעשה את זה? הייתי "
+"משנה את שם הקובץ:"
+
+msgid "The simulation directory has been deleted."
+msgstr "ספריית הסימולציה נמחקה."
+
+msgid "Desktop"
+msgstr "שולחן עבודה"
+
+msgid "Downloads"
+msgstr "הורדות"
+
+msgid ""
+"<big><b>Examine the results in time domain</b></big><br> After you have run a simulation in time "
+"domain, if is often nice to be able to step through the simulation and look at the results.  This "
+"is what this window does.  Use the slider bar to move through the simulation.  When you are "
+"simulating a JV curve, the slider sill step through voltage points rather than time points."
+msgstr ""
+"<big><b>בדוק את התוצאות בתחום הזמן</b></big><br> לאחר שהרצת סימולציה בתחום הזמן, אם זה לעתים "
+"קרובות נחמד להיות מסוגל לעבור בסימולציה ולהסתכל על התוצאות . זה מה שהחלון הזה עושה. השתמש בסרגל "
+"המחוון כדי לעבור בין הסימולציה. כאשר אתה מדמה עקומת JV, אדן המחוון עובר דרך נקודות מתח ולא נקודות "
+"זמן."
+
+msgid ""
+"Are you sure you want restore this file from the backup, it will overwrite all files in the "
+"simulation directory?"
+msgstr "האם אתה בטוח שברצונך לשחזר את הקובץ הזה מהגיבוי, הוא ידרוס את כל הקבצים בספריית הסימולציה?"
+
+msgid "title"
+msgstr "כותרת"
+
+msgid "x axis"
+msgstr "ציר x"
+
+msgid "y axis"
+msgstr "ציר y"
+
+msgid "equilibrium"
+msgstr "שִׁוּוּי מִשׁקָל"
+
+msgid "This contains the simulation output at 0V in the dark."
+msgstr "זה מכיל את פלט הסימולציה ב-0V בחושך."
+
+msgid "Attenuation"
+msgstr "הנחתה"
+
+msgid "Luminescence editor"
+msgstr "עורך זוהר"
+
+msgid ""
+"Optical\n"
+"Emission"
+msgstr ""
+"אופטי\n"
+"פליטה"
+
+msgid ""
+"<big><b>Luminescence</b></big>\n"
+"If you set 'Turn on luminescence' to true, the simulation will assume recombination is a raditave "
+"process and intergrate it to produce Voltage-Light intensity curves (lv.dat).  Each number in the "
+"tab tells the model how efficient each recombination mechanism is at producing photons."
+msgstr ""
+"<big><b>זוהר</b></big>\n"
+"אם תגדיר את 'הפעל את הארה' ל-True, הסימולציה תניח שהריקומבינציה היא תהליך רדיטאבי ותשלב אותו כדי "
+"לייצר עקומות עוצמת מתח-אור (lv.dat ). כל מספר בכרטיסייה אומר למודל עד כמה יעיל כל מנגנון "
+"ריקומבינציה בייצור פוטונים."
+
+msgid "All"
+msgstr "את כל"
+
+msgid "Wavelengths"
+msgstr "אורכי גל"
+
+msgid "Electrical equilibrium solver"
+msgstr "פותר שיווי משקל חשמלי"
+
+msgid "Polynomial data generator"
+msgstr "מחולל נתונים פולינומיים"
+
+msgid "Laser editor"
+msgstr "עורך לייזר"
+
+msgid "Youtube channel"
+msgstr "ערוץ יוטיוב"
+
+msgid "Quit"
+msgstr "לְהַפְסִיק"
+
+msgid ""
+"Stop\n"
+"simulation"
+msgstr ""
+"עצור\n"
+"סימולציה"
+
+msgid "Thickness"
+msgstr "עוֹבִי"
+
+msgid "Mesh Auto"
+msgstr "Mesh Auto"
+
+msgid "Stop"
+msgstr "תפסיק"
+
+msgid "Step multiply"
+msgstr "כפל צעד"
+
+msgid "points"
+msgstr "נקודות"
+
+msgid "Mesh points"
+msgstr "נקודות רשת"
+
+msgid "PL experiment window"
+msgstr "חלון ניסוי PL"
+
+msgid "Script editor"
+msgstr "עורך תסריט"
+
+msgid "Rename the script:"
+msgstr "שנה את שם התסריט:"
+
+msgid "active"
+msgstr "פָּעִיל"
+
+msgid "Flyby video maker"
+msgstr "יצרנית וידאו Flyby"
+
+msgid ""
+"Set\n"
+"position"
+msgstr ""
+"הגדר\n"
+"מיקום"
+
+msgid "Goto"
+msgstr "לך ל"
+
+msgid "window width not divisible by two"
+msgstr "רוחב החלון אינו מתחלק בשניים"
+
+msgid "window height not divisible by two"
+msgstr "גובה החלון אינו מתחלק בשניים"
+
+msgid "and "
+msgstr "ו"
+
+msgid " more."
+msgstr "יותר."
+
+msgid "Should I delete these files?:\n"
+msgstr "האם עלי למחוק את הקבצים האלה?:\n"
+
+msgid "command line tool"
+msgstr "כלי שורת הפקודה"
+
+msgid "Prints the used paths"
+msgstr "מדפיס את הנתיבים בשימוש"
+
+msgid "www.pvlighthouse.com.au sync"
+msgstr "סנכרון www.pvlighthouse.com.au"
+
+msgid "Load new image"
+msgstr "טען תמונה חדשה"
+
+msgid ""
+"Original\n"
+"image"
+msgstr ""
+
+msgid ""
+"Generate\n"
+"Image"
+msgstr ""
+"צור\n"
+"תמונה"
+
+msgid ""
+"Show\n"
+"Mesh"
+msgstr ""
+"הצג\n"
+"רשת"
+
+msgid ""
+"Edit\n"
+"Mesh"
+msgstr ""
+"ערוך\n"
+"רשת"
+
+msgid ""
+"Build\n"
+"Mesh"
+msgstr ""
+"בניית\n"
+"רשת"
+
+msgid ""
+"Generate\n"
+"Honeycomb"
+msgstr ""
+"צור\n"
+"חלת דבש"
+
+msgid ""
+"Generate\n"
+"Xtal"
+msgstr ""
+"צור\n"
+"Xtal"
+
+msgid ""
+"Generate\n"
+"lens"
+msgstr ""
+"צור\n"
+"עדשה"
+
+msgid ""
+"Generate\n"
+"Gaussian"
+msgstr ""
+"צור\n"
+"גאוסית"
+
+msgid ""
+"Saw\n"
+"wave"
+msgstr ""
+"ראה\n"
+"גל"
+
+msgid "Blur"
+msgstr "לְטַשׁטֵשׁ"
+
+msgid "Edit blur"
+msgstr "עריכת טשטוש"
+
+msgid ""
+"Normalize\n"
+"y"
+msgstr ""
+"נרמל\n"
+"y"
+
+msgid "Edit histogram"
+msgstr "ערוך היסטוגרמה"
+
+msgid ""
+"Normalize\n"
+"z"
+msgstr ""
+"נרמל\n"
+"z"
+
+msgid "Threshold"
+msgstr "מפתן"
+
+msgid "Boundary"
+msgstr "גְבוּל"
+
+msgid "Apply"
+msgstr "להגיש מועמדות"
+
+msgid "2D Image"
+msgstr "תמונה דו מימדית"
+
+msgid "I don't know how to process this type of file!"
+msgstr "אני לא יודע איך לעבד קובץ מסוג זה!"
+
+msgid " <a href=\""
+msgstr "<a href=\""
+
+msgid "Can not connect to cluster."
+msgstr "לא ניתן להתחבר לאשכול."
+
+msgid "Editors"
+msgstr "עורכים"
+
+msgid ""
+"<big><b>Simulation Editors</b></big><br> Use this tab to edit the simulation you wish to perform, "
+"you can choose from steady state measurments such as JV curve/Suns-Voc, time domain or frequency "
+"domain.  You can also choose to use advanced optical models to understand your data."
+msgstr ""
+"<big><b>עורכי סימולציה</b></big><br> השתמש בכרטיסייה זו כדי לערוך את הסימולציה שברצונך לבצע, תוכל "
+"לבחור מבין מדידות מצב יציב כגון עקומת JV/Suns-Voc, תחום זמן או תחום תדר. אתה יכול גם לבחור להשתמש "
+"במודלים אופטיים מתקדמים כדי להבין את הנתונים שלך."
+
+msgid ""
+"<big><b>Configure</b></big><br> Use this tab to control advanced features of the simulation, such "
+"as finite difference mesh, amount of data written to disk, and the configuration of the back end "
+"numerical solvers."
+msgstr ""
+"<big><b>הגדר</b></big><br> השתמש בכרטיסייה זו כדי לשלוט בתכונות המתקדמות של הסימולציה, כגון רשת "
+"הבדלים סופית, כמות הנתונים שנכתבו לדיסק, ותצורת המספרים האחוריים. פותרים."
+
+msgid ""
+"<big><b>Simulation type</b></big><br> Use this tab to select which simulation mode the model runs "
+"in, select between steady state, time domain, frequency domain and optical simulations."
+msgstr ""
+"<big><b>סוג סימולציה</b></big><br> השתמש בכרטיסייה זו כדי לבחור באיזה מצב סימולציה המודל פועל, בחר "
+"בין מצב יציב, תחום זמן, תחום תדר והדמיות אופטיות."
+
+msgid "Databases"
+msgstr "מאגרי מידע"
+
+msgid ""
+"<big><b>Databases</b></big><br> Use this tab to explore the materials and optical data bases, you "
+"can add and download more materials/optical models using the tools here."
+msgstr ""
+"<big><b>מאגרי מידע</b></big><br> השתמש בכרטיסייה זו כדי לחקור את החומרים ומאגרי הנתונים האופטיים, "
+"אתה יכול להוסיף ולהוריד חומרים/מודלים אופטיים נוספים באמצעות הכלים כאן."
+
+msgid ""
+"<big><b>Information</b></big><br> Access extra information about the model in this tab, there are "
+"lots of tutorial videos on YouTube, follow on Twitter for the latest updates."
+msgstr ""
+"<big><b>מידע</b></big><br> גש למידע נוסף על הדגם בלשונית זו, יש המון סרטוני הדרכה ב-YouTube, עקוב "
+"אחר בטוויטר לקבלת העדכונים האחרונים."
+
+msgid "Automation"
+msgstr "אוטומציה"
+
+msgid "Electrical"
+msgstr "חַשׁמַלִי"
+
+msgid "Thermal"
+msgstr "תֶרמִי"
+
+msgid "<big><b>Simulation mode changed</b></big><br>"
+msgstr "<big><b>מצב הסימולציה השתנה</b></big><br>"
+
+msgid "Key not found"
+msgstr "מפתח לא נמצא"
+
+msgid "User not found"
+msgstr "המשתמש לא נמצא"
+
+msgid ""
+"This version of the software is too old to validate it's key, please download the latest version."
+msgstr "גרסה זו של התוכנה ישנה מכדי לאמת את המפתח שלה, אנא הורד את הגרסה העדכנית ביותר."
+
+msgid "OghmaNano trial"
+msgstr "משפט OghmaNano"
+
+msgid "Optical simulation editor"
+msgstr "עורך הדמיה אופטית"
+
+msgid "Photon distribution"
+msgstr "הפצת פוטון"
+
+msgid "Photon distribution absorbed"
+msgstr "פיזור פוטון נספג"
+
+msgid "m"
+msgstr "M"
+
+msgid "cm"
+msgstr ""
+
+msgid "mm"
+msgstr ""
+
+msgid "um"
+msgstr "אממ"
+
+msgid "nm"
+msgstr ""
+
+msgid "pm"
+msgstr "אחר הצהריים"
+
+msgid "fm"
+msgstr "fm"
+
+msgid "Optical thickness editor"
+msgstr "עורך עובי אופטי"
+
+msgid "File or token to ban"
+msgstr "קובץ או אסימון לחסום"
+
+msgid "Laser:"
+msgstr "לייזר:"
+
+msgid "Export"
+msgstr "יְצוּא"
+
+msgid "Cost and energy payback calculator"
+msgstr "מחשבון החזר עלות ואנרגיה"
+
+msgid "Re-calcualte"
+msgstr "חישוב מחדש"
+
+msgid "material"
+msgstr "חוֹמֶר"
+
+msgid "Mass"
+msgstr "מסה"
+
+msgid "Optical outcoupling"
+msgstr "צימוד אופטי"
+
+msgid "Photon distribution (norm)"
+msgstr "הפצת פוטון (נורמה)"
+
+msgid "Escape probability (1D in y)"
+msgstr "הסתברות לברוח (1D ב-y)"
+
+msgid "You have not selected any parameters to scan through.  Use the add button."
+msgstr "לא בחרת אף פרמטר לסריקה דרכם. השתמש בכפתור הוסף."
+
+msgid "Parameter scan editor"
+msgstr "עורך סריקת פרמטרים"
+
+msgid "Parameter to scan"
+msgstr "פרמטר לסריקה"
+
+msgid "JSON Variable 0"
+msgstr "משתנה JSON 0"
+
+msgid "JSON Variable 1"
+msgstr "משתנה JSON 1"
+
+msgid ""
+"<big><b>Fast optimizer</b></big><br>When the fast optimizer is enabled simulation results are not "
+"written to disk and instead only key paramters are saved in a csv file. Using a spreadsheet you "
+"can then search/sort for the desired device parameters. This enables very fast parameter "
+"optimization of layer thicknesses."
+msgstr ""
+"<big><b>מיטוב מהיר</b></big><br>כאשר האופטימיזציה המהירה מופעלת, תוצאות הסימולציה אינן נכתבות "
+"לדיסק ובמקום זאת רק פרמטרי מפתח נשמרים בקובץ csv. באמצעות גיליון אלקטרוני תוכל לאחר מכן לחפש/למיין "
+"את פרמטרי המכשיר הרצויים. זה מאפשר אופטימיזציה מהירה מאוד של פרמטרים של עובי השכבה."
+
+msgid "Quantum efficiency editor"
+msgstr ""

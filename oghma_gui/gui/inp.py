@@ -36,7 +36,7 @@ from util_zip import write_lines_to_archive
 from util_zip import archive_isfile
 from util_zip import zip_lsdir
 
-from cal_path import sim_paths
+from cal_path import get_sim_paths
 from util_zip import zip_get_raw_data
 
 from util_zip import archive_get_file_time
@@ -99,14 +99,6 @@ class inp:
 		self.load(file_path)
 		return self.get_token("#ver")
 
-	def check_if_i_can_read(self,file_name):
-		try:
-			f = open(file_name, "r")
-			f.readlines()
-			f.close()
-			return True
-		except:
-			return False
 
 	def load(self,file_path,archive="sim.oghma",mode="l"):
 		self.set_file_name(file_path,archive=archive,mode=mode)
@@ -132,37 +124,12 @@ class inp:
 
 		return self.json
 
-	def sync_json_to_lines(self):
-		self.lines=json.dumps(self.json).split("\n")
-
 	def isfile(self,file_path,archive="sim"+sim_name.file_ext):
 		file_name=default_to_sim_path(file_path)
 		
 		self.zip_file_name=search_zip_file(file_name,archive)
 
 		return archive_isfile(self.zip_file_name,os.path.basename(file_name))
-
-
-	def delta_tokens(self,cmp_file):
-		missing_in_cmp=[]
-		for self_line in self.lines:
-			if self_line.startswith("#"):
-				for cmp_line in cmp_file.lines:
-					found=False
-					if self_line==cmp_line:
-						found=True
-						break
-				if found==False:
-					missing_in_cmp.append(self_line)
-
-		return missing_in_cmp
-
-	def import_tokens(self,in_file):
-		for self_line in self.lines:
-			if self_line.startswith("#") and self_line!="#ver" and self_line!="#end":
-				in_data=in_file.get_token(self_line)
-				if in_data!=False:
-					self.replace(self_line,in_data)
 
 	def get_token(self,token):
 		if self.lines==False:
@@ -322,7 +289,7 @@ def default_to_sim_path(file_path):
 	"""For file names with no path assume it is in the simulation directory"""
 	head,tail=os.path.split(file_path)
 	if head=="":
-		return os.path.join(sim_paths.get_sim_path(),file_path)
+		return os.path.join(get_sim_paths().get_sim_path(),file_path)
 	else:
 		return file_path
 

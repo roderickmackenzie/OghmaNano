@@ -1,10 +1,8 @@
-// 
-// General-purpose Photovoltaic Device Model gpvdm.com - a drift diffusion
-// base/Shockley-Read-Hall model for 1st, 2nd and 3rd generation solarcells.
-// The model can simulate OLEDs, Perovskite cells, and OFETs.
-// 
-// Copyright 2008-2022 Roderick C. I. MacKenzie https://www.gpvdm.com
-// r.c.i.mackenzie at googlemail.com
+//
+// OghmaNano - Organic and hybrid Material Nano Simulation tool
+// Copyright (C) 2008-2022 Roderick C. I. MacKenzie r.c.i.mackenzie at googlemail.com
+//
+// https://www.oghma-nano.com
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -25,20 +23,19 @@
 // SOFTWARE.
 // 
 
-
 /** @file perovskite.h
 	@brief Header file for perovskite.c
 */
 #ifndef perovskite_h
 #define perovskite_h
-
+#include <g_io.h>
 #include <sim_struct.h>
 #include <device.h>
 #include <perovskite_struct.h>
 
 int perovskite_enabled(struct device *in);
 void perovskite_dump(struct simulation *sim,struct device *in);
-long double get_perovskite_error(struct device *in,long double *b);
+gdouble get_perovskite_error(struct device *in,gdouble *b);
 int solve_perovskite(struct simulation *sim,struct device *in, int z, int x);
 void perovskite_build_matrix(struct simulation *sim,struct device *in,struct perovskite *config, int z, int x);
 void perovskite_init(struct simulation *sim,struct device *in);

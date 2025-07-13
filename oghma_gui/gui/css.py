@@ -29,12 +29,12 @@
 #
 
 import os
-from cal_path import get_css_path
+from cal_path import sim_paths
 from gQtCore import QFile,QIODevice
 
 def css_apply(widget,fileName):
 	css=None
-	file = QFile(os.path.join(get_css_path(),fileName))
+	file = QFile(os.path.join(sim_paths.get_css_path(),fileName))
 	if file.open(QIODevice.ReadOnly) :
 		css = file.readAll()
 		css =str(css ,'utf-8')

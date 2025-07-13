@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="48px"
+   height="48px"
+   id="svg3080"
+   version="1.1"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="nuts.svg"
+   inkscape:export-filename="/home/rod/juan/hpc/j73/win/gui/fit.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs3082">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path4194"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.453876"
+     inkscape:cx="4.5838959"
+     inkscape:cy="50.514533"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="974"
+     inkscape:window-x="0"
+     inkscape:window-y="33"
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="0" />
+  <metadata
+     id="metadata3085">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Roderick C. I. MacKenize</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <ellipse
+       style="fill:#0000ff;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-miterlimit:4.1;stroke-dasharray:none"
+       id="path960"
+       cx="34.177372"
+       cy="43.661633"
+       rx="1.5970109"
+       ry="1.6398736" />
+    <ellipse
+       style="fill:#0000ff;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-miterlimit:4.1;stroke-dasharray:none"
+       id="path960-3"
+       cx="29.354214"
+       cy="39.388676"
+       rx="1.5970109"
+       ry="1.6398736" />
+    <ellipse
+       style="fill:#0000ff;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-miterlimit:4.1;stroke-dasharray:none"
+       id="path960-3-6"
+       cx="24.462641"
+       cy="34.453537"
+       rx="1.5970109"
+       ry="1.6398736" />
+    <ellipse
+       style="fill:#ffff00;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-miterlimit:4.1;stroke-dasharray:none"
+       id="path960-3-6-7"
+       cx="21.119953"
+       cy="27.798502"
+       rx="1.5970109"
+       ry="1.6398736" />
+    <ellipse
+       style="fill:#ffff00;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-miterlimit:4.1;stroke-dasharray:none"
+       id="path960-3-6-7-5"
+       cx="19.596973"
+       cy="20.867327"
+       rx="1.5970109"
+       ry="1.6398736" />
+    <ellipse
+       style="fill:#ffff00;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-miterlimit:4.1;stroke-dasharray:none"
+       id="path960-3-6-7-5-3"
+       cx="21.487726"
+       cy="14.422338"
+       rx="1.5970109"
+       ry="1.6398736" />
+    <ellipse
+       style="fill:#000000;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-miterlimit:4.1;stroke-dasharray:none"
+       id="path960-3-6-7-5-3-5"
+       cx="26.034004"
+       cy="8.9311934"
+       rx="1.5970109"
+       ry="1.6398736" />
+    <ellipse
+       style="fill:#ff0000;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-miterlimit:4.1;stroke-dasharray:0.2, 0.2;stroke-dashoffset:0"
+       id="path960-3-6-7-5-3-5-6"
+       cx="30.437801"
+       cy="4.2195992"
+       rx="1.5970109"
+       ry="1.6398736" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.5, 0.5;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 28.683404,3.7254058 24.922333,2.553253 16.954285,7.2102579 9.0882045,28.252934 21.973436,44.273597 32.398752,43.990109"
+       id="path1337" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.5, 0.5;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 22.223032,44.178607 19.256409,34.152191 20.726021,29.200819"
+       id="path1339" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.5, 0.5;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 19.365206,33.952283 3.135822,0.357135"
+       id="path1341" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.5, 0.5;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 29.322522,44.27891 -0.0032,-3.088089"
+       id="path1343" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.5, 0.5;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 17.006531,7.2286044 14.8548,16.532173 18.140381,19.622665"
+       id="path1345" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.5, 0.5;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 15.278236,16.542317 19.770741,14.97083"
+       id="path1347" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.5, 0.5;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 24.495936,2.4550212 1.113425,5.3426155"
+       id="path1349" />
+  </g>
+</svg>

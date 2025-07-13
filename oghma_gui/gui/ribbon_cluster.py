@@ -31,8 +31,6 @@
 
 from icon_lib import icon_get
 
-from cal_path import get_css_path
-
 #qt
 from PySide2.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
 from PySide2.QtGui import QIcon

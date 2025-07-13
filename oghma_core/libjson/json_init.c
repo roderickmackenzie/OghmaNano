@@ -39,6 +39,7 @@
 #include <cal_path.h>
 #include "lock.h"
 #include <json.h>
+#include <rand.h>
 
 void json_init(struct json *j)
 {
@@ -48,7 +49,13 @@ void json_init(struct json *j)
 	j->level=0;
 	strcpy(j->path,"");
 	json_obj_init(&(j->obj));
+	j->obj.data_type=JSON_NODE;
 	j->compact=FALSE;
-
+	strcpy(j->file_path,"none");
+	j->is_template=FALSE;
+	json_obj_init(&(j->bib_template));
+	j->triangles_loaded=FALSE;
+	j->bib_file=FALSE;
+	j->yml_file=FALSE;
 }
 

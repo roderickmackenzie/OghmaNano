@@ -33,7 +33,7 @@ from PySide2.QtWidgets import QLabel, QFrame, QTextEdit, QAction, QLineEdit,QWid
 from PySide2.QtGui import QPixmap, QIcon
 from gQtCore import QSize, Qt, QTimer, QPersistentModelIndex, gSignal
 from QComboBoxLang import QComboBoxLang
-
+from json_c import json_tree_c
 
 import i18n
 _ = i18n.language.gettext
@@ -44,6 +44,7 @@ class mobility_widget(QWidget):
 
 	def __init__(self,electrons=True):
 		QWidget.__init__(self)
+		self.bin=json_tree_c()
 		self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.raw_value="ground"
 		self.hbox=QHBoxLayout()
@@ -126,13 +127,13 @@ class mobility_widget(QWidget):
 			self.edit_z.setMaximumWidth( 90 )
 
 	def callback_edit(self):
-		try:
-			str(float(self.edit_z.text()))
-			str(float(self.edit_x.text()))
-			str(float(self.edit_y.text()))
-			self.changed.emit()
-		except:
-			pass
+		#try:
+		#	str(float(self.edit_z.text()))
+		#	str(float(self.edit_x.text()))
+		#	str(float(self.edit_y.text()))
+		self.changed.emit()
+		#except:
+		#	pass
 
 	def callback_combobox(self):
 		self.update()
@@ -142,7 +143,7 @@ class mobility_widget(QWidget):
 		return str(value)
 		s=1.0/float(value)		#Ohms-1 m-1
 		s=s/100					#Ohms-1 cm-1
-		ret=("%.2e" % s).replace("e+0","e")
+		ret=self.bin.format_float(s)
 		return ret
 
 	def to_si(self,value):

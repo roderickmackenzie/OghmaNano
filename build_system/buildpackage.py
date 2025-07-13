@@ -68,6 +68,7 @@ def build_windows_install(d):
 				shutil.copytree(output_path, publish_dir, symlinks=False)
 				d.msgbox("The build has been placed in: "+windows_share_path)
 
+
 def buildpackage_menu(d):
 	if os.geteuid() == 0:
 		d.msgbox("Don't run me as root.")
@@ -76,6 +77,7 @@ def buildpackage_menu(d):
 
 	menu.append(("(rpm)", "Build rpm"))
 	menu.append(("(deb)", "Build deb"))
+	menu.append(("(deb-hybrid)", "Build deb hybrid"))
 	menu.append(("(flat)", "Flat direct"))
 	menu.append(("(win)", "Windows installer"))
 
@@ -88,8 +90,11 @@ def buildpackage_menu(d):
 				make_rmp_dir(d)
 
 			if tag=="(deb)":
-				from deb import make_deb
+				from deb import make_deb,deb_replace_exe_with_wine_wrapper
 				make_deb(d)
+			if tag=="(deb-hybrid)":
+				from deb import make_deb,deb_replace_exe_with_wine_wrapper
+				make_deb(d,hybrid=True)
 
 			if tag=="(win)":
 				build_windows_install(d)

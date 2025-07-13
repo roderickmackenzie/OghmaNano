@@ -37,7 +37,6 @@ oghma_core_path=None
 def set_oghma_core_path(path):
 	global oghma_core_path
 	oghma_core_path=path
-	print(">>>",oghma_core_path)
 
 def get_platform():
 	global oghma_core_path

@@ -31,7 +31,7 @@
 
 import os
 
-from cal_path import get_css_path
+from cal_path import sim_paths
 
 #qt
 from PySide2.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
@@ -49,8 +49,9 @@ from ribbon_base import ribbon_base
 from play import play
 from QAction_lock import QAction_lock
 from generation_rate_editor import generation_rate_editor
-from json_root import json_root
 from help import QAction_help
+from QColorMap import QColorMap
+from json_c import json_tree_c
 
 class mode_button(QAction_lock):
 	def __init__(self,image,text,s,name):
@@ -62,6 +63,7 @@ class mode_button(QAction_lock):
 class ribbon_optics_files(QToolBar):
 	def __init__(self):
 		QToolBar.__init__(self)
+		self.bin=json_tree_c()
 
 		self.setToolButtonStyle( Qt.ToolButtonTextUnderIcon)
 		self.setIconSize(QSize(42, 42))
@@ -79,8 +81,8 @@ class ribbon_optics_files(QToolBar):
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.addWidget(spacer)
 
-		self.optical_thickness = QAction(icon_get("optical_thickness"), _("Optical\nthickness"), self)
-		self.addAction(self.optical_thickness)
+		self.color_map=QColorMap(self)
+		self.addAction(self.color_map)
 
 		self.help = QAction_help()
 		self.addAction(self.help)
@@ -90,7 +92,12 @@ class ribbon_optics_files(QToolBar):
 		self.setToolButtonStyle( Qt.ToolButtonTextUnderIcon)
 		self.setIconSize(QSize(42, 42))
 		
-		a=mode_button("transfer_matrix", _("Transfer\nmatrix"), self,"optics_ribbon_export_image")
+		a=mode_button("transfer_matrix", _("Transfer\nmatrix"), self,"preferences")
+		a.mode="fast"
+		a.clicked.connect(self.callback_click)
+		self.actions.append(a)
+
+		a=mode_button("transfer_matrix", _("Transfer\nmatrix FD"), self,"optics_ribbon_export_image")
 		a.mode="full"
 		a.clicked.connect(self.callback_click)
 		self.actions.append(a)
@@ -127,7 +134,6 @@ class ribbon_optics_files(QToolBar):
 		f.triggered.connect(self.callback_edit_constant)
 		self.menu_set_constant_value.addAction(f)
 
-
 		self.actions.append(a)
 
 		for a in self.actions:
@@ -141,8 +147,8 @@ class ribbon_optics_files(QToolBar):
 
 	def set_mode(self):
 		self.blockSignals(True)
-		data=json_root()
-		used_model=data.optical.light.light_model
+		
+		used_model=self.bin.get_token_value("optical.light","light_model")
 		for a in self.actions:
 			a.setChecked(False)
 			if a.mode==used_model:
@@ -153,15 +159,14 @@ class ribbon_optics_files(QToolBar):
 
 	def callback_click(self,w):
 		self.blockSignals(True)
-		data=json_root()
 
 		for a in self.actions:
 			a.setChecked(False)
 
 		w.setChecked(True)
 
-		data.optical.light.light_model=w.mode
-		data.save()
+		self.bin.set_token_value("optical.light","light_model",w.mode)
+		self.bin.save()
 
 		self.blockSignals(False)
 
@@ -187,7 +192,7 @@ class optics_ribbon(ribbon_base):
 		self.optics=ribbon_optics_files()
 		self.addTab(self.optics,_("Optics"))
 
-		sheet=self.readStyleSheet(os.path.join(get_css_path(),"style.css"))
+		sheet=self.readStyleSheet(os.path.join(sim_paths.get_css_path(),"style.css"))
 		if sheet!=None:
 			sheet=str(sheet,'utf-8')
 			self.setStyleSheet(sheet)

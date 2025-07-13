@@ -58,7 +58,7 @@ void json_chk_sum(struct simulation *sim,struct md5 *sum,struct json_obj *json_i
 		obj=&(objs[i]);
 		md5_update(sum,obj->name,strlen(obj->name));
 
-		if (obj->node==TRUE)
+		if (obj->data_type==JSON_NODE)
 		{
 			json_chk_sum(sim,sum,obj);
 		}else
